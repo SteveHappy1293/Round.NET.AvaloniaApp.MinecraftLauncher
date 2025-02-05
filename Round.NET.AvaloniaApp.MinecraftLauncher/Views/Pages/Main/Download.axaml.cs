@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
@@ -133,8 +134,7 @@ public partial class Download : UserControl
             var Versions = UpdateVersions.GetVersions();
             Dispatcher.UIThread.Invoke(() =>
             {
-                MainPanel.Children.Clear();
-                MainPanel.Children.Add(new Expander()
+                var news = new Expander()
                 {
                     IsExpanded = true,
                     Header = "最新版本",
@@ -146,8 +146,10 @@ public partial class Download : UserControl
                             GetListBoxItem(Versions.Latest.Snapshot)
                         }
                     },
-                    Margin = new Thickness(5,0,5,5)
-                });
+                    // Margin = new Thickness(5, 0, 5, 5),
+                    Margin = new Thickness(50),
+                    Opacity = 0,
+                };
 
                 var rel = new Expander()
                 {
@@ -157,7 +159,8 @@ public partial class Download : UserControl
                         Height = 300,
                         Content = new StackPanel()
                     },
-                    Margin = new Thickness(5)
+                    Margin = new Thickness(50),
+                    Opacity = 0,
                 };
 
                 var shot = new Expander()
@@ -168,7 +171,8 @@ public partial class Download : UserControl
                         Height = 300,
                         Content = new StackPanel()
                     },
-                    Margin = new Thickness(5)
+                    Margin = new Thickness(50),
+                    Opacity = 0,
                 };
 
                 var old = new Expander()
@@ -179,28 +183,67 @@ public partial class Download : UserControl
                         Height = 300,
                         Content = new StackPanel()
                     },
-                    Margin = new Thickness(5)
+                    Margin = new Thickness(50),
+                    Opacity = 0,
                 };
 
-                foreach (var version in Versions.Versions)
+                Task.Run(() =>
                 {
-                    if (version.Type == "release")
+                    foreach (var version in Versions.Versions)
                     {
-                        ((StackPanel)((ScrollViewer)rel.Content).Content).Children.Add(GetListBoxItem(version.Id,version.ReleaseTime.ToString(),"release"));
+                        Dispatcher.UIThread.Invoke(() =>
+                        {
+                            if (version.Type == "release")
+                            {
+                                ((StackPanel)((ScrollViewer)rel.Content).Content).Children.Add(GetListBoxItem(
+                                    version.Id,
+                                    version.ReleaseTime.ToString(), "release"));
+                            }
+                            else if (version.Type == "snapshot")
+                            {
+                                ((StackPanel)((ScrollViewer)shot.Content).Content).Children.Add(GetListBoxItem(
+                                    version.Id,
+                                    version.ReleaseTime.ToString(), "snapshot"));
+                            }
+                            else
+                            {
+                                ((StackPanel)((ScrollViewer)old.Content).Content).Children.Add(GetListBoxItem(
+                                    version.Id,
+                                    version.ReleaseTime.ToString(), "old"));
+                            }
+                        });
                     }
-                    else if (version.Type == "snapshot")
-                    {
-                        ((StackPanel)((ScrollViewer)shot.Content).Content).Children.Add(GetListBoxItem(version.Id,version.ReleaseTime.ToString(),"snapshot"));
-                    }
-                    else
-                    {
-                        ((StackPanel)((ScrollViewer)old.Content).Content).Children.Add(GetListBoxItem(version.Id,version.ReleaseTime.ToString(),"old"));
-                    }
-                }
 
-                MainPanel.Children.Add(rel);
-                MainPanel.Children.Add(shot);
-                MainPanel.Children.Add(old);
+                    Dispatcher.UIThread.Invoke(() =>MainPanel.Children.Clear());
+
+                    Dispatcher.UIThread.Invoke(() =>
+                    {
+                        MainPanel.Children.Add(news);
+                        news.Margin = new Thickness(5, 0, 5, 5);
+                        news.Opacity = 1;
+                    });
+                    Thread.Sleep(200);
+                    Dispatcher.UIThread.Invoke(() =>
+                    {
+                        MainPanel.Children.Add(rel);
+                        rel.Margin = new Thickness(5);
+                        rel.Opacity = 1;
+                    });
+                    Thread.Sleep(200);
+                    Dispatcher.UIThread.Invoke(() =>
+                    {
+                        MainPanel.Children.Add(shot);
+                        shot.Margin = new Thickness(5);
+                        shot.Opacity = 1;
+                    });
+                    Thread.Sleep(200);
+                    Dispatcher.UIThread.Invoke(() =>
+                    {
+                        MainPanel.Children.Add(old);
+                        old.Margin = new Thickness(5);
+                        old.Opacity = 1;
+                    });
+                });
             });
         });
     }

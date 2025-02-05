@@ -1,0 +1,27 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Windows.LogsWindow"
+        Closed="TopLevel_OnClosed"
+        Title="启动日志">
+    <Grid>
+        <DockPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button Height="32" Margin="10,10,5,10" Name="KillGame" Click="KillGame_OnClick">结束游戏进程</Button>
+            <!-- <Button Height="32" Margin="5,10,5,10">导出日志</Button> -->
+            <Label Name="InfoBox" Foreground="Red" VerticalAlignment="Center"></Label>
+        </DockPanel>
+        <DockPanel HorizontalAlignment="Right" VerticalAlignment="Top" Height="32" Margin="10">
+            <Label Foreground="Red" VerticalAlignment="Center" Name="Fatal">致命：0</Label>
+            <Label Foreground="Orange" VerticalAlignment="Center" Name="Error">错误：0</Label>
+            <Label Foreground="HotPink" VerticalAlignment="Center" Name="StackTrace">堆栈：0</Label>
+            <Label Foreground="Yellow" VerticalAlignment="Center" Name="Warning">警告：0</Label>
+            <Label Foreground="Green" VerticalAlignment="Center" Name="Debug">调试：0</Label>
+            <Label Foreground="White" VerticalAlignment="Center" Name="Info">信息：0</Label>
+        </DockPanel>
+        <ScrollViewer Name="MainView" Margin="10,52,10,10">
+            
+        </ScrollViewer>
+    </Grid>
+</Window>

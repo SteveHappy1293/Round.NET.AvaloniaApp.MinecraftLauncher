@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using FluentAvalonia.UI.Controls;
 using MinecraftLaunch.Classes.Interfaces;
@@ -16,7 +17,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch
 
 public class LaunchJavaEdtion
 {
-    public static void LaunchGame(string VersionID,Action<object,LogReceivedEventArgs> LaunchingOutput,Action Exit)
+    public static void LaunchGame(string VersionID,Action<Process> GetGameProcess,Action<object,LogReceivedEventArgs> LaunchingOutput,Action Exit)
     {
         var account = new OfflineAuthenticator(Config.Config.MainConfig.Users[Config.Config.MainConfig.SelectedUser].UserName).Authenticate();
         LaunchConfig config = new LaunchConfig {
@@ -33,6 +34,7 @@ public class LaunchJavaEdtion
         Launcher launcher = new(gameResolver, config); 
         Task.Run(async () => {
             var gameProcessWatcher = await launcher.LaunchAsync(VersionID);
+            GetGameProcess(gameProcessWatcher.Process);
             gameProcessWatcher.OutputLogReceived += (sender, args) => {
                 LaunchingOutput(sender,args);
             };

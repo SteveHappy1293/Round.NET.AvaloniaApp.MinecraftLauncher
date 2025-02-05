@@ -18,6 +18,11 @@
                                    Click="MessageBox_OnClick"
                                    Margin="10,53">
         </controls:SettingsExpander>
-        <Button Width="150" Height="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">启动</Button>
+        <Button Width="150" Height="60" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Name="LaunchButton" Click="LaunchButton_OnClick">
+            <Grid Height="48">
+                <Label FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Name="BigTitle">启动游戏</Label>
+                <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Name="SmTitle">Minecraft {Version}</Label>
+            </Grid>
+        </Button>
     </Grid>
 </UserControl>

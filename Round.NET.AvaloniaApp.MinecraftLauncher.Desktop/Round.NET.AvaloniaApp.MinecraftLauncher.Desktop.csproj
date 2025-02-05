@@ -7,6 +7,7 @@
     <Nullable>enable</Nullable>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,5 +19,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Round.NET.AvaloniaApp.MinecraftLauncher\Round.NET.AvaloniaApp.MinecraftLauncher.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Icon.png" />
   </ItemGroup>
 </Project>
