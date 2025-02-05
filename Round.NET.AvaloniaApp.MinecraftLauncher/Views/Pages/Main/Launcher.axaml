@@ -18,11 +18,18 @@
                                    Click="MessageBox_OnClick"
                                    Margin="10,53">
         </controls:SettingsExpander>
-        <Button Width="150" Height="60" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Name="LaunchButton" Click="LaunchButton_OnClick">
-            <Grid Height="48">
-                <Label FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Name="BigTitle">启动游戏</Label>
-                <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Name="SmTitle">Minecraft {Version}</Label>
+        <Border Name="LaunchBored" Opacity="0" Height="80" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" CornerRadius="6" Background="rgb(39,39,39)" Margin="10,-80">
+            <Grid>
+                <Button Width="150" Height="60" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Name="LaunchButton" Click="LaunchButton_OnClick">
+                    <Grid Height="48">
+                        <Label FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Name="BigTitle">启动游戏</Label>
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Name="SmTitle">Minecraft {Version}</Label>
+                    </Grid>
+                </Button>
+                <ComboBox SelectionChanged="UserButton_OnSelectionChanged" Name="UserButton" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="10" Width="180">
+                    
+                </ComboBox>
             </Grid>
-        </Button>
+        </Border>
     </Grid>
 </UserControl>

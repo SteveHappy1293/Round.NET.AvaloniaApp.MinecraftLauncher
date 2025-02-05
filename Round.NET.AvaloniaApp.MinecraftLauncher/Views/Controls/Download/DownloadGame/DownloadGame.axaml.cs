@@ -44,7 +44,7 @@ public partial class DownloadGame : UserControl
                 Dispatcher.UIThread.Invoke(() =>
                 {
                     JDBar.Value = (args.Progress * 100);
-                    JDLabel.Content = $"当前进度：{args.Progress * 100}";
+                    JDLabel.Content = $"当前进度：{args.Progress * 100:0.00} %";
                 });
             });
             Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));

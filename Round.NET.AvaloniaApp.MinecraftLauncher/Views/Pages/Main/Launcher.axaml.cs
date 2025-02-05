@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
@@ -64,8 +66,27 @@ public partial class Launcher : UserControl
                 Thread.Sleep(100);
             }
         });
+        Task.Run(() =>
+        {
+            Thread.Sleep(800);
+            Dispatcher.UIThread.Invoke(() =>
+                LaunchBored.Margin = new Thickness(10));
+            Dispatcher.UIThread.Invoke(() =>
+                LaunchBored.Opacity = 1);
+        });
+        foreach (var user in Config.MainConfig.Users)
+        {
+            UserButton.Items.Add(new ComboBoxItem()
+            {
+                Content = new UserShowControl(user.UserName),
+                VerticalContentAlignment = VerticalAlignment.Center
+            });
+        }
+        UserButton.SelectedIndex = Config.MainConfig.SelectedUser;
+        IsEdit = true;
     }
 
+    private bool IsEdit = false;
     private void MessageBox_OnClick(object? sender, RoutedEventArgs e)
     {
         Core.SystemTask.Show();
@@ -77,5 +98,14 @@ public partial class Launcher : UserControl
         var dow = new LaunchJavaEdtion();
         dow.Version = Path.GetFileName(Path.GetFileName(Directory.GetDirectories($"{Config.MainConfig.GameFolders[Sel].Path}/versions")[Config.MainConfig.GameFolders[Sel].SelectedGameIndex]));
         SystemMessageTaskMange.AddTask(dow, SystemMessageTaskMange.TaskType.Launch);
+    }
+
+    private void UserButton_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.MainConfig.SelectedUser = UserButton.SelectedIndex;
+            Config.SaveConfig();
+        }
     }
 }

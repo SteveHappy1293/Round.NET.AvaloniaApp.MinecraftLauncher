@@ -18,6 +18,7 @@ using MinecraftLaunch.Classes.Enums;
 using MinecraftLaunch.Classes.Interfaces;
 using MinecraftLaunch.Classes.Models.Game;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Install;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
@@ -117,13 +118,14 @@ public partial class LaunchJavaEdtion : UserControl
                         if (args.LogType.ToString()=="Info")
                         {
                             Launched = true;
-                            Message.Show("启动游戏",$"游戏 {Version} 已启动！",InfoBarSeverity.Success);
+                            Message.Show("启动游戏",$"游戏 {Version} 已启动！\n账户名称：{Config.MainConfig.Users[Config.MainConfig.SelectedUser].UserName}\n账户模式：离线",InfoBarSeverity.Success);
                             GameProcess = ((IGameProcessWatcher)o).Process;
+                            Dispatcher.UIThread.Invoke(() => LaunJDBar.Value = 100);
+                            Thread.Sleep(300);
                             Dispatcher.UIThread.Invoke(() =>
                             {
                                 LoadBar.IsVisible = false;
                                 JDLabel.Content = "当前进度：游戏已启动";
-                                LaunJDBar.Value = 100;
                                 MainGrid.Children.Remove(MainPanel);
                                 KillGame.Width = 120;
                                 Task.Run(() =>
