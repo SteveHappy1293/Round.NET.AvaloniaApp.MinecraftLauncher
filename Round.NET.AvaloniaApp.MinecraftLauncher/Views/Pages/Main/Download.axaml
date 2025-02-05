@@ -1,0 +1,20 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Download">
+    <Grid>
+        <Grid Name="MainGrid">
+            <Label Margin="7" FontSize="22" FontWeight="Bold">下载</Label>
+            <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="65,10" Click="Button_OnClick">刷新列表</Button>
+            <ScrollViewer Margin="0,48,0,0">
+                <StackPanel Name="MainPanel" Margin="5">
+            
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <controls:Frame Name="MainFrame"/>
+    </Grid>
+</UserControl>

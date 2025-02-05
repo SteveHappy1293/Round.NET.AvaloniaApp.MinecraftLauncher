@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Round.NET.AvaloniaApp.MinecraftLauncher", "Round.NET.AvaloniaApp.MinecraftLauncher\Round.NET.AvaloniaApp.MinecraftLauncher.csproj", "{66BBA0B0-0941-4019-A936-000AAF0329D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Round.NET.AvaloniaApp.MinecraftLauncher.Desktop", "Round.NET.AvaloniaApp.MinecraftLauncher.Desktop\Round.NET.AvaloniaApp.MinecraftLauncher.Desktop.csproj", "{173F3482-D36C-40F3-ACAE-3B3DEB699855}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66BBA0B0-0941-4019-A936-000AAF0329D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66BBA0B0-0941-4019-A936-000AAF0329D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66BBA0B0-0941-4019-A936-000AAF0329D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66BBA0B0-0941-4019-A936-000AAF0329D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{173F3482-D36C-40F3-ACAE-3B3DEB699855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{173F3482-D36C-40F3-ACAE-3B3DEB699855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{173F3482-D36C-40F3-ACAE-3B3DEB699855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{173F3482-D36C-40F3-ACAE-3B3DEB699855}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18F30414-0E2D-4CD4-8BA9-ACC7CE5A4368}
+	EndGlobalSection
+EndGlobal

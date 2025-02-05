@@ -1,0 +1,23 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:controls1="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Launcher">
+    <Grid>
+        <Label Margin="7" FontSize="22" FontWeight="Bold">启动</Label>
+        <controls:SettingsExpander Header="欢迎使用全新 RMCL3.0"
+                                   Description="全新一代 RMCL，不太一样，大不一样。"
+                                   Name="MessageBox"
+                                   IsClickEnabled="True"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Top"
+                                   Width="300"
+                                   Click="MessageBox_OnClick"
+                                   Margin="10,53">
+        </controls:SettingsExpander>
+        <Button Width="150" Height="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">启动</Button>
+    </Grid>
+</UserControl>

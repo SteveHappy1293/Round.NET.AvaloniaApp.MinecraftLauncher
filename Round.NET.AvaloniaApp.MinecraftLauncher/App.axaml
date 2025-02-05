@@ -1,0 +1,61 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:styling="clr-namespace:FluentAvalonia.Styling;assembly=FluentAvalonia"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:downloadGame="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.DownloadGame"
+             xmlns:launch="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch"
+             xmlns:controls1="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.Styles>
+        <styling:FluentAvaloniaTheme CustomAccentColor="DodgerBlue"/>
+        <Style Selector="controls|SettingsExpander">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Width" Duration="0:0:0.8" Easing="QuadraticEaseInOut"></DoubleTransition>
+                    <DoubleTransition Property="Height" Duration="0:0:0.8" Easing="QuadraticEaseInOut"></DoubleTransition>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Label">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="controls|InfoBar">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="controls1|HeroIcon">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.3"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="downloadGame|DownloadGame">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="launch|LaunchJavaEdtion">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="MinHeight" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
+    </Application.Styles>
+</Application>

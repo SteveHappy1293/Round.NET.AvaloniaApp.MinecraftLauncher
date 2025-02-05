@@ -1,0 +1,30 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Mange">
+    <Grid>
+        <!--<Label Margin="7" FontSize="22" FontWeight="Bold">管理</Label>-->
+        <TabControl>
+            <TabItem Header="游戏管理" FontSize="17" FontWeight="Bold">
+                <Grid>
+                    <Label VerticalAlignment="Top" Margin="5,8">目录</Label>
+                    <ComboBox Name="GameDirBox" SelectionChanged="GameDirBox_OnSelectionChanged" Margin="50,5,55,0" HorizontalAlignment="Stretch" Height="32"></ComboBox>
+                    <Button Height="32" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5">
+                        <controls:HeroIcon Foreground="White" Type="PlusCircle" Min="True"/>
+                    </Button>
+                    <ScrollViewer Margin="0,42,0,0">
+                        <ListBox Name="VersionBox" SelectionChanged="VersionBox_OnSelectionChanged">
+                            
+                        </ListBox>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Java 管理" FontSize="17" FontWeight="Bold">
+                
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

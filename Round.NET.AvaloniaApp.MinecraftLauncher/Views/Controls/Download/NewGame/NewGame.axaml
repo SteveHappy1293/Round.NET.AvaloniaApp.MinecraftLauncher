@@ -1,0 +1,73 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:addModLoader="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.AddModLoader"
+             mc:Ignorable="d"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.AddNewGame.NewGame">
+    <Grid>
+        <Label Margin="7" FontSize="22" FontWeight="Bold">下载</Label>
+        <ScrollViewer>
+            <StackPanel Margin="0,53,0,0">
+                <Border Background="rgb(38,38,38)" CornerRadius="6" Margin="10,0,10,0" Height="95">
+                    <Grid>
+                        <Label VerticalAlignment="Top" Margin="10,14">安装版本：</Label>
+                        <Label FontSize="22" Margin="83,7" Name="VersionTitle">Version</Label>
+                        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Name="InstallButton" Click="InstallButton_OnClick">开始安装</Button>
+                        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="10">
+                            <Label VerticalAlignment="Center">版本名称：</Label>
+                            <TextBox Name="ShowNameBox">Version Name</TextBox>
+                        </DockPanel>
+                    </Grid>
+                </Border>
+                <controls:SettingsExpander Header="Minecraft"
+                                           Name="ChooseVersionBox"
+                                           ActionIconSource="{StaticResource GoIcon}" 
+                                           Description="Version"
+                                           IsClickEnabled="True"
+                                           Click="BackExpander_OnClick"
+                                           Margin="10"/>
+                <!-- <controls:SettingsExpander Header="Mod 加载器" -->
+                <!--                            ActionIconSource="{StaticResource GoIcon}"  -->
+                <!--                            Description="None" -->
+                <!--                            IsClickEnabled="True" -->
+                <!--                            Click="ModLoaderExpander_OnClick" -->
+                <!--                            Margin="5"/> -->
+                
+                <ScrollViewer>
+                    <StackPanel>
+                        <Expander Header="Forge" Margin="10,0,10,5">
+                            <ScrollViewer >
+                                <StackPanel Name="ForgeBox">
+                                
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Expander>
+                        <Expander Header="OptiFine" Margin="10,5">
+                            <ScrollViewer >
+                                <StackPanel Name="OptiFineBox">
+                                
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Expander>
+                        <Expander Header="Fabric" Margin="10,5">
+                            <ScrollViewer >
+                                <StackPanel Name="FabricBox">
+                                
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Expander>
+                        <Expander Header="Quilt" Margin="10,5,10,10">
+                            <ScrollViewer >
+                                <StackPanel Name="QuiltBox">
+                                
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Expander>
+                    </StackPanel>
+                </ScrollViewer>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
