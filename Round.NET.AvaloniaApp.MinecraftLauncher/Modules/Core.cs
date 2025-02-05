@@ -2,7 +2,7 @@
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Message;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Models;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 
 public class Core
 {

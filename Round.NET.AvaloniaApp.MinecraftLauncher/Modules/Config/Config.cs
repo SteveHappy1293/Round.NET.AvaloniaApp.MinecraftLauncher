@@ -4,10 +4,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using MinecraftLaunch.Classes.Models.Game;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Java;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 using SkiaSharp;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Models.Config;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 
 public class ConfigRoot
 {

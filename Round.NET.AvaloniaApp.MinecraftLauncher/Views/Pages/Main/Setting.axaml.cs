@@ -6,8 +6,8 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Flurl.Util;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Config;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Java;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 

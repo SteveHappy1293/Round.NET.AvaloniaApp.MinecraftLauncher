@@ -11,9 +11,9 @@ using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using HeroIconsAvalonia.Controls;
 using HeroIconsAvalonia.Enums;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Config;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Game.JavaEdtion.Launch;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using LaunchJavaEdtion = Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch.LaunchJavaEdtion;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
@@ -34,7 +34,7 @@ public partial class Mange : UserControl
             int count = 0;
             while (true)
             {
-                // Dispatcher.UIThread.Invoke(() => Models.Message.Message.Show("Hello World!", "Title", InfoBarSeverity.Success));
+                // Dispatcher.UIThread.Invoke(() => Modules.Message.Message.Show("Hello World!", "Title", InfoBarSeverity.Success));
                 var path = $"{Config.MainConfig.GameFolders[GameDirBox.SelectedIndex].Path}/versions";
                 if (Directory.GetDirectories(path).Length != count)
                 {

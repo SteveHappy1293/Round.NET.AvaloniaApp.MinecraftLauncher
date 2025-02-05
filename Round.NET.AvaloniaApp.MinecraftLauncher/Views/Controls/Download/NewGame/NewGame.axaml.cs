@@ -15,9 +15,9 @@ using MinecraftLaunch.Classes.Models.Install;
 using MinecraftLaunch.Components.Resolver;
 using MinecraftLaunch.Components.Downloader;
 using MinecraftLaunch.Components.Installer;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Config;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.AddModLoader;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.AddNewGame;

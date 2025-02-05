@@ -8,7 +8,7 @@ using Avalonia.Threading;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.DownloadGame;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Models.TaskMange.SystemMessage;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 
 public class SystemMessageTaskMange
 {

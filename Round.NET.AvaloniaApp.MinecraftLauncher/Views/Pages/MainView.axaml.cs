@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 using FluentAvalonia.UI.Controls;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views;

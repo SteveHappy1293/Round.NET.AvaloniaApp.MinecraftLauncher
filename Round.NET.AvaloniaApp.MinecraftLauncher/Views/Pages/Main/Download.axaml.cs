@@ -13,8 +13,8 @@ using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using HeroIconsAvalonia.Controls;
 using HeroIconsAvalonia.Enums;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Game.JavaEdtion;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.AddNewGame;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;

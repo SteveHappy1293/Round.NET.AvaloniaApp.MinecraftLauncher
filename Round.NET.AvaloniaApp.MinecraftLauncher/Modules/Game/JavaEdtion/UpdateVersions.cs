@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using FluentAvalonia.UI.Controls;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Models.Game.JavaEdtion;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion;
 
 public class VersionManifest
 {

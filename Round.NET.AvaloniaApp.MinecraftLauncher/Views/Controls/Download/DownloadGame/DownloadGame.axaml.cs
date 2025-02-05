@@ -8,10 +8,10 @@ using FluentAvalonia.UI.Controls;
 using MinecraftLaunch.Classes.Models.Download;
 using MinecraftLaunch.Components.Installer;
 using MinecraftLaunch.Components.Resolver;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Config;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Game.JavaEdtion.Install;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Message;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Install;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.DownloadGame;
 

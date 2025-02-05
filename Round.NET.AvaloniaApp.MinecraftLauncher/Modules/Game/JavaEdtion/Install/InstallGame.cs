@@ -5,7 +5,7 @@ using MinecraftLaunch.Classes.Models.Event;
 using MinecraftLaunch.Components.Installer;
 using MinecraftLaunch.Components.Resolver;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Models.Game.JavaEdtion.Install;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Install;
 
 public class InstallGame
 {

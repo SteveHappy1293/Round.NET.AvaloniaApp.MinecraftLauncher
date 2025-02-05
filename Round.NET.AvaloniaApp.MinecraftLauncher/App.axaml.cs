@@ -5,9 +5,9 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Config;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Java;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Message;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher;

@@ -10,9 +10,9 @@ using MinecraftLaunch.Components.Authenticator;
 using MinecraftLaunch.Components.Checker;
 using MinecraftLaunch.Components.Launcher;
 using MinecraftLaunch.Components.Resolver;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Java;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Models.Game.JavaEdtion.Launch;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch;
 
 public class LaunchJavaEdtion
 {

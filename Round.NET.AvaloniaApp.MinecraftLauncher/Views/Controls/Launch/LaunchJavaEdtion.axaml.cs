@@ -16,10 +16,10 @@ using HeroIconsAvalonia.Controls;
 using HeroIconsAvalonia.Enums;
 using MinecraftLaunch.Classes.Interfaces;
 using MinecraftLaunch.Classes.Models.Game;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Game.JavaEdtion.Install;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Message;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Install;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 
@@ -49,7 +49,7 @@ public partial class LaunchJavaEdtion : UserControl
         Message.Show("启动游戏",$"已将游戏 {Version} 添加到启动任务中。",InfoBarSeverity.Success);
         Task.Run(() =>
         {
-            bool assets = Models.Game.JavaEdtion.Launch.LaunchJavaEdtion.ResourceCompletion(Version);
+            bool assets = Modules.Game.JavaEdtion.Launch.LaunchJavaEdtion.ResourceCompletion(Version);
             Dispatcher.UIThread.Invoke(() => JCAssetsJDBar.Value = 100);
             if (!assets)
             {
@@ -71,7 +71,7 @@ public partial class LaunchJavaEdtion : UserControl
                 JDLabel.Content = "当前进度：启动游戏";
                 
                 bool Launched = false;
-                Models.Game.JavaEdtion.Launch.LaunchJavaEdtion.LaunchGame(Version,((o, args) =>
+                Modules.Game.JavaEdtion.Launch.LaunchJavaEdtion.LaunchGame(Version,((o, args) =>
                 {
                     LogOutput.Append($"[{args.LogType}]{args.Log}");
                     if (!Launched)

@@ -5,7 +5,7 @@ using Avalonia.Controls;
 using MinecraftLaunch.Classes.Models.Game;
 using MinecraftLaunch.Components.Fetcher;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Models.Java;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 
 public class FindJava
 {

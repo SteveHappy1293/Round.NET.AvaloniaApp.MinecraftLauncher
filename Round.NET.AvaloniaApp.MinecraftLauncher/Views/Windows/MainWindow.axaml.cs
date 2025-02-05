@@ -7,10 +7,10 @@ using Avalonia.Media.Imaging;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using FluentAvalonia.UI.Windowing;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Config;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Java;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Models.Message;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views;
 

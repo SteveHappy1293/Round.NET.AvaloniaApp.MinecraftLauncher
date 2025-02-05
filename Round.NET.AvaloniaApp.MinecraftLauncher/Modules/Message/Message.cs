@@ -8,7 +8,7 @@ using Avalonia.Controls;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Models.Message;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 
 public class Message
 {
