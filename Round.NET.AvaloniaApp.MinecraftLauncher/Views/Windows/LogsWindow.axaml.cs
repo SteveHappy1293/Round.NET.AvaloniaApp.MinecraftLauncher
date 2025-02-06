@@ -76,6 +76,7 @@ public partial class LogsWindow : AppWindow
         Dispatcher.UIThread.Invoke(() =>
         {
             InfoBox.Content = "此会话已失效";
+            KillGame.IsEnabled = false;
         });
     }
 }

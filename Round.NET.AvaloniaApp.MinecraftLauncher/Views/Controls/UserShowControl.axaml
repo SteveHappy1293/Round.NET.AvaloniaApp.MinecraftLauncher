@@ -12,7 +12,7 @@
             <Image Margin="10" Source="../../../Assets/Game/Crafting_Table_JE4_BE3.png" Width="40" Height="40"></Image>
             <StackPanel Margin="0,-2">
                 <Label Name="NameBox" FontSize="18" FontWeight="Bold">Steve</Label>
-                <Label Margin="0,-5">离线账号</Label>
+                <Label Name="LoginTypeBox" Margin="0,-5">离线账号</Label>
             </StackPanel>
         </DockPanel>
     </Grid>

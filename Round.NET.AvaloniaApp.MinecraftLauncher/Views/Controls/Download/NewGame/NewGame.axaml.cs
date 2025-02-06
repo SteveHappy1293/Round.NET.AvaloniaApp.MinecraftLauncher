@@ -18,7 +18,6 @@ using MinecraftLaunch.Components.Installer;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.AddModLoader;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.AddNewGame;
 
@@ -97,7 +96,7 @@ public partial class NewGame : UserControl
         
         
         ((Frame)(this.Parent)).IsVisible = false;
-        ((Pages.Main.Download)((Grid)(((Frame)(this.Parent)).Parent)).Parent).MainGrid.IsVisible = true;
+        ((Pages.Main.Downloads.DownloadGamePage)((Grid)(((Frame)(this.Parent)).Parent)).Parent).MainGrid.IsVisible = true;
     }
 
     private void ModLoaderExpander_OnClick(object? sender, RoutedEventArgs e)
@@ -126,7 +125,7 @@ public partial class NewGame : UserControl
         // var con = (ContentDialog)this.Parent;
         // con.Hide();
         ((Frame)(this.Parent)).IsVisible = false;
-        ((Pages.Main.Download)((Grid)(((Frame)(this.Parent)).Parent)).Parent).MainGrid.IsVisible = true;
+        ((Pages.Main.Downloads.DownloadGamePage)((Grid)(((Frame)(this.Parent)).Parent)).Parent).MainGrid.IsVisible = true;
     }
     public void GetModLoader()
     {

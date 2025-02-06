@@ -78,8 +78,8 @@ public interface UpdateVersions
                 }
             }
             catch (Exception e)
-            {
-                Message.Message.Show("版本下载",$"加载版本出错：{e.Message}",InfoBarSeverity.Error);
+            {   
+                throw new Exception($"Failed to retrieve data. Reason: {e.Message}");
             }
 
             return null;

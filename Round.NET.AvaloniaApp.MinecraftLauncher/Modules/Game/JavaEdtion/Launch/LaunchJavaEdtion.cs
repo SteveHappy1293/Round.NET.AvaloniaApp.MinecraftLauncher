@@ -19,11 +19,11 @@ public class LaunchJavaEdtion
 {
     public static void LaunchGame(string VersionID,Action<Process> GetGameProcess,Action<object,LogReceivedEventArgs> LaunchingOutput,Action Exit)
     {
-        var account = new OfflineAuthenticator(Config.Config.MainConfig.Users[Config.Config.MainConfig.SelectedUser].UserName).Authenticate();
+        var account = User.User.GetAccount(User.User.Users[Config.Config.MainConfig.SelectedUser].UUID);
         LaunchConfig config = new LaunchConfig {
             Account = account,
             LauncherName = "RMCL 3.0",
-            JvmConfig = new JvmConfig(Config.Config.MainConfig.Javas[Config.Config.MainConfig.SelectedJava].JavaPath) {
+            JvmConfig = new JvmConfig(FindJava.JavasList[Config.Config.MainConfig.SelectedJava].JavaPath) {
                 MaxMemory = 1024
             },
     

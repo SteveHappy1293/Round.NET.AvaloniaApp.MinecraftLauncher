@@ -17,12 +17,10 @@ public partial class Setting : UserControl
     {
         InitializeComponent();
         Task.Run(() => {
-            // 等待 FindJava 完成
-            while (!FindJava.IsFinish) { }
             // 更新 UI
             Dispatcher.UIThread.Invoke(() =>
             {
-                foreach (var java in Config.MainConfig.Javas)
+                foreach (var java in FindJava.JavasList)
                 {
                     JavaComboBox.Items.Add(new ComboBoxItem
                     {

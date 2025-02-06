@@ -44,7 +44,7 @@
                 </ui:NavigationView.FooterMenuItems>
             </ui:NavigationView>
         </Grid>
-        <ui:Frame Margin="64,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="rgb(26,26,26)" Name="MainCortent">
+        <ui:Frame Margin="64,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="rgb(26,26,26)" Name="MainCortent" Opacity="1">
             
         </ui:Frame>
         <message:SystemMessageBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>

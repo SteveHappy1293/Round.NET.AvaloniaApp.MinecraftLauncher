@@ -118,7 +118,7 @@ public partial class LaunchJavaEdtion : UserControl
                         if (args.LogType.ToString()=="Info")
                         {
                             Launched = true;
-                            Message.Show("启动游戏",$"游戏 {Version} 已启动！\n账户名称：{Config.MainConfig.Users[Config.MainConfig.SelectedUser].UserName}\n账户模式：离线",InfoBarSeverity.Success);
+                            Message.Show("启动游戏",$"游戏 {Version} 已启动！\n账户名称：{Modules.Game.User.User.GetAccount(Modules.Game.User.User.Users[Modules.Config.Config.MainConfig.SelectedUser].UUID).Name}\n账户模式：{Modules.Game.User.User.GetAccount(Modules.Game.User.User.Users[Modules.Config.Config.MainConfig.SelectedUser].UUID).Type}",InfoBarSeverity.Success);
                             GameProcess = ((IGameProcessWatcher)o).Process;
                             Dispatcher.UIThread.Invoke(() => LaunJDBar.Value = 100);
                             Thread.Sleep(300);

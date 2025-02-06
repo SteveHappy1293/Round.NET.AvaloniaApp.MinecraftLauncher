@@ -74,14 +74,14 @@ public partial class Launcher : UserControl
             Dispatcher.UIThread.Invoke(() =>
                 LaunchBored.Opacity = 1);
         });
-        foreach (var user in Config.MainConfig.Users)
-        {
-            UserButton.Items.Add(new ComboBoxItem()
-            {
-                Content = new UserShowControl(user.UserName),
-                VerticalContentAlignment = VerticalAlignment.Center
-            });
-        }
+        // foreach (var user in Config.MainConfig.Users)
+        // {
+        //     UserButton.Items.Add(new ComboBoxItem()
+        //     {
+        //         Content = new UserShowControl(user.Name),
+        //         VerticalContentAlignment = VerticalAlignment.Center
+        //     });
+        // }
         UserButton.SelectedIndex = Config.MainConfig.SelectedUser;
         IsEdit = true;
     }

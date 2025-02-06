@@ -1,11 +1,14 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Assets;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.UserLogin;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views;
@@ -17,10 +20,8 @@ public partial class App : Application
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
-        
-        Directory.CreateDirectory(Path.GetFullPath("../RMCL.Minecraft"));
-        Config.LoadConfig();
         // CirculateTask.RunThread();
+
     }
 
     public override void OnFrameworkInitializationCompleted()

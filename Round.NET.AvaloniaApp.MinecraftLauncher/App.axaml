@@ -51,6 +51,15 @@
                 </Transitions>
             </Setter>
         </Style>
+        <Style Selector="controls|Frame">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.2"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.2"/>
+                    <DoubleTransition Property="Width" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
         <Style Selector="TextBlock">
             <Setter Property="Transitions">
                 <Transitions>

@@ -1,0 +1,14 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             mc:Ignorable="d"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LoadingControl">
+    <Grid>
+        <StackPanel>
+            <controls:ProgressRing></controls:ProgressRing>
+            <Label>加载中...</Label>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -3,26 +3,22 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using MinecraftLaunch.Classes.Models.Auth;
 using MinecraftLaunch.Classes.Models.Game;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 using SkiaSharp;
+using User = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User.User;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 
 public class ConfigRoot
 {
     public List<GameFolderConfig> GameFolders { get; set; } = new();
-    public List<UserConfig> Users { get; set; } = new() { new UserConfig() };
-    public List<JavaEntry> Javas { get; set; } = null;
     public int SelectedGameFolder { get; set; } = 0;
     public int SelectedJava { get; set; } = 0;
     public int SelectedUser { get; set; } = 0;
 }
 
-public class UserConfig
-{
-    public string UserName { get; set; } = "Steve";
-}
 public class GameFolderConfig
 {
     public string Name { get; set; } = string.Empty;
@@ -53,12 +49,26 @@ public class Config
             SaveConfig();
         }
         var json = File.ReadAllText(Path.GetFullPath(ConfigFileName));
-        MainConfig = JsonSerializer.Deserialize<ConfigRoot>(json);
+        if (string.IsNullOrEmpty(json))
+        {
+            SaveConfig();
+        }
+        else
+        {
+            try
+            {
+                MainConfig = JsonSerializer.Deserialize<ConfigRoot>(json);
+            }
+            catch
+            {
+                SaveConfig();
+            }
+        }
     }
 
     public static void SaveConfig()
     {
-        string result = Regex.Unescape(JsonSerializer.Serialize(MainConfig, new JsonSerializerOptions() { WriteIndented = true }).Replace("\\","\\\\")); //获取结果并转换成正确的格式
-        File.WriteAllText(Path.GetFullPath(ConfigFileName), result);
+        string jsresult = Regex.Unescape(JsonSerializer.Serialize(MainConfig, new JsonSerializerOptions() { WriteIndented = true }).Replace("\\","\\\\")); //获取结果并转换成正确的格式
+        File.WriteAllText(Path.GetFullPath(ConfigFileName), jsresult);
     }
 }

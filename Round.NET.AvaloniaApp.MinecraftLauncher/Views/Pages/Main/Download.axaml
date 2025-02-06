@@ -6,15 +6,21 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Download">
     <Grid>
-        <Grid Name="MainGrid">
-            <Label Margin="7" FontSize="22" FontWeight="Bold">下载</Label>
-            <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="65,10" Click="Button_OnClick">刷新列表</Button>
-            <ScrollViewer Margin="0,48,0,0">
-                <StackPanel Name="MainPanel" Margin="5">
+        <Label Margin="7" FontSize="22" FontWeight="Bold">下载</Label>
+        <controls:NavigationView 
+            PaneDisplayMode="Top"
+            IsSettingsVisible="False"
+            IsPaneOpen="True"
+            HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="60,2,0,0"
+            Height="46"
+            SelectionChanged="NavigationView_OnSelectionChanged">
+            <controls:NavigationView.MenuItems>
+                <controls:NavigationViewItem Tag="GameDownload" IsSelected="True">游戏下载</controls:NavigationViewItem>
+                <controls:NavigationViewItem Tag="AssetsDownload">资源下载</controls:NavigationViewItem>
+            </controls:NavigationView.MenuItems>
+        </controls:NavigationView>
+        <controls:Frame Margin="10,50,10,10" Name="MangeFrame">
             
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>
-        <controls:Frame Name="MainFrame"/>
+        </controls:Frame>
     </Grid>
 </UserControl>

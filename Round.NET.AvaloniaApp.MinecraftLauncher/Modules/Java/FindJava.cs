@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 using Avalonia.Controls;
 using MinecraftLaunch.Classes.Models.Game;
 using MinecraftLaunch.Components.Fetcher;
@@ -16,7 +19,7 @@ public class FindJava
         //实例化
         JavaFetcher javaFetcher = new JavaFetcher();
         var JavaList = javaFetcher.Fetch();
-        Debug.WriteLine("您的设备总共有" + JavaList.Length + "个Java，它们是：");
+        Console.WriteLine("您的设备总共有" + JavaList.Length + "个Java，它们是：");
         foreach(var javalist in JavaList)
         {
             JavasList.Add(new()
@@ -26,8 +29,41 @@ public class FindJava
                 JavaSlugVersion =  javalist.JavaSlugVersion,
                 JavaDirectoryPath = javalist.JavaDirectoryPath
             });
-            // Console.WriteLine("Java路径：" + javalist.JavaPath + "，Java版本：" + javalist.JavaVersion + "，是否为64位：" + javalist.Is64Bit);
+            Console.WriteLine("Java路径：" + javalist.JavaPath + "，Java版本：" + javalist.JavaVersion + "，是否为64位：" + javalist.Is64Bit);
         }
         IsFinish = true;
+    }
+    public const string JavaFileName = "../RMCL.Config/Java.json";
+    public static void LoadJava()
+    {
+        if (!File.Exists(JavaFileName))
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(JavaFileName));
+            Find();
+            SaveJava();
+        }
+        
+        var javajson = File.ReadAllText(Path.GetFullPath(JavaFileName));
+        if (string.IsNullOrEmpty(javajson))
+        {
+            SaveJava();
+        }
+        else
+        {
+            try
+            {
+                JavasList = JsonSerializer.Deserialize<List<JavaEntry>>(javajson);
+            }
+            catch
+            {
+                SaveJava();
+            }
+        }
+    }
+
+    public static void SaveJava()
+    {
+        string jsresult = Regex.Unescape(JsonSerializer.Serialize(JavasList, new JsonSerializerOptions() { WriteIndented = true }).Replace("\\","\\\\")); //获取结果并转换成正确的格式
+        File.WriteAllText(Path.GetFullPath(JavaFileName), jsresult);
     }
 }

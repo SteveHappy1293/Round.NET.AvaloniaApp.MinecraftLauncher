@@ -19,6 +19,7 @@
     <PackageReference Include="FluentAvaloniaUI" Version="2.2.0" />
     <PackageReference Include="HeroIcons.Avalonia" Version="1.0.2" />
     <PackageReference Include="MinecraftLaunch" Version="3.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,5 +31,10 @@
       <DependentUpon>MainView.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Controls\Download\ModLoader\ChooseModLoader.axaml" />
+    <UpToDateCheckInput Remove="Views\Controls\Download\AddNewGame\NewGame.axaml" />
   </ItemGroup>
 </Project>
