@@ -5,23 +5,23 @@
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              IsVisible="True"
-             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Message.SystemTaskBox">
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl.SystemTaskBox">
     <Grid>
         
         <Grid Background="Black" Opacity="1" Name="BackGrid" PointerPressed="BackGrid_OnPointerPressed">
             <Grid.Transitions>
                 <Transitions>
-                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.7"></DoubleTransition>
+                    <DoubleTransition Property="Opacity" Easing="ExponentialEaseOut" Duration="0:0:0.7"></DoubleTransition>
                 </Transitions>
             </Grid.Transitions>
-            <Label Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="100" Margin="50" Name="TimeBox" FontWeight="Bold">Time</Label>
+            <Label IsVisible="False" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="100" Margin="50" Name="TimeBox" FontWeight="Bold">Time</Label>
             <Label Name="Trip1Box" Margin="50,160" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold" IsVisible="False">累了就早点休息吧 :D</Label>
         </Grid>
         
         <ScrollViewer HorizontalAlignment="Right" VerticalAlignment="Stretch" Name="MainPanel" Width="380" Margin="0,40,-380,0">
             <ScrollViewer.Transitions>
                 <Transitions>
-                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
                 </Transitions>
             </ScrollViewer.Transitions>
             <StackPanel Margin="10">

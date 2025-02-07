@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              xmlns:controls1="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+             xmlns:controls2="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Launcher">
     <Grid>
-        <Label Margin="7" FontSize="22" FontWeight="Bold">启动</Label>
         <controls:SettingsExpander Header="欢迎使用全新 RMCL3.0"
                                    Description="全新一代 RMCL，不太一样，大不一样。"
                                    Name="MessageBox"
@@ -18,17 +18,14 @@
                                    Click="MessageBox_OnClick"
                                    Margin="10,53">
         </controls:SettingsExpander>
-        <Border Name="LaunchBored" Opacity="0" Height="80" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" CornerRadius="6" Background="rgb(39,39,39)" Margin="10,-80">
+        <Border Name="LaunchBored" Height="70" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" CornerRadius="0" Background="rgb(26,26,26)" Margin="0,-80">
             <Grid>
-                <Button Width="150" Height="60" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Name="LaunchButton" Click="LaunchButton_OnClick">
-                    <Grid Height="48">
+                <Button Width="160" Background="Transparent" BorderBrush="Transparent" CornerRadius="0" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0" Name="LaunchButton" Click="LaunchButton_OnClick">
+                    <Grid Height="55">
                         <Label FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Name="BigTitle">启动游戏</Label>
                         <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Name="SmTitle">Minecraft {Version}</Label>
                     </Grid>
                 </Button>
-                <ComboBox SelectionChanged="UserButton_OnSelectionChanged" Name="UserButton" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="10" Width="180">
-                    
-                </ComboBox>
             </Grid>
         </Border>
     </Grid>

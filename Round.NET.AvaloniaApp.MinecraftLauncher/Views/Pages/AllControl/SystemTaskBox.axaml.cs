@@ -9,7 +9,7 @@ using Avalonia.Media;
 using Avalonia.Threading;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Message;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
 
 public partial class SystemTaskBox : UserControl
 {
@@ -45,7 +45,7 @@ public partial class SystemTaskBox : UserControl
         }
         else
         {
-            MainPanel.Margin = new Thickness(0,40,10,0);
+            MainPanel.Margin = new Thickness(0,40,-10,0);
             BackGrid.Opacity = 0.6;
             this.IsVisible = true;
             TimeBox.Margin = new Thickness(50);

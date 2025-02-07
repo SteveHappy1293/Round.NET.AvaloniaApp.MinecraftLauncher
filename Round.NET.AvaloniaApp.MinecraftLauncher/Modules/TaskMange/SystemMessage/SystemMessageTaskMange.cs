@@ -57,8 +57,8 @@ public class SystemMessageTaskMange
                     Body = content,
                     Type = TaskType.Download
                 };
-                content.Margin = new Thickness(30, 5, -30, 0);
-                content.Opacity = 0;
+                content.Margin = new Thickness(380, 5, -380, 0);
+                // content.Opacity = 0;
                 Tasks.Add(con);
                 switch (taskType)
                 {
@@ -75,7 +75,7 @@ public class SystemMessageTaskMange
                 }
                 
                 content.Margin = new Thickness(0, 5, 0, 0);
-                content.Opacity = 1;
+                // content.Opacity = 1;
             });
         });  
     }
@@ -86,8 +86,8 @@ public class SystemMessageTaskMange
         {
             if (con.TUID == tuid)
             {
-                con.Body.Margin = new Thickness(30, 5, -30, 0);
-                con.Body.Opacity = 0;
+                con.Body.Margin = new Thickness(380, 5, -380, 0);
+                // con.Body.Opacity = 0;
                 Task.Run(() =>
                 {
                     Task.Run(() =>

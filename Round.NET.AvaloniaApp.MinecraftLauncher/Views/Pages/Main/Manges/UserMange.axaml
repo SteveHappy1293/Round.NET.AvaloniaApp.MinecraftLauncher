@@ -8,7 +8,7 @@
     <Grid>
         <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5" Click="Button_OnClick">添加账户</Button>
         <ScrollViewer Margin="0,42,0,0">
-            <ListBox Name="UsersBox">
+            <ListBox Name="UsersBox" SelectionChanged="UsersBox_OnSelectionChanged">
                 
             </ListBox>
         </ScrollViewer>

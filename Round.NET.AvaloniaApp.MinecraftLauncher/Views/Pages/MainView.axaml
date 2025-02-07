@@ -4,50 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ui="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              xmlns:controls="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
-             xmlns:message="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Message"
+             xmlns:allControl="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl"
+             xmlns:controls1="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.MainView">
     <Grid>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="64">
-            <Image Source="../../Assets/Icon.png" Height="32" Width="32" Margin="5,10" VerticalAlignment="Top"/>
-            <ui:NavigationView
-                AlwaysShowHeader="False"
-                FontSize="14"
-                FontWeight="Normal"
-                IsBackButtonVisible="False"
-                IsBackEnabled="False"
-                IsPaneToggleButtonVisible="False"
-                IsSettingsVisible="False"
-                IsTabStop="False"
-                OpenPaneLength="140"
-                PaneDisplayMode="Left"
-                SelectionFollowsFocus="False"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                SelectionChanged="NavigationView_OnSelectionChanged"
-                Margin="0,48,0,-9">
-                <ui:NavigationView.MenuItems>
-                    <ui:NavigationViewItem Height="52" IsSelected="True" Tag="Launcher">
-                        <controls:HeroIcon Foreground="White" Type="RocketLaunch" Min="True"/>
-                    </ui:NavigationViewItem>
-                    <ui:NavigationViewItem Height="52" Tag="Download">
-                        <controls:HeroIcon Foreground="White" Type="InboxArrowDown" Min="True"/>
-                    </ui:NavigationViewItem>
-                    <ui:NavigationViewItem Height="52" Tag="Mange">
-                        <controls:HeroIcon Foreground="White" Type="ListBullet" Min="True"/>
-                    </ui:NavigationViewItem>
-                </ui:NavigationView.MenuItems>
-                <ui:NavigationView.FooterMenuItems>
-                    <ui:NavigationViewItem Height="52" Tag="Setting">
-                        <controls:HeroIcon Foreground="White" Type="Cog6Tooth" Min="True"/>
-                    </ui:NavigationViewItem>
-                </ui:NavigationView.FooterMenuItems>
-            </ui:NavigationView>
-        </Grid>
-        <ui:Frame Margin="64,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="rgb(26,26,26)" Name="MainCortent" Opacity="1">
+        <ui:Frame Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="MainCortent" Opacity="1">
             
         </ui:Frame>
-        <message:SystemMessageBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <message:SystemTaskBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <allControl:SystemNavigationBar HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="SystemNavigationBar"/>
+        <allControl:SystemMessageBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <allControl:SystemTaskBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Grid>
 </UserControl>

@@ -70,7 +70,7 @@ public partial class UserMange : UserControl
                         },
                         new Label()
                         {
-                            Content = use.Type,
+                            Content = $"登录模式：{use.Type}",
                             HorizontalContentAlignment = HorizontalAlignment.Left,
                             VerticalContentAlignment = VerticalAlignment.Bottom,
                             Margin = new Thickness(5),
@@ -221,6 +221,7 @@ public partial class UserMange : UserControl
                 catch (Exception e)
                 {
                     Modules.Message.Message.Show("账户管理",$"无法通过正版登录！\n{e.Message}",InfoBarSeverity.Error);
+                    logincon.Hide();
                 }
             }
             else
@@ -305,6 +306,14 @@ public partial class UserMange : UserControl
             {
                 Console.WriteLine("Unsupported platform. Unable to open URL.");
             }
+        }
+    }
+    private void UsersBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.MainConfig.SelectedUser = UsersBox.SelectedIndex;
+            Config.SaveConfig();
         }
     }
 }

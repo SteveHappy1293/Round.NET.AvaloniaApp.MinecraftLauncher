@@ -36,7 +36,7 @@ public class User
             Users.Clear();
             foreach (var us in Directory.GetFiles(ConfigPath))
             {
-                Users.Add(JsonSerializer.Deserialize<UserConfig>(File.ReadAllText($"{ConfigPath}/{Path.GetFileName(us)}")));
+                Users.Add(JsonSerializer.Deserialize<UserConfig>(File.ReadAllText(Path.Combine(ConfigPath, us))));
             }
         }
         else
@@ -62,7 +62,7 @@ public class User
             }
         };
         var json = Regex.Unescape(JsonSerializer.Serialize(user, new JsonSerializerOptions() { WriteIndented = true }).Replace("\\","\\\\"));
-        File.WriteAllText($"{ConfigPath}/{user.UUID}.json", json);
+        File.WriteAllText(Path.Combine(ConfigPath,$"{user.UUID}.json"), json);
         Users.Add(user);
     }
     public static Account GetAccount(string uuid)
@@ -109,7 +109,7 @@ public class User
                 }
             };
             var json = Regex.Unescape(JsonSerializer.Serialize(ac, new JsonSerializerOptions() { WriteIndented = true }));
-            File.WriteAllText($"{ConfigPath}/{ac.UUID}.json",json);
+            File.WriteAllText(Path.Combine(ConfigPath,$"{ac.UUID}.json"),json);
         }
         else
         {
@@ -120,11 +120,11 @@ public class User
                 {
                     AccessToken = account.AccessToken,
                     Username = ((OfflineAccount)account).Name,
-                    UUID = ((OfflineAccount)account).Uuid.ToString()
+                    UUID = Guid.NewGuid().ToString()
                 }
             };
             var json = Regex.Unescape(JsonSerializer.Serialize(of, new JsonSerializerOptions() { WriteIndented = true }));
-            File.WriteAllText($"{ConfigPath}/{of.UUID}.json",json);
+            File.WriteAllText(Path.Combine(ConfigPath,$"{of.UUID}.json"),json);
         }
         LoadUser();
     }

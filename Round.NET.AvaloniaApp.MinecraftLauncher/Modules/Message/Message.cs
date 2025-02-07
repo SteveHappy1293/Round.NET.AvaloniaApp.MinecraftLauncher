@@ -31,14 +31,14 @@ public class Message
                     {
                         Property = InfoBar.MarginProperty,
                         Duration = TimeSpan.FromSeconds(0.5),
-                        Easing = new ExponentialEaseInOut()
+                        Easing = new ExponentialEaseOut()
                     },
                     // 添加时的透明度动画
                     new DoubleTransition
                     {
                         Property = InfoBar.OpacityProperty,
                         Duration = TimeSpan.FromSeconds(0.5),
-                        Easing = new QuarticEaseInOut()
+                        Easing = new ExponentialEaseOut()
                     }
                 }
             };

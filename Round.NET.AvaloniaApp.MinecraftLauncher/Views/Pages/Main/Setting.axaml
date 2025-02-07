@@ -2,10 +2,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Setting">
     <Grid>
-        <Label Margin="7" FontSize="22" FontWeight="Bold">设置</Label>
+        <!-- <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Click="Button_OnClick">返回主页</Button> -->
+        <controls:HomeIcon HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
+        <Label Margin="50,9" FontSize="22" FontWeight="Bold">设置</Label>
         <ScrollViewer Margin="10,53,10,10">
             <StackPanel>
                 <Expander Header="Java 设置">

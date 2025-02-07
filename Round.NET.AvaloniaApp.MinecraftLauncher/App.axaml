@@ -5,8 +5,9 @@
              xmlns:downloadGame="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.DownloadGame"
              xmlns:launch="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch"
              xmlns:controls1="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+             xmlns:allControl="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.App"
-             RequestedThemeVariant="Default">
+             RequestedThemeVariant="Dark">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.Styles>
@@ -54,8 +55,8 @@
         <Style Selector="controls|Frame">
             <Setter Property="Transitions">
                 <Transitions>
-                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.2"/>
-                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.2"/>
+                    <ThicknessTransition Property="Margin" Easing="QuinticEaseOut" Duration="0:0:0.48"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.15"/>
                     <DoubleTransition Property="Width" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
                 </Transitions>
             </Setter>
@@ -102,9 +103,17 @@
         <Style Selector="launch|LaunchJavaEdtion">
             <Setter Property="Transitions">
                 <Transitions>
-                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
                     <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
-                    <DoubleTransition Property="MinHeight" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="MinHeight" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="allControl|SystemNavigationBar">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.5"/>
+                    <DoubleTransition Property="Opacity" Easing="QuinticEaseInOut" Duration="0:0:0.4"/>
                 </Transitions>
             </Setter>
         </Style>

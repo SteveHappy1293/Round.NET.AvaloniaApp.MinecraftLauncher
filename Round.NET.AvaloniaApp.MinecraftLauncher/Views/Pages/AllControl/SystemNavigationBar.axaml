@@ -1,0 +1,24 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:controls1="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+             xmlns:allControl="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl.SystemNavigationBar">
+    <Border HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="11" Background="rgb(26,26,26)" Width="64" Margin="10">
+        <StackPanel Margin="5">
+            <Image Source="../../../Assets/Icon.png" Height="32" Width="32" Margin="5,10" VerticalAlignment="Top"/>
+            <controls:NavigationViewItem Height="52" Tag="Download" PointerPressed="InputElement_OnPointerPressed">
+                <controls1:HeroIcon Foreground="White" Type="InboxArrowDown" Min="True"/>
+            </controls:NavigationViewItem>
+            <controls:NavigationViewItem Height="52" Tag="Mange" PointerPressed="InputElement_OnPointerPressed">
+                <controls1:HeroIcon Foreground="White" Type="ListBullet" Min="True"/>
+            </controls:NavigationViewItem>
+            <controls:NavigationViewItem Height="52" Tag="Setting" PointerPressed="InputElement_OnPointerPressed">
+                <controls1:HeroIcon Foreground="White" Type="Cog6Tooth" Min="True"/>
+            </controls:NavigationViewItem>
+        </StackPanel>
+    </Border>
+</UserControl>

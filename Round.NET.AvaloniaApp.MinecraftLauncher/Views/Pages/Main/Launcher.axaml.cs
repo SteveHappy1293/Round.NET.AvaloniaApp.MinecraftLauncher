@@ -13,6 +13,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
@@ -48,19 +49,8 @@ public partial class Launcher : UserControl
                 Dispatcher.UIThread.Invoke(() =>
                 {
                     var Sel = Config.MainConfig.SelectedGameFolder;
-                    // if (Sel != Config.MainConfig.SelectedGameFolder)
-                    // {
-                    //     SmTitle.Content = "请选择游戏版本";
-                    //     Sel = Config.MainConfig.SelectedGameFolder;
-                    // }
-                    // else
-                    // {
-                    //     Sel = Config.MainConfig.SelectedGameFolder;
-                    //     SmTitle.Content =
-                    //         $"Minecraft {Path.GetFileName(Directory.GetDirectories($"{Config.MainConfig.GameFolders[Sel].Path}/versions")[Config.MainConfig.GameFolders[Sel].SelectedGameIndex])}";
-                    // }
                     SmTitle.Content =
-                        $"Minecraft {Path.GetFileName(Directory.GetDirectories($"{Config.MainConfig.GameFolders[Sel].Path}/versions")[Config.MainConfig.GameFolders[Sel].SelectedGameIndex])}";
+                        $"{Path.GetFileName(Directory.GetDirectories($"{Config.MainConfig.GameFolders[Sel].Path}/versions")[Config.MainConfig.GameFolders[Sel].SelectedGameIndex])}";
 
                 });
                 Thread.Sleep(100);
@@ -70,7 +60,7 @@ public partial class Launcher : UserControl
         {
             Thread.Sleep(800);
             Dispatcher.UIThread.Invoke(() =>
-                LaunchBored.Margin = new Thickness(10));
+                LaunchBored.Margin = new Thickness(0));
             Dispatcher.UIThread.Invoke(() =>
                 LaunchBored.Opacity = 1);
         });
@@ -82,7 +72,7 @@ public partial class Launcher : UserControl
         //         VerticalContentAlignment = VerticalAlignment.Center
         //     });
         // }
-        UserButton.SelectedIndex = Config.MainConfig.SelectedUser;
+        //UserButton.SelectedIndex = Config.MainConfig.SelectedUser;
         IsEdit = true;
     }
 
@@ -104,8 +94,13 @@ public partial class Launcher : UserControl
     {
         if (IsEdit)
         {
-            Config.MainConfig.SelectedUser = UserButton.SelectedIndex;
+            // Config.MainConfig.SelectedUser = UserButton.SelectedIndex;
             Config.SaveConfig();
         }
+    }
+
+    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    {
+        ((MainView)Core.MainWindow.Content).SystemNavigationBar.Show();
     }
 }

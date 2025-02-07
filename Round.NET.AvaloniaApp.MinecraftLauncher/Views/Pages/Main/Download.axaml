@@ -3,15 +3,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:controls1="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Download">
     <Grid>
-        <Label Margin="7" FontSize="22" FontWeight="Bold">下载</Label>
+        <controls1:HomeIcon HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
+        <Label Margin="50,9" FontSize="22" FontWeight="Bold">下载</Label>
         <controls:NavigationView 
             PaneDisplayMode="Top"
             IsSettingsVisible="False"
             IsPaneOpen="True"
-            HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="60,2,0,0"
+            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,4,0,0"
             Height="46"
             SelectionChanged="NavigationView_OnSelectionChanged">
             <controls:NavigationView.MenuItems>
