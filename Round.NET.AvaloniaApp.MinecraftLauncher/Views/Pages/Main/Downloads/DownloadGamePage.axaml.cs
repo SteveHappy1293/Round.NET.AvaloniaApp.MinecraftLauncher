@@ -12,6 +12,7 @@ using FluentAvalonia.UI.Controls;
 using HeroIconsAvalonia.Controls;
 using HeroIconsAvalonia.Enums;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.AddNewGame;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Downloads;
@@ -39,7 +40,9 @@ public partial class DownloadGamePage : UserControl
             HorizontalAlignment = HorizontalAlignment.Right,
             Margin = new Thickness(5),
             VerticalAlignment = VerticalAlignment.Center,
-            NavigateUri = new Uri($"https://zh.minecraft.wiki/w/Java版{content}")
+            NavigateUri = new Uri($"https://zh.minecraft.wiki/w/Java版{content}"),
+            Width = 32,
+            Height = 32
         };
         var result = new ListBoxItem();
         if (time != null)
@@ -117,11 +120,10 @@ public partial class DownloadGamePage : UserControl
         {
             Children =
             {
-                new ProgressRing(),
-                new Label()
+                new LoadingControl()
                 {
-                    Content = "Loading...",
                     HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(80),
                 }
             }
         });
@@ -247,6 +249,21 @@ public partial class DownloadGamePage : UserControl
             catch (Exception e)
             {
                 Modules.Message.Message.Show("版本下载",$"加载版本出错：{e.Message}",InfoBarSeverity.Error);
+                Dispatcher.UIThread.Invoke(() =>
+                {
+                    MainPanel.Children.Clear();
+                    MainPanel.Children.Add(new StackPanel()
+                    {
+                        Children =
+                        {
+                            new NullControl()
+                            {
+                                HorizontalAlignment = HorizontalAlignment.Center,
+                                Margin = new Thickness(80),
+                            }
+                        }
+                    });
+                });
             }
         });
     }

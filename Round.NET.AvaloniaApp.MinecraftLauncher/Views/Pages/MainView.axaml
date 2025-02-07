@@ -13,7 +13,7 @@
             
         </ui:Frame>
         <allControl:SystemNavigationBar HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="SystemNavigationBar"/>
-        <allControl:SystemMessageBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <allControl:SystemTaskBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <allControl:SystemMessageBox HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,70"/>
     </Grid>
 </UserControl>
