@@ -128,7 +128,8 @@ public partial class GameMange : UserControl
                     {
                         var dow = new LaunchJavaEdtion();
                         dow.Version = Path.GetFileName(ver);
-                        SystemMessageTaskMange.AddTask(dow, SystemMessageTaskMange.TaskType.Launch);
+                        dow.Tuid = SystemMessageTaskMange.AddTask(dow);
+                        dow.Launch();
                     };
                     VersionBox.Items.Add(new ListBoxItem()
                     {

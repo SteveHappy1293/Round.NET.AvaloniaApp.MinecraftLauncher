@@ -120,7 +120,9 @@ public partial class NewGame : UserControl
         
         var dow = new DownloadGame.DownloadGame();
         dow.Version = VersionTitle.Content.ToString();
-        SystemMessageTaskMange.AddTask(dow,SystemMessageTaskMange.TaskType.Download);
+        dow.Tuid = SystemMessageTaskMange.AddTask(dow);
+        dow.StartDownload();
+        
         
         // var con = (ContentDialog)this.Parent;
         // con.Hide();

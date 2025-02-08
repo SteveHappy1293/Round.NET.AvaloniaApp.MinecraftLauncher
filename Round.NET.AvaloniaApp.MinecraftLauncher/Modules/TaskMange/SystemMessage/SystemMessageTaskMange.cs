@@ -34,7 +34,8 @@ public class SystemMessageTaskMange
     {
         Download,
         Information,
-        Launch
+        Launch,
+        Plug
     }
     public class TaskConfig
     {
@@ -44,8 +45,9 @@ public class SystemMessageTaskMange
     }
     public static List<TaskConfig> Tasks = new ();
 
-    public static void AddTask(UserControl content,TaskType taskType)
+    public static string AddTask(UserControl content)
     {
+        var uuid = Guid.NewGuid().ToString();
         Core.SystemTask.Show();
         Task.Run(()=>
         {
@@ -55,29 +57,19 @@ public class SystemMessageTaskMange
                 var con = new TaskConfig()
                 {
                     Body = content,
-                    Type = TaskType.Download
+                    Type = TaskType.Download,
+                    TUID = uuid
                 };
                 content.Margin = new Thickness(380, 5, -380, 0);
                 // content.Opacity = 0;
                 Tasks.Add(con);
-                switch (taskType)
-                {
-                    case TaskType.Download:
-                        ((DownloadGame)content).Tuid = con.TUID;
-                        ((StackPanel)Core.SystemTask.MainPanel.Content).Children.Add(con.Body);
-                        ((DownloadGame)content).StartDownload();
-                        break;
-                    case TaskType.Launch:
-                        ((LaunchJavaEdtion)content).Tuid = con.TUID;
-                        ((StackPanel)Core.SystemTask.MainPanel.Content).Children.Add(con.Body);
-                        ((LaunchJavaEdtion)content).Launch();
-                        break;
-                }
+                ((StackPanel)Core.SystemTask.MainPanel.Content).Children.Add(con.Body);
                 
                 content.Margin = new Thickness(0, 5, 0, 0);
                 // content.Opacity = 1;
             });
         });  
+        return uuid;
     }
 
     public static void DeleteTask(string tuid)

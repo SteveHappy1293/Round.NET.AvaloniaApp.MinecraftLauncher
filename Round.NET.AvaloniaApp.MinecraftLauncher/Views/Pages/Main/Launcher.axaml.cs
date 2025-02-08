@@ -87,7 +87,8 @@ public partial class Launcher : UserControl
         var Sel = Config.MainConfig.SelectedGameFolder;
         var dow = new LaunchJavaEdtion();
         dow.Version = Path.GetFileName(Path.GetFileName(Directory.GetDirectories($"{Config.MainConfig.GameFolders[Sel].Path}/versions")[Config.MainConfig.GameFolders[Sel].SelectedGameIndex]));
-        SystemMessageTaskMange.AddTask(dow, SystemMessageTaskMange.TaskType.Launch);
+        dow.Tuid = SystemMessageTaskMange.AddTask(dow);
+        dow.Launch();
     }
 
     private void UserButton_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
