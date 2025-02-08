@@ -8,17 +8,8 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl.SystemNavigationBar">
     <Border HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="11" Background="rgb(26,26,26)" Width="64" Margin="10">
-        <StackPanel Margin="5">
+        <StackPanel Margin="5" Name="MainNavPanel">
             <Image Source="../../../Assets/Icon.png" Height="32" Width="32" Margin="5,10" VerticalAlignment="Top"/>
-            <controls:NavigationViewItem Height="52" Tag="Download" PointerPressed="InputElement_OnPointerPressed">
-                <controls1:HeroIcon Foreground="White" Type="InboxArrowDown" Min="True"/>
-            </controls:NavigationViewItem>
-            <controls:NavigationViewItem Height="52" Tag="Mange" PointerPressed="InputElement_OnPointerPressed">
-                <controls1:HeroIcon Foreground="White" Type="ListBullet" Min="True"/>
-            </controls:NavigationViewItem>
-            <controls:NavigationViewItem Height="52" Tag="Setting" PointerPressed="InputElement_OnPointerPressed">
-                <controls1:HeroIcon Foreground="White" Type="Cog6Tooth" Min="True"/>
-            </controls:NavigationViewItem>
         </StackPanel>
     </Border>
 </UserControl>

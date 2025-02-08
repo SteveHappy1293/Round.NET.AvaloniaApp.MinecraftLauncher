@@ -5,7 +5,7 @@ using MinecraftLaunch.Components.Fetcher;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Assets;
 
-public interface FindAssets
+public class FindAssets
 {
     public static async Task<IEnumerable<CurseForgeResourceEntry>> GetFindAssets(string searchString)
     {

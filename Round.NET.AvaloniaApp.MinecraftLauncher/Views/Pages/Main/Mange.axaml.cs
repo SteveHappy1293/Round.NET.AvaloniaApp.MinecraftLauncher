@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices.JavaScript;
@@ -28,9 +29,27 @@ public partial class Mange : UserControl
     public Mange()
     {
         InitializeComponent();
-        
+        Core.MangePage = this; 
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
+            Page = GameMange,
+            Title = "游戏管理",
+            Route = "GameMange"
+        });    
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
+            Page = UserMange,
+            Title = "账户管理",
+            Route = "UserMange"
+        });     
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
+            Page = PlugMange,
+            Title = "启动器插件管理",
+            Route = "PlugMange"
+        });       
     }
-
+    public List<Core.API.NavigationRouteConfig> RouteConfigs { get; set; } = new();
     private GameMange GameMange { get; set; } = new();
     private UserMange UserMange { get; set; } = new();
     private JavaMange JavaMange { get; set; } = new();
@@ -44,25 +63,30 @@ public partial class Mange : UserControl
             Thread.Sleep(180);
             Dispatcher.UIThread.Invoke(() =>
             {
-                switch (((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Tag)
+                MangeFrame.Content = RouteConfigs.Find((config =>
                 {
-                    case "GameMange":
-                        MangeFrame.Content = this.GameMange;
-                        break;
-                    case "UserMange":
-                        MangeFrame.Content = UserMange;
-                        break;
-                    case "JavaMange":
-                        MangeFrame.Content = JavaMange;
-                        break;
-                    case "PlugMange":
-                        MangeFrame.Content = PlugMange;
-                        break;
-                }
+                    return config.Route == ((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Tag;
+                })).Page;
             });
             Thread.Sleep(180);
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 1);
             Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(10,50,10,10));
+        });
+    }
+
+    public void RegisterRoute(Core.API.NavigationRouteConfig config)
+    {
+        RouteConfigs.Add(config);
+        var isthis = false;
+        if (config.Route == "GameMange")
+        {
+            isthis = true;
+        }
+        View.MenuItems.Add(new NavigationViewItem()
+        {
+            Tag = config.Route,
+            Content = config.Title,
+            IsSelected = isthis
         });
     }
 }

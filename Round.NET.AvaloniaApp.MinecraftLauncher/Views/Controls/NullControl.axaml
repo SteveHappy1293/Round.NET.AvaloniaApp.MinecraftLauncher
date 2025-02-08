@@ -8,7 +8,7 @@
     <Grid>
         <StackPanel>
             <controls:HeroIcon Foreground="White" Type="Sparkles"/>
-            <Label>这样啥都没有...</Label>
+            <Label>这里什么都没有...</Label>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -46,7 +46,7 @@ public class Version
     public DateTime ReleaseTime { get; set; }
 }
 
-public interface UpdateVersions
+public class UpdateVersions
 {
     public static VersionManifest GetVersions()
     {

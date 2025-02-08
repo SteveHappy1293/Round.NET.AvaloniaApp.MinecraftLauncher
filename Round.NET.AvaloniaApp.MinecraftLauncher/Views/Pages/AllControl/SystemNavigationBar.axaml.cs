@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
+using HeroIconsAvalonia.Controls;
+using HeroIconsAvalonia.Enums;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
@@ -15,30 +19,68 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
 public partial class SystemNavigationBar : UserControl
 {
     private double hei = 64;
+    private bool IsClosed = false;
     public SystemNavigationBar()
     {
         InitializeComponent();
+        Core.NavigationBar = this;
+        Core.API.RegisterNavigationRoute(new()
+        {
+            Icon = IconType.InboxArrowDown,
+            Page = Core.DownloadPage,
+            Route = "Download"
+        });
+        Core.API.RegisterNavigationRoute(new()
+        {
+            Icon = IconType.ListBullet,
+            Page = new Mange(),
+            Route = "Mange"
+        });
+        Core.API.RegisterNavigationRoute(new()
+        {
+            Icon = IconType.Cog6Tooth,
+            Page = new Setting(),
+            Route = "Setting"
+        });
     }
     private Launcher Launcher { get; } = new();
-    private Download Download { get; } = Core.DownloadPage;
-    private Mange Mange { get; } = new();
-    private Setting Setting { get; } = new();
+    public List<Core.API.NavigationRouteConfig> RouteConfigs { get; } = new();
     private void InputElement_OnPointerPressed(object? sender, PointerPressedEventArgs e)
     {
         NavTo(((NavigationViewItem)sender!).Tag.ToString());
     }
     public void Show()
     {
-        if (this.Opacity == 0)
+        if (IsClosed)
         {
             Margin = new(0);
             Opacity = 1;
+            IsClosed = false;
         }
         else
         {
             Margin = new(-80);
             Opacity = 0;
+            IsClosed = true;
         }
+    }
+
+    public void RegisterRoute(Core.API.NavigationRouteConfig routeConfig)
+    {
+        RouteConfigs.Add(routeConfig);
+        var nav = new NavigationViewItem()
+        {
+            Height = 52,
+            Tag = routeConfig.Route,
+            Content = new HeroIcon()
+            {
+                Foreground = Brushes.White,
+                Type = routeConfig.Icon,
+                Min = true
+            },
+        };
+        nav.PointerPressed += InputElement_OnPointerPressed;
+        MainNavPanel.Children.Add(nav);
     }
     public void NavTo(string Tag)
     {
@@ -53,20 +95,14 @@ public partial class SystemNavigationBar : UserControl
             Thread.Sleep(100);
             Dispatcher.UIThread.Invoke(() =>
             {
-                switch (Tag)
+                int ind = RouteConfigs.FindIndex((Core.API.NavigationRouteConfig nc) => { return nc.Route == Tag; });
+                if (ind==-1)
                 {
-                    case "Download":
-                        ((MainView)Core.MainWindow.Content).MainCortent.Content = Download;
-                        break;
-                    case "Mange":
-                        ((MainView)Core.MainWindow.Content).MainCortent.Content = Mange;
-                        break;
-                    case "Setting":
-                        ((MainView)Core.MainWindow.Content).MainCortent.Content = Setting;
-                        break;
-                    default:
-                        ((MainView)Core.MainWindow.Content).MainCortent.Content = Launcher;
-                        break;
+                    ((MainView)Core.MainWindow.Content).MainCortent.Content = Launcher;
+                }
+                else
+                {
+                    ((MainView)Core.MainWindow.Content).MainCortent.Content = RouteConfigs[ind].Page;
                 }
             });
             Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Opacity = 1);

@@ -13,6 +13,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Plugs;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views;
 
@@ -25,6 +26,7 @@ public partial class MainWindow : AppWindow
         Config.LoadConfig();
         
         InitializeComponent();
+        PlugsLoader.LoadingPlug();
         TitleBar.Height = 38;
         TitleBar.ExtendsContentIntoTitleBar = true;
         TitleBar.TitleBarHitTestType = TitleBarHitTestType.Complex;

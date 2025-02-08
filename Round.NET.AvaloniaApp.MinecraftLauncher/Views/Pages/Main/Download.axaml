@@ -15,10 +15,11 @@
             IsPaneOpen="True"
             HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,4,0,0"
             Height="46"
+            Name="View"
             SelectionChanged="NavigationView_OnSelectionChanged">
             <controls:NavigationView.MenuItems>
-                <controls:NavigationViewItem Tag="GameDownload" IsSelected="True">游戏下载</controls:NavigationViewItem>
-                <controls:NavigationViewItem Tag="AssetsDownload">资源下载</controls:NavigationViewItem>
+                <!--<controls:NavigationViewItem Tag="GameDownload" IsSelected="True">游戏下载</controls:NavigationViewItem>
+                <controls:NavigationViewItem Tag="AssetsDownload">资源下载</controls:NavigationViewItem>-->
             </controls:NavigationView.MenuItems>
         </controls:NavigationView>
         <controls:Frame Margin="10,50,10,10" Name="MangeFrame">

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Round.NET.AvaloniaApp.Minec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Round.NET.AvaloniaApp.MinecraftLauncher.Desktop", "Round.NET.AvaloniaApp.MinecraftLauncher.Desktop\Round.NET.AvaloniaApp.MinecraftLauncher.Desktop.csproj", "{173F3482-D36C-40F3-ACAE-3B3DEB699855}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedrockPlug", "BedrockPlug\BedrockPlug.csproj", "{E7C2F4F5-B1F8-49CB-8EE8-88CB1E7DDBFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{173F3482-D36C-40F3-ACAE-3B3DEB699855}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{173F3482-D36C-40F3-ACAE-3B3DEB699855}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{173F3482-D36C-40F3-ACAE-3B3DEB699855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7C2F4F5-B1F8-49CB-8EE8-88CB1E7DDBFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7C2F4F5-B1F8-49CB-8EE8-88CB1E7DDBFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7C2F4F5-B1F8-49CB-8EE8-88CB1E7DDBFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7C2F4F5-B1F8-49CB-8EE8-88CB1E7DDBFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

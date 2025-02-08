@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -26,9 +27,22 @@ public partial class Download : UserControl
     public Download()
     {
         InitializeComponent();
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
+            Page = DownloadGamePage,
+            Title = "下载游戏",
+            Route = "DownloadGame"
+        });
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
+            Page = DownloadAssetsPage,
+            Title = "下载资源",
+            Route = "DownloadAssets"
+        });
     }
     private DownloadGamePage DownloadGamePage { get; set; } = new();
     private DownloadAssetsPage DownloadAssetsPage { get; set; } = new();
+    public List<Core.API.NavigationRouteConfig> RouteConfigs { get; set; } = new();
     private void NavigationView_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
     {
         Task.Run(() =>
@@ -38,19 +52,30 @@ public partial class Download : UserControl
             Thread.Sleep(180);
             Dispatcher.UIThread.Invoke(() =>
             {
-                switch (((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Tag)
+                MangeFrame.Content = RouteConfigs.Find((config =>
                 {
-                    case "GameDownload":
-                        MangeFrame.Content = this.DownloadGamePage;
-                        break;
-                    case "AssetsDownload":
-                        MangeFrame.Content = this.DownloadAssetsPage;
-                        break;
-                }
+                    return config.Route == ((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Tag;
+                })).Page;
             });
             Thread.Sleep(180);
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 1);
             Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(10,50,10,10));
+        });
+    }
+
+    public void RegisterRoute(Core.API.NavigationRouteConfig config)
+    {
+        RouteConfigs.Add(config);
+        var isthis = false;
+        if (config.Route == "DownloadGame")
+        {
+            isthis = true;
+        }
+        View.MenuItems.Add(new NavigationViewItem()
+        {
+            Tag = config.Route,
+            Content = config.Title,
+            IsSelected = isthis
         });
     }
 }

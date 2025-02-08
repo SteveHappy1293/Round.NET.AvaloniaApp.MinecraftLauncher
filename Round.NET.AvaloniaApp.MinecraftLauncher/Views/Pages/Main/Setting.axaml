@@ -3,23 +3,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
+             xmlns:controls1="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Setting">
     <Grid>
         <!-- <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Click="Button_OnClick">返回主页</Button> -->
         <controls:HomeIcon HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
-        <Label Margin="50,9" FontSize="22" FontWeight="Bold">设置</Label>
-        <ScrollViewer Margin="10,53,10,10">
-            <StackPanel>
-                <Expander Header="Java 设置">
-                    <StackPanel>
-                        <DockPanel>
-                            <Label VerticalAlignment="Center">默认 Java：</Label>
-                            <ComboBox HorizontalAlignment="Stretch" Name="JavaComboBox" SelectionChanged="JavaComboBox_OnSelectionChanged"></ComboBox>
-                        </DockPanel>
-                    </StackPanel>
-                </Expander>
-            </StackPanel>
-        </ScrollViewer>
+        <Label Margin="50,9" FontSize="22" FontWeight="Bold">管理</Label>
+        <controls1:NavigationView 
+            PaneDisplayMode="Top"
+            IsSettingsVisible="False"
+            IsPaneOpen="True"
+            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,4,0,0"
+            Height="46"
+            Name="View"
+            SelectionChanged="NavigationView_OnSelectionChanged">
+            <controls1:NavigationView.MenuItems>
+                <!--<controls1:NavigationViewItem Tag="MySelfSetting" IsSelected="True">本体设置</controls1:NavigationViewItem>
+                <controls1:NavigationViewItem Tag="GameSetting" IsSelected="True">游戏设置</controls1:NavigationViewItem>-->
+            </controls1:NavigationView.MenuItems>
+        </controls1:NavigationView>
+        <controls1:Frame Margin="10,50,10,10" Name="MangeFrame">
+            
+        </controls1:Frame>
     </Grid>
 </UserControl>

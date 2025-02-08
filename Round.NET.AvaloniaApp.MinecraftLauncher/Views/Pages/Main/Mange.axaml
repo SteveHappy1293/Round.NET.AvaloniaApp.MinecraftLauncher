@@ -15,12 +15,13 @@
             IsPaneOpen="True"
             HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,4,0,0"
             Height="46"
+            Name="View"
             SelectionChanged="NavigationView_OnSelectionChanged">
             <controls:NavigationView.MenuItems>
-                <controls:NavigationViewItem Tag="GameMange" IsSelected="True">游戏管理</controls:NavigationViewItem>
+                <!--<controls:NavigationViewItem Tag="GameMange" IsSelected="True">游戏管理</controls:NavigationViewItem>
                 <controls:NavigationViewItem Tag="UserMange">账户管理</controls:NavigationViewItem>
-                <controls:NavigationViewItem Tag="JavaMange">Java 管理</controls:NavigationViewItem>
-                <controls:NavigationViewItem Tag="PlugMange">启动器插件管理</controls:NavigationViewItem>
+                ~1~<controls:NavigationViewItem Tag="JavaMange">Java 管理</controls:NavigationViewItem>@1@
+                <controls:NavigationViewItem Tag="PlugMange">启动器插件管理</controls:NavigationViewItem>-->
             </controls:NavigationView.MenuItems>
         </controls:NavigationView>
         <controls:Frame Margin="10,50,10,10" Name="MangeFrame">
