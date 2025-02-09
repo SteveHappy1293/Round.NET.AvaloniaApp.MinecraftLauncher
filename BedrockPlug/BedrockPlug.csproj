@@ -10,6 +10,11 @@
       <ProjectReference Include="..\Round.NET.AvaloniaApp.MinecraftLauncher\Round.NET.AvaloniaApp.MinecraftLauncher.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="DotNetZip" Version="1.16.0" />
+      <PackageReference Include="Downloader" Version="3.3.3" />
+    </ItemGroup>
+
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
       <Exec Command="copy &quot;D:\User File\Desktop\Round.NET.AvaloniaApp.MinecraftLauncher-newUI\BedrockPlug\bin\Debug\net8.0\BedrockPlug.dll&quot; &quot;D:\User File\Desktop\Round.NET.AvaloniaApp.MinecraftLauncher-newUI\Round.NET.AvaloniaApp.MinecraftLauncher.Desktop\bin\Debug\RMCL.Plugs\BedrockPlug.dll&quot;" />
     </Target>

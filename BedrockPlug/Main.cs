@@ -43,50 +43,6 @@ namespace BedrockPlug
             }*/
         }
 
-        /*private static async Task<List<VersionInfo>> GetVersions(string url)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                string json = await client.GetStringAsync(url);
-                JArray versionArray = JArray.Parse(json);
-                List<VersionInfo> versions = new List<VersionInfo>();
-
-                foreach (JObject versionObj in versionArray)
-                {
-                    string version = versionObj[0].ToString();
-                    string uuid = versionObj[1].ToString();
-                    string revision = versionObj[2].ToString();
-
-                    versions.Add(new VersionInfo
-                    {
-                        Version = version,
-                        UUID = uuid,
-                        Revision = revision
-                    });
-                }
-
-                return versions;
-            }
-        }
-
-        private static async Task<string> GetDownloadUrl(string updateIdentity, string revisionNumber)
-        {
-            Console.WriteLine("uuid=" + updateIdentity);
-            Console.WriteLine("revisionNumber=" + revisionNumber);
-
-            // 模拟PostXmlAsync方法（需要根据实际情况实现）
-            XDocument result = await PostXmlAsync("https://example.com/getDownloadUrl", BuildDownloadRequest(updateIdentity, revisionNumber));
-            Debug.WriteLine($"GetDownloadUrl() response for updateIdentity {updateIdentity}, revision {revisionNumber}:\n{result.ToString()}");
-
-            foreach (string s in ExtractDownloadResponseUrls(result))
-            {
-                if (s.StartsWith("http://tlu.dl.delivery.mp.microsoft.com/"))
-                    return s;
-            }
-
-            return null;
-        }
-
         private static XDocument PostXmlAsync(string url, XDocument request)
         {
             // 模拟HTTP POST请求（需要根据实际情况实现）
@@ -114,7 +70,7 @@ namespace BedrockPlug
                 urls.Add(urlElement.Value);
             }
             return urls;
-        }*/
+        }
     }
 }
 

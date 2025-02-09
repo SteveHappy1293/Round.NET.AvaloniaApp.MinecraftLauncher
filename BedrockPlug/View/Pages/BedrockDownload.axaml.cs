@@ -31,6 +31,7 @@ public partial class BedrockDownload : UserControl
             Panel.Children.Clear();
             foreach (var ver in vers)
             {
+                if(ver.Revision!="0") continue;
                 var downl = new Button()
                 {
                     Content = new HeroIcon()

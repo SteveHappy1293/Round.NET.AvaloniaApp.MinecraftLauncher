@@ -30,7 +30,7 @@
         <Style Selector="ProgressBar">
             <Setter Property="Transitions">
                 <Transitions>
-                    <DoubleTransition Property="Value" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Value" Easing="ExponentialEaseOut" Duration="0:0:0.3"/>
                 </Transitions>
             </Setter>
         </Style>

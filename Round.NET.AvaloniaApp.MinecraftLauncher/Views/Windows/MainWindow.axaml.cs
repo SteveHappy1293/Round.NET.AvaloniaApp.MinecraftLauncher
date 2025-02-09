@@ -14,6 +14,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Plugs;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views;
 
@@ -36,5 +37,6 @@ public partial class MainWindow : AppWindow
         
         Directory.CreateDirectory(Path.GetFullPath("../RMCL.Minecraft"));
         Core.MainWindow = this;
+        LoadingBackground.Load();
     }
 }

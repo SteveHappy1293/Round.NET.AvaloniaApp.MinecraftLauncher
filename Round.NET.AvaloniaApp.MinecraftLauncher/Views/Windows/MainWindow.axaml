@@ -10,11 +10,11 @@
         ExtendClientAreaToDecorationsHint="True"
         Icon="/Assets/Icon.png"
         WindowStartupLocation="CenterScreen"
-        Width="1180"
-        Height="720"
+        Width="850"
+        Height="480"
         
-        MinWidth="1180"
-        MinHeight="720"
+        MinWidth="850"
+        MinHeight="480"
         Title="Round.NET.AvaloniaApp.MinecraftLauncher">
         <views:MainView />
 </Window>

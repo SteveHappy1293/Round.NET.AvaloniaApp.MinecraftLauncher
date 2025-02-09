@@ -17,6 +17,8 @@ public class ConfigRoot
     public int SelectedGameFolder { get; set; } = 0;
     public int SelectedJava { get; set; } = 0;
     public int SelectedUser { get; set; } = 0;
+    public int BackModlue { get; set; } = 0;
+    public string BackImage { get; set; } = string.Empty;
 }
 
 public class GameFolderConfig

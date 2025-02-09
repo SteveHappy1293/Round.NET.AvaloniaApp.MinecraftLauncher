@@ -49,9 +49,10 @@ public partial class Launcher : UserControl
                 Dispatcher.UIThread.Invoke(() =>
                 {
                     var Sel = Config.MainConfig.SelectedGameFolder;
-                    SmTitle.Content =
-                        $"{Path.GetFileName(Directory.GetDirectories($"{Config.MainConfig.GameFolders[Sel].Path}/versions")[Config.MainConfig.GameFolders[Sel].SelectedGameIndex])}";
-
+                    try
+                    {
+                        SmTitle.Content = $"{Path.GetFileName(Directory.GetDirectories($"{Config.MainConfig.GameFolders[Sel].Path}/versions")[Config.MainConfig.GameFolders[Sel].SelectedGameIndex])}";
+                    }catch{ }
                 });
                 Thread.Sleep(100);
             }

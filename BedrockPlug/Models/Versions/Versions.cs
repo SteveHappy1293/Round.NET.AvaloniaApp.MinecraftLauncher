@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System.Text;
+using System.Xml;
+using System.Xml.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace MCLauncher.Versions;
 
@@ -16,7 +19,7 @@ public class Versions
         
         return versions;
     }
-    private static async Task<List<VersionInfo>> GetVersions(string url)
+    public static async Task<List<VersionInfo>> GetVersions(string url)
     {
         using (HttpClient client = new HttpClient())
         {
@@ -57,6 +60,50 @@ public class Versions
                 return new List<VersionInfo>();
             }
         }
+    }
+    
+    private static WUProtocol protocol = new WUProtocol();
+    private static HttpClient client = new HttpClient();
+    public static async Task<string> GetDownloadUrl(string updateIdentity, string revisionNumber = "1")
+    {
+        Console.WriteLine("uuid=" + updateIdentity);
+        Console.WriteLine("revisionNumber=" + revisionNumber);
+        XDocument result = PostXmlAsync(protocol.GetDownloadUrl(),protocol.BuildDownloadRequest(updateIdentity, revisionNumber));
+        Console.WriteLine($"GetDownloadUrl() response for updateIdentity {updateIdentity}, revision {revisionNumber}:\n{result.ToString()}");
+        foreach (string s in protocol.ExtractDownloadResponseUrls(result))
+        {
+            if (s.StartsWith("http://tlu.dl.delivery.mp.microsoft.com/"))
+                return s;
+        }
+        return null;
+    }
+    public static XDocument PostXmlAsync(string url, XDocument data)
+    {
+        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url);
+        using (var stringWriter = new StringWriter())
+        {
+            using (XmlWriter xmlWriter = XmlWriter.Create(stringWriter, new XmlWriterSettings { Indent = false, OmitXmlDeclaration = true }))
+            {
+                data.Save(xmlWriter);
+            }
+            request.Content = new StringContent(stringWriter.ToString(), Encoding.UTF8, "application/soap+xml");
+        }
+        using (var resp = client.SendAsync(request).Result)
+        {
+            string str = resp.Content.ReadAsStringAsync().Result;
+            return XDocument.Parse(str);
+        }
+    }
+
+    public static List<string> ExtractDownloadResponseUrls(XDocument response)
+    {
+        // 提取响应中的URL
+        List<string> urls = new List<string>();
+        foreach (var urlElement in response.Descendants("url"))
+        {
+            urls.Add(urlElement.Value);
+        }
+        return urls;
     }
 }
 

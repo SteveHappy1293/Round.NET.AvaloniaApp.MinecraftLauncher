@@ -78,7 +78,7 @@ public class SystemMessageTaskMange
         {
             if (con.TUID == tuid)
             {
-                con.Body.Margin = new Thickness(380, 5, -380, 0);
+                Dispatcher.UIThread.Invoke(() => con.Body.Margin = new Thickness(380, 5, -380, 0));
                 // con.Body.Opacity = 0;
                 Task.Run(() =>
                 {
