@@ -145,6 +145,7 @@ public partial class SystemNavigationBar : UserControl
             Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Opacity = 1);
             // Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Margin = new Thickness(0));
             Thread.Sleep(150);
+            Dispatcher.UIThread.Invoke(() => Circle.Opacity=0.38);
             if (ind != -1)
             {
                 Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Background =
@@ -155,7 +156,6 @@ public partial class SystemNavigationBar : UserControl
                     });
             }
             
-            Dispatcher.UIThread.Invoke(() => Circle.Opacity=0.3);
             Dispatcher.UIThread.Invoke(() => Circle.IsVisible = false);
         });
     }
