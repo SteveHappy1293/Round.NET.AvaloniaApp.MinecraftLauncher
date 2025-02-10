@@ -37,6 +37,6 @@ public partial class MainWindow : AppWindow
         
         Directory.CreateDirectory(Path.GetFullPath("../RMCL.Minecraft"));
         Core.MainWindow = this;
-        LoadingBackground.Load();
+        StyleMange.Load();
     }
 }

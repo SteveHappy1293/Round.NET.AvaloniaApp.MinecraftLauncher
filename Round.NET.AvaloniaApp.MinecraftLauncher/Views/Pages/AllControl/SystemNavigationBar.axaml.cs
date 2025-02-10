@@ -99,10 +99,20 @@ public partial class SystemNavigationBar : UserControl
                 if (ind==-1)
                 {
                     ((MainView)Core.MainWindow.Content).MainCortent.Content = Launcher;
+                    ((MainView)Core.MainWindow.Content).MainCortent.Background = new SolidColorBrush()
+                    {
+                        Color = Colors.Black,
+                        Opacity = 0.0
+                    };
                 }
                 else
                 {
                     ((MainView)Core.MainWindow.Content).MainCortent.Content = RouteConfigs[ind].Page;
+                    ((MainView)Core.MainWindow.Content).MainCortent.Background = new SolidColorBrush()
+                    {
+                        Color = Colors.Black,
+                        Opacity = 0.6
+                    };
                 }
             });
             Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Opacity = 1);

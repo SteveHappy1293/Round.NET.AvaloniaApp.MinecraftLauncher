@@ -5,10 +5,13 @@ using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Platform.Storage;
+using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
@@ -27,22 +30,36 @@ public partial class MySelfSetting : UserControl
         {
             ImagePathBox.Text = Config.MainConfig.BackImage;
             imagepath = Config.MainConfig.BackImage;
+            BackTMDSlider.Value = Config.MainConfig.BackOpacity * 100;
+        }
+        
+        if (!string.IsNullOrWhiteSpace(Config.MainConfig.StyleFile))
+        {
+            StylePathBox.Text = Config.MainConfig.StyleFile;
         }
 
         BackgroundTypeComboBox.SelectedIndex = Config.MainConfig.BackModlue;
     }
     private void BackgroundTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        ComboBoxItem selected = BackgroundTypeComboBox.SelectedItem as ComboBoxItem;
-        if (selected != null)
+        if (BackgroundTypeComboBox != null)
         {
-            if (selected.Tag.ToString() == "图片")
+            if (BackgroundTypeComboBox.SelectedIndex == 2)
             {
                 ImageBox.IsVisible = true;
+                StyleBox.IsVisible = false;
+                SaveConfig.IsVisible = true;
+            }else if (BackgroundTypeComboBox.SelectedIndex == 3)
+            {
+                SaveConfig.IsVisible = false;
+                StyleBox.IsVisible = true;
+                ImageBox.IsVisible = false;
             }
             else
             {
                 ImageBox.IsVisible = false;
+                SaveConfig.IsVisible = false;
+                StyleBox.IsVisible = false;
             }
         }
     }
@@ -75,7 +92,7 @@ public partial class MySelfSetting : UserControl
                     try
                     {
                         imagepath = fileName;
-                        ImagePathBox.Text = fileName;
+                        Dispatcher.UIThread.Invoke(() => ImagePathBox.Text = fileName);
                     }
                     catch (Exception ex)
                     {
@@ -88,14 +105,68 @@ public partial class MySelfSetting : UserControl
     private void SaveImage_OnClick(object? sender, RoutedEventArgs e)
     {
         Config.MainConfig.BackModlue = BackgroundTypeComboBox.SelectedIndex;
-        if (Config.MainConfig.BackModlue == 1)
+        if (Config.MainConfig.BackModlue == 2)
         {
             if (imagepath != String.Empty)
             {
                 Config.MainConfig.BackImage = imagepath;
+                Config.MainConfig.BackOpacity = ((int)BackTMDSlider.Value) * 0.01;
             }
+        }else if (Config.MainConfig.BackModlue == 3)
+        {
+            Config.MainConfig.StyleFile = StylePathBox.Text;
         }
         Config.SaveConfig();
-        LoadingBackground.Load();
+        StyleMange.Load();
+    }
+    private void BackTMDSlider_OnValueChanged(object? sender, RangeBaseValueChangedEventArgs e)
+    {
+        BackTMDLabel.Content = $"背景图透明度({(int)BackTMDSlider.Value}%)";
+    }
+
+    private async void SaveConfig_OnClick(object? sender, RoutedEventArgs e)
+    {
+        var saveFileDialog = new SaveFileDialog
+        {
+            Title = "另存为项目文件",
+            InitialFileName = $"My Style {DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}", // 默认文件名
+            DefaultExtension = "rskin",
+            Filters = new List<FileDialogFilter>
+            {
+                new FileDialogFilter { Name = "RMCL 通用主题格式", Extensions = new List<string> { "rskin" } }
+            }
+        };
+
+        string? filePath = await saveFileDialog.ShowAsync(Core.MainWindow);
+
+        if (!string.IsNullOrEmpty(filePath))
+        {
+            StyleMange.ExportStyleConfigFile(filePath);
+        }
+    }
+
+    private async void ChooseStyle_OnClick_OnClick(object? sender, RoutedEventArgs e)
+    {
+        // 创建 OpenFileDialog 实例
+        OpenFileDialog openFileDialog = new OpenFileDialog
+        {
+            Title = "打开主题文件", // 对话框标题
+            AllowMultiple = false, // 是否允许选择多个文件
+            Filters = new ()
+            {
+                new FileDialogFilter { Name = "RMCL 通用主题文件", Extensions = new List<string> { "rskin" } },
+            }
+        };
+
+        // 打开文件对话框并获取用户选择的文件路径
+        string[] filePaths = await openFileDialog.ShowAsync(Core.MainWindow);
+
+        // 检查是否选择了文件
+        if (filePaths.Length > 0)
+        {
+            string filePath = filePaths[0]; // 获取第一个文件的路径
+            
+            StylePathBox.Text = filePath;
+        }
     }
 }
