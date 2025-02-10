@@ -51,6 +51,7 @@ public partial class SystemNavigationBar : UserControl
     }
     public void Show()
     {
+        Circle.IsVisible = true;
         if (IsClosed)
         {
             Margin = new(0);
@@ -60,11 +61,37 @@ public partial class SystemNavigationBar : UserControl
         else
         {
             Margin = new(-80);
-            Opacity = 0;
+            // Opacity = 0;
             IsClosed = true;
         }
     }
 
+    public void CircleShow()
+    {
+        
+        Dispatcher.UIThread.Invoke(() => Circle.IsVisible = true);
+        if (Circle.Width == 32)
+        {
+            var wid = 1000.00;
+            if (Core.MainWindow.Bounds.Width * 2 > Core.MainWindow.Bounds.Height * 2)
+            {
+                wid = Core.MainWindow.Bounds.Width*2;
+            }
+            else
+            {
+                wid = Core.MainWindow.Bounds.Height*2;
+            }
+            Circle.Width = wid;
+            Circle.Height = wid;
+            Circle.Opacity = 0.6;
+        }
+        else
+        {
+            Circle.Width = 32;
+            Circle.Height = 32;   
+            Circle.Opacity = 0;
+        }
+    }
     public void RegisterRoute(Core.API.NavigationRouteConfig routeConfig)
     {
         RouteConfigs.Add(routeConfig);
@@ -84,21 +111,26 @@ public partial class SystemNavigationBar : UserControl
     }
     public void NavTo(string Tag)
     {
+        int ind = RouteConfigs.FindIndex((Core.API.NavigationRouteConfig nc) => { return nc.Route == Tag; });
         Task.Run(() =>
         {
             Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Opacity = 0);
-            //Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Margin = new Thickness(50,50,50,50));
+            if(ind != -1) Dispatcher.UIThread.Invoke(() => CircleShow());
+            else
+            {
+                Thread.Sleep(45);
+                Dispatcher.UIThread.Invoke(() => CircleShow());
+            }
             Thread.Sleep(380);
             Dispatcher.UIThread.Invoke(() => Show());
-            //Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Opacity = 1);
-            Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Margin = new Thickness(0,90,0,0));
+            // Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Margin = new Thickness(0,50,0,0));
             Thread.Sleep(100);
             Dispatcher.UIThread.Invoke(() =>
             {
-                int ind = RouteConfigs.FindIndex((Core.API.NavigationRouteConfig nc) => { return nc.Route == Tag; });
                 if (ind==-1)
                 {
                     ((MainView)Core.MainWindow.Content).MainCortent.Content = Launcher;
+                    
                     ((MainView)Core.MainWindow.Content).MainCortent.Background = new SolidColorBrush()
                     {
                         Color = Colors.Black,
@@ -108,15 +140,23 @@ public partial class SystemNavigationBar : UserControl
                 else
                 {
                     ((MainView)Core.MainWindow.Content).MainCortent.Content = RouteConfigs[ind].Page;
-                    ((MainView)Core.MainWindow.Content).MainCortent.Background = new SolidColorBrush()
-                    {
-                        Color = Colors.Black,
-                        Opacity = 0.6
-                    };
                 }
             });
             Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Opacity = 1);
-            Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Margin = new Thickness(0));
+            // Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Margin = new Thickness(0));
+            Thread.Sleep(150);
+            if (ind != -1)
+            {
+                Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Background =
+                    new SolidColorBrush()
+                    {
+                        Color = Colors.Black,
+                        Opacity = 0.6
+                    });
+            }
+            
+            Dispatcher.UIThread.Invoke(() => Circle.Opacity=0.3);
+            Dispatcher.UIThread.Invoke(() => Circle.IsVisible = false);
         });
     }
 }

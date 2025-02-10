@@ -117,5 +117,15 @@
                 </Transitions>
             </Setter>
         </Style>
+        <Style Selector="Ellipse">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.5"/>
+                    <DoubleTransition Property="Opacity" Easing="QuinticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Width" Easing="QuinticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Height" Easing="QuinticEaseInOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
     </Application.Styles>
 </Application>
