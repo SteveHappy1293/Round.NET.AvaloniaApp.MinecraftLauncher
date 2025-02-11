@@ -33,7 +33,7 @@ public class FindJava
         }
         IsFinish = true;
     }
-    public const string JavaFileName = "../RMCL.Config/Java.json";
+    public const string JavaFileName = "../RMCL/RMCL.Config/Java.json";
     public static void LoadJava()
     {
         if (!File.Exists(JavaFileName))

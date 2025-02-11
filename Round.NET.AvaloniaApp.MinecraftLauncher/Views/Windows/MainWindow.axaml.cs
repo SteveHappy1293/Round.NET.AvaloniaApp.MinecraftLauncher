@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
@@ -35,8 +37,21 @@ public partial class MainWindow : AppWindow
         RenderOptions.SetBitmapInterpolationMode(this, BitmapInterpolationMode.MediumQuality); // 图片渲染模式
         RenderOptions.SetEdgeMode(this, EdgeMode.Antialias); // 形状渲染模式
         
-        Directory.CreateDirectory(Path.GetFullPath("../RMCL.Minecraft"));
+        Directory.CreateDirectory(Path.GetFullPath("../RMCL/RMCL.Minecraft"));
         Core.MainWindow = this;
         StyleMange.Load();
+
+        if (!Config.MainConfig.WindowSize.IsEmpty)
+        {
+            this.Width = Config.MainConfig.WindowSize.Width;
+            this.Height = Config.MainConfig.WindowSize.Height;
+            Console.WriteLine($"Window size: {Config.MainConfig.WindowSize}");
+        }
+    }
+
+    private void Window_OnClosing(object? sender, WindowClosingEventArgs e)
+    {
+        Config.MainConfig.WindowSize = new Size((int)this.Bounds.Width, (int)this.Bounds.Height);
+        Config.SaveConfig();
     }
 }

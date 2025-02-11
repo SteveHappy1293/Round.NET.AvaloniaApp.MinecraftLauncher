@@ -27,7 +27,7 @@ public class User
         public string UUID { get; set; }
         public DateTime RefreshTime { get; set; }
     }
-    public static readonly string ConfigPath = Path.GetFullPath("../RMCL.Config/User");
+    public static readonly string ConfigPath = Path.GetFullPath("../RMCL/RMCL.Config/User");
     public static List<UserConfig> Users = new();
     public static void LoadUser()
     {

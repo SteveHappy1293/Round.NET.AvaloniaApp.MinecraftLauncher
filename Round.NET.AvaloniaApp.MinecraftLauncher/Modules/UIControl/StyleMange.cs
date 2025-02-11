@@ -56,7 +56,7 @@ public class StyleMange
     }
     public static void ExportStyleConfigFile(string FileName)
     {
-        var path = Path.GetFullPath("../RMCL.Style");
+        var path = Path.GetFullPath("../RMCL/RMCL.Style");
         if (!Directory.Exists($"{path}/Temp"))
         {
             Directory.CreateDirectory($"{path}/Temp");
@@ -83,7 +83,7 @@ public class StyleMange
     }
     public static void ImportStyleConfigFile(string FileName)
     {
-        var path = Path.GetFullPath("../RMCL.Style/Extract");
+        var path = Path.GetFullPath("../RMCL/RMCL.Style/Extract");
         if(Directory.Exists(path)) Directory.Delete(path,true);
         
         Directory.CreateDirectory(path);

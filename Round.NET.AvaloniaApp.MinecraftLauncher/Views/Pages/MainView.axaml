@@ -15,5 +15,10 @@
         <allControl:SystemNavigationBar HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="SystemNavigationBar"/>
         <allControl:SystemTaskBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <allControl:SystemMessageBox HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,70"/>
+        <controls1:RipplesControl HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0" Name="ThisRipplesControl"></controls1:RipplesControl>
+        <Button Width="48" Height="38" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="138,0" Name="SearchGoButton" Click="Button_OnClick" CornerRadius="0" Background="Transparent" BorderThickness="0">
+            <controls:HeroIcon Foreground="White" Type="MagnifyingGlass" Min="True" Width="15"></controls:HeroIcon>
+        </Button>
+        <allControl:SearchBox Name="MainSearchBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsVisible="False"/>
     </Grid>
 </UserControl>

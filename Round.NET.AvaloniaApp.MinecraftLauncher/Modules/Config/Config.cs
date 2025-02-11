@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -21,6 +22,7 @@ public class ConfigRoot
     public string BackImage { get; set; } = string.Empty;
     public double BackOpacity { get; set; } = 50;
     public string StyleFile { get; set; } = string.Empty;
+    public Size WindowSize { get; set; } = Size.Empty; 
 }
 
 public class GameFolderConfig
@@ -39,12 +41,12 @@ public class Config
             new GameFolderConfig
             {
                 Name = "当前文件夹",
-                Path = Path.GetFullPath("../RMCL.Minecraft")
+                Path = Path.GetFullPath("../RMCL/RMCL.Minecraft")
             }
         }
     };
     
-    public const string ConfigFileName = "../RMCL.Config/Config.json";
+    public const string ConfigFileName = "../RMCL/RMCL.Config/Config.json";
     public static void LoadConfig()
     {
         if (!File.Exists(ConfigFileName))

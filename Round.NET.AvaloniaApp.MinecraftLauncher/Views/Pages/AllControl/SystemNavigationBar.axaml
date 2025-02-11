@@ -5,10 +5,11 @@
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              xmlns:controls1="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
              xmlns:allControl="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl"
+             xmlns:controls2="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl.SystemNavigationBar">
     <Grid HorizontalAlignment="Left" VerticalAlignment="Center" >
-        <Ellipse Width="30" Height="30" Fill="Black" Opacity="0.6" Name="Circle"/>
+        <controls2:RipplesControl Name="Circle" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <Border HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="11" Background="rgb(26,26,26)" Width="64" Margin="10">
             <StackPanel Margin="5" Name="MainNavPanel">
                 <Image Source="../../../Assets/Icon.png" Height="32" Width="32" Margin="5,10" VerticalAlignment="Top"/>

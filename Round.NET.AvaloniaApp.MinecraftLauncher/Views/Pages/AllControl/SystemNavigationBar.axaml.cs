@@ -65,33 +65,6 @@ public partial class SystemNavigationBar : UserControl
             IsClosed = true;
         }
     }
-
-    public void CircleShow()
-    {
-        
-        Dispatcher.UIThread.Invoke(() => Circle.IsVisible = true);
-        if (Circle.Width == 32)
-        {
-            var wid = 1000.00;
-            if (Core.MainWindow.Bounds.Width * 2 > Core.MainWindow.Bounds.Height * 2)
-            {
-                wid = Core.MainWindow.Bounds.Width*2;
-            }
-            else
-            {
-                wid = Core.MainWindow.Bounds.Height*2;
-            }
-            Circle.Width = wid;
-            Circle.Height = wid;
-            Circle.Opacity = 0.6;
-        }
-        else
-        {
-            Circle.Width = 32;
-            Circle.Height = 32;   
-            Circle.Opacity = 0;
-        }
-    }
     public void RegisterRoute(Core.API.NavigationRouteConfig routeConfig)
     {
         RouteConfigs.Add(routeConfig);
@@ -109,27 +82,41 @@ public partial class SystemNavigationBar : UserControl
         nav.PointerPressed += InputElement_OnPointerPressed;
         MainNavPanel.Children.Add(nav);
     }
-    public void NavTo(string Tag)
+    public void NavTo(string Tag,bool isearch = false)
     {
         int ind = RouteConfigs.FindIndex((Core.API.NavigationRouteConfig nc) => { return nc.Route == Tag; });
+        if (Tag == "Clear") ind = -2;
+        if (Tag == "BackSearch") ind = -3;
         Task.Run(() =>
         {
             Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Opacity = 0);
-            if(ind != -1) Dispatcher.UIThread.Invoke(() => CircleShow());
-            else
+            if (ind != -1 && ind != -2 && ind != -3)
+            {
+                Dispatcher.UIThread.Invoke(() => Circle.CircleShow(0.6));
+            }
+            else if (ind == -1)
             {
                 Thread.Sleep(45);
-                Dispatcher.UIThread.Invoke(() => CircleShow());
+                Dispatcher.UIThread.Invoke(() => Circle.CircleShow(0.6));
             }
             Thread.Sleep(380);
-            Dispatcher.UIThread.Invoke(() => Show());
+            if(ind!=-2 || !IsClosed)Dispatcher.UIThread.Invoke(() => Show());
             // Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Margin = new Thickness(0,50,0,0));
             Thread.Sleep(100);
             Dispatcher.UIThread.Invoke(() =>
             {
-                if (ind==-1)
+                if (ind==-1||ind==-3)
                 {
                     ((MainView)Core.MainWindow.Content).MainCortent.Content = Launcher;
+                    
+                    ((MainView)Core.MainWindow.Content).MainCortent.Background = new SolidColorBrush()
+                    {
+                        Color = Colors.Black,
+                        Opacity = 0.0
+                    };
+                }else if (ind == -2)
+                {
+                    ((MainView)Core.MainWindow.Content).MainCortent.Content = new Grid();
                     
                     ((MainView)Core.MainWindow.Content).MainCortent.Background = new SolidColorBrush()
                     {
@@ -146,13 +133,13 @@ public partial class SystemNavigationBar : UserControl
             // Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Margin = new Thickness(0));
             Thread.Sleep(150);
             Dispatcher.UIThread.Invoke(() => Circle.Opacity=0.38);
-            if (ind != -1)
+            if (ind != -1&&ind!=-2&&ind!=-3)
             {
                 Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Background =
                     new SolidColorBrush()
                     {
                         Color = Colors.Black,
-                        Opacity = 0.6
+                        Opacity = 0.3
                     });
             }
             

@@ -1,7 +1,9 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
@@ -20,5 +22,21 @@ public partial class MainView : UserControl
         
         //Dispatcher.UIThread.Invoke(() => Show());
         this.SystemNavigationBar.Show();
+        ThisRipplesControl.CircleShow(0.3);
+        MainSearchBox.CloseAction = new Action(() =>
+        {
+            ThisRipplesControl.CircleShow(0.3);
+            SearchGoButton.IsVisible = true;
+        });
+    }
+
+    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    {
+        this.MainSearchBox.Show();
+        ThisRipplesControl.CircleShow(0.3);
+        if (SearchGoButton.IsVisible)
+        {
+            SearchGoButton.IsVisible = false;
+        }
     }
 }

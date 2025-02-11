@@ -38,8 +38,8 @@ public partial class DownloadControl : UserControl
                 Console.WriteLine(url);
                 Dispatcher.UIThread.Invoke(() => GETUrlJDBar.Value = 100);
                 Dispatcher.UIThread.Invoke(() => JDLabel.Content = "当前进度：下载游戏文件");
-                Directory.CreateDirectory(Path.GetFullPath("../RMCL.Bedrock/Installer"));
-                Directory.CreateDirectory(Path.GetFullPath("../RMCL.Bedrock/Games"));
+                Directory.CreateDirectory(Path.GetFullPath("../RMCL/RMCL.Bedrock/Installer"));
+                Directory.CreateDirectory(Path.GetFullPath("../RMCL/RMCL.Bedrock/Games"));
                 var downloadOpt = new DownloadConfiguration()
                 {
                     ChunkCount = 64,
@@ -64,7 +64,7 @@ public partial class DownloadControl : UserControl
                         Dispatcher.UIThread.Invoke(() => JDLabel.Content = "当前进度：解压原始数据");
                         Message.Show("基岩版下载插件", $"基岩版 {Version.Version} 下载完毕，即将安装...", InfoBarSeverity.Success);
                         //downloader.Dispose();
-                        Task.Run(() => ExtractZipWithProgress(Path.GetFullPath($"../RMCL.Bedrock/Installer/Minecraft_{Version.Version}.zip"), Path.GetFullPath($"../RMCL.Bedrock/Games/Minecraft_{Version.Version}")));
+                        Task.Run(() => ExtractZipWithProgress(Path.GetFullPath($"../RMCL/RMCL.Bedrock/Installer/Minecraft_{Version.Version}.zip"), Path.GetFullPath($"../RMCL/RMCL.Bedrock/Games/Minecraft_{Version.Version}")));
                     }
                     else
                     {
@@ -72,7 +72,7 @@ public partial class DownloadControl : UserControl
                         SystemMessageTaskMange.DeleteTask(this.Tuid);
                     }                   
                 });
-                downloader.DownloadFileTaskAsync(url, Path.GetFullPath($"../RMCL.Bedrock/Installer/Minecraft_{Version.Version}.zip"));
+                downloader.DownloadFileTaskAsync(url, Path.GetFullPath($"../RMCL/RMCL.Bedrock/Installer/Minecraft_{Version.Version}.zip"));
             }
             catch (Exception ex)
             {

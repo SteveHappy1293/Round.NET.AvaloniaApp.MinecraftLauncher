@@ -8,13 +8,13 @@ public class PlugsLoader
 {
     public static void LoadingPlug()
     {
-        if (!Directory.Exists(Path.GetFullPath("../RMCL.Plugs")))
+        if (!Directory.Exists(Path.GetFullPath("../RMCL/RMCL.Plugs")))
         {
-            Directory.CreateDirectory(Path.GetFullPath("../RMCL.Plugs"));
+            Directory.CreateDirectory(Path.GetFullPath("../RMCL/RMCL.Plugs"));
             return;
         }
 
-        foreach (var libfile in Directory.GetFiles(Path.GetFullPath("../RMCL.Plugs")))
+        foreach (var libfile in Directory.GetFiles(Path.GetFullPath("../RMCL/RMCL.Plugs")))
         {
             if (libfile.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
             {
