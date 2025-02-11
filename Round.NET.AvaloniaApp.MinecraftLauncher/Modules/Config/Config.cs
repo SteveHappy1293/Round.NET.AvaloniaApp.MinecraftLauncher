@@ -22,7 +22,10 @@ public class ConfigRoot
     public string BackImage { get; set; } = string.Empty;
     public double BackOpacity { get; set; } = 50;
     public string StyleFile { get; set; } = string.Empty;
-    public Size WindowSize { get; set; } = Size.Empty; 
+    public int WindowWidth { get; set; } = 850;
+    public int WindowHeight { get; set; } = 450;
+    public bool IsUsePlug { get; set; } = true;
+    public int MessageLiveTimeMs { get; set; } = 5000;
 }
 
 public class GameFolderConfig

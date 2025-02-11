@@ -79,7 +79,7 @@ public class Message
             // 延迟 5 秒后删除
             Task.Run(() =>
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(Config.Config.MainConfig.MessageLiveTimeMs);
                 close();
             });
         });

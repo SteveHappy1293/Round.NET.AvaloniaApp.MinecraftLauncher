@@ -41,17 +41,14 @@ public partial class MainWindow : AppWindow
         Core.MainWindow = this;
         StyleMange.Load();
 
-        if (!Config.MainConfig.WindowSize.IsEmpty)
-        {
-            this.Width = Config.MainConfig.WindowSize.Width;
-            this.Height = Config.MainConfig.WindowSize.Height;
-            Console.WriteLine($"Window size: {Config.MainConfig.WindowSize}");
-        }
+        this.Width = Config.MainConfig.WindowWidth;
+        this.Height = Config.MainConfig.WindowHeight;
     }
 
     private void Window_OnClosing(object? sender, WindowClosingEventArgs e)
     {
-        Config.MainConfig.WindowSize = new Size((int)this.Bounds.Width, (int)this.Bounds.Height);
+        Config.MainConfig.WindowWidth = (int)this.Bounds.Width;
+        Config.MainConfig.WindowHeight = (int)this.Bounds.Height;
         Config.SaveConfig();
     }
 }

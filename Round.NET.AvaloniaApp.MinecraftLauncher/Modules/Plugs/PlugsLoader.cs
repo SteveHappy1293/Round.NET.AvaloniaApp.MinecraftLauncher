@@ -8,6 +8,7 @@ public class PlugsLoader
 {
     public static void LoadingPlug()
     {
+        if(!Config.Config.MainConfig.IsUsePlug) return;
         if (!Directory.Exists(Path.GetFullPath("../RMCL/RMCL.Plugs")))
         {
             Directory.CreateDirectory(Path.GetFullPath("../RMCL/RMCL.Plugs"));
