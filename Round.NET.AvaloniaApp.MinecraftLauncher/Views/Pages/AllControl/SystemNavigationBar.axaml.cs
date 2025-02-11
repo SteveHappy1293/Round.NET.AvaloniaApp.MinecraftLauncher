@@ -48,6 +48,7 @@ public partial class SystemNavigationBar : UserControl
     private void InputElement_OnPointerPressed(object? sender, PointerPressedEventArgs e)
     {
         NavTo(((NavigationViewItem)sender!).Tag.ToString());
+        IsEnabled = false;
     }
     public void Show()
     {
@@ -56,6 +57,7 @@ public partial class SystemNavigationBar : UserControl
         {
             Margin = new(0);
             Opacity = 1;
+            IsEnabled = true;
             IsClosed = false;
         }
         else

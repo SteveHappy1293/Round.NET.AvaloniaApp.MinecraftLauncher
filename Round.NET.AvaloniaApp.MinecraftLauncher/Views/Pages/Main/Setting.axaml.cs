@@ -31,12 +31,19 @@ public partial class Setting : UserControl
         });    
         RegisterRoute(new Core.API.NavigationRouteConfig()
         {
+            Page = StyleSetting,
+            Title = "个性化设置",
+            Route = "StyleSetting"
+        });      
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
             Page = GameSetting,
             Title = "游戏设置",
             Route = "GameSetting"
         });  
     }
     private GameSetting GameSetting { get; set; } = new();
+    private StyleSetting StyleSetting { get; set; } = new();
     private MySelfSetting MySelfSetting { get; set; } = new();
     public List<Core.API.NavigationRouteConfig> RouteConfigs { get; set; } = new();
     private void NavigationView_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)

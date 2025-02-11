@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.InteropServices.JavaScript;
 using System.Threading;
 using System.Threading.Tasks;
@@ -75,6 +76,16 @@ public partial class Launcher : UserControl
         // }
         //UserButton.SelectedIndex = Config.MainConfig.SelectedUser;
         IsEdit = true;
+        
+        Task.Run(() =>
+        {
+            while (true)
+            {
+                var time = DateTime.Now.ToString("HH:mm:ss");
+                Dispatcher.UIThread.Invoke(()=>TimeBox.Content = time);
+                Thread.Sleep(100);
+            }
+        });
     }
 
     private bool IsEdit = false;

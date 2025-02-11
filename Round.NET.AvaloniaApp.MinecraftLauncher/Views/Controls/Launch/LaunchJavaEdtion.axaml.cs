@@ -259,10 +259,22 @@ public partial class LaunchJavaEdtion : UserControl
     }
     private void LogButton_OnClick(object? sender, RoutedEventArgs e)
     {
+        if (window.IsOpen)
+        {
+            window.Close();
+        }
         window = new LogsWindow();
         window.LogsStackPanel = LogPanel;
         window.LaunchJavaEdtions = this;
-        window.Start();
-        window.ShowDialog(Core.MainWindow);
+        window.Show();
+        window.Start();window.RefreshCount(new LogsWindow.CountConfig()
+        {
+            Debug = Debug,
+            Error = Error,
+            Info = Info,
+            Warning = Warning,
+            StackTrace = StackTrace,
+            Fatal = Fatal
+        });
     }
 }

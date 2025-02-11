@@ -15,6 +15,8 @@ public partial class LogsWindow : AppWindow
 {
     public StackPanel LogsStackPanel { get; set; } = new();
     public LaunchJavaEdtion LaunchJavaEdtions { get; set; }
+    public bool IsOpen { get; set; } = false;
+    public CountConfig Count { get; set; } = new();
     public LogsWindow()
     {
         InitializeComponent();
@@ -39,6 +41,9 @@ public partial class LogsWindow : AppWindow
     public void Start()
     {
         this.MainView.Content = LogsStackPanel;
+        IsOpen = true;
+        RefreshCount(Count);
+        
     }
 
     private void TopLevel_OnClosed(object? sender, EventArgs e)
@@ -65,6 +70,7 @@ public partial class LogsWindow : AppWindow
             Debug.Content = $"调试：{config.Debug}";
             StackTrace.Content = $"堆栈：{config.StackTrace}";
         });
+        Count = config;
     }
 
     private void KillGame_OnClick(object? sender, RoutedEventArgs e)

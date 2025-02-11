@@ -16,5 +16,10 @@
             <ComboBoxItem>其他</ComboBoxItem>
         </ComboBox>
         <Button Click="Button_OnClick" HorizontalAlignment="Left" VerticalAlignment="Top" Content="返回" Height="32" Margin="10"/>
+        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,48,0,0">
+            <StackPanel Name="SearchShowBox" Margin="10,2,10,10">
+                
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

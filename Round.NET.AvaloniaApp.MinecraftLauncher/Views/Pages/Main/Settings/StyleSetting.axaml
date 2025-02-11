@@ -1,0 +1,49 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             Margin="-10"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.StyleSetting">
+    <ScrollViewer Margin="5">
+        <StackPanel Margin="5">
+            <Expander Header="背景设置" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,10,0,0">
+                <StackPanel>
+                    <DockPanel>
+                        <Label VerticalAlignment="Center">背景类型：</Label>
+                        <ComboBox Name="BackgroundTypeComboBox"  HorizontalAlignment="Stretch" SelectionChanged="BackgroundTypeComboBox_SelectionChanged">
+                            <ComboBoxItem>云母（默认）</ComboBoxItem>
+                            <ComboBoxItem>亚克力</ComboBoxItem>
+                            <ComboBoxItem>图片</ComboBoxItem>
+                            <ComboBoxItem>导入通用主题包</ComboBoxItem>
+                            <ComboBoxItem>无</ComboBoxItem>
+                        </ComboBox>
+                    </DockPanel>
+                    <StackPanel Name="ImageBox" IsVisible="False" Margin="0,10,0,0">
+                        <TextBox Name="ImagePathBox" Watermark="请输入图片路径"/>
+                        <Grid>
+                            <DockPanel>
+                                <Label Margin="5" Name="BackTMDLabel" Width="150" VerticalAlignment="Center">背景图透明度(100%)</Label>
+                                <Slider HorizontalAlignment="Stretch" Name="BackTMDSlider" ValueChanged="BackTMDSlider_OnValueChanged"></Slider>
+                            </DockPanel>
+                        </Grid>
+                        <Button Name="ChooseImage" Click="ChooseImage_OnClick" HorizontalAlignment="Right">选择图片</Button>
+                    </StackPanel>
+                    <StackPanel Name="StyleBox" IsVisible="False" Margin="0,10,0,0">
+                        <TextBox Name="StylePathBox" Watermark="请输入主题文件路径"/>
+                        <Button Name="ChooseStyle" Click="ChooseStyle_OnClick_OnClick" HorizontalAlignment="Right" Margin="0,10,0,0">选择文件</Button>
+                    </StackPanel>
+                    <DockPanel HorizontalAlignment="Right">
+                        <Button Name="SaveConfig" Click="SaveConfig_OnClick" HorizontalAlignment="Right" Margin="0,10,10,0">导出主题配置</Button>
+                        <Button Name="SaveImage" Click="SaveImage_OnClick" HorizontalAlignment="Right" Margin="0,10,0,0">保存设置</Button>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander Header="主页磁贴设置" Margin="0,10,0,0">
+                <StackPanel>
+                    
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
