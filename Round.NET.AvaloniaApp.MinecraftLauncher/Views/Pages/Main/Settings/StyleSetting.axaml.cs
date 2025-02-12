@@ -18,6 +18,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings;
 
 public partial class StyleSetting : UserControl
 {
+    public bool IsEdit = false;
     public StyleSetting()
     {
         InitializeComponent();
@@ -35,6 +36,8 @@ public partial class StyleSetting : UserControl
         }
 
         BackgroundTypeComboBox.SelectedIndex = Config.MainConfig.BackModlue;
+        EnTiles.IsChecked = Config.MainConfig.IsTilsEnabled;
+        IsEdit = true;
     }
     private void BackgroundTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
@@ -163,6 +166,15 @@ public partial class StyleSetting : UserControl
             string filePath = filePaths[0]; // 获取第一个文件的路径
             
             StylePathBox.Text = filePath;
+        }
+    }
+
+    private void EnTiles_OnClick(object? sender, RoutedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.MainConfig.IsTilsEnabled = !Config.MainConfig.IsTilsEnabled;
+            Config.SaveConfig();
         }
     }
 }

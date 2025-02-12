@@ -15,7 +15,7 @@ public class Core
     public static SystemTaskBox SystemTask { get; set; }
     public static SystemMessageBox SystemMessage { get; set; }
     public static Download DownloadPage { get; set; } = new();
-    public static Mange MangePage { get; set; } = new();
+    public static Views.Pages.Main.Mange MangePage { get; set; } = new();
     public static Setting SettingPage { get; set; } = new();
     public static SystemNavigationBar NavigationBar { get; set; }
     public static List<API.SearchItemConfig> SearchItems { get; set; } = new();

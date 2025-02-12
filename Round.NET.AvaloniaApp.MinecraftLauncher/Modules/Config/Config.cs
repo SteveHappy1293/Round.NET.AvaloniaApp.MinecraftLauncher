@@ -26,6 +26,7 @@ public class ConfigRoot
     public int WindowHeight { get; set; } = 450;
     public bool IsUsePlug { get; set; } = true;
     public int MessageLiveTimeMs { get; set; } = 5000;
+    public bool IsTilsEnabled { get; set; } = true;
 }
 
 public class GameFolderConfig

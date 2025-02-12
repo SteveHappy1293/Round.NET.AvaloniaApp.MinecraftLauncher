@@ -202,7 +202,7 @@ public partial class UserMange : UserControl
                         CloseButtonText = "取消",
                         Title = "正版登录"
                     };
-                    OpenUrl("https://www.microsoft.com/link");
+                    OpenUrl($"https://www.microsoft.com/link");
                     logincon.ShowAsync(Core.MainWindow);
                     
                     

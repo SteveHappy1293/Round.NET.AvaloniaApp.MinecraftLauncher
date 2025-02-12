@@ -39,7 +39,14 @@ public partial class MainWindow : AppWindow
         
         Directory.CreateDirectory(Path.GetFullPath("../RMCL/RMCL.Minecraft"));
         Core.MainWindow = this;
-        StyleMange.Load();
+        try
+        {
+            StyleMange.Load();
+        }
+        catch(Exception ex)
+        {
+            Message.Show("主题加载",$"主题加载错误！\n{ex.Message}",InfoBarSeverity.Error);
+        }
 
         this.Width = Config.MainConfig.WindowWidth;
         this.Height = Config.MainConfig.WindowHeight;
