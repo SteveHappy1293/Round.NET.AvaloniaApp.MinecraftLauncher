@@ -15,6 +15,7 @@ using HeroIconsAvalonia.Controls;
 using HeroIconsAvalonia.Enums;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 
@@ -203,7 +204,7 @@ public partial class GameMange : UserControl
         var dialog = new OpenFolderDialog();
         dialog.Title = "选择 Minecraft 文件夹";
         var result = await dialog.ShowAsync(Core.MainWindow);
-        Console.WriteLine(result);
+        RLogs.WriteLog(result);
         if (result != string.Empty && Directory.Exists(result))
         {
             var TextB = new TextBox()

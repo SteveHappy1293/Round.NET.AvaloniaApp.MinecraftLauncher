@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 
@@ -114,7 +115,7 @@ public class StyleMange
         // 确保源文件夹存在
         if (!Directory.Exists(sourceDirectory))
         {
-            Console.WriteLine("源文件夹不存在！");
+            RLogs.WriteLog("源文件夹不存在！");
             return;
         }
 
@@ -132,14 +133,14 @@ public class StyleMange
         }
         ZipFile.CreateFromDirectory(sourceDirectory, zipFilePath);
 
-        Console.WriteLine($"ZIP文件已创建：{zipFilePath}");
+        RLogs.WriteLog($"ZIP文件已创建：{zipFilePath}");
     }
     static void ExtractZipFile(string zipFilePath, string extractDirectory)
     {
         // 确保ZIP文件存在
         if (!File.Exists(zipFilePath))
         {
-            Console.WriteLine("ZIP文件不存在！");
+            RLogs.WriteLog("ZIP文件不存在！");
             return;
         }
 
@@ -152,6 +153,6 @@ public class StyleMange
         // 解压ZIP文件
         ZipFile.ExtractToDirectory(zipFilePath, extractDirectory);
 
-        Console.WriteLine($"ZIP文件已解压到：{extractDirectory}");
+        RLogs.WriteLog($"ZIP文件已解压到：{extractDirectory}");
     }
 }

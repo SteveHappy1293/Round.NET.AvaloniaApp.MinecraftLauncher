@@ -6,11 +6,23 @@
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.GameSetting">
     <ScrollViewer>
         <StackPanel>
-            <Expander Header="Java 设置">
+            <Expander Header="Java 设置" Margin="0,5">
                 <StackPanel>
                     <DockPanel>
-                        <Label VerticalAlignment="Center">默认 Java：</Label>
+                        <Label VerticalAlignment="Center" Width="230">默认 Java：</Label>
                         <ComboBox HorizontalAlignment="Stretch" Name="JavaComboBox" SelectionChanged="JavaComboBox_OnSelectionChanged"></ComboBox>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander Header="游戏辅助设置" Margin="0,5">
+                <StackPanel>
+                    <DockPanel>
+                        <Label VerticalAlignment="Center" HorizontalAlignment="Left" Width="230">在启动游戏时设置中文：</Label>
+                        <CheckBox VerticalAlignment="Center" Name="SetLangZHCN" Click="SetValue_OnClick">启用</CheckBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label VerticalAlignment="Center" HorizontalAlignment="Left" Width="230">在启动游戏时设置伽马：</Label>
+                        <CheckBox VerticalAlignment="Center" Name="SetGammaTop" Click="SetValue_OnClick">启用（仅低版本 1.19 以下）</CheckBox>
                     </DockPanel>
                 </StackPanel>
             </Expander>

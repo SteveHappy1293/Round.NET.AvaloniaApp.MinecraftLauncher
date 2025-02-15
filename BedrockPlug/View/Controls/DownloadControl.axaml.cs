@@ -12,6 +12,7 @@ using FluentAvalonia.UI.Controls;
 using Ionic.Zip;
 using MCLauncher;
 using MCLauncher.Versions;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 
@@ -35,7 +36,7 @@ public partial class DownloadControl : UserControl
             try
             {
                 var url = Versions.GetDownloadUrl(Version.UUID, "1").Result;
-                Console.WriteLine(url);
+                RLogs.WriteLog(url);
                 Dispatcher.UIThread.Invoke(() => GETUrlJDBar.Value = 100);
                 Dispatcher.UIThread.Invoke(() => JDLabel.Content = "当前进度：下载游戏文件");
                 Directory.CreateDirectory(Path.GetFullPath("../RMCL/RMCL.Bedrock/Installer"));
@@ -53,7 +54,7 @@ public partial class DownloadControl : UserControl
                 downloader.DownloadProgressChanged += (async (sender, args) =>
                 {
                     jd = (int)args.ProgressPercentage;
-                    Console.WriteLine($"Progress: {jd}");
+                    RLogs.WriteLog($"Progress: {jd}");
                     Dispatcher.UIThread.InvokeAsync(() => DownloadFileJDBar.Value = jd);
                 });
                 downloader.DownloadFileCompleted += ((sender, args) =>

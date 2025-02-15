@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using Avalonia.Controls;
 using MinecraftLaunch.Classes.Models.Game;
 using MinecraftLaunch.Components.Fetcher;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 
@@ -19,7 +20,7 @@ public class FindJava
         //实例化
         JavaFetcher javaFetcher = new JavaFetcher();
         var JavaList = javaFetcher.Fetch();
-        Console.WriteLine("您的设备总共有" + JavaList.Length + "个Java，它们是：");
+        RLogs.WriteLog("您的设备总共有" + JavaList.Length + "个Java，它们是：");
         foreach(var javalist in JavaList)
         {
             JavasList.Add(new()
@@ -29,7 +30,7 @@ public class FindJava
                 JavaSlugVersion =  javalist.JavaSlugVersion,
                 JavaDirectoryPath = javalist.JavaDirectoryPath
             });
-            Console.WriteLine("Java路径：" + javalist.JavaPath + "，Java版本：" + javalist.JavaVersion + "，是否为64位：" + javalist.Is64Bit);
+            RLogs.WriteLog("Java路径：" + javalist.JavaPath + "，Java版本：" + javalist.JavaVersion + "，是否为64位：" + javalist.Is64Bit);
         }
         IsFinish = true;
     }

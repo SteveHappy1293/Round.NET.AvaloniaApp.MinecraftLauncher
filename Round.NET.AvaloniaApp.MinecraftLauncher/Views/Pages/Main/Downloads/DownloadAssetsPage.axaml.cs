@@ -14,6 +14,7 @@ using FluentAvalonia.UI.Controls;
 using HeroIconsAvalonia.Controls;
 using HeroIconsAvalonia.Enums;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Assets;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Downloads;
@@ -37,7 +38,7 @@ public partial class DownloadAssetsPage : UserControl
         catch (Exception ex)
         {
             // 处理异常，例如网络错误或无效的URL
-            Console.WriteLine($"Error downloading image: {ex.Message}");
+            RLogs.WriteLog($"Error downloading image: {ex.Message}");
             return null;
         }
     }

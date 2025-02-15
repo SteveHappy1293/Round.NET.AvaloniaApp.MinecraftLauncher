@@ -12,6 +12,7 @@ namespace BedrockPlug
 {
     class Main
     {
+        public static string Title { get; set; } = "基岩版插件";
         public static void InitPlug()
         {
             Core.API.RegisterDownloadPage(new Core.API.NavigationRouteConfig()
@@ -30,16 +31,16 @@ namespace BedrockPlug
                 string downloadUrl = await GetDownloadUrl(versionInfo.UUID, versionInfo.Revision);
                 if (downloadUrl != null)
                 {
-                    Console.WriteLine($"Download URL for {specificVersion}: {downloadUrl}");
+                    RLogs.WriteLog($"Download URL for {specificVersion}: {downloadUrl}");
                 }
                 else
                 {
-                    Console.WriteLine($"No download URL found for {specificVersion}");
+                    RLogs.WriteLog($"No download URL found for {specificVersion}");
                 }
             }
             else
             {
-                Console.WriteLine($"Version {specificVersion} not found");
+                RLogs.WriteLog($"Version {specificVersion} not found");
             }*/
         }
 

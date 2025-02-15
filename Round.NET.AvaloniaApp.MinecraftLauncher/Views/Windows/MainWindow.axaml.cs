@@ -50,6 +50,7 @@ public partial class MainWindow : AppWindow
 
         this.Width = Config.MainConfig.WindowWidth;
         this.Height = Config.MainConfig.WindowHeight;
+        Message.Show("插件加载",$"当前已加载 {PlugsLoader.Plugs.Count} 个插件！",InfoBarSeverity.Success);
     }
 
     private void Window_OnClosing(object? sender, WindowClosingEventArgs e)

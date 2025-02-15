@@ -2,6 +2,7 @@
 using System.Xml;
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 
 namespace MCLauncher.Versions;
 
@@ -10,12 +11,6 @@ public class Versions
     public static async Task<List<VersionInfo>> GetAllVersions()
     {
         var versions = await GetVersions("https://github.moeyy.xyz/https://raw.githubusercontent.com/MCMrARM/mc-w10-versiondb/refs/heads/master/versions.json.min");
-        
-        // 打印所有版本信息
-        foreach (var version in versions)
-        {
-            Console.WriteLine($"Version: {version.Version}, UUID: {version.UUID}, Revision: {version.Revision}");
-        }
         
         return versions;
     }
@@ -56,7 +51,7 @@ public class Versions
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error fetching or parsing versions: {ex.Message}");
+                RLogs.WriteLog($"Error fetching or parsing versions: {ex.Message}");
                 return new List<VersionInfo>();
             }
         }
@@ -66,10 +61,10 @@ public class Versions
     private static HttpClient client = new HttpClient();
     public static async Task<string> GetDownloadUrl(string updateIdentity, string revisionNumber = "1")
     {
-        Console.WriteLine("uuid=" + updateIdentity);
-        Console.WriteLine("revisionNumber=" + revisionNumber);
+        RLogs.WriteLog("uuid=" + updateIdentity);
+        RLogs.WriteLog("revisionNumber=" + revisionNumber);
         XDocument result = PostXmlAsync(protocol.GetDownloadUrl(),protocol.BuildDownloadRequest(updateIdentity, revisionNumber));
-        Console.WriteLine($"GetDownloadUrl() response for updateIdentity {updateIdentity}, revision {revisionNumber}:\n{result.ToString()}");
+        RLogs.WriteLog($"GetDownloadUrl() response for updateIdentity {updateIdentity}, revision {revisionNumber}:\n{result.ToString()}");
         foreach (string s in protocol.ExtractDownloadResponseUrls(result))
         {
             if (s.StartsWith("http://tlu.dl.delivery.mp.microsoft.com/"))

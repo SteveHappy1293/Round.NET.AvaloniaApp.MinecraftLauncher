@@ -27,6 +27,8 @@ public class ConfigRoot
     public bool IsUsePlug { get; set; } = true;
     public int MessageLiveTimeMs { get; set; } = 5000;
     public bool IsTilsEnabled { get; set; } = true;
+    public bool SetTheLanguageOnStartup { get; set; } = true;
+    public bool SetTheGammaOnStartup { get; set; } = true;
 }
 
 public class GameFolderConfig

@@ -18,6 +18,7 @@ using MinecraftLaunch.Classes.Models.Auth;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.UserLogin;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
@@ -211,7 +212,7 @@ public partial class UserMange : UserControl
                 {
                     logincon.Hide();
                     Modules.Message.Message.Show("账户管理",$"账户 {mi.Name} 已添加到用户管理中!\n登录模式：正版登录",InfoBarSeverity.Success);
-                    Console.WriteLine(mi.Name);
+                    RLogs.WriteLog(mi.Name);
                     User.AddAccount(mi);
                 };
                 try
@@ -288,8 +289,8 @@ public partial class UserMange : UserControl
         catch (Exception ex)
         {
             // 如果 Process.Start 失败，可能是由于 UseShellExecute = true 在非 Windows 系统上不支持
-            Console.WriteLine("Failed to open URL using Process.Start. Trying alternative method...");
-            Console.WriteLine(ex.Message);
+            RLogs.WriteLog("Failed to open URL using Process.Start. Trying alternative method...");
+            RLogs.WriteLog(ex.Message);
 
             // 尝试使用平台特定的命令
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -304,7 +305,7 @@ public partial class UserMange : UserControl
             }
             else
             {
-                Console.WriteLine("Unsupported platform. Unable to open URL.");
+                RLogs.WriteLog("Unsupported platform. Unable to open URL.");
             }
         }
     }

@@ -19,6 +19,9 @@ public class LaunchJavaEdtion
 {
     public static void LaunchGame(string VersionID,Action<Process> GetGameProcess,Action<object,LogReceivedEventArgs> LaunchingOutput,Action Exit)
     {
+        if (Config.Config.MainConfig.SetTheLanguageOnStartup) SetValueOnFirst.SetLanguage(VersionID);
+        if (Config.Config.MainConfig.SetTheGammaOnStartup) SetValueOnFirst.SetGamma(VersionID);
+        
         var account = User.User.GetAccount(User.User.Users[Config.Config.MainConfig.SelectedUser].UUID);
         LaunchConfig config = new LaunchConfig {
             Account = account,

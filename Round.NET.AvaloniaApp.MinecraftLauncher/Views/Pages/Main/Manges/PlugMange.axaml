@@ -4,5 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.PlugMange">
-    Welcome to Avalonia!
+    <Grid>
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5">导入插件</Button>
+        <ScrollViewer Margin="0,42,0,0">
+            <StackPanel Name="PlugsBox">
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </UserControl>
