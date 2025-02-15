@@ -6,6 +6,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="DotNet.Bundle" Version="0.9.13" />
+    </ItemGroup>
+
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
       <Exec Command="copy &quot;D:\User File\Desktop\Round.NET.AvaloniaApp.MinecraftLauncher-master\OnlinePlug\bin\Debug\net8.0\OnlinePlug.dll&quot; &quot;D:\User File\Desktop\Round.NET.AvaloniaApp.MinecraftLauncher-master\Round.NET.AvaloniaApp.MinecraftLauncher.Desktop\bin\Debug\RMCL\RMCL.Plugs\OnlinePlug.dll&quot;" />
     </Target>
