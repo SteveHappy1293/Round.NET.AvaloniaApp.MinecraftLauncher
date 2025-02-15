@@ -130,7 +130,7 @@ jobs:
             ./Round.NET.AvaloniaApp.MinecraftLauncher.Desktop/Deploy/OUT/*
 
   publish:
-    needs: [win, time]
+    needs: [linux, win, time]
     runs-on: ubuntu-latest
     steps:
       - name: Time
@@ -138,6 +138,11 @@ jobs:
         run: |
           echo "date=$(date +'%Y-%m-%d.%H-%M-%S')" >> $GITHUB_OUTPUT
           echo "title=$(date +'%Y.%m.%d.%H.%M')" >> $GITHUB_OUTPUT
+      - name: Download-LinuxArtifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: linux-artifacts
+          path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
       - name: Download-WindowsArtifacts
         uses: actions/download-artifact@v4
         with:
@@ -155,4 +160,5 @@ jobs:
           prerelease: false
           files: |
             Round.NET.AvaloniaApp.MinecraftLauncher/Release/*.exe
+            Round.NET.AvaloniaApp.MinecraftLauncher/Release/Deploy/OUT/*.AppImage
             Round.NET.AvaloniaApp.MinecraftLauncher/Release/bin/Release/net8.0/*.zip
