@@ -142,7 +142,7 @@ jobs:
 
     - name: Publish
       run: |
-        dotnet publish ./RMCLInstalledOnline/ -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=false -p:DebugType=None -p:DebugSymbols=false -o ./published/
+        dotnet publish ./RMCLInstalledOnline/ -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -p:PublishTrimmed=false -p:DebugType=None -p:DebugSymbols=false -o ./published/
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
@@ -184,4 +184,4 @@ jobs:
             Round.NET.AvaloniaApp.MinecraftLauncher/Release/*.exe
             Round.NET.AvaloniaApp.MinecraftLauncher/Release/Deploy/OUT/*.AppImage
             Round.NET.AvaloniaApp.MinecraftLauncher/Release/bin/Release/net8.0/*.zip
-            RMCLInstalledOnline/bin/Release/net8.0/win-x64/publish/RMCLInstalledOnline.exe
+            published/*.exe
