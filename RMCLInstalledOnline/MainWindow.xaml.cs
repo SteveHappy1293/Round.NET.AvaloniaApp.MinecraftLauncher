@@ -31,7 +31,7 @@ namespace RMCLInstalledOnline
 
         private async void DownloadFileAsync(string apiUrl)
         {
-            string downloadUrl = "https://gh.api.99988866.xyz/"+GetDownloadUrl(apiUrl);
+            string downloadUrl = "https://github.moeyy.xyz/"+GetDownloadUrl(apiUrl);
 
             if (!string.IsNullOrEmpty(downloadUrl))
             {
