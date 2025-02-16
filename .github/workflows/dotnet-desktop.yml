@@ -142,7 +142,7 @@ jobs:
 
     - name: Publish
       run: |
-        dotnet publish ./RMCLInstalledOnline/ -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:DebugType=None -p:DebugSymbols=false
+        dotnet publish ./RMCLInstalledOnline/ -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=false -p:DebugType=None -p:DebugSymbols=false
         mkdir -p ./published
         move RMCLInstalledOnline/bin/Release/net8.0/win-x64/publish/RMCLInstalledOnline.exe ./published/
 
