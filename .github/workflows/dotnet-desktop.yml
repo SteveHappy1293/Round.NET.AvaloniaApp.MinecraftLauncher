@@ -106,7 +106,7 @@ jobs:
           choco: innosetup
       - name: Chinesize-InnoSetup
         run: |
-          Copy-Item "./Round.NET.AvaloniaApp.MinecraftLauncher/Public/Default.isl" "C:\Program Files (x86)\Inno Setup 6\Default.isl" -Force
+          Copy-Item "./Round.NET.AvaloniaApp.MinecraftLauncher/Public/Default.isl" "C:/Program Files (x86)/Inno Setup 6/Default.isl" -Force
       - name: Dependency-Pupnet
         run: |
           dotnet tool install -g KuiperZone.PupNet
@@ -129,8 +129,32 @@ jobs:
           path: |
             ./Round.NET.AvaloniaApp.MinecraftLauncher.Desktop/Deploy/OUT/*
 
+  onlineinstall:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Publish
+      run: |
+        dotnet publish ./RMCLInstalledOnline/ -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:DebugType=None -p:DebugSymbols=false
+        mkdir -p ./published
+        move RMCLInstalledOnline/bin/Release/net8.0/win-x64/publish/RMCLInstalledOnline.exe ./published/
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: RMCLInstalledOnline
+        path: ./published/
+
+
   publish:
-    needs: [linux, win, time]
+    needs: [linux, win, onlineinstall, time]
     runs-on: ubuntu-latest
     steps:
       - name: Time
@@ -162,3 +186,4 @@ jobs:
             Round.NET.AvaloniaApp.MinecraftLauncher/Release/*.exe
             Round.NET.AvaloniaApp.MinecraftLauncher/Release/Deploy/OUT/*.AppImage
             Round.NET.AvaloniaApp.MinecraftLauncher/Release/bin/Release/net8.0/*.zip
+            RMCLInstalledOnline/bin/Release/net8.0/win-x64/publish/RMCLInstalledOnline.exe
