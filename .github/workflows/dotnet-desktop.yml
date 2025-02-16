@@ -165,14 +165,23 @@ jobs:
         with:
           name: linux-artifacts
           path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
+
       - name: Download-WindowsArtifacts
         uses: actions/download-artifact@v4
         with:
           name: win-artifacts
           path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
+
+      - name: Download-OnlineInstallArtifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: RMCLInstalledOnline
+          path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
+
       - name: List Files
         run: |
           ls -la ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
+          
       - name: Publish Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
@@ -184,4 +193,3 @@ jobs:
             Round.NET.AvaloniaApp.MinecraftLauncher/Release/*.exe
             Round.NET.AvaloniaApp.MinecraftLauncher/Release/Deploy/OUT/*.AppImage
             Round.NET.AvaloniaApp.MinecraftLauncher/Release/bin/Release/net8.0/*.zip
-            published/*.exe
