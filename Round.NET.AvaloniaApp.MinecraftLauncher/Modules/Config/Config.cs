@@ -4,8 +4,6 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using MinecraftLaunch.Classes.Models.Auth;
-using MinecraftLaunch.Classes.Models.Game;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 using SkiaSharp;
 using User = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User.User;

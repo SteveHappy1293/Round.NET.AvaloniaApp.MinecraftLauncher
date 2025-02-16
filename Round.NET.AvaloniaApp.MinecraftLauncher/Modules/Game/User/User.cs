@@ -5,8 +5,9 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using Avalonia.Controls.Shapes;
 using HarfBuzzSharp;
-using MinecraftLaunch.Classes.Enums;
-using MinecraftLaunch.Classes.Models.Auth;
+using MinecraftLaunch.Base.Enums;
+using MinecraftLaunch.Base.Models.Authentication;
+using MinecraftLaunch.Components.Authenticator;
 using Path = System.IO.Path;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User;
@@ -47,9 +48,8 @@ public class User
     public static void InitUser()
     {
         Directory.CreateDirectory(ConfigPath);
-        
-        var offlineAccount = new OfflineAccount();
-        offlineAccount.Name = "Steve";
+
+        var offlineAccount = new OfflineAccount("Steve",Guid.NewGuid(),Guid.NewGuid().ToString());
 
         var user = new UserConfig()
         {
@@ -73,19 +73,12 @@ public class User
             {
                 if (us.Type == "Offline")
                 {
-                    var of = new OfflineAccount();
-                    of.Name = us.Config.Username;
-                    of.Uuid = Guid.Parse(us.Config.UUID);
+                    var of = new OfflineAccount(us.Config.Username,Guid.Parse(us.Config.UUID),Guid.NewGuid().ToString());
                     return of;
                 }
                 else
                 {
-                    var mi = new MicrosoftAccount();
-                    mi.Name = us.Config.RefreshToken;
-                    mi.AccessToken = us.Config.AccessToken;
-                    mi.Name = us.Config.Username;
-                    mi.LastRefreshTime = us.Config.RefreshTime;
-                    mi.Uuid = Guid.Parse(us.Config.UUID);
+                    var mi = new MicrosoftAccount(us.Config.Username,Guid.Parse(us.Config.UUID),us.Config.AccessToken,us.Config.RefreshToken,us.Config.RefreshTime);
                     return mi;
                 }
             }

@@ -14,11 +14,9 @@ using DynamicData;
 using FluentAvalonia.UI.Controls;
 using HeroIconsAvalonia.Controls;
 using HeroIconsAvalonia.Enums;
-using MinecraftLaunch.Classes.Enums;
-using MinecraftLaunch.Classes.Interfaces;
-using MinecraftLaunch.Classes.Models.Game;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
+using Microsoft.VisualBasic.CompilerServices;
+using MinecraftLaunch.Base.Enums;
+using MinecraftLaunch.Launch;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Install;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
@@ -76,11 +74,6 @@ public partial class LaunchJavaEdtion : UserControl
                         JCAssetsJDBar.Value = 100;
                         JDLabel.Content = "当前进度：补全资源文件";
                     });
-                    InstallGame.DownloadGame(Version,
-                        (_, args) =>
-                        {
-                            Dispatcher.UIThread.Invoke(() => BQAssetsJDBar.Value = (args.Progress * 100));
-                        });
                 }
             }
             catch (Exception ex)
@@ -96,94 +89,100 @@ public partial class LaunchJavaEdtion : UserControl
                 JDLabel.Content = "当前进度：启动游戏";
                 
                 bool Launched = false;
-                Modules.Game.JavaEdtion.Launch.LaunchJavaEdtion.LaunchGame(Version, (sender) =>
+                Task.Run(() =>
                 {
-                    GameProcess = sender;
-                },((o, args) =>
-                {
-                    LogOutput.Append($"[{args.LogType}]{args.Log}");
-                    Task.Run(() =>
+                    Modules.Game.JavaEdtion.Launch.LaunchJavaEdtion.LaunchGame(Version, (sender) =>
                     {
-                        Dispatcher.UIThread.Invoke(() =>
-                        {
-                            var label = GetLogLabel(args.LogType, args.Log);
-                            label.Margin = new Thickness(50, 0);
-                            LogPanel.Children.Add(label);
-                            label.Opacity = 1;
-                            label.Margin = new Thickness(0, 0);
-                        });
-                    });
-                    if (!Launched)
+                        GameProcess = sender;
+                    }, ((o, args) =>
                     {
-                        if (args.LogType.ToString()=="Info")
+                        LogOutput.Append($"[{args.Data.LogLevel}]{args.Data.Log}");
+                        Task.Run(() =>
                         {
-                            Launched = true;
-                            Message.Show("启动游戏",$"游戏 {Version} 已启动！\n账户名称：{Modules.Game.User.User.GetAccount(Modules.Game.User.User.Users[Modules.Config.Config.MainConfig.SelectedUser].UUID).Name}\n账户模式：{Modules.Game.User.User.GetAccount(Modules.Game.User.User.Users[Modules.Config.Config.MainConfig.SelectedUser].UUID).Type}",InfoBarSeverity.Success);
-                            GameProcess = ((IGameProcessWatcher)o).Process;
-                            Dispatcher.UIThread.Invoke(() => LaunJDBar.Value = 100);
-                            Thread.Sleep(300);
                             Dispatcher.UIThread.Invoke(() =>
                             {
-                                LoadBar.IsVisible = false;
-                                JDLabel.Content = "当前进度：游戏已启动";
-                                MainGrid.Children.Remove(MainPanel);
-                                KillGame.Width = 120;
-                                Task.Run(() =>
+                                var label = GetLogLabel(args.Data.LogLevel, args.Data.Log);
+                                label.Margin = new Thickness(50, 0);
+                                LogPanel.Children.Add(label);
+                                label.Opacity = 1;
+                                label.Margin = new Thickness(0, 0);
+                            });
+                        });
+                        if (!Launched)
+                        {
+                            if (args.Data.LogLevel == MinecraftLogLevel.Info)
+                            {
+                                Launched = true;
+                                Message.Show("启动游戏",
+                                    $"游戏 {Version} 已启动！\n账户名称：{Modules.Game.User.User.GetAccount(Modules.Game.User.User.Users[Modules.Config.Config.MainConfig.SelectedUser].UUID).Name}\n账户模式：{Modules.Game.User.User.GetAccount(Modules.Game.User.User.Users[Modules.Config.Config.MainConfig.SelectedUser].UUID).Type}",
+                                    InfoBarSeverity.Success);
+                                GameProcess = ((MinecraftProcess)o).Process;
+                                Dispatcher.UIThread.Invoke(() => LaunJDBar.Value = 100);
+                                Thread.Sleep(300);
+                                Dispatcher.UIThread.Invoke(() =>
                                 {
-                                    Thread.Sleep(300);
-                                    Dispatcher.UIThread.Invoke(() =>
+                                    LoadBar.IsVisible = false;
+                                    JDLabel.Content = "当前进度：游戏已启动";
+                                    MainGrid.Children.Remove(MainPanel);
+                                    KillGame.Width = 120;
+                                    Task.Run(() =>
                                     {
-                                        MinHeight = 110;
-                                        KillGame.Content = "结束游戏进程";
-                                        LogButton.IsEnabled = true;
-                                        var launicon = new HeroIcon()
+                                        Thread.Sleep(300);
+                                        Dispatcher.UIThread.Invoke(() =>
                                         {
-                                            Foreground = Brushes.White,
-                                            Type = IconType.RocketLaunch,
-                                            Margin = new Thickness(18),
-                                            HorizontalAlignment = HorizontalAlignment.Right,
-                                            VerticalAlignment = VerticalAlignment.Top,
-                                            Min = true,
-                                            Opacity = 1
-                                        };
-                                        MainGrid.Children.Add(launicon);
-                                        Task.Run(() =>
-                                        {
-                                            Thread.Sleep(1000);
-                                            Dispatcher.UIThread.Invoke(() => launicon.Opacity = 0);
-                                            Thread.Sleep(300);
-                                            Dispatcher.UIThread.Invoke(() => launicon.Opacity = 1);
-                                            Dispatcher.UIThread.Invoke(() => launicon.Type = IconType.Check);
-                                            Thread.Sleep(1000);
-                                            Dispatcher.UIThread.Invoke(() => launicon.Opacity = 0);
-                                            Thread.Sleep(300);
-                                            Dispatcher.UIThread.Invoke(() => launicon.Opacity = 1);
-                                            Dispatcher.UIThread.Invoke(() => launicon.Type = IconType.Eye);
-                                            Dispatcher.UIThread.Invoke(() => JDLabel.Content = "监控游戏中...");
+                                            MinHeight = 110;
+                                            KillGame.Content = "结束游戏进程";
+                                            LogButton.IsEnabled = true;
+                                            var launicon = new HeroIcon()
+                                            {
+                                                Foreground = Brushes.White,
+                                                Type = IconType.RocketLaunch,
+                                                Margin = new Thickness(18),
+                                                HorizontalAlignment = HorizontalAlignment.Right,
+                                                VerticalAlignment = VerticalAlignment.Top,
+                                                Min = true,
+                                                Opacity = 1
+                                            };
+                                            MainGrid.Children.Add(launicon);
+                                            Task.Run(() =>
+                                            {
+                                                Thread.Sleep(1000);
+                                                Dispatcher.UIThread.Invoke(() => launicon.Opacity = 0);
+                                                Thread.Sleep(300);
+                                                Dispatcher.UIThread.Invoke(() => launicon.Opacity = 1);
+                                                Dispatcher.UIThread.Invoke(() => launicon.Type = IconType.Check);
+                                                Thread.Sleep(1000);
+                                                Dispatcher.UIThread.Invoke(() => launicon.Opacity = 0);
+                                                Thread.Sleep(300);
+                                                Dispatcher.UIThread.Invoke(() => launicon.Opacity = 1);
+                                                Dispatcher.UIThread.Invoke(() => launicon.Type = IconType.Eye);
+                                                Dispatcher.UIThread.Invoke(() => JDLabel.Content = "监控游戏中...");
+                                            });
                                         });
                                     });
                                 });
-                            });
+                            }
                         }
-                    }
-                }),(() =>
-                {
-                    if (Launched)
+                    }), (() =>
                     {
-                        Message.Show("启动游戏",$"游戏 {Version} 已退出！",InfoBarSeverity.Informational);
-                        Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
-                        window.TheCallBackIsInvalid();
-                    }
-                    else
-                    {
-                        if (!UserExit)
+                        if (Launched)
                         {
-                            Message.Show("启动游戏",$"游戏 {Version} 启动失败！日志：\n{LogOutput.ToString()}",InfoBarSeverity.Error);
+                            Message.Show("启动游戏", $"游戏 {Version} 已退出！", InfoBarSeverity.Informational);
                             Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
                             window.TheCallBackIsInvalid();
                         }
-                    }
-                }));
+                        else
+                        {
+                            if (!UserExit)
+                            {
+                                Message.Show("启动游戏", $"游戏 {Version} 启动失败！日志：\n{LogOutput.ToString()}",
+                                    InfoBarSeverity.Error);
+                                Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
+                                window.TheCallBackIsInvalid();
+                            }
+                        }
+                    }));
+                });
             });
         });
         
@@ -210,7 +209,7 @@ public partial class LaunchJavaEdtion : UserControl
             window.TheCallBackIsInvalid();
         }
     }
-    private TextBlock GetLogLabel(LogType logtype, string log)
+    private TextBlock GetLogLabel(MinecraftLogLevel logtype, string log)
     {
         var label = new TextBlock()
         {
@@ -221,23 +220,23 @@ public partial class LaunchJavaEdtion : UserControl
         };
         switch (logtype)
         {
-            case LogType.Error:
+            case MinecraftLogLevel.Error:
                 label.Foreground = Brushes.Orange;
                 Error++;
                 break;
-            case LogType.Warning:
+            case MinecraftLogLevel.Warning:
                 label.Foreground = Brushes.Yellow;
                 Warning++;
                 break;
-            case LogType.StackTrace:
+            case MinecraftLogLevel.StackTrace:
                 label.Foreground = Brushes.HotPink;
                 StackTrace++;
                 break;
-            case LogType.Debug:
+            case MinecraftLogLevel.Debug:
                 label.Foreground = Brushes.Green;
                 Debug++;
                 break;
-            case LogType.Fatal:
+            case MinecraftLogLevel.Fatal:
                 label.Foreground = Brushes.Red;
                 Fatal++;
                 break;

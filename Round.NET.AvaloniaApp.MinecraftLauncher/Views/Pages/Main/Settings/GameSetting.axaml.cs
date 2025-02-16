@@ -23,7 +23,7 @@ public partial class GameSetting : UserControl
                 {
                     JavaComboBox.Items.Add(new ComboBoxItem
                     {
-                        Content = $"[Java {java.JavaSlugVersion}] {java.JavaPath}"
+                        Content = $"[Java {java.JavaVersion}] {java.JavaPath}"
                     });
                 }
                 JavaComboBox.SelectedIndex = Config.MainConfig.SelectedJava;

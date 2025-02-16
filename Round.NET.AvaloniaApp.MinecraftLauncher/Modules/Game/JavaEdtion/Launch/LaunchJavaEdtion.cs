@@ -1,60 +1,54 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAvalonia.UI.Controls;
-using MinecraftLaunch.Classes.Interfaces;
-using MinecraftLaunch.Classes.Models.Auth;
-using MinecraftLaunch.Classes.Models.Event;
-using MinecraftLaunch.Classes.Models.Game;
-using MinecraftLaunch.Classes.Models.Launch;
+using MinecraftLaunch.Base.Models.Game;
 using MinecraftLaunch.Components.Authenticator;
-using MinecraftLaunch.Components.Checker;
-using MinecraftLaunch.Components.Launcher;
-using MinecraftLaunch.Components.Resolver;
+using MinecraftLaunch.Components.Downloader;
+using MinecraftLaunch.Components.Installer;
+using MinecraftLaunch.Components.Parser;
+using MinecraftLaunch.Launch;
+using MinecraftLaunch.Utilities;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch;
 
 public class LaunchJavaEdtion
 {
-    public static void LaunchGame(string VersionID,Action<Process> GetGameProcess,Action<object,LogReceivedEventArgs> LaunchingOutput,Action Exit)
+    public static async void LaunchGame(string VersionID,Action<Process> GetGameProcess,Action<object,LogReceivedEventArgs> LaunchingOutput,Action Exit)
     {
+        var entry = VanillaInstaller.EnumerableMinecraftAsync()
+            .FirstAsync(x => x.Id == VersionID);
+
+        MinecraftParser minecraftParser =
+            Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path;
+        
         if (Config.Config.MainConfig.SetTheLanguageOnStartup) SetValueOnFirst.SetLanguage(VersionID);
         if (Config.Config.MainConfig.SetTheGammaOnStartup) SetValueOnFirst.SetGamma(VersionID);
-        
         var account = User.User.GetAccount(User.User.Users[Config.Config.MainConfig.SelectedUser].UUID);
-        LaunchConfig config = new LaunchConfig {
-            Account = account,
-            LauncherName = "RMCL 3.0",
-            JvmConfig = new JvmConfig(FindJava.JavasList[Config.Config.MainConfig.SelectedJava].JavaPath) {
-                MaxMemory = 1024
-            },
-    
-            IsEnableIndependencyCore = true  //是否启用版本隔离
-        };
-        bool launched = false;
-        IGameResolver gameResolver = new GameResolver(Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path);
-        Launcher launcher = new(gameResolver, config); 
-        Task.Run(async () => {
-            var gameProcessWatcher = await launcher.LaunchAsync(VersionID);
-            GetGameProcess(gameProcessWatcher.Process);
-            gameProcessWatcher.OutputLogReceived += (sender, args) => {
-                LaunchingOutput(sender,args);
-            };
-    
-            gameProcessWatcher.Exited += (sender, args) => {
-                Exit();
-            };
-        });
+        MinecraftRunner runner = new(new LaunchConfig {
+            Account = User.User.GetAccount(User.User.Users[Config.Config.MainConfig.SelectedUser].UUID),
+            JavaPath = FindJava.JavasList[Config.Config.MainConfig.SelectedJava],
+            MaxMemorySize = 2048,
+            MinMemorySize = 512,
+            LauncherName = "\"RMCL 3.0\"",
+        }, minecraftParser);
+
+        var process = await runner.RunAsync(minecraftParser.GetMinecraft(VersionID));
+        process.Started += (_, _) => GetGameProcess(process.Process);
+        process.OutputLogReceived += (_, arg) => LaunchingOutput(process, arg);
+        process.Exited += (_, _) => Exit();
     }
 
     public static bool ResourceCompletion(string VersionID)
     {
-        IGameResolver gameResolver = new GameResolver(Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path);
-        IChecker resourceChecker = new ResourceChecker(gameResolver.GetGameEntity(VersionID));
-        var result = resourceChecker.CheckAsync().Result;
+        // IGameResolver gameResolver = new GameResolver(Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path);
+        // IChecker resourceChecker = new ResourceChecker(gameResolver.GetGameEntity(VersionID));
+        // var result = resourceChecker.CheckAsync().Result;
 
         // false = 不全，true = 全
-        return result;
+        return true;
     }
 }

@@ -6,6 +6,8 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
+using MinecraftLaunch;
+using MinecraftLaunch.Utilities;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Assets;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.UserLogin;
@@ -21,7 +23,6 @@ public partial class App : Application
     {
         AvaloniaXamlLoader.Load(this);
         // CirculateTask.RunThread();
-
     }
 
     public override void OnFrameworkInitializationCompleted()

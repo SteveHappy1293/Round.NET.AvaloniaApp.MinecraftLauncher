@@ -14,7 +14,7 @@ using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using HeroIconsAvalonia.Controls;
 using HeroIconsAvalonia.Enums;
-using MinecraftLaunch.Classes.Models.Auth;
+using MinecraftLaunch.Base.Models.Authentication;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.UserLogin;
@@ -257,10 +257,7 @@ public partial class UserMange : UserControl
                 {
                     if (!string.IsNullOrEmpty(name.Text))
                     {
-                        User.AddAccount(new OfflineAccount()
-                        {
-                            Name = name.Text
-                        });
+                        User.AddAccount(new OfflineAccount(name.Text,Guid.NewGuid(),Guid.NewGuid().ToString()));
                         Modules.Message.Message.Show("账户管理",$"账户 {name.Text} 已添加到用户管理中!\n登录模式：离线登录",InfoBarSeverity.Success);
 
                     }

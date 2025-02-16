@@ -1,92 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
+using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
-using MinecraftLaunch;
-using MinecraftLaunch.Classes.Models.Download;
-using MinecraftLaunch.Classes.Models.Game;
-using MinecraftLaunch.Classes.Models.Install;
-using MinecraftLaunch.Components.Resolver;
-using MinecraftLaunch.Components.Downloader;
+using MinecraftLaunch.Base.Models.Network;
 using MinecraftLaunch.Components.Installer;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.AddNewGame;
 
 public partial class NewGame : UserControl
 {
-    private IEnumerable<ForgeInstallEntry> forgebuild;
-    private IEnumerable<OptiFineInstallEntity> optifinebuild;
-    private IEnumerable<FabricBuildEntry> fabricbuild;
-    private IEnumerable<QuiltBuildEntry> quiltbuild;
+    private IAsyncEnumerable<ForgeInstallEntry> forgebuild;
+    private IAsyncEnumerable<OptifineInstallEntry> optifinebuild;
+    private IAsyncEnumerable<FabricInstallEntry> fabricbuild;
+    private IAsyncEnumerable<QuiltInstallEntry> quiltbuild;
+    private List<Object> installedObjects = new List<Object>();
     public NewGame(string version)
     {
         InitializeComponent();
         ChooseVersionBox.Description = version;
         ShowNameBox.Text = version;
         VersionTitle.Content = version;
-        Task.Run(async () =>
-        { 
-            forgebuild = (await ForgeInstaller.EnumerableFromVersionAsync(version));
-            optifinebuild = (await OptifineInstaller.EnumerableFromVersionAsync(version));
-            fabricbuild = (await FabricInstaller.EnumerableFromVersionAsync(version)); 
-            quiltbuild = (await QuiltInstaller.EnumerableFromVersionAsync(version));
-            foreach (var mod in forgebuild)
+        InitializeUIAsync(version);
+    }
+
+    public async Task InitializeUIAsync(string version)
+    {
+        forgebuild = (ForgeInstaller.EnumerableForgeAsync(version));
+        optifinebuild = (OptifineInstaller.EnumerableOptifineAsync(version));
+        fabricbuild = (FabricInstaller.EnumerableFabricAsync(version)); 
+        quiltbuild = (QuiltInstaller.EnumerableQuiltAsync(version));
+        await foreach (var mod in forgebuild)
+        {
+            Dispatcher.UIThread.Invoke(() =>
             {
-                Dispatcher.UIThread.Invoke(() =>
+                ForgeBox.Children.Add(new RadioButton()
                 {
-                    ForgeBox.Children.Add(new RadioButton()
-                    {
-                        Content = mod.ForgeVersion,
-                        Margin = new Thickness(5),
-                    });
+                    Content = mod.ForgeVersion,
+                    Margin = new Thickness(5),
                 });
-            }
+            });
+        }
             
-            foreach (var mod in optifinebuild)
+        await foreach (var mod in optifinebuild)
+        {
+            Dispatcher.UIThread.Invoke(() =>
             {
-                Dispatcher.UIThread.Invoke(() =>
+                OptiFineBox.Children.Add(new RadioButton()
                 {
-                    OptiFineBox.Children.Add(new RadioButton()
-                    {
-                        Content = mod.FileName.Replace(".jar", ""),
-                        Margin = new Thickness(5),
-                    });
+                    Content = mod.FileName.Replace(".jar", ""),
+                    Margin = new Thickness(5),
                 });
-            }
+            });
+        }
             
-            foreach (var mod in fabricbuild)
+        await foreach (var mod in fabricbuild)
+        {
+            Dispatcher.UIThread.Invoke(() =>
             {
-                Dispatcher.UIThread.Invoke(() =>
+                FabricBox.Children.Add(new RadioButton()
                 {
-                    FabricBox.Children.Add(new RadioButton()
-                    {
-                        Content = mod.BuildVersion,
-                        Margin = new Thickness(5),
-                    });
+                    Content = mod.BuildVersion,
+                    Margin = new Thickness(5),
                 });
-            }
+            });
+        }
             
-            foreach (var mod in quiltbuild)
+        await foreach (var mod in quiltbuild)
+        {
+            Dispatcher.UIThread.Invoke(() =>
             {
-                Dispatcher.UIThread.Invoke(() =>
+                QuiltBox.Children.Add(new RadioButton()
                 {
-                    QuiltBox.Children.Add(new RadioButton()
-                    {
-                        Content = mod.BuildVersion,
-                        Margin = new Thickness(5),
-                    });
+                    Content = mod.BuildVersion,
+                    Margin = new Thickness(5),
                 });
-            }
-        });
+            });
+        }
     }
 
     private void BackExpander_OnClick(object? sender, RoutedEventArgs e)
@@ -117,11 +112,13 @@ public partial class NewGame : UserControl
 
     private async void InstallButton_OnClick(object? sender, RoutedEventArgs e)
     {
+        GetModLoader();
         
         var dow = new DownloadGame.DownloadGame();
         dow.Version = VersionTitle.Content.ToString();
         dow.Tuid = SystemMessageTaskMange.AddTask(dow);
-        dow.StartDownload();
+        dow.Modloaders = installedObjects;
+        dow.StartDownloadAsync();
         
         
         // var con = (ContentDialog)this.Parent;
@@ -131,41 +128,43 @@ public partial class NewGame : UserControl
     }
     public void GetModLoader()
     {
-        string forge = string.Empty;
-        string optifine = string.Empty;
-        string fabric = string.Empty;
-        string quilt = string.Empty;
+        // 清空之前的安装对象
+        installedObjects.Clear();
 
-        foreach (var forgete in ForgeBox.Children)
+        // 处理每个盒子
+        ProcessBox(ForgeBox.Children, forgebuild);
+        ProcessBox(FabricBox.Children, fabricbuild);
+        ProcessBox(OptiFineBox.Children, optifinebuild);
+        ProcessBox(QuiltBox.Children, quiltbuild);
+    }
+    private void ProcessBox<T>(IReadOnlyList<Control> boxChildren, IAsyncEnumerable<T> buildList)
+    {
+        for (int i = 0; i < boxChildren.Count; i++)
         {
-            var radioButton = forgete as RadioButton;
-            if (radioButton.IsChecked == true)
+            var radioButton = boxChildren[i] as RadioButton;
+            if (radioButton != null && radioButton.IsChecked == true)
             {
-                forge = radioButton.Content.ToString();
-            }
-        }
-        foreach (var fabricte in FabricBox.Children)
-        {
-            var radioButton = fabricte as RadioButton;
-            if (radioButton.IsChecked == true)
-            {
-                fabric = radioButton.Content.ToString();
-            }
-        }
-        foreach (var optifinete in OptiFineBox.Children)
-        {
-            var radioButton = optifinete as RadioButton;
-            if (radioButton.IsChecked == true)
-            {
-                optifine = radioButton.Content.ToString();
-            }
-        }
-        foreach (var quiltte in QuiltBox.Children)
-        {
-            var radioButton = quiltte as RadioButton;
-            if (radioButton.IsChecked == true)
-            {
-                quilt = radioButton.Content.ToString();
+                string selectedContent = radioButton.Content.ToString();
+                // 使用 LINQ 查询匹配的条目
+                object selectedBuild = null;
+                if (buildList is IAsyncEnumerable<ForgeInstallEntry> forgeEntries)
+                {
+                    selectedBuild = forgeEntries.FirstAsync(b => b.ForgeVersion == selectedContent);
+                }
+                else if (buildList is IAsyncEnumerable<FabricInstallEntry> fabricEntries)
+                {
+                    selectedBuild = fabricEntries.FirstAsync(b => b.BuildVersion == selectedContent);
+                }
+                else if (buildList is IAsyncEnumerable<OptifineInstallEntry> optiFineEntries)
+                {
+                    selectedBuild = optiFineEntries.FirstAsync(b => b.FileName == selectedContent+".jar");
+                }
+                else if (buildList is IAsyncEnumerable<QuiltInstallEntry> quiltEntries)
+                {
+                    selectedBuild = quiltEntries.FirstAsync(b => b.BuildVersion== selectedContent);
+                }
+                
+                installedObjects.Add(selectedBuild);
             }
         }
     }
