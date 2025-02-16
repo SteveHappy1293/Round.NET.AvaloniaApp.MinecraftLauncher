@@ -23,7 +23,10 @@ namespace RMCLInstalledOnline
         public MainWindow()
         {
             InitializeComponent();
-            DownloadFileAsync(repoUrl);
+            Task.Run(() =>
+            {
+                DownloadFileAsync(repoUrl);
+            });
         }
 
         private async void DownloadFileAsync(string apiUrl)
@@ -57,31 +60,39 @@ namespace RMCLInstalledOnline
 
         private string GetDownloadUrl(string apiUrl)
         {
-            BZLabel.Content = $"当前进度：获取下载地址";
+            this.Dispatcher.Invoke(() => BZLabel.Content = $"当前进度：获取下载地址");
             using (HttpClient client = new HttpClient())
             {
-                string response = client.GetStringAsync(apiUrl).Result;
-                var release = JsonSerializer.Deserialize<Release>(response);
-                BZLabel.Content = $"当前进度：解析地址";
-
-                if (release == null || release.assets == null)
+                try
                 {
-                    return null;
-                }
-            
-                // 获取当前系统架构信息
-                string arch = RuntimeInformation.ProcessArchitecture.ToString().ToLower();
+                    string response = client.GetStringAsync(apiUrl).Result;
+                    var release = JsonSerializer.Deserialize<Release>(response);
+                    this.Dispatcher.Invoke(() => BZLabel.Content = $"当前进度：解析地址");
 
-                // 遍历所有资产，寻找适用于Windows的下载链接
-                foreach (var asset in release.assets)
-                {
-                    // Console.WriteLine(asset.name);
-                    // 判断文件名是否包含 "win" 和对应的架构信息
-                    if (asset.name.Contains("win") && asset.name.Contains(arch))
+                    if (release == null || release.assets == null)
                     {
-                        Console.WriteLine(asset.browser_download_url);
-                        return asset.browser_download_url;
+                        return null;
                     }
+
+                    // 获取当前系统架构信息
+                    string arch = RuntimeInformation.ProcessArchitecture.ToString().ToLower();
+
+                    // 遍历所有资产，寻找适用于Windows的下载链接
+                    foreach (var asset in release.assets)
+                    {
+                        // Console.WriteLine(asset.name);
+                        // 判断文件名是否包含 "win" 和对应的架构信息
+                        if (asset.name.Contains("win") && asset.name.Contains(arch))
+                        {
+                            Console.WriteLine(asset.browser_download_url);
+                            return asset.browser_download_url;
+                        }
+                    }
+                }
+                catch
+                {
+                    this.Dispatcher.Invoke(() => MessageBox.Show("无法获取更新地址！","错误",MessageBoxButton.OK,MessageBoxImage.Error));
+                    Environment.Exit(0);
                 }
 
                 // 如果没有找到合适的下载链接，返回null
@@ -118,7 +129,7 @@ namespace RMCLInstalledOnline
             // 开始下载
             await downloader.DownloadFileTaskAsync(url, filePath);
             // MessageBox.Show("文件下载完成！", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
-            BZLabel.Content = $"当前进度：启动安装";
+            this.Dispatcher.Invoke(() => BZLabel.Content = $"当前进度：启动安装");
             Process.Start(filePath);
             Thread.Sleep(100);
             Environment.Exit(0);
