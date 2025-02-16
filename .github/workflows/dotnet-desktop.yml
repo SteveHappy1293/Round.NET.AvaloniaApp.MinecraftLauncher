@@ -144,7 +144,7 @@ jobs:
       run: |
         dotnet publish ./RMCLInstalledOnline/ -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=false -p:DebugType=None -p:DebugSymbols=false
         mkdir -p ./published
-        move RMCLInstalledOnline/bin/Release/net8.0/win-x64/publish/RMCLInstalledOnline.exe ./published/
+        move /RMCLInstalledOnline/bin/Release/net8.0-windows/win-x64/publish/RMCLInstalledOnline.exe ./published/
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
