@@ -139,10 +139,10 @@ namespace RMCLInstalledOnline
             Dispatcher.Invoke(() =>
             {
                 this.Visibility = Visibility.Hidden;
-                TaskbarIcon.ShowBalloonTip("安装 RMCL", "RMCL 已开始后台安装，安装完毕将会自动开启", BalloonIcon.Info);
+                TaskbarIcon.ShowBalloonTip("安装 RMCL", "RMCL 已开始安装", BalloonIcon.Info);
             });
             Thread.Sleep(100);
-            var proc = Process.Start(filePath,new []{"/VERYSILENT"});
+            var proc = Process.Start(filePath);
 
             proc.WaitForExit();
             string searchKey = "Round.NET.AvaloniaApp.MinecraftLauncher.Desktop";
