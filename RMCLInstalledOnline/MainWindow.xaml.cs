@@ -143,6 +143,8 @@ namespace RMCLInstalledOnline
             });
             Thread.Sleep(100);
             var proc = Process.Start(filePath,new []{"/VERYSILENT"});
+
+            proc.WaitForExit();
             string searchKey = "Round.NET.AvaloniaApp.MinecraftLauncher.Desktop";
             List<string> results = GetMatchingRegistryValues(searchKey);
 
@@ -151,8 +153,6 @@ namespace RMCLInstalledOnline
             {
                 apppath = result.Replace(".ApplicationCompany", "").Replace(".FriendlyAppName", "");
             }
-
-            proc.WaitForExit();
             Process.Start(apppath);
             Dispatcher.Invoke(() =>
             {
