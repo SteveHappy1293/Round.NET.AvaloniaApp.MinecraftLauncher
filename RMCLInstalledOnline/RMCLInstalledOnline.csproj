@@ -11,6 +11,12 @@
 
     <ItemGroup>
       <PackageReference Include="Downloader" Version="3.3.3" />
+      <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="2.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="RMCL2_Icon_Back.ico" />
+      <GlobalAnalyzerConfigFiles Include="RMCL2_Icon_Back.ico" />
     </ItemGroup>
 
 </Project>

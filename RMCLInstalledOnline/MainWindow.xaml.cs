@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Net.Http;
 using System.Runtime.InteropServices;
@@ -10,6 +11,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Downloader;
+using Hardcodet.Wpf.TaskbarNotification;
+using Microsoft.Win32;
 
 namespace RMCLInstalledOnline
 {
@@ -23,6 +26,7 @@ namespace RMCLInstalledOnline
         public MainWindow()
         {
             InitializeComponent();
+
             Task.Run(() =>
             {
                 DownloadFileAsync(repoUrl);
@@ -127,16 +131,74 @@ namespace RMCLInstalledOnline
                 });
             };
 
+            var apppath = "";
             // 开始下载
             await downloader.DownloadFileTaskAsync(url, filePath);
             // MessageBox.Show("文件下载完成！", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Dispatcher.Invoke(() => BZLabel.Content = $"当前进度：启动安装");
-            Process.Start(filePath);
+            Dispatcher.Invoke(() =>
+            {
+                this.Visibility = Visibility.Hidden;
+                TaskbarIcon.ShowBalloonTip("安装 RMCL", "RMCL 已开始后台安装，安装完毕将会自动开启", BalloonIcon.Info);
+            });
+            Thread.Sleep(100);
+            var proc = Process.Start(filePath,new []{"/VERYSILENT"});
+            string searchKey = "Round.NET.AvaloniaApp.MinecraftLauncher.Desktop";
+            List<string> results = GetMatchingRegistryValues(searchKey);
+
+            // 显示结果
+            foreach (var result in results)
+            {
+                apppath = result.Replace(".ApplicationCompany", "").Replace(".FriendlyAppName", "");
+            }
+
+            proc.WaitForExit();
+            Process.Start(apppath);
+            Dispatcher.Invoke(() =>
+            {
+                TaskbarIcon.ShowBalloonTip("安装 RMCL", "RMCL 安装完毕", BalloonIcon.Info);
+            });
             Thread.Sleep(100);
             Environment.Exit(0);
         }
-    }
+        private List<string> GetMatchingRegistryValues(string searchKey)
+        {
+            List<string> results = new List<string>();
+            try
+            {
+                using (RegistryKey baseKey = Registry.ClassesRoot.OpenSubKey(@"Local Settings\Software\Microsoft\Windows\Shell\MuiCache"))
+                {
+                    if (baseKey != null)
+                    {
+                        // 获取所有值的名称
+                        string[] valueNames = baseKey.GetValueNames();
+                        foreach (string valueName in valueNames)
+                        {
+                            // 检查值名称是否包含指定字符串
+                            if (valueName.Contains(searchKey, StringComparison.OrdinalIgnoreCase))
+                            {
+                                object value = baseKey.GetValue(valueName);
+                                if (value != null)
+                                {
+                                    results.Add(valueName);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("指定的注册表路径不存在");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"发生错误：{ex.Message}");
+            }
 
+            return results;
+        }
+    }
     public class Release
     {
         public Asset[] assets { get; set; }

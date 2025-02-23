@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RMCLInstalledOnline"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
@@ -15,6 +16,7 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
+        <tb:TaskbarIcon ToolTipText="RMCL Updata" Name="TaskbarIcon"/>
         <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" FontSize="18" FontWeight="Bold" Foreground="#2E6BA4">安装 RMCL - Minecraft 启动器</Label>
         <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,35">新一代 RMCL 启动器，你的下一个启动器！</Label>
         <Label Name="BZLabel" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,30">当前进度：启动更新</Label>
