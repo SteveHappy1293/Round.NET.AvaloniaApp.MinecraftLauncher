@@ -86,6 +86,7 @@ public partial class SystemNavigationBar : UserControl
     }
     public void NavTo(string Tag,bool isearch = false)
     {
+        Console.WriteLine(Tag);
         int ind = RouteConfigs.FindIndex((Core.API.NavigationRouteConfig nc) => { return nc.Route == Tag; });
         if (Tag == "Clear") ind = -2;
         if (Tag == "BackSearch") ind = -3;
@@ -119,6 +120,7 @@ public partial class SystemNavigationBar : UserControl
                 }else if (ind == -2)
                 {
                     ((MainView)Core.MainWindow.Content).MainCortent.Content = new Grid();
+                    if(!Circle.IsOpen) Dispatcher.UIThread.Invoke(() => Circle.CircleShow(0.6));
                     
                     ((MainView)Core.MainWindow.Content).MainCortent.Background = new SolidColorBrush()
                     {

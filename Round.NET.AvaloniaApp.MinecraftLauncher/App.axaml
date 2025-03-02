@@ -11,7 +11,7 @@
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.Styles>
-        <styling:FluentAvaloniaTheme CustomAccentColor="DodgerBlue"/>
+        <styling:FluentAvaloniaTheme CustomAccentColor="DodgerBlue" UseSystemFontOnWindows="True"/>
         <Style Selector="controls|SettingsExpander">
             <Setter Property="Transitions">
                 <Transitions>
@@ -24,6 +24,7 @@
             <Setter Property="Transitions">
                 <Transitions>
                     <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.3"/>
                 </Transitions>
             </Setter>
         </Style>

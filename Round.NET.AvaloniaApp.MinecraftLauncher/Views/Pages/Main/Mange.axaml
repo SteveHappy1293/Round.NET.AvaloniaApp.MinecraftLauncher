@@ -10,11 +10,14 @@
         <controls1:HomeIcon HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
         <Label Margin="50,9" FontSize="22" FontWeight="Bold">管理</Label>
         <controls:NavigationView 
-            PaneDisplayMode="Top"
+            PaneDisplayMode="Left"
             IsSettingsVisible="False"
             IsPaneOpen="True"
-            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,4,0,0"
-            Height="46"
+            IsTabStop="False"
+            SelectionFollowsFocus="False"
+            IsPaneToggleButtonVisible="False"
+            HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,51,0,0"
+            OpenPaneLength="180"
             Name="View"
             SelectionChanged="NavigationView_OnSelectionChanged">
             <controls:NavigationView.MenuItems>
@@ -24,7 +27,8 @@
                 <controls:NavigationViewItem Tag="PlugMange">启动器插件管理</controls:NavigationViewItem>-->
             </controls:NavigationView.MenuItems>
         </controls:NavigationView>
-        <controls:Frame Margin="10,50,10,10" Name="MangeFrame">
+        <Label Margin="190,50" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Name="PageTitleLabel" FontSize="18"></Label>
+        <controls:Frame Margin="190,80,10,10" Name="MangeFrame">
             
         </controls:Frame>
     </Grid>

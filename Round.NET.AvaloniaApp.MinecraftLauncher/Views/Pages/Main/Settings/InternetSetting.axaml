@@ -1,0 +1,22 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.InternetSetting">
+    <ScrollViewer>
+        <StackPanel>
+            <Button Margin="0,5" Click="Button_OnClick" Name="ReButton" Height="32" Width="80" HorizontalContentAlignment="Center">重新检查</Button>
+            <StackPanel Margin="5">
+                <Label Margin="5,0" FontSize="16" FontWeight="Bold">RMCL 网络状态：</Label>
+                <Label Margin="10,0" Foreground="Orange" Name="InternetStautsLabel">???</Label>
+            </StackPanel>
+            <StackPanel Margin="5">
+                <Label Margin="5,0" FontSize="16" FontWeight="Bold">第三方服务连接状态：</Label>
+                <Label Margin="10,0" Foreground="Orange" Name="Github">Github API：???</Label>
+                <Label Margin="10,0" Foreground="Orange" Name="Gitee">Gitee API：???</Label>
+                <Label Margin="10,0" Foreground="Orange" Name="Curseforge">Curseforge API：???</Label>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

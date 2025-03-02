@@ -17,6 +17,7 @@ using HeroIconsAvalonia.Controls;
 using HeroIconsAvalonia.Enums;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.AddNewGame;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Downloads;
 
@@ -45,10 +46,13 @@ public partial class Download : UserControl
     public List<Core.API.NavigationRouteConfig> RouteConfigs { get; set; } = new();
     private void NavigationView_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
     {
-        Task.Run(() =>
+        
+        ControlChange.ChangeLabelText(PageTitleLabel,((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Content.ToString());
+        Task.Run(() => // Margin="10,50,10,10"
         {
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 0);
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(30,70,30,-10));
+            // Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(220,100,30,-10));
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(190,100,10,-10));
             Thread.Sleep(180);
             Dispatcher.UIThread.Invoke(() =>
             {
@@ -59,7 +63,7 @@ public partial class Download : UserControl
             });
             Thread.Sleep(180);
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 1);
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(10,50,10,10));
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(190,80,10,10));
         });
     }
 

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              Margin="-10"
-             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.MySelfSetting">
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.SeniorSetting">
     <ScrollViewer Margin="5">
         <StackPanel Margin="5">
             <Expander Header="插件设置" Margin="0,5">

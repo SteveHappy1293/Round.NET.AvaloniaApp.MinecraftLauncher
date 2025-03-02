@@ -20,10 +20,10 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings;
 
-public partial class MySelfSetting : UserControl
+public partial class SeniorSetting : UserControl
 {
     bool IsEditMode = false;
-    public MySelfSetting()
+    public SeniorSetting()
     {
         InitializeComponent();
         IsPlugUse.IsChecked = Config.MainConfig.IsUsePlug;        

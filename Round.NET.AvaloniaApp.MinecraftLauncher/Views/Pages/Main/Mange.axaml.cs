@@ -19,6 +19,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
 using LaunchJavaEdtion = Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch.LaunchJavaEdtion;
 
@@ -56,10 +57,12 @@ public partial class Mange : UserControl
     private PlugMange PlugMange { get; set; } = new();
     private void NavigationView_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
     {
+        ControlChange.ChangeLabelText(PageTitleLabel,((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Content.ToString());
         Task.Run(() => // Margin="10,50,10,10"
         {
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 0);
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(30,70,30,-10));
+            // Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(220,100,30,-10));
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(190,100,10,-10));
             Thread.Sleep(180);
             Dispatcher.UIThread.Invoke(() =>
             {
@@ -70,7 +73,7 @@ public partial class Mange : UserControl
             });
             Thread.Sleep(180);
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 1);
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(10,50,10,10));
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(190,80,10,10));
         });
     }
 

@@ -1,0 +1,48 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.AboutRMCL">
+    <ScrollViewer>
+        <StackPanel>
+            <Label Margin="0,5" FontWeight="Bold">Round Studio 全体开发者在此感谢您使用 RMCL !</Label>
+            <StackPanel>
+                <Label Margin="10,10,0,0" FontSize="18" FontWeight="Bold">开发者</Label>
+                <Label Margin="20,0">RMCL 本体：Minecraft一角钱、卡里、DrMing</Label>
+                <Label Margin="20,0">RMCL 美术：Minecraft一角钱、DrMing</Label>
+                <Label Margin="20,0">RMCL 官网：卡里</Label>
+                <Label Margin="20,0">RMCL 技术支持：DaiYu (YMCL)</Label>
+                
+                <DockPanel Margin="20,5">
+                    <Label VerticalAlignment="Center">项目地址：</Label>
+                    <HyperlinkButton NavigateUri="https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher">RMCL - Minecraft 启动器 (Github)</HyperlinkButton>
+                </DockPanel>
+            </StackPanel>
+            <StackPanel>
+                <Label Margin="10,10,0,0" FontSize="18" FontWeight="Bold">鸣谢</Label>
+                <Label Margin="20,0">使用的开源项目列表：</Label>
+                <StackPanel Margin="30,0">
+                    <Label>Avalonia</Label>
+                    <Label>FluentAvaloniaUI</Label>
+                    <Label>HeroIcons.Avalonia</Label>
+                    <Label>Newtonsoft.Json</Label>
+                    <Label>MinecraftLaunch</Label>
+                    <Label>DotNet.Bundle</Label>
+                    <Label>DotNetZip</Label>
+                    <Label>Downloader</Label>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel>
+                <Label Margin="10,10,0,0" FontSize="18" FontWeight="Bold">灵感</Label>
+                <Label Margin="20,0">RMCL 的设计风格部分灵感来自 TT702 的 BakaXL 启动器</Label>
+            </StackPanel>
+            <StackPanel>
+                <Label Margin="10,10,0,0" FontSize="18" FontWeight="Bold">版权</Label>
+                <Label Margin="20,0">RMCL 归 Round Studio 所有。</Label>
+                <Label Margin="20,0">"Minecraft" 以及 "我的世界" 为美国微软公司的商标。RMCL 和 Round Studio 与美国微软公司之间没有从属关系。</Label>
+                <Label Margin="20,0">© 2024-2025 RMCL 保留所有权利。</Label>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

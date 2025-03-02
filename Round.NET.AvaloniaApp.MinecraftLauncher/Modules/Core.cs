@@ -27,6 +27,7 @@ public class Core
             public string Title { get; set; }
             public UserControl Page { get; set; }
             public IconType Icon { get; set; }
+            public bool IsFoot { get; set; } = false;
         }
         public class SearchItemConfig
         {
