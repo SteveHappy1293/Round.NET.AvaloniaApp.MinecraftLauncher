@@ -18,6 +18,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.GameManges;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
 
@@ -132,6 +133,33 @@ public partial class GameMange : UserControl
                         dow.Tuid = SystemMessageTaskMange.AddTask(dow);
                         dow.Launch();
                     };
+
+                    var sett = new Button()
+                    {
+                        Content = new HeroIcon()
+                        {
+                            Foreground = Brushes.White,
+                            Type = IconType.Cog8Tooth,
+                            Min = true
+                        },
+                        Margin = new Thickness(5),
+                        Height = 32,
+                        Width = 32
+                    };
+                    sett.Click += (_, __) =>
+                    {
+                        var gmset = new GameVersionSetting();
+                        gmset.version = Path.GetFileName(ver);
+                        var con = new ContentDialog()
+                        {
+                            Title = $"版本设置 - {Path.GetFileName(ver)}",
+                            PrimaryButtonText = "取消",
+                            CloseButtonText = "确定",
+                            DefaultButton = ContentDialogButton.Close,
+                            Content = gmset
+                        };
+                        con.ShowAsync();
+                    };
                     VersionBox.Items.Add(new ListBoxItem()
                     {
                         Content = new Grid()
@@ -164,18 +192,7 @@ public partial class GameMange : UserControl
                                     VerticalAlignment = VerticalAlignment.Center,
                                     Children =
                                     {
-                                        new Button()
-                                        {
-                                            Content = new HeroIcon()
-                                            {
-                                                Foreground = Brushes.White,
-                                                Type = IconType.Cog8Tooth,
-                                                Min = true
-                                            },
-                                            Margin = new Thickness(5),
-                                            Height = 32,
-                                            Width = 32
-                                        },
+                                        sett,
                                         launc
                                     }
                                 }

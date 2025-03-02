@@ -28,8 +28,7 @@ public partial class SeniorSetting : UserControl
         InitializeComponent();
         IsPlugUse.IsChecked = Config.MainConfig.IsUsePlug;        
         MsSlider.Value = (double)Config.MainConfig.MessageLiveTimeMs / 1000;
-        
-        
+        MsBox.Content = $"通知停留时长 ({(double)Config.MainConfig.MessageLiveTimeMs/1000}s)：";
         this.Loaded += (_, __) => IsEditMode = true;
     }
 

@@ -1,0 +1,33 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             mc:Ignorable="d"
+             d:DesignWidth="450"
+             d:DesignHeight="130"
+             MinWidth="450"
+             MinHeight="130"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.GameManges.GameVersionSetting">
+    <Grid>
+        <controls:NavigationView 
+            PaneDisplayMode="Left"
+            IsSettingsVisible="False"
+            IsPaneOpen="True"
+            IsTabStop="False"
+            SelectionFollowsFocus="False"
+            IsPaneToggleButtonVisible="False"
+            HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,0"
+            OpenPaneLength="120"
+            Name="View"
+            SelectionChanged="NavigationView_OnSelectionChanged">
+            <controls:NavigationView.MenuItems>
+            
+            </controls:NavigationView.MenuItems>
+        </controls:NavigationView>
+        <Label Margin="130,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Name="PageTitleLabel" FontSize="18"></Label>
+        <controls:Frame Margin="130,20,0,0" Name="MangeFrame">
+            
+        </controls:Frame>
+    </Grid>
+</UserControl>

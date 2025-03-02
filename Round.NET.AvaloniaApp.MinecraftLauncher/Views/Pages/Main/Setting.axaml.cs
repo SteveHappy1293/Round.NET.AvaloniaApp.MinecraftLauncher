@@ -48,6 +48,12 @@ public partial class Setting : UserControl
             Title = "游戏",
             Route = "GameSetting"
         });   
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
+            Page = JavaSetting,
+            Title = "Java 虚拟机与内存",
+            Route = "JavaSetting"
+        });   
         
         
         RegisterRoute(new Core.API.NavigationRouteConfig()
@@ -62,6 +68,7 @@ public partial class Setting : UserControl
     private StyleSetting StyleSetting { get; set; } = new();
     private SeniorSetting SeniorSetting { get; set; } = new();
     private InternetSetting InternetSetting { get; set; } = new();
+    private JavaSetting JavaSetting { get; set; } = new();
     private AboutRMCL AboutRMCL { get; set; } = new();
     public List<Core.API.NavigationRouteConfig> RouteConfigs { get; set; } = new();
     private void NavigationView_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)

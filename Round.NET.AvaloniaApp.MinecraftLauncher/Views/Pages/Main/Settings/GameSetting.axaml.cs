@@ -15,31 +15,10 @@ public partial class GameSetting : UserControl
     public GameSetting()
     {
         InitializeComponent();
-        Task.Run(() => {
-            // 更新 UI
-            Dispatcher.UIThread.Invoke(() =>
-            {
-                foreach (var java in FindJava.JavasList)
-                {
-                    JavaComboBox.Items.Add(new ComboBoxItem
-                    {
-                        Content = $"[Java {java.JavaVersion}] {java.JavaPath}"
-                    });
-                }
-                JavaComboBox.SelectedIndex = Config.MainConfig.SelectedJava;
-            });  
-        }); // 更新Java设置下拉框
         SetLangZHCN.IsChecked = Config.MainConfig.SetTheLanguageOnStartup;
         SetGammaTop.IsChecked = Config.MainConfig.SetTheGammaOnStartup;
-        IsEdit = true;
+        IsEdit = true; 
     }
-
-    private void JavaComboBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e) //Java选择下拉框选择回调
-    {
-        Config.MainConfig.SelectedJava = JavaComboBox.SelectedIndex;
-        Config.SaveConfig();
-    }
-
     private void SetValue_OnClick(object? sender, RoutedEventArgs e)
     {
         if (IsEdit)

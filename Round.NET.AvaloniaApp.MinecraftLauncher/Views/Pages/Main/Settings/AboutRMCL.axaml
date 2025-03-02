@@ -15,7 +15,7 @@
                 <Label Margin="20,0">RMCL 技术支持：DaiYu (YMCL)</Label>
                 
                 <DockPanel Margin="20,5">
-                    <Label VerticalAlignment="Center">项目地址：</Label>
+                    <Label VerticalAlignment="Center" MinWidth="80">项目地址：</Label>
                     <HyperlinkButton NavigateUri="https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher">RMCL - Minecraft 启动器 (Github)</HyperlinkButton>
                 </DockPanel>
             </StackPanel>

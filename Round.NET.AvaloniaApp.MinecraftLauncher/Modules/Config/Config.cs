@@ -27,6 +27,8 @@ public class ConfigRoot
     public bool IsTilsEnabled { get; set; } = true;
     public bool SetTheLanguageOnStartup { get; set; } = true;
     public bool SetTheGammaOnStartup { get; set; } = true;
+    public int JavaUseMemory { get; set; } = 4096;
+    public bool IsLaunchJavaMemory { get; set; } = true;
 }
 
 public class GameFolderConfig

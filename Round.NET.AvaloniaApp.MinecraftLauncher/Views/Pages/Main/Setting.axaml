@@ -6,6 +6,11 @@
              xmlns:controls1="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Setting">
+    <UserControl.Styles>
+        <Style Selector="Label">
+            <Setter Property="MinWidth" Value="320"></Setter>
+        </Style>
+    </UserControl.Styles>
     <Grid>
         <!-- <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Click="Button_OnClick">返回主页</Button> -->
         <controls:HomeIcon HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
