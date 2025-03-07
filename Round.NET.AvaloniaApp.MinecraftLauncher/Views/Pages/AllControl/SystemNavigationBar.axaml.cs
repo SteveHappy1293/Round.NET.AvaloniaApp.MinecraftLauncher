@@ -148,6 +148,15 @@ public partial class SystemNavigationBar : UserControl
             }
             
             Dispatcher.UIThread.Invoke(() => Circle.IsVisible = false);
+            
+            // 右一下后恢复
+            if (ind >= 0 & false)
+            {
+                Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Margin = new Thickness(10,0,-10,0));
+                Thread.Sleep(150);
+            
+                Dispatcher.UIThread.Invoke(() => ((MainView)Core.MainWindow.Content).MainCortent.Margin = new Thickness(0,0,0,0));
+            }
         });
     }
 }

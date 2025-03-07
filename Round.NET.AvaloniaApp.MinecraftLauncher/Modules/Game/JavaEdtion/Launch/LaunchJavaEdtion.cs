@@ -18,7 +18,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch
 
 public class LaunchJavaEdtion
 {
-    public static async void LaunchGame(string VersionID,Action<Process> GetGameProcess,Action<object,LogReceivedEventArgs> LaunchingOutput,Action Exit)
+    public static async void LaunchGame(string VersionID,Action<Process> GetGameProcess,Action<object,LogReceivedEventArgs> LaunchingOutput,Action Exit,string Server = null)
     {
         var entry = VanillaInstaller.EnumerableMinecraftAsync()
             .FirstAsync(x => x.Id == VersionID);

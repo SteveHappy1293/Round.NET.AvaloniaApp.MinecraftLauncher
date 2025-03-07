@@ -45,4 +45,8 @@
   <ItemGroup>
     <Folder Include="Assets\Image\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Round.NET.VersionServerMange.Library\Round.NET.VersionServerMange.Library.csproj" />
+  </ItemGroup>
 </Project>

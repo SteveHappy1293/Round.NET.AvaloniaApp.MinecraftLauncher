@@ -71,7 +71,8 @@ public partial class JavaSetting : UserControl
 
         // 设置进度条的值
         UseMer.Value = (totalMemory - freeMemory) / 1024 / 1024; // 已用内存（MB）
-        MCMer.Value = (totalMemory - freeMemory) / 1024 / 1024 + (ulong)Config.MainConfig.JavaUseMemory; // 已用内存 + Java使用的内存（MB）
+        MCMer.Value = (ulong)Config.MainConfig.JavaUseMemory;
+        // MCMer.Value = (totalMemory - freeMemory) / 1024 / 1024 + (ulong)Config.MainConfig.JavaUseMemory; // 已用内存 + Java使用的内存（MB）
     }
     public bool IsEdit { get; set; } = false;
 
