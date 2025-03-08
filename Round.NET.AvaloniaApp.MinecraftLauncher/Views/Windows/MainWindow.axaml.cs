@@ -16,6 +16,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Plugs;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Server;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views;
@@ -25,8 +26,9 @@ public partial class MainWindow : AppWindow
     public MainWindow()
     {
         User.LoadUser();
-        FindJava.LoadJava();
+        MinecraftLauncher.Modules.Java.FindJava.JavasList.Clear();
         Config.LoadConfig();
+        ServerMange.Load();
         
         InitializeComponent();
         PlugsLoader.LoadingPlug();

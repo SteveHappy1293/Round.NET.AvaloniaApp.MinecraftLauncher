@@ -32,7 +32,7 @@ public partial class JavaSetting : UserControl
             // 更新 UI
             Dispatcher.UIThread.Invoke(() =>
             {
-                foreach (var java in FindJava.JavasList)
+                foreach (var java in MinecraftLauncher.Modules.Java.FindJava.JavasList)
                 {
                     JavaComboBox.Items.Add(new ComboBoxItem
                     {
@@ -109,5 +109,40 @@ public partial class JavaSetting : UserControl
                 Message.Show("错误","请输入数字！",InfoBarSeverity.Error);
             }
         }
+    }
+
+    private void RefuseJava_OnClick(object? sender, RoutedEventArgs e)
+    {
+        RefuseJava.Content = new ProgressRing()
+        {
+            Width = 15,
+            Height = 15
+        };
+        RefuseJava.IsEnabled = false;
+        JavaComboBox.Items.Clear();
+        
+        Task.Run(() =>
+        {
+            MinecraftLauncher.Modules.Java.FindJava.JavasList.Clear();
+            MinecraftLauncher.Modules.Java.FindJava.Find();
+            MinecraftLauncher.Modules.Java.FindJava.SaveJava();
+            MinecraftLauncher.Modules.Java.FindJava.LoadJava();
+            Dispatcher.UIThread.Invoke(() =>
+            {
+                foreach (var java in MinecraftLauncher.Modules.Java.FindJava.JavasList)
+                {
+                    JavaComboBox.Items.Add(new ComboBoxItem
+                    {
+                        Content = $"[Java {java.JavaVersion}] {java.JavaPath}"
+                    });
+                }
+                JavaComboBox.SelectedIndex = Config.MainConfig.SelectedJava;
+            });
+            Dispatcher.UIThread.Invoke(() =>
+            {
+                RefuseJava.Content = "刷新";
+                RefuseJava.IsEnabled = true;
+            });
+        });
     }
 }

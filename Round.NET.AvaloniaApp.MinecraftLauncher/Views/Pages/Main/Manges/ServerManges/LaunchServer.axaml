@@ -1,0 +1,15 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             Width="400"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.ServerManges.LaunchServer">
+    <StackPanel>
+        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5">
+            <Label Margin="5" VerticalAlignment="Center" MinWidth="200">需要启动的版本：</Label>
+            <ComboBox Name="VersionsBox" HorizontalAlignment="Stretch"></ComboBox>
+        </DockPanel>
+        <Label Margin="10" Foreground="Gray">将以默认用户作为启动用户.</Label>
+    </StackPanel>
+</UserControl>

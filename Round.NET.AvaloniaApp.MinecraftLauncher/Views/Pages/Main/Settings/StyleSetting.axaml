@@ -15,6 +15,7 @@
                             <ComboBoxItem>云母（默认）</ComboBoxItem>
                             <ComboBoxItem>亚克力</ComboBoxItem>
                             <ComboBoxItem>图片</ComboBoxItem>
+                            <ComboBoxItem>网络随机图片（Bing）</ComboBoxItem>
                             <ComboBoxItem>导入通用主题包</ComboBoxItem>
                             <ComboBoxItem>无</ComboBoxItem>
                         </ComboBox>

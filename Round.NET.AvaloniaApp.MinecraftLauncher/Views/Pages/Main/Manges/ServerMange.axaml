@@ -7,7 +7,7 @@
     <Grid>
         <DockPanel HorizontalAlignment="Left" VerticalAlignment="Top" >
             <Button Margin="5,5" Click="Button_OnClick">刷新</Button>
-            <Button Margin="5,5">添加服务器</Button>
+            <Button Margin="5,5" Name="AddServerBtn" Click="AddServerBtn_OnClick">添加服务器</Button>
         </DockPanel>
         <ScrollViewer Margin="0,42,0,0">
             <StackPanel Name="ServerBox">

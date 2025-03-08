@@ -12,7 +12,9 @@ using MinecraftLaunch.Components.Parser;
 using MinecraftLaunch.Launch;
 using MinecraftLaunch.Utilities;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Server;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
+using Round.NET.VersionServerMange.Library.Modules;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch;
 
@@ -20,6 +22,7 @@ public class LaunchJavaEdtion
 {
     public static async void LaunchGame(string VersionID,Action<Process> GetGameProcess,Action<object,LogReceivedEventArgs> LaunchingOutput,Action Exit,string Server = null)
     {
+        UpdateServers(VersionID);
         var entry = VanillaInstaller.EnumerableMinecraftAsync()
             .FirstAsync(x => x.Id == VersionID);
 
@@ -31,7 +34,7 @@ public class LaunchJavaEdtion
         var account = User.User.GetAccount(User.User.Users[Config.Config.MainConfig.SelectedUser].UUID);
         MinecraftRunner runner = new(new LaunchConfig {
             Account = User.User.GetAccount(User.User.Users[Config.Config.MainConfig.SelectedUser].UUID),
-            JavaPath = FindJava.JavasList[Config.Config.MainConfig.SelectedJava],
+            JavaPath = RJavaToJava.ToJavaEntry(MinecraftLauncher.Modules.Java.FindJava.JavasList[Config.Config.MainConfig.SelectedJava]),
             MaxMemorySize = Config.Config.MainConfig.JavaUseMemory,
             MinMemorySize = 512,
             LauncherName = "\"RMCL 3.0\"",
@@ -41,7 +44,6 @@ public class LaunchJavaEdtion
         process.OutputLogReceived += (_, arg) => LaunchingOutput(process, arg);
         process.Exited += (_, _) => Exit();
     }
-
     public static async Task<string> GetLauncherCommand(string VersionID)
     {
         var entry = VanillaInstaller.EnumerableMinecraftAsync()
@@ -55,14 +57,14 @@ public class LaunchJavaEdtion
         var account = User.User.GetAccount(User.User.Users[Config.Config.MainConfig.SelectedUser].UUID);
         MinecraftRunner runner = new(new LaunchConfig {
             Account = User.User.GetAccount(User.User.Users[Config.Config.MainConfig.SelectedUser].UUID),
-            JavaPath = FindJava.JavasList[Config.Config.MainConfig.SelectedJava],
+            JavaPath = RJavaToJava.ToJavaEntry(MinecraftLauncher.Modules.Java.FindJava.JavasList[Config.Config.MainConfig.SelectedJava]),
             MaxMemorySize = Config.Config.MainConfig.JavaUseMemory,
             MinMemorySize = 512,
             LauncherName = "\"RMCL 3.0\"",
         }, minecraftParser);
         var process = await runner.RunAsync(minecraftParser.GetMinecraft(VersionID));
         process.Process.Kill(true);
-        return $"@echo off\r\n\"{FindJava.JavasList[Config.Config.MainConfig.SelectedJava].JavaPath.Replace("javaw.exe","java.exe")}\" {process.Process.StartInfo.Arguments}";
+        return $"@echo off\r\n\"{MinecraftLauncher.Modules.Java.FindJava.JavasList[Config.Config.MainConfig.SelectedJava].JavaPath.Replace("javaw.exe","java.exe")}\" {process.Process.StartInfo.Arguments}";
     }
     public static bool ResourceCompletion(string VersionID)
     {
@@ -72,5 +74,15 @@ public class LaunchJavaEdtion
 
         // false = 不全，true = 全
         return true;
+    }
+    public static void UpdateServers(string VersionID)
+    {
+        var path = Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path + "/versions/" + VersionID + "/servers.dat";
+
+        var se = new ServerMangeCore();
+        se.Path = path;
+        se.Load();
+        se.Servers = ServerMange.Servers;
+        se.Save();
     }
 }

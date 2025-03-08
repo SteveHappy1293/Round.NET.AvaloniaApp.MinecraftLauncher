@@ -48,7 +48,7 @@ public partial class StyleSetting : UserControl
                 ImageBox.IsVisible = true;
                 StyleBox.IsVisible = false;
                 SaveConfig.IsVisible = true;
-            }else if (BackgroundTypeComboBox.SelectedIndex == 3)
+            }else if (BackgroundTypeComboBox.SelectedIndex == 4)
             {
                 SaveConfig.IsVisible = false;
                 StyleBox.IsVisible = true;

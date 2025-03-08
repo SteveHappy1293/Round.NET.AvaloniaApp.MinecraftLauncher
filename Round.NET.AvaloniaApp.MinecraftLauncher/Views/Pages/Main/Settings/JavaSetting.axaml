@@ -13,6 +13,9 @@
                     <Label VerticalAlignment="Center">默认 Java：</Label>
                     <ComboBox HorizontalAlignment="Stretch" Name="JavaComboBox" SelectionChanged="JavaComboBox_OnSelectionChanged"></ComboBox>
                 </DockPanel>
+                <DockPanel Margin="0,10,0,0" HorizontalAlignment="Right">
+                    <Button Name="RefuseJava" Click="RefuseJava_OnClick" Width="64" Height="32">刷新</Button>
+                </DockPanel>
             </StackPanel>
             <Label Margin="10,0" FontSize="18" FontWeight="Bold">内存</Label>
             <StackPanel Margin="20,10,0,0">

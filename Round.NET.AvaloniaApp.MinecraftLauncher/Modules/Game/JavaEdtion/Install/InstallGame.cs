@@ -34,7 +34,7 @@ public class InstallGame
     public static IInstallEntry InstallForge(string Version,ForgeInstallEntry forge, Action<object, InstallProgressChangedEventArgs> progressChanged)
     {
         var forgeInstaller = ForgeInstaller.Create(Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path,
-            FindJava.JavasList[Config.Config.MainConfig.SelectedJava].JavaPath,
+            MinecraftLauncher.Modules.Java.FindJava.JavasList[Config.Config.MainConfig.SelectedJava].JavaPath,
             forge);
 
         forgeInstaller.ProgressChanged += (_, __) => progressChanged(_, __);
@@ -55,7 +55,7 @@ public class InstallGame
     public static IInstallEntry InstallOptifine(string Version,OptifineInstallEntry Opti, Action<object, InstallProgressChangedEventArgs> progressChanged)
     {
         var optifineInstaller = OptifineInstaller.Create(Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path,
-            FindJava.JavasList[Config.Config.MainConfig.SelectedJava].JavaPath,
+            MinecraftLauncher.Modules.Java.FindJava.JavasList[Config.Config.MainConfig.SelectedJava].JavaPath,
             Opti);
 
         optifineInstaller.ProgressChanged += (_, __) => progressChanged(_, __);
@@ -85,7 +85,7 @@ public class InstallGame
         }
         var installer5 = CompositeInstaller.Create(installEntry,
             Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path,
-            FindJava.JavasList[Config.Config.MainConfig.SelectedJava].JavaPath, Name);
+            MinecraftLauncher.Modules.Java.FindJava.JavasList[Config.Config.MainConfig.SelectedJava].JavaPath, Name);
         installer5.ProgressChanged += (_, arg) =>
         {
             progressChanged(arg);

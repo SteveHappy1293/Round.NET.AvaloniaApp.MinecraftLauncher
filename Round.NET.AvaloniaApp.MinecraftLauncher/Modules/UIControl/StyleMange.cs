@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Net.Http;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Threading;
+using Downloader;
 using FluentAvalonia.Styling;
+using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using SkiaSharp;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
@@ -35,26 +41,6 @@ public class StyleMange
                         Opacity = Config.Config.MainConfig.BackOpacity,
                     };
                 }   
-                /*var col = GetDominantColorAfterMonetFilter(Config.Config.MainConfig.BackImage);
-// 动态创建 FluentAvaloniaTheme
-                var fluentTheme = new FluentAvaloniaTheme
-                {
-                    CustomAccentColor = Color.FromRgb(col.Red, col.Green, col.Blue) // 设置自定义主题色
-                };
-
-// 将 FluentAvaloniaTheme 添加到应用程序的全局样式
-                if (Application.Current != null)
-                {
-                    // 移除旧的 FluentAvaloniaTheme（如果存在）
-                    var existingTheme = Application.Current.Styles.OfType<FluentAvaloniaTheme>().FirstOrDefault();
-                    if (existingTheme != null)
-                    {
-                        Application.Current.Styles.Remove(existingTheme);
-                    }
-
-                    // 添加新的 FluentAvaloniaTheme
-                    Application.Current.Styles.Add(fluentTheme);
-                }*/
             }
         }
         else if (Config.Config.MainConfig.BackModlue == 0)
@@ -65,13 +51,132 @@ public class StyleMange
         {
             Core.MainWindow.Background = Brushes.Transparent;
             Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.AcrylicBlur };
-        }else if (Config.Config.MainConfig.BackModlue == 3)
+        }else if (Config.Config.MainConfig.BackModlue == 3) // 网络随机图片
+        {
+            LoadRandomBackground();
+        }
+        else if (Config.Config.MainConfig.BackModlue == 4)
         {
             ImportStyleConfigFile(Config.Config.MainConfig.StyleFile);
         }
-        else if(Config.Config.MainConfig.BackModlue == 4)
+        else if(Config.Config.MainConfig.BackModlue == 5)
         {
             Core.MainWindow.Background = Brush.Parse("#101010");
+        }
+    }
+
+    public static void LoadRandomBackground()
+    {
+        Core.MainWindow.Background = Brush.Parse("#101010");
+        if (!Directory.Exists(Path.Combine("../RMCL/RMCL.Style/Wallpaper")))
+        {
+            Directory.CreateDirectory(Path.Combine("../RMCL/RMCL.Style/Wallpaper"));
+        }
+
+        var files = Directory.GetFiles(Path.Combine("../RMCL/RMCL.Style/Wallpaper"));
+        var num = files.Count();
+        if (num == 0)
+        {
+            Task.Run(() =>
+            {
+                string apiUrl = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8&mkt=zh-CN";
+
+                // 1. 获取 Bing 图片数据
+                using (HttpClient client = new HttpClient())
+                {
+                    string jsonResponse = client.GetStringAsync(apiUrl).Result;
+
+                    // 2. 解析 JSON 数据
+                    JsonDocument doc = JsonDocument.Parse(jsonResponse);
+                    var images = doc.RootElement.GetProperty("images").EnumerateArray();
+
+                    // 3. 随机选择一个图片
+                    var random = new Random();
+                    int index = random.Next(0, 8); // 随机选择 0 到 7 的索引
+                    var selectedImage = images.ElementAt(index);
+
+                    string imageUrl = "https://cn.bing.com" + selectedImage.GetProperty("url").GetString();
+                    string imageTitle = selectedImage.GetProperty("title").GetString();
+                    string imageDate = selectedImage.GetProperty("enddate").GetString();
+                    imageUrl = imageUrl.Replace("1920x1080", "UHD");
+
+                    Console.WriteLine($"Selected Image: {imageTitle}");
+                    Console.WriteLine($"Image URL: {imageUrl}");
+                    Console.WriteLine($"Image Date: {imageDate}");
+
+                    // 4. 使用 Downloader 库下载图片
+                    var downloader = new DownloadService();
+                    string destinationFilePath = $"../RMCL/RMCL.Style/Wallpaper/{imageDate}.jpg"; // 文件名使用日期
+                    downloader.DownloadFileCompleted += (s, e) =>
+                        Message.Message.Show("个性化", "已加载网络壁纸！", InfoBarSeverity.Success);
+                    downloader.DownloadFileTaskAsync(imageUrl, destinationFilePath);
+
+                    Console.WriteLine($"Image downloaded to: {Path.GetFullPath(destinationFilePath)}");
+                }
+            });
+        }
+        else
+        {
+            Random rnd = new Random();
+            var index = rnd.Next(0, num);
+
+            try
+            {
+                using (var stream = new FileStream(files[index], FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    Core.MainWindow.Background = Brush.Parse("#101010");
+                    Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.None };
+                    var bitmap = new Bitmap(stream);
+                    Core.MainWindow.Background = new ImageBrush()
+                    {
+                        Source = bitmap,
+                        Stretch = Stretch.UniformToFill,
+                        Opacity = Config.Config.MainConfig.BackOpacity,
+                    };
+                }
+            }
+            catch
+            {
+                Message.Message.Show("个性化", "加载壁纸出错", InfoBarSeverity.Error);
+            }
+
+            Task.Run(() =>
+            {
+                string apiUrl = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8&mkt=zh-CN";
+
+                // 1. 获取 Bing 图片数据
+                using (HttpClient client = new HttpClient())
+                {
+                    string jsonResponse = client.GetStringAsync(apiUrl).Result;
+
+                    // 2. 解析 JSON 数据
+                    JsonDocument doc = JsonDocument.Parse(jsonResponse);
+                    var images = doc.RootElement.GetProperty("images").EnumerateArray();
+
+                    // 3. 随机选择一个图片
+                    var random = new Random();
+                    int index = random.Next(0, 8); // 随机选择 0 到 7 的索引
+                    var selectedImage = images.ElementAt(index);
+
+                    string imageUrl = "https://cn.bing.com" + selectedImage.GetProperty("url").GetString();
+                    string imageTitle = selectedImage.GetProperty("title").GetString();
+                    string imageDate = selectedImage.GetProperty("enddate").GetString();
+                    imageUrl = imageUrl.Replace("1920x1080", "UHD");
+
+                    Console.WriteLine($"Selected Image: {imageTitle}");
+                    Console.WriteLine($"Image URL: {imageUrl}");
+                    Console.WriteLine($"Image Date: {imageDate}");
+
+                    // 4. 使用 Downloader 库下载图片
+                    var downloader = new DownloadService();
+                    string destinationFilePath = $"../RMCL/RMCL.Style/Wallpaper/{imageDate}.jpg"; // 文件名使用日期
+                    downloader.DownloadFileCompleted += (s, e) =>
+                        Message.Message.Show("个性化", "已加载网络壁纸！", InfoBarSeverity.Success);
+                    downloader.DownloadFileTaskAsync(imageUrl, destinationFilePath);
+
+                    Console.WriteLine($"Image downloaded to: {Path.GetFullPath(destinationFilePath)}");
+                }
+            });
         }
     }
     private class StyleConfig
@@ -131,30 +236,7 @@ public class StyleMange
                     Source = bitmap,
                     Stretch = Stretch.UniformToFill,
                     Opacity = styleConfig.Opacity,
-                };// 获取莫奈滤镜后的重点颜色
-                
-                
-                /*var col = GetDominantColorAfterMonetFilter(imagepath);
-
-// 动态创建 FluentAvaloniaTheme
-                var fluentTheme = new FluentAvaloniaTheme
-                {
-                    CustomAccentColor = Color.FromRgb(col.Red, col.Green, col.Blue) // 设置自定义主题色
                 };
-
-// 将 FluentAvaloniaTheme 添加到应用程序的全局样式
-                if (Application.Current != null)
-                {
-                    // 移除旧的 FluentAvaloniaTheme（如果存在）
-                    var existingTheme = Application.Current.Styles.OfType<FluentAvaloniaTheme>().FirstOrDefault();
-                    if (existingTheme != null)
-                    {
-                        Application.Current.Styles.Remove(existingTheme);
-                    }
-
-                    // 添加新的 FluentAvaloniaTheme
-                    Application.Current.Styles.Add(fluentTheme);
-                }*/
             }   
         }
     }
@@ -202,85 +284,5 @@ public class StyleMange
         ZipFile.ExtractToDirectory(zipFilePath, extractDirectory);
 
         RLogs.WriteLog($"ZIP文件已解压到：{extractDirectory}");
-    }
-
-     public static SKColor GetDominantColorAfterMonetFilter(string inputPath)
-    {
-        // 加载图像
-        using (var skImage = SKImage.FromEncodedData(inputPath))
-        {
-            if (skImage == null)
-            {
-                Console.WriteLine("无法加载图像。");
-                return SKColor.Empty;
-            }
-
-            // 将SKImage转换为SKBitmap以便修改像素
-            var skBitmap = SKBitmap.FromImage(skImage);
-            if (skBitmap == null)
-            {
-                Console.WriteLine("无法将图像转换为位图。");
-                return SKColor.Empty;
-            }
-
-            // 用于统计颜色频率的字典
-            var colorFrequency = new Dictionary<SKColor, int>();
-
-            // 遍历图像的每个像素
-            for (int y = 0; y < skBitmap.Height; y++)
-            {
-                for (int x = 0; x < skBitmap.Width; x++)
-                {
-                    // 获取当前像素的颜色
-                    var pixel = skBitmap.GetPixel(x, y);
-
-                    // 转换为莫奈风格的色调
-                    var monetColor = ApplyMonetFilter(pixel);
-
-                    // 设置新图像中的像素颜色
-                    skBitmap.SetPixel(x, y, monetColor);
-
-                    // 统计颜色频率
-                    if (colorFrequency.ContainsKey(monetColor))
-                    {
-                        colorFrequency[monetColor]++;
-                    }
-                    else
-                    {
-                        colorFrequency[monetColor] = 1;
-                    }
-                }
-            }
-
-            // 提取出现频率最高的颜色
-            var dominantColor = colorFrequency.OrderByDescending(kv => kv.Value).FirstOrDefault().Key;
-
-            Console.WriteLine($"重点颜色: R={dominantColor.Red}, G={dominantColor.Green}, B={dominantColor.Blue}");
-            skImage.Dispose();
-            skBitmap.Dispose();
-            return dominantColor;
-        }
-    }
-
-    private static SKColor ApplyMonetFilter(SKColor originalColor)
-    {
-        // 莫奈风格的色调通常较为柔和，偏向于蓝绿色调
-        // 这里我们简单地调整颜色的RGB值来模拟这种效果
-
-        byte r = originalColor.Red;
-        byte g = originalColor.Green;
-        byte b = originalColor.Blue;
-
-        // 增加蓝色和绿色的分量，减少红色的分量
-        int newR = (int)(r * 0.7);
-        int newG = (int)(g * 0.9);
-        int newB = (int)(b * 1.1);
-
-        // 确保颜色值在0-255之间
-        newR = Math.Min(255, Math.Max(0, newR));
-        newG = Math.Min(255, Math.Max(0, newG));
-        newB = Math.Min(255, Math.Max(0, newB));
-
-        return new SKColor((byte)newR, (byte)newG, (byte)newB);
     }
 }
