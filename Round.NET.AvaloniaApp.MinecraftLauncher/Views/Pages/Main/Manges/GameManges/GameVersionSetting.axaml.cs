@@ -24,11 +24,19 @@ public partial class GameVersionSetting : UserControl
             _version = value;
             var vas = new VersionAttributesSetting();
             vas.version = _version;
+            var sen = new VersionSeniorSetting();
+            sen.version = _version;
             RegisterRoute(new Core.API.NavigationRouteConfig()
             {
                 Page = vas,
                 Title = "版本概述",
                 Route = "VersionAttributesSetting",
+            });
+            RegisterRoute(new Core.API.NavigationRouteConfig()
+            {
+                Page = sen,
+                Title = "高级设置",
+                Route = "VersionSeniorSetting",
             });
         }
     }

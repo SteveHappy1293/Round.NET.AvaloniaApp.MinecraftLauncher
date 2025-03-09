@@ -13,7 +13,7 @@
                 Width="500"
                 Name="Dialog"
                 VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Grid>
+            <StackPanel>
                 <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top">
                     <Button Click="Button_OnClick" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="120" Height="40" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
                         <DockPanel>
@@ -24,7 +24,7 @@
                     <Label Name="TitleLabel" FontSize="18" Margin="5" FontWeight="Light" VerticalAlignment="Center" HorizontalAlignment="Right">Dialog Title</Label>
                 </DockPanel>
                 <controls1:Frame Name="Frame"/>
-            </Grid>
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>

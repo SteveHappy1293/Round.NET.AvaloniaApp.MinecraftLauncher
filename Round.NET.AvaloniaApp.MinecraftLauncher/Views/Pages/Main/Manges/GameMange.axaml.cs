@@ -17,6 +17,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.GameManges;
 
@@ -150,15 +151,12 @@ public partial class GameMange : UserControl
                     {
                         var gmset = new GameVersionSetting();
                         gmset.version = Path.GetFileName(ver);
-                        var con = new ContentDialog()
+                        var con = new ContentPageDialog()
                         {
+                            Page = gmset,
                             Title = $"版本设置 - {Path.GetFileName(ver)}",
-                            PrimaryButtonText = "取消",
-                            CloseButtonText = "确定",
-                            DefaultButton = ContentDialogButton.Close,
-                            Content = gmset
                         };
-                        con.ShowAsync();
+                        con.Show();
                     };
                     VersionBox.Items.Add(new ListBoxItem()
                     {

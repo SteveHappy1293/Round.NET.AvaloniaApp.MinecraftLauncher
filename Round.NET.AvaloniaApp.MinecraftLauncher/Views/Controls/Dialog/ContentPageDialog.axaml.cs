@@ -18,6 +18,7 @@ public partial class ContentPageDialog : UserControl
 
     public string Title { get; set; } = "";
     public Control Page { get; set; } = new Label() { Content = "欢迎来到 RMCL 3!" };
+    public int DialogHeight { get; set; } = 300;
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
         Task.Run(() =>
@@ -32,6 +33,7 @@ public partial class ContentPageDialog : UserControl
     public void Show()
     {
         TitleLabel.Content = Title;
+        Frame.Height = DialogHeight;
         this.Dialog.Margin = new Thickness(0, 100, 0, -100);
         this.Opacity = 0;
         Frame.Content = Page;

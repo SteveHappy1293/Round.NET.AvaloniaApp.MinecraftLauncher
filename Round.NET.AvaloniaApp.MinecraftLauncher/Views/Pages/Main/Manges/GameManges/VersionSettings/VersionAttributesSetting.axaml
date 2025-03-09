@@ -4,7 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.GameManges.VersionSettings.VersionAttributesSetting">
-    <Grid>
-        <Button Click="Button_OnClick" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5">导出启动命令</Button>
-    </Grid>
+    <StackPanel>
+        <DockPanel>
+            <Label Margin="10,5" VerticalAlignment="Center">版本名称：</Label>
+            <TextBox Name="VersionName" Margin="10,5" IsEnabled="False"></TextBox>
+        </DockPanel>
+        <DockPanel>
+            <Label Margin="10,5" VerticalAlignment="Center">版本描述：</Label>
+            <TextBox Name="VersionNote" Margin="10,5"></TextBox>
+        </DockPanel>
+        <Button Click="Button_OnClick" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5">导出启动命令</Button>
+    </StackPanel>
 </UserControl>

@@ -14,7 +14,23 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.GameMa
 
 public partial class VersionAttributesSetting : UserControl
 {
-    public string version { get; set; }
+    private string _version;
+
+    public string version
+    {
+        get
+        {
+            return _version;
+        }
+        set
+        {
+            _version = value;
+            
+            VersionName.Text = $"{version}";
+            VersionNote.Text = $"无描述文件...";
+        }
+    }
+
     public VersionAttributesSetting()
     {
         InitializeComponent();
