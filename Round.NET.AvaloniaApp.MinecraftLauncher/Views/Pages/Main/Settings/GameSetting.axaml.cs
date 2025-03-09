@@ -17,6 +17,7 @@ public partial class GameSetting : UserControl
         InitializeComponent();
         SetLangZHCN.IsChecked = Config.MainConfig.SetTheLanguageOnStartup;
         SetGammaTop.IsChecked = Config.MainConfig.SetTheGammaOnStartup;
+        LogWindowStart.SelectedIndex = Config.MainConfig.GameLogOpenModlue;
         IsEdit = true; 
     }
     private void SetValue_OnClick(object? sender, RoutedEventArgs e)
@@ -25,6 +26,15 @@ public partial class GameSetting : UserControl
         {
             Config.MainConfig.SetTheLanguageOnStartup = (bool)SetLangZHCN.IsChecked;
             Config.MainConfig.SetTheGammaOnStartup = (bool)SetGammaTop.IsChecked;
+            Config.SaveConfig();
+        }
+    }
+
+    private void LogWindowStart_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.MainConfig.GameLogOpenModlue = LogWindowStart.SelectedIndex;
             Config.SaveConfig();
         }
     }

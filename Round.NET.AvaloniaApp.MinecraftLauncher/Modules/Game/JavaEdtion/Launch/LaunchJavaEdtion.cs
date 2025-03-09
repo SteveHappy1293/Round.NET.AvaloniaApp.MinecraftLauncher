@@ -40,11 +40,20 @@ public class LaunchJavaEdtion
             Width = 840,
             Height = 500,
             LauncherName = "\"RMCL 3.0\"",
+            Server = Server
         }, minecraftParser);
-        var process = await runner.RunAsync(minecraftParser.GetMinecraft(VersionID));
-        process.Started += (_, _) => GetGameProcess(process.Process);
-        process.OutputLogReceived += (_, arg) => LaunchingOutput(process, arg);
-        process.Exited += (_, _) => Exit();
+        try
+        {
+            var process = await runner.RunAsync(minecraftParser.GetMinecraft(VersionID));
+            process.Started += (_, _) => GetGameProcess(process.Process);
+            process.OutputLogReceived += (_, arg) => LaunchingOutput(process, arg);
+            process.Exited += (_, _) => Exit();
+        }
+        catch (Exception ex)
+        {
+            // 抛出包含堆栈信息的新异常
+            throw ex;
+        }
     }
     public static async Task<string> GetLauncherCommand(string VersionID)
     {
@@ -79,12 +88,20 @@ public class LaunchJavaEdtion
     }
     public static void UpdateServers(string VersionID)
     {
-        var path = Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path + "/versions/" + VersionID + "/servers.dat";
+        try
+        {
+            var path = Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path +
+                       "/versions/" + VersionID + "/servers.dat";
 
-        var se = new ServerMangeCore();
-        se.Path = path;
-        se.Load();
-        se.Servers = ServerMange.Servers;
-        se.Save();
+            var se = new ServerMangeCore();
+            se.Path = path;
+            se.Load();
+            se.Servers = ServerMange.Servers;
+            se.Save();
+        }
+        catch (Exception ex)
+        {
+            Message.Message.Show("启动游戏","同步全局服务器配置出错",InfoBarSeverity.Error);
+        }
     }
 }

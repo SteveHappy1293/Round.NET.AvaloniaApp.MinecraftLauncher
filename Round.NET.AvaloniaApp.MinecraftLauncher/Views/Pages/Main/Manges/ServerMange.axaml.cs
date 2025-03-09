@@ -158,7 +158,6 @@ public partial class ServerMange : UserControl
                     Height = 15
                 },
                 Margin = new Thickness(5),
-                IsEnabled = (Modules.Server.ServerMange.Servers.FindIndex(x=>x.SUID == ser.SUID)!=Modules.Server.ServerMange.Servers.Count-1),
                 Height = 32,
                 Width = 32
             };
@@ -179,6 +178,7 @@ public partial class ServerMange : UserControl
                     var dow = new LaunchJavaEdtion();
                     dow.Version = Path.GetFileName(Directory.GetDirectories(Config.MainConfig.GameFolders[Config.MainConfig.SelectedGameFolder].Path+"/versions")[ls.VersionsBox.SelectedIndex]);
                     dow.Tuid = SystemMessageTaskMange.AddTask(dow);
+                    dow.Server = ser.IP;
                     dow.Launch();
                 };
                 con.ShowAsync();

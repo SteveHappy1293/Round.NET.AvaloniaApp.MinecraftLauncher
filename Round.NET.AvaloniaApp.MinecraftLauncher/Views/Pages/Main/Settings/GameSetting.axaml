@@ -7,6 +7,15 @@
     <ScrollViewer>
         <StackPanel>
             <StackPanel Margin="0,10,0,0">
+                <Label Margin="10,0" FontSize="18" FontWeight="Bold">游戏监控</Label>
+                <DockPanel Margin="20,0,0,0">
+                    <Label VerticalAlignment="Center" HorizontalAlignment="Left">游戏日志自动打开：</Label>
+                    <ComboBox VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="LogWindowStart" SelectionChanged="LogWindowStart_OnSelectionChanged">
+                        <ComboBoxItem Tag="None">无</ComboBoxItem>
+                        <ComboBoxItem Tag="AfterGameLaunched">每次游戏启动后</ComboBoxItem>
+                        <ComboBoxItem Tag="AfterGameExited">游戏退出后</ComboBoxItem>
+                    </ComboBox>
+                </DockPanel>
                 <Label Margin="10,0" FontSize="18" FontWeight="Bold">辅助功能</Label>
                 <DockPanel Margin="20,0,0,0">
                     <Label VerticalAlignment="Center" HorizontalAlignment="Left">在启动游戏时设置中文：</Label>

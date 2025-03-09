@@ -93,7 +93,6 @@ public class InstallGame
                 $"{(arg.PrimaryStepName is InstallStep.Undefined ? "" : $"{arg.PrimaryStepName} - ")}{arg.StepName} - {arg.FinishedStepTaskCount}/{arg.TotalStepTaskCount} - {(arg.IsStepSupportSpeed ? $"{FileDownloader.GetSpeedText(arg.Speed)} - {arg.Progress * 100:0.00}%" : $"{arg.Progress * 100:0.00}%")}");
 
         };
-            
         var minecraft5 = installer5.InstallAsync();
         Console.WriteLine(minecraft5.Id);
         return minecraft5 != null;

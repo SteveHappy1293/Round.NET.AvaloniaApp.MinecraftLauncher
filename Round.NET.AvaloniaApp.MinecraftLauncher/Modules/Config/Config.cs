@@ -29,6 +29,7 @@ public class ConfigRoot
     public bool SetTheGammaOnStartup { get; set; } = true;
     public int JavaUseMemory { get; set; } = 4096;
     public bool IsLaunchJavaMemory { get; set; } = true;
+    public int GameLogOpenModlue { get; set; } = 0;
 }
 
 public class GameFolderConfig

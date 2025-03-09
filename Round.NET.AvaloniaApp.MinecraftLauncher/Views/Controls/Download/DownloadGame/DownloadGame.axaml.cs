@@ -185,6 +185,11 @@ public partial class DownloadGame : UserControl
             {
                 Dispatcher.UIThread.Invoke(() => JDBar.Value = (int)(args.Progress * 100));
                 Dispatcher.UIThread.Invoke(()=>JDLabel.Content = $"当前进度：{args.Progress*100:0.00} %");
+                if (args.Progress >= 99)
+                {
+                    SystemMessageTaskMange.DeleteTask(Tuid);
+                    Message.Show("下载任务", $"游戏 {_version} 已下载完毕。", InfoBarSeverity.Success);
+                }
             });
         });
     }
