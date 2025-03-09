@@ -30,9 +30,10 @@ public partial class JavaSetting : UserControl
         
         Task.Run(() => {
             // 更新 UI
+            Modules.Java.FindJava.LoadJava();
             Dispatcher.UIThread.Invoke(() =>
             {
-                foreach (var java in MinecraftLauncher.Modules.Java.FindJava.JavasList)
+                foreach (var java in Modules.Java.FindJava.JavasList)
                 {
                     JavaComboBox.Items.Add(new ComboBoxItem
                     {
@@ -40,11 +41,11 @@ public partial class JavaSetting : UserControl
                     });
                 }
                 JavaComboBox.SelectedIndex = Config.MainConfig.SelectedJava;
+                IsEdit = true;
             });
         }); // 更新Java设置下拉框
         MerInputBox.Text = Config.MainConfig.JavaUseMemory.ToString();
         JavaCheckBox.IsChecked = Config.MainConfig.IsLaunchJavaMemory;
-        IsEdit = true;
     }
 
     public void RefreshMer()
@@ -78,8 +79,11 @@ public partial class JavaSetting : UserControl
 
     private void JavaComboBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e) //Java选择下拉框选择回调
     {
-        Config.MainConfig.SelectedJava = JavaComboBox.SelectedIndex;
-        Config.SaveConfig();
+        if (IsEdit)
+        {
+            Config.MainConfig.SelectedJava = JavaComboBox.SelectedIndex;
+            Config.SaveConfig();
+        }
     }
 
     private void ToggleButton_OnIsCheckedChanged(object? sender, RoutedEventArgs e)
@@ -123,13 +127,13 @@ public partial class JavaSetting : UserControl
         
         Task.Run(() =>
         {
-            MinecraftLauncher.Modules.Java.FindJava.JavasList.Clear();
-            MinecraftLauncher.Modules.Java.FindJava.Find();
-            MinecraftLauncher.Modules.Java.FindJava.SaveJava();
-            MinecraftLauncher.Modules.Java.FindJava.LoadJava();
+            Modules.Java.FindJava.JavasList.Clear();
+            Modules.Java.FindJava.Find();
+            Modules.Java.FindJava.SaveJava();
+            Modules.Java.FindJava.LoadJava();
             Dispatcher.UIThread.Invoke(() =>
             {
-                foreach (var java in MinecraftLauncher.Modules.Java.FindJava.JavasList)
+                foreach (var java in Modules.Java.FindJava.JavasList)
                 {
                     JavaComboBox.Items.Add(new ComboBoxItem
                     {

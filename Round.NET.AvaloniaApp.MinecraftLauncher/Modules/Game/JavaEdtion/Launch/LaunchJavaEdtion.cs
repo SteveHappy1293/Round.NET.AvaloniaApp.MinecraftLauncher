@@ -34,9 +34,11 @@ public class LaunchJavaEdtion
         var account = User.User.GetAccount(User.User.Users[Config.Config.MainConfig.SelectedUser].UUID);
         MinecraftRunner runner = new(new LaunchConfig {
             Account = User.User.GetAccount(User.User.Users[Config.Config.MainConfig.SelectedUser].UUID),
-            JavaPath = RJavaToJava.ToJavaEntry(MinecraftLauncher.Modules.Java.FindJava.JavasList[Config.Config.MainConfig.SelectedJava]),
+            JavaPath = MinecraftLauncher.Modules.Java.FindJava.JavasList[Config.Config.MainConfig.SelectedJava],
             MaxMemorySize = Config.Config.MainConfig.JavaUseMemory,
             MinMemorySize = 512,
+            Width = 840,
+            Height = 500,
             LauncherName = "\"RMCL 3.0\"",
         }, minecraftParser);
         var process = await runner.RunAsync(minecraftParser.GetMinecraft(VersionID));
@@ -57,7 +59,7 @@ public class LaunchJavaEdtion
         var account = User.User.GetAccount(User.User.Users[Config.Config.MainConfig.SelectedUser].UUID);
         MinecraftRunner runner = new(new LaunchConfig {
             Account = User.User.GetAccount(User.User.Users[Config.Config.MainConfig.SelectedUser].UUID),
-            JavaPath = RJavaToJava.ToJavaEntry(MinecraftLauncher.Modules.Java.FindJava.JavasList[Config.Config.MainConfig.SelectedJava]),
+            JavaPath = MinecraftLauncher.Modules.Java.FindJava.JavasList[Config.Config.MainConfig.SelectedJava],
             MaxMemorySize = Config.Config.MainConfig.JavaUseMemory,
             MinMemorySize = 512,
             LauncherName = "\"RMCL 3.0\"",

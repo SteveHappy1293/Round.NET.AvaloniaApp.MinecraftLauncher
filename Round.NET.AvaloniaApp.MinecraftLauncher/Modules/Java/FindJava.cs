@@ -16,7 +16,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 public class FindJava
 {
     public static bool IsFinish = false;
-    public static List<RJavaEntry> JavasList { get; set; } = new();
+    public static List<JavaEntry> JavasList { get; set; } = new();
 
     public static void Find()
     {
@@ -27,7 +27,7 @@ public class FindJava
                 var JavaList = new JavaFetcher().Fetch();
                 foreach (var javalist in JavaList)
                 {
-                    JavasList.Add(javalist);
+                    JavasList.Add(RJavaToJava.ToJavaEntry(javalist));
                 }
             }
             catch
@@ -43,10 +43,10 @@ public class FindJava
                         var is64 = Is64BitJava(path);
                         if (version != null)
                         {
-                            JavasList.Add(new RJavaEntry
+                            JavasList.Add(new JavaEntry()
                             {
                                 JavaPath = path.Replace("java", "javaw"),
-                                JavaVersion = version.ToString()
+                                JavaVersion = version
                             });
                         }
                     }
@@ -58,7 +58,7 @@ public class FindJava
             var JavaList = new JavaFetcher().Fetch();
             foreach (var javalist in JavaList)
             {
-                JavasList.Add(javalist);
+                JavasList.Add(RJavaToJava.ToJavaEntry(javalist));
             }
         }
 
@@ -85,7 +85,7 @@ public class FindJava
         {
             try
             {
-                JavasList = JsonSerializer.Deserialize<List<RJavaEntry>>(javajson);
+                JavasList = JsonSerializer.Deserialize<List<JavaEntry>>(javajson);
             }
             catch
             {

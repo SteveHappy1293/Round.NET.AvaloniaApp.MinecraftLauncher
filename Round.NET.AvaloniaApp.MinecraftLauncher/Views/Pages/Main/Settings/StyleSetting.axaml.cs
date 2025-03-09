@@ -111,7 +111,7 @@ public partial class StyleSetting : UserControl
                 Config.MainConfig.BackImage = imagepath;
                 Config.MainConfig.BackOpacity = ((int)BackTMDSlider.Value) * 0.01;
             }
-        }else if (Config.MainConfig.BackModlue == 3)
+        }else if (Config.MainConfig.BackModlue == 4)
         {
             Config.MainConfig.StyleFile = StylePathBox.Text;
         }

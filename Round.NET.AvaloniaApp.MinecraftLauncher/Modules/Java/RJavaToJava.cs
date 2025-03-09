@@ -11,7 +11,8 @@ public class RJavaToJava
         return new JavaEntry()
         {
             JavaPath = java.JavaPath,
-            JavaVersion = new Version(java.JavaVersion)
+            JavaVersion = new Version(java.JavaVersion),
+            JavaType = "None",
         };
     }
 }
