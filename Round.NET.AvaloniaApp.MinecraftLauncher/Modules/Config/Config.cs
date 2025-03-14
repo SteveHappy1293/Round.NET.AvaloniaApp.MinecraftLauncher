@@ -30,6 +30,7 @@ public class ConfigRoot
     public int JavaUseMemory { get; set; } = 4096;
     public bool IsLaunchJavaMemory { get; set; } = true;
     public int GameLogOpenModlue { get; set; } = 0;
+    public int DownloadThreads { get; set; } = 256;
 }
 
 public class GameFolderConfig

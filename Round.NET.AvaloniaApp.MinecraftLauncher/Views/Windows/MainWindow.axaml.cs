@@ -10,6 +10,7 @@ using Avalonia.Media.Imaging;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using FluentAvalonia.UI.Windowing;
+using MinecraftLaunch;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User;
@@ -29,6 +30,9 @@ public partial class MainWindow : AppWindow
         MinecraftLauncher.Modules.Java.FindJava.JavasList.Clear();
         Config.LoadConfig();
         ServerMange.Load();
+        
+        DownloadMirrorManager.MaxThread = Config.MainConfig.DownloadThreads;
+        DownloadMirrorManager.IsEnableMirror = false;
         
         InitializeComponent();
         PlugsLoader.LoadingPlug();

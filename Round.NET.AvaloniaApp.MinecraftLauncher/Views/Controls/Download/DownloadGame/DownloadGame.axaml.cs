@@ -181,11 +181,11 @@ public partial class DownloadGame : UserControl
                 }
             }
 
-            InstallGame.InstallComposite(installs, "a", (args) =>
+            InstallGame.InstallComposite(installs, Version, (args) =>
             {
                 Dispatcher.UIThread.Invoke(() => JDBar.Value = (int)(args.Progress * 100));
                 Dispatcher.UIThread.Invoke(()=>JDLabel.Content = $"当前进度：{args.Progress*100:0.00} %");
-                if (args.Progress >= 99)
+                if (args.Progress*100 >= 99)
                 {
                     SystemMessageTaskMange.DeleteTask(Tuid);
                     Message.Show("下载任务", $"游戏 {_version} 已下载完毕。", InfoBarSeverity.Success);
