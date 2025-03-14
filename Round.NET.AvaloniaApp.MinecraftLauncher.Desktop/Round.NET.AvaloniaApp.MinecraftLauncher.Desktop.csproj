@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <ApplicationIcon>RMCL3.ico</ApplicationIcon>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
     <CFBundleName>RMCL</CFBundleName>
     <CFBundleDisplayName>RMCL</CFBundleDisplayName>
     <CFBundleVersion>1.0.0</CFBundleVersion>
