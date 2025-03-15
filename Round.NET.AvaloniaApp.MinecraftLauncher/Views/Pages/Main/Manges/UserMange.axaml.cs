@@ -23,6 +23,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.User.Player;
 using User = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User.User;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
@@ -42,13 +43,13 @@ public partial class UserMange : UserControl
                 if (User.Users.Count != count)
                 {
                     count = User.Users.Count;
-                    Dispatcher.UIThread.Invoke(()=>RefreshUI());
+                    Dispatcher.UIThread.Invoke(()=>RefreshUI1());
                 }
                 Thread.Sleep(100);
             }
         });
     }
-    public void RefreshUI()
+    /*public void RefreshUI()
     {
         IsEdit = false;
         UsersBox.Items.Clear();
@@ -104,6 +105,20 @@ public partial class UserMange : UserControl
             });
         }
         UsersBox.SelectedIndex = Config.MainConfig.SelectedUser;
+        IsEdit = true;
+    }*/
+    
+    public void RefreshUI1()
+    {
+        IsEdit = false;
+        Users.Children.Clear();
+        foreach (var use in User.Users)
+        {
+            var box = new PlayerBox();
+            box.ThisIndex = User.Users.IndexOf(use);
+            box.Show(use);
+            Users.Children.Add(box);
+        }
         IsEdit = true;
     }
 
@@ -306,12 +321,17 @@ public partial class UserMange : UserControl
             }
         }
     }
-    private void UsersBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    /*private void UsersBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (IsEdit)
         {
             Config.MainConfig.SelectedUser = UsersBox.SelectedIndex;
             Config.SaveConfig();
         }
+    }*/
+    private void Button_OnClick1(object? sender, RoutedEventArgs e)
+    {
+        User.LoadUser();
+        RefreshUI1();
     }
 }

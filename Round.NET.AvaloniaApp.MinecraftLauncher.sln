@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Round.NET.VersionServerMang
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Round.NET.FindJava.Library", "Round.NET.FindJava.Library\Round.NET.FindJava.Library.csproj", "{29DB9A5A-6830-49BC-8982-F5A5340C016C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Round.NET.MinecraftPlayerSkin.Library", "Round.NET.MinecraftPlayerSkin.Library\Round.NET.MinecraftPlayerSkin.Library.csproj", "{282469DC-BF66-436C-9E64-2BB0017600C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{29DB9A5A-6830-49BC-8982-F5A5340C016C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29DB9A5A-6830-49BC-8982-F5A5340C016C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29DB9A5A-6830-49BC-8982-F5A5340C016C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{282469DC-BF66-436C-9E64-2BB0017600C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{282469DC-BF66-436C-9E64-2BB0017600C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{282469DC-BF66-436C-9E64-2BB0017600C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{282469DC-BF66-436C-9E64-2BB0017600C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,5 +73,6 @@ Global
 		{1E359138-C55C-4A4F-9600-4EB34C3242B0} = {02100C6B-87EB-40F7-A79C-6CFCC63FB5B6}
 		{5307E283-4AA7-4A6A-BCF9-1B33ABFE4CC9} = {183D98F8-7694-4506-9C54-C62449D85ED0}
 		{29DB9A5A-6830-49BC-8982-F5A5340C016C} = {183D98F8-7694-4506-9C54-C62449D85ED0}
+		{282469DC-BF66-436C-9E64-2BB0017600C0} = {183D98F8-7694-4506-9C54-C62449D85ED0}
 	EndGlobalSection
 EndGlobal

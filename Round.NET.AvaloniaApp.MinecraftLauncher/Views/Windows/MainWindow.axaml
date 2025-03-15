@@ -9,7 +9,7 @@
         TransparencyLevelHint="AcrylicBlur"
         Background="#101010"
         ExtendClientAreaToDecorationsHint="True"
-        Icon="/Assets/RMCL3.png"
+        Icon="/Assets/Icon.png"
         WindowStartupLocation="CenterScreen"
         Width="850"
         Height="480"

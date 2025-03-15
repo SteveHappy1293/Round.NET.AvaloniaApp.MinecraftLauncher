@@ -1,0 +1,39 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:controls1="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+             mc:Ignorable="d"
+             Width="120" Height="165"
+             Margin="5"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.User.Player.PlayerBox">
+    <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0" CornerRadius="8" Name="MainButton">
+        <Button.Flyout>
+            <MenuFlyout>
+                <MenuItem>
+                    <MenuItem.Header>
+                        <DockPanel VerticalAlignment="Center">
+                            <controls1:HeroIcon Foreground="White" Min="True" Type="Cog6Tooth" Width="13" VerticalAlignment="Center"/>
+                            <Label VerticalAlignment="Center" Margin="10,0">设置此账户</Label>
+                        </DockPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Name="ChoseThis" Click="ChoseThis_OnClick">
+                    <MenuItem.Header>
+                        <DockPanel VerticalAlignment="Center">
+                            <controls1:HeroIcon Foreground="White" Min="True" Type="Check" Width="13" VerticalAlignment="Center"/>
+                            <Label VerticalAlignment="Center" Margin="10,0">选择此账户</Label>
+                        </DockPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+            </MenuFlyout>
+        </Button.Flyout>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="165">
+            <controls:ProgressRing Margin="0,-35,0,0"></controls:ProgressRing>
+            <Border Margin="5" Name="SkinHandImage" CornerRadius="6" Width="110" Height="110" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Border>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,23" Name="NameLabel">Name</Label>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,3" Name="LoginLabel" FontSize="11">LoginType</Label>
+        </Grid>
+    </Button>
+</UserControl>

@@ -18,6 +18,9 @@ public class User
     {
         public string UUID { get; set; } = Guid.NewGuid().ToString();
         public string Type { get; set; } = string.Empty;
+        public string Skin  { get; set; } = string.Empty;
+        public string Head  { get; set; } = string.Empty;
+        public string Body  { get; set; } = string.Empty;
         public AccountConfig Config { get; set; }
     }
     public class AccountConfig
@@ -45,6 +48,7 @@ public class User
             InitUser();
         }
     }
+
     public static void InitUser()
     {
         Directory.CreateDirectory(ConfigPath);
@@ -120,5 +124,24 @@ public class User
             File.WriteAllText(Path.Combine(ConfigPath,$"{of.UUID}.json"),json);
         }
         LoadUser();
+    }
+
+    public static void SaveUsers()
+    {
+        Users.ForEach((config =>
+        {
+            var json = Regex.Unescape(JsonSerializer.Serialize(config, new JsonSerializerOptions() { WriteIndented = true }));
+            File.WriteAllText(Path.Combine(ConfigPath,$"{config.UUID}.json"),json);
+        }));
+    }
+    public static UserConfig GetUser(string uuid)
+    {
+        return Users.Find((x)=>x.UUID == uuid);
+    }
+    public static void SetUser(string uuid,UserConfig user)
+    {
+        var index = Users.FindIndex((x) => x.UUID == uuid);
+        Users[index] = user;
+        SaveUsers();
     }
 }

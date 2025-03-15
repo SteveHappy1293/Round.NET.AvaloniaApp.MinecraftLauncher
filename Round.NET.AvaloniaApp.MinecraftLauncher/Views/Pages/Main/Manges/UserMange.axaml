@@ -6,11 +6,17 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.UserMange">
     <Grid>
-        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5" Click="Button_OnClick">添加账户</Button>
+        <DockPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button Margin="5,5" Click="Button_OnClick">添加账户</Button>
+            <Button Margin="5,5" Click="Button_OnClick1">刷新</Button>
+        </DockPanel>
         <ScrollViewer Margin="0,42,0,0">
-            <ListBox Name="UsersBox" SelectionChanged="UsersBox_OnSelectionChanged">
+            <WrapPanel Name="Users">
                 
-            </ListBox>
+            </WrapPanel>
         </ScrollViewer>
+        <DockPanel>
+            
+        </DockPanel>
     </Grid>
 </UserControl>

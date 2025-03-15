@@ -3,6 +3,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -51,6 +52,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Round.NET.FindJava.Library\Round.NET.FindJava.Library.csproj" />
+    <ProjectReference Include="..\Round.NET.MinecraftPlayerSkin.Library\Round.NET.MinecraftPlayerSkin.Library.csproj" />
     <ProjectReference Include="..\Round.NET.VersionServerMange.Library\Round.NET.VersionServerMange.Library.csproj" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">

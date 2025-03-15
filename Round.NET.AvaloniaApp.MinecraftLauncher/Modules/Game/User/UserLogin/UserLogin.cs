@@ -22,7 +22,7 @@ public class UserLogin
                 RLogs.WriteLog(dc.VerificationUrl);
                 GetedCode(dc.UserCode);
             });
-
+            
             var userProfile = await authenticator.AuthenticateAsync(oA);
             LoggedIn(userProfile);
         }

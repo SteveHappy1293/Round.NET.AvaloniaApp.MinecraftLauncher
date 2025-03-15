@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Markup.Xaml;
 using MinecraftLaunch;
+using MinecraftLaunch.Utilities;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings;
@@ -14,7 +15,7 @@ public partial class DownloadSetting : UserControl
     {
         InitializeComponent();
         DownloadThreadsCountSlider.Value = Config.MainConfig.DownloadThreads;
-        DownloadThreadsCountLabel.Content = $"下载线程 （{(int)DownloadThreadsCountSlider.Value}）：";
+        DownloadThreadsCountLabel.Content = $"下载线程 ({(int)DownloadThreadsCountSlider.Value})：";
         IsEdit = true;
     }
 
@@ -22,12 +23,14 @@ public partial class DownloadSetting : UserControl
     {
         if (IsEdit)
         {
-            DownloadThreadsCountLabel.Content = $"下载线程 （{(int)DownloadThreadsCountSlider.Value}）：";
+            DownloadThreadsCountLabel.Content = $"下载线程 ({(int)DownloadThreadsCountSlider.Value})：";
             Config.MainConfig.DownloadThreads = (int)DownloadThreadsCountSlider.Value;
             Config.SaveConfig();
             
             DownloadMirrorManager.MaxThread = Config.MainConfig.DownloadThreads;
             DownloadMirrorManager.IsEnableMirror = false;
+            
+            HttpUtil.Initialize();
         }
     }
 }
