@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
@@ -18,7 +19,9 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Plugs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Server;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views;
 
@@ -57,6 +60,58 @@ public partial class MainWindow : AppWindow
         this.Width = Config.MainConfig.WindowWidth;
         this.Height = Config.MainConfig.WindowHeight;
         Message.Show("插件加载",$"当前已加载 {PlugsLoader.Plugs.Count} 个插件！",InfoBarSeverity.Success);
+        
+        Task.Run(() =>
+        {
+            var downloader = new Updater((v,s) =>
+            {
+                Assembly assembly = Assembly.GetExecutingAssembly();
+        
+                // 获取程序集的版本信息
+                Version version = assembly.GetName().Version;
+                if (v.Replace("v", "") != version.ToString())
+                {
+                    Dispatcher.UIThread.Invoke(() =>
+                    {
+                        var con = new ContentDialog()
+                        {
+                            PrimaryButtonText = "取消",
+                            CloseButtonText = "现在更新",
+                            Title = $"更新 RMCL3 - {v}",
+                            DefaultButton = ContentDialogButton.Close,
+                            Content = new StackPanel()
+                            {
+                                Children =
+                                {
+                                    new Label()
+                                    {
+                                        Content = "你好！打扰一下~\nRMCL当前有个更新，需要花费您一些时间，请问您是否更新？"
+                                    },
+                                    new Label()
+                                    {
+                                        Content = $"当前版本：v{version.ToString()}"
+                                    },
+                                    new Label()
+                                    {
+                                        Content = $"更新版本：{v}"
+                                    }
+                                }
+                            }
+                        };
+                        con.CloseButtonClick += (_, __) =>
+                        {
+                            var dow = new DownloadUpdate();
+                            dow.Tuid = SystemMessageTaskMange.AddTask(dow);
+                            dow.URL = s;
+                            dow.Version = v;
+                            dow.Download();
+                        };
+                        con.ShowAsync();
+                    });
+                }
+            });
+            downloader.GetDownloadUrlAsync("https://api.github.com/repos/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/releases").Wait();
+        });
     }
 
     private void Window_OnClosing(object? sender, WindowClosingEventArgs e)

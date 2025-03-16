@@ -8,6 +8,7 @@
              xmlns:allControl="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl"
              xmlns:dialog="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog"
              xmlns:global="clr-namespace:"
+             xmlns:download="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.App"
              RequestedThemeVariant="Dark">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
@@ -104,6 +105,14 @@
             </Setter>
         </Style>
         <Style Selector="downloadGame|DownloadGame">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="download|DownloadUpdate">
             <Setter Property="Transitions">
                 <Transitions>
                     <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>

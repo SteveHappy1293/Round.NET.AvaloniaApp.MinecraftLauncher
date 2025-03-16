@@ -53,6 +53,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Round.NET.FindJava.Library\Round.NET.FindJava.Library.csproj" />
     <ProjectReference Include="..\Round.NET.MinecraftPlayerSkin.Library\Round.NET.MinecraftPlayerSkin.Library.csproj" />
+    <ProjectReference Include="..\Round.NET.Updater.Library\Round.NET.Updater.Library.csproj" />
     <ProjectReference Include="..\Round.NET.VersionServerMange.Library\Round.NET.VersionServerMange.Library.csproj" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
