@@ -69,7 +69,7 @@ public partial class MainWindow : AppWindow
         
                 // 获取程序集的版本信息
                 Version version = assembly.GetName().Version;
-                if (v.Replace("v", "").Replace(".","") != version.ToString().Replace(".",""))
+                if (v.Replace("v", "").Replace("0","").Replace(".","") != version.ToString().Replace(".","").Replace("0",""))
                 {
                     Dispatcher.UIThread.Invoke(() =>
                     {
@@ -77,7 +77,7 @@ public partial class MainWindow : AppWindow
                         {
                             PrimaryButtonText = "取消",
                             CloseButtonText = "现在更新",
-                            Title = $"更新 RMCL3 - {v}",
+                            Title = $"更新 RMCL3 - {v.Replace("0","")}",
                             DefaultButton = ContentDialogButton.Close,
                             Content = new StackPanel()
                             {
@@ -89,11 +89,11 @@ public partial class MainWindow : AppWindow
                                     },
                                     new Label()
                                     {
-                                        Content = $"当前版本：v{version.ToString().Replace(".","")}"
+                                        Content = $"当前版本：v{version.ToString().Replace(".","").Replace("0","")}"
                                     },
                                     new Label()
                                     {
-                                        Content = $"更新版本：{v.Replace(".","")}"
+                                        Content = $"更新版本：{v.Replace(".","").Replace("0","")}"
                                     }
                                 }
                             }
@@ -103,7 +103,7 @@ public partial class MainWindow : AppWindow
                             var dow = new DownloadUpdate();
                             dow.Tuid = SystemMessageTaskMange.AddTask(dow);
                             dow.URL = s;
-                            dow.Version = v.Replace(".","");
+                            dow.Version = v.Replace(".","").Replace("0","");
                             dow.Download();
                         };
                         con.ShowAsync();
