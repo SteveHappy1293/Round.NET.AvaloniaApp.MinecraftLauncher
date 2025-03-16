@@ -69,7 +69,7 @@ public partial class MainWindow : AppWindow
         
                 // 获取程序集的版本信息
                 Version version = assembly.GetName().Version;
-                if (v.Replace("v", "") != version.ToString())
+                if (v.Replace("v", "").Replace(".","") != version.ToString().Replace(".",""))
                 {
                     Dispatcher.UIThread.Invoke(() =>
                     {
@@ -89,11 +89,11 @@ public partial class MainWindow : AppWindow
                                     },
                                     new Label()
                                     {
-                                        Content = $"当前版本：v{version.ToString()}"
+                                        Content = $"当前版本：v{version.ToString().Replace(".","")}"
                                     },
                                     new Label()
                                     {
-                                        Content = $"更新版本：{v}"
+                                        Content = $"更新版本：{v.Replace(".","")}"
                                     }
                                 }
                             }
@@ -103,7 +103,7 @@ public partial class MainWindow : AppWindow
                             var dow = new DownloadUpdate();
                             dow.Tuid = SystemMessageTaskMange.AddTask(dow);
                             dow.URL = s;
-                            dow.Version = v;
+                            dow.Version = v.Replace(".","");
                             dow.Download();
                         };
                         con.ShowAsync();
