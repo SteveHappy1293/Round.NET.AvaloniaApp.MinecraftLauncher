@@ -24,13 +24,15 @@ public class ConfigRoot
     public int WindowHeight { get; set; } = 450;
     public bool IsUsePlug { get; set; } = true;
     public int MessageLiveTimeMs { get; set; } = 5000;
-    public bool IsTilsEnabled { get; set; } = true;
+    public int HomeBody { get; set; } = 0;
     public bool SetTheLanguageOnStartup { get; set; } = true;
     public bool SetTheGammaOnStartup { get; set; } = true;
     public int JavaUseMemory { get; set; } = 4096;
     public bool IsLaunchJavaMemory { get; set; } = true;
     public int GameLogOpenModlue { get; set; } = 0;
     public int DownloadThreads { get; set; } = 256;
+    public int WindowX { get; set; } = 0;
+    public int WindowY { get; set; } = 0;
 }
 
 public class GameFolderConfig

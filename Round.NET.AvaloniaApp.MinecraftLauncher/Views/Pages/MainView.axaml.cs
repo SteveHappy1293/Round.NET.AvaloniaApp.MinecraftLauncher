@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
@@ -7,6 +8,9 @@ using Avalonia.Interactivity;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
 
@@ -126,6 +130,59 @@ public partial class MainView : UserControl
                     Dispatcher.UIThread.Invoke(() => SystemNavigationBar.NavTo("Download"));
                 });
             }
+        });
+        
+        Task.Run(() =>
+        {
+            var downloader = new Updater((v,s) =>
+            {
+                Assembly assembly = Assembly.GetExecutingAssembly();
+        
+                // 获取程序集的版本信息
+                Version version = assembly.GetName().Version;
+                if (v.Replace("v", "").Replace("0","").Replace(".","") != version.ToString().Replace(".","").Replace("0",""))
+                {
+                    Dispatcher.UIThread.InvokeAsync(async () =>
+                    {
+                        var con = new ContentDialog()
+                        {
+                            PrimaryButtonText = "取消",
+                            CloseButtonText = "现在更新",
+                            Title = $"更新 RMCL3 - {v.Replace("0","")}",
+                            DefaultButton = ContentDialogButton.Close,
+                            Content = new StackPanel()
+                            {
+                                Children =
+                                {
+                                    new Label()
+                                    {
+                                        Content = "你好！打扰一下~\nRMCL当前有个更新，需要花费您一些时间，请问您是否更新？"
+                                    },
+                                    new Label()
+                                    {
+                                        Content = $"当前版本：v{version.ToString().Replace(".","").Replace("0","")}"
+                                    },
+                                    new Label()
+                                    {
+                                        Content = $"更新版本：{v.Replace(".","").Replace("0","")}"
+                                    }
+                                }
+                            }
+                        };
+                        con.CloseButtonClick += (_, __) =>
+                        {
+                            var dow = new DownloadUpdate();
+                            dow.Tuid = SystemMessageTaskMange.AddTask(dow);
+                            dow.URL = s;
+                            dow.Version = v.Replace(".","").Replace("0","");
+                            dow.Download();
+                        };
+                        con.ShowAsync();
+                    });
+                }
+            });
+            downloader.GetDownloadUrlAsync(
+                "https://api.github.com/repos/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/releases");
         });
     }
 

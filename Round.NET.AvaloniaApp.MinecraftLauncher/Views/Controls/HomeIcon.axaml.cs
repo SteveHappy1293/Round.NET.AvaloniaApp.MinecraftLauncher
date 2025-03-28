@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
@@ -10,13 +11,27 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 public partial class HomeIcon : UserControl
 {
     public IconType Icon { get; set; } = IconType.Home;
+
+    public EventHandler<RoutedEventArgs> Click
+    {
+        get { return _click; }
+        set
+        {
+            this.Button.Click -= _click;
+            _click = value;
+            this.Button.Click += value;
+        }
+    }
+
+    private EventHandler<RoutedEventArgs> _click { get; set; }
     public HomeIcon()
     {
         InitializeComponent();
         this.HeroIcon.Type = Icon;
+        Click = Button_OnClick;
     }
     
-    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    private static void Button_OnClick(object? sender, RoutedEventArgs e)
     {
         ((MainView)Core.MainWindow.Content).SystemNavigationBar.NavTo("Launcher");
     }

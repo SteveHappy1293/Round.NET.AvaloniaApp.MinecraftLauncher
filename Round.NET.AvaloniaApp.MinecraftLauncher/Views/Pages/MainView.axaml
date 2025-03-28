@@ -12,6 +12,9 @@
         <ui:Frame Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="MainCortent" Opacity="1">
             
         </ui:Frame>
+        <ui:Frame Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="CortentFrame" Opacity="0">
+            
+        </ui:Frame>
         <allControl:SystemNavigationBar HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="SystemNavigationBar"/>
         <allControl:SystemTaskBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <allControl:SystemMessageBox HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,70"/>

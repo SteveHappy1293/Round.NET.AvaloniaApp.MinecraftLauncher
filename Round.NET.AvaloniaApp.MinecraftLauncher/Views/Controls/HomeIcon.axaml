@@ -8,7 +8,7 @@
              xmlns:ui="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              xmlns:controls="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.HomeIcon">
-    <Button Click="Button_OnClick" CornerRadius="99" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="Transparent">
+    <Button Name="Button" CornerRadius="99" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="Transparent">
         <controls:HeroIcon Foreground="White" Type="Home" Name="HeroIcon" Width="18"/>
     </Button>
 </UserControl>

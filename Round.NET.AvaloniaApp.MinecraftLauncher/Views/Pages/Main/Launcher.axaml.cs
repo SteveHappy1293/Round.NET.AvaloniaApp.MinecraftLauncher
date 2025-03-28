@@ -16,6 +16,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Mange.TilesMange;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
@@ -27,6 +28,7 @@ public partial class Launcher : UserControl
     public Launcher()
     {
         InitializeComponent();
+        TilesMange.TilesPanel = this.WrapPanel;
         Task.Run(() =>
         {
             while (true)
@@ -80,47 +82,10 @@ public partial class Launcher : UserControl
                 Thread.Sleep(100);
             }
         });
-
-        TilesMange.TilesPanel = this.WrapPanel;
-        var group1 = TilesMange.RegisterTileGroup();
-        TilesMange.RegisterTile(group1, new TilesMange.TileItem()
+        Task.Run(() =>
         {
-            Text = "管理",
-            TiteEvent = ()=>{
-                Core.NavigationBar.NavTo("Mange");
-            },
-            TiteStyle = TilesMange.TileItem.TiteStyleType.Long,
-            Content = new HeroIcon()
-            {
-                Foreground = Brushes.White,
-                Type = IconType.Folder
-            }
-        });
-        TilesMange.RegisterTile(group1, new TilesMange.TileItem()
-        {
-            Text = "设置",
-            TiteEvent = ()=>{
-                Core.NavigationBar.NavTo("Setting");
-            },
-            TiteStyle = TilesMange.TileItem.TiteStyleType.Big,
-            Content = new HeroIcon()
-            {
-                Foreground = Brushes.White,
-                Type = IconType.Cog6Tooth
-            }
-        });
-        TilesMange.RegisterTile(group1, new TilesMange.TileItem()
-        {
-            Text = "启动游戏",
-            TiteEvent = ()=>{
-                laun();
-            },
-            TiteStyle = TilesMange.TileItem.TiteStyleType.Small,
-            Content = new HeroIcon()
-            {
-                Foreground = Brushes.White,
-                Type = IconType.RocketLaunch
-            }
+            Thread.Sleep(1000);
+            Dispatcher.UIThread.Invoke(HomeBodyMange.Load);
         });
     }
 
@@ -130,7 +95,7 @@ public partial class Launcher : UserControl
         Core.SystemTask.Show();
     }
 
-    void laun()
+    public void laun()
     {
         var Sel = Config.MainConfig.SelectedGameFolder;
         var dow = new LaunchJavaEdtion();
@@ -155,5 +120,14 @@ public partial class Launcher : UserControl
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
         ((MainView)Core.MainWindow.Content).SystemNavigationBar.Show();
+    }
+
+    private void GotoAccount(object? sender, RoutedEventArgs e)
+    {
+        ((MainView)Core.MainWindow.Content).CortentFrame.Content = new Account.Account();
+        ((MainView)Core.MainWindow.Content).CortentFrame.Opacity = 1;
+        ((MainView)Core.MainWindow.Content).MainCortent.Opacity = 0;
+        
+        Core.NavigationBar.Opacity = 0;
     }
 }

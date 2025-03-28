@@ -28,19 +28,22 @@ public partial class SystemNavigationBar : UserControl
         {
             Icon = IconType.InboxArrowDown,
             Page = Core.DownloadPage,
-            Route = "Download"
+            Route = "Download",
+            Title = "下载",
         });
         Core.API.RegisterNavigationRoute(new()
         {
             Icon = IconType.ListBullet,
             Page = new Mange(),
-            Route = "Mange"
+            Route = "Mange",
+            Title = "管理",
         });
         Core.API.RegisterNavigationRoute(new()
         {
             Icon = IconType.Cog6Tooth,
             Page = new Setting(),
-            Route = "Setting"
+            Route = "Setting",
+            Title = "设置",
         });
     }
     private Launcher Launcher { get; } = new();

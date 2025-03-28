@@ -41,11 +41,14 @@
                     </DockPanel>
             </StackPanel>
             <StackPanel Margin="10,10,0,0">
-                
                 <Label Margin="10,0" FontSize="18" FontWeight="Bold">主页</Label>
                 <DockPanel Margin="20,0,0,0">
-                    <Label VerticalAlignment="Center" Width="120">启用磁贴</Label>
-                    <CheckBox Click="EnTiles_OnClick" Name="EnTiles">启用</CheckBox>
+                    <Label VerticalAlignment="Center" Width="120">主页显示内容</Label>
+                    <ComboBox SelectionChanged="ChoseMainPageBody_OnSelectionChanged" Name="ChoseMainPageBody"  HorizontalAlignment="Stretch">
+                        <ComboBoxItem>无</ComboBoxItem>
+                        <ComboBoxItem>磁贴</ComboBoxItem>
+                        <ComboBoxItem>自定义主页（兼容 PCL2 自定义主页）</ComboBoxItem>
+                    </ComboBox>
                 </DockPanel>
             </StackPanel>
         </StackPanel>

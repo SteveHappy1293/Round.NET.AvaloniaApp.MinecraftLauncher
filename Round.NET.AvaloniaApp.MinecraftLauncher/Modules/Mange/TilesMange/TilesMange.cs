@@ -13,7 +13,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Mange.TilesMange;
 public class TilesMange
 {
     public static List<StackPanel> TileGroups = new();
-    public static WrapPanel TilesPanel = new();
+    public static WrapPanel TilesPanel = Core.MainHome.WrapPanel;
     public class TileItem
     {
         public enum TiteStyleType
@@ -91,7 +91,7 @@ public class TilesMange
                 break;
         }
 
-        if (Config.Config.MainConfig.IsTilsEnabled)
+        if (Config.Config.MainConfig.HomeBody == 1)
         {
             tileGroup.Children.Add(tile);
         }

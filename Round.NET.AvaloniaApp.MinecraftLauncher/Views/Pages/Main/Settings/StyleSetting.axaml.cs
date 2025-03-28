@@ -36,7 +36,8 @@ public partial class StyleSetting : UserControl
         }
 
         BackgroundTypeComboBox.SelectedIndex = Config.MainConfig.BackModlue;
-        EnTiles.IsChecked = Config.MainConfig.IsTilsEnabled;
+        ChoseMainPageBody.SelectedIndex = Config.MainConfig.HomeBody;
+        
         IsEdit = true;
     }
     private void BackgroundTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -169,12 +170,13 @@ public partial class StyleSetting : UserControl
         }
     }
 
-    private void EnTiles_OnClick(object? sender, RoutedEventArgs e)
+    private void ChoseMainPageBody_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (IsEdit)
         {
-            Config.MainConfig.IsTilsEnabled = !Config.MainConfig.IsTilsEnabled;
+            Config.MainConfig.HomeBody = ChoseMainPageBody.SelectedIndex;
             Config.SaveConfig();
+            HomeBodyMange.Load();
         }
     }
 }

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 public class Updater
 {
     private readonly HttpClient _httpClient;
-    private readonly Action<string,string> _callback;
 
     public Updater(Action<string,string> callback)
     {
@@ -16,16 +15,14 @@ public class Updater
 
         // 添加默认请求头
         _httpClient.DefaultRequestHeaders.Add("User-Agent", "Updater/1.0"); // GitHub API 要求 User-Agent 头
-
-        _callback = callback;
     }
 
-    public async Task GetDownloadUrlAsync(string url)
+    public void GetDownloadUrlAsync(string url)
     {
         try
         {
             // 访问URL并获取结果
-            string response = await _httpClient.GetStringAsync(url);
+            string response = _httpClient.GetStringAsync(url).Result;
 
             // 解析JSON数据
             var releases = JsonSerializer.Deserialize<List<Release>>(response);
@@ -45,9 +42,6 @@ public class Updater
             {
                 throw new Exception("No matching download URL found for the current system.");
             }
-
-            // 调用回调函数
-            _callback?.Invoke(release.name,downloadUrl);
         }
         catch (Exception ex)
         {
