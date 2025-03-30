@@ -28,6 +28,11 @@ public partial class Launcher : UserControl
     public Launcher()
     {
         InitializeComponent();
+#if DEBUG
+        DebugBox.IsVisible = true;
+#else
+        DebugBox.IsVisible = false;
+#endif
         TilesMange.TilesPanel = this.WrapPanel;
         Task.Run(() =>
         {
