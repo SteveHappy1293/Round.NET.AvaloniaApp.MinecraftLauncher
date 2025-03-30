@@ -26,6 +26,12 @@ public partial class Setting : UserControl
         Core.SettingPage = this;
         RegisterRoute(new Core.API.NavigationRouteConfig()
         {
+            Page = SafeSetting,
+            Title = "安全",
+            Route = "SafeSetting"
+        });
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
             Page = SeniorSetting,
             Title = "高级",
             Route = "SeniorSetting"
@@ -76,6 +82,7 @@ public partial class Setting : UserControl
     private InternetSetting InternetSetting { get; set; } = new();
     private JavaSetting JavaSetting { get; set; } = new();
     private AboutRMCL AboutRMCL { get; set; } = new();
+    private SafeSetting SafeSetting { get; set; } = new();
     private DownloadSetting DownloadSetting { get; set; } = new();
     public List<Core.API.NavigationRouteConfig> RouteConfigs { get; set; } = new();
     private void NavigationView_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
@@ -104,7 +111,7 @@ public partial class Setting : UserControl
     {
         RouteConfigs.Add(config);
         var isthis = false;
-        if (config.Route == "SeniorSetting")
+        if (config.Route == "SafeSetting")
         {
             isthis = true;
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -12,8 +13,17 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 
 public class Message
 {
+    public class MessageEntry
+    {
+        public string Message { get; set; }
+        public string Title { get; set; }
+        public InfoBarSeverity Type { get; set; }
+        public DateTime Time { get; set; } = DateTime.Now;
+    }
+    public static List<MessageEntry> Messages { get; private set; } = new();
     public static void Show(string title, string message, InfoBarSeverity type)
     {
+        Messages.Add(new MessageEntry { Message = message, Title = title, Type = type });
         Dispatcher.UIThread.Invoke(() =>
         {
             var messagebox = new InfoBar()

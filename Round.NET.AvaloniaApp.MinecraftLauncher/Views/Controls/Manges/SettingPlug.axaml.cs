@@ -33,7 +33,10 @@ public partial class SettingPlug : UserControl
         string newFilePath = directory + "\\" + fileNameWithoutExtension + newExtension;
 
         // 重命名文件
-        File.Move(originalFilePath, newFilePath);
+        try
+        {
+            File.Move(originalFilePath, newFilePath);
+        }catch{ }
 
         RLogs.WriteLog($"文件后缀已更改为：{newFilePath}");
         var con = (ContentDialog)this.Parent;

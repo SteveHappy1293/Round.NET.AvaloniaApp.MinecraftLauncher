@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Round.NET.MinecraftPlayerSk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Round.NET.Updater.Library", "Round.NET.Updater.Library\Round.NET.Updater.Library.csproj", "{F52B35C8-D678-4850-8DBC-864D7381DD33}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{1B11B8B2-AEB9-4B30-BE40-087E7CF1034D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{F52B35C8-D678-4850-8DBC-864D7381DD33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F52B35C8-D678-4850-8DBC-864D7381DD33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F52B35C8-D678-4850-8DBC-864D7381DD33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B11B8B2-AEB9-4B30-BE40-087E7CF1034D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B11B8B2-AEB9-4B30-BE40-087E7CF1034D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B11B8B2-AEB9-4B30-BE40-087E7CF1034D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B11B8B2-AEB9-4B30-BE40-087E7CF1034D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

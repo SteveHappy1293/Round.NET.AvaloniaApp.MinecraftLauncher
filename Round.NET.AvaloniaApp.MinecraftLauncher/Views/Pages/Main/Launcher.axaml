@@ -36,6 +36,11 @@
                         <DockPanel>
                             <fluentIcons:FluentIcon Icon="People20Regular"/>
                         </DockPanel>
+                    </Button>                 
+                    <Button Height="40" Width="40" Background="Transparent" BorderBrush="Transparent" CornerRadius="20" Margin="10" Click="ErrorButton">
+                        <DockPanel>
+                            <fluentIcons:FluentIcon Icon="ErrorCircle20Regular"/>
+                        </DockPanel>
                     </Button>
                 </DockPanel>
             </Grid>

@@ -30,6 +30,9 @@ public partial class MainWindow : AppWindow
 {
     public MainWindow()
     {
+        var server = new SimpleHttpServer(new Random().Next(1000,65500));
+        server.Start();
+        
         User.LoadUser();
         MinecraftLauncher.Modules.Java.FindJava.JavasList.Clear();
         Config.LoadConfig();

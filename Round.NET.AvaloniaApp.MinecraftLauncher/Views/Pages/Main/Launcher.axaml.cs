@@ -130,4 +130,9 @@ public partial class Launcher : UserControl
         
         Core.NavigationBar.Opacity = 0;
     }
+
+    private void ErrorButton(object? sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
 }

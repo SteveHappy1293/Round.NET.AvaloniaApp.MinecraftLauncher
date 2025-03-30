@@ -1,0 +1,50 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Windows.ErrorWindow"
+        Width="1330"
+        Height="820"
+        MinWidth="1330"
+        MinHeight="820"
+        WindowStartupLocation="CenterScreen"
+        Title="RMCL 异常捕获">
+    <Grid>
+        <Border Background="Red" Height="18" Width="83" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="82,50" Opacity="0.5"></Border>
+        <Label Margin="80,10" FontSize="40" FontWeight="ExtraBold">崩溃了！</Label>
+        <fluentIcons:FluentIcon Margin="25" Width="40" Height="40" Icon="Warning20Regular" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,70" FontSize="13" Foreground="Orange">这有可能是致命的错误，也有可能是忘记处理了 orz.</Label>
+        <Label Name="ErrorTypeLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,90" FontSize="18" Foreground="Gray">ErrorType</Label>
+        
+        <Label HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20" Name="TimeShow">Time</Label>
+        <Label HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,40" Foreground="Gray">RMCL 异常捕获</Label>
+        
+        <ScrollViewer Margin="15,125,15,64">
+            <StackPanel>
+                <Expander Margin="5" Header="错误信息">
+                    <TextBlock Name="ErrorMessage" TextWrapping="Wrap">错误信息</TextBlock>
+                </Expander>
+                <Expander Margin="5" Header="堆栈跟踪">
+                    <TextBlock Name="StackMessage" TextWrapping="Wrap">系统信息</TextBlock>
+                </Expander>
+                <Expander Margin="5" Header="系统信息">
+                    <TextBlock Name="SystemMessage" TextWrapping="Wrap">系统信息</TextBlock>
+                </Expander>
+                <Expander Margin="5" Header="配置信息">
+                    <TextBlock Name="ConfigMessage" TextWrapping="Wrap">配置信息</TextBlock>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
+        <DockPanel Margin="15,10" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+            <Button Margin="5,10" Classes="accent" IsEnabled="False">导出错误信息</Button>
+            <Button Margin="5,10" Name="ResetButton" Click="ResetButton_OnClick">重置 RMCL</Button>
+            <HyperlinkButton NavigateUri="https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/issues">打开 Github Issues</HyperlinkButton>
+        </DockPanel>
+        <DockPanel Margin="15,10" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button Margin="5,10">退出 RMCL</Button>
+            <Button Margin="5,10" Classes="accent">继续运行</Button>
+        </DockPanel>
+    </Grid>
+</Window>
