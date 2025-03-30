@@ -9,25 +9,6 @@
     <Grid>
         <controls:HomeIcon Name="HomeIcon1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
         <Label Margin="50,9" FontSize="22" FontWeight="Bold">领域</Label>
-        <controls1:NavigationView 
-            PaneDisplayMode="Left"
-            IsSettingsVisible="False"
-            IsPaneOpen="True"
-            IsTabStop="False"
-            SelectionFollowsFocus="False"
-            IsPaneToggleButtonVisible="False"
-            HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,51,0,0"
-            OpenPaneLength="180"
-            Name="View"
-            SelectionChanged="NavigationView_OnSelectionChanged">
-            <controls1:NavigationView.MenuItems>
-                <!--<controls:NavigationViewItem Tag="GameDownload" IsSelected="True">游戏下载</controls:NavigationViewItem>
-                <controls:NavigationViewItem Tag="AssetsDownload">资源下载</controls:NavigationViewItem>-->
-            </controls1:NavigationView.MenuItems>
-        </controls1:NavigationView>
-        <Label Margin="190,50" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Name="PageTitleLabel" FontSize="18"></Label>
-        <controls1:Frame Margin="190,80,10,10" Name="MangeFrame">
-            
-        </controls1:Frame>
+        <controls1:Frame Name="MainFrame" Margin="0,51,0,0"></controls1:Frame>
     </Grid>
 </UserControl>

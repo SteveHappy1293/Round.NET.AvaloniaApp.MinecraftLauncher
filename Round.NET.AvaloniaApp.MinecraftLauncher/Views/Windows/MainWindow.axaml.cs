@@ -16,6 +16,7 @@ using MinecraftLaunch;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User.RSAccount;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Plugs;
@@ -30,9 +31,6 @@ public partial class MainWindow : AppWindow
 {
     public MainWindow()
     {
-        var server = new SimpleHttpServer(new Random().Next(1000,65500));
-        server.Start();
-        
         User.LoadUser();
         MinecraftLauncher.Modules.Java.FindJava.JavasList.Clear();
         Config.LoadConfig();

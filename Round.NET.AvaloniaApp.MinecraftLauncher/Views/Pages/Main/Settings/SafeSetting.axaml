@@ -2,11 +2,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.SafeSetting">
     <ScrollViewer>
         <StackPanel>
-            
+            <Border Background="#292929" Width="300" CornerRadius="6" Margin="10" Padding="10"> 
+                <StackPanel Margin="10">
+                    <fluentIcons:FluentIcon Icon="Question20Filled" Margin="5" VerticalAlignment="Top" Height="32"/>
+                    <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center">你可能会遇到一些问题</Label>
+                    <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center">也许在这里可以找到</Label>
+                </StackPanel>
+            </Border>
+            <Button Margin="10" HorizontalAlignment="Stretch">异常追踪</Button>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

@@ -1,0 +1,21 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Account.AccountMainPage.AccountLoginPage">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border Background="Black" HorizontalAlignment="Center" Padding="10" CornerRadius="1000" Margin="5">
+                <Grid>
+                    <fluentIcons:FluentIcon Icon="Person20Regular" Width="32" Height="32" Margin="5"/>
+                    <fluentIcons:FluentIcon Icon="Prohibited20Regular" Width="48" Height="48" Margin="5" Foreground="Red"/>
+                </Grid>
+            </Border>
+            <Label HorizontalAlignment="Center">你看起来还没登录...</Label>
+            <Label HorizontalAlignment="Center">领域页面需要登录 Round Studio 账户才能使用哦~</Label>
+            <Button HorizontalAlignment="Center" Margin="10" Classes="accent" Click="Button_OnClick">登录</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

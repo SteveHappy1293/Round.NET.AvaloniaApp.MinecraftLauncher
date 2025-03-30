@@ -7,6 +7,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Views;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Account;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Account.AccountMainPage;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 
@@ -18,7 +19,7 @@ public class Core
     public static Download DownloadPage { get; set; } = new();
     public static Views.Pages.Main.Mange MangePage { get; set; } = new();
     public static Setting SettingPage { get; set; } = new();
-    public static Account AccountPage { get; set; } = new();
+    public static AccountHomePage AccountPage { get; set; } = new();
     public static SystemNavigationBar NavigationBar { get; set; }
     public static List<API.SearchItemConfig> SearchItems { get; set; } = new();
     public static Launcher MainHome { get; set; } = new();

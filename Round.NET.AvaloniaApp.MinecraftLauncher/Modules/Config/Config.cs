@@ -4,6 +4,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using Avalonia.Controls.Documents;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 using SkiaSharp;
 using User = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User.User;
@@ -33,6 +34,13 @@ public class ConfigRoot
     public int DownloadThreads { get; set; } = 256;
     public int WindowX { get; set; } = 0;
     public int WindowY { get; set; } = 0;
+    public string RSAccount { get; set; } = string.Empty;
+#if true
+    public string LoginServer { get; set; } = Config.LoginServerIP;
+#else
+    [JsonIgnore]
+    public string LoginServer = Config.LoginServerIP;
+#endif
 }
 
 public class GameFolderConfig
@@ -44,6 +52,12 @@ public class GameFolderConfig
 
 public class Config
 {
+#if DEBUG
+    public static string LoginServerIP = "http://127.0.0.1:32127";
+#else
+    public static readonly string LoginServerIP = "http://account.roundstduio.top:32127";
+#endif
+    
     public static ConfigRoot MainConfig = new()
     {
         GameFolders = new()
