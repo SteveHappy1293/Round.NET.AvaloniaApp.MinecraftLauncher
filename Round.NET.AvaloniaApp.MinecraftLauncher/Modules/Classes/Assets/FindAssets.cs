@@ -1,16 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using MinecraftLaunch.Components.Provider;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Assets;
 
 public class FindAssets
 {
-    // public static async Task<IEnumerable<CurseForgeResourceEntry>> GetFindAssets(string searchString)
-    // {
-    //     //var find = new CurseForgeFetcher("$2a$10$kId1ZiMP/aZ3YAfD.Ls/5.0xK5IuOrurhFyyqb5lJDqCwrOnSgn9S");
-    //     //var result = await find.SearchResourcesAsync(searchString);
-    //     var result = new;
-    //     
-    //     return result;
-    // }
+    public static async Task<List<CurseforgeResource>> GetFindAssets(string searchString)
+    {
+        var res = new List<CurseforgeResource>();
+        var curseforgeProvider = new CurseforgeProvider("$2a$10$Awb53b9gSOIJJkdV3Zrgp.CyFP.dI13QKbWn/4UZI4G4ff18WneB6");
+        await foreach (var it in curseforgeProvider.GetFeaturedResourcesAsync())
+        {
+            res.Add(it);
+        }
+
+        return res;
+    }
 }

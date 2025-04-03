@@ -8,11 +8,15 @@ using Avalonia.Markup.Xaml;
 using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Classes;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.ExceptionMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Windows;
 
 public partial class ErrorWindow : Window
 {
+    public ExceptionEntry ExceptionEntry { get; set; } = new();
     public ErrorWindow()
     {
         InitializeComponent();
@@ -40,6 +44,17 @@ public partial class ErrorWindow : Window
         constr.Add(new() { Title = "虚拟机内存", Text = Config.MainConfig.JavaUseMemory.ToString() });
         constr.Add(new() { Title = "最大下载线程", Text = Config.MainConfig.DownloadThreads.ToString() });
         ConfigMessage.Text = constr.GetResult();
+
+        ExceptionEntry.Exception = ex.Message;
+        ExceptionEntry.ExceptionSource = ex.Source;
+        ExceptionEntry.StackTrace = ex.StackTrace;
+        ExceptionEntry.RecordTime = DateTime.Now;
+        ExceptionEntry.SystemLanguage = CultureInfo.InstalledUICulture.Name;
+        ExceptionEntry.SystemVersion = Environment.OSVersion.ToString();
+        ExceptionEntry.SystemTimeZone = localTimeZone.DisplayName;
+        ExceptionEntry.ExceptionType = ExceptionMessage.GetExceptionSeverity(ex);
+
+        ExceptionMessage.LogException(ExceptionEntry);
     }
 
     private void ResetButton_OnClick(object? sender, RoutedEventArgs e)

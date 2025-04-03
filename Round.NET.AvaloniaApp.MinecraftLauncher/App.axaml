@@ -9,12 +9,17 @@
              xmlns:dialog="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog"
              xmlns:global="clr-namespace:"
              xmlns:download="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download"
+             xmlns:custom="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.App"
              RequestedThemeVariant="Dark">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.Styles>
         <styling:FluentAvaloniaTheme CustomAccentColor="DodgerBlue" UseSystemFontOnWindows="True"/>
+        <Style Selector="custom|AnimatedStackPanel">
+            <Setter Property="AnimationDuration" Value="0:0:0.3"/>
+            <Setter Property="ItemDelay" Value="0:0:0.1"/>
+        </Style>
         <Style Selector="controls|SettingsExpander">
             <Setter Property="Transitions">
                 <Transitions>

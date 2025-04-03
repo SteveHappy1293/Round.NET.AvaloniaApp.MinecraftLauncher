@@ -53,97 +53,97 @@ public partial class DownloadAssetsPage : UserControl
         var key = KeyBox.Text;
         bool Clear = false;
 
-        // Task.Run(async () =>
-        // {
-        //     foreach (var re in await FindAssets.GetFindAssets(key))
-        //     {
-        //         
-        //         Dispatcher.UIThread.InvokeAsync(async () =>
-        //         {
-        //             if (!Clear)
-        //             {
-        //                 Clear = true;
-        //                 AssetsBox.Children.Clear();
-        //             }
-        //             var image =new Image()
-        //             { 
-        //                 Margin = new Thickness(-10,5),  
-        //                 HorizontalAlignment = HorizontalAlignment.Left
-        //             };
-        //             var ring = new ProgressRing()
-        //             {
-        //                 Margin = new Thickness( 3),
-        //                 HorizontalAlignment = HorizontalAlignment.Left,
-        //                 VerticalAlignment = VerticalAlignment.Center,
-        //             };
-        //             Task.Run(async () =>
-        //             {
-        //                 var imageStream = await DownloadImageAsync(re.IconUrl);
-        //                 if (imageStream != null)
-        //                 {
-        //                     // 将图片流加载为Bitmap
-        //                     var bitmap = new Bitmap(imageStream);
-        //
-        //                     // 在UI线程中更新Image控件
-        //                     await Dispatcher.UIThread.InvokeAsync(() =>
-        //                     {
-        //                         image.Source = bitmap;
-        //                         ring.IsVisible = false;
-        //                     });
-        //                 }
-        //             });
-        //             AssetsBox.Children.Add(new ListBoxItem()
-        //             {
-        //                 Content = new Grid()
-        //                 {
-        //                     Height = 65,
-        //                     Children =
-        //                     {
-        //                         image,
-        //                         ring,
-        //                         new Label()
-        //                         {
-        //                             Content = re.Name,
-        //                             HorizontalContentAlignment = HorizontalAlignment.Left,
-        //                             VerticalContentAlignment = VerticalAlignment.Top,
-        //                             Margin = new Thickness(50,5),
-        //                             FontSize = 22
-        //                         },
-        //                         new Label()
-        //                         {
-        //                             Content = re.Summary,
-        //                             HorizontalContentAlignment = HorizontalAlignment.Left,
-        //                             VerticalContentAlignment = VerticalAlignment.Bottom,
-        //                             Margin = new Thickness(50,5),
-        //                             FontSize = 15,
-        //                             FontStyle = FontStyle.Italic,
-        //                             Foreground = Brushes.DimGray,
-        //                         },
-        //                         new DockPanel()
-        //                         {
-        //                             HorizontalAlignment = HorizontalAlignment.Right,
-        //                             VerticalAlignment = VerticalAlignment.Center,
-        //                             Children =
-        //                             {
-        //                                 new Button()
-        //                                 {
-        //                                     Content = new HeroIcon()
-        //                                     {
-        //                                         Foreground = Brushes.White,
-        //                                         Type = IconType.Cog8Tooth,
-        //                                         Min = true
-        //                                     },
-        //                                     Margin = new Thickness(5),
-        //                                     Height = 32,
-        //                                     Width = 32
-        //                                 }
-        //                             }
-        //                         }
-        //                     }
-        //                 },
-        //             });
-        //         });
-        //     }
-        // });
+        Task.Run(async () =>
+        {
+            foreach (var re in await FindAssets.GetFindAssets(key))
+            {
+                
+                Dispatcher.UIThread.InvokeAsync(async () =>
+                {
+                    if (!Clear)
+                    {
+                        Clear = true;
+                        AssetsBox.Children.Clear();
+                    }
+                    var image =new Image()
+                    { 
+                        Margin = new Thickness(-10,5),  
+                        HorizontalAlignment = HorizontalAlignment.Left
+                    };
+                    var ring = new ProgressRing()
+                    {
+                        Margin = new Thickness( 3),
+                        HorizontalAlignment = HorizontalAlignment.Left,
+                        VerticalAlignment = VerticalAlignment.Center,
+                    };
+                    Task.Run(async () =>
+                    {
+                        var imageStream = await DownloadImageAsync(re.IconUrl);
+                        if (imageStream != null)
+                        {
+                            //将图片流加载为Bitmap
+                            var bitmap = new Bitmap(imageStream);
+        
+                            //在UI线程中更新Image控件
+                            await Dispatcher.UIThread.InvokeAsync(() =>
+                            {
+                                image.Source = bitmap;
+                                ring.IsVisible = false;
+                            });
+                        }
+                    });
+                    AssetsBox.Children.Add(new ListBoxItem()
+                    {
+                        Content = new Grid()
+                        {
+                            Height = 65,
+                            Children =
+                            {
+                                image,
+                                ring,
+                                new Label()
+                                {
+                                    Content = re.Name,
+                                    HorizontalContentAlignment = HorizontalAlignment.Left,
+                                    VerticalContentAlignment = VerticalAlignment.Top,
+                                    Margin = new Thickness(50,5),
+                                    FontSize = 22
+                                },
+                                new Label()
+                                {
+                                    Content = re.Summary,
+                                    HorizontalContentAlignment = HorizontalAlignment.Left,
+                                    VerticalContentAlignment = VerticalAlignment.Bottom,
+                                    Margin = new Thickness(50,5),
+                                    FontSize = 15,
+                                    FontStyle = FontStyle.Italic,
+                                    Foreground = Brushes.DimGray,
+                                },
+                                new DockPanel()
+                                {
+                                    HorizontalAlignment = HorizontalAlignment.Right,
+                                    VerticalAlignment = VerticalAlignment.Center,
+                                    Children =
+                                    {
+                                        new Button()
+                                        {
+                                            Content = new HeroIcon()
+                                            {
+                                                Foreground = Brushes.White,
+                                                Type = IconType.Cog8Tooth,
+                                                Min = true
+                                            },
+                                            Margin = new Thickness(5),
+                                            Height = 32,
+                                            Width = 32
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                    });
+                });
+            }
+        });
     }
 }

@@ -21,19 +21,19 @@
         <Label HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20" Name="TimeShow">Time</Label>
         <Label HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,40" Foreground="Gray">RMCL 异常捕获</Label>
         
-        <ScrollViewer Margin="15,125,15,64">
-            <StackPanel>
-                <Expander Margin="5" Header="错误信息">
-                    <TextBlock Name="ErrorMessage" TextWrapping="Wrap">错误信息</TextBlock>
+        <ScrollViewer Margin="15,125,15,64" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel HorizontalAlignment="Stretch">
+                <Expander Margin="5" Header="错误信息" HorizontalAlignment="Stretch">
+                    <TextBlock Name="ErrorMessage" TextWrapping="Wrap" HorizontalAlignment="Stretch">错误信息</TextBlock>
                 </Expander>
-                <Expander Margin="5" Header="堆栈跟踪">
-                    <TextBlock Name="StackMessage" TextWrapping="Wrap">系统信息</TextBlock>
+                <Expander Margin="5" Header="堆栈跟踪" HorizontalAlignment="Stretch">
+                    <TextBlock Name="StackMessage" TextWrapping="Wrap" HorizontalAlignment="Stretch">系统信息</TextBlock>
                 </Expander>
-                <Expander Margin="5" Header="系统信息">
-                    <TextBlock Name="SystemMessage" TextWrapping="Wrap">系统信息</TextBlock>
+                <Expander Margin="5" Header="系统信息" HorizontalAlignment="Stretch">
+                    <TextBlock Name="SystemMessage" TextWrapping="Wrap" HorizontalAlignment="Stretch">系统信息</TextBlock>
                 </Expander>
-                <Expander Margin="5" Header="配置信息">
-                    <TextBlock Name="ConfigMessage" TextWrapping="Wrap">配置信息</TextBlock>
+                <Expander Margin="5" Header="配置信息" HorizontalAlignment="Stretch">
+                    <TextBlock Name="ConfigMessage" TextWrapping="Wrap" HorizontalAlignment="Stretch">配置信息</TextBlock>
                 </Expander>
             </StackPanel>
         </ScrollViewer>
