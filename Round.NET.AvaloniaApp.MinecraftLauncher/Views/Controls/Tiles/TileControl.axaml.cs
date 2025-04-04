@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Tiles;
 
-public partial class TileControl : Button
+public partial class TileControl : Avalonia.Controls.Button
 {
     public TileControl()
     {

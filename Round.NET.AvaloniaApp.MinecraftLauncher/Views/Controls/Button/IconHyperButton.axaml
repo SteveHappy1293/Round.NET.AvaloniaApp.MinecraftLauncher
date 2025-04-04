@@ -1,0 +1,24 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Button">
+    <Design.PreviewWith>
+        <controls:IconHyperButton />
+    </Design.PreviewWith>
+
+    <Style Selector="controls|IconHyperButton">
+        <!-- Set Defaults -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <HyperlinkButton NavigateUri="{TemplateBinding NavigateUri}">
+                    <DockPanel Margin="5">
+                        <Image Width="45" Height="45" Source="{TemplateBinding Icon}"></Image>
+                        <StackPanel Margin="10,0,0,0">
+                            <TextBlock Text="{TemplateBinding Text}" FontSize="18" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{TemplateBinding NavigateUri}" Margin="0,3,0,0"></TextBlock>
+                        </StackPanel>
+                    </DockPanel>
+                </HyperlinkButton>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

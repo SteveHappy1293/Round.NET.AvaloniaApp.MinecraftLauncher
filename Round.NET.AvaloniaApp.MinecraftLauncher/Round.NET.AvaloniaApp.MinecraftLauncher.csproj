@@ -40,6 +40,14 @@
       <DependentUpon>MainView.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Controls\Button\HomeIcon.axaml.cs">
+      <DependentUpon>HomeIcon.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Controls\Button\BackIcon.axaml.cs">
+      <DependentUpon>BackIcon.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

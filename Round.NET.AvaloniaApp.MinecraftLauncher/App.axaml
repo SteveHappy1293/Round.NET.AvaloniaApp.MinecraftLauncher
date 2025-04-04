@@ -18,6 +18,7 @@
     <Application.Styles>
         <styling:FluentAvaloniaTheme CustomAccentColor="DodgerBlue" UseSystemFontOnWindows="True"/>
         <StyleInclude Source="/Views/Controls/RoundWindow.axaml" />
+        <StyleInclude Source="/Views/Controls/Button/IconHyperButton.axaml" />
         <Style Selector="custom|AnimatedStackPanel">
             <Setter Property="AnimationDuration" Value="0:0:0.3"/>
             <Setter Property="ItemDelay" Value="0:0:0.1"/>
