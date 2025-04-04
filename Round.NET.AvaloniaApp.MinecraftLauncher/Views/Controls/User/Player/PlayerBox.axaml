@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
-             xmlns:controls1="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d"
              Width="120" Height="165"
              Margin="5"
@@ -14,7 +14,7 @@
                 <MenuItem>
                     <MenuItem.Header>
                         <DockPanel VerticalAlignment="Center">
-                            <controls1:HeroIcon Foreground="White" Min="True" Type="Cog6Tooth" Width="13" VerticalAlignment="Center"/>
+                            <fluentIcons:FluentIcon Icon="Settings20Regular" Width="13" VerticalAlignment="Center"/>
                             <Label VerticalAlignment="Center" Margin="10,0">设置此账户</Label>
                         </DockPanel>
                     </MenuItem.Header>
@@ -22,7 +22,7 @@
                 <MenuItem Name="ChoseThis" Click="ChoseThis_OnClick">
                     <MenuItem.Header>
                         <DockPanel VerticalAlignment="Center">
-                            <controls1:HeroIcon Foreground="White" Min="True" Type="Check" Width="13" VerticalAlignment="Center"/>
+                            <fluentIcons:FluentIcon Icon="Check20Regular" Width="13" VerticalAlignment="Center"/>
                             <Label VerticalAlignment="Center" Margin="10,0">选择此账户</Label>
                         </DockPanel>
                     </MenuItem.Header>

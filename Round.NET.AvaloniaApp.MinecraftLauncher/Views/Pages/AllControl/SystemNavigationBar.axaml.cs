@@ -8,9 +8,8 @@ using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
+using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Controls;
-using HeroIconsAvalonia.Controls;
-using HeroIconsAvalonia.Enums;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
@@ -26,21 +25,21 @@ public partial class SystemNavigationBar : UserControl
         Core.NavigationBar = this;
         Core.API.RegisterNavigationRoute(new()
         {
-            Icon = IconType.InboxArrowDown,
+            Icon = FluentIconSymbol.ArrowDownload20Regular,
             Page = Core.DownloadPage,
             Route = "Download",
             Title = "下载",
         });
         Core.API.RegisterNavigationRoute(new()
         {
-            Icon = IconType.ListBullet,
+            Icon = FluentIconSymbol.List20Regular,
             Page = new Mange(),
             Route = "Mange",
             Title = "管理",
         });
         Core.API.RegisterNavigationRoute(new()
         {
-            Icon = IconType.Cog6Tooth,
+            Icon = FluentIconSymbol.Settings20Regular,
             Page = new Setting(),
             Route = "Setting",
             Title = "设置",
@@ -77,11 +76,10 @@ public partial class SystemNavigationBar : UserControl
         {
             Height = 52,
             Tag = routeConfig.Route,
-            Content = new HeroIcon()
+            Content = new FluentIcon()
             {
-                Foreground = Brushes.White,
-                Type = routeConfig.Icon,
-                Min = true
+                Icon = routeConfig.Icon,
+                Margin = new Thickness(-6),
             },
         };
         nav.PointerPressed += InputElement_OnPointerPressed;

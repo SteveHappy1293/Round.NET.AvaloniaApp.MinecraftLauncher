@@ -22,22 +22,21 @@
                 </DockPanel>
                     <StackPanel Name="ImageBox" IsVisible="False" Margin="20,10,0,0">
                         <TextBox Name="ImagePathBox" Watermark="请输入图片路径"/>
-                        <Grid>
-                            <DockPanel>
-                                <Label Margin="5" Name="BackTMDLabel" Width="150" VerticalAlignment="Center">背景图透明度(100%)</Label>
-                                <Slider HorizontalAlignment="Stretch" Name="BackTMDSlider" ValueChanged="BackTMDSlider_OnValueChanged"></Slider>
-                            </DockPanel>
-                        </Grid>
-                        <Button Name="ChooseImage" Click="ChooseImage_OnClick" HorizontalAlignment="Right">选择图片</Button>
                     </StackPanel>
                     <StackPanel Name="StyleBox" IsVisible="False" Margin="20,10,0,0">
                         <TextBox Name="StylePathBox" Watermark="请输入主题文件路径"/>
-                        <Button Name="ChooseStyle" Click="ChooseStyle_OnClick_OnClick" HorizontalAlignment="Right" Margin="0,10,0,0">选择文件</Button>
                     </StackPanel>
                 
+                    <DockPanel Name="TMDBox" Margin="15,0,0,0">
+                        <Label Margin="5" Name="BackTMDLabel" Width="150" VerticalAlignment="Center">背景图透明度(100%)</Label>
+                        <Slider HorizontalAlignment="Stretch" Name="BackTMDSlider" ValueChanged="BackTMDSlider_OnValueChanged"></Slider>
+                    </DockPanel>
+                
                     <DockPanel HorizontalAlignment="Right">
+                        <Button Name="ChooseStyle" Click="ChooseStyle_OnClick_OnClick" HorizontalAlignment="Right" Margin="0,10,10,0">选择文件</Button>
+                        <Button Name="ChooseImage" Click="ChooseImage_OnClick" HorizontalAlignment="Right" Margin="0,10,10,0">选择图片</Button>
                         <Button Name="SaveConfig" Click="SaveConfig_OnClick" HorizontalAlignment="Right" Margin="0,10,10,0">导出主题配置</Button>
-                        <Button Name="SaveImage" Click="SaveImage_OnClick" HorizontalAlignment="Right" Margin="0,10,0,0">保存设置</Button>
+                        <Button Classes="accent" Name="SaveImage" Click="SaveImage_OnClick" HorizontalAlignment="Right" Margin="0,10,0,0">保存设置</Button>
                     </DockPanel>
             </StackPanel>
             <StackPanel Margin="10,10,0,0">

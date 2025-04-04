@@ -11,9 +11,7 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
-using FluentAvalonia.UI.Controls;
-using HeroIconsAvalonia.Controls;
-using HeroIconsAvalonia.Enums;
+using FluentAvalonia.UI.Controls; 
 using MinecraftLaunch.Base.Models.Authentication;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
@@ -88,7 +86,7 @@ public partial class UserMange : UserControl
                             {
                                 new Button()
                                 {
-                                    Content = new HeroIcon()
+                                    Content = new FluentIcon()
                                     {
                                         Foreground = Brushes.White,
                                         Type = IconType.Cog8Tooth,

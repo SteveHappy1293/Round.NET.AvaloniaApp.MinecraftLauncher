@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             xmlns:customControls="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              IsVisible="True"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl.SystemTaskBox">
@@ -25,9 +26,9 @@
                     <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
                 </Transitions>
             </ScrollViewer.Transitions>
-            <StackPanel Name="MessageListBox" Width="300">
+            <customControls:AnimatedStackPanel Name="MessageListBox" Width="300" AnimationDirection="Left">
                     
-            </StackPanel>
+            </customControls:AnimatedStackPanel>
         </ScrollViewer>
         
         <ScrollViewer HorizontalAlignment="Right" VerticalAlignment="Stretch" Name="MainPanel" Width="380" Margin="0,40,-380,0">

@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
-             xmlns:controls1="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d"
              MinHeight="165"
              MinWidth="300"
@@ -20,7 +20,7 @@
             </StackPanel>
             <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Height="32" Name="KillGame" Click="KillGame_OnClick" Width="80">取消启动</Button>
             <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Height="32" Width="32" Name="LogButton" IsEnabled="False" Click="LogButton_OnClick">
-                <controls1:HeroIcon Foreground="White" Type="CommandLine" Min="True"/>
+                <fluentIcons:FluentIcon Foreground="White" Icon="KeyCommand20Regular"/>
             </Button>
         </Grid>
     </Border>

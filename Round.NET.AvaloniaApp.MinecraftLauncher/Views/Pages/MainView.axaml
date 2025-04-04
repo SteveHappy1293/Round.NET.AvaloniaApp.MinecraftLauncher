@@ -3,9 +3,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ui="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
-             xmlns:controls="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
              xmlns:allControl="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl"
              xmlns:controls1="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.MainView">
     <Grid>
@@ -22,7 +22,7 @@
         <DockPanel IsVisible="False" Height="38" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="138,0" >
             <Label VerticalAlignment="Center" Name="VersionLabel" Foreground="Gray" Opacity="50" Margin="10,0"></Label>
             <Button Width="48" Height="38" Name="SearchGoButton" Click="Button_OnClick" CornerRadius="0" Background="Transparent" BorderThickness="0">
-                <controls:HeroIcon Foreground="White" Type="MagnifyingGlass" Min="True" Width="15"></controls:HeroIcon>
+                <fluentIcons:FluentIcon Icon="Glasses20Regular"/>
             </Button>
         </DockPanel>
         <allControl:SearchBox Name="MainSearchBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsVisible="False"/>

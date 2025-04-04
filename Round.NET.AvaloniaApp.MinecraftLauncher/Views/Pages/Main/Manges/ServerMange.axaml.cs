@@ -11,9 +11,8 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Threading;
+using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Controls;
-using HeroIconsAvalonia.Controls;
-using HeroIconsAvalonia.Enums;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
@@ -107,11 +106,11 @@ public partial class ServerMange : UserControl
             };
             var serset = new Button()
             {
-                Content = new HeroIcon()
+                Content = new FluentIcon()
                 {
-                    Foreground = Brushes.White,
-                    Type = IconType.Cog8Tooth,
-                    Min = true
+                    Icon = FluentIconSymbol.Settings20Regular,
+                    Width = 15,
+                    Height = 15
                 },
                 Margin = new Thickness(5),
                 Height = 32,
@@ -119,11 +118,9 @@ public partial class ServerMange : UserControl
             };
             var upbtn = new Button()
             {
-                Content = new HeroIcon()
+                Content = new FluentIcon()
                 {
-                    Foreground = Brushes.White,
-                    Type = IconType.ArrowUp,
-                    Min = true,
+                    Icon = FluentIconSymbol.ArrowUp20Regular,
                     Width = 15,
                     Height = 15
                 },
@@ -134,11 +131,9 @@ public partial class ServerMange : UserControl
             };
             var downbtn = new Button()
             {
-                Content = new HeroIcon()
+                Content = new FluentIcon()
                 {
-                    Foreground = Brushes.White,
-                    Type = IconType.ArrowDown,
-                    Min = true,
+                    Icon = FluentIconSymbol.ArrowDown20Regular,
                     Width = 15,
                     Height = 15
                 },
@@ -149,11 +144,9 @@ public partial class ServerMange : UserControl
             };
             var launchbtn = new Button()
             {
-                Content = new HeroIcon()
+                Content = new FluentIcon()
                 {
-                    Foreground = Brushes.White,
-                    Type = IconType.RocketLaunch,
-                    Min = true,
+                    Icon = FluentIconSymbol.Airplane20Regular,
                     Width = 15,
                     Height = 15
                 },

@@ -12,9 +12,8 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Threading;
+using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Controls;
-using HeroIconsAvalonia.Controls;
-using HeroIconsAvalonia.Enums;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
@@ -32,13 +31,15 @@ public partial class Download : UserControl
         {
             Page = DownloadGamePage,
             Title = "下载游戏",
-            Route = "DownloadGame"
+            Route = "DownloadGame",
+            Icon = FluentIconSymbol.Games20Filled
         });
         RegisterRoute(new Core.API.NavigationRouteConfig()
         {
             Page = DownloadAssetsPage,
             Title = "下载资源",
-            Route = "DownloadAssets"
+            Route = "DownloadAssets",
+            Icon = FluentIconSymbol.ArrowDownload20Filled
         });
     }
     private DownloadGamePage DownloadGamePage { get; set; } = new();
@@ -46,8 +47,9 @@ public partial class Download : UserControl
     public List<Core.API.NavigationRouteConfig> RouteConfigs { get; set; } = new();
     private void NavigationView_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
     {
-        
-        ControlChange.ChangeLabelText(PageTitleLabel,((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Content.ToString());
+        var item = ((DockPanel)((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Content);
+        var text = ((TextBlock)(item.Children[1])).Text;
+        ControlChange.ChangeLabelText(PageTitleLabel,text);
         Task.Run(() => // Margin="10,50,10,10"
         {
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 0);
@@ -75,11 +77,27 @@ public partial class Download : UserControl
         {
             isthis = true;
         }
-        View.MenuItems.Add(new NavigationViewItem()
+        var doc = new DockPanel()
+        {
+            Children =
+            {
+                new FluentIcon() { Margin = new Thickness(-5,0,0,0),Icon = config.Icon,Width = 15,Height = 15 },
+                new TextBlock() { Margin = new Thickness(10,0,0,0),Text = config.Title,Name = "TitleLabel"}
+            }
+        };
+        var item = new NavigationViewItem()
         {
             Tag = config.Route,
-            Content = config.Title,
+            Content = doc,
             IsSelected = isthis
-        });
+        };
+        if (config.IsFoot)
+        {
+            View.FooterMenuItems.Add(item);
+        }
+        else
+        {
+            View.MenuItems.Add(item);
+        }
     }
 }

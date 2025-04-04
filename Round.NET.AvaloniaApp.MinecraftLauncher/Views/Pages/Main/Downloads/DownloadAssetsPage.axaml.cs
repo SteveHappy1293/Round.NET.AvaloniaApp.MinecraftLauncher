@@ -10,9 +10,8 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Threading;
-using FluentAvalonia.UI.Controls;
-using HeroIconsAvalonia.Controls;
-using HeroIconsAvalonia.Enums;
+using FluentAvalonia.FluentIcons;
+using FluentAvalonia.UI.Controls; 
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Assets;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
@@ -127,11 +126,9 @@ public partial class DownloadAssetsPage : UserControl
                                     {
                                         new Button()
                                         {
-                                            Content = new HeroIcon()
+                                            Content = new FluentIcon()
                                             {
-                                                Foreground = Brushes.White,
-                                                Type = IconType.Cog8Tooth,
-                                                Min = true
+                                                Icon = FluentIconSymbol.Settings20Regular
                                             },
                                             Margin = new Thickness(5),
                                             Height = 32,

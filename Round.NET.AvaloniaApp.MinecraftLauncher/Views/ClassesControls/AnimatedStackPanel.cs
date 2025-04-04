@@ -6,6 +6,7 @@ using Avalonia.Media;
 using System;
 using System.Threading.Tasks;
 using Avalonia.Styling;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Enum;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls
 {
@@ -23,11 +24,20 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls
         public static readonly StyledProperty<bool> IsAnimationEnabledProperty =
             AvaloniaProperty.Register<AnimatedStackPanel, bool>(
                 nameof(IsAnimationEnabled), true);
+        
+        public static readonly StyledProperty<AnimationDirectionEnum> AnimationDirectionProperty =
+            AvaloniaProperty.Register<AnimatedStackPanel, AnimationDirectionEnum>(
+                nameof(AnimationDirection),Modules.Enum.AnimationDirectionEnum.Right);
 
         public TimeSpan AnimationDuration
         {
             get => GetValue(AnimationDurationProperty);
             set => SetValue(AnimationDurationProperty, value);
+        }
+        public AnimationDirectionEnum AnimationDirection
+        {
+            get => GetValue(AnimationDirectionProperty);
+            set => SetValue(AnimationDirectionProperty, value);
         }
 
         public TimeSpan ItemDelay
@@ -78,15 +88,26 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls
                 }
             }
         }
+
+        private TranslateTransform GetTranslateTransform()
+        {
+            return AnimationDirection switch
+            {
+                AnimationDirectionEnum.Right => new TranslateTransform(){X = 50, Y = 0},
+                AnimationDirectionEnum.Left => new TranslateTransform(){X = -50, Y = 0},
+                AnimationDirectionEnum.Top => new TranslateTransform(){X = 0, Y = -50},
+                AnimationDirectionEnum.Bottom => new TranslateTransform(){X = 0, Y = 50},
+            };
+        }
         private async Task AnimateControlEntrance(Control control, TimeSpan delay)
         {
             // 确保控件初始状态可见
             control.Opacity = 1;
-            control.RenderTransform = new TranslateTransform { Y = 0 };
+            control.RenderTransform = new TranslateTransform { X = 0 };
     
             // 设置动画初始状态
             control.Opacity = 0;
-            control.RenderTransform = new TranslateTransform { Y = 50 };
+            control.RenderTransform = GetTranslateTransform();
     
             await Task.Delay(delay);
     
@@ -103,7 +124,8 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls
                         Setters =
                         {
                             new Setter(OpacityProperty, 0.0),
-                            new Setter(TranslateTransform.YProperty, 20.0)
+                            new Setter(TranslateTransform.XProperty, GetTranslateTransform().X),
+                            new Setter(TranslateTransform.YProperty, GetTranslateTransform().Y)
                         }
                     },
                     new KeyFrame
@@ -112,6 +134,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls
                         Setters =
                         {
                             new Setter(OpacityProperty, 1.0),
+                            new Setter(TranslateTransform.XProperty, 0.0),
                             new Setter(TranslateTransform.YProperty, 0.0)
                         }
                     }
@@ -122,7 +145,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls
     
             // 确保最终状态正确
             control.Opacity = 1;
-            control.RenderTransform = new TranslateTransform { Y = 0 };
+            control.RenderTransform = new TranslateTransform { X = 0 };
         }
     }
 }

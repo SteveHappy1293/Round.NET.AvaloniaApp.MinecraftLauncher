@@ -44,22 +44,28 @@ public partial class StyleSetting : UserControl
     {
         if (BackgroundTypeComboBox != null)
         {
-            if (BackgroundTypeComboBox.SelectedIndex == 2)
+            ChooseStyle.IsVisible = false;
+            ChooseImage.IsVisible = false;
+            SaveConfig.IsVisible = false;
+            TMDBox.IsVisible = false;
+            ImageBox.IsVisible = false;
+            StyleBox.IsVisible = false;
+            
+            if (BackgroundTypeComboBox.SelectedIndex == 2) // 自定义图片
             {
                 ImageBox.IsVisible = true;
-                StyleBox.IsVisible = false;
                 SaveConfig.IsVisible = true;
-            }else if (BackgroundTypeComboBox.SelectedIndex == 4)
+                
+                ChooseImage.IsVisible = true;
+                TMDBox.IsVisible = true;
+            }else if (BackgroundTypeComboBox.SelectedIndex == 4) // 自定义主题包
             {
-                SaveConfig.IsVisible = false;
                 StyleBox.IsVisible = true;
-                ImageBox.IsVisible = false;
-            }
-            else
+                
+                ChooseStyle.IsVisible = true;
+            }else if (BackgroundTypeComboBox.SelectedIndex == 3) // bing
             {
-                ImageBox.IsVisible = false;
-                SaveConfig.IsVisible = false;
-                StyleBox.IsVisible = false;
+                TMDBox.IsVisible = true;
             }
         }
     }
@@ -112,6 +118,12 @@ public partial class StyleSetting : UserControl
                 Config.MainConfig.BackImage = imagepath;
                 Config.MainConfig.BackOpacity = ((int)BackTMDSlider.Value) * 0.01;
             }
+        }else if (Config.MainConfig.BackModlue == 3)
+        {
+            if (StylePathBox.Text != String.Empty)
+            {
+                Config.MainConfig.BackOpacity = ((int)BackTMDSlider.Value) * 0.01;
+            }
         }else if (Config.MainConfig.BackModlue == 4)
         {
             Config.MainConfig.StyleFile = StylePathBox.Text;
@@ -128,7 +140,7 @@ public partial class StyleSetting : UserControl
     {
         var saveFileDialog = new SaveFileDialog
         {
-            Title = "另存为项目文件",
+            Title = "另存为 RS 通用主题文件",
             InitialFileName = $"My Style {DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}", // 默认文件名
             DefaultExtension = "rskin",
             Filters = new List<FileDialogFilter>

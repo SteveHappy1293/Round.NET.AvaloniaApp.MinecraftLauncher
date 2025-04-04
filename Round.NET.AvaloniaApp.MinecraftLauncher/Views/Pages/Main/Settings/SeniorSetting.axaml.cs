@@ -29,6 +29,7 @@ public partial class SeniorSetting : UserControl
         IsPlugUse.IsChecked = Config.MainConfig.IsUsePlug;        
         MsSlider.Value = (double)Config.MainConfig.MessageLiveTimeMs / 1000;
         MsBox.Content = $"通知停留时长 ({(double)Config.MainConfig.MessageLiveTimeMs/1000}s)：";
+        IsAutoUpdata.IsChecked = Config.MainConfig.IsAutoUpdate;
         this.Loaded += (_, __) => IsEditMode = true;
     }
 
@@ -36,7 +37,7 @@ public partial class SeniorSetting : UserControl
     {
         if (IsEditMode)
         {
-            Config.MainConfig.IsUsePlug = (bool)((CheckBox)sender).IsChecked;
+            Config.MainConfig.IsUsePlug = (bool)((ToggleSwitch)sender).IsChecked;
             Config.SaveConfig();   
         }
     }
@@ -48,6 +49,15 @@ public partial class SeniorSetting : UserControl
             Config.MainConfig.MessageLiveTimeMs = (int)(e.NewValue*1000);
             Config.SaveConfig();
             MsBox.Content = $"通知停留时长 ({(double)Config.MainConfig.MessageLiveTimeMs/1000}s)：";
+        }
+    }
+
+    private void IsAutoUpdata_OnIsCheckedChanged(object? sender, RoutedEventArgs e)
+    {
+        if (IsEditMode)
+        {
+            Config.MainConfig.IsAutoUpdate = (bool)((ToggleSwitch)sender).IsChecked;
+            Config.SaveConfig();
         }
     }
 }

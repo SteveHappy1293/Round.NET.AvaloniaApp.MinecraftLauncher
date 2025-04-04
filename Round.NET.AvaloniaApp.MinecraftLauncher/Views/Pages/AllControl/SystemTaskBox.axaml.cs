@@ -52,38 +52,13 @@ public partial class SystemTaskBox : UserControl
                             Message = e.Message,
                             IsOpen = true,
                             Severity = e.Type,
+                            Opacity = 0,
                             Margin = new Thickness(5),
-                            IsClosable = false,
-                            Transitions = new Transitions
-                            {
-                                // 添加时的动画
-                                new ThicknessTransition
-                                {
-                                    Property = InfoBar.MarginProperty,
-                                    Duration = TimeSpan.FromSeconds(0.5),
-                                    Easing = new ExponentialEaseOut()
-                                },
-                                // 添加时的透明度动画
-                                new DoubleTransition
-                                {
-                                    Property = InfoBar.OpacityProperty,
-                                    Duration = TimeSpan.FromSeconds(0.5),
-                                    Easing = new ExponentialEaseOut()
-                                }
-                            }
+                            IsClosable = false
                         };
 
-                        // 设置初始状态
-                        messagebox.Opacity = 0;
-                        messagebox.Margin = new Thickness(-200, 5, 200, 5); // 初始位置在上方隐藏
-
                         MessageListBox.Children.Add(messagebox);
-
-                        // 动画：显示
-                        messagebox.Opacity = 1;
-                        messagebox.Margin = new Thickness(5);
                     });
-                    Thread.Sleep(100);
                 }
             }
             catch

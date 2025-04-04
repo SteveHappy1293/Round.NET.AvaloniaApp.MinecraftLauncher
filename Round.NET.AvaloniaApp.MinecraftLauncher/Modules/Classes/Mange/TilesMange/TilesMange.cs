@@ -5,8 +5,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.Media;
-using HeroIconsAvalonia.Controls;
-using HeroIconsAvalonia.Enums;
+using FluentAvalonia.FluentIcons;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Mange.TilesMange;
 
@@ -32,10 +31,10 @@ public class TilesMange
         public TiteStyleType TiteStyle { get; set; } = TiteStyleType.Small;
         public Action TiteEvent { get; set; }
         public string Text { get; set; } = string.Empty;
-        public ContentControl Content { get; set; } = new HeroIcon()
+        public Control Content { get; set; } = new FluentIcon()
         {
             Foreground = Brushes.White,
-            Type = IconType.Home
+            Icon = FluentIconSymbol.Home20Regular
         };
     }
     public static StackPanel RegisterTileGroup()

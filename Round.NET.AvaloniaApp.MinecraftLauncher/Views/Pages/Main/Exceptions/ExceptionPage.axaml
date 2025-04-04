@@ -22,8 +22,9 @@
         </StackPanel>
         <Grid Margin="270,50,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <controls:LoadingControl Name="LoadingControl" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="11" Background="#232323" Padding="20,10"></controls:LoadingControl>
+            <controls:NullControl Name="NullControl" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="11" Background="#232323" Padding="20,14"></controls:NullControl>
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" >
-                <customControls:AnimatedStackPanel Name="ExStackPanel" Margin="10">
+                <customControls:AnimatedStackPanel Name="ExStackPanel" Margin="10" AnimationDirection="Left">
                     
                 </customControls:AnimatedStackPanel>
             </ScrollViewer>

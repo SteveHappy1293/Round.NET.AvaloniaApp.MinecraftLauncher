@@ -10,8 +10,6 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
-using HeroIconsAvalonia.Controls;
-using HeroIconsAvalonia.Enums;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Mange.TilesMange;

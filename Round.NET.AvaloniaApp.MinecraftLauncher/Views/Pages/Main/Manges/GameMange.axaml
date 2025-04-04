@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.GameMange">
     <Grid>
@@ -10,7 +10,7 @@
         <ComboBox Name="GameDirBox" SelectionChanged="GameDirBox_OnSelectionChanged" Margin="50,5,170,0" HorizontalAlignment="Stretch" Height="32"></ComboBox>
         <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="40,5" Name="OpenDirButton" Click="OpenDirButton_OnClick">打开游戏文件夹</Button>
         <Button Height="32" Width="32" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5" Name="AddDitButton" Click="AddDitButton_OnClick">
-            <controls:HeroIcon Foreground="White" Type="PlusCircle" Min="True"/>
+            <fluentIcons:FluentIcon Icon="AddCircle20Regular" Margin="-10"/>
         </Button>
         <ScrollViewer Margin="0,42,0,0">
             <ListBox Name="VersionBox" SelectionChanged="VersionBox_OnSelectionChanged">

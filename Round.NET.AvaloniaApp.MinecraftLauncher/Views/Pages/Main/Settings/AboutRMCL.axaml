@@ -25,7 +25,7 @@
                 <StackPanel Margin="30,0">
                     <Label>Avalonia</Label>
                     <Label>FluentAvaloniaUI</Label>
-                    <Label>HeroIcons.Avalonia</Label>
+                    <Label>FluentIcons.Avalonia</Label>
                     <Label>Newtonsoft.Json</Label>
                     <Label>MinecraftLaunch</Label>
                     <Label>DotNet.Bundle</Label>

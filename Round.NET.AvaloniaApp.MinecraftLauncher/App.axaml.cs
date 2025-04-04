@@ -7,6 +7,7 @@ using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using HotAvalonia;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Windows;
@@ -79,7 +80,10 @@ public partial class App : Application
                 Message.Show("发生错误","RMCL 发生了致命的错误，已将其信息保存至 异常追踪器。可前往 设置 > 安全 > 异常追踪 页面查看。",InfoBarSeverity.Error);
                 var error = new ErrorWindow();
                 error.Show(ex);
-                error.ShowDialog(Core.MainWindow);
+                if (Config.MainConfig.ShowErrorWindow)
+                {
+                    error.ShowDialog(Core.MainWindow);
+                }
             });
         }
         catch (Exception dialogEx)

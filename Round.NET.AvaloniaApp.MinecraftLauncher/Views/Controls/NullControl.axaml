@@ -1,13 +1,13 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.NullControl">
     <Grid>
         <StackPanel>
-            <controls:HeroIcon Foreground="White" Type="Sparkles"/>
+            <fluentIcons:FluentIcon Icon="BorderNone20Regular" Width="32" Height="32" Margin="5"/>
             <Label>这里什么都没有...</Label>
         </StackPanel>
     </Grid>

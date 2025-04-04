@@ -1,7 +1,6 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Media;
-using HeroIconsAvalonia.Controls;
-using HeroIconsAvalonia.Enums;
+using FluentAvalonia.FluentIcons;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Mange.TilesMange;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
@@ -21,10 +20,12 @@ public class HomeBodyMange
                     Core.NavigationBar.NavTo("Mange");
                 },
                 TiteStyle = TilesMange.TileItem.TiteStyleType.Long,
-                Content = new HeroIcon()
+                Content = new FluentIcon()
                 {
                     Foreground = Brushes.White,
-                    Type = IconType.Folder
+                    Icon = FluentIconSymbol.Folder20Regular,
+                    Width = 32,
+                    Height = 32
                 }
             });
             TilesMange.RegisterTile(group1, new TilesMange.TileItem()
@@ -34,10 +35,12 @@ public class HomeBodyMange
                     Core.NavigationBar.NavTo("Setting");
                 },
                 TiteStyle = TilesMange.TileItem.TiteStyleType.Big,
-                Content = new HeroIcon()
+                Content = new FluentIcon()
                 {
                     Foreground = Brushes.White,
-                    Type = IconType.Cog6Tooth
+                    Icon = FluentIconSymbol.Settings20Regular,
+                    Width = 32,
+                    Height = 32
                 }
             });
             TilesMange.RegisterTile(group1, new TilesMange.TileItem()
@@ -47,10 +50,12 @@ public class HomeBodyMange
                     Core.MainHome.laun();
                 },
                 TiteStyle = TilesMange.TileItem.TiteStyleType.Small,
-                Content = new HeroIcon()
+                Content = new FluentIcon()
                 {
                     Foreground = Brushes.White,
-                    Type = IconType.RocketLaunch
+                    Icon = FluentIconSymbol.Airplane24Regular,
+                    Width = 32,
+                    Height = 32
                 }
             });
         }

@@ -3,14 +3,14 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using HeroIconsAvalonia.Enums;
+using FluentAvalonia.FluentIcons;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 
 public partial class HomeIcon : UserControl
 {
-    public IconType Icon { get; set; } = IconType.Home;
+    public FluentIconSymbol Icon { get; set; } = FluentIconSymbol.Home20Regular;
 
     public EventHandler<RoutedEventArgs> Click
     {
@@ -27,7 +27,7 @@ public partial class HomeIcon : UserControl
     public HomeIcon()
     {
         InitializeComponent();
-        this.HeroIcon.Type = Icon;
+        this.FluentIcon.Icon = Icon;
         Click = Button_OnClick;
     }
     

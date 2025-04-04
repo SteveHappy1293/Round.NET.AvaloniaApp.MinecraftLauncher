@@ -5,10 +5,10 @@
              mc:Ignorable="d"
              Width="38"
              Height="38"
-             xmlns:ui="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
-             xmlns:controls="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+             xmlns:ui="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia" 
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.HomeIcon">
     <Button Name="Button" CornerRadius="99" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="Transparent">
-        <controls:HeroIcon Foreground="White" Type="Home" Name="HeroIcon" Width="18"/>
+        <fluentIcons:FluentIcon Icon="Home20Regular" Name="FluentIcon" Width="18"/>
     </Button>
 </UserControl>

@@ -11,6 +11,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
 using DynamicData;
+using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Controls;
 using HeroIconsAvalonia.Controls;
 using HeroIconsAvalonia.Enums;
@@ -183,7 +184,6 @@ public partial class LaunchJavaEdtion : UserControl
                                                                     Margin = new Thickness(18),
                                                                     HorizontalAlignment = HorizontalAlignment.Right,
                                                                     VerticalAlignment = VerticalAlignment.Top,
-                                                                    Min = true,
                                                                     Opacity = 1
                                                                 };
                                                                 MainGrid.Children.Add(launicon);
@@ -197,7 +197,7 @@ public partial class LaunchJavaEdtion : UserControl
                                                                         Thread.Sleep(300);
                                                                         Dispatcher.UIThread.Invoke(() =>
                                                                             launicon.Opacity = 1);
-                                                                        Dispatcher.UIThread.Invoke(() =>
+                                                                        Dispatcher.UIThread.Invoke(() => 
                                                                             launicon.Type = IconType.Check);
                                                                         Thread.Sleep(1000);
                                                                         Dispatcher.UIThread.Invoke(() =>
@@ -205,7 +205,7 @@ public partial class LaunchJavaEdtion : UserControl
                                                                         Thread.Sleep(300);
                                                                         Dispatcher.UIThread.Invoke(() =>
                                                                             launicon.Opacity = 1);
-                                                                        Dispatcher.UIThread.Invoke(() =>
+                                                                        Dispatcher.UIThread.Invoke(() => 
                                                                             launicon.Type = IconType.Eye);
                                                                         Dispatcher.UIThread.Invoke(() =>
                                                                             JDLabel.Content = "监控游戏中...");

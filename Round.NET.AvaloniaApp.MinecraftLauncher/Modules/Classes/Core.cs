@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Avalonia.Controls;
+using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Windowing;
-using HeroIconsAvalonia.Enums;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
@@ -30,7 +30,7 @@ public class Core
             public string Route { get; set; }
             public string Title { get; set; }
             public UserControl Page { get; set; }
-            public IconType Icon { get; set; }
+            public FluentIconSymbol Icon { get; set; }
             public bool IsFoot { get; set; } = false;
         }
         public class SearchItemConfig

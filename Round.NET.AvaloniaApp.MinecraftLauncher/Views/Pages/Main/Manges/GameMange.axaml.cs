@@ -10,9 +10,8 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
+using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Controls;
-using HeroIconsAvalonia.Controls;
-using HeroIconsAvalonia.Enums;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
@@ -117,11 +116,9 @@ public partial class GameMange : UserControl
                 {
                     var launc = new Button()
                     {
-                        Content = new HeroIcon()
+                        Content = new FluentIcon()
                         {
-                            Foreground = Brushes.White,
-                            Type = IconType.RocketLaunch,
-                            Min = true
+                            Icon = FluentIconSymbol.Airplane20Regular
                         },
                         Margin = new Thickness(5),
                         Height = 32,
@@ -137,11 +134,9 @@ public partial class GameMange : UserControl
 
                     var sett = new Button()
                     {
-                        Content = new HeroIcon()
+                        Content = new FluentIcon()
                         {
-                            Foreground = Brushes.White,
-                            Type = IconType.Cog8Tooth,
-                            Min = true
+                            Icon = FluentIconSymbol.Settings20Regular
                         },
                         Margin = new Thickness(5),
                         Height = 32,

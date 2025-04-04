@@ -1,12 +1,12 @@
 ﻿<Button xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" Width="120" Height="120"
              Margin="5"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Tiles.TileControl">
     <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <controls:HeroIcon Foreground="White" Type="Home" Width="48" Height="48"/>
+        <fluentIcons:FluentIcon Foreground="White" Icon="Home20Regular" Width="48" Height="48"/>
     </Button>
 </Button>

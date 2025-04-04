@@ -12,9 +12,8 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
+using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Controls;
-using HeroIconsAvalonia.Controls;
-using HeroIconsAvalonia.Enums;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch;
@@ -35,25 +34,29 @@ public partial class Mange : UserControl
         {
             Page = GameMange,
             Title = "游戏管理",
-            Route = "GameMange"
+            Route = "GameMange",
+            Icon = FluentIconSymbol.Games20Filled
         });    
         RegisterRoute(new Core.API.NavigationRouteConfig()
         {
             Page = UserMange,
             Title = "账户管理",
-            Route = "UserMange"
+            Route = "UserMange",
+            Icon = FluentIconSymbol.Person20Filled
         });     
         RegisterRoute(new Core.API.NavigationRouteConfig()
         {
             Page = ServerMange,
             Title = "服务器管理",
-            Route = "ServerMange"
+            Route = "ServerMange",
+            Icon = FluentIconSymbol.Server20Filled
         });   
         RegisterRoute(new Core.API.NavigationRouteConfig()
         {
             Page = PlugMange,
             Title = "启动器插件管理",
-            Route = "PlugMange"
+            Route = "PlugMange",
+            Icon = FluentIconSymbol.PlugConnected20Filled
         });       
     }
     public List<Core.API.NavigationRouteConfig> RouteConfigs { get; set; } = new();
@@ -64,7 +67,9 @@ public partial class Mange : UserControl
     private ServerMange ServerMange { get; set; } = new();
     private void NavigationView_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
     {
-        ControlChange.ChangeLabelText(PageTitleLabel,((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Content.ToString());
+        var item = ((DockPanel)((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Content);
+        var text = ((TextBlock)(item.Children[1])).Text;
+        ControlChange.ChangeLabelText(PageTitleLabel,text);
         Task.Run(() => // Margin="10,50,10,10"
         {
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 0);
@@ -92,11 +97,28 @@ public partial class Mange : UserControl
         {
             isthis = true;
         }
-        View.MenuItems.Add(new NavigationViewItem()
+        
+        var doc = new DockPanel()
+        {
+            Children =
+            {
+                new FluentIcon() { Margin = new Thickness(-5,0,0,0),Icon = config.Icon,Width = 15,Height = 15 },
+                new TextBlock() { Margin = new Thickness(10,0,0,0),Text = config.Title,Name = "TitleLabel"}
+            }
+        };
+        var item = new NavigationViewItem()
         {
             Tag = config.Route,
-            Content = config.Title,
+            Content = doc,
             IsSelected = isthis
-        });
+        };
+        if (config.IsFoot)
+        {
+            View.FooterMenuItems.Add(item);
+        }
+        else
+        {
+            View.MenuItems.Add(item);
+        }
     }
 }

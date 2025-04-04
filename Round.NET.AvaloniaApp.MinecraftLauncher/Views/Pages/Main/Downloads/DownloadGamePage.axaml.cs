@@ -8,9 +8,8 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
-using FluentAvalonia.UI.Controls;
-using HeroIconsAvalonia.Controls;
-using HeroIconsAvalonia.Enums;
+using FluentAvalonia.FluentIcons;
+using FluentAvalonia.UI.Controls; 
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.AddNewGame;
@@ -29,11 +28,9 @@ public partial class DownloadGamePage : UserControl
     {
         var button = new HyperlinkButton()
         {
-            Content = new HeroIcon()
+            Content = new FluentIcon()
             {
-                Foreground = Brushes.White,
-                Type = IconType.InformationCircle,
-                Min = true,
+                Icon = FluentIconSymbol.Info20Regular,
                 Width = 16,
                 Height = 16
             },

@@ -5,8 +5,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
 using BedrockPlug.View.Controls;
-using HeroIconsAvalonia.Controls;
-using HeroIconsAvalonia.Enums;
+using FluentAvalonia.FluentIcons;
 using MCLauncher.Versions;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
@@ -34,11 +33,9 @@ public partial class BedrockDownload : UserControl
                 if(ver.Revision!="0") continue;
                 var downl = new Button()
                 {
-                    Content = new HeroIcon()
+                    Content = new FluentIcon()
                     {
-                        Foreground = Brushes.White,
-                        Type = IconType.InboxArrowDown,
-                        Min = true
+                        Icon = FluentIconSymbol.ArrowDownload20Filled
                     },
                     Margin = new Thickness(5),
                     Height = 32,

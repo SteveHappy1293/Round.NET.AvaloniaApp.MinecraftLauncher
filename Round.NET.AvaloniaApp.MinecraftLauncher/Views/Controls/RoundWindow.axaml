@@ -1,0 +1,23 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls">
+    <Design.PreviewWith>
+        <controls:RoundWindow />
+    </Design.PreviewWith>
+
+    <Style Selector="controls|RoundWindow">
+        <!-- Set Defaults -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ControlTemplate.Content>
+                    <Border Padding="0">
+                        <Grid>
+                            <ContentPresenter Content="{TemplateBinding Content}"/>
+                            <Button>aaa</Button>
+                        </Grid>
+                    </Border>
+                </ControlTemplate.Content>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

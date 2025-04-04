@@ -45,14 +45,25 @@ public partial class ExceptionPage : UserControl
     }
     public void Load()
     {
+        LoadingControl.IsVisible = true;
+        NullControl.IsVisible = false;
         ExStackPanel.IsVisible = false;
+        ExStackPanel.Children.Clear();
         Task.Run(() =>
         {
-            Thread.Sleep(1000);
+            // Thread.Sleep(1000);
             var exs = Modules.ExceptionMessage.ExceptionMessage.GetExceptions();
             var sortedExceptions = exs
                 .OrderByDescending(e => e.RecordTime)
                 .ToList();
+            if (sortedExceptions.Count <= 0)
+            {
+                Dispatcher.UIThread.Invoke(() =>
+                    NullControl.IsVisible = true);
+                Dispatcher.UIThread.Invoke(() =>
+                    LoadingControl.IsVisible = false);
+                return;
+            }
             foreach (var ex in sortedExceptions)
             {
                 Dispatcher.UIThread.Invoke(() =>
@@ -113,7 +124,11 @@ public partial class ExceptionPage : UserControl
             PrimaryButtonText = "确定",
             DefaultButton = ContentDialogButton.Close
         };
-        con.PrimaryButtonClick += (s, args) => ExceptionMessage.CleanException();
+        con.PrimaryButtonClick += (s, args) =>
+        {
+            ExceptionMessage.CleanException();
+            Load();
+        };
         con.ShowAsync();
     }
 }

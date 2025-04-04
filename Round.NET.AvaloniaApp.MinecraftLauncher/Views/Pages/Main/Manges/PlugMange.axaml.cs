@@ -4,9 +4,8 @@ using Avalonia.Controls.Shapes;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Controls;
-using HeroIconsAvalonia.Controls;
-using HeroIconsAvalonia.Enums;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Plugs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
@@ -28,11 +27,9 @@ public partial class PlugMange : UserControl
             {
                 var sets = new Button()
                 {
-                    Content = new HeroIcon()
+                    Content = new FluentIcon()
                     {
-                        Foreground = Brushes.White,
-                        Type = IconType.Cog6Tooth,
-                        Min = true
+                        Icon = FluentIconSymbol.Settings20Regular
                     },
                     Margin = new Thickness(5),
                     Height = 32,

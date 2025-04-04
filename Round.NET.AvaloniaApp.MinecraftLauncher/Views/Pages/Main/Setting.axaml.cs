@@ -7,6 +7,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
+using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Controls;
 using Flurl.Util;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
@@ -23,49 +24,57 @@ public partial class Setting : UserControl
     public Setting()
     {
         InitializeComponent();
-        Core.SettingPage = this;
-        RegisterRoute(new Core.API.NavigationRouteConfig()
-        {
-            Page = SafeSetting,
-            Title = "安全",
-            Route = "SafeSetting"
-        });
-        RegisterRoute(new Core.API.NavigationRouteConfig()
-        {
-            Page = SeniorSetting,
-            Title = "高级",
-            Route = "SeniorSetting"
-        });
-        RegisterRoute(new Core.API.NavigationRouteConfig()
-        {
-            Page = InternetSetting,
-            Title = "网络",
-            Route = "InternetSetting"
-        });   
-        RegisterRoute(new Core.API.NavigationRouteConfig()
-        {
-            Page = StyleSetting,
-            Title = "个性化",
-            Route = "StyleSetting"
-        });      
+        Core.SettingPage = this;    
         RegisterRoute(new Core.API.NavigationRouteConfig()
         {
             Page = GameSetting,
             Title = "游戏",
-            Route = "GameSetting"
+            Route = "GameSetting",
+            Icon = FluentIconSymbol.Games20Filled
         });   
-        RegisterRoute(new Core.API.NavigationRouteConfig()
-        {
-            Page = JavaSetting,
-            Title = "Java 虚拟机与内存",
-            Route = "JavaSetting"
-        });    
         RegisterRoute(new Core.API.NavigationRouteConfig()
         {
             Page = DownloadSetting,
             Title = "下载",
-            Route = "DownloadSetting"
+            Route = "DownloadSetting",
+            Icon = FluentIconSymbol.ArrowDownload20Filled
+        });  
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
+            Page = StyleSetting,
+            Title = "个性化",
+            Route = "StyleSetting",
+            Icon = FluentIconSymbol.StyleGuide20Filled
         });   
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
+            Page = JavaSetting,
+            Title = "Java 与内存",
+            Route = "JavaSetting",
+            Icon = FluentIconSymbol.CursorHover20Filled
+        });  
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
+            Page = InternetSetting,
+            Title = "网络",
+            Route = "InternetSetting",
+            Icon = FluentIconSymbol.Desktop20Filled
+        });   
+        
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
+            Page = SeniorSetting,
+            Title = "高级",
+            Route = "SeniorSetting",
+            Icon = FluentIconSymbol.Clover20Filled
+        });  
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
+            Page = SafeSetting,
+            Title = "安全",
+            Route = "SafeSetting",
+            Icon = FluentIconSymbol.QuestionCircle20Filled
+        });
         
         
         RegisterRoute(new Core.API.NavigationRouteConfig()
@@ -73,7 +82,8 @@ public partial class Setting : UserControl
             Page = AboutRMCL,
             Title = "关于 RMCL",
             Route = "AboutRMCL",
-            IsFoot = true
+            IsFoot = true,
+            Icon = FluentIconSymbol.Info20Filled
         });  
     }
     private GameSetting GameSetting { get; set; } = new();
@@ -87,7 +97,9 @@ public partial class Setting : UserControl
     public List<Core.API.NavigationRouteConfig> RouteConfigs { get; set; } = new();
     private void NavigationView_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
     {
-        ControlChange.ChangeLabelText(PageTitleLabel,((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Content.ToString());
+        var item = ((DockPanel)((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Content);
+        var text = ((TextBlock)(item.Children[1])).Text;
+        ControlChange.ChangeLabelText(PageTitleLabel,text);
         Task.Run(() => // Margin="10,50,10,10"
         {
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 0);
@@ -111,15 +123,23 @@ public partial class Setting : UserControl
     {
         RouteConfigs.Add(config);
         var isthis = false;
-        if (config.Route == "SafeSetting")
+        if (config.Route == "GameSetting")
         {
             isthis = true;
         }
 
+        var doc = new DockPanel()
+        {
+            Children =
+            {
+                new FluentIcon() { Margin = new Thickness(-5,0,0,0),Icon = config.Icon,Width = 15,Height = 15 },
+                new TextBlock() { Margin = new Thickness(10,0,0,0),Text = config.Title,Name = "TitleLabel"}
+            }
+        };
         var item = new NavigationViewItem()
         {
             Tag = config.Route,
-            Content = config.Title,
+            Content = doc,
             IsSelected = isthis
         };
         if (config.IsFoot)
