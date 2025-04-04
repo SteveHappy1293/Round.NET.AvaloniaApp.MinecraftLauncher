@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Round.NET.Updater.Library",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{1B11B8B2-AEB9-4B30-BE40-087E7CF1034D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCLPlugTools", "RMCLPlugTools\RMCLPlugTools.csproj", "{1A9A91D5-2759-4B60-BB18-1A4AF32A5E29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{1B11B8B2-AEB9-4B30-BE40-087E7CF1034D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B11B8B2-AEB9-4B30-BE40-087E7CF1034D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B11B8B2-AEB9-4B30-BE40-087E7CF1034D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A9A91D5-2759-4B60-BB18-1A4AF32A5E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A9A91D5-2759-4B60-BB18-1A4AF32A5E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A9A91D5-2759-4B60-BB18-1A4AF32A5E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A9A91D5-2759-4B60-BB18-1A4AF32A5E29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
