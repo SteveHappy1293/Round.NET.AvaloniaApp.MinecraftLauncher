@@ -25,6 +25,7 @@ public partial class Setting : UserControl
     {
         InitializeComponent();
         Core.SettingPage = this;    
+        
         RegisterRoute(new Core.API.NavigationRouteConfig()
         {
             Page = GameSetting,

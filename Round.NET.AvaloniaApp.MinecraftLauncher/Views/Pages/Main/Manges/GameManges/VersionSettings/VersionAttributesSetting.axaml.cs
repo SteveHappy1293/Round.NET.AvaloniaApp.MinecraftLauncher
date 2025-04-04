@@ -6,6 +6,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.Threading;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 using LaunchJavaEdtion = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch.LaunchJavaEdtion;
@@ -26,8 +27,10 @@ public partial class VersionAttributesSetting : UserControl
         {
             _version = value;
             
-            VersionName.Text = $"{version}";
-            VersionNote.Text = $"无描述文件...";
+            Dispatcher.UIThread.InvokeAsync(() => {
+                VersionName.Text = $"{version}";
+                VersionNote.Text = $"无描述文件...";
+            });
         }
     }
 

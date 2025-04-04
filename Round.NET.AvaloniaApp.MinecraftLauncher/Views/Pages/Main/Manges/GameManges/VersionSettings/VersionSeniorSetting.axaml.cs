@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Avalonia.Threading;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.GameManges.VersionSettings;
 
@@ -16,7 +17,9 @@ public partial class VersionSeniorSetting : UserControl
         }
         set
         {
-            _version = value;
+            Dispatcher.UIThread.InvokeAsync(() => {
+                _version = value;
+            });
         }
     }
 

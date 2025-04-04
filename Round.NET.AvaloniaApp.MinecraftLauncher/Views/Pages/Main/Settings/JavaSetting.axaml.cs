@@ -19,11 +19,11 @@ public partial class JavaSetting : UserControl
     public JavaSetting()
     {
         InitializeComponent();
-        Task.Run(async () =>
+        Task.Run(() =>
         {
             while (true)
             {
-                await Dispatcher.UIThread.InvokeAsync(RefreshMer);
+                Dispatcher.UIThread.Invoke(RefreshMer);
                 Thread.Sleep(1000);
             }
         });

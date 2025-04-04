@@ -137,3 +137,4 @@ public partial class MainWindow : AppWindow
         Config.SaveConfig();
     }
 }
+
