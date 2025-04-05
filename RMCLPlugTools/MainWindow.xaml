@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:RMCLPlugTools"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
         Title="RMCL3 插件工具" Height="450" Width="800" MinHeight="450" MinWidth="800">
     <Grid>
@@ -15,19 +16,22 @@
                     <StackPanel Margin="5">
                         <DockPanel Margin="5">
                             <Label>插件名称：</Label>
-                            <TextBox>Plug Name</TextBox>
+                            <TextBox TextChanged="ConfigChanged" Name="PlugName">Plug Name</TextBox>
                         </DockPanel>
                         <DockPanel Margin="5">
                             <Label>作者名称：</Label>
-                            <TextBox>Null</TextBox>
+                            <TextBox TextChanged="ConfigChanged" Name="PlugWriter">Null</TextBox>
                         </DockPanel>
                         <DockPanel Margin="5">
                             <Label>插件版本：</Label>
-                            <TextBox>1.0.0</TextBox>
+                            <TextBox TextChanged="ConfigChanged" Name="PlugVersion">1.0.0</TextBox>
                         </DockPanel>
                         <DockPanel Margin="5">
                             <Label>插件图标：</Label>
-                            <TextBox></TextBox>
+                            <Grid>
+                                <TextBox TextChanged="ConfigChanged" Name="ChoseIconPath" HorizontalAlignment="Stretch" Margin="0,0,40,0"></TextBox>
+                                <Button Click="ChoseIcon_OnClick" Name="ChoseIcon" Width="30" HorizontalAlignment="Right">...</Button>
+                            </Grid>
                         </DockPanel>
                     </StackPanel>
                 </Expander>
@@ -35,23 +39,31 @@
                     <StackPanel Margin="5">
                         <DockPanel Margin="5">
                             <Label>插件本体：</Label>
-                            <TextBox></TextBox>
+                            <Grid>
+                                <TextBox TextChanged="ConfigChanged" Name="ChoseMainPlugPath" HorizontalAlignment="Stretch" Margin="0,0,40,0"></TextBox>
+                                <Button Click="ChoseMainPlug_OnClick" Name="ChoseMainPlug" Width="30" HorizontalAlignment="Right">...</Button>
+                            </Grid>
                         </DockPanel>
                         <DockPanel Margin="5">
                             <Label>主文件夹：</Label>
-                            <TextBox></TextBox>
+                            <Grid>
+                                <TextBox TextChanged="ConfigChanged" Name="ChoseMainDirPath" HorizontalAlignment="Stretch" Margin="0,0,40,0"></TextBox>
+                                <Button Click="ChoseMainDir_OnClick" Name="ChoseMainDir" Width="30" HorizontalAlignment="Right">...</Button>
+                            </Grid>
                         </DockPanel>
                     </StackPanel>
                 </Expander>
             </StackPanel>
         </ScrollViewer>
-        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
-            <Label FontSize="11" Foreground="Gray" Margin="0,-5" VerticalAlignment="Bottom">仅适用于 RMCL3 Release 2025.4.4 后的版本！</Label>
+        <Image Source="RMCL_PlugTools.ico" Width="32" Height="32" Margin="7" HorizontalAlignment="Left" VerticalAlignment="Bottom"></Image>
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="40,2">
+            <Label FontSize="11" Foreground="Gray" Margin="0,-5" VerticalAlignment="Bottom">仅适用于 RMCL3 Release 2025.4.5 后的版本！</Label>
             <Label FontSize="11" Foreground="Gray">本工具使用了开源 UI 库 Mahapps.Metro</Label>
         </StackPanel>
         <DockPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5">
-            <Button Style="{StaticResource MahApps.Styles.Button.Square}" Height="32" Width="120" Margin="5">保存插件配置</Button>
-            <Button Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Height="32" Width="80" Margin="5">打包</Button>
+            <Button Click="ImportThePlugInConfiguration_OnClick" Name="ImportThePlugInConfiguration" Style="{StaticResource MahApps.Styles.Button.Square}" Height="32" Width="120" Margin="5">导入插件配置</Button>
+            <Button Click="SaveThePlugInConfiguration_OnClick" Name="SaveThePlugInConfiguration" Style="{StaticResource MahApps.Styles.Button.Square}" Height="32" Width="120" Margin="5">保存插件配置</Button>
+            <Button Click="Packing_OnClick" Name="Packing" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Height="32" Width="80" Margin="5">打包</Button>
         </DockPanel>
     </Grid>
 </mah:MetroWindow>

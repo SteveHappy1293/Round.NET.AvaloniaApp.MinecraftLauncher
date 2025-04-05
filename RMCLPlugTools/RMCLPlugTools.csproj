@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
+        <ApplicationIcon>RMCL_PlugTools.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,6 +15,12 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="MahApps.Metro" Version="2.0.0" />
+      <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="RMCL_PlugTools.ico" />
+      <Resource Include="RMCL_PlugTools.ico" />
     </ItemGroup>
 
 </Project>

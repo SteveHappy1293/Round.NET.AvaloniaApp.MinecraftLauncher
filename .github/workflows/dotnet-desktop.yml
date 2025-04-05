@@ -150,6 +150,26 @@ jobs:
         name: RMCLInstalledOnline
         path: ./published/
 
+  plugtools:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Publish
+      run: |
+        dotnet publish ./RMCLPlugTools/ -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -p:PublishTrimmed=false -p:DebugType=None -p:DebugSymbols=false -o ./published/
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: RMCLPlugTools
+        path: ./published/
 
   publish:
     needs: [linux, win, onlineinstall, time]
@@ -176,6 +196,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: RMCLInstalledOnline
+          path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
+
+      - name: Download-RMCLPlugToolsArtifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: RMCLPlugTools
           path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
 
       - name: List Files
