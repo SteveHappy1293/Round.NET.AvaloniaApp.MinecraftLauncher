@@ -17,11 +17,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.3.0-beta1" />
     <PackageReference Include="DotNet.Bundle" Version="0.9.13" />
     <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="Downloader" Version="3.3.3" />
-    <PackageReference Include="FluentAvaloniaUI" Version="2.2.0" />
+    <PackageReference Include="FluentAvaloniaUI" Version="2.4.0-preview1" />
     <PackageReference Include="MinecraftLaunch" Version="4.0.1-preview03" />
     <PackageReference Include="MinecraftLaunch.Base" Version="1.0.10" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -41,7 +41,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Condition="$(DefineConstants.Contains(ENABLE_XAML_HOT_RELOAD))" Include="Avalonia.Markup.Xaml.Loader" Version="$(AvaloniaVersion)" />
+    <PackageReference Condition="$(DefineConstants.Contains(ENABLE_XAML_HOT_RELOAD))" Include="Avalonia.Markup.Xaml.Loader" Version="11.3.0-beta1" />
     <PackageReference Condition="$(DefineConstants.Contains(ENABLE_XAML_HOT_RELOAD))" Include="HotAvalonia" Version="2.1.0" />
     <PackageReference Include="HotAvalonia.Extensions" Version="2.1.0" PrivateAssets="All" />
   </ItemGroup>

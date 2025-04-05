@@ -69,7 +69,7 @@ public partial class MainWindow : AppWindow
             this.WindowStartupLocation = WindowStartupLocation.Manual;
             this.Position = new PixelPoint(Config.MainConfig.WindowX, Config.MainConfig.WindowY);
         }
-        Message.Show("插件加载",$"当前已加载 {PlugsLoader.Plugs.Count} 个插件！",InfoBarSeverity.Success);
+        Message.Show("插件加载",$"当前已加载 {PlugLoaderNeo.Plugs.Count} 个插件！",InfoBarSeverity.Success);
 
         if (Config.MainConfig.IsAutoUpdate)
         {

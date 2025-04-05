@@ -22,7 +22,7 @@ public partial class PlugMange : UserControl
 
         this.Loaded += (s, e) =>
         {
-            PlugsBox.Children.Clear();
+            PlugsBox.Items.Clear();
             foreach (var pl in PlugLoaderNeo.Plugs)
             {
                 var sets = new Button()
@@ -47,7 +47,7 @@ public partial class PlugMange : UserControl
                     };
                     con.ShowAsync(Core.MainWindow);*/
                 };
-                PlugsBox.Children.Add(new ListBoxItem()
+                PlugsBox.Items.Add(new ListBoxItem()
                 {
                     Padding = new Thickness(5),
                     Content = new DockPanel()

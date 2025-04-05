@@ -18,7 +18,7 @@
                 <Label Margin="10,0" FontSize="18" FontWeight="Bold">通知</Label>
                 <DockPanel Margin="20,0,0,0">
                     <Label Name="MsBox" Margin="5" VerticalAlignment="Center">通知停留时长：</Label>
-                    <Slider Name="MsSlider" Minimum="5" Maximum="30" ValueChanged="RangeBase_OnValueChanged"></Slider>
+                    <Slider Name="MsSlider" Minimum="0.5" Maximum="30" ValueChanged="RangeBase_OnValueChanged"></Slider>
                 </DockPanel>
             </StackPanel>
             <StackPanel Margin="0,10,0,0">

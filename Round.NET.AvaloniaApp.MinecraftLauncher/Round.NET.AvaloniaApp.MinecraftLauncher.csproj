@@ -11,18 +11,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia" Version="11.3.0-beta1" />
     <PackageReference Include="Avalonia.AvaloniaEdit" Version="11.2.0" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.3.0-beta1" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.0-beta1" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.0-beta1" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.0-beta1" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.0-beta1" />
     <PackageReference Include="DotNet.Bundle" Version="0.9.13" />
     <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="Downloader" Version="3.3.3" />
     <PackageReference Include="FluentAvalonia.FluentIcons" Version="1.1.201.1-preview7" />
-    <PackageReference Include="FluentAvaloniaUI" Version="2.2.0" />
+    <PackageReference Include="FluentAvaloniaUI" Version="2.4.0-preview1" />
     <PackageReference Include="HeroIcons.Avalonia" Version="1.0.2" />
     <PackageReference Include="MinecraftLaunch" Version="4.0.1-preview03" />
     <PackageReference Include="MinecraftLaunch.Base" Version="1.0.10" />
@@ -71,7 +72,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Condition="$(DefineConstants.Contains(ENABLE_XAML_HOT_RELOAD))" Include="Avalonia.Markup.Xaml.Loader" Version="$(AvaloniaVersion)" />
+    <PackageReference Condition="$(DefineConstants.Contains(ENABLE_XAML_HOT_RELOAD))" Include="Avalonia.Markup.Xaml.Loader" Version="11.3.0-beta1" />
     <PackageReference Condition="$(DefineConstants.Contains(ENABLE_XAML_HOT_RELOAD))" Include="HotAvalonia" Version="2.1.0" />
     <PackageReference Include="HotAvalonia.Extensions" Version="2.1.0" PrivateAssets="All" />
   </ItemGroup>

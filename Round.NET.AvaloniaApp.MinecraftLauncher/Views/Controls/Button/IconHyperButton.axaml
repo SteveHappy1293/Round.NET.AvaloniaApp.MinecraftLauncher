@@ -12,7 +12,7 @@
                 <HyperlinkButton NavigateUri="{TemplateBinding NavigateUri}">
                     <DockPanel Margin="5">
                         <Image Width="45" Height="45" Source="{TemplateBinding Icon}"></Image>
-                        <StackPanel Margin="10,0,0,0">
+                        <StackPanel Margin="10,-2,0,0">
                             <TextBlock Text="{TemplateBinding Text}" FontSize="18" FontWeight="Bold"></TextBlock>
                             <TextBlock Text="{TemplateBinding NavigateUri}" Margin="0,3,0,0"></TextBlock>
                         </StackPanel>

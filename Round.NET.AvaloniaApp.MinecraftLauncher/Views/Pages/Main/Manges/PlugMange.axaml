@@ -2,14 +2,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             xmlns:controls="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.PlugMange">
     <Grid>
-        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5">导入插件</Button>
-        <ScrollViewer Margin="0,42,0,0">
-            <StackPanel Name="PlugsBox">
+        <TabControl>
+            <TabItem Header="已安装插件">
+                <Grid>
+                    <DockPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-5,0">
+                        <Button Height="32" Width="32" Margin="5">
+                            <fluentIcons:FluentIcon Icon="Folder20Regular" Margin="-10"/>
+                        </Button>
+                    </DockPanel>
+                    <ScrollViewer Margin="-2,42,-2,0">
+                        <ListBox Name="PlugsBox">
                 
-            </StackPanel>
-        </ScrollViewer>
+                        </ListBox>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <TabItem Header="搜索">
+                <Grid>
+                    <TextBox Margin="0,5,65,0" HorizontalAlignment="Stretch" VerticalAlignment="Top"></TextBox>
+                    <Button IsEnabled="False" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5">搜索</Button>
+                    <controls:NullControl HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>
