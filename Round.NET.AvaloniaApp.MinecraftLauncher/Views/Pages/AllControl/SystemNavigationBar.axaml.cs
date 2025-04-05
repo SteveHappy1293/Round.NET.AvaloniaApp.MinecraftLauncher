@@ -11,6 +11,7 @@ using Avalonia.Threading;
 using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
@@ -87,7 +88,7 @@ public partial class SystemNavigationBar : UserControl
     }
     public void NavTo(string Tag,bool isearch = false)
     {
-        Console.WriteLine(Tag);
+        RLogs.WriteLog(Tag);
         int ind = RouteConfigs.FindIndex((Core.API.NavigationRouteConfig nc) => { return nc.Route == Tag; });
         if (Tag == "Clear") ind = -2;
         if (Tag == "BackSearch") ind = -3;

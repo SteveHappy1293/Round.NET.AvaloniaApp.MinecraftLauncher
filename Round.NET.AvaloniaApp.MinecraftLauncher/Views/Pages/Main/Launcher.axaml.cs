@@ -49,7 +49,7 @@ public partial class Launcher : UserControl
                         MessageBox.Description = "全新一代 RMCL，不太一样，大不一样。";
                     }
                 });
-                Task.Delay(5000);
+                Thread.Sleep(5000);
             }
         });
         Task.Run(() =>

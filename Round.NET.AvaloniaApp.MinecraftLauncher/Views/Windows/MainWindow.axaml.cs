@@ -41,7 +41,8 @@ public partial class MainWindow : AppWindow
         DownloadMirrorManager.IsEnableMirror = false;
         
         InitializeComponent();
-        PlugsLoader.LoadingPlug();
+        //PlugsLoader.LoadingPlug();
+        PlugLoaderNeo.LoadPlugs();
         TitleBar.Height = 38;
         TitleBar.ExtendsContentIntoTitleBar = true;
         TitleBar.TitleBarHitTestType = TitleBarHitTestType.Complex;

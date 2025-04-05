@@ -23,7 +23,7 @@ public partial class PlugMange : UserControl
         this.Loaded += (s, e) =>
         {
             PlugsBox.Children.Clear();
-            foreach (var pl in PlugsLoader.Plugs)
+            foreach (var pl in PlugLoaderNeo.Plugs)
             {
                 var sets = new Button()
                 {
@@ -37,44 +37,63 @@ public partial class PlugMange : UserControl
                 };
                 sets.Click += (_, __) =>
                 {
-                    var con = new ContentDialog()
+                    /*var con = new ContentDialog()
                     {
                         PrimaryButtonText = "取消",
                         CloseButtonText = "确定",
                         DefaultButton = ContentDialogButton.Close,
-                        Title = $"插件 {Path.GetFileName(pl.FileName)} 设置",
+                        Title = $"插件 {pl.Name} 设置",
                         Content = new SettingPlug(pl)
                     };
-                    con.ShowAsync(Core.MainWindow);
+                    con.ShowAsync(Core.MainWindow);*/
                 };
                 PlugsBox.Children.Add(new ListBoxItem()
                 {
-                    Content = new Grid()
+                    Padding = new Thickness(5),
+                    Content = new DockPanel()
                     {
-                        Height = 65,
+                        Margin = new Thickness(5,0,0,0),
                         Children =
                         {
-                            new Label()
+                            new DockPanel()
                             {
-                                Content = Path.GetFileName(pl.FileName),
-                                HorizontalContentAlignment = HorizontalAlignment.Left,
-                                VerticalContentAlignment = VerticalAlignment.Top,
-                                Margin = new Thickness(5),
-                                FontSize = 22
-                            },
-                            new Label()
-                            {
-                                Content = pl.Title,
-                                HorizontalContentAlignment = HorizontalAlignment.Left,
-                                VerticalContentAlignment = VerticalAlignment.Bottom,
-                                Margin = new Thickness(5),
-                                FontSize = 15,
-                                FontStyle = FontStyle.Italic,
-                                Foreground = Brushes.DimGray,
+                                Children =
+                                {
+                                    new Border()
+                                    {
+                                        Background = new ImageBrush()
+                                        {
+                                            Source = pl.Icon
+                                        },
+                                        Width = 40,
+                                        Height = 40,
+                                        CornerRadius = new CornerRadius(6),
+                                    },
+                                    new StackPanel()
+                                    {
+                                        Margin = new Thickness(10,0),
+                                        Children =
+                                        {
+                                            new Label()
+                                            {
+                                                Content = pl.Name,
+                                                FontSize = 22,
+                                                Margin = new Thickness(0,-3,0,0),
+                                            },
+                                            new Label()
+                                            {
+                                                Content = pl.Notes,
+                                                FontSize = 15,
+                                                FontStyle = FontStyle.Italic,
+                                                Foreground = Brushes.DimGray,
+                                                Margin = new Thickness(0,-10,0,0),
+                                            },
+                                        }
+                                    }
+                                }
                             },
                             new DockPanel()
                             {
-
                                 HorizontalAlignment = HorizontalAlignment.Right,
                                 VerticalAlignment = VerticalAlignment.Center,
                                 Children =
