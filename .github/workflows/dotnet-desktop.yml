@@ -172,7 +172,7 @@ jobs:
         path: ./published/
 
   publish:
-    needs: [linux, win, onlineinstall, time]
+    needs: [linux, win, onlineinstall , plugtools, time]
     runs-on: ubuntu-latest
     steps:
       - name: Time
