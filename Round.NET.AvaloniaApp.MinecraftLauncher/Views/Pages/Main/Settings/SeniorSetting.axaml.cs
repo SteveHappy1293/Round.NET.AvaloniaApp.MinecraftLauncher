@@ -85,6 +85,7 @@ public partial class SeniorSetting : UserControl
                 "Auto" => 1
             };
             Config.MainConfig.UpdateSourse = ind;
+            Config.SaveConfig();
         }
     }
 }
