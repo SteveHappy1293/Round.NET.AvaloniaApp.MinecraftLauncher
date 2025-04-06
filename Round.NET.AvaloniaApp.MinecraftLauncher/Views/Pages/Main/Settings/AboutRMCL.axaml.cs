@@ -137,6 +137,17 @@ public partial class AboutRMCL : UserControl
                             });
                         });
                     }
+                    else
+                    {
+                        var con = new ContentDialog()
+                        {
+                            Title = "检查更新",
+                            Content = "当前已经是最新版",
+                            CloseButtonText = "确定",
+                            DefaultButton = ContentDialogButton.Close
+                        };
+                        con.ShowAsync(Core.MainWindow);
+                    }
                     
                     Dispatcher.UIThread.InvokeAsync(async () =>
                     {

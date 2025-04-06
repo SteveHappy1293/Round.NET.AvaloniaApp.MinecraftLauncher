@@ -2,32 +2,74 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              Margin="-10"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.SeniorSetting">
     <ScrollViewer Margin="5">
         <StackPanel Margin="5">
-            <StackPanel Margin="0,10,0,0">
-                <Label Margin="10,0" FontSize="18" FontWeight="Bold">插件</Label>
-                <DockPanel Margin="20,0,0,0">
-                    <Label Margin="5" VerticalAlignment="Center">启用插件：</Label>
-                    <ToggleSwitch OnContent="启用" OffContent="禁用" Name="IsPlugUse" IsCheckedChanged="ToggleButton_OnIsCheckedChanged" IsChecked="True"></ToggleSwitch>
-                </DockPanel>
-            </StackPanel>
-            <StackPanel Margin="0,10,0,0">
-                <Label Margin="10,0" FontSize="18" FontWeight="Bold">通知</Label>
-                <DockPanel Margin="20,0,0,0">
-                    <Label Name="MsBox" Margin="5" VerticalAlignment="Center">通知停留时长：</Label>
-                    <Slider Name="MsSlider" Minimum="0.5" Maximum="30" ValueChanged="RangeBase_OnValueChanged"></Slider>
-                </DockPanel>
-            </StackPanel>
-            <StackPanel Margin="0,10,0,0">
-                <Label Margin="10,0" FontSize="18" FontWeight="Bold">更新</Label>
-                <DockPanel Margin="20,0,0,0">
-                    <Label Margin="5" VerticalAlignment="Center">自动更新：</Label>
-                    <ToggleSwitch OnContent="启用" OffContent="禁用" Name="IsAutoUpdata" IsCheckedChanged="IsAutoUpdata_OnIsCheckedChanged" IsChecked="True"></ToggleSwitch>
-                </DockPanel>
-            </StackPanel>
+            <controls:SettingsExpander Header="插件设置"
+                                       Margin="0,10,0,0"
+                                       Description="设置 RMCL 的插件">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="PlugConnected20Regular">
+                    </fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                <controls:SettingsExpanderItem Content="启用插件"
+                                               Description="控制插件的加载（需要重启）">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ToggleSwitch OnContent="启用" OffContent="禁用" Name="IsPlugUse" IsCheckedChanged="ToggleButton_OnIsCheckedChanged" IsChecked="True"></ToggleSwitch>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
+            
+            <controls:SettingsExpander Header="通知设置"
+                                       Margin="0,10,0,0"
+                                       Description="设置 RMCL 的顶部通知栏">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="CalendarInfo20Regular">
+                    </fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                <controls:SettingsExpanderItem Content="通知时长"
+                                               Name="MessageTimeLong"
+                                               Description="通知停留时长 (5s)">
+                    <controls:SettingsExpanderItem.Footer>
+                        <Slider Width="200" Name="MsSlider" Minimum="0.5" Maximum="30" ValueChanged="RangeBase_OnValueChanged"></Slider>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
+            
+            <controls:SettingsExpander Header="更新设置"
+                                       Margin="0,10,0,0"
+                                       Description="设置 RMCL 的更新操作">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="PhoneUpdateCheckmark20Regular">
+                    </fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                <controls:SettingsExpanderItem Content="自动检测更新"
+                                               Description="设置是否打开时自动检测更新">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ToggleSwitch OnContent="启用" OffContent="禁用" Name="IsAutoUpdata" IsCheckedChanged="IsAutoUpdata_OnIsCheckedChanged" IsChecked="True"></ToggleSwitch>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
+
+            
+            <controls:SettingsExpander Header="调试模式"
+                                       Margin="0,10,0,0"
+                                       Description="高级的调试设置">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="Toolbox20Regular">
+                    </fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                <controls:SettingsExpanderItem Content="启用调试模式"
+                                               Description="设置是否启用调试模式">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ToggleSwitch OnContent="打开" OffContent="关闭" Name="IsDebug" IsCheckedChanged="IsDebug_OnIsCheckedChanged" IsChecked="True"></ToggleSwitch>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

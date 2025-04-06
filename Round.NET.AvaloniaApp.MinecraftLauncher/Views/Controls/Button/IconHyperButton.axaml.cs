@@ -13,6 +13,7 @@ public class IconHyperButton : HyperlinkButton
     public static readonly StyledProperty<IImage> IconProperty =
         AvaloniaProperty.Register<IconHyperButton, IImage>(
             nameof(Icon));
+    
     public static readonly StyledProperty<string> TextProperty =
         AvaloniaProperty.Register<IconHyperButton, string>(
             nameof(Text),"");

@@ -53,6 +53,13 @@ public partial class Mange : UserControl
         });   
         RegisterRoute(new Core.API.NavigationRouteConfig()
         {
+            Page = StarMange,
+            Title = "收藏夹管理",
+            Route = "StarMange",
+            Icon = FluentIconSymbol.Star20Filled
+        });    
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
             Page = PlugMange,
             Title = "启动器插件管理",
             Route = "PlugMange",
@@ -64,6 +71,7 @@ public partial class Mange : UserControl
     private UserMange UserMange { get; set; } = new();
     private JavaMange JavaMange { get; set; } = new();
     private PlugMange PlugMange { get; set; } = new();
+    private StarMange StarMange { get; set; } = new();
     private ServerMange ServerMange { get; set; } = new();
     private void NavigationView_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
     {

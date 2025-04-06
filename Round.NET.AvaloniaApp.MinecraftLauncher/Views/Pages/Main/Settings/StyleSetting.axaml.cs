@@ -133,7 +133,7 @@ public partial class StyleSetting : UserControl
     }
     private void BackTMDSlider_OnValueChanged(object? sender, RangeBaseValueChangedEventArgs e)
     {
-        BackTMDLabel.Content = $"背景图透明度({(int)BackTMDSlider.Value}%)";
+        TMDBox.Description = $"背景图透明度({(int)BackTMDSlider.Value}%)";
     }
 
     private async void SaveConfig_OnClick(object? sender, RoutedEventArgs e)

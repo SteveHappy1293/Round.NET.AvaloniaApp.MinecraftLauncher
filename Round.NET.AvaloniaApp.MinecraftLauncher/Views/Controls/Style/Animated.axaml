@@ -1,0 +1,160 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:allControl="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl"
+        xmlns:downloadGame="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.DownloadGame"
+        xmlns:download="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download"
+        xmlns:launch="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch"
+        xmlns:controls11="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+        xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+        xmlns:dialog="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog"
+        xmlns:custom="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+        <Style Selector="custom|AnimatedStackPanel">
+            <Setter Property="AnimationDuration" Value="0:0:0.3"/>
+            <Setter Property="ItemDelay" Value="0:0:0.1"/>
+        </Style>
+        <Style Selector="controls|SettingsExpander">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Width" Duration="0:0:0.8" Easing="QuadraticEaseInOut"></DoubleTransition>
+                    <DoubleTransition Property="Height" Duration="0:0:0.8" Easing="QuadraticEaseInOut"></DoubleTransition>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Label">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.3"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="dialog|ContentPageDialog">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.5"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.3"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="ProgressBar">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Value" Easing="ExponentialEaseOut" Duration="0:0:0.3"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Expander">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.5"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.4"/>
+                    <DoubleTransition Property="Width" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Border">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.4"/>
+                    <DoubleTransition Property="Width" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="controls|Frame">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuinticEaseOut" Duration="0:0:0.48"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.15"/>
+                    <DoubleTransition Property="Width" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="TextBlock">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.5"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.7"></DoubleTransition>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Width" Duration="0:0:0.3" Easing="QuadraticEaseInOut"></DoubleTransition>
+                    <DoubleTransition Property="Height" Duration="0:0:0.3" Easing="QuadraticEaseInOut"></DoubleTransition>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="controls|InfoBar">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="controls11|HeroIcon">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.3"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="downloadGame|DownloadGame">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="download|DownloadUpdate">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="launch|LaunchJavaEdtion">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="MinHeight" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="allControl|SystemNavigationBar">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.5"/>
+                    <DoubleTransition Property="Opacity" Easing="QuinticEaseInOut" Duration="0:0:0.4"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="allControl|SearchBox">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.9"/>
+                    <DoubleTransition Property="Opacity" Easing="QuinticEaseInOut" Duration="0:0:0.9"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Ellipse">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.5"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Width" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                    <DoubleTransition Property="Height" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </Setter>
+        </Style>
+</Styles>

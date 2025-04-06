@@ -1,0 +1,25 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:button="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Button"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.StarMange">
+    <Grid>
+        <DockPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button Margin="5" Classes="accent">导入收藏夹</Button>
+            <Button Margin="5">新建</Button>
+            <Button Margin="5">刷新</Button>
+        </DockPanel>
+        <ScrollViewer Margin="0,42,0,0">
+            <WrapPanel Name="StarBox">
+                <button:StarGroupButton Margin="5" Title="Test" Count="114514" Image="../../../../Assets/Afdian.jpg"/>
+                <button:StarGroupButton Margin="5" Title="Test" Count="114514" Image="../../../../Assets/Afdian.jpg"/>
+                <button:StarGroupButton Margin="5" Title="Test" Count="114514" Image="../../../../Assets/Afdian.jpg"/>
+                <button:StarGroupButton Margin="5" Title="Test" Count="114514" Image="../../../../Assets/Afdian.jpg"/>
+                <button:StarGroupButton Margin="5" Title="Test" Count="114514" Image="../../../../Assets/Afdian.jpg"/>
+                <button:StarGroupButton Margin="5" Title="Test" Count="114514" Image="../../../../Assets/Afdian.jpg"/>
+            </WrapPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

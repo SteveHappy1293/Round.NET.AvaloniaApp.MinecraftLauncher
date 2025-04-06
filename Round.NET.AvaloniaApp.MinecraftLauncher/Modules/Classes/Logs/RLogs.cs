@@ -7,7 +7,7 @@ public class RLogs
 {
     public static void WriteLog(dynamic log)
     {
-        var lo = $"[{DateTime.Now:HH:mm:ss}] {log}";
+        var lo = $"[{DateTime.Now:HH:mm:ss}]: {log}";
         
         Console.WriteLine(lo);
     }

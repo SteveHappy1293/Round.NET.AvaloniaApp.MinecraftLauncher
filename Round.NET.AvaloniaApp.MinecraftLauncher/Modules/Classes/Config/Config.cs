@@ -23,6 +23,7 @@ public class ConfigRoot
     public string StyleFile { get; set; } = string.Empty;
     public bool ShowErrorWindow { get; set; } = true;
     public bool IsAutoUpdate { get; set; } = true;
+    public bool IsDebug { get; set; } = false;
     public int WindowWidth { get; set; } = 850;
     public int WindowHeight { get; set; } = 450;
     public bool IsUsePlug { get; set; } = true;

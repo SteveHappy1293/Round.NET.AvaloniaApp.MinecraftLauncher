@@ -27,5 +27,6 @@
             </Button>
         </DockPanel>
         <allControl:SearchBox Name="MainSearchBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsVisible="False"/>
+        <allControl:DebugView HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10"></allControl:DebugView>
     </Grid>
 </UserControl>

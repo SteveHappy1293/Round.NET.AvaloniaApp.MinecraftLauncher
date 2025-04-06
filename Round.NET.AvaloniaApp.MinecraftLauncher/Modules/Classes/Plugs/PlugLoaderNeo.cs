@@ -38,14 +38,17 @@ public class PlugLoaderNeo
             
             var js = File.ReadAllText(Path.Combine(path, "index.json"));
             var enrty = JsonSerializer.Deserialize<PlugFileEnty>(js);
-            
-            Plugs.Add(new PlugEntry()
+
+            try
             {
-                Icon = new Bitmap(path+enrty.IconPath),
-                Writer = enrty.PlugWriter,
-                Name = enrty.PlugName,
-                Notes = enrty.PlugVersion
-            });
+                Plugs.Add(new PlugEntry()
+                {
+                    Icon = new Bitmap(path+enrty.IconPath),
+                    Writer = enrty.PlugWriter,
+                    Name = enrty.PlugName,
+                    Notes = enrty.PlugVersion
+                });
+            }catch{ continue; }
         }
 
         #endregion
@@ -64,7 +67,10 @@ public class PlugLoaderNeo
 
                 if (!loclabs.Contains(Path.GetFileName(plg)))
                 {
-                    File.Copy(lib, Path.GetFileName(lib),true);
+                    try
+                    {
+                        File.Copy(lib, Path.GetFileName(lib),true);
+                    }catch { }
                 }
             }
         }
@@ -76,8 +82,11 @@ public class PlugLoaderNeo
         {
             var plgname = Path.GetFileName(Directory.GetFiles(Path.Combine(plg, "plug"))[0]);
             var plgpath = Path.Combine(plg,$"plug\\{plgname}");
-            
-            File.Copy(plgpath, Path.Combine(PlugMainDirPath,"Neo\\Plugs", plgname), true);
+
+            try
+            {
+                File.Copy(plgpath, Path.Combine(PlugMainDirPath,"Neo\\Plugs", plgname), true);
+            }catch{ continue; }
         }
 
         #endregion

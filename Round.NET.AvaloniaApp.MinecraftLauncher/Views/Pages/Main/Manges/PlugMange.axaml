@@ -11,7 +11,7 @@
             <TabItem Header="已安装插件">
                 <Grid>
                     <DockPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-5,0">
-                        <Button Height="32" Width="32" Margin="5">
+                        <Button Name="AddPlug" Click="AddPlug_OnClick" Height="32" Width="32" Margin="5">
                             <fluentIcons:FluentIcon Icon="Folder20Regular" Margin="-10"/>
                         </Button>
                     </DockPanel>

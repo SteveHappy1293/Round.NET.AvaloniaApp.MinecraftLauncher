@@ -2,48 +2,76 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.JavaSetting">
     <ScrollViewer>
         <StackPanel>
-            <StackPanel Margin="0,10,0,0">
-                <Label Margin="10,0" FontSize="18" FontWeight="Bold">Java</Label>
+            <Border HorizontalAlignment="Center" Background="#1E1E1E" Padding="10" CornerRadius="11">
+                <DockPanel VerticalAlignment="Stretch">
+                        <Grid VerticalAlignment="Center" Margin="0,4,0,0">
+                            <controls:ProgressRing VerticalAlignment="Center" BorderThickness="5" Width="80" Background="Gray"
+                                                   Height="80" IsIndeterminate="False" Margin="0,0,0,0" Foreground="White" Name="UseMer"></controls:ProgressRing>
+                            <controls:ProgressRing VerticalAlignment="Center" BorderThickness="5" 
+                                                   Width="80" 
+                                                   Height="80" IsIndeterminate="False" Margin="0,0,0,0" Value="10" Foreground="DodgerBlue" Name="MCMer"></controls:ProgressRing>
+                        </Grid>
+                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0">
+                            <DockPanel Margin="0,5">
+                                <Border CornerRadius="3" Width="16" Height="16" Background="Gray"></Border>
+                                <TextBlock Margin="5,0">总内存</TextBlock>
+                                <Label HorizontalAlignment="Right" Name="PCMerLabel" HorizontalContentAlignment="Right">? GB</Label>
+                            </DockPanel>
+                            <DockPanel Margin="0,-3">
+                                <Border CornerRadius="3" Width="16" Height="16" Background="White"></Border>
+                                <TextBlock Margin="5,0">已使用内存</TextBlock>
+                                <Label HorizontalAlignment="Right" Name="UseMerLabel" HorizontalContentAlignment="Right">? GB</Label>
+                            </DockPanel>
+                            <DockPanel Margin="0,6,0,0">
+                                <Border CornerRadius="3" Width="16" Height="16" Background="DodgerBlue"></Border>
+                                <TextBlock Margin="5,0">Minecraft 将使用其中的</TextBlock>
+                                <Label HorizontalAlignment="Right" Name="McMerLabel" HorizontalContentAlignment="Right">? GB</Label>
+                            </DockPanel>
+                        </StackPanel>
+                        
+                    </DockPanel>
+            </Border>
+            <controls:SettingsExpander Header="Java 设置"
+                                       Margin="0,10,0,0"
+                                       Description="设置全局 Java"
+                                       IsExpanded="True">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="Memory16Regular">
+                    </fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                <controls:SettingsExpanderItem Content="自动设置内存"
+                                               Description="是否自动设置内存">
+                    <controls:SettingsExpanderItem.Footer>
+                        <CheckBox Name="JavaCheckBox" IsChecked="True" IsCheckedChanged="ToggleButton_OnIsCheckedChanged">自动设置内存</CheckBox>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
                 
-                <DockPanel Margin="20,0,0,0">
-                    <Label VerticalAlignment="Center">默认 Java：</Label>
-                    <ComboBox HorizontalAlignment="Stretch" Name="JavaComboBox" SelectionChanged="JavaComboBox_OnSelectionChanged"></ComboBox>
-                </DockPanel>
-                <DockPanel Margin="0,10,0,0" HorizontalAlignment="Right">
-                    <Button Name="RefuseJava" Click="RefuseJava_OnClick" Width="64" Height="32">刷新</Button>
-                </DockPanel>
-            </StackPanel>
-            <Label Margin="10,0" FontSize="18" FontWeight="Bold">内存</Label>
-            <StackPanel Margin="20,10,0,0">
-                <DockPanel>
-                    <Label>本机内存：</Label>
-                    <Label HorizontalAlignment="Right" HorizontalContentAlignment="Right" Name="PCMerLabel">? GB</Label>
-                </DockPanel>
-                <StackPanel Margin="5,0,0,0">
-                    <Grid>
-                        <ProgressBar Margin="0,10,0,0" Foreground="White" Name="UseMer"></ProgressBar>
-                        <ProgressBar Margin="0,10,0,0" Value="10" Foreground="DodgerBlue" Name="MCMer"></ProgressBar>
-                    </Grid>
-                    <DockPanel Margin="0,5">
-                        <Border Width="16" Height="16" Background="White"></Border>
-                        <Label Margin="5,0">已使用内存</Label>
-                        <Label HorizontalAlignment="Right" Name="UseMerLabel" HorizontalContentAlignment="Right">? GB</Label>
-                    </DockPanel>
-                    <DockPanel Margin="0,-3">
-                        <Border Width="16" Height="16" Background="DodgerBlue"></Border>
-                        <Label Margin="5,0">Minecraft 将使用其中的</Label>
-                        <Label HorizontalAlignment="Right" Name="McMerLabel" HorizontalContentAlignment="Right">? GB</Label>
-                    </DockPanel>
-                    <CheckBox Name="JavaCheckBox" Margin="0,5" IsChecked="True" IsCheckedChanged="ToggleButton_OnIsCheckedChanged">自动设置内存</CheckBox>
-                    
-                    <TextBox Name="MerInputBox" Watermark="手动设置内存" IsEnabled="False" TextChanged="MerInputBox_OnTextChanged" Margin="0,0,35,0">4096</TextBox>
-                    <Label HorizontalAlignment="Right" Margin="0,-30,0,0" MinWidth="30">MB</Label>
-                </StackPanel>
-            </StackPanel>
+                <controls:SettingsExpanderItem Content="自定义内存"
+                                               Description="由用户自己设置内存大小">
+                    <controls:SettingsExpanderItem.Footer>
+                        <DockPanel  Width="394">
+                            <TextBox Width="320" Name="MerInputBox" Watermark="手动设置内存" IsEnabled="False" TextChanged="MerInputBox_OnTextChanged" Margin="0,0,0,0">4096</TextBox>
+                            <Label VerticalAlignment="Center" Margin="10,0,0,0" MinWidth="30">MB</Label>
+                        </DockPanel>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                
+                <controls:SettingsExpanderItem Content="默认全局 Java"
+                                               Description="选择一个默认的全局 Java">
+                    <controls:SettingsExpanderItem.Footer>
+                        <DockPanel>
+                            <ComboBox Width="320" HorizontalAlignment="Stretch" Name="JavaComboBox" SelectionChanged="JavaComboBox_OnSelectionChanged"></ComboBox>
+                            <Button Margin="10,0,0,0" Name="RefuseJava" Click="RefuseJava_OnClick" Width="64" Height="32">刷新</Button>
+                        </DockPanel>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

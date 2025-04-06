@@ -1,12 +1,21 @@
-﻿using Avalonia;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Controls.Shapes;
+using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Threading;
 using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Plugs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Manges;
@@ -106,5 +115,45 @@ public partial class PlugMange : UserControl
                 });
             }
         };
+    }
+
+    private void AddPlug_OnClick(object? sender, RoutedEventArgs e)
+    {
+        OpenFileDialog openFileDialog = new OpenFileDialog
+        {
+            AllowMultiple = false,
+            Filters = new List<FileDialogFilter>
+            {
+                new FileDialogFilter()
+                {
+                    Name = "RMCL 插件包文件",
+                    Extensions = new List<string>(){"rplk"}
+                }
+            }
+        };
+
+        if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            Task.Run(() =>
+            {
+                string[] fileNames = openFileDialog.ShowAsync(desktop.MainWindow).Result;
+                if (fileNames != null && fileNames.Length > 0)
+                {
+                    string fileName = fileNames[0];
+                    try
+                    {
+                        RLogs.WriteLog(Path.Combine(PlugLoaderNeo.PlugMainDirPath,
+                            $"Neo\\PlugPacks\\{Path.GetFileName(fileName)}"));
+                        File.Copy(fileName,
+                            Path.Combine(PlugLoaderNeo.PlugMainDirPath,
+                                $"Neo\\PlugPacks\\{Path.GetFileName(fileName)}"));
+                    }
+                    catch (Exception ex)
+                    {
+                        Message.Show("插件管理", $"载入插件包识别！\n{ex.Message}", InfoBarSeverity.Error);
+                    }
+                }
+            });
+        }
     }
 }

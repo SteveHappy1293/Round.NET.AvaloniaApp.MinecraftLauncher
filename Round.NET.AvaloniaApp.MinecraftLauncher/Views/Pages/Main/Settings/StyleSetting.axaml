@@ -2,16 +2,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              Margin="-10"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.StyleSetting">
     <ScrollViewer Margin="5">
         <StackPanel Margin="5">
-            <StackPanel Margin="10,10,0,0">
-                <Label Margin="10,0" FontSize="18" FontWeight="Bold">背景</Label>
-                <DockPanel Margin="20,0,0,0">
-                        <Label VerticalAlignment="Center">背景类型：</Label>
-                        <ComboBox Name="BackgroundTypeComboBox"  HorizontalAlignment="Stretch" SelectionChanged="BackgroundTypeComboBox_SelectionChanged">
+            
+            
+            <controls:SettingsExpander Header="背景设置"
+                                       Margin="0,10,0,0"
+                                       Description="RMCL 的背景设置"
+                                       IsExpanded="True">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="Backpack20Regular">
+                    </fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                <controls:SettingsExpanderItem Content="背景类型"
+                                               Description="设置你需要的背景类型">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ComboBox Name="BackgroundTypeComboBox" Width="400"  HorizontalAlignment="Stretch" SelectionChanged="BackgroundTypeComboBox_SelectionChanged">
                             <ComboBoxItem>云母（默认）</ComboBoxItem>
                             <ComboBoxItem>亚克力</ComboBoxItem>
                             <ComboBoxItem>图片</ComboBoxItem>
@@ -19,37 +30,69 @@
                             <ComboBoxItem>导入通用主题包</ComboBoxItem>
                             <ComboBoxItem>无</ComboBoxItem>
                         </ComboBox>
-                </DockPanel>
-                    <StackPanel Name="ImageBox" IsVisible="False" Margin="20,10,0,0">
-                        <TextBox Name="ImagePathBox" Watermark="请输入图片路径"/>
-                    </StackPanel>
-                    <StackPanel Name="StyleBox" IsVisible="False" Margin="20,10,0,0">
-                        <TextBox Name="StylePathBox" Watermark="请输入主题文件路径"/>
-                    </StackPanel>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
                 
-                    <DockPanel Name="TMDBox" Margin="15,0,0,0">
-                        <Label Margin="5" Name="BackTMDLabel" Width="150" VerticalAlignment="Center">背景图透明度(100%)</Label>
-                        <Slider HorizontalAlignment="Stretch" Name="BackTMDSlider" ValueChanged="BackTMDSlider_OnValueChanged"></Slider>
-                    </DockPanel>
+                <controls:SettingsExpanderItem Content="图片背景"
+                                               IsVisible="False"
+                                               Name="ImageBox"
+                                               Description="输入背景图片路径">
+                    <controls:SettingsExpanderItem.Footer>
+                        <DockPanel>
+                            <TextBox Name="ImagePathBox" Width="190" Watermark="请输入图片路径"/>
+                            <Button Name="SaveConfig" Click="SaveConfig_OnClick" HorizontalAlignment="Right" Margin="10,0,0,0">导出主题配置</Button>
+                            <Button Name="ChooseImage" Click="ChooseImage_OnClick" HorizontalAlignment="Right" Margin="10,0,0,0">选择图片</Button>
+                        </DockPanel>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
                 
-                    <DockPanel HorizontalAlignment="Right">
-                        <Button Name="ChooseStyle" Click="ChooseStyle_OnClick_OnClick" HorizontalAlignment="Right" Margin="0,10,10,0">选择文件</Button>
-                        <Button Name="ChooseImage" Click="ChooseImage_OnClick" HorizontalAlignment="Right" Margin="0,10,10,0">选择图片</Button>
-                        <Button Name="SaveConfig" Click="SaveConfig_OnClick" HorizontalAlignment="Right" Margin="0,10,10,0">导出主题配置</Button>
-                        <Button Classes="accent" Name="SaveImage" Click="SaveImage_OnClick" HorizontalAlignment="Right" Margin="0,10,0,0">保存设置</Button>
-                    </DockPanel>
-            </StackPanel>
-            <StackPanel Margin="10,10,0,0">
-                <Label Margin="10,0" FontSize="18" FontWeight="Bold">主页</Label>
-                <DockPanel Margin="20,0,0,0">
-                    <Label VerticalAlignment="Center" Width="120">主页显示内容</Label>
-                    <ComboBox SelectionChanged="ChoseMainPageBody_OnSelectionChanged" Name="ChoseMainPageBody"  HorizontalAlignment="Stretch">
-                        <ComboBoxItem>无</ComboBoxItem>
-                        <ComboBoxItem>磁贴</ComboBoxItem>
-                        <ComboBoxItem>自定义主页（兼容 PCL2 自定义主页）</ComboBoxItem>
-                    </ComboBox>
-                </DockPanel>
-            </StackPanel>
+                <controls:SettingsExpanderItem Content="图片透明度"
+                                               IsVisible="False"
+                                               Name="TMDBox"
+                                               Description="背景图透明度">
+                    <controls:SettingsExpanderItem.Footer>
+                        <Slider HorizontalAlignment="Stretch" Width="400" Name="BackTMDSlider" ValueChanged="BackTMDSlider_OnValueChanged"></Slider>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                
+                <controls:SettingsExpanderItem Content="主题导入"
+                                               IsVisible="False"
+                                               Name="StyleBox"
+                                               Description="输入主题包路径">
+                    <controls:SettingsExpanderItem.Footer>
+                        <DockPanel>
+                            <TextBox Name="StylePathBox" Width="310" Watermark="请输入主题文件路径"/>
+                            <Button Name="ChooseStyle" Click="ChooseStyle_OnClick_OnClick" HorizontalAlignment="Right" Margin="10,0,0,0">选择文件</Button>
+                        </DockPanel>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                
+                <controls:SettingsExpanderItem Content="保存设置"
+                                               Description="保存即刷新背景">
+                    <controls:SettingsExpanderItem.Footer>
+                        <Button Classes="accent" Name="SaveImage" Click="SaveImage_OnClick" HorizontalAlignment="Right">保存设置</Button>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
+            
+            <controls:SettingsExpander Header="主页设置"
+                Margin="0,10,0,0"
+                Description="RMCL 的主页设置">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="News20Regular">
+                    </fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                <controls:SettingsExpanderItem Content="主页样式"
+                                               Description="选择一个你想要的主页样式">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ComboBox SelectionChanged="ChoseMainPageBody_OnSelectionChanged" Name="ChoseMainPageBody" Width="400" HorizontalAlignment="Stretch">
+                            <ComboBoxItem>无</ComboBoxItem>
+                            <ComboBoxItem>磁贴</ComboBoxItem>
+                            <ComboBoxItem IsEnabled="False">自定义主页（兼容 PCL2 自定义主页）</ComboBoxItem>
+                        </ComboBox>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

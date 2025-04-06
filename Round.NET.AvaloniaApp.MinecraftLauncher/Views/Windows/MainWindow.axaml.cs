@@ -9,22 +9,26 @@ using Avalonia.Controls;
 using Avalonia.Controls.Chrome;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Rendering;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using FluentAvalonia.UI.Windowing;
 using MinecraftLaunch;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Classes.Mange.StarMange;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User.RSAccount;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Plugs;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Server;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
+using ServerMange = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Server.ServerMange;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views;
 
@@ -35,13 +39,15 @@ public partial class MainWindow : AppWindow
         User.LoadUser();
         MinecraftLauncher.Modules.Java.FindJava.JavasList.Clear();
         Config.LoadConfig();
+        StarGroup.LoadStars();
         ServerMange.Load();
         
         DownloadMirrorManager.MaxThread = Config.MainConfig.DownloadThreads;
         DownloadMirrorManager.IsEnableMirror = false;
         
         InitializeComponent();
-        //PlugsLoader.LoadingPlug();
+        // RendererDiagnostics.DebugOverlays ^= RendererDebugOverlays.Fps;
+        // PlugsLoader.LoadingPlug();
         PlugLoaderNeo.LoadPlugs();
         TitleBar.Height = 38;
         TitleBar.ExtendsContentIntoTitleBar = true;
