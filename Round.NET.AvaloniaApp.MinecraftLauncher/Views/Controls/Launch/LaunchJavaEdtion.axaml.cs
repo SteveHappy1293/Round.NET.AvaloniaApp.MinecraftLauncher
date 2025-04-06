@@ -42,6 +42,7 @@ public partial class LaunchJavaEdtion : UserControl
     }
     public string Tuid { get; set; } = string.Empty;
     public string Server { get; set; } = string.Empty;
+    public string Dir { get; set; } = Config.MainConfig.GameFolders[Config.MainConfig.SelectedGameFolder].Path;
     public LaunchJavaEdtion()
     {
         InitializeComponent();
@@ -102,7 +103,7 @@ public partial class LaunchJavaEdtion : UserControl
                 {
                     try
                     {
-                         Modules.Game.JavaEdtion.Launch.LaunchJavaEdtion.LaunchGame(
+                         Modules.Game.JavaEdtion.Launch.LaunchJavaEdtion.LaunchGame(Dir,
                             Version,
                             (sender) =>
                             {

@@ -8,5 +8,6 @@ public class StarItemEnrty
 {
     public string SUID { get; } = Guid.NewGuid().ToString();
     public string SourceData { get; set; } = string.Empty; 
+    public string Title { get; set; } = string.Empty;
     public StarItemTypeEnum Type { get; set; }
 }

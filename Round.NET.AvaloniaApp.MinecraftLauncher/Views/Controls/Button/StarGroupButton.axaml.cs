@@ -1,6 +1,11 @@
-﻿using Avalonia;
+﻿using System;
+using System.Collections.Generic;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Media;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry.Stars;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Button
 {
@@ -18,7 +23,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Button
         public static readonly StyledProperty<IImage> ImageProperty =
             AvaloniaProperty.Register<StarGroupButton, IImage>(
                 nameof(Image));
-
+        public List<StarItemEnrty> StarItems { get; set; } = new();
         static StarGroupButton()
         {
             CountProperty.Changed.AddClassHandler<StarGroupButton>((x, e) => 

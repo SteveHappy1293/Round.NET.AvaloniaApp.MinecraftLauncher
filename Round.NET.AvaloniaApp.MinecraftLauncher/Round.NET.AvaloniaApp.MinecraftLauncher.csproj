@@ -58,10 +58,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\Image\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Round.NET.FindJava.Library\Round.NET.FindJava.Library.csproj" />
     <ProjectReference Include="..\Round.NET.MinecraftPlayerSkin.Library\Round.NET.MinecraftPlayerSkin.Library.csproj" />
     <ProjectReference Include="..\Round.NET.Updater.Library\Round.NET.Updater.Library.csproj" />

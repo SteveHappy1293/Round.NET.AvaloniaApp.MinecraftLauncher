@@ -20,14 +20,14 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch
 
 public class LaunchJavaEdtion
 {
-    public static async void LaunchGame(string VersionID,Action<Process> GetGameProcess,Action<object,LogReceivedEventArgs> LaunchingOutput,Action Exit,string Server = null)
+    public static async void LaunchGame(string Dir,string VersionID,Action<Process> GetGameProcess,Action<object,LogReceivedEventArgs> LaunchingOutput,Action Exit,string Server = null)
     {
         UpdateServers(VersionID);
         var entry = VanillaInstaller.EnumerableMinecraftAsync()
             .FirstAsync(x => x.Id == VersionID);
 
         MinecraftParser minecraftParser =
-            Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path;
+            Dir;
         
         if (Config.Config.MainConfig.SetTheLanguageOnStartup) SetValueOnFirst.SetLanguage(VersionID);
         if (Config.Config.MainConfig.SetTheGammaOnStartup) SetValueOnFirst.SetGamma(VersionID);
