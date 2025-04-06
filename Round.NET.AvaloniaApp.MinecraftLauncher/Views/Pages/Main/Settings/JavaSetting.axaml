@@ -8,7 +8,7 @@
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.JavaSetting">
     <ScrollViewer>
         <StackPanel>
-            <Border HorizontalAlignment="Center" Background="#1E1E1E" Padding="10" CornerRadius="11">
+            <Border HorizontalAlignment="Stretch" Background="#1E1E1E" Padding="10" CornerRadius="11">
                 <DockPanel VerticalAlignment="Stretch">
                         <Grid VerticalAlignment="Center" Margin="0,4,0,0">
                             <controls:ProgressRing VerticalAlignment="Center" BorderThickness="5" Width="80" Background="Gray"
@@ -17,21 +17,21 @@
                                                    Width="80" 
                                                    Height="80" IsIndeterminate="False" Margin="0,0,0,0" Value="10" Foreground="DodgerBlue" Name="MCMer"></controls:ProgressRing>
                         </Grid>
-                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0">
+                        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20,0,0,0">
                             <DockPanel Margin="0,5">
                                 <Border CornerRadius="3" Width="16" Height="16" Background="Gray"></Border>
                                 <TextBlock Margin="5,0">总内存</TextBlock>
-                                <Label HorizontalAlignment="Right" Name="PCMerLabel" HorizontalContentAlignment="Right">? GB</Label>
+                                <Label HorizontalAlignment="Right" Name="PCMerLabel" HorizontalContentAlignment="Right" MaxWidth="80">? GB</Label>
                             </DockPanel>
                             <DockPanel Margin="0,-3">
                                 <Border CornerRadius="3" Width="16" Height="16" Background="White"></Border>
                                 <TextBlock Margin="5,0">已使用内存</TextBlock>
-                                <Label HorizontalAlignment="Right" Name="UseMerLabel" HorizontalContentAlignment="Right">? GB</Label>
+                                <Label HorizontalAlignment="Right" Name="UseMerLabel" HorizontalContentAlignment="Right" MaxWidth="80">? GB</Label>
                             </DockPanel>
                             <DockPanel Margin="0,6,0,0">
                                 <Border CornerRadius="3" Width="16" Height="16" Background="DodgerBlue"></Border>
                                 <TextBlock Margin="5,0">Minecraft 将使用其中的</TextBlock>
-                                <Label HorizontalAlignment="Right" Name="McMerLabel" HorizontalContentAlignment="Right">? GB</Label>
+                                <Label HorizontalAlignment="Right" Name="McMerLabel" HorizontalContentAlignment="Right" MaxWidth="80">? GB</Label>
                             </DockPanel>
                         </StackPanel>
                         

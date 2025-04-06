@@ -35,7 +35,7 @@
                                                Name="MessageTimeLong"
                                                Description="通知停留时长 (5s)">
                     <controls:SettingsExpanderItem.Footer>
-                        <Slider Width="200" Name="MsSlider" Minimum="0.5" Maximum="30" ValueChanged="RangeBase_OnValueChanged"></Slider>
+                        <Slider Width="400" Name="MsSlider" Minimum="0.5" Maximum="30" ValueChanged="RangeBase_OnValueChanged"></Slider>
                     </controls:SettingsExpanderItem.Footer>
                 </controls:SettingsExpanderItem>
             </controls:SettingsExpander>
@@ -51,6 +51,15 @@
                                                Description="设置是否打开时自动检测更新">
                     <controls:SettingsExpanderItem.Footer>
                         <ToggleSwitch OnContent="启用" OffContent="禁用" Name="IsAutoUpdata" IsCheckedChanged="IsAutoUpdata_OnIsCheckedChanged" IsChecked="True"></ToggleSwitch>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                <controls:SettingsExpanderItem Content="更新渠道"
+                                               Description="RMCL 更新时的渠道">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ComboBox Width="400" SelectionChanged="UpdateLXBox_OnSelectionChanged" Name="UpdateLXBox">
+                            <ComboBoxItem Tag="Github">Github （下载速度慢，默认）</ComboBoxItem>
+                            <ComboBoxItem Tag="Auto">自动选择合适的节点（不稳定，但快）</ComboBoxItem>
+                        </ComboBox>
                     </controls:SettingsExpanderItem.Footer>
                 </controls:SettingsExpanderItem>
             </controls:SettingsExpander>

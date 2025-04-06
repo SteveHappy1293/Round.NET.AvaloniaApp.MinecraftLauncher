@@ -71,15 +71,16 @@ public partial class App : Application
         e.SetObserved(); // 标记为已处理
     }
 
-    private async void ShowErrorDialog(Exception ex)
+    private void ShowErrorDialog(Exception ex)
     {
         try
         {
-            await Dispatcher.UIThread.InvokeAsync(async () =>
+            Dispatcher.UIThread.Invoke(() =>
             {
-                Message.Show("发生错误","RMCL 发生了致命的错误，已将其信息保存至 异常追踪器。可前往 设置 > 安全 > 异常追踪 页面查看。",InfoBarSeverity.Error);
                 var error = new ErrorWindow();
-                error.Show(ex);
+                error.ShowEx(ex);
+                Message.Show("发生错误","RMCL 发生了致命的错误，已将其信息保存至 异常追踪器。可前往 设置 > 安全 > 异常追踪 页面查看。",InfoBarSeverity.Error);
+                
                 if (Config.MainConfig.ShowErrorWindow)
                 {
                     error.ShowDialog(Core.MainWindow);

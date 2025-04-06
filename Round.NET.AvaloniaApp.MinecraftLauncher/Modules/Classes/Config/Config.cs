@@ -18,6 +18,7 @@ public class ConfigRoot
     public int SelectedJava { get; set; } = 0;
     public int SelectedUser { get; set; } = 0;
     public int BackModlue { get; set; } = 0;
+    public int UpdateSourse { get; set; } = 0;
     public string BackImage { get; set; } = string.Empty;
     public double BackOpacity { get; set; } = 50;
     public string StyleFile { get; set; } = string.Empty;

@@ -2,30 +2,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.GameSetting">
     <ScrollViewer>
         <StackPanel>
-            <StackPanel Margin="0,10,0,0">
-                <Label Margin="10,0" FontSize="18" FontWeight="Bold">游戏监控</Label>
-                <DockPanel Margin="20,0,0,0">
-                    <Label VerticalAlignment="Center" HorizontalAlignment="Left">游戏日志自动打开：</Label>
-                    <ComboBox VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="LogWindowStart" SelectionChanged="LogWindowStart_OnSelectionChanged">
-                        <ComboBoxItem Tag="None">无</ComboBoxItem>
-                        <ComboBoxItem Tag="AfterGameLaunched">每次游戏启动后</ComboBoxItem>
-                        <ComboBoxItem Tag="AfterGameExited">游戏退出后</ComboBoxItem>
-                    </ComboBox>
-                </DockPanel>
-                <Label Margin="10,0" FontSize="18" FontWeight="Bold">辅助功能</Label>
-                <DockPanel Margin="20,0,0,0">
-                    <Label VerticalAlignment="Center" HorizontalAlignment="Left">在启动游戏时设置中文：</Label>
-                    <CheckBox VerticalAlignment="Center" Name="SetLangZHCN" Click="SetValue_OnClick">启用</CheckBox>
-                </DockPanel>
-                <DockPanel Margin="20,0,0,0">
-                    <Label VerticalAlignment="Center" HorizontalAlignment="Left">在启动游戏时设置伽马：</Label>
-                    <CheckBox VerticalAlignment="Center" Name="SetGammaTop" Click="SetValue_OnClick">启用（仅低版本 1.19 以下）</CheckBox>
-                </DockPanel>
-            </StackPanel>
+            <controls:SettingsExpander Header="游戏监控"
+                                       Margin="0,10,0,0"
+                                       Description="设置启动器启动游戏后对游戏的监控">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="Eye20Regular">
+                    </fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                <controls:SettingsExpanderItem Content="日志窗口"
+                                               Description="设置何时打开日志">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ComboBox Width="400" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="LogWindowStart" SelectionChanged="LogWindowStart_OnSelectionChanged">
+                            <ComboBoxItem Tag="None">手动打开（默认）</ComboBoxItem>
+                            <ComboBoxItem Tag="AfterGameLaunched">每次游戏启动后</ComboBoxItem>
+                            <ComboBoxItem Tag="AfterGameExited">游戏退出后</ComboBoxItem>
+                        </ComboBox>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
+            <controls:SettingsExpander Header="游戏辅助"
+                                       Margin="0,10,0,0"
+                                       Description="启动器对游戏的修改与配置">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="CodeBlock20Regular">
+                    </fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                <controls:SettingsExpanderItem Content="启动设置中文"
+                                               Description="在启动游戏时设置中文">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ToggleSwitch VerticalAlignment="Center" Name="SetLangZHCN" Click="SetValue_OnClick" OnContent="启用" OffContent="禁用"></ToggleSwitch>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                <controls:SettingsExpanderItem Content="启动设置伽马（高亮）"
+                                               Description="在启动游戏时设置伽马（仅 1.19 以下）">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ToggleSwitch VerticalAlignment="Center" Name="SetGammaTop" Click="SetValue_OnClick" OnContent="启用" OffContent="禁用"></ToggleSwitch>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

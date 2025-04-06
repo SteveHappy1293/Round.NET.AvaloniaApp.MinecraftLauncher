@@ -31,6 +31,8 @@ public partial class SeniorSetting : UserControl
         MessageTimeLong.Description = $"通知停留时长 ({(double)Config.MainConfig.MessageLiveTimeMs/1000}s)：";
         IsAutoUpdata.IsChecked = Config.MainConfig.IsAutoUpdate;
         IsDebug.IsChecked = Config.MainConfig.IsDebug;
+        UpdateLXBox.SelectedIndex = Config.MainConfig.UpdateSourse;
+        
         this.Loaded += (_, __) => IsEditMode = true;
     }
 
@@ -68,6 +70,21 @@ public partial class SeniorSetting : UserControl
         {
             Config.MainConfig.IsDebug = (bool)((ToggleSwitch)sender).IsChecked;
             Config.SaveConfig();
+        }
+    }
+
+    private void UpdateLXBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (IsEditMode)
+        {
+            var tag = (((ComboBox)sender).SelectedItem as ComboBoxItem).Tag as string;
+
+            var ind = tag switch
+            {
+                "Github" => 0,
+                "Auto" => 1
+            };
+            Config.MainConfig.UpdateSourse = ind;
         }
     }
 }

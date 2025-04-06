@@ -10,10 +10,10 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.ExceptionMessage;
 
 public class ExceptionMessage
 {
-    public static readonly string ExceptionsPath = Path.GetFullPath("../RMCL/RMCL.Exception/Exceptions");
+    public static readonly string ExceptionsPath = Path.GetFullPath("../RMCL/RMCL.Exception/Exceptions/");
     public static void LogException(ExceptionEntry exceptionEntry)
     {
-        string fileName = $"{ExceptionsPath}/RMCL3-Exception-{DateTime.Now:yyyyMMddHHmmss}{new Random().Next(1000,9999)}.json";
+        string fileName = Path.Combine(ExceptionsPath,$"RMCL3-Exception-{DateTime.Now:yyyyMMddHHmmss}{new Random().Next(1000,9999)}.json");
         string jsresult = Regex.Unescape(JsonSerializer.Serialize(exceptionEntry, new JsonSerializerOptions() { WriteIndented = true }).Replace("\\","\\\\")); //获取结果并转换成正确的格式
         if (!Directory.Exists(ExceptionsPath))
         {
