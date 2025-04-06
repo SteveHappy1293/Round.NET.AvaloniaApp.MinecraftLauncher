@@ -2,21 +2,75 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.InternetSetting">
     <ScrollViewer>
         <StackPanel>
-            <Button Margin="0,5" Click="Button_OnClick" Name="ReButton" Height="32" Width="80" HorizontalContentAlignment="Center">重新检查</Button>
-            <StackPanel Margin="5">
-                <Label Margin="5,0" FontSize="16" FontWeight="Bold">RMCL 网络状态：</Label>
-                <Label Margin="10,0" Foreground="Orange" Name="InternetStautsLabel">???</Label>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <Label Margin="5,0" FontSize="16" FontWeight="Bold">第三方服务连接状态：</Label>
-                <Label Margin="10,0" Foreground="Orange" Name="Github">Github API：???</Label>
-                <Label Margin="10,0" Foreground="Orange" Name="Gitee">Gitee API：???</Label>
-                <Label Margin="10,0" Foreground="Orange" Name="Curseforge">Curseforge API：???</Label>
-            </StackPanel>
+            <controls:SettingsExpander Header="网络状况"
+                                       Margin="0,10,0,0"
+                                       Description="测试网络的状况"
+                                       IsExpanded="True">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="Desktop20Regular">
+                    </fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                
+                
+                <controls:SettingsExpanderItem Content="刷新"
+                                               Description="刷新所有的网络状态">
+                    <controls:SettingsExpanderItem.Footer>
+                        <Button Click="Button_OnClick" Name="ReButton" Height="32" Width="80" HorizontalContentAlignment="Center" Classes="accent">重新检查</Button>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                
+                <controls:SettingsExpanderItem Content="RMCL 网络状态"
+                                               Description="启动器网络连接状态">
+                    <controls:SettingsExpanderItem.Footer>
+                        <Label Margin="10,0" Foreground="Orange" Name="InternetStautsLabel" HorizontalContentAlignment="Right">???</Label>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                
+                <controls:SettingsExpanderItem Content="Github API"
+                                               Description="Github 的接口">
+                    <controls:SettingsExpanderItem.Footer>
+                        <Label Margin="10,0" Foreground="Orange" Name="Github" HorizontalContentAlignment="Right">???</Label>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                
+                <controls:SettingsExpanderItem Content="Gitee API"
+                                               Description="Gitee 的接口">
+                    <controls:SettingsExpanderItem.Footer>
+                        <Label Margin="10,0" Foreground="Orange" Name="Gitee" HorizontalContentAlignment="Right">???</Label>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                
+                <controls:SettingsExpanderItem Content="Curseforge API"
+                                               Description="Curseforge 的接口">
+                    <controls:SettingsExpanderItem.Footer>
+                        <Label Margin="10,0" Foreground="Orange" Name="Curseforge" HorizontalContentAlignment="Right">???</Label>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
+            
+            
+            <controls:SettingsExpander Header="下载设置"
+                                       Margin="0,10,0,0"
+                                       Description="启动器的下载设置">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="ArrowDownload20Regular">
+                    </fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                
+                <controls:SettingsExpanderItem Content="基础下载线程"
+                                               Description="下载器的下载线程数量（256）"
+                                               Name="DownloadThreadsCountBox">
+                    <controls:SettingsExpanderItem.Footer>
+                        <Slider Width="400" Name="DownloadThreadsCountSlider" ValueChanged="DownloadThreadsCountSlider_OnValueChanged" Minimum="10" Maximum="512" Value="256"/>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
         </StackPanel>
     </ScrollViewer>
 </UserControl>
