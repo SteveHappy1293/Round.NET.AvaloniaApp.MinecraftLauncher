@@ -1,5 +1,29 @@
 # Round.NET.AvaloniaApp.MinecraftLauncher
-RMCL 3.0
+[![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+
+![GitHub Commit Activity](https://img.shields.io/github/commit-activity/t/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Commits Since Latest Release](https://img.shields.io/github/commits-since/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/latest)
+![GitHub Created At](https://img.shields.io/github/created-at/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Release Date](https://img.shields.io/github/release-date-pre/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Release](https://img.shields.io/github/v/release/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher?include_prereleases)
+![GitHub Language Count](https://img.shields.io/github/languages/count/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Top Language](https://img.shields.io/github/languages/top/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub License](https://img.shields.io/github/license/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/total)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FRound-Studio%2FRound.NET.AvaloniaApp.MinecraftLauncher&label=visits&countColor=%2337d67a&style=flat)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2FRound-Studio%2FRound.NET.AvaloniaApp.MinecraftLauncher)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fdocs.lipoly.ink%2FRound.NET.AvaloniaApp.MinecraftLauncher)
+
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-closed/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr-closed/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Discussions](https://img.shields.io/github/discussions/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Number of Milestones](https://img.shields.io/github/milestones/all/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Forks](https://img.shields.io/github/forks/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Repo Stars](https://img.shields.io/github/stars/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
+![GitHub Watchers](https://img.shields.io/github/watchers/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
 # 简介
 RMCL 3.0 是新一代的 Minecraft 启动器，采用全新的跨平台框架 Round.NET.AvaloniaApp，彻底打破 Windows 系统的限制，让玩家可以在多种操作系统上畅玩 Minecraft 游戏，为玩家带来前所未有的自由体验。无论你是 Windows 用户、Mac 用户还是 Linux 用户，RMCL 3.0 都能完美适配，让你随时随地开启冒险之旅。
 # 如何使用
