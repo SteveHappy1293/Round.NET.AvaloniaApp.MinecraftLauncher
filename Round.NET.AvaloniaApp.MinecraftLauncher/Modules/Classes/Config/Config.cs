@@ -62,6 +62,7 @@ public class Config
     public static readonly string LoginServerIP = "http://account.roundstduio.top:32127";
 #endif
     
+    public static bool IsInitialized { get; set; } = false;
     public static ConfigRoot MainConfig = new()
     {
         GameFolders = new()
@@ -81,7 +82,9 @@ public class Config
         {
             Directory.CreateDirectory(Path.GetDirectoryName(ConfigFileName));
             SaveConfig();
+            return;
         }
+        
         var json = File.ReadAllText(Path.GetFullPath(ConfigFileName));
         if (string.IsNullOrEmpty(json))
         {
@@ -92,6 +95,10 @@ public class Config
             try
             {
                 MainConfig = JsonSerializer.Deserialize<ConfigRoot>(json);
+                if (!IsInitialized)
+                {
+                    IsInitialized = true;
+                }
             }
             catch
             {

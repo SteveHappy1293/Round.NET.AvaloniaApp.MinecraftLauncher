@@ -27,6 +27,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Initialize;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
 using ServerMange = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Server.ServerMange;
 

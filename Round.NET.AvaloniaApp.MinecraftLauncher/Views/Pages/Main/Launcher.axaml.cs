@@ -18,6 +18,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Initialize;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 

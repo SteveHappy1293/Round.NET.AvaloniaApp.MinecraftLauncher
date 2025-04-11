@@ -7,6 +7,8 @@ using Avalonia.Interactivity;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Initialize;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
 

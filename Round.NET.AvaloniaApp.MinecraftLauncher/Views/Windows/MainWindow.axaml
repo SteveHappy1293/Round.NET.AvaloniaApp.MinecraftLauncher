@@ -18,5 +18,5 @@
         MinHeight="480"
         ExtendClientAreaChromeHints="NoChrome"
         Title="Round.NET.AvaloniaApp.MinecraftLauncher">
-        <views:MainView />
+        <views:MainView/>
 </Window>

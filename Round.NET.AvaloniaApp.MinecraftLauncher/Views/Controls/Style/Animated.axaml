@@ -83,15 +83,6 @@
                 </Transitions>
             </Setter>
         </Style>
-        <Style Selector="Button">
-            <Setter Property="Transitions">
-                <Transitions>
-                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
-                    <DoubleTransition Property="Width" Duration="0:0:0.3" Easing="QuadraticEaseInOut"></DoubleTransition>
-                    <DoubleTransition Property="Height" Duration="0:0:0.3" Easing="QuadraticEaseInOut"></DoubleTransition>
-                </Transitions>
-            </Setter>
-        </Style>
         <Style Selector="controls|InfoBar">
             <Setter Property="Transitions">
                 <Transitions>

@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCLPlugTools", "RMCLPlugTools\RMCLPlugTools.csproj", "{1A9A91D5-2759-4B60-BB18-1A4AF32A5E29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCLConfigServer", "RMCLConfigServer\RMCLConfigServer.csproj", "{67853A74-5E2B-4C38-BA9E-74B10B0B7FA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{1A9A91D5-2759-4B60-BB18-1A4AF32A5E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A9A91D5-2759-4B60-BB18-1A4AF32A5E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A9A91D5-2759-4B60-BB18-1A4AF32A5E29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67853A74-5E2B-4C38-BA9E-74B10B0B7FA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67853A74-5E2B-4C38-BA9E-74B10B0B7FA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67853A74-5E2B-4C38-BA9E-74B10B0B7FA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67853A74-5E2B-4C38-BA9E-74B10B0B7FA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

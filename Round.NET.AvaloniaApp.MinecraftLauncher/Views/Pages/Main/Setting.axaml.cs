@@ -16,6 +16,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings;
+using SixLabors.ImageSharp;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
@@ -64,6 +65,13 @@ public partial class Setting : UserControl
         });  
         RegisterRoute(new Core.API.NavigationRouteConfig()
         {
+            Page = ConfigSetting,
+            Title = "配置",
+            Route = "ConfigSetting",
+            Icon = FluentIconSymbol.Organization20Filled
+        });
+        RegisterRoute(new Core.API.NavigationRouteConfig()
+        {
             Page = SafeSetting,
             Title = "安全",
             Route = "SafeSetting",
@@ -87,6 +95,7 @@ public partial class Setting : UserControl
     private JavaSetting JavaSetting { get; set; } = new();
     private AboutRMCL AboutRMCL { get; set; } = new();
     private SafeSetting SafeSetting { get; set; } = new();
+    private ConfigSetting ConfigSetting { get; set; } = new();
     public List<Core.API.NavigationRouteConfig> RouteConfigs { get; set; } = new();
     private void NavigationView_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
     {
