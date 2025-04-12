@@ -169,7 +169,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: RMCLConfigServer
-        path: ./published/
+        path: ./published/*
 
   plugtools:
     runs-on: windows-latest
