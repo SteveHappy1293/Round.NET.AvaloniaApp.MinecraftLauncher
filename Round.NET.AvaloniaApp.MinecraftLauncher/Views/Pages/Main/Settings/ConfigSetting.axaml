@@ -8,7 +8,7 @@
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.ConfigSetting">
     <ScrollViewer>
         <StackPanel>
-            <controls:SettingsExpander Header="组织"
+            <controls:SettingsExpander Header="组织 （试验性）"
                                        Margin="0,10,0,0"
                                        IsExpanded="True"
                                        Description="RMCL 的配置组织更新设置">
@@ -19,19 +19,22 @@
                 <controls:SettingsExpanderItem Content="启用组织"
                                                Description="设置是否启用组织更新">
                     <controls:SettingsExpanderItem.Footer>
-                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick"></ToggleSwitch>
+                        <ToggleSwitch Name="OrgToggleSwitch" OnContent="启用" OffContent="禁用" Click="Button_OnClick"></ToggleSwitch>
                     </controls:SettingsExpanderItem.Footer>
                 </controls:SettingsExpanderItem>
                 <controls:SettingsExpanderItem Content="组织地址"
                                                Description="设置配置更新地址">
                     <controls:SettingsExpanderItem.Footer>
-                        <TextBox Watermark="在此键入地址" Width="400"></TextBox>
+                        <DockPanel Name="UrlBox">
+                            <TextBox Name="UrlTextBox" TextChanged="TextBox_OnTextChanged" Watermark="在此键入地址" Width="330" Margin="10,0"></TextBox>
+                            <Button Width="60" Classes="accent">更新</Button>
+                        </DockPanel>
                     </controls:SettingsExpanderItem.Footer>
                 </controls:SettingsExpanderItem>
             </controls:SettingsExpander> 
             <controls:SettingsExpander Header="组织更新选项"
                                        Margin="0,10,0,0"
-                                       IsExpanded="True"
+                                       IsEnabled="False"
                                        Description="组织可以更改你的设置项">
                 <controls:SettingsExpander.IconSource>
                     <fluentIcons:FluentIconSource Icon="DualScreenUpdate20Regular">

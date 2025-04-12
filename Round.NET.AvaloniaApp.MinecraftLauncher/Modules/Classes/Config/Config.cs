@@ -14,6 +14,8 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 public class ConfigRoot
 {
     public List<GameFolderConfig> GameFolders { get; set; } = new();
+    public bool IsUseOrganizationConfig { get; set; } = false;
+    public string OrganizationUrl { get; set; } = string.Empty;
     public int SelectedGameFolder { get; set; } = 0;
     public int SelectedJava { get; set; } = 0;
     public int SelectedUser { get; set; } = 0;
