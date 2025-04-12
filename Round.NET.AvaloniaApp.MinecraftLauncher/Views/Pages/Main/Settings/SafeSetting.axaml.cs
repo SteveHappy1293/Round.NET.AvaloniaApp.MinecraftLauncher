@@ -4,7 +4,8 @@ using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Exceptions;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Safe;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Safe.Exceptions;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings;
 
@@ -35,5 +36,14 @@ public partial class SafeSetting : UserControl
             Config.MainConfig.ShowErrorWindow = (bool)ShowErrorWindowButton.IsChecked;
             Config.SaveConfig();
         }
+    }
+
+    private void LssuesButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        ((MainView)Core.MainWindow.Content).CortentFrame.Content = new LssuesPage();
+        ((MainView)Core.MainWindow.Content).CortentFrame.Opacity = 1;
+        ((MainView)Core.MainWindow.Content).MainCortent.Opacity = 0;
+        
+        Core.NavigationBar.Opacity = 0;
     }
 }

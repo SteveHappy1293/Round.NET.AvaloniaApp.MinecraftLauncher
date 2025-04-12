@@ -72,4 +72,8 @@
     <PackageReference Condition="$(DefineConstants.Contains(ENABLE_XAML_HOT_RELOAD))" Include="HotAvalonia" Version="2.1.0" />
     <PackageReference Include="HotAvalonia.Extensions" Version="2.1.0" PrivateAssets="All" />
   </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Views\Pages\Main\Safe\Exceptions\ExceptionPage.axaml" />
+  </ItemGroup>
 </Project>

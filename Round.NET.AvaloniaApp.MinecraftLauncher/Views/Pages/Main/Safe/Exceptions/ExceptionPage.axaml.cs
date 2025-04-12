@@ -14,7 +14,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Enum;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.ExceptionMessage;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Exceptions;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Safe.Exceptions;
 
 public partial class ExceptionPage : UserControl
 {

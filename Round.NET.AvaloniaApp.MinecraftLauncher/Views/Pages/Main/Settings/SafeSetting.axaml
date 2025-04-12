@@ -14,7 +14,8 @@
                     <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center">也许在这里可以找到</Label>
                 </StackPanel>
             </Border>
-            <Button Margin="10" HorizontalAlignment="Stretch" Name="ExceptionButton" Click="ExceptionButton_OnClick">异常追踪</Button>
+            <Button Margin="10,5" HorizontalAlignment="Stretch" Name="ExceptionButton" Click="ExceptionButton_OnClick">异常追踪</Button>
+            <Button Margin="10,5" HorizontalAlignment="Stretch" Name="LssuesButton" Click="LssuesButton_OnClick">反馈列表</Button>
             <DockPanel Margin="5">
                 <ToggleSwitch Name="ShowErrorWindowButton" OnContent="显示" OffContent="关闭" Margin="5" Click="Button_OnClick">崩溃时显示崩溃窗口</ToggleSwitch>
             </DockPanel>
