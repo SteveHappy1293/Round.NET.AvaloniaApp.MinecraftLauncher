@@ -163,7 +163,7 @@ jobs:
 
     - name: Publish
       run: |
-        dotnet publish ./RMCLConfigServer/ -c Release -r win-x64 --self-contained false -p:PublishTrimmed=false -p:DebugType=None -p:DebugSymbols=false -o ./published/
+        dotnet publish ./RMCLConfigServer/ -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -p:PublishTrimmed=false -p:DebugType=None -p:DebugSymbols=false -o ./published/
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
