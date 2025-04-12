@@ -140,7 +140,12 @@ namespace RMCLConfigServer.Modules.Classes.Network
 
         private string HandleConfigRequest(JsonElement root)
         {
-            return CreateResponse("Config", Config.MainConfig.LauncherConfig);
+            var config = new
+            {
+                ServerName = Config.MainConfig.ServerName,
+                Config = Config.MainConfig.LauncherConfig
+            };
+            return CreateResponse("Config", config);
         }
 
         private string CreateResponse(string Type, object Data)
@@ -165,7 +170,7 @@ namespace RMCLConfigServer.Modules.Classes.Network
                 Message,
                 Timestamp = DateTime.UtcNow
             };
-
+            Log.Error(Message);
             return JsonSerializer.Serialize(response, new JsonSerializerOptions { WriteIndented = true });
         }
     }

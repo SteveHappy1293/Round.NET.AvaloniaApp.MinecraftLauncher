@@ -33,15 +33,7 @@ public partial class JavaSetting : UserControl
             Modules.Java.FindJava.LoadJava();
             Dispatcher.UIThread.Invoke(() =>
             {
-                foreach (var java in Modules.Java.FindJava.JavasList)
-                {
-                    JavaComboBox.Items.Add(new ComboBoxItem
-                    {
-                        Content = $"[Java {java.JavaVersion}] {java.JavaPath}"
-                    });
-                }
-                JavaComboBox.SelectedIndex = Config.MainConfig.SelectedJava;
-                IsEdit = true;
+                LoadJava();
             });
         }); // 更新Java设置下拉框
         MerInputBox.Text = Config.MainConfig.JavaUseMemory.ToString();
@@ -123,7 +115,6 @@ public partial class JavaSetting : UserControl
             Height = 15
         };
         RefuseJava.IsEnabled = false;
-        JavaComboBox.Items.Clear();
         
         Task.Run(() =>
         {
@@ -133,14 +124,7 @@ public partial class JavaSetting : UserControl
             Modules.Java.FindJava.LoadJava();
             Dispatcher.UIThread.Invoke(() =>
             {
-                foreach (var java in Modules.Java.FindJava.JavasList)
-                {
-                    JavaComboBox.Items.Add(new ComboBoxItem
-                    {
-                        Content = $"[Java {java.JavaVersion}] {java.JavaPath}"
-                    });
-                }
-                JavaComboBox.SelectedIndex = Config.MainConfig.SelectedJava;
+                LoadJava();
             });
             Dispatcher.UIThread.Invoke(() =>
             {
@@ -148,5 +132,21 @@ public partial class JavaSetting : UserControl
                 RefuseJava.IsEnabled = true;
             });
         });
+    }
+
+    private void LoadJava()
+    {
+        IsEdit = false;
+        JavaComboBox.Items.Clear();
+        JavaComboBox.Items.Add(new ComboBoxItem() { Content = "[Auto] RMCL 自己选择合适的 Java 版本" });
+        foreach (var java in Modules.Java.FindJava.JavasList)
+        {
+            JavaComboBox.Items.Add(new ComboBoxItem
+            {
+                Content = $"[{java.JavaVersion}] {java.JavaPath}"
+            });
+        }
+        JavaComboBox.SelectedIndex = Config.MainConfig.SelectedJava;
+        IsEdit = true;
     }
 }
