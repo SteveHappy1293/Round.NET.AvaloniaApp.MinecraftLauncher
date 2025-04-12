@@ -42,7 +42,7 @@
                             <fluentIcons:FluentIcon Icon="ErrorCircle20Regular"/>
                         </DockPanel>
                     </Button>
-                    <tips:LssuesTipBox LssuesType="Bug" LssuesText="Bug"/>
+                    <tips:IssuesTipBox IssuesType="Bug" IssuesText="Bug"/>
                 </DockPanel>
             </Grid>
         </Border>

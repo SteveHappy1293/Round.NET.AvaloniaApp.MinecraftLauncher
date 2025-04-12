@@ -6,16 +6,16 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Classes.NetWork.Lssues;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Classes.NetWork.Issues;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Enum;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.ExceptionMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Tips;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Safe;
 
-public partial class LssuesPage : UserControl
+public partial class IssuesPage : UserControl
 {
-    public LssuesPage()
+    public IssuesPage()
     {
         InitializeComponent();
         
@@ -32,11 +32,11 @@ public partial class LssuesPage : UserControl
 
     public void Load()
     {
-        if (LssuesCore.Lssues.Count == 0)
+        if (IssuesCore.Issues.Count == 0)
         {
             Task.Run(() =>
             {
-                LssuesCore.Load();
+                IssuesCore.Load();
                 Dispatcher.UIThread.Invoke(() =>
                 {
                     reLoad();
@@ -51,10 +51,10 @@ public partial class LssuesPage : UserControl
 
     public void reLoad()
     {
-        LssuesAnimatedStackPanel.Children.Clear();
+        IssuesAnimatedStackPanel.Children.Clear();
         LoadingControl.IsVisible = true;
         NullControl.IsVisible = false;
-        LssuesCore.Lssues.ForEach(x =>
+        IssuesCore.Issues.ForEach(x =>
         {
             var doc = new DockPanel()
             {
@@ -62,28 +62,28 @@ public partial class LssuesPage : UserControl
             };
             x.labels.ForEach(la =>
             {
-                doc.Children.Add(new LssuesTipBox()
+                doc.Children.Add(new IssuesTipBox()
                 {
-                    LssuesText = la.name,
-                    LssuesType = la.name switch
+                    IssuesText = la.name,
+                    IssuesType = la.name switch
                     {
-                        "Bug" => LssuesTypeEnum.Bug,
-                        "Feature" => LssuesTypeEnum.Feature,
-                        "Default" => LssuesTypeEnum.Default,
-                        "不错的第一个" => LssuesTypeEnum.不错的第一个,
-                        "处理中" => LssuesTypeEnum.处理中,
-                        "已完成" => LssuesTypeEnum.已完成,
-                        "已放弃" => LssuesTypeEnum.已放弃,
-                        "已查看" => LssuesTypeEnum.已查看,
-                        "投票中" => LssuesTypeEnum.投票中,
-                        "文档" => LssuesTypeEnum.文档,
-                        "新功能" => LssuesTypeEnum.新功能,
-                        "无效" => LssuesTypeEnum.无效,
-                        "未查看" => LssuesTypeEnum.未查看,
-                        "漏洞" => LssuesTypeEnum.漏洞,
-                        "重复的" => LssuesTypeEnum.重复的,
-                        "问题" => LssuesTypeEnum.问题,
-                        "需要帮助" => LssuesTypeEnum.需要帮助,
+                        "Bug" => IssuesTypeEnum.Bug,
+                        "Feature" => IssuesTypeEnum.Feature,
+                        "Default" => IssuesTypeEnum.Default,
+                        "不错的第一个" => IssuesTypeEnum.不错的第一个,
+                        "处理中" => IssuesTypeEnum.处理中,
+                        "已完成" => IssuesTypeEnum.已完成,
+                        "已放弃" => IssuesTypeEnum.已放弃,
+                        "已查看" => IssuesTypeEnum.已查看,
+                        "投票中" => IssuesTypeEnum.投票中,
+                        "文档" => IssuesTypeEnum.文档,
+                        "新功能" => IssuesTypeEnum.新功能,
+                        "无效" => IssuesTypeEnum.无效,
+                        "未查看" => IssuesTypeEnum.未查看,
+                        "漏洞" => IssuesTypeEnum.漏洞,
+                        "重复的" => IssuesTypeEnum.重复的,
+                        "问题" => IssuesTypeEnum.问题,
+                        "需要帮助" => IssuesTypeEnum.需要帮助,
                     },
                     HorizontalAlignment = HorizontalAlignment.Left,
                     Margin = new Thickness(5,0,0,0)
@@ -114,15 +114,15 @@ public partial class LssuesPage : UserControl
                         {
                             Children =
                             {
-                                new LssuesTipBox()
+                                new IssuesTipBox()
                                 {
-                                    LssuesType = x.type.name switch
+                                    IssuesType = x.type.name switch
                                     {
-                                        "Bug" => LssuesTypeEnum.Bug,
-                                        "Feature"=>LssuesTypeEnum.Feature,
-                                        _ => LssuesTypeEnum.Default,
+                                        "Bug" => IssuesTypeEnum.Bug,
+                                        "Feature"=>IssuesTypeEnum.Feature,
+                                        _ => IssuesTypeEnum.Default,
                                     } ,
-                                    LssuesText = x.type.name,
+                                    IssuesText = x.type.name,
                                     Height = 28,
                                     HorizontalAlignment = HorizontalAlignment.Left,
                                 },
@@ -138,9 +138,9 @@ public partial class LssuesPage : UserControl
                     }
                 }
             };
-            LssuesAnimatedStackPanel.Children.Add(liteam);
+            IssuesAnimatedStackPanel.Children.Add(liteam);
         });
-        if (LssuesCore.Lssues.Count == 0)
+        if (IssuesCore.Issues.Count == 0)
         {
             NullControl.IsVisible = true;
             LoadingControl.IsVisible = false;

@@ -1,6 +1,6 @@
 ﻿namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Enum;
 
-public enum LssuesTypeEnum
+public enum IssuesTypeEnum
 {
     Bug,
     Feature,

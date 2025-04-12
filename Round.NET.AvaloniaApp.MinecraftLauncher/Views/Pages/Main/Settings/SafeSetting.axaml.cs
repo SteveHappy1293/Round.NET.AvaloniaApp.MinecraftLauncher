@@ -38,9 +38,9 @@ public partial class SafeSetting : UserControl
         }
     }
 
-    private void LssuesButton_OnClick(object? sender, RoutedEventArgs e)
+    private void IssuesButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        ((MainView)Core.MainWindow.Content).CortentFrame.Content = new LssuesPage();
+        ((MainView)Core.MainWindow.Content).CortentFrame.Content = new IssuesPage();
         ((MainView)Core.MainWindow.Content).CortentFrame.Opacity = 1;
         ((MainView)Core.MainWindow.Content).MainCortent.Opacity = 0;
         

@@ -9,5 +9,5 @@
     <StyleInclude Source="/Views/Controls/RoundWindow.axaml" />
     <StyleInclude Source="/Views/Controls/Button/IconHyperButton.axaml" />
     <StyleInclude Source="/Views/Controls/Button/StarGroupButton.axaml" />
-    <StyleInclude Source="/Views/Controls/Labels/LssuesTipBox.axaml" />
+    <StyleInclude Source="/Views/Controls/Labels/IssuesTipBox.axaml" />
 </Styles>

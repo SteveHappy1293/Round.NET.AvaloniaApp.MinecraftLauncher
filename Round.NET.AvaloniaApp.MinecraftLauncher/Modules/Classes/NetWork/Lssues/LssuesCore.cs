@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry.Lssues;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry.Issues;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Classes.NetWork.Lssues;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Classes.NetWork.Issues;
 
-public class LssuesCore
+public class IssuesCore
 {
-    public static List<LssuesItemEnrty> Lssues { private set; get; } = new();
+    public static List<IssuesItemEnrty> Issues { private set; get; } = new();
 
     public static bool Load()
     {
@@ -26,7 +26,7 @@ public class LssuesCore
                 string responseBody = response.Content.ReadAsStringAsync().Result;
                 
                 // 反序列化 JSON 到 Issue 对象列表
-                Lssues = JsonConvert.DeserializeObject<List<LssuesItemEnrty>>(responseBody);
+                Issues = JsonConvert.DeserializeObject<List<IssuesItemEnrty>>(responseBody);
                 return true;
             }
             catch (HttpRequestException e)

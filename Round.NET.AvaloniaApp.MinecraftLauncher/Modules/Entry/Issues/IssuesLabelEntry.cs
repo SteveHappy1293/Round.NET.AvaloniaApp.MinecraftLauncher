@@ -1,6 +1,6 @@
-﻿namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry.Lssues;
+﻿namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry.Issues;
 
-public class LssuesLabelEntry
+public class IssuesLabelEntry
 {
     public long id { get; set; }
     public string url { get; set; }
