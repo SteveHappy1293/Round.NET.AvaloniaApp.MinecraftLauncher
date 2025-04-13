@@ -192,6 +192,38 @@ jobs:
         name: RMCLPlugTools
         path: ./published/
 
+  buildplugs:
+    needs: [plugtools]
+    runs-on: windows-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: PublishBedrockPlug
+      run: |
+        dotnet build ./BedrockPlug/ -c Release -o ./Temp/
+
+    - name: Download-RMCLPlugToolsArtifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: RMCLPlugTools
+        path: ./Tools/
+
+    - name: BuildPlugPack
+      run: |
+        ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/BedrockPlug.json -o ./Publish/BedrockPlug.rplk
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: RMCLPlugTools
+        path: ./Publish/
+
   publish:
     needs: [linux, win, onlineinstall, configserver, plugtools, time]
     runs-on: ubuntu-latest
