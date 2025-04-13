@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Net.Http;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -10,10 +13,12 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls; 
 using MinecraftLaunch.Base.Models.Authentication;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Classes.User;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.UserLogin;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
@@ -331,5 +336,64 @@ public partial class UserMange : UserControl
     {
         User.LoadUser();
         RefreshUI1();
+    }
+
+    private void GetUserSkin_OnClick(object? sender, RoutedEventArgs e)
+    {
+        var text = new TextBox()
+        {
+            Watermark = "输入正版账户名称...",
+            Width = 300
+        };
+        var con = new ContentDialog()
+        {
+            Content = text,
+            Title = "输入名称",
+            PrimaryButtonText = "取消",
+            CloseButtonText = "确定",
+            DefaultButton = ContentDialogButton.Close
+        };
+        con.CloseButtonClick += (_, __) =>
+        {
+            var taskbox = new ContentDialog()
+            {
+                Content = "获取中...",
+                Title = "稍等以下",
+            };
+            var user = text.Text;
+            if(string.IsNullOrEmpty(user)) return;
+            Task.Run(() =>
+            {
+                UserInfoSerch use = new UserInfoSerch();
+                var uuid = use.GetUuidByUsername(user).Result;
+                var url = use.GetSkinUrlByUuid(uuid).Result;
+                Dispatcher.UIThread.Invoke(taskbox.Hide);
+                ImageDownloader imageDownloader = new ImageDownloader(new HttpClient());
+                imageDownloader.DownloadImageAsync(url,Path.GetFullPath($"../RMCL/RMCL.UserSkin/{uuid}"));
+                
+                Dispatcher.UIThread.Invoke(async () =>
+                {
+                    var saveFileDialog = new SaveFileDialog
+                    {
+                        Title = "另存为皮肤文件",
+                        InitialFileName = Path.GetFileName(imageDownloader.FilePath), // 默认文件名
+                        DefaultExtension = Path.GetExtension(imageDownloader.FilePath),
+                        Filters = new List<FileDialogFilter>
+                        {
+                            new FileDialogFilter { Name = "Minecraft 皮肤文件", Extensions = new List<string> { "png" } }
+                        }
+                    };
+
+                    string? filePath = await saveFileDialog.ShowAsync(Core.MainWindow);
+
+                    if (!string.IsNullOrEmpty(filePath))
+                    {
+                        File.Copy(imageDownloader.FilePath, filePath);
+                    }
+                });
+            });
+            taskbox.ShowAsync();
+        };
+        con.ShowAsync();
     }
 }
