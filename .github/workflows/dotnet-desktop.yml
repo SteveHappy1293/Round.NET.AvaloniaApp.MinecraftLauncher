@@ -216,6 +216,7 @@ jobs:
 
     - name: BuildPlugPack
       run: |
+        md ./Publish/
         ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/BedrockPlug.json -o ./Publish/BedrockPlug.rplk
 
     - name: Upload artifact
