@@ -77,7 +77,7 @@ public class Config
         }
     };
     
-    public const string ConfigFileName = "../RMCL/RMCL.Config/Config.json";
+    private const string ConfigFileName = "../RMCL/RMCL.Config/Config.json";
     public static void LoadConfig()
     {
         if (!File.Exists(ConfigFileName))

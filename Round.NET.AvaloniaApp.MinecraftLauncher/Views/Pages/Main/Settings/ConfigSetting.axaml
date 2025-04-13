@@ -27,7 +27,7 @@
                     <controls:SettingsExpanderItem.Footer>
                         <DockPanel Name="UrlBox">
                             <TextBox Name="UrlTextBox" TextChanged="TextBox_OnTextChanged" Watermark="在此键入地址" Width="330" Margin="10,0"></TextBox>
-                            <Button Width="60" Classes="accent">更新</Button>
+                            <Button Width="60" Classes="accent" Name="UpdateConfig" Click="UpdateConfig_OnClick">更新</Button>
                         </DockPanel>
                     </controls:SettingsExpanderItem.Footer>
                 </controls:SettingsExpanderItem>
@@ -43,35 +43,35 @@
                 <controls:SettingsExpanderItem Content="更新个性化"
                                                Description="设置组织是否更改你的个性化设置">
                     <controls:SettingsExpanderItem.Footer>
-                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick"></ToggleSwitch>
+                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick1"></ToggleSwitch>
                     </controls:SettingsExpanderItem.Footer>
                 </controls:SettingsExpanderItem>
                 
                 <controls:SettingsExpanderItem Content="游戏监控"
                                                Description="设置组织是否启用你的游戏监控">
                     <controls:SettingsExpanderItem.Footer>
-                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick"></ToggleSwitch>
+                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick1"></ToggleSwitch>
                     </controls:SettingsExpanderItem.Footer>
                 </controls:SettingsExpanderItem>
                 
                 <controls:SettingsExpanderItem Content="安全配置"
                                                Description="设置组织是否修改你的安全配置">
                     <controls:SettingsExpanderItem.Footer>
-                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick"></ToggleSwitch>
+                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick1"></ToggleSwitch>
                     </controls:SettingsExpanderItem.Footer>
                 </controls:SettingsExpanderItem>
                 
                 <controls:SettingsExpanderItem Content="Java 与内存配置"
                                                Description="设置组织是否修改你的 Java 与内存配置">
                     <controls:SettingsExpanderItem.Footer>
-                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick"></ToggleSwitch>
+                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick1"></ToggleSwitch>
                     </controls:SettingsExpanderItem.Footer>
                 </controls:SettingsExpanderItem>
                 
                 <controls:SettingsExpanderItem Content="网络配置"
                                                Description="设置组织是否修改你的网络配置">
                     <controls:SettingsExpanderItem.Footer>
-                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick"></ToggleSwitch>
+                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick1"></ToggleSwitch>
                     </controls:SettingsExpanderItem.Footer>
                 </controls:SettingsExpanderItem>
             </controls:SettingsExpander>

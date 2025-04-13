@@ -48,7 +48,7 @@
                 <controls:SettingsExpanderItem Content="自动设置内存"
                                                Description="是否自动设置内存">
                     <controls:SettingsExpanderItem.Footer>
-                        <CheckBox Name="JavaCheckBox" IsChecked="True" IsCheckedChanged="ToggleButton_OnIsCheckedChanged">自动设置内存</CheckBox>
+                        <CheckBox Name="JavaCheckBox" IsChecked="True" Click="ToggleButton_OnIsCheckedChanged">自动设置内存</CheckBox>
                     </controls:SettingsExpanderItem.Footer>
                 </controls:SettingsExpanderItem>
                 

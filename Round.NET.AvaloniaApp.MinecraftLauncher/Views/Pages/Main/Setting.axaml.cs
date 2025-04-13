@@ -13,6 +13,7 @@ using Flurl.Util;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings;
@@ -62,14 +63,17 @@ public partial class Setting : UserControl
             Title = "高级",
             Route = "SeniorSetting",
             Icon = FluentIconSymbol.Clover20Filled
-        });  
-        RegisterRoute(new Core.API.NavigationRouteConfig()
+        });
+#if DEBUG
+        /*RegisterRoute(new Core.API.NavigationRouteConfig()
         {
-            Page = ConfigSetting,
+            Page = new ConfigSetting(),
             Title = "配置",
             Route = "ConfigSetting",
             Icon = FluentIconSymbol.Organization20Filled
-        });
+        });*/
+        RLogs.WriteLog("当前开发版已移除组织更新");
+#endif
         RegisterRoute(new Core.API.NavigationRouteConfig()
         {
             Page = SafeSetting,
@@ -95,7 +99,6 @@ public partial class Setting : UserControl
     private JavaSetting JavaSetting { get; set; } = new();
     private AboutRMCL AboutRMCL { get; set; } = new();
     private SafeSetting SafeSetting { get; set; } = new();
-    private ConfigSetting ConfigSetting { get; set; } = new();
     public List<Core.API.NavigationRouteConfig> RouteConfigs { get; set; } = new();
     private void NavigationView_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
     {

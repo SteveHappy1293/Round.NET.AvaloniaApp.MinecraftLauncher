@@ -25,6 +25,15 @@ public partial class JavaSetting : UserControl
             {
                 Dispatcher.UIThread.Invoke(RefreshMer);
                 Thread.Sleep(1000);
+                try
+                {
+                    if (Config.MainConfig.JavaUseMemory != int.Parse(MerInputBox.Text))
+                    {
+                        IsEnabled = false;
+                        MerInputBox.Text = Config.MainConfig.JavaUseMemory.ToString();
+                        IsEnabled = true;
+                    }
+                }catch{ }
             }
         });
         
@@ -38,6 +47,7 @@ public partial class JavaSetting : UserControl
         }); // 更新Java设置下拉框
         MerInputBox.Text = Config.MainConfig.JavaUseMemory.ToString();
         JavaCheckBox.IsChecked = Config.MainConfig.IsLaunchJavaMemory;
+        IsEdit = true;
     }
 
     public void RefreshMer()

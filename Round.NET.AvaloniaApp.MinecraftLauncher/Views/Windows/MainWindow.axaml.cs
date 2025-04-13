@@ -16,6 +16,7 @@ using FluentAvalonia.UI.Windowing;
 using MinecraftLaunch;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Classes.Mange.StarMange;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Classes.NetWork.Organization;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User.RSAccount;
@@ -43,6 +44,7 @@ public partial class MainWindow : AppWindow
         StarGroup.LoadStars();
         ServerMange.Load();
         
+        if (Config.MainConfig.IsUseOrganizationConfig) OrganizationCore.LoadOrganizationConfig();
         DownloadMirrorManager.MaxThread = Config.MainConfig.DownloadThreads;
         DownloadMirrorManager.IsEnableMirror = false;
         

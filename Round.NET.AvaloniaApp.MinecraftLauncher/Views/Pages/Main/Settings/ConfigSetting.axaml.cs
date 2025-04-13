@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Classes.NetWork.Organization;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings;
@@ -15,6 +16,7 @@ public partial class ConfigSetting : UserControl
         OrgToggleSwitch.IsChecked = Config.MainConfig.IsUseOrganizationConfig;
         UrlBox.IsEnabled = Config.MainConfig.IsUseOrganizationConfig;
         UrlTextBox.Text = Config.MainConfig.OrganizationUrl;
+        
         IsEdit = true;
     }
 
@@ -33,9 +35,18 @@ public partial class ConfigSetting : UserControl
     {
         if (IsEdit)
         {
-            var textBox = (TextBox)sender;
-            Config.MainConfig.OrganizationUrl = textBox.Text;
+            Config.MainConfig.OrganizationUrl = UrlTextBox.Text;
             Config.SaveConfig();
         }
+    }
+
+    private void UpdateConfig_OnClick(object? sender, RoutedEventArgs e)
+    { 
+        OrganizationCore.LoadOrganizationConfig();
+    }
+
+    private void Button_OnClick1(object? sender, RoutedEventArgs e)
+    {
+        throw new System.NotImplementedException();
     }
 }

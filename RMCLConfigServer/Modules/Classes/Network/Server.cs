@@ -63,7 +63,7 @@ namespace RMCLConfigServer.Modules.Classes.Network
                 var request = context.Request;
                 var response = context.Response;
 
-                // Only handle POST requests
+                // Only handle GET requests
                 if (request.HttpMethod != "GET")
                 {
                     SendErrorResponse(response, HttpStatusCode.MethodNotAllowed, "Only GET method is supported");
