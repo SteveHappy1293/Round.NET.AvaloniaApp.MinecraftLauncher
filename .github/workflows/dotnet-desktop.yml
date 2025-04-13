@@ -285,3 +285,4 @@ jobs:
             Round.NET.AvaloniaApp.MinecraftLauncher/Release/*.exe
             Round.NET.AvaloniaApp.MinecraftLauncher/Release/Deploy/OUT/*.AppImage
             Round.NET.AvaloniaApp.MinecraftLauncher/Release/bin/Release/net8.0/*.zip
+            Round.NET.AvaloniaApp.MinecraftLauncher/Release/bin/Release/*.rplk
