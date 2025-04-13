@@ -221,11 +221,11 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: RMCLPlugTools
+        name: BedrockPlug
         path: ./Publish/
 
   publish:
-    needs: [linux, win, onlineinstall, configserver, plugtools, time]
+    needs: [linux, win, onlineinstall, configserver, plugtools, buildplugs, time]
     runs-on: ubuntu-latest
     steps:
       - name: Time
@@ -261,6 +261,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: RMCLConfigServer
+          path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
+
+      - name: Download-BedrockPlugArtifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: BedrockPlug
           path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
 
       - name: List Files
