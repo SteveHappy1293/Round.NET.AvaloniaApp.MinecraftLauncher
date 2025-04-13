@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Threading;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -59,7 +61,32 @@ public partial class ErrorWindow : Window
         var con = new ContentDialog()
         {
             Title = "重置",
-            Content = ""
+            Content = "你确定要重置 RMCL 吗？\n如果你重置，则全部配置将消失！",
+            CloseButtonText = "取消",
+            PrimaryButtonText = "确定",
+            DefaultButton = ContentDialogButton.Close
         };
+        con.PrimaryButtonClick += (_, _) =>
+        {
+            try
+            {
+                var dir = Path.GetFullPath("../RMCL/");
+                Directory.Delete(dir, true);
+            }catch{ }
+
+            Thread.Sleep(100);
+            Environment.Exit(0);
+        };
+        con.ShowAsync();
+    }
+
+    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    {
+        Environment.Exit(0);
+    }
+
+    private void Button_OnClick1(object? sender, RoutedEventArgs e)
+    {
+        Close();
     }
 }

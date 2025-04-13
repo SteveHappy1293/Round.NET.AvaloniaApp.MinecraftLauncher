@@ -5,10 +5,10 @@
         xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Windows.ErrorWindow"
-        Width="1330"
-        Height="820"
-        MinWidth="1330"
-        MinHeight="820"
+        Width="820"
+        Height="450"
+        MinWidth="820"
+        MinHeight="450"
         WindowStartupLocation="CenterScreen"
         Title="RMCL 异常捕获">
     <Grid>
@@ -43,8 +43,8 @@
             <HyperlinkButton NavigateUri="https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/issues">打开 Github Issues</HyperlinkButton>
         </DockPanel>
         <DockPanel Margin="15,10" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Button Margin="5,10">退出 RMCL</Button>
-            <Button Margin="5,10" Classes="accent">继续运行</Button>
+            <Button Margin="5,10" Click="Button_OnClick">退出 RMCL</Button>
+            <Button Margin="5,10" Classes="accent" Click="Button_OnClick1">继续运行</Button>
         </DockPanel>
     </Grid>
 </Window>
