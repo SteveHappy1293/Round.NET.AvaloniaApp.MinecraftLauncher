@@ -3,12 +3,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;assembly=Round.NET.AvaloniaApp.MinecraftLauncher"
+             xmlns:customControls="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls;assembly=Round.NET.AvaloniaApp.MinecraftLauncher"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              Margin="-10"
              x:Class="BedrockPlug.View.Pages.BedrockDownload">
-    <ScrollViewer Margin="10">
-        <StackPanel Name="Panel" Margin="10">
-            <controls:LoadingControl Margin="80" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        </StackPanel>
-    </ScrollViewer>
+    <Grid>
+        <ScrollViewer Margin="10">
+            <customControls:AnimatedStackPanel Name="Panel1" Margin="10" AnimationDirection="Left">
+            </customControls:AnimatedStackPanel>
+        </ScrollViewer>
+        <controls:LoadingControl Name="LoadingControl" Margin="80" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
 </UserControl>

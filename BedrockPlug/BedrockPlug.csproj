@@ -17,7 +17,7 @@
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-      <Exec Command="copy &quot;D:\User File\Desktop\Round.NET.AvaloniaApp.MinecraftLauncher-master\BedrockPlug\bin\Debug\net8.0\BedrockPlug.dll&quot; &quot;D:\User File\Desktop\Round.NET.AvaloniaApp.MinecraftLauncher-master\Round.NET.AvaloniaApp.MinecraftLauncher.Desktop\bin\Debug\RMCL\RMCL.Plugs\BedrockPlug.dll&quot;" />
+      <Exec Command="&quot;D:\User File\Desktop\RMCLPlugTools.exe&quot; -c &quot;D:\User File\Desktop\RMCL3 插件配置文件 - Bedrock Plug - 20250413.json&quot; -o &quot;D:\Round.Project\Round.NET.AvaloniaApp.MinecraftLauncher-master\Round.NET.AvaloniaApp.MinecraftLauncher.Desktop\bin\Debug\RMCL\RMCL.Plugs\Neo\PlugPacks\Bedrock Plug.rplk&quot;" />
     </Target>
 
 </Project>

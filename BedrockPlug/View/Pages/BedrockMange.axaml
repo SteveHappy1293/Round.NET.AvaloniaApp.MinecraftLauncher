@@ -3,10 +3,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;assembly=Round.NET.AvaloniaApp.MinecraftLauncher"
+             xmlns:customControls="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls;assembly=Round.NET.AvaloniaApp.MinecraftLauncher"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="BedrockPlug.View.Pages.BedrockMange">
     <Grid>
-        <controls:HomeIcon Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Label Margin="50,9" FontSize="22" FontWeight="Bold">基岩版</Label>
+        <ScrollViewer>
+            <customControls:AnimatedStackPanel Name="BedrockBox" AnimationDirection="Left"/>
+        </ScrollViewer>
     </Grid>
 </UserControl>
