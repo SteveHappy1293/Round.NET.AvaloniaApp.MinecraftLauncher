@@ -11,25 +11,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.3.0-beta1" />
+    <PackageReference Include="Avalonia" Version="11.3.0-beta2" />
     <PackageReference Include="Avalonia.AvaloniaEdit" Version="11.2.0" />
-    <PackageReference Include="Avalonia.Desktop" Version="11.3.0-beta1" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.0-beta1" />
-    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.0-beta1" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.0-beta1" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.3.0-beta2" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.0-beta2" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.0-beta2" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.0-beta2" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.0-beta1" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.0-beta2" />
     <PackageReference Include="DotNet.Bundle" Version="0.9.13" />
     <PackageReference Include="DotNetZip" Version="1.16.0" />
-    <PackageReference Include="Downloader" Version="3.3.3" />
+    <PackageReference Include="Downloader" Version="3.3.4" />
     <PackageReference Include="FluentAvalonia.FluentIcons" Version="1.1.201.1-preview7" />
     <PackageReference Include="FluentAvaloniaUI" Version="2.4.0-preview1" />
-    <PackageReference Include="HeroIcons.Avalonia" Version="1.0.2" />
-    <PackageReference Include="MinecraftLaunch" Version="4.0.1-preview03" />
-    <PackageReference Include="MinecraftLaunch.Base" Version="1.0.10" />
+    <PackageReference Include="HeroIcons.Avalonia" Version="1.0.4" />
+    <PackageReference Include="MinecraftLaunch" Version="4.0.1-preview05" />
+    <PackageReference Include="MinecraftLaunch.Base" Version="1.0.12" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="RestSharp" Version="106.11.5" />
-    <PackageReference Include="System.Management" Version="10.0.0-preview.1.25080.5" />
+    <PackageReference Include="RestSharp" Version="112.1.1-alpha.0.4" />
+    <PackageReference Include="System.Management" Version="10.0.0-preview.3.25171.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -68,8 +68,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Condition="$(DefineConstants.Contains(ENABLE_XAML_HOT_RELOAD))" Include="Avalonia.Markup.Xaml.Loader" Version="11.3.0-beta1" />
-    <PackageReference Condition="$(DefineConstants.Contains(ENABLE_XAML_HOT_RELOAD))" Include="HotAvalonia" Version="2.1.0" />
-    <PackageReference Include="HotAvalonia.Extensions" Version="2.1.0" PrivateAssets="All" />
+    <PackageReference Condition="$(DefineConstants.Contains(ENABLE_XAML_HOT_RELOAD))" Include="Avalonia.Markup.Xaml.Loader" Version="11.3.0-beta2" />
+    <PackageReference Condition="$(DefineConstants.Contains(ENABLE_XAML_HOT_RELOAD))" Include="HotAvalonia" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="HotAvalonia.Extensions" Version="3.0.0" PrivateAssets="All" />
   </ItemGroup>
 </Project>
