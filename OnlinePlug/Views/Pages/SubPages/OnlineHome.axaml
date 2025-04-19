@@ -1,0 +1,50 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="OnlinePlug.Views.Pages.SubPages.OnlineHome">
+    <UserControl.Styles>
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="Gray"></Setter>
+        </Style>
+    </UserControl.Styles>
+    <ScrollViewer>
+        <StackPanel>
+            <StackPanel Margin="10">
+                <Label FontSize="20">介绍：</Label>
+                <StackPanel Margin="20,0">
+                    <TextBlock TextWrapping="Wrap">与他人联机的重要插件！</TextBlock>
+                    <TextBlock TextWrapping="Wrap">目前此插件仅支持 Windows 桌面环境。</TextBlock>
+                    <TextBlock TextWrapping="Wrap">请确保你的好友的 RMCL3 拥有此插件！</TextBlock>
+                    <TextBlock TextWrapping="Wrap">当然了，联机服务依靠的是 OpenP2P，你滴网络环境将决定你能不能打洞成功。</TextBlock>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="10">
+                <Label FontSize="20">创建房间：</Label>
+                <StackPanel Margin="20,0">
+                    <TextBlock TextWrapping="Wrap">通过此方式创建 RMCL3 的联机房间！</TextBlock>
+                    <TextBlock TextWrapping="Wrap">请确保游戏的 局域网游戏 已开启。</TextBlock>
+                    <TextBlock TextWrapping="Wrap">如果选择实例内没有你的游戏实例，请点击刷新按钮 ヾ(•ω•`)o</TextBlock>
+                    <DockPanel Margin="-5,5" HorizontalAlignment="Stretch" LastChildFill="True">
+                        <Button Margin="5" HorizontalAlignment="Right" DockPanel.Dock="Right" Name="RefreshTheInstance" Width="80" Click="RefreshTheInstance_OnClick">刷新</Button>
+                        <ComboBox Name="InstanceBox" Margin="5" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" PlaceholderText="请选择实例"></ComboBox>
+                    </DockPanel>
+                    <TextBlock TextWrapping="Wrap">请选择一个游戏实例。</TextBlock>
+                    <TextBlock TextWrapping="Wrap">联机大厅仅支持一个联机实例。</TextBlock>
+                    <TextBlock TextWrapping="Wrap">打不成功就多试几次 ヾ(≧▽≦*)o</TextBlock>
+                    <Button Classes="accent" HorizontalAlignment="Stretch" Margin="0,5">创建</Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="10">
+                <Label FontSize="20">加入房间：</Label>
+                <StackPanel Margin="20,0">
+                    <TextBlock TextWrapping="Wrap">加入他人开放的 房间、服务器。</TextBlock>
+                    <TextBlock TextWrapping="Wrap">请在下方填写 ta 给你的连接码。</TextBlock>
+                    <TextBox HorizontalAlignment="Stretch" Margin="0,5" Watermark="连接码..."></TextBox>
+                    <Button Classes="accent" HorizontalAlignment="Stretch" Margin="0,5">连接</Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

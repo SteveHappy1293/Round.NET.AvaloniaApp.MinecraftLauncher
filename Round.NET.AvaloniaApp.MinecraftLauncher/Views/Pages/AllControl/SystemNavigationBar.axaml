@@ -11,7 +11,7 @@
         <controls2:RipplesControl Name="Circle" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <Border HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="11" Background="rgb(26,26,26)" Width="64" Margin="10">
             <StackPanel Margin="5" Name="MainNavPanel">
-                <Image Source="../../../Assets/Icon.png" Height="32" Width="32" Margin="5,10" VerticalAlignment="Top"/>
+                <!--<Image Source="../../../Assets/Icon.png" Height="32" Width="32" Margin="5,10" VerticalAlignment="Top"/>-->
             </StackPanel>
         </Border>
     </Grid>

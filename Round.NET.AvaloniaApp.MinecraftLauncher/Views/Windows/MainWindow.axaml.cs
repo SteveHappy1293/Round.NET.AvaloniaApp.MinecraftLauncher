@@ -44,7 +44,7 @@ public partial class MainWindow : AppWindow
         StarGroup.LoadStars();
         ServerMange.Load();
         
-        if (Config.MainConfig.IsUseOrganizationConfig) OrganizationCore.LoadOrganizationConfig();
+        // if (Config.MainConfig.IsUseOrganizationConfig) OrganizationCore.LoadOrganizationConfig();
         DownloadMirrorManager.MaxThread = Config.MainConfig.DownloadThreads;
         DownloadMirrorManager.IsEnableMirror = false;
         
