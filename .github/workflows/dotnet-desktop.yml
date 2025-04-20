@@ -142,9 +142,9 @@ jobs:
       run: |
         dotnet build ./BedrockPlug/ -c Release -o ./BedrockPlugTemp/
 
-    - name: PublishLevelMangePlug
+    - name: PublishLevelManagerPlug
       run: |
-        dotnet build ./LevelMange/ -c Release -o ./LevelMangeTemp/
+        dotnet build ./LevelMangLevelManager/ -c Release -o ./LevelManagerTemp/
 
     - name: Download-RMCLPlugToolsArtifacts
       uses: actions/download-artifact@v4
@@ -156,7 +156,7 @@ jobs:
       run: |
         md ./Publish/
         ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/BedrockPlug.json -o ./Publish/BedrockPlug.rplk
-        ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/LevelMange.json -o ./Publish/LevelMange.rplk
+        ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/LevelManager.json -o ./Publish/LevelManager.rplk
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
