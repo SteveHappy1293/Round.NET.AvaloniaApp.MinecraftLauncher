@@ -16,7 +16,6 @@ using Avalonia.Threading;
 using FluentAvalonia.FluentIcons;
 using fNbt;
 using Newtonsoft.Json;
-using RMCLConfigServer.Modules.Classes;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 using Config = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config.Config;
