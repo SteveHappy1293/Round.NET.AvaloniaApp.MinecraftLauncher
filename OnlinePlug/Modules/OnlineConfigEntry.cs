@@ -2,22 +2,22 @@
 
 public class OnlineConfigEntry
 {
-    public NetworkConfig Network { get; set; }
-    public List<AppConfig> Apps { get; set; }
+    public NetworkConfig network { get; set; } = new();
+    public List<AppConfig> apps { get; set; } = new();
     public int LogLevel { get; set; }
 }
 
 public class NetworkConfig
 {
-    public ulong Token { get; set; }
-    public string Node { get; set; }
-    public string User { get; set; }
-    public int ShareBandwidth { get; set; }
-    public string ServerHost { get; set; }
-    public int ServerPort { get; set; }
-    public int UDPPort1 { get; set; }
-    public int UDPPort2 { get; set; }
-    public int TCPPort { get; set; }
+    public ulong Token { get; set; } = 17190022896174664900;
+    public string Node { get; set; } = Guid.NewGuid().ToString();
+    public string User { get; set; } = "MinecraftYJQ_";
+    public int ShareBandwidth { get; set; } = 10;
+    public string ServerHost { get; set; } = "api.openp2p.cn";
+    public int ServerPort { get; set; } = 27183;
+    public int UDPPort1 { get; set; } = 27182;
+    public int UDPPort2 { get; set; } = 27183;
+    public int TCPPort { get; set; } = 50448;
 }
 
 public class AppConfig

@@ -46,4 +46,9 @@ public partial class OnlineHome : UserControl
         RefreshTheInstance.IsEnabled = true;
         RefreshTheInstance.Content = "刷新";
     }
+
+    private void CreatRoom_OnClick(object? sender, RoutedEventArgs e)
+    {
+        Main.MainPage.MainFrame.Content = new CreateRoom();
+    }
 }

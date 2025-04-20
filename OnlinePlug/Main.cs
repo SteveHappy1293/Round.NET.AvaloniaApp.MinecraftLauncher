@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using FluentAvalonia.FluentIcons;
+using OnlinePlug.Modules;
 using OnlinePlug.Views.Pages;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 
@@ -7,6 +8,7 @@ namespace OnlinePlug
 {
     class Main
     {
+        public static OnlineMain MainPage = new OnlineMain();
         public static void InitPlug()
         {
             var openp2p = global::OnlinePlug.Properties.Resources.openp2p;
@@ -14,6 +16,7 @@ namespace OnlinePlug
             Directory.CreateDirectory(Path.GetFullPath("../RMCL/RMCL.OnlinePlug/Config"));
             Directory.CreateDirectory(Path.GetFullPath("../RMCL/RMCL.OnlinePlug/Console"));
             File.WriteAllBytes(Path.GetFullPath("../RMCL/RMCL.OnlinePlug/Console/openp2p.exe"), openp2p);
+            BuildOnlineConfig.Read();
             try
             {
                 foreach (var process in Process.GetProcesses("openp2p.exe"))
@@ -25,7 +28,7 @@ namespace OnlinePlug
             Core.API.RegisterNavigationRoute(new Core.API.NavigationRouteConfig()
             {
                 Icon = FluentIconSymbol.Link16Regular,
-                Page = new OnlineMain(),
+                Page = MainPage,
                 Route = "OnlineMain",
                 Title = "联机大厅"
             });

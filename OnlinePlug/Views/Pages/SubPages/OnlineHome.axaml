@@ -33,7 +33,7 @@
                     <TextBlock TextWrapping="Wrap">请选择一个游戏实例。</TextBlock>
                     <TextBlock TextWrapping="Wrap">联机大厅仅支持一个联机实例。</TextBlock>
                     <TextBlock TextWrapping="Wrap">打不成功就多试几次 ヾ(≧▽≦*)o</TextBlock>
-                    <Button Classes="accent" HorizontalAlignment="Stretch" Margin="0,5">创建</Button>
+                    <Button Classes="accent" Name="CreatRoom" Click="CreatRoom_OnClick" HorizontalAlignment="Stretch" Margin="0,5">创建</Button>
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="10">
