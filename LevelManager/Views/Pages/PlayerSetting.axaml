@@ -9,11 +9,42 @@
         <TextBlock Text="基本信息" FontSize="18" Margin="2"></TextBlock>
         <StackPanel Margin="2" >
             <TextBlock Text="UUID" ></TextBlock>
-            <TextBox Text="" Name="uuid" Margin="2" Width="200" HorizontalAlignment="Left"></TextBox>
+            <TextBox Text="" Name="uuid" Margin="2" Width="600" HorizontalAlignment="Left"></TextBox>
         </StackPanel>
         <StackPanel Margin="2" >
-            <TextBlock Text="可能的名称" ></TextBlock>
-            <TextBox Text="" Name="name" Margin="2" Width="200" HorizontalAlignment="Left"></TextBox>
+            <TextBlock Text="氧气值" ></TextBlock>
+            <Slider Name="air" Margin="2" Width="600" Maximum="300" HorizontalAlignment="Left"></Slider>
+        </StackPanel>
+        <StackPanel Margin="2" >
+            <TextBlock Text="生命值" ></TextBlock>
+            <Slider Name="health" Margin="2" Width="600" Maximum="20" HorizontalAlignment="Left"></Slider>
+        </StackPanel>
+        <StackPanel Margin="2" >
+            <TextBlock Text="饥饿值" ></TextBlock>
+            <Slider Name="food" Margin="2" Width="600" Maximum="20" HorizontalAlignment="Left"></Slider>
+        </StackPanel>
+        <StackPanel Margin="2" >
+            <TextBlock Text="经验值" ></TextBlock>
+            <TextBox Name="xp" Margin="2" Width="600" HorizontalAlignment="Left"></TextBox>
+        </StackPanel>
+        <StackPanel Margin="2" >
+            <TextBlock Text="燃烧时间" ></TextBlock>
+            <TextBox Name="fire"  Margin="2" Width="600" HorizontalAlignment="Left"></TextBox>
+        </StackPanel>
+        <StackPanel Margin="2" >
+            <TextBlock Text="属性" ></TextBlock>
+            <ListBox Name="attributes" Width="650"></ListBox>
+        </StackPanel>
+        <StackPanel Margin="2" >
+            <TextBlock Text="坐标" ></TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="X：" VerticalAlignment="Center"></TextBlock>
+                <TextBox Text="" Name="xpos" Width="80"></TextBox>
+                <TextBlock Text="Y：" VerticalAlignment="Center"></TextBlock>
+                <TextBox Text="" Name="ypos" Width="80"> </TextBox>
+                <TextBlock Text="Z：" VerticalAlignment="Center"></TextBlock>
+                <TextBox Text="" Name="zpos" Width="80"></TextBox>
+            </StackPanel>
         </StackPanel>
         <TextBlock Text="背包物品" FontSize="18" Margin="2"></TextBlock>
         <StackPanel HorizontalAlignment="Left">

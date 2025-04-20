@@ -5,6 +5,11 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="LevelManager.Views.Pages.GenericSetting" Width="650">
     <StackPanel Margin="2">
+        <TextBlock Text="基本信息" FontSize="18" Margin="2"></TextBlock>
+        <StackPanel Margin="2" >
+            <TextBlock Text="世界种子" ></TextBlock>
+            <TextBox Text="" Name="seed" IsReadOnly="True" Width="200" HorizontalAlignment="Left"></TextBox>
+        </StackPanel>
         <TextBlock Text="难度设置" FontSize="18" Margin="2"></TextBlock>
         <CheckBox Content="极限模式" Name="hardcore" Margin="2"></CheckBox>
         <CheckBox Content="锁定难度" Name="lockdiff" Margin="2"></CheckBox>
