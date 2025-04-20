@@ -144,7 +144,7 @@ jobs:
 
     - name: PublishLevelManagerPlug
       run: |
-        dotnet build ./LevelMangLevelManager/ -c Release -o ./LevelManagerTemp/
+        dotnet build ./LevelManager/ -c Release -o ./LevelManagerTemp/
 
     - name: Download-RMCLPlugToolsArtifacts
       uses: actions/download-artifact@v4
