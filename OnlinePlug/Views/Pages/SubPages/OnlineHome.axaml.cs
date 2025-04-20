@@ -15,7 +15,7 @@ public partial class OnlineHome : UserControl
     {
         InitializeComponent();
     }
-
+    public List<MinecraftServerInfo> Servers { get; set; } = new();
     private async void RefreshTheInstance_OnClick(object? sender, RoutedEventArgs e)
     {
         InstanceBox.Items.Clear();
@@ -30,6 +30,7 @@ public partial class OnlineHome : UserControl
         {
             using var client = new MinecraftClient();
             var ls = await client.PerformSingleScanAsync();
+            Servers = ls;
             Dispatcher.UIThread.InvokeAsync(() =>
             {
                 if (ls.Count == 0) InstanceBox.PlaceholderText = "当前无实例，请确保游戏以打开局域网。";
@@ -38,7 +39,7 @@ public partial class OnlineHome : UserControl
                     InstanceBox.PlaceholderText = "请选择一个实例";
                     foreach (var c in ls)
                     {
-                        InstanceBox.Items.Add(new TextBlock(){Text = $"{c.Motd}",Foreground = Brushes.White,HorizontalAlignment = HorizontalAlignment.Left});
+                        InstanceBox.Items.Add(new TextBlock(){Text = $"{c.Motd} 端口：{c.Port}",Foreground = Brushes.White,HorizontalAlignment = HorizontalAlignment.Left});
                     }
                 }
             });
@@ -49,6 +50,10 @@ public partial class OnlineHome : UserControl
 
     private void CreatRoom_OnClick(object? sender, RoutedEventArgs e)
     {
-        Main.MainPage.MainFrame.Content = new CreateRoom();
+        var cret = new CreateRoom();
+        cret.Port = Servers[InstanceBox.SelectedIndex].Port;
+        cret.RoomName = Servers[InstanceBox.SelectedIndex].Motd;
+        Main.MainPage.MainFrame.Content = cret;
+        cret.Start();
     }
 }

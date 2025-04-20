@@ -4,7 +4,7 @@ namespace OnlinePlug.Modules;
 
 public class OutputTypeParser
 {
-    public string ParseMessageType(string message)
+    public static string ParseMessageType(string message)
     {
         if (message.Contains("autorunApp start"))
         {
@@ -97,6 +97,6 @@ public class OutputTypeParser
             }
         }
 
-        return string.Empty;
+        return message;
     }
 }

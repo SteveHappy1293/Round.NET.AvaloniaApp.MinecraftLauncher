@@ -14,8 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\RMCLConfigServer\RMCLConfigServer.csproj" />
-      <ProjectReference Include="..\Round.NET.AvaloniaApp.MinecraftLauncher.Desktop\Round.NET.AvaloniaApp.MinecraftLauncher.Desktop.csproj" />
       <ProjectReference Include="..\Round.NET.AvaloniaApp.MinecraftLauncher\Round.NET.AvaloniaApp.MinecraftLauncher.csproj" />
     </ItemGroup>
 

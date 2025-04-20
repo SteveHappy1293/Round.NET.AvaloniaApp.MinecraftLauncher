@@ -10,7 +10,7 @@ public class OnlineConfigEntry
 public class NetworkConfig
 {
     public ulong Token { get; set; } = 17190022896174664900;
-    public string Node { get; set; } = Guid.NewGuid().ToString();
+    public string Node { get; set; } = Guid.NewGuid().ToString().Replace("-", "");
     public string User { get; set; } = "MinecraftYJQ_";
     public int ShareBandwidth { get; set; } = 10;
     public string ServerHost { get; set; } = "api.openp2p.cn";

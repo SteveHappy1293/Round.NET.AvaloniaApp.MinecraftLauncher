@@ -2,7 +2,7 @@
   "PlugName": "\u57FA\u5CA9\u7248\u63D2\u4EF6",
   "PlugVersion": "1.0.0",
   "PlugWriter": "Round Studio",
-  "PlugMainDll": "./Temp/BedrockPlug.dll",
-  "PlugMainDir": "./Temp",
+  "PlugMainDll": "./BedrockPlugTemp/BedrockPlug.dll",
+  "PlugMainDir": "./BedrockPlugTemp",
   "PlugIcon": "./BedrockPlug/Icon.png"
 }
