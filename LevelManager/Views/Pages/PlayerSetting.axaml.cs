@@ -39,9 +39,21 @@ public partial class PlayerSetting : UserControl
             if (player != null)
             {
                 uuid.Text = ConvertToUuid(player.Get<NbtIntArray>("UUID").Value);
+                air.Value = player.Get<NbtShort>("Air").Value;
+                health.Value = player.Get<NbtFloat>("Health").Value;
+                food.Value = player.Get<NbtInt>("foodLevel").Value;
+                xp.Text = player.Get<NbtInt>("XpLevel").Value.ToString();
+                fire.Text = player.Get<NbtShort>("Fire").Value.ToString();
+                xpos.Text = player.Get<NbtList>("Pos")[0].DoubleValue.ToString();
+                ypos.Text = player.Get<NbtList>("Pos")[1].DoubleValue.ToString();
+                zpos.Text = player.Get<NbtList>("Pos")[2].DoubleValue.ToString();
                 foreach (NbtCompound item in (player.Get<NbtList>("Inventory")))
                 {
-                     LoadItem(item);
+                    LoadItem(item);
+                }
+                foreach (NbtCompound item in (player.Get<NbtList>("Attributes")))
+                {
+                    attributes.Items.Add($"{item.Get<NbtString>("Name").Value}：{item.Get<NbtDouble>("Base").Value}");
                 }
             }
 

@@ -39,5 +39,6 @@ public partial class GenericSetting : UserControl
         time.Text = data.Get<NbtLong>("Time").Value.ToString();
         rain.IsChecked = data.Get<NbtByte>("raining").Value == 1;
         thunder.IsChecked = data.Get<NbtByte>("thundering").Value == 1;
+        seed.Text = data["WorldGenSettings"]["seed"].LongValue.ToString();
     }
 }
