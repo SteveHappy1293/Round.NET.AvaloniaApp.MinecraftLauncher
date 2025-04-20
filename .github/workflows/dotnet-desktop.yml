@@ -140,7 +140,11 @@ jobs:
 
     - name: PublishBedrockPlug
       run: |
-        dotnet build ./BedrockPlug/ -c Release -o ./Temp/
+        dotnet build ./BedrockPlug/ -c Release -o ./BedrockPlugTemp/
+
+    - name: PublishLevelMangePlug
+      run: |
+        dotnet build ./LevelMange/ -c Release -o ./LevelMangeTemp/
 
     - name: Download-RMCLPlugToolsArtifacts
       uses: actions/download-artifact@v4
@@ -152,11 +156,12 @@ jobs:
       run: |
         md ./Publish/
         ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/BedrockPlug.json -o ./Publish/BedrockPlug.rplk
+        ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/LevelMange.json -o ./Publish/LevelMange.rplk
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: BedrockPlug
+        name: Plugs
         path: ./Publish/
 
   publish:
@@ -193,10 +198,10 @@ jobs:
           name: RMCLConfigServer
           path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
 
-      - name: Download-BedrockPlugArtifacts
+      - name: Download-PlugsArtifacts
         uses: actions/download-artifact@v4
         with:
-          name: BedrockPlug
+          name: Plugs
           path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
 
       - name: List Files

@@ -6,10 +6,20 @@
              x:Class="OnlinePlug.Views.Pages.SubPages.CreateRoom">
     <ScrollViewer>
         <StackPanel>
-            <DockPanel>
-                <TextBlock TextWrapping="Wrap">服务状态：</TextBlock>
-                <TextBlock Name="StatusIndication" Text="未启动" Foreground="Red"/>
-            </DockPanel>
+            <StackPanel Margin="10">
+                <Label FontSize="20">房间状态：</Label>
+                <StackPanel Margin="20,0">
+                    <TextBlock TextWrapping="Wrap" Name="RoomStatus">启动中...</TextBlock>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="10">
+                <Label FontSize="20">房间总览：</Label>
+                <StackPanel Margin="20,0">
+                    <TextBlock TextWrapping="Wrap" Name="RoomNameT">房间名称：</TextBlock>
+                    <TextBlock TextWrapping="Wrap" Name="RoomOwner">房间管理：</TextBlock>
+                    <TextBlock TextWrapping="Wrap" Name="RoomPort">房间端口：</TextBlock>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </UserControl>
