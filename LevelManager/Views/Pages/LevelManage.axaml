@@ -1,0 +1,28 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;assembly=Round.NET.AvaloniaApp.MinecraftLauncher"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LevelManager.Views.Pages.LevelManage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" Height="32" Margin="2" VerticalAlignment="Center" Name="Box" SelectionChanged="Box_OnSelectionChanged" HorizontalAlignment="Stretch">
+                
+            </ComboBox>
+            <Button Grid.Column="1" Margin="2" Height="32" Content="选择文件夹" VerticalAlignment="Center"></Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <ListBox x:Name="list" Grid.Row="1"></ListBox>
+            <TextBlock Text="没有存档文件" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="2" Name="nothingtext"></TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>
