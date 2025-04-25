@@ -55,21 +55,6 @@ public partial class Launcher : UserControl
         });
         Task.Run(() =>
         {
-            while (true)
-            {
-                Dispatcher.UIThread.Invoke(() =>
-                {
-                    var Sel = Config.MainConfig.SelectedGameFolder;
-                    try
-                    {
-                        SmTitle.Content = $"{Path.GetFileName(Directory.GetDirectories($"{Config.MainConfig.GameFolders[Sel].Path}/versions")[Config.MainConfig.GameFolders[Sel].SelectedGameIndex])}";
-                    }catch{ }
-                });
-                Thread.Sleep(100);
-            }
-        });
-        Task.Run(() =>
-        {
             Thread.Sleep(800);
             Dispatcher.UIThread.Invoke(() =>
                 LaunchBored.Margin = new Thickness(0));
@@ -98,20 +83,7 @@ public partial class Launcher : UserControl
     {
         Core.SystemTask.Show();
     }
-
-    public void laun()
-    {
-        var Sel = Config.MainConfig.SelectedGameFolder;
-        var dow = new LaunchJavaEdtion();
-        dow.Version = Path.GetFileName(Path.GetFileName(Directory.GetDirectories($"{Config.MainConfig.GameFolders[Sel].Path}/versions")[Config.MainConfig.GameFolders[Sel].SelectedGameIndex]));
-        dow.Tuid = SystemMessageTaskMange.AddTask(dow);
-        dow.Launch();
-    }
-    private void LaunchButton_OnClick(object? sender, RoutedEventArgs e)
-    {
-        laun();
-    }
-
+    
     private void UserButton_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (IsEdit)
@@ -121,10 +93,10 @@ public partial class Launcher : UserControl
         }
     }
 
-    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    /*private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
         Core.MainWindow.MainView.SystemNavigationBar.Show();
-    }
+    }*/
 
     private void GotoAccount(object? sender, RoutedEventArgs e)
     {

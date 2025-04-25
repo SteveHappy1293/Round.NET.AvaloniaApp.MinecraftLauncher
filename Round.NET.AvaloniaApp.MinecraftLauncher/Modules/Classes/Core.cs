@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Windowing;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Account;
@@ -21,6 +22,7 @@ public class Core
     public static Setting SettingPage { get; set; } = new();
     public static AccountHomePage AccountPage { get; set; } = new();
     public static SystemNavigationBar NavigationBar { get; set; }
+    public static BottomBar BottomBar { get; set; }
     public static List<API.SearchItemConfig> SearchItems { get; set; } = new();
     public static Launcher MainHome { get; set; } = new();
     public class API
@@ -50,19 +52,19 @@ public class Core
         }
         public static void RegisterNavigationRoute(NavigationRouteConfig config)
         {
-            NavigationBar.RegisterRoute(config);
+            // NavigationBar.RegisterRoute(config);
         } // 注册边栏
         public static void RegisterDownloadPage(NavigationRouteConfig config)
         {
-            DownloadPage.RegisterRoute(config);
+            DownloadPage.ContentPagesPanel.RegisterRoute(config);
         } // 注册下载页
         public static void RegisterMangePage(NavigationRouteConfig config)
         {
-            MangePage.RegisterRoute(config);
+            MangePage.ContentPagesPanel.RegisterRoute(config);
         } // 注册管理页
         public static void RegisterSettingPage(NavigationRouteConfig config)
         {
-            SettingPage.RegisterRoute(config);
+            SettingPage.ContentPagesPanel.RegisterRoute(config);
         } // 注册设置页
         public static void RegisterAccountPage(NavigationRouteConfig config)
         {

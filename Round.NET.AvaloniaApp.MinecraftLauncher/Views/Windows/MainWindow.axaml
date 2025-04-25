@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views"
+        xmlns:allControl="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.MainWindow"
         Closing="Window_OnClosing"
@@ -15,22 +16,23 @@
         MinHeight="590"
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="NoChrome"
-        ExtendClientAreaTitleBarHeightHint="-1"
-        PointerPressed="TitleBar_PointerPressed"
         Title="Round.NET.AvaloniaApp.MinecraftLauncher">
     <Grid>
         <!-- 可拖拽的标题栏区域 -->
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10"
+              PointerPressed="TitleBar_PointerPressed"
+              DoubleTapped="InputElement_OnDoubleTapped"
               Background="Transparent">  <!-- 透明背景，但可点击 -->
+            <allControl:DebugView HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10"></allControl:DebugView>
             <Button Width="100" Height="36" VerticalAlignment="Center" HorizontalAlignment="Left" 
                     FontWeight="Bold" Background="Transparent" FontSize="18" 
-                    BorderBrush="Transparent" BorderThickness="0" Margin="10">RMCL</Button>
+                    BorderBrush="Transparent" BorderThickness="0" Margin="10" Click="Button_OnClick">RMCL</Button>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
                 <Button Width="36" Height="36" Margin="0,0,5,0" Click="MinimizeButton_Click" BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
                     <Path Width="15" Height="20" Stretch="Uniform" Fill="White" Margin="0,20,0,0"
                           Data="M853.333333 554.666667H170.666667c-23.466667 0-42.666667-19.2-42.666667-42.666667s19.2-42.666667 42.666667-42.666667h682.666666c23.466667 0 42.666667 19.2 42.666667 42.666667s-19.2 42.666667-42.666667 42.666667z" />
                 </Button>
-                <Button Width="36" Height="36" Margin="0,0,5,0" Click="MaximizeButton_Click" BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
+                <Button Name="Maxbtn" Width="36" Height="36" Margin="0,0,5,0" Click="MaximizeButton_Click" BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
                     <Path Width="16" Height="16" Stretch="Uniform" Fill="White" Margin="0,3,0,0"
                                   Data="M233.301333 128A105.301333 105.301333 0 0 0 128 233.301333v557.397334A105.301333 105.301333 0 0 0 233.301333 896h557.397334A105.301333 105.301333 0 0 0 896 790.698667V233.301333A105.301333 105.301333 0 0 0 790.698667 128H233.301333z m-18.602666 105.301333c0-10.24 8.32-18.602667 18.602666-18.602666h557.397334c10.24 0 18.602667 8.32 18.602666 18.602666v557.397334c0 10.24-8.32 18.602667-18.602666 18.602666H233.301333a18.56 18.56 0 0 1-18.602666-18.602666V233.301333z"/>
                 </Button>
@@ -40,7 +42,9 @@
                 </Button>
                 </StackPanel>
         </Grid>
-        
         <views:MainView Margin="0,78,0,0" Name="MainView"/>
+        
+        <allControl:SystemMessageBox HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0"/>
+        <allControl:SystemTaskBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Grid>
 </Window>

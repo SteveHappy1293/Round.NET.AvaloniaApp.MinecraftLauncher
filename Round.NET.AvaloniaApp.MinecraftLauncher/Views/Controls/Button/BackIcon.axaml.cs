@@ -18,6 +18,6 @@ public partial class BackIcon : UserControl
     
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
-        Core.MainWindow.MainView.SystemNavigationBar.NavTo("Launcher");
+        // Core.MainWindow.MainView.SystemNavigationBar.NavTo("Launcher");
     }
 }

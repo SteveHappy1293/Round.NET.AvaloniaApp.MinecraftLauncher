@@ -24,7 +24,7 @@ public partial class SystemNavigationBar : UserControl
     {
         InitializeComponent();
         Core.NavigationBar = this;
-        Core.API.RegisterNavigationRoute(new()
+        /*Core.API.RegisterNavigationRoute(new()
         {
             Icon = FluentIconSymbol.ArrowDownload20Regular,
             Page = Core.DownloadPage,
@@ -44,7 +44,7 @@ public partial class SystemNavigationBar : UserControl
             Page = new Setting(),
             Route = "Setting",
             Title = "设置",
-        });
+        });*/
     }
     private Launcher Launcher { get; } = new();
     public List<Core.API.NavigationRouteConfig> RouteConfigs { get; } = new();
