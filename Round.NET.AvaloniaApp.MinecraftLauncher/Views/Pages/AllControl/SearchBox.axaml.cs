@@ -30,7 +30,7 @@ public partial class SearchBox : UserControl
         {
             Margin = new Thickness(0, 0, 0, 0);
             Opacity = 0;
-            ((MainView)Core.MainWindow.Content).SystemNavigationBar.NavTo("BackSearch");
+            // Core.MainWindow.MainView.SystemNavigationBar.NavTo("BackSearch");
             Task.Run(() =>
             {
                 Dispatcher.UIThread.Invoke(() => CloseAction());
@@ -42,7 +42,7 @@ public partial class SearchBox : UserControl
         {
             this.IsVisible = true;
             this.Opacity = 1;
-            ((MainView)Core.MainWindow.Content).SystemNavigationBar.NavTo("Clear",true);
+            // Core.MainWindow.MainView.SystemNavigationBar.NavTo("Clear",true);
             Margin = new Thickness(0, 0, 0, 0);
         }
     }

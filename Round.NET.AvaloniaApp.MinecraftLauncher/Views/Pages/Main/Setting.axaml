@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
              xmlns:controls1="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:contentPanel="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.ContentPanel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Setting">
     <UserControl.Styles>
@@ -12,28 +13,6 @@
         </Style>
     </UserControl.Styles>
     <Grid>
-        <!-- <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Click="Button_OnClick">返回主页</Button> -->
-        <controls:HomeIcon HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
-        <Label Margin="50,9" FontSize="22" FontWeight="Bold" Name="TitleLabel">设置</Label>
-        <controls1:NavigationView 
-            PaneDisplayMode="Left"
-            IsSettingsVisible="False"
-            IsPaneOpen="True"
-            IsTabStop="False"
-            SelectionFollowsFocus="False"
-            IsPaneToggleButtonVisible="False"
-            HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,51,0,0"
-            OpenPaneLength="180"
-            Name="View"
-            SelectionChanged="NavigationView_OnSelectionChanged"><!--Height="46"-->
-            <controls1:NavigationView.MenuItems>
-                <!--<controls1:NavigationViewItem Tag="MySelfSetting" IsSelected="True">本体设置</controls1:NavigationViewItem>
-                <controls1:NavigationViewItem Tag="GameSetting" IsSelected="True">游戏设置</controls1:NavigationViewItem>-->
-            </controls1:NavigationView.MenuItems>
-        </controls1:NavigationView>
-        <Label Margin="190,50" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Name="PageTitleLabel" FontSize="18"></Label>
-        <controls1:Frame Margin="190,80,10,10" Name="MangeFrame">
-            
-        </controls1:Frame>
+        <contentPanel:ContentPagesPanel Name="ContentPagesPanel" Title="设置" DefaultRoute="GameSetting"/>
     </Grid>
 </UserControl>

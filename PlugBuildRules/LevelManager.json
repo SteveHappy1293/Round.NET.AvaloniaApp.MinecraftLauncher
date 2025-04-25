@@ -1,0 +1,8 @@
+{
+  "PlugName": "存档管理插件",
+  "PlugVersion": "1.0.0",
+  "PlugWriter": "Steve Happy",
+  "PlugMainDll": "./LevelManagerTemp/LevelManager.dll",
+  "PlugMainDir": "./LevelManagerTemp",
+  "PlugIcon": "./LevelManager/Icon.png"
+}

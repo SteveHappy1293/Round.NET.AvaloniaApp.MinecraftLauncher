@@ -12,6 +12,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Mange.TilesMange;
 public class TilesMange
 {
     public static List<StackPanel> TileGroups = new();
+    // public static WrapPanel TilesPanel = Core.MainHome.WrapPanel;
     public static WrapPanel TilesPanel = new WrapPanel();
     public class TileItem
     {

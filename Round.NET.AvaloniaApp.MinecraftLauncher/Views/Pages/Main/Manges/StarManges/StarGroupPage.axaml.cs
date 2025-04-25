@@ -23,9 +23,9 @@ public partial class StarGroupPage : UserControl
         InitializeComponent();
         this.HomeIcon1.Click = (sender, args) =>
         {
-            ((MainView)Core.MainWindow.Content).CortentFrame.Opacity = 0;
-            ((MainView)Core.MainWindow.Content).CortentFrame.Content = new Grid();
-            ((MainView)Core.MainWindow.Content).MainCortent.Opacity = 1;
+            Core.MainWindow.MainView.CortentFrame.Opacity = 0;
+            Core.MainWindow.MainView.CortentFrame.Content = new Grid();
+            Core.MainWindow.MainView.MainCortent.Opacity = 1;
             Core.NavigationBar.Opacity = 1;
         };
     }

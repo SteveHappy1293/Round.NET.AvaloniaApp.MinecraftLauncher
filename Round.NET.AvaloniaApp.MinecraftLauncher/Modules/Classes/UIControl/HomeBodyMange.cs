@@ -47,7 +47,7 @@ public class HomeBodyMange
             {
                 Text = "启动游戏",
                 TiteEvent = ()=>{
-                    Core.MainHome.laun();
+                    Core.MainWindow.MainView.laun();
                 },
                 TiteStyle = TilesMange.TileItem.TiteStyleType.Small,
                 Content = new FluentIcon()
