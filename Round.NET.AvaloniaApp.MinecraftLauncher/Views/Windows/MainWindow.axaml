@@ -12,7 +12,6 @@
         WindowStartupLocation="CenterScreen"
         Width="850"
         Height="480"
-        
         MinWidth="850"
         MinHeight="480"
         ExtendClientAreaChromeHints="NoChrome"

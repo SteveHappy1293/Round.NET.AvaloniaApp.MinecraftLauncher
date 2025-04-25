@@ -11,14 +11,15 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog;
 
 public partial class ContentPageDialog : UserControl
 {
-    public ContentPageDialog()
+    public ContentPageDialog(int Width = 800,int Height = 400)
     {
         InitializeComponent();
+        Dialog.Width = Width;
+        Dialog.Height = Height;
     }
 
     public string Title { get; set; } = "";
     public Control Page { get; set; } = new Label() { Content = "欢迎来到 RMCL 3!" };
-    public int DialogHeight { get; set; } = 300;
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
         Task.Run(() =>
@@ -33,7 +34,6 @@ public partial class ContentPageDialog : UserControl
     public void Show()
     {
         TitleLabel.Content = Title;
-        Frame.Height = DialogHeight;
         this.Dialog.Margin = new Thickness(0, 100, 0, -100);
         this.Opacity = 0;
         Frame.Content = Page;

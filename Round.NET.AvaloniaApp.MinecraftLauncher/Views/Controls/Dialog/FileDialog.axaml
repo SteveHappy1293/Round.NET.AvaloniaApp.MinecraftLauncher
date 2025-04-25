@@ -5,13 +5,20 @@
              xmlns:controls1="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d"
-             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog.ContentPageDialog">
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog.FileDialog">
     <Grid>
         <Grid Background="Black" Opacity="0.3"></Grid>
         <Border CornerRadius="6" Background="rgb(31,31,31)" Margin="10"
                 Name="Dialog"
+                Width="800"
+                Height="400"
                 VerticalAlignment="Center" HorizontalAlignment="Center">
-            <StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
                 <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top">
                     <Button Click="Button_OnClick" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" Width="120" Height="40" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
                         <DockPanel>
@@ -21,8 +28,15 @@
                     </Button>
                     <Label Name="TitleLabel" FontSize="18" Margin="8" FontWeight="Light" VerticalAlignment="Center" HorizontalAlignment="Right">Dialog Title</Label>
                 </DockPanel>
-                <controls1:Frame Name="Frame"/>
-            </StackPanel>
+                <ScrollViewer Grid.Row="1">
+                    <TreeView Name="TreeView" Margin="4">
+                    </TreeView>
+                </ScrollViewer>
+                <StackPanel Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="8" Orientation="Horizontal">
+                    <ComboBox Name="ComboBox" Width="180" Margin="2" Height="32"></ComboBox>
+                    <Button Grid.Row="2" Click="SelectButton_OnClick" HorizontalAlignment="Right" Height="32" Width="100" VerticalAlignment="Bottom" Margin="2" Content="选择"/>
+                </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

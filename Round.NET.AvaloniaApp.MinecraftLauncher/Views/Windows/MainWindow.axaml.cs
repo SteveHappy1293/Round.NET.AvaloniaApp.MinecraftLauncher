@@ -30,6 +30,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Initialize;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
+using FileDialog = Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog.FileDialog;
 using ServerMange = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Server.ServerMange;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views;
@@ -78,7 +79,10 @@ public partial class MainWindow : AppWindow
             this.WindowStartupLocation = WindowStartupLocation.Manual;
             this.Position = new PixelPoint(Config.MainConfig.WindowX, Config.MainConfig.WindowY);
         }
-        Message.Show("插件加载",$"当前已加载 {PlugLoaderNeo.Plugs.Count} 个插件！",InfoBarSeverity.Success);
+
+        new FileDialog().Show();
+        if (PlugLoaderNeo.Plugs.Count > 0)
+            Message.Show("插件加载", $"当前已加载 {PlugLoaderNeo.Plugs.Count} 个插件！", InfoBarSeverity.Success);
 
         if (Config.MainConfig.IsAutoUpdate)
         {

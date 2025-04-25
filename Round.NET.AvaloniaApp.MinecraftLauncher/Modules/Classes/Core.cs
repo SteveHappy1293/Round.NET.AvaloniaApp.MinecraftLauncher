@@ -20,7 +20,7 @@ public class Core
     public static Views.Pages.Main.Mange MangePage { get; set; } = new();
     public static Setting SettingPage { get; set; } = new();
     public static AccountHomePage AccountPage { get; set; } = new();
-    public static SystemNavigationBar NavigationBar { get; set; }
+    public static SystemNavigationBar NavigationBar { get; set; } = new();
     public static List<API.SearchItemConfig> SearchItems { get; set; } = new();
     public static Launcher MainHome { get; set; } = new();
     public class API
