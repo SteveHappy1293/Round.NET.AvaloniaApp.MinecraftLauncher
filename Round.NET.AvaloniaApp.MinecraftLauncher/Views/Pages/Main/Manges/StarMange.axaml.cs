@@ -45,9 +45,9 @@ public partial class StarMange : UserControl
             {
                 var page = new StarGroupPage();
                 page.GUID = star.GUID;
-                ((MainView)Core.MainWindow.Content).CortentFrame.Content = page;
-                ((MainView)Core.MainWindow.Content).CortentFrame.Opacity = 1;
-                ((MainView)Core.MainWindow.Content).MainCortent.Opacity = 0;
+                Core.MainWindow.MainView.CortentFrame.Content = page;
+                Core.MainWindow.MainView.CortentFrame.Opacity = 1;
+                Core.MainWindow.MainView.MainCortent.Opacity = 0;
         
                 Core.NavigationBar.Opacity = 0;
                 page.Load();

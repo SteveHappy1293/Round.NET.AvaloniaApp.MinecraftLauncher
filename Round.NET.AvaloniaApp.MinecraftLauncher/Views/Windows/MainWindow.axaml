@@ -8,14 +8,39 @@
         Closing="Window_OnClosing"
         TransparencyLevelHint="AcrylicBlur"
         Background="#101010"
-        ExtendClientAreaToDecorationsHint="True"
         WindowStartupLocation="CenterScreen"
-        Width="850"
-        Height="480"
-        
-        MinWidth="850"
-        MinHeight="480"
+        Width="1000"
+        Height="590"
+        MinWidth="1000"
+        MinHeight="590"
+        ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        PointerPressed="TitleBar_PointerPressed"
         Title="Round.NET.AvaloniaApp.MinecraftLauncher">
-        <views:MainView/>
+    <Grid>
+        <!-- 可拖拽的标题栏区域 -->
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10"
+              Background="Transparent">  <!-- 透明背景，但可点击 -->
+            <Button Width="100" Height="36" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                    FontWeight="Bold" Background="Transparent" FontSize="18" 
+                    BorderBrush="Transparent" BorderThickness="0" Margin="10">RMCL</Button>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
+                <Button Width="36" Height="36" Margin="0,0,5,0" Click="MinimizeButton_Click" BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
+                    <Path Width="15" Height="20" Stretch="Uniform" Fill="White" Margin="0,20,0,0"
+                          Data="M853.333333 554.666667H170.666667c-23.466667 0-42.666667-19.2-42.666667-42.666667s19.2-42.666667 42.666667-42.666667h682.666666c23.466667 0 42.666667 19.2 42.666667 42.666667s-19.2 42.666667-42.666667 42.666667z" />
+                </Button>
+                <Button Width="36" Height="36" Margin="0,0,5,0" Click="MaximizeButton_Click" BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
+                    <Path Width="16" Height="16" Stretch="Uniform" Fill="White" Margin="0,3,0,0"
+                                  Data="M233.301333 128A105.301333 105.301333 0 0 0 128 233.301333v557.397334A105.301333 105.301333 0 0 0 233.301333 896h557.397334A105.301333 105.301333 0 0 0 896 790.698667V233.301333A105.301333 105.301333 0 0 0 790.698667 128H233.301333z m-18.602666 105.301333c0-10.24 8.32-18.602667 18.602666-18.602666h557.397334c10.24 0 18.602667 8.32 18.602666 18.602666v557.397334c0 10.24-8.32 18.602667-18.602666 18.602666H233.301333a18.56 18.56 0 0 1-18.602666-18.602666V233.301333z"/>
+                </Button>
+                <Button Width="36" Height="36" Click="CloseButton_Click" BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
+                    <Path Width="14" Height="14" Stretch="Uniform" Fill="White" Margin="0,2,0,0"
+                          Data="M1484.481422 509.178311l192.420978-192.420978a45.078756 45.078756 0 1 0-63.715556-63.715555l-192.420977 192.420978-192.466489-192.466489a45.078756 45.078756 0 1 0-63.715556 63.715555l192.420978 192.420978-192.466489 192.489244a45.078756 45.078756 0 1 0 63.715556 63.715556l192.420977-192.420978 192.420978 192.420978a45.078756 45.078756 0 1 0 63.715556-63.715556z"/>
+                </Button>
+                </StackPanel>
+        </Grid>
+        
+        <views:MainView Margin="0,78,0,0" Name="MainView"/>
+    </Grid>
 </Window>
