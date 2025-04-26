@@ -141,6 +141,7 @@ public partial class MainView : UserControl
             Page = Core.MainHome,
             Tag = "Launch",
             IsDefault = true,
+            IsNoButton = true
         });
         BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
         {

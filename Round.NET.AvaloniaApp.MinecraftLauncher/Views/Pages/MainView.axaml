@@ -21,10 +21,7 @@
             </Button>
         </DockPanel>
         <allControl:SearchBox Name="MainSearchBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsVisible="False" Opacity="0"/>
-        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="70">
-            <Grid.Background>
-                <SolidColorBrush Color="Black" Opacity="0.00001"></SolidColorBrush>
-            </Grid.Background>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="70" Background="#A6292929">
             <controls1:BottomBar Name="BottomBar"/>
             <DockPanel HorizontalAlignment="Right" VerticalAlignment="Stretch">
                 <Button Width="160" Background="Transparent" BorderBrush="Transparent" CornerRadius="0" Margin="0" Name="LaunchButton" Click="LaunchButton_OnClick">
