@@ -193,7 +193,7 @@ jobs:
   #       path: ./Publish/
 
   publish:
-    needs: [win, onlineinstall, configserver, plugtools, buildbedrockplug ,buildlevelmanagerplug, time]
+    needs: [win, onlineinstall, configserver, plugtools , time]
     runs-on: ubuntu-latest
     steps:
       - name: Time
