@@ -126,71 +126,71 @@ jobs:
         name: RMCLPlugTools
         path: ./published/
 
-  buildbedrockplug:
-    needs: [plugtools]
-    runs-on: windows-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+  # buildbedrockplug:
+  #   needs: [plugtools]
+  #   runs-on: windows-latest
+  #   steps:
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v3
 
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.0.x'
+  #   - name: Setup .NET SDK
+  #     uses: actions/setup-dotnet@v3
+  #     with:
+  #       dotnet-version: '8.0.x'
 
-    - name: PublishBedrockPlug
-      run: |
-        dotnet build ./BedrockPlug/ -c Release -o ./BedrockPlugTemp/
+  #   - name: PublishBedrockPlug
+  #     run: |
+  #       dotnet build ./BedrockPlug/ -c Release -o ./BedrockPlugTemp/
 
-    - name: Download-RMCLPlugToolsArtifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: RMCLPlugTools
-        path: ./Tools/
+  #   - name: Download-RMCLPlugToolsArtifacts
+  #     uses: actions/download-artifact@v4
+  #     with:
+  #       name: RMCLPlugTools
+  #       path: ./Tools/
 
-    - name: BuildPlugPack
-      run: |
-        md ./Publish/
-        ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/BedrockPlug.json -o ./Publish/BedrockPlug.rplk
+  #   - name: BuildPlugPack
+  #     run: |
+  #       md ./Publish/
+  #       ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/BedrockPlug.json -o ./Publish/BedrockPlug.rplk
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: BedrockPlug
-        path: ./Publish/
+  #   - name: Upload artifact
+  #     uses: actions/upload-artifact@v4
+  #     with:
+  #       name: BedrockPlug
+  #       path: ./Publish/
 
-  buildlevelmanagerplug:
-    needs: [plugtools]
-    runs-on: windows-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+  # buildlevelmanagerplug:
+  #   needs: [plugtools]
+  #   runs-on: windows-latest
+  #   steps:
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v3
 
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.0.x'
+  #   - name: Setup .NET SDK
+  #     uses: actions/setup-dotnet@v3
+  #     with:
+  #       dotnet-version: '8.0.x'
 
-    - name: PublishLevelManagerPlug
-      run: |
-        dotnet build ./LevelManager/ -c Release -o ./LevelManagerTemp/
+  #   - name: PublishLevelManagerPlug
+  #     run: |
+  #       dotnet build ./LevelManager/ -c Release -o ./LevelManagerTemp/
 
-    - name: Download-RMCLPlugToolsArtifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: RMCLPlugTools
-        path: ./Tools/
+  #   - name: Download-RMCLPlugToolsArtifacts
+  #     uses: actions/download-artifact@v4
+  #     with:
+  #       name: RMCLPlugTools
+  #       path: ./Tools/
 
-    - name: BuildPlugPack
-      run: |
-        md ./Publish/
-        ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/LevelManager.json -o ./Publish/LevelManager.rplk
+  #   - name: BuildPlugPack
+  #     run: |
+  #       md ./Publish/
+  #       ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/LevelManager.json -o ./Publish/LevelManager.rplk
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: LevelManagerPlug
-        path: ./Publish/
+  #   - name: Upload artifact
+  #     uses: actions/upload-artifact@v4
+  #     with:
+  #       name: LevelManagerPlug
+  #       path: ./Publish/
 
   publish:
     needs: [win, onlineinstall, configserver, plugtools, buildbedrockplug ,buildlevelmanagerplug, time]
@@ -226,17 +226,17 @@ jobs:
           name: RMCLConfigServer
           path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
 
-      - name: Download-BedrockPlugPlugArtifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: BedrockPlug
-          path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
+      # - name: Download-BedrockPlugPlugArtifacts
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: BedrockPlug
+      #     path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
 
-      - name: Download-LevelManagerPlugPlugArtifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: LevelManagerPlug
-          path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
+      # - name: Download-LevelManagerPlugPlugArtifacts
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: LevelManagerPlug
+      #     path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
 
       - name: List Files
         run: |
