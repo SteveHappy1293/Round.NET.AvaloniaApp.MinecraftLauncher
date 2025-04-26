@@ -30,6 +30,7 @@ public partial class SystemTaskBox : UserControl
                 Thread.Sleep(100);
             }
         });
+        Core.SystemTask = this;
     }
 
     public void UpdateMessage()
