@@ -6,6 +6,7 @@ using Avalonia;
 using Avalonia.Animation.Easings;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
@@ -20,6 +21,7 @@ public partial class BottomBar : UserControl
 {
     public List<BottomBarNavigationEntry> NavigationItems { get; private set; } = new();
     private List<BottomBarNavigationItemEntry> NavigationButtons { get; set; } = new();
+    public string DefaultTag { get; set; } = "Launch";
     public Frame ContentFrame { get; set; }
     public BottomBar()
     {
@@ -36,13 +38,34 @@ public partial class BottomBar : UserControl
             btn.Classes.Clear();
         }
 
-        Nav(NavigationItems.Find(x => x.Tag == Tag).Page);
+        var entry = NavigationItems.Find(x => x.Tag == Tag);
         
+        Nav(entry);
     }
 
-    private void Nav(IParentPage Page)
+    private void Nav(BottomBarNavigationEntry entry)
     {
-        Page.Open();
+        if (entry.Tag != "Launch")
+        {
+            Core.MainWindow.BackGrid.Height = Core.MainWindow.Bounds.Height - 70 - 48;
+            Task.Run(() =>
+            {
+                Thread.Sleep(200);
+
+                Dispatcher.UIThread.Invoke(() =>
+                    Core.MainWindow.BackGrid.VerticalAlignment = VerticalAlignment.Stretch);
+
+                Dispatcher.UIThread.Invoke(() =>
+                    Core.MainWindow.BackGrid.Height = double.NaN);
+            });
+        }
+        else
+        {
+            Core.MainWindow.BackGrid.Height = 0;
+            Core.MainWindow.BackGrid.VerticalAlignment = VerticalAlignment.Bottom;
+        }
+        
+        entry.Page.Open();
         Task.Run(() =>
         {
             Dispatcher.UIThread.Invoke(() =>
@@ -53,7 +76,7 @@ public partial class BottomBar : UserControl
             Thread.Sleep(100);
             Dispatcher.UIThread.Invoke(() =>
             {
-                ContentFrame.Content = Page;
+                ContentFrame.Content = entry.Page;
                 ContentFrame.Opacity = 1;
                 ContentFrame.Margin = new Thickness(0, 0, 0, 70);
             });
@@ -94,8 +117,11 @@ public partial class BottomBar : UserControl
             btn.Classes.Clear();
         }
 
-        NavigationButtons.Find(x => x.NavItem.Tag == btnhost.Tag).IsThis = true;
-        NavigationButtons.Find(x => x.NavItem.Tag == btnhost.Tag).NavItem.Classes.Add("accent");
-        Nav(NavigationButtons.Find(x => x.NavItem.Tag == btnhost.Tag).Page);
+        var entry = NavigationButtons.Find(x => x.NavItem.Tag == btnhost.Tag);
+
+        entry.IsThis = true;
+        entry.NavItem.Classes.Add("accent");
+        
+        Nav(entry);
     }
 }

@@ -62,7 +62,7 @@ public class Message
                     Dispatcher.UIThread.Invoke(() =>
                     {
                         messagebox.Opacity = 0;
-                        messagebox.Margin = new Thickness(5, 5, -80, 5);
+                        messagebox.Margin = new Thickness(85, 5, -80, 5);
                     });
                     Thread.Sleep(400);
                     Dispatcher.UIThread.Invoke(() =>
@@ -79,7 +79,7 @@ public class Message
             // 设置初始状态
             messagebox.Opacity = 0;
             // messagebox.Margin = new Thickness(-200, 5, 200, 5); // 初始位置在上方隐藏
-            messagebox.Margin = new Thickness(5, 5, -80, 5);
+            messagebox.Margin = new Thickness(85, 5, -80, 5);
 
             // 添加到 StackPanel
             //Core.SystemMessage.MessageBox.Children.Insert(0, messagebox);

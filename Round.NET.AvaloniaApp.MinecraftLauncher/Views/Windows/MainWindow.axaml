@@ -19,9 +19,18 @@
         ExtendClientAreaChromeHints="NoChrome"
         Title="Round.NET.AvaloniaApp.MinecraftLauncher">
     <Grid>
-        <Grid.Background>
-            <SolidColorBrush Color="Black" Opacity="0.4"></SolidColorBrush>
-        </Grid.Background>
+        <Grid Background="Black" Opacity="0.7" Name="BackGrid" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0,48,0,70">
+            <Grid.Styles>
+                <Style Selector="Grid#BackGrid">
+                    <Setter Property="Transitions">
+                        <Transitions>
+                            <DoubleTransition Property="Height" Duration="0:0:0.18" Easing="QuadraticEaseInOut"/>
+                        </Transitions>
+                    </Setter>
+                </Style>
+            </Grid.Styles>
+        </Grid>
+
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
@@ -63,7 +72,7 @@
                     </Button>
                 </StackPanel>
             </Grid>
-            <views:MainView Margin="2" Name="MainView" Grid.Row="1"/>
+            <views:MainView Margin="0" Name="MainView" Grid.Row="1"/>
         </Grid>
         <allControl:SystemMessageBox HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="4,4,4,68"/>
         <allControl:SystemTaskBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsVisible="False"/>
