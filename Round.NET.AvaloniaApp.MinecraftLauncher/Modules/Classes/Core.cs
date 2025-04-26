@@ -31,7 +31,7 @@ public class Core
         {
             public string Route { get; set; }
             public string Title { get; set; }
-            public UserControl Page { get; set; }
+            public IPage Page { get; set; }
             public FluentIconSymbol Icon { get; set; }
             public bool IsFoot { get; set; } = false;
         }
@@ -68,7 +68,7 @@ public class Core
         } // 注册设置页
         public static void RegisterAccountPage(NavigationRouteConfig config)
         {
-            AccountPage.RegisterRoute(config);
+            //AccountPage.RegisterRoute(config);
         } // 注册设置页
         public static void RegisterSearchItem(SearchItemConfig config)
         {

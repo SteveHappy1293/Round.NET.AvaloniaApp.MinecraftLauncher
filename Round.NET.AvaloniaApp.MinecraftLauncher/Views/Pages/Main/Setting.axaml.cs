@@ -21,13 +21,17 @@ using SixLabors.ImageSharp;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
-public partial class Setting : UserControl
+public partial class Setting : UserControl,IParentPage
 {
+    public void Open()
+    {
+        ContentPagesPanel.ChangeSelectItemMenu();
+    }
+
+
     public Setting()
     {
         InitializeComponent();
-        Core.SettingPage = this;    
-        
         ContentPagesPanel.RegisterRoute(new Core.API.NavigationRouteConfig()
         {
             Page = GameSetting,

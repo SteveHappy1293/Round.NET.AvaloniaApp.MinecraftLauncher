@@ -17,11 +17,12 @@ public class Message
     {
         public string Message { get; set; }
         public string Title { get; set; }
+        public Control Control { get; set; }
         public InfoBarSeverity Type { get; set; }
         public DateTime Time { get; set; } = DateTime.Now;
     }
     public static List<MessageEntry> Messages { get; private set; } = new();
-    public static void Show(string title, string message, InfoBarSeverity type)
+    public static void Show(string title, string message, InfoBarSeverity type,Control control = null)
     {
         Messages.Add(new MessageEntry { Message = message, Title = title, Type = type });
         Dispatcher.UIThread.Invoke(() =>
@@ -50,7 +51,8 @@ public class Message
                         Duration = TimeSpan.FromSeconds(0.5),
                         Easing = new ExponentialEaseOut()
                     }
-                }
+                },
+                Content = control
             };
 
             void close()
@@ -60,8 +62,7 @@ public class Message
                     Dispatcher.UIThread.Invoke(() =>
                     {
                         messagebox.Opacity = 0;
-                        // messagebox.Margin = new Thickness(-200, 5, 200, 5);
-                        messagebox.Margin = new Thickness(5, -20, 5, 20);
+                        messagebox.Margin = new Thickness(5, 5, -80, 5);
                     });
                     Thread.Sleep(400);
                     Dispatcher.UIThread.Invoke(() =>
@@ -78,11 +79,11 @@ public class Message
             // 设置初始状态
             messagebox.Opacity = 0;
             // messagebox.Margin = new Thickness(-200, 5, 200, 5); // 初始位置在上方隐藏
-            messagebox.Margin = new Thickness(5, -20, 5, 20);
+            messagebox.Margin = new Thickness(5, 5, -80, 5);
 
             // 添加到 StackPanel
-            Core.SystemMessage.MessageBox.Children.Insert(0, messagebox);
-            //Core.SystemMessage.MessageBox.Children.Add(messagebox);
+            //Core.SystemMessage.MessageBox.Children.Insert(0, messagebox);
+            Core.SystemMessage.MessageBox.Children.Add(messagebox);
 
             // 动画：显示
             messagebox.Opacity = 1;

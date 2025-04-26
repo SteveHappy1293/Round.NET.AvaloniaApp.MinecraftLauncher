@@ -14,11 +14,17 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
 namespace LevelManager.Views.Pages;
 
-public partial class LevelManage : UserControl
+public partial class LevelManage : UserControl,IPage
 {
+    public void Open()
+    {
+        
+    }
+
     public LevelManage()
     {
         InitializeComponent();

@@ -43,8 +43,7 @@
             <HyperlinkButton NavigateUri="https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/issues">打开 Github Issues</HyperlinkButton>
         </DockPanel>
         <DockPanel Margin="15,10" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Button Margin="5,10" Click="Button_OnClick">退出 RMCL</Button>
-            <Button Margin="5,10" Classes="accent" Click="Button_OnClick1">继续运行</Button>
+            <Button Margin="5,10" Click="Button_OnClick">关闭此窗口</Button>
         </DockPanel>
     </Grid>
 </Window>

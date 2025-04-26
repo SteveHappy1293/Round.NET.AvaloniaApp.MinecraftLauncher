@@ -9,6 +9,7 @@ using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.ContentPanel;
 
@@ -47,19 +48,33 @@ public partial class ContentPagesPanel : UserControl
         {
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 0);
             // Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(220,100,30,-10));
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(190,100,10,-10));
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(4,4,4,-14));
             Thread.Sleep(180);
             Dispatcher.UIThread.Invoke(() =>
             {
-                MangeFrame.Content = RouteConfigs.Find((config =>
+                var page = RouteConfigs.Find(config =>
                 {
-                    return config.Route == ((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Tag;
-                })).Page;
+                    return config.Route == ((NavigationViewItem)(View!).SelectedItem!).Tag;
+                }).Page;
+                MangeFrame.Content = page;
+                page.Open();
             });
             Thread.Sleep(180);
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 1);
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(190,80,10,10));
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(4));
         });
+    }
+
+    public void ChangeSelectItemMenu()
+    {
+        if (View.SelectedItem != null)
+        {
+            var page = RouteConfigs.Find(config =>
+            {
+                return config.Route == ((NavigationViewItem)(View!).SelectedItem!).Tag;
+            }).Page;
+            page?.Open();
+        }
     }
 
     public void RegisterRoute(Core.API.NavigationRouteConfig config)

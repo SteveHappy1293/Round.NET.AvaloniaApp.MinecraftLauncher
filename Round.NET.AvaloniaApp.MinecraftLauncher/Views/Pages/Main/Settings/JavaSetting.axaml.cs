@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -7,6 +8,7 @@ using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Memory;
@@ -14,8 +16,12 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings;
 
-public partial class JavaSetting : UserControl
+public partial class JavaSetting : UserControl,IPage
 {
+    public void Open()
+    {
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>{new MenuItem{Header = "添加用户"},new MenuItem{Header = "刷新"}});
+    }
     public JavaSetting()
     {
         InitializeComponent();

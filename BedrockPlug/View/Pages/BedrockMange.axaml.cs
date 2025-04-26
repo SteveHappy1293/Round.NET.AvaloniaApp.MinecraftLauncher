@@ -3,11 +3,16 @@ using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using FluentAvalonia.FluentIcons;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
 namespace BedrockPlug.View.Pages;
 
-public partial class BedrockMange : UserControl
+public partial class BedrockMange : UserControl,IPage
 {
+    public void Open()
+    {
+        
+    }
     public BedrockMange()
     {
         InitializeComponent();

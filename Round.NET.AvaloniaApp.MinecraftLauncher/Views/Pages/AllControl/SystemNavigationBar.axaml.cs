@@ -94,7 +94,7 @@ public partial class SystemNavigationBar : UserControl
         if (Tag == "BackSearch") ind = -3;
         Task.Run(() =>
         {
-            Dispatcher.UIThread.Invoke(() => Core.MainWindow.MainView.MainCortent.Opacity = 0);
+            Dispatcher.UIThread.Invoke(() => Core.MainWindow.MainView.MainContent.Opacity = 0);
             if (ind != -1 && ind != -2 && ind != -3)
             {
                 Dispatcher.UIThread.Invoke(() => Circle.CircleShow(0.6));
@@ -106,25 +106,25 @@ public partial class SystemNavigationBar : UserControl
             }
             Thread.Sleep(380);
             if(ind!=-2 || !IsClosed)Dispatcher.UIThread.Invoke(() => Show());
-            // Dispatcher.UIThread.Invoke(() => Core.MainWindow.MainView.MainCortent.Margin = new Thickness(0,50,0,0));
+            // Dispatcher.UIThread.Invoke(() => Core.MainWindow.MainView.MainContent.Margin = new Thickness(0,50,0,0));
             Thread.Sleep(100);
             Dispatcher.UIThread.Invoke(() =>
             {
                 if (ind==-1||ind==-3)
                 {
-                    Core.MainWindow.MainView.MainCortent.Content = Launcher;
+                    Core.MainWindow.MainView.MainContent.Content = Launcher;
                     
-                    Core.MainWindow.MainView.MainCortent.Background = new SolidColorBrush()
+                    Core.MainWindow.MainView.MainContent.Background = new SolidColorBrush()
                     {
                         Color = Colors.Black,
                         Opacity = 0.0
                     };
                 }else if (ind == -2)
                 {
-                    Core.MainWindow.MainView.MainCortent.Content = new Grid();
+                    Core.MainWindow.MainView.MainContent.Content = new Grid();
                     if(!Circle.IsOpen) Dispatcher.UIThread.Invoke(() => Circle.CircleShow(0.6));
                     
-                    Core.MainWindow.MainView.MainCortent.Background = new SolidColorBrush()
+                    Core.MainWindow.MainView.MainContent.Background = new SolidColorBrush()
                     {
                         Color = Colors.Black,
                         Opacity = 0.0
@@ -132,16 +132,16 @@ public partial class SystemNavigationBar : UserControl
                 }
                 else
                 {
-                    Core.MainWindow.MainView.MainCortent.Content = RouteConfigs[ind].Page;
+                    Core.MainWindow.MainView.MainContent.Content = RouteConfigs[ind].Page;
                 }
             });
-            Dispatcher.UIThread.Invoke(() => Core.MainWindow.MainView.MainCortent.Opacity = 1);
-            // Dispatcher.UIThread.Invoke(() => Core.MainWindow.MainView.MainCortent.Margin = new Thickness(0));
+            Dispatcher.UIThread.Invoke(() => Core.MainWindow.MainView.MainContent.Opacity = 1);
+            // Dispatcher.UIThread.Invoke(() => Core.MainWindow.MainView.MainContent.Margin = new Thickness(0));
             Thread.Sleep(150);
             Dispatcher.UIThread.Invoke(() => Circle.Opacity=0.38);
             if (ind != -1&&ind!=-2&&ind!=-3)
             {
-                Dispatcher.UIThread.Invoke(() => Core.MainWindow.MainView.MainCortent.Background =
+                Dispatcher.UIThread.Invoke(() => Core.MainWindow.MainView.MainContent.Background =
                     new SolidColorBrush()
                     {
                         Color = Colors.Black,
@@ -154,10 +154,10 @@ public partial class SystemNavigationBar : UserControl
             // 右一下后恢复
             if (ind >= 0 & false)
             {
-                Dispatcher.UIThread.Invoke(() => Core.MainWindow.MainView.MainCortent.Margin = new Thickness(10,0,-10,0));
+                Dispatcher.UIThread.Invoke(() => Core.MainWindow.MainView.MainContent.Margin = new Thickness(10,0,-10,0));
                 Thread.Sleep(150);
             
-                Dispatcher.UIThread.Invoke(() => Core.MainWindow.MainView.MainCortent.Margin = new Thickness(0,0,0,0));
+                Dispatcher.UIThread.Invoke(() => Core.MainWindow.MainView.MainContent.Margin = new Thickness(0,0,0,0));
             }
         });
     }

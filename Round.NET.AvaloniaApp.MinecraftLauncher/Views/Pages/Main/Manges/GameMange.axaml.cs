@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -20,15 +21,20 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry.Stars;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Enum;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.GameManges;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
 
-public partial class GameMange : UserControl
+public partial class GameMange : UserControl,IPage
 {
     bool IsEdit = false;
+    public void Open()
+    {
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>{ControlHelper.CreateMenuItem("新增文件夹",()=>AddDitButton_OnClick(null,null)),ControlHelper.CreateMenuItem("打开文件夹",()=>OpenDirButton_OnClick(null,null))});
+    }
     public GameMange()
     {
         InitializeComponent();

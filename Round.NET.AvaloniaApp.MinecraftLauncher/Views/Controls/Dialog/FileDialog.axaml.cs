@@ -28,7 +28,7 @@ public partial class FileDialog : UserControl
             {
 
                 var item = new TreeViewItem { Header = $"{VARIABLE.VolumeLabel}（{VARIABLE.Name}）", Tag = VARIABLE.Name };
-                item.Items.Add(new TreeViewItem{Tag = "TakingPlace"});
+                item.Items.Add(new TreeViewItem{Tag = "Placeholder"});
                 item.Expanded += (sender, args) => { InitTreeViewItem(item); };
                 TreeView.Items.Add(item);
             }
@@ -38,13 +38,13 @@ public partial class FileDialog : UserControl
     public void InitTreeViewItem(TreeViewItem parent)
     {
         var path = parent.Tag as string;
-        if (((TreeViewItem)parent.Items[0]).Tag == "TakingPlace")
+        if (((TreeViewItem)parent.Items[0]).Tag == "Placeholder")
         {
             parent.Items.Clear();
             foreach (var VARIABLE in Directory.GetDirectories(path))
             {
                 var item = new TreeViewItem { Header = new FileInfo(VARIABLE).Name, Tag = VARIABLE };
-                item.Items.Add(new TreeViewItem{Tag = "TakingPlace"});
+                item.Items.Add(new TreeViewItem{Tag = "Placeholder"});
                 item.Expanded += (sender, args) => { InitTreeViewItem(item); };
                 parent.Items.Add(item);
             }
@@ -63,7 +63,7 @@ public partial class FileDialog : UserControl
             Dispatcher.UIThread.Invoke(() => this.Dialog.Margin = new Thickness(0,500,0,-500));
             Dispatcher.UIThread.Invoke(() => this.Opacity = 0);
             Thread.Sleep(500);
-            Dispatcher.UIThread.Invoke(() => ((Grid)((MainView)Core.MainWindow.Content).Content).Children.Remove(this));
+            Dispatcher.UIThread.Invoke(() => Core.MainWindow.GetDialogGrid().Children.Remove(this));
         });
     }
     private void SelectButton_OnClick(object? sender, RoutedEventArgs e)
@@ -73,7 +73,7 @@ public partial class FileDialog : UserControl
             Dispatcher.UIThread.Invoke(() => this.Dialog.Margin = new Thickness(0,500,0,-500));
             Dispatcher.UIThread.Invoke(() => this.Opacity = 0);
             Thread.Sleep(500);
-            Dispatcher.UIThread.Invoke(() => ((Grid)((MainView)Core.MainWindow.Content).Content).Children.Remove(this));
+            Dispatcher.UIThread.Invoke(() => Core.MainWindow.GetDialogGrid().Children.Remove(this));
         });
     }
 
@@ -84,7 +84,7 @@ public partial class FileDialog : UserControl
         this.Opacity = 0;
         Task.Run(() =>
         {
-            Dispatcher.UIThread.Invoke(() => ((Grid)((MainView)Core.MainWindow.Content).Content).Children.Add(this));
+            Dispatcher.UIThread.Invoke(() => Core.MainWindow.GetDialogGrid().Children.Add(this));
             Dispatcher.UIThread.Invoke(() => this.Dialog.Margin = new Thickness(0,0,0,0));
             Thread.Sleep(200);
             Dispatcher.UIThread.Invoke(() => this.Opacity = 1);

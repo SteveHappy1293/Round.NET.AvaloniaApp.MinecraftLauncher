@@ -23,7 +23,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 
 public class StyleMange
 {
-    public static void Load()
+    public static void Load(Window window)
     {
         if (Config.Config.MainConfig.BackModlue == 2)
         {
@@ -31,10 +31,10 @@ public class StyleMange
             {
                 using (var stream = new FileStream(Config.Config.MainConfig.BackImage, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    Core.MainWindow.Background = Brush.Parse("#101010");
-                    Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.None };
+                    window.Background = Brush.Parse("#101010");
+                    window.TransparencyLevelHint = new[] { WindowTransparencyLevel.None };
                     var bitmap = new Bitmap(stream);
-                    Core.MainWindow.Background = new ImageBrush()
+                    window.Background = new ImageBrush()
                     {
                         Source = bitmap,
                         Stretch = Stretch.UniformToFill,
@@ -45,29 +45,29 @@ public class StyleMange
         }
         else if (Config.Config.MainConfig.BackModlue == 0)
         {
-            Core.MainWindow.Background = Brushes.Transparent;
-            Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.Mica };
+            window.Background = Brushes.Transparent;
+            window.TransparencyLevelHint = new[] { WindowTransparencyLevel.Mica };
         }else if (Config.Config.MainConfig.BackModlue == 1)
         {
-            Core.MainWindow.Background = Brushes.Transparent;
-            Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.AcrylicBlur };
+            window.Background = Brushes.Transparent;
+            window.TransparencyLevelHint = new[] { WindowTransparencyLevel.AcrylicBlur };
         }else if (Config.Config.MainConfig.BackModlue == 3) // 网络随机图片
         {
-            LoadRandomBackground();
+            LoadRandomBackground(window);
         }
         else if (Config.Config.MainConfig.BackModlue == 4)
         {
-            ImportStyleConfigFile(Config.Config.MainConfig.StyleFile);
+            ImportStyleConfigFile(Config.Config.MainConfig.StyleFile,window);
         }
         else if(Config.Config.MainConfig.BackModlue == 5)
         {
-            Core.MainWindow.Background = Brush.Parse("#101010");
+            window.Background = Brush.Parse("#101010");
         }
     }
 
-    public static void LoadRandomBackground()
+    public static void LoadRandomBackground(Window window)
     {
-        Core.MainWindow.Background = Brush.Parse("#101010");
+        window.Background = Brush.Parse("#101010");
         if (!Directory.Exists(Path.Combine("../RMCL/RMCL.Style/Wallpaper")))
         {
             Directory.CreateDirectory(Path.Combine("../RMCL/RMCL.Style/Wallpaper"));
@@ -124,10 +124,10 @@ public class StyleMange
             {
                 using (var stream = new FileStream(files[index], FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    Core.MainWindow.Background = Brush.Parse("#101010");
-                    Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.None };
+                    window.Background = Brush.Parse("#101010");
+                    window.TransparencyLevelHint = new[] { WindowTransparencyLevel.None };
                     var bitmap = new Bitmap(stream);
-                    Core.MainWindow.Background = new ImageBrush()
+                    window.Background = new ImageBrush()
                     {
                         Source = bitmap,
                         Stretch = Stretch.UniformToFill,
@@ -212,7 +212,7 @@ public class StyleMange
         File.WriteAllText(path + "/Temp/Style.json", json);
         CreateZipFile(path + "/Temp", FileName);
     }
-    public static void ImportStyleConfigFile(string FileName)
+    public static void ImportStyleConfigFile(string FileName,Window window)
     {
         var path = Path.GetFullPath("../RMCL/RMCL.Style/Extract");
         if(Directory.Exists(path)) Directory.Delete(path,true);
@@ -228,10 +228,10 @@ public class StyleMange
             var imagepath = $"{path}/{styleConfig.Background}";   
             using (var stream = new FileStream(imagepath, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                Core.MainWindow.Background = Brush.Parse("#101010");
-                Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.None };
+                window.Background = Brush.Parse("#101010");
+                window.TransparencyLevelHint = new[] { WindowTransparencyLevel.None };
                 var bitmap = new Bitmap(stream);
-                Core.MainWindow.Background = new ImageBrush()
+                window.Background = new ImageBrush()
                 {
                     Source = bitmap,
                     Stretch = Stretch.UniformToFill,

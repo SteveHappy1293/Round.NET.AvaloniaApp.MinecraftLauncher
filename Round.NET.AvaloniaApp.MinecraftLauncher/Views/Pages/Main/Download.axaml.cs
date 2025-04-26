@@ -22,8 +22,12 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Downloads;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
-public partial class Download : UserControl
+public partial class Download : UserControl,IParentPage
 {
+    public void Open()
+    {
+        ContentPagesPanel.ChangeSelectItemMenu();
+    }
     public Download()
     {
         InitializeComponent();

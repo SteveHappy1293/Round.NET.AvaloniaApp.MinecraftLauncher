@@ -23,9 +23,9 @@ public partial class ExceptionPage : UserControl
         InitializeComponent();
         this.HomeIcon1.Click = (sender, args) =>
         {
-            Core.MainWindow.MainView.CortentFrame.Opacity = 0;
-            Core.MainWindow.MainView.CortentFrame.Content = new Grid();
-            Core.MainWindow.MainView.MainCortent.Opacity = 1;
+            Core.MainWindow.MainView.ContentFrame.Opacity = 0;
+            Core.MainWindow.MainView.ContentFrame.Content = new Grid();
+            Core.MainWindow.MainView.MainContent.Opacity = 1;
             Core.NavigationBar.Opacity = 1;
         };
 

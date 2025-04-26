@@ -9,12 +9,17 @@ using FluentAvalonia.UI.Controls;
 using fNbt;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.GameManges.VersionSettings;
 
 namespace LevelManager.Views.Pages;
 
-public partial class LevelSetting : UserControl
+public partial class LevelSetting : UserControl,IPage
 {
+    public void Open()
+    {
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>{new MenuItem{Header = "添加用户"},new MenuItem{Header = "刷新"}});
+    }
     public string nbtfilepath = "";
     public NbtFile _nbt;
 

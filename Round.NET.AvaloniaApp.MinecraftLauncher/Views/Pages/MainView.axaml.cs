@@ -134,29 +134,28 @@ public partial class MainView : UserControl
             }
         });*/
 
-        BottomBar.ContentFrame = MainCortent;
+        BottomBar.ContentFrame = MainContent;
+        BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
+        {
+            Title = new Label(){Content = "主页"},
+            Page = Core.MainHome,
+            Tag = "Launch",
+            IsDefault = true,
+        });
         BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
         {
             Title = new Label(){Content = "下载"},
-            Page = new Download(),
+            Page = Core.DownloadPage,
         });
         BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
         {
             Title = new Label(){Content = "管理"},
-            Page = new Mange(),
+            Page = Core.MangePage,
         });
         BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
         {
             Title = new Label(){Content = "设置"},
-            Page = new Setting(),
-        });
-        BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
-        {
-            Title = new Label(){Content = "主页"},
-            Page = new Launcher(),
-            Tag = "Launch",
-            IsDefault = true,
-            IsNoButton = true
+            Page = Core.SettingPage,
         });
         
         Task.Run(() =>

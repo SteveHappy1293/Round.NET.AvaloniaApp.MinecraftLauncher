@@ -25,7 +25,7 @@ public partial class ErrorWindow : Window
         TimeShow.Content = DateTime.Now.ToString();
     }
 
-    public void ShowEx(Exception ex)
+    public void ShowEx(Exception ex,DateTime time)
     {
         TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
         var sysstr = new SequenceString();
@@ -42,7 +42,7 @@ public partial class ErrorWindow : Window
         ExceptionEntry.Exception = ex.Message;
         ExceptionEntry.ExceptionSource = ex.Source;
         ExceptionEntry.StackTrace = ex.StackTrace;
-        ExceptionEntry.RecordTime = DateTime.Now;
+        ExceptionEntry.RecordTime = time;
         ExceptionEntry.SystemLanguage = CultureInfo.InstalledUICulture.Name;
         ExceptionEntry.SystemVersion = Environment.OSVersion.ToString();
         ExceptionEntry.SystemTimeZone = localTimeZone.DisplayName;
@@ -81,11 +81,6 @@ public partial class ErrorWindow : Window
     }
 
     private void Button_OnClick(object? sender, RoutedEventArgs e)
-    {
-        Environment.Exit(0);
-    }
-
-    private void Button_OnClick1(object? sender, RoutedEventArgs e)
     {
         Close();
     }

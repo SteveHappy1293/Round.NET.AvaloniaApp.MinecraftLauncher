@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices.JavaScript;
 using System.Threading;
@@ -22,8 +23,13 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Initialize;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
-public partial class Launcher : UserControl
+public partial class Launcher : UserControl,IParentPage
 {
+    public void Open()
+    {
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>());
+    }
+
     public Launcher()
     {
         InitializeComponent();
@@ -100,9 +106,9 @@ public partial class Launcher : UserControl
 
     private void GotoAccount(object? sender, RoutedEventArgs e)
     {
-        Core.MainWindow.MainView.CortentFrame.Content = new Account.Account();
-        Core.MainWindow.MainView.CortentFrame.Opacity = 1;
-        Core.MainWindow.MainView.MainCortent.Opacity = 0;
+        Core.MainWindow.MainView.ContentFrame.Content = new Account.Account();
+        Core.MainWindow.MainView.ContentFrame.Opacity = 1;
+        Core.MainWindow.MainView.MainContent.Opacity = 0;
         
         Core.NavigationBar.Opacity = 0;
     }

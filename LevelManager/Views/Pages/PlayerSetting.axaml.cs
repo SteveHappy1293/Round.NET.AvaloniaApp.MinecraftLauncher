@@ -19,13 +19,18 @@ using Newtonsoft.Json;
 
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 using Config = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config.Config;
 using LaunchJavaEdtion = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch.LaunchJavaEdtion;
 
 namespace LevelManager.Views.Pages;
 
-public partial class PlayerSetting : UserControl
+public partial class PlayerSetting : UserControl,IPage
 {
+    public void Open()
+    {
+        
+    }
     private NbtFile _nbt;
     public PlayerSetting(string filepath,NbtFile nbt)
     {

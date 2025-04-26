@@ -12,6 +12,7 @@ using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 
@@ -39,8 +40,9 @@ public partial class BottomBar : UserControl
         
     }
 
-    private void Nav(Control Page,bool IsChangeBackground = false)
+    private void Nav(IParentPage Page)
     {
+        Page.Open();
         Task.Run(() =>
         {
             Dispatcher.UIThread.Invoke(() =>
@@ -51,8 +53,6 @@ public partial class BottomBar : UserControl
             Thread.Sleep(100);
             Dispatcher.UIThread.Invoke(() =>
             {
-                if(IsChangeBackground) ContentFrame.Background = Brush.Parse("#101010");
-                else ContentFrame.Background = Brushes.Transparent;
                 ContentFrame.Content = Page;
                 ContentFrame.Opacity = 1;
                 ContentFrame.Margin = new Thickness(0, 0, 0, 70);
@@ -96,6 +96,6 @@ public partial class BottomBar : UserControl
 
         NavigationButtons.Find(x => x.NavItem.Tag == btnhost.Tag).IsThis = true;
         NavigationButtons.Find(x => x.NavItem.Tag == btnhost.Tag).NavItem.Classes.Add("accent");
-        Nav(NavigationButtons.Find(x => x.NavItem.Tag == btnhost.Tag).Page,true);
+        Nav(NavigationButtons.Find(x => x.NavItem.Tag == btnhost.Tag).Page);
     }
 }

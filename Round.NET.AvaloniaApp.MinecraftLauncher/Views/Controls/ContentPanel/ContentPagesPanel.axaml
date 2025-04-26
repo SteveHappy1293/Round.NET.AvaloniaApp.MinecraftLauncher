@@ -6,24 +6,33 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.ContentPanel.ContentPagesPanel">
     <Grid>
-        <Label Margin="5,9" FontSize="22" FontWeight="Bold" Content="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}"></Label>
+    <Grid Margin="16,4,16,16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
         <controls:NavigationView 
-            PaneDisplayMode="Left"
+            PaneDisplayMode="Top"
             IsSettingsVisible="False"
             IsPaneOpen="True"
             IsTabStop="False"
             SelectionFollowsFocus="False"
             IsPaneToggleButtonVisible="False"
-            HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,51,0,0"
+            HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0"
             OpenPaneLength="180"
             Name="View"
             SelectionChanged="NavigationView_OnSelectionChanged">
             <controls:NavigationView.MenuItems>
             </controls:NavigationView.MenuItems>
         </controls:NavigationView>
-        <Label Margin="190,50" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Name="PageTitleLabel" FontSize="18"></Label>
-        <controls:Frame Margin="190,80,10,10" Name="MangeFrame">
-            
-        </controls:Frame>
+        <Grid Margin="8,0,8,8" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label FontWeight="Bold" Name="PageTitleLabel"  FontSize="18"/>
+            <controls:Frame Grid.Row="1" Name="MangeFrame" Margin="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        </Grid>
+    </Grid>
     </Grid>
 </UserControl>

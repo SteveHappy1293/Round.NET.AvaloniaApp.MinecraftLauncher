@@ -20,9 +20,13 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings;
 
-public partial class SeniorSetting : UserControl
+public partial class SeniorSetting : UserControl,IPage
 {
     bool IsEditMode = false;
+    public void Open()
+    {
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>{new MenuItem{Header = "添加用户"},new MenuItem{Header = "刷新"}});
+    }
     public SeniorSetting()
     {
         InitializeComponent();

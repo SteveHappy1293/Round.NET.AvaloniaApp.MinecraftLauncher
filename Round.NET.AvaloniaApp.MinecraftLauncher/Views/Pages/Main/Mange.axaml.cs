@@ -24,12 +24,17 @@ using LaunchJavaEdtion = Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
-public partial class Mange : UserControl
+public partial class Mange : UserControl,IParentPage
 {
+    public void Open()
+    {
+        ContentPagesPanel.ChangeSelectItemMenu();
+    }
+
+
     public Mange()
     {
         InitializeComponent();
-        Core.MangePage = this; 
         ContentPagesPanel.RegisterRoute(new Core.API.NavigationRouteConfig()
         {
             Page = GameMange,

@@ -31,13 +31,12 @@ using User = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User.User;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
 
-public partial class UserMange : UserControl
+public partial class UserMange : UserControl,IPage
 {
     bool IsEdit = false;
     public UserMange()
     {
         InitializeComponent();
-
         int count = 0;
         Task.Run(() => // 刷新页面
         {
@@ -46,7 +45,7 @@ public partial class UserMange : UserControl
                 if (User.Users.Count != count)
                 {
                     count = User.Users.Count;
-                    Dispatcher.UIThread.Invoke(()=>RefreshUI1());
+                    Dispatcher.UIThread.Invoke(()=>RefreshUI());
                 }
                 Thread.Sleep(100);
             }
@@ -111,7 +110,7 @@ public partial class UserMange : UserControl
         IsEdit = true;
     }*/
     
-    public void RefreshUI1()
+    public void RefreshUI()
     {
         IsEdit = false;
         Users.Children.Clear();
@@ -335,7 +334,7 @@ public partial class UserMange : UserControl
     private void Button_OnClick1(object? sender, RoutedEventArgs e)
     {
         User.LoadUser();
-        RefreshUI1();
+        RefreshUI();
     }
 
     private void GetUserSkin_OnClick(object? sender, RoutedEventArgs e)
@@ -395,5 +394,15 @@ public partial class UserMange : UserControl
             taskbox.ShowAsync();
         };
         con.ShowAsync();
+    }
+
+    public void Open()
+    {
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>
+        {
+            ControlHelper.CreateMenuItem("添加用户",()=>Button_OnClick(null,null)),
+            ControlHelper.CreateMenuItem("刷新",()=>Button_OnClick1(null,null)),
+            ControlHelper.CreateMenuItem("获取正版账户皮肤",()=>GetUserSkin_OnClick(null,null))
+        });
     }
 }

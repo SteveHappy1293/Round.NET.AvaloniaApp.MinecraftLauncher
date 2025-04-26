@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Avalonia;
 using Avalonia.Controls;
@@ -12,22 +13,31 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Classes.Mange.StarMange;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry.Stars;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Button;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.StarManges;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
 
-public partial class StarMange : UserControl
+public partial class StarMange : UserControl,IPage
 {
     public StarMange()
     {
         InitializeComponent();
+        
         this.Loaded += (sender, args) =>
         {
             Load();
         };
     }
-
+    public void Open()
+    {
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>
+        {
+            ControlHelper.CreateMenuItem("刷新",Load),
+            ControlHelper.CreateMenuItem("新建收藏夹",()=>NewStarGroup_OnClick(null,null))
+        });
+    }
     public void Load()
     {
         StarBox.Children.Clear();
@@ -45,9 +55,9 @@ public partial class StarMange : UserControl
             {
                 var page = new StarGroupPage();
                 page.GUID = star.GUID;
-                Core.MainWindow.MainView.CortentFrame.Content = page;
-                Core.MainWindow.MainView.CortentFrame.Opacity = 1;
-                Core.MainWindow.MainView.MainCortent.Opacity = 0;
+                Core.MainWindow.MainView.ContentFrame.Content = page;
+                Core.MainWindow.MainView.ContentFrame.Opacity = 1;
+                Core.MainWindow.MainView.MainContent.Opacity = 0;
         
                 Core.NavigationBar.Opacity = 0;
                 page.Load();

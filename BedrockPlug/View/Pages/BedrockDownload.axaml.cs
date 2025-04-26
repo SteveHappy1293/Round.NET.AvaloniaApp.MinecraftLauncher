@@ -10,11 +10,16 @@ using FluentAvalonia.FluentIcons;
 using MCLauncher.Versions;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
 namespace BedrockPlug.View.Pages;
 
-public partial class BedrockDownload : UserControl
+public partial class BedrockDownload : UserControl,IPage
 {
+    public void Open()
+    {
+        
+    }
     public BedrockDownload()
     {
         InitializeComponent();

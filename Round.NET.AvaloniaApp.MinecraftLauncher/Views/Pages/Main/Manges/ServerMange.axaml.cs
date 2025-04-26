@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Threading;
@@ -13,6 +14,7 @@ using Avalonia.Media.Imaging;
 using Avalonia.Threading;
 using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Controls;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
@@ -24,11 +26,20 @@ using Round.NET.VersionServerMange.Library.Modules;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
 
-public partial class ServerMange : UserControl
+public partial class ServerMange : UserControl,IPage
 {
+    public void Open()
+    {
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>
+        {
+            ControlHelper.CreateMenuItem("刷新", RefreshUI),
+            ControlHelper.CreateMenuItem("添加服务器", () => AddServerBtn_OnClick(null, null))
+        });
+    }
     public ServerMange()
     {
         InitializeComponent();
+
         this.Loaded += (sender, args) => RefreshUI();
         Task.Run(() =>
         {

@@ -25,7 +25,7 @@ public partial class ContentPageDialog : UserControl
         {
             Dispatcher.UIThread.Invoke(() => this.Opacity = 0);
             Thread.Sleep(200);
-            Dispatcher.UIThread.Invoke(() => ((Grid)((MainView)Core.MainWindow.Content).Content).Children.Remove(this));
+            Dispatcher.UIThread.Invoke(() => Core.MainWindow.GetDialogGrid().Children.Remove(this));
         });
     }
 
@@ -37,7 +37,7 @@ public partial class ContentPageDialog : UserControl
         Frame.Content = Page;
         Task.Run(() =>
         {
-            Dispatcher.UIThread.Invoke(() => ((Grid)((MainView)Core.MainWindow.Content).Content).Children.Add(this));
+            Dispatcher.UIThread.Invoke(() => Core.MainWindow.GetDialogGrid().Children.Add(this));
             Dispatcher.UIThread.Invoke(() => this.Dialog.Margin = new Thickness(0,0,0,0));
             Thread.Sleep(200);
             Dispatcher.UIThread.Invoke(() => this.Opacity = 1);
