@@ -20,6 +20,7 @@ public partial class SystemTaskBox : UserControl
     public SystemTaskBox()
     {
         InitializeComponent();
+        Core.SystemTask = this;
         Show();
         Task.Run(() =>
         {

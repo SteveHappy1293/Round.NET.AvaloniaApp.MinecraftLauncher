@@ -15,7 +15,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 public class Core
 {
     public static MainWindow MainWindow { get; set; }
-    public static SystemTaskBox SystemTask { get; set; }
+    public static SystemTaskBox SystemTask { get; set; } 
     public static SystemMessageBox SystemMessage { get; set; }
     public static Download DownloadPage { get; set; } = new();
     public static Views.Pages.Main.Mange MangePage { get; set; } = new();

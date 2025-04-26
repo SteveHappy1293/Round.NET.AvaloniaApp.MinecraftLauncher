@@ -63,7 +63,7 @@ public class SystemMessageTaskMange
                 content.Margin = new Thickness(380, 5, -380, 0);
                 // content.Opacity = 0;
                 Tasks.Add(con);
-                ((StackPanel)Core.SystemTask.MainPanel.Children[1]).Children.Add(con.Body);
+                Core.SystemTask.MessageListBox.Children.Add(con.Body);
                 
                 content.Margin = new Thickness(0, 5, 0, 0);
                 // content.Opacity = 1;
@@ -102,7 +102,7 @@ public class SystemMessageTaskMange
                     Thread.Sleep(800);
                     Dispatcher.UIThread.Invoke(() =>
                     {
-                        ((StackPanel)Core.SystemTask.MainPanel.Children[1]).Children.Remove(con.Body);
+                        Core.SystemTask.MessageListBox.Children.Remove(con.Body);
                         Tasks.Remove(con);
                     });
                 });
