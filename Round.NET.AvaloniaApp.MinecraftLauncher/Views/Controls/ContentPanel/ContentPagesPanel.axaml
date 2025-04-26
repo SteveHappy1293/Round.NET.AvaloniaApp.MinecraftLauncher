@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.ContentPanel.ContentPagesPanel">
     <Grid>
-    <Grid Margin="16,4,16,16">
+    <Grid Margin="16,4,16,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>

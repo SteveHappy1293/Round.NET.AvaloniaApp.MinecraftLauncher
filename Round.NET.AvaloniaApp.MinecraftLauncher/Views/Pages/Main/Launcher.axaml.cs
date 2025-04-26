@@ -39,7 +39,7 @@ public partial class Launcher : UserControl,IParentPage
         DebugBox.IsVisible = false;
 #endif
         TilesMange.TilesPanel = this.WrapPanel;
-        Task.Run(() =>
+        /*Task.Run(() =>
         {
             while (true)
             {
@@ -58,7 +58,7 @@ public partial class Launcher : UserControl,IParentPage
                 });
                 Thread.Sleep(5000);
             }
-        });
+        });*/
         Task.Run(() =>
         {
             Thread.Sleep(800);
