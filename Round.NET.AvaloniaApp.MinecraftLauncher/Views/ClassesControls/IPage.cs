@@ -1,3 +1,5 @@
+using System;
+
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
 public interface IPage

@@ -187,7 +187,20 @@ public partial class MainWindow : Window
 
     public void ChangeMenuItems(List<MenuItem> menuItems)
     {
-        Menu.ItemsSource = menuItems;
+        Menu.Margin = new Thickness(20, 0, -20, 0);
+        Menu.Opacity = 0;
+        Task.Run(() =>
+        {
+            Thread.Sleep(120);
+            Dispatcher.UIThread.Invoke((() =>Menu.Margin = new Thickness(-20, 0, 20, 0)));
+            Thread.Sleep(150);
+            Dispatcher.UIThread.Invoke(() =>
+            {
+                Menu.ItemsSource = menuItems;
+                Menu.Margin = new Thickness(0, 0, 0, 0);
+                Menu.Opacity = 1;
+            });
+        });
     }
 
     // 标题栏拖拽逻辑
@@ -230,6 +243,11 @@ public partial class MainWindow : Window
     private void Control_OnLoaded(object? sender, RoutedEventArgs e)
     {
 
+    }
+
+    private void TaskViewButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        Core.SystemTask.Show();
     }
 }
 

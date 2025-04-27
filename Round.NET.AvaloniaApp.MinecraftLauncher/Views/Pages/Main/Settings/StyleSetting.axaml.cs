@@ -21,7 +21,7 @@ public partial class StyleSetting : UserControl,IPage
     public bool IsEdit = false;
     public void Open()
     {
-        Core.MainWindow.ChangeMenuItems(new List<MenuItem>{new MenuItem{Header = "添加用户"},new MenuItem{Header = "刷新"}});
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>{});
     }
     public StyleSetting()
     {

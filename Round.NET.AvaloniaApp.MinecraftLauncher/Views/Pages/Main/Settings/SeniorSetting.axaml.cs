@@ -25,7 +25,7 @@ public partial class SeniorSetting : UserControl,IPage
     bool IsEditMode = false;
     public void Open()
     {
-        Core.MainWindow.ChangeMenuItems(new List<MenuItem>{new MenuItem{Header = "添加用户"},new MenuItem{Header = "刷新"}});
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>{});
     }
     public SeniorSetting()
     {

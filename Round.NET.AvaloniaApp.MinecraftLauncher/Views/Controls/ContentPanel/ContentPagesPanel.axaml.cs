@@ -48,7 +48,7 @@ public partial class ContentPagesPanel : UserControl
         {
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 0);
             // Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(220,100,30,-10));
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(4,4,4,-14));
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(4,4,4,-10));
             Thread.Sleep(180);
             Dispatcher.UIThread.Invoke(() =>
             {
@@ -61,7 +61,7 @@ public partial class ContentPagesPanel : UserControl
             });
             Thread.Sleep(180);
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 1);
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(4));
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(4,4,4,-4));
         });
     }
 
