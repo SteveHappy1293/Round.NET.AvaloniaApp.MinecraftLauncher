@@ -44,12 +44,13 @@ public partial class PlayerBox : UserControl
     {
         UserConfig = User;
         NameLabel.Content = User.Config.Username;
+        byte[] imageBytes;
         switch (User.Type)
         {
             case "Offline":
                 LoginLabel.Foreground = Brushes.Orange;
-                LoginLabel.Content = "离线登录模式";
-                byte[] imageBytes = Convert.FromBase64String(SteveBase64String);
+                LoginLabel.Content = "离线账户";
+                imageBytes = Convert.FromBase64String(SteveBase64String);
 
                 using (var memoryStream = new MemoryStream(imageBytes))
                 {
@@ -100,6 +101,26 @@ public partial class PlayerBox : UserControl
                         });
                     }
                 });
+                break;
+            case "Mojang":
+                LoginLabel.Foreground = Brushes.IndianRed;
+                LoginLabel.Content = "Mojang正版账户";
+                imageBytes = Convert.FromBase64String(SteveBase64String);
+
+                using (var memoryStream = new MemoryStream(imageBytes))
+                {
+                    SkinHandImage.Background = new ImageBrush(new Bitmap(memoryStream));
+                }
+                break;
+            default:
+                LoginLabel.Foreground = Brushes.Gainsboro;
+                LoginLabel.Content = "未知账户";
+                imageBytes = Convert.FromBase64String(SteveBase64String);
+
+                using (var memoryStream = new MemoryStream(imageBytes))
+                {
+                    SkinHandImage.Background = new ImageBrush(new Bitmap(memoryStream));
+                }
                 break;
         }
     }
