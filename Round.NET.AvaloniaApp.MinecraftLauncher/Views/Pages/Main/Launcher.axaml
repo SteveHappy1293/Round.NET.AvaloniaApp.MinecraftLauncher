@@ -5,10 +5,11 @@
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              xmlns:controls2="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
              xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             xmlns:tips="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Tips"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Launcher">
     <Grid>
-        <controls:SettingsExpander Header="欢迎使用全新 RMCL3.0"
+        <!--<controls:SettingsExpander Header="欢迎使用全新 RMCL3.0"
                                    Description="全新一代 RMCL，不太一样，大不一样。"
                                    Name="MessageBox"
                                    IsClickEnabled="True"
@@ -17,19 +18,11 @@
                                    Width="300"
                                    Click="MessageBox_OnClick"
                                    Margin="10,53">
-        </controls:SettingsExpander>
-        <Label Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="50" Margin="80,40" Name="TimeBox" FontWeight="Light">Time</Label>
-        <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="80,100">欢迎使用RMCL 3.0！</Label>
-        <Border Name="LaunchBored" Height="70" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" CornerRadius="0" Background="rgba(26,26,26,0.6)" Margin="0,-80">
+        </controls:SettingsExpander>-->
+        <Label Foreground="White" HorizontalAlignment="Left" IsVisible="False" VerticalAlignment="Top" FontSize="50" Margin="80,40" Name="TimeBox" FontWeight="Light">Time</Label>
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top" IsVisible="False"  Margin="80,100">欢迎使用RMCL 3.0！</Label>
+        <Border IsVisible="False" Name="LaunchBored" Height="70" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" CornerRadius="0" Background="rgba(26,26,26,0.6)" Margin="0,-80">
             <Grid>
-                <DockPanel HorizontalAlignment="Right" VerticalAlignment="Stretch">
-                    <Button Width="160" Background="Transparent" BorderBrush="Transparent" CornerRadius="0" Margin="0" Name="LaunchButton" Click="LaunchButton_OnClick">
-                        <Grid Height="55">
-                            <Label FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Name="BigTitle">启动游戏</Label>
-                            <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Name="SmTitle">Minecraft {Version}</Label>
-                        </Grid>
-                    </Button>
-                </DockPanel>
                 <DockPanel HorizontalAlignment="Left" VerticalAlignment="Stretch" Name="DebugBox">
                     <Button Height="40" Width="40" Background="Transparent" BorderBrush="Transparent" CornerRadius="20" Margin="10" Click="GotoAccount">
                         <DockPanel>
@@ -41,6 +34,7 @@
                             <fluentIcons:FluentIcon Icon="ErrorCircle20Regular"/>
                         </DockPanel>
                     </Button>
+                    <tips:IssuesTipBox IssuesType="Bug" IssuesText="Bug"/>
                 </DockPanel>
             </Grid>
         </Border>

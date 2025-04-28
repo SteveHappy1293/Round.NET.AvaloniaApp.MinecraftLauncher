@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -9,15 +10,21 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
 using FluentAvalonia.FluentIcons;
-using FluentAvalonia.UI.Controls; 
+using FluentAvalonia.UI.Controls;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.AddNewGame;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Downloads;
 
-public partial class DownloadGamePage : UserControl
+public partial class DownloadGamePage : UserControl,IPage
 {
+    public void Open()
+    {
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>{ControlHelper.CreateMenuItem("刷新",RefreshList)});
+    }
     public DownloadGamePage()
     {
         InitializeComponent();

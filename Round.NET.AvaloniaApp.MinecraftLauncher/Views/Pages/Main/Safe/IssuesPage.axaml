@@ -1,0 +1,32 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
+             xmlns:customControls="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Safe.IssuesPage">
+    <Grid>
+        <Grid Background="Black" Opacity="0.3"></Grid>
+        <controls:HomeIcon Name="HomeIcon1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
+        <Label Margin="50,9" FontSize="22" FontWeight="Bold">反馈列表</Label>
+        <StackPanel Margin="0,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250">
+            <TextBlock Margin="10,5" TextWrapping="Wrap" FontSize="20" FontWeight="Bold">这是什么</TextBlock>
+            <TextBlock Margin="10,5" TextWrapping="Wrap">这里会显示 RMCL3 仓库已提交的 Issues</TextBlock>
+            <TextBlock Margin="10,5" TextWrapping="Wrap">如果您考虑反馈，可以在此处查看是否有重复内容，如果没有，您则可以去提交 Issues</TextBlock>
+            <TextBlock Margin="10,5" TextWrapping="Wrap">假如你重复提交，那开发者的工作量就大咯 ):</TextBlock>
+        </StackPanel>
+        <StackPanel Margin="0,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="250">
+            
+        </StackPanel>
+        <Grid Margin="270,50,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <controls:LoadingControl Name="LoadingControl" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="11" Background="#232323" Padding="20,10"></controls:LoadingControl>
+            <controls:NullControl IsVisible="False" Name="NullControl" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="11" Background="#232323" Padding="20,14"></controls:NullControl>
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" >
+                <customControls:AnimatedStackPanel Name="IssuesAnimatedStackPanel" Margin="10" AnimationDirection="Left">
+                    
+                </customControls:AnimatedStackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

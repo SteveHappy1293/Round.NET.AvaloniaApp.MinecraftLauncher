@@ -9,19 +9,17 @@
     <Grid>
         <Grid Background="Black" Opacity="0.3"></Grid>
         <Border CornerRadius="6" Background="rgb(31,31,31)" Margin="10"
-                MaxWidth="500"
-                Width="500"
                 Name="Dialog"
                 VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel>
                 <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                    <Button Click="Button_OnClick" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="120" Height="40" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+                    <Button Click="Button_OnClick" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" Width="120" Height="40" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
                         <DockPanel>
                             <fluentIcons:FluentIcon Foreground="White" Icon="ArrowLeft20Regular" Width="15" HorizontalAlignment="Left"/>
                             <Label Margin="10,0">返回</Label>
                         </DockPanel>
                     </Button>
-                    <Label Name="TitleLabel" FontSize="18" Margin="5" FontWeight="Light" VerticalAlignment="Center" HorizontalAlignment="Right">Dialog Title</Label>
+                    <Label Name="TitleLabel" FontSize="18" Margin="8" FontWeight="Light" VerticalAlignment="Center" HorizontalAlignment="Right">Dialog Title</Label>
                 </DockPanel>
                 <controls1:Frame Name="Frame"/>
             </StackPanel>

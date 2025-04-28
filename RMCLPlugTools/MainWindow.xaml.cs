@@ -32,6 +32,30 @@ public partial class MainWindow : MetroWindow
         InitializeComponent();
         TitleBarHeight = 32;
         IsEdit = true;
+        
+        string[] args = Environment.GetCommandLineArgs();
+
+        // 注意：第一个参数(args[0])是程序本身的路径
+        for (int i = 1; i < args.Length; i++)
+        {
+            switch (args[i])
+            {
+                case "-c":
+                    var conpath = args[i+1];
+                    string selectedFilePath = conpath.Replace("\"", "");
+                    Config = JsonSerializer.Deserialize<PlugConfigEntry>(File.ReadAllText(selectedFilePath));
+
+                    LoadConfig();
+                    break;
+                case "-o":
+                    var outpath = args[i+1];
+                    Classes.Packing.GoPacking(Config);
+                    File.Copy("RMCL.Packing\\Plug.rplk", outpath, true);
+                    MessageBox.Show("文件打包成功！","调试插件",MessageBoxButton.OK,MessageBoxImage.Information);
+                    Close();
+                    break;
+            }
+        }
     }
 
     private void ConfigChanged(object sender, TextChangedEventArgs e)

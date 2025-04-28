@@ -14,6 +14,8 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 public class ConfigRoot
 {
     public List<GameFolderConfig> GameFolders { get; set; } = new();
+    public bool IsUseOrganizationConfig { get; set; } = false;
+    public string OrganizationUrl { get; set; } = string.Empty;
     public int SelectedGameFolder { get; set; } = 0;
     public int SelectedJava { get; set; } = 0;
     public int SelectedUser { get; set; } = 0;
@@ -62,6 +64,7 @@ public class Config
     public static readonly string LoginServerIP = "http://account.roundstduio.top:32127";
 #endif
     
+    public static bool IsInitialized { get; set; } = false;
     public static ConfigRoot MainConfig = new()
     {
         GameFolders = new()
@@ -74,14 +77,16 @@ public class Config
         }
     };
     
-    public const string ConfigFileName = "../RMCL/RMCL.Config/Config.json";
+    private const string ConfigFileName = "../RMCL/RMCL.Config/Config.json";
     public static void LoadConfig()
     {
         if (!File.Exists(ConfigFileName))
         {
             Directory.CreateDirectory(Path.GetDirectoryName(ConfigFileName));
             SaveConfig();
+            return;
         }
+        
         var json = File.ReadAllText(Path.GetFullPath(ConfigFileName));
         if (string.IsNullOrEmpty(json))
         {
@@ -92,6 +97,10 @@ public class Config
             try
             {
                 MainConfig = JsonSerializer.Deserialize<ConfigRoot>(json);
+                if (!IsInitialized)
+                {
+                    IsInitialized = true;
+                }
             }
             catch
             {

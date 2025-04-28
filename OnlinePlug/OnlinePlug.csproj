@@ -10,6 +10,29 @@
       <PackageReference Include="DotNet.Bundle" Version="0.9.13" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Round.NET.AvaloniaApp.MinecraftLauncher\Round.NET.AvaloniaApp.MinecraftLauncher.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Assets\openp2p.exe" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Properties\Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Properties\Resources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
       <Exec Command="copy &quot;D:\User File\Desktop\Round.NET.AvaloniaApp.MinecraftLauncher-master\OnlinePlug\bin\Debug\net8.0\OnlinePlug.dll&quot; &quot;D:\User File\Desktop\Round.NET.AvaloniaApp.MinecraftLauncher-master\Round.NET.AvaloniaApp.MinecraftLauncher.Desktop\bin\Debug\RMCL\RMCL.Plugs\OnlinePlug.dll&quot;" />
     </Target>

@@ -1,0 +1,80 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.ConfigSetting">
+    <ScrollViewer>
+        <StackPanel>
+            <controls:SettingsExpander Header="组织 （试验性）"
+                                       Margin="0,10,0,0"
+                                       IsExpanded="True"
+                                       Description="RMCL 的配置组织更新设置">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="Organization20Regular">
+                    </fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                <controls:SettingsExpanderItem Content="启用组织"
+                                               Description="设置是否启用组织更新">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ToggleSwitch Name="OrgToggleSwitch" OnContent="启用" OffContent="禁用" Click="Button_OnClick"></ToggleSwitch>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                <controls:SettingsExpanderItem Content="组织地址"
+                                               Description="设置配置更新地址">
+                    <controls:SettingsExpanderItem.Footer>
+                        <DockPanel Name="UrlBox">
+                            <TextBox Name="UrlTextBox" TextChanged="TextBox_OnTextChanged" Watermark="在此键入地址" Width="330" Margin="10,0"></TextBox>
+                            <Button Width="60" Classes="accent" Name="UpdateConfig" Click="UpdateConfig_OnClick">更新</Button>
+                        </DockPanel>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander> 
+            <controls:SettingsExpander Header="组织更新选项"
+                                       Margin="0,10,0,0"
+                                       IsEnabled="False"
+                                       Description="组织可以更改你的设置项">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="DualScreenUpdate20Regular">
+                    </fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                <controls:SettingsExpanderItem Content="更新个性化"
+                                               Description="设置组织是否更改你的个性化设置">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick1"></ToggleSwitch>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                
+                <controls:SettingsExpanderItem Content="游戏监控"
+                                               Description="设置组织是否启用你的游戏监控">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick1"></ToggleSwitch>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                
+                <controls:SettingsExpanderItem Content="安全配置"
+                                               Description="设置组织是否修改你的安全配置">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick1"></ToggleSwitch>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                
+                <controls:SettingsExpanderItem Content="Java 与内存配置"
+                                               Description="设置组织是否修改你的 Java 与内存配置">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick1"></ToggleSwitch>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                
+                <controls:SettingsExpanderItem Content="网络配置"
+                                               Description="设置组织是否修改你的网络配置">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ToggleSwitch OnContent="启用" OffContent="禁用" Click="Button_OnClick1"></ToggleSwitch>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -4,32 +4,42 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
+using AvaloniaEdit.Highlighting;
 using BedrockPlug.View.Controls;
 using FluentAvalonia.FluentIcons;
 using MCLauncher.Versions;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
 namespace BedrockPlug.View.Pages;
 
-public partial class BedrockDownload : UserControl
+public partial class BedrockDownload : UserControl,IPage
 {
+    public void Open()
+    {
+        
+    }
     public BedrockDownload()
     {
         InitializeComponent();
-        Task.Run(() =>
-        { 
-            UpdateVersionList();
-        });
+        this.Loaded += (s, e) =>
+        {
+            Task.Run(() =>
+            {
+                UpdateVersionList();
+            });
+        };
     }
     private async Task UpdateVersionList()
     {
         var vers = await Versions.GetAllVersions();
         Dispatcher.UIThread.Invoke(() =>
         {
-            Panel.Children.Clear();
-            foreach (var ver in vers)
+            this.Panel1.Children.Clear();
+            for (var i=0;i>=vers.Count;i++)
             {
+                var ver = vers[i];
                 if(ver.Revision!="0") continue;
                 var downl = new Button()
                 {
@@ -47,8 +57,9 @@ public partial class BedrockDownload : UserControl
                     dow.Tuid = SystemMessageTaskMange.AddTask(dow);
                     dow.Download();
                 };
-                Panel.Children.Insert(0,new ListBoxItem()
+                this.Panel1.Children.Add(new ListBoxItem()
                 {
+                    Opacity = 0,
                     Content = new Grid()
                     {
                         Height = 65,
@@ -86,6 +97,7 @@ public partial class BedrockDownload : UserControl
                     },
                 });
             }
+            LoadingControl.IsVisible = false;
         });
     }
 }

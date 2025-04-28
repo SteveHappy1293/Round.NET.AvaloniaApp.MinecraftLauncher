@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -11,15 +12,21 @@ using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Threading;
 using FluentAvalonia.FluentIcons;
-using FluentAvalonia.UI.Controls; 
+using FluentAvalonia.UI.Controls;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Assets;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Downloads;
 
-public partial class DownloadAssetsPage : UserControl
+public partial class DownloadAssetsPage : UserControl,IPage
 {
+    public void Open()
+    {
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>{ControlHelper.CreateMenuItem("搜索",(() => Button_OnClick(null,null)))});
+    }
     public DownloadAssetsPage()
     {
         InitializeComponent();
@@ -41,7 +48,7 @@ public partial class DownloadAssetsPage : UserControl
             return null;
         }
     }
-    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    public void Button_OnClick(object? sender, RoutedEventArgs e)
     {
         AssetsBox.Children.Clear();
         AssetsBox.Children.Add(new LoadingControl()

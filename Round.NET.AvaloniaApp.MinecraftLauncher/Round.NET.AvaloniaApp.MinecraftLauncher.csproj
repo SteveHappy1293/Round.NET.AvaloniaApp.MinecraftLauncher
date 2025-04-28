@@ -49,6 +49,10 @@
       <DependentUpon>BackIcon.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Controls\Dialog\FileDialog.axaml.cs">
+      <DependentUpon>FileDialog.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -74,5 +78,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="HotAvalonia.Extensions" Version="3.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Views\Pages\Main\Safe\Exceptions\ExceptionPage.axaml" />
   </ItemGroup>
 </Project>

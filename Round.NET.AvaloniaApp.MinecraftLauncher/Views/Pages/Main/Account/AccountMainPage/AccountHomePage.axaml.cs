@@ -17,8 +17,7 @@ public partial class AccountHomePage : UserControl
     public AccountHomePage()
     {
         InitializeComponent();
-        Core.AccountPage = this;
-        
+
         Core.API.RegisterAccountPage(new Core.API.NavigationRouteConfig()
         {
             Title = "我的账户",

@@ -16,9 +16,13 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings;
 
-public partial class StyleSetting : UserControl
+public partial class StyleSetting : UserControl,IPage
 {
     public bool IsEdit = false;
+    public void Open()
+    {
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>{});
+    }
     public StyleSetting()
     {
         InitializeComponent();
@@ -129,7 +133,7 @@ public partial class StyleSetting : UserControl
             Config.MainConfig.StyleFile = StylePathBox.Text;
         }
         Config.SaveConfig();
-        StyleMange.Load();
+        StyleMange.Load(Core.MainWindow);
     }
     private void BackTMDSlider_OnValueChanged(object? sender, RangeBaseValueChangedEventArgs e)
     {

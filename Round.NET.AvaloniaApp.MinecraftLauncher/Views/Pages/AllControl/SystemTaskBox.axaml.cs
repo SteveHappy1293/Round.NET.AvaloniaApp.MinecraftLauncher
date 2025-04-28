@@ -20,7 +20,6 @@ public partial class SystemTaskBox : UserControl
     public SystemTaskBox()
     {
         InitializeComponent();
-        Core.SystemTask = this;
         Show();
         Task.Run(() =>
         {
@@ -31,6 +30,7 @@ public partial class SystemTaskBox : UserControl
                 Thread.Sleep(100);
             }
         });
+        Core.SystemTask = this;
     }
 
     public void UpdateMessage()
@@ -53,7 +53,7 @@ public partial class SystemTaskBox : UserControl
                             IsOpen = true,
                             Severity = e.Type,
                             Opacity = 0,
-                            Margin = new Thickness(5),
+                            Margin = new Thickness(2),
                             IsClosable = false
                         };
 
@@ -67,30 +67,38 @@ public partial class SystemTaskBox : UserControl
             }
         });
     }
+    bool IsPlayingAnimation = false;
     public void Show()
     {
-        if (IsVisible)
+        if (!IsPlayingAnimation)
         {
-            MainPanel.Margin = new Thickness(0,40,-380,0);
-            BackGrid.Opacity = 0;
-            TimeBox.Margin = new Thickness(-50,50);
-            Trip1Box.Margin = new Thickness(-50,160);
-            MessageScrollViewer.Margin = new Thickness(-40 - 290, 40, 290, 0);
-            Task.Run(() =>
+            IsPlayingAnimation = true;
+            if (IsVisible)
             {
-                Thread.Sleep(800);
-                Dispatcher.UIThread.Invoke(() => this.IsVisible = false);
-            });
-        }
-        else
-        {
-            MainPanel.Margin = new Thickness(0,40,-10,0);
-            BackGrid.Opacity = 0.6;
-            this.IsVisible = true;
-            TimeBox.Margin = new Thickness(50);
-            Trip1Box.Margin = new Thickness(50,160);
-            MessageScrollViewer.Margin = new Thickness(40,40,0,0);
-            UpdateMessage();
+                MainPanel.Margin = new Thickness(8, 8, -400, 8);
+                MainPanel.Opacity = 0;
+                BackGrid.Opacity = 0;
+                //TimeBox.Margin = new Thickness(-50,50);
+                //Trip1Box.Margin = new Thickness(-50,160);
+                //MessageScrollViewer.Margin = new Thickness(-40 - 290, 40, 290, 0);
+                Task.Run(() =>
+                {
+                    Thread.Sleep(800);
+                    Dispatcher.UIThread.Invoke(() => this.IsVisible = false);
+                });
+            }
+            else
+            {
+                MainPanel.Margin = new Thickness(8);
+                MainPanel.Opacity = 1;
+                BackGrid.Opacity = 0.6;
+                this.IsVisible = true;
+                //TimeBox.Margin = new Thickness(50);
+                //Trip1Box.Margin = new Thickness(50,160);
+                //MessageScrollViewer.Margin = new Thickness(0,0,8,8);
+                UpdateMessage();
+            }
+            IsPlayingAnimation = false;
         }
     }
 

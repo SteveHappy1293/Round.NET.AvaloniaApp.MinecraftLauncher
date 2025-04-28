@@ -16,8 +16,4 @@
       <PackageReference Include="Downloader" Version="3.3.4" />
     </ItemGroup>
 
-    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-      <Exec Command="copy &quot;D:\User File\Desktop\Round.NET.AvaloniaApp.MinecraftLauncher-master\BedrockPlug\bin\Debug\net8.0\BedrockPlug.dll&quot; &quot;D:\User File\Desktop\Round.NET.AvaloniaApp.MinecraftLauncher-master\Round.NET.AvaloniaApp.MinecraftLauncher.Desktop\bin\Debug\RMCL\RMCL.Plugs\BedrockPlug.dll&quot;" />
-    </Target>
-
 </Project>

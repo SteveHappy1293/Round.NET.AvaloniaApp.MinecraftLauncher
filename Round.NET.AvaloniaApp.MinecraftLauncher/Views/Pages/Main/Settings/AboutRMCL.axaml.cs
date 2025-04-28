@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -18,8 +19,12 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings;
 
-public partial class AboutRMCL : UserControl
+public partial class AboutRMCL : UserControl,IPage
 {
+    public void Open()
+    {
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>{});
+    }
     public AboutRMCL()
     {
         InitializeComponent();

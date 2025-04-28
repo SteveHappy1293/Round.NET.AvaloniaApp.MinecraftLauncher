@@ -1,15 +1,21 @@
-﻿using Avalonia;
+﻿using System.Collections.Generic;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Exceptions;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Safe;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Safe.Exceptions;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings;
 
-public partial class SafeSetting : UserControl
+public partial class SafeSetting : UserControl,IPage
 {
+    public void Open()
+    {
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>{});
+    }
     public bool IsEdit { get; set; } = false;
     public SafeSetting()
     {
@@ -21,9 +27,9 @@ public partial class SafeSetting : UserControl
 
     private void ExceptionButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        ((MainView)Core.MainWindow.Content).CortentFrame.Content = new ExceptionPage();
-        ((MainView)Core.MainWindow.Content).CortentFrame.Opacity = 1;
-        ((MainView)Core.MainWindow.Content).MainCortent.Opacity = 0;
+        Core.MainWindow.MainView.ContentFrame.Content = new ExceptionPage();
+        Core.MainWindow.MainView.ContentFrame.Opacity = 1;
+        Core.MainWindow.MainView.MainContent.Opacity = 0;
         
         Core.NavigationBar.Opacity = 0;
     }
@@ -35,5 +41,14 @@ public partial class SafeSetting : UserControl
             Config.MainConfig.ShowErrorWindow = (bool)ShowErrorWindowButton.IsChecked;
             Config.SaveConfig();
         }
+    }
+
+    private void IssuesButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        Core.MainWindow.MainView.ContentFrame.Content = new IssuesPage();
+        Core.MainWindow.MainView.ContentFrame.Opacity = 1;
+        Core.MainWindow.MainView.MainContent.Opacity = 0;
+        
+        Core.NavigationBar.Opacity = 0;
     }
 }

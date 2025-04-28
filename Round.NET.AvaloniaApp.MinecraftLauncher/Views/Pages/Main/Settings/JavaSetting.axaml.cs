@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -7,6 +8,7 @@ using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Memory;
@@ -14,8 +16,12 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings;
 
-public partial class JavaSetting : UserControl
+public partial class JavaSetting : UserControl,IPage
 {
+    public void Open()
+    {
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>{});
+    }
     public JavaSetting()
     {
         InitializeComponent();
@@ -25,6 +31,15 @@ public partial class JavaSetting : UserControl
             {
                 Dispatcher.UIThread.Invoke(RefreshMer);
                 Thread.Sleep(1000);
+                try
+                {
+                    if (Config.MainConfig.JavaUseMemory != int.Parse(MerInputBox.Text))
+                    {
+                        IsEnabled = false;
+                        MerInputBox.Text = Config.MainConfig.JavaUseMemory.ToString();
+                        IsEnabled = true;
+                    }
+                }catch{ }
             }
         });
         
@@ -33,19 +48,12 @@ public partial class JavaSetting : UserControl
             Modules.Java.FindJava.LoadJava();
             Dispatcher.UIThread.Invoke(() =>
             {
-                foreach (var java in Modules.Java.FindJava.JavasList)
-                {
-                    JavaComboBox.Items.Add(new ComboBoxItem
-                    {
-                        Content = $"[Java {java.JavaVersion}] {java.JavaPath}"
-                    });
-                }
-                JavaComboBox.SelectedIndex = Config.MainConfig.SelectedJava;
-                IsEdit = true;
+                LoadJava();
             });
         }); // 更新Java设置下拉框
         MerInputBox.Text = Config.MainConfig.JavaUseMemory.ToString();
         JavaCheckBox.IsChecked = Config.MainConfig.IsLaunchJavaMemory;
+        IsEdit = true;
     }
 
     public void RefreshMer()
@@ -123,7 +131,6 @@ public partial class JavaSetting : UserControl
             Height = 15
         };
         RefuseJava.IsEnabled = false;
-        JavaComboBox.Items.Clear();
         
         Task.Run(() =>
         {
@@ -133,14 +140,7 @@ public partial class JavaSetting : UserControl
             Modules.Java.FindJava.LoadJava();
             Dispatcher.UIThread.Invoke(() =>
             {
-                foreach (var java in Modules.Java.FindJava.JavasList)
-                {
-                    JavaComboBox.Items.Add(new ComboBoxItem
-                    {
-                        Content = $"[Java {java.JavaVersion}] {java.JavaPath}"
-                    });
-                }
-                JavaComboBox.SelectedIndex = Config.MainConfig.SelectedJava;
+                LoadJava();
             });
             Dispatcher.UIThread.Invoke(() =>
             {
@@ -148,5 +148,21 @@ public partial class JavaSetting : UserControl
                 RefuseJava.IsEnabled = true;
             });
         });
+    }
+
+    private void LoadJava()
+    {
+        IsEdit = false;
+        JavaComboBox.Items.Clear();
+        JavaComboBox.Items.Add(new ComboBoxItem() { Content = "[Auto] RMCL 自己选择合适的 Java 版本" });
+        foreach (var java in Modules.Java.FindJava.JavasList)
+        {
+            JavaComboBox.Items.Add(new ComboBoxItem
+            {
+                Content = $"[{java.JavaVersion}] {java.JavaPath}"
+            });
+        }
+        JavaComboBox.SelectedIndex = Config.MainConfig.SelectedJava;
+        IsEdit = true;
     }
 }

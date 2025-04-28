@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
@@ -7,6 +8,11 @@ using Avalonia.Interactivity;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Initialize;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
 
@@ -18,10 +24,10 @@ public partial class MainView : UserControl
     {
         InitializeComponent();
         
-        this.SystemNavigationBar.NavTo("Launcher");
+        //this.SystemNavigationBar.NavTo("Launcher");
         
         //Dispatcher.UIThread.Invoke(() => Show());
-        this.SystemNavigationBar.Show();
+        //this.SystemNavigationBar.Show();
         ThisRipplesControl.CircleShow(0.3);
         MainSearchBox.CloseAction = new Action(() =>
         {
@@ -29,7 +35,7 @@ public partial class MainView : UserControl
             SearchGoButton.IsVisible = true;
         });
         
-        Core.API.RegisterSearchItem(new Core.API.SearchItemConfig()
+        /*Core.API.RegisterSearchItem(new Core.API.SearchItemConfig()
         {
             Title = "返回主页",
             Type = Core.API.SearchItemConfig.ItemType.More,
@@ -126,6 +132,47 @@ public partial class MainView : UserControl
                     Dispatcher.UIThread.Invoke(() => SystemNavigationBar.NavTo("Download"));
                 });
             }
+        });*/
+
+        BottomBar.ContentFrame = MainContent;
+        BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
+        {
+            Title = new Label(){Content = "主页"},
+            Page = Core.MainHome,
+            Tag = "Launch",
+            IsDefault = true,
+            IsNoButton = true
+        });
+        BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
+        {
+            Title = new Label(){Content = "下载"},
+            Page = Core.DownloadPage,
+        });
+        BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
+        {
+            Title = new Label(){Content = "管理"},
+            Page = Core.MangePage,
+        });
+        BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
+        {
+            Title = new Label(){Content = "设置"},
+            Page = Core.SettingPage,
+        });
+        
+        Task.Run(() =>
+        {
+            while (true)
+            {
+                Dispatcher.UIThread.Invoke(() =>
+                {
+                    var Sel = Config.MainConfig.SelectedGameFolder;
+                    try
+                    {
+                        SmTitle.Content = $"{Path.GetFileName(Directory.GetDirectories($"{Config.MainConfig.GameFolders[Sel].Path}/versions")[Config.MainConfig.GameFolders[Sel].SelectedGameIndex])}";
+                    }catch{ }
+                });
+                Thread.Sleep(100);
+            }
         });
     }
 
@@ -138,4 +185,18 @@ public partial class MainView : UserControl
             SearchGoButton.IsVisible = false;
         }
     }
+    
+    public void laun()
+    {
+        var Sel = Config.MainConfig.SelectedGameFolder;
+        var dow = new LaunchJavaEdtion();
+        dow.Version = Path.GetFileName(Path.GetFileName(Directory.GetDirectories($"{Config.MainConfig.GameFolders[Sel].Path}/versions")[Config.MainConfig.GameFolders[Sel].SelectedGameIndex]));
+        dow.Tuid = SystemMessageTaskMange.AddTask(dow);
+        dow.Launch();
+    }
+    private void LaunchButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        laun();
+    }
+
 }

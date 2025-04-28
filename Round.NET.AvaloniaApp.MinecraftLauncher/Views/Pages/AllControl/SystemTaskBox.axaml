@@ -20,28 +20,22 @@
             <Label Name="Trip1Box" Margin="50,160" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold" IsVisible="False">累了就早点休息吧 :D</Label>
         </Grid>
         
-        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="40,40,0,0" Name="MessageScrollViewer" Width="320" Padding="10">
-            <ScrollViewer.Transitions>
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Stretch" Name="MainPanel" Width="480" Margin="8">
+            <Grid.Transitions>
                 <Transitions>
                     <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
                 </Transitions>
-            </ScrollViewer.Transitions>
-            <customControls:AnimatedStackPanel Name="MessageListBox" Width="300" AnimationDirection="Left">
-                    
-            </customControls:AnimatedStackPanel>
-        </ScrollViewer>
-        
-        <ScrollViewer HorizontalAlignment="Right" VerticalAlignment="Stretch" Name="MainPanel" Width="380" Margin="0,40,-380,0">
-            <ScrollViewer.Transitions>
-                <Transitions>
-                    <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
-                </Transitions>
-            </ScrollViewer.Transitions>
+                
+            </Grid.Transitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
             <StackPanel Margin="10">
                 <Border HorizontalAlignment="Stretch"
                         VerticalAlignment="Top"
                         Height="80"
-                        Margin="10,4,10,5"
+                        Margin="10,4,10,2"
                         CornerRadius="6"
                         Background="rgb(19,19,19)">
                     <Grid>
@@ -51,6 +45,11 @@
                     </Grid>
                 </Border>
             </StackPanel>
-        </ScrollViewer>
+            <ScrollViewer Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="8" Name="MessageScrollViewer" Width="400" >
+                <customControls:AnimatedStackPanel Name="MessageListBox" Width="400" AnimationDirection="Right">
+                    
+                </customControls:AnimatedStackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </UserControl>

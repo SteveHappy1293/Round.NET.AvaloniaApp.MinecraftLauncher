@@ -5,8 +5,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using BedrockPlug.View.Pages;
+using FluentAvalonia.FluentIcons;
 using Newtonsoft.Json.Linq;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 
 namespace BedrockPlug
 {
@@ -19,12 +21,20 @@ namespace BedrockPlug
             {
                 Title = "基岩版下载",
                 Route = "BedrockDownload",
-                Page = new BedrockDownload()
+                Page = new BedrockDownload(),
+                Icon = FluentIconSymbol.Bed20Filled
+            });
+            Core.API.RegisterMangePage(new Core.API.NavigationRouteConfig()
+            {
+                Title = "基岩版管理",
+                Route = "BedrockMange",
+                Page = new BedrockMange(),
+                Icon = FluentIconSymbol.Bed20Filled
             });
 
 
-            /*// 根据特定版本号获取下载链接
-            string specificVersion = "1.16.200.51"; // 示例版本号
+            // 根据特定版本号获取下载链接
+            /*string specificVersion = "1.16.200.51"; // 示例版本号
             var versionInfo = versions.Find(v => v.Version == specificVersion);
             if (versionInfo != null)
             {

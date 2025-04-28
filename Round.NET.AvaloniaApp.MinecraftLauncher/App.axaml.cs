@@ -75,16 +75,17 @@ public partial class App : Application
     {
         try
         {
+            var time = DateTime.Now;
             Dispatcher.UIThread.Invoke(() =>
             {
                 var error = new ErrorWindow();
-                error.ShowEx(ex);
+                error.ShowEx(ex,time);
                 Message.Show("发生错误","RMCL 发生了致命的错误，已将其信息保存至 异常追踪器。可前往 设置 > 安全 > 异常追踪 页面查看。",InfoBarSeverity.Error);
                 
-                if (Config.MainConfig.ShowErrorWindow)
-                {
-                    error.ShowDialog(Core.MainWindow);
-                }
+                //if (Config.MainConfig.ShowErrorWindow)
+                //{
+                   //  error.ShowDialog(Core.MainWindow);
+               // }
             });
         }
         catch (Exception dialogEx)
