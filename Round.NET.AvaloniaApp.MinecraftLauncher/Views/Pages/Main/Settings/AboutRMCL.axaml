@@ -43,7 +43,7 @@
             <Label Margin="0,5" FontWeight="Bold">Round Studio 全体开发者在此感谢您使用 RMCL !</Label>
             <StackPanel>
                 <Label Margin="10,10,0,0" FontSize="18" FontWeight="Bold">开发者</Label>
-                <Label Margin="20,0">RMCL 本体：Minecraft一角钱、卡里、Steve Happy、DrMing</Label>
+                <Label Margin="20,0">RMCL 本体：Minecraft一角钱、卡里、Steve Happy、爱玩电脑的WindowsXP、DrMing</Label>
                 <Label Margin="20,0">RMCL 美术：Minecraft一角钱、DrMing、Steve Happy</Label>
                 <Label Margin="20,0">RMCL 官网：卡里</Label>
                 <Label Margin="20,0">RMCL 技术支持：DaiYu (YMCL)</Label>
