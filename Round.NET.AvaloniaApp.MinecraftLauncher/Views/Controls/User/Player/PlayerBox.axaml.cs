@@ -105,22 +105,16 @@ public partial class PlayerBox : UserControl
             case "Mojang":
                 LoginLabel.Foreground = Brushes.IndianRed;
                 LoginLabel.Content = "Mojang正版账户";
-                imageBytes = Convert.FromBase64String(SteveBase64String);
-
-                using (var memoryStream = new MemoryStream(imageBytes))
-                {
-                    SkinHandImage.Background = new ImageBrush(new Bitmap(memoryStream));
-                }
+                ChoseThis.IsVisible = false;
+                UserIcon.IsVisible = true;
+                UserProgressRing.IsVisible = false;
                 break;
             default:
                 LoginLabel.Foreground = Brushes.Gainsboro;
                 LoginLabel.Content = "未知账户";
-                imageBytes = Convert.FromBase64String(SteveBase64String);
-
-                using (var memoryStream = new MemoryStream(imageBytes))
-                {
-                    SkinHandImage.Background = new ImageBrush(new Bitmap(memoryStream));
-                }
+                ChoseThis.IsVisible = false;
+                UserIcon.IsVisible = true;
+                UserProgressRing.IsVisible = false;
                 break;
         }
     }
