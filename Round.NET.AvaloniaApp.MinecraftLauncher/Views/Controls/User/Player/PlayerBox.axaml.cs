@@ -109,6 +109,20 @@ public partial class PlayerBox : UserControl
                 UserIcon.IsVisible = true;
                 UserProgressRing.IsVisible = false;
                 break;
+            case "Bugjump":
+                LoginLabel.Foreground = new LinearGradientBrush
+                {
+                    GradientStops =
+                    {
+                        new GradientStop { Color = Colors.MediumPurple, Offset = 0 },
+                        new GradientStop { Color = Colors.Black, Offset = 1 }
+                    }
+                };
+                LoginLabel.Content = "Bugjump 啊？";
+                ChoseThis.IsVisible = false;
+                UserIcon.IsVisible = true;
+                UserProgressRing.IsVisible = false;
+                break;
             default:
                 LoginLabel.Foreground = Brushes.Gainsboro;
                 LoginLabel.Content = "未知账户";
