@@ -44,13 +44,12 @@ public partial class PlayerBox : UserControl
     {
         UserConfig = User;
         NameLabel.Content = User.Config.Username;
-        byte[] imageBytes;
         switch (User.Type)
         {
             case "Offline":
                 LoginLabel.Foreground = Brushes.Orange;
-                LoginLabel.Content = "离线账户";
-                imageBytes = Convert.FromBase64String(SteveBase64String);
+                LoginLabel.Content = "离线登录模式";
+                byte[] imageBytes = Convert.FromBase64String(SteveBase64String);
 
                 using (var memoryStream = new MemoryStream(imageBytes))
                 {
@@ -101,34 +100,6 @@ public partial class PlayerBox : UserControl
                         });
                     }
                 });
-                break;
-            case "Mojang":
-                LoginLabel.Foreground = Brushes.IndianRed;
-                LoginLabel.Content = "Mojang正版账户";
-                ChoseThis.IsVisible = false;
-                UserIcon.IsVisible = true;
-                UserProgressRing.IsVisible = false;
-                break;
-            case "Bugjump":
-                LoginLabel.Foreground = new LinearGradientBrush
-                {
-                    GradientStops =
-                    {
-                        new GradientStop { Color = Colors.MediumPurple, Offset = 0 },
-                        new GradientStop { Color = Colors.Black, Offset = 1 }
-                    }
-                };
-                LoginLabel.Content = "Bugjump 啊？";
-                ChoseThis.IsVisible = false;
-                UserIcon.IsVisible = true;
-                UserProgressRing.IsVisible = false;
-                break;
-            default:
-                LoginLabel.Foreground = Brushes.Gainsboro;
-                LoginLabel.Content = "未知账户";
-                ChoseThis.IsVisible = false;
-                UserIcon.IsVisible = true;
-                UserProgressRing.IsVisible = false;
                 break;
         }
     }
