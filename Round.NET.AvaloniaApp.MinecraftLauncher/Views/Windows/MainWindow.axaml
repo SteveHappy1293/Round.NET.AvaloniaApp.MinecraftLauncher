@@ -95,7 +95,7 @@
             </Grid>
             <views:MainView Margin="0" Name="MainView" Grid.Row="1"/>
         </Grid>
-        <allControl:SystemMessageBox HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="4,4,4,68"/>
+        <allControl:SystemMessageBox HorizontalAlignment="Right" VerticalAlignment="Top" Margin="4,48,4,80"/>
         <allControl:SystemTaskBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsVisible="False"/>
         <Grid Name="dialog"></Grid>
     </Grid>

@@ -206,10 +206,7 @@ public partial class MainWindow : Window
     // 标题栏拖拽逻辑
     private void TitleBar_PointerPressed(object sender, PointerPressedEventArgs e)
     {
-        if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
-        {
-            BeginMoveDrag(e);
-        }
+        BeginMoveDrag(e);
     }
 
     private void InputElement_OnDoubleTapped(object? sender, TappedEventArgs e)
