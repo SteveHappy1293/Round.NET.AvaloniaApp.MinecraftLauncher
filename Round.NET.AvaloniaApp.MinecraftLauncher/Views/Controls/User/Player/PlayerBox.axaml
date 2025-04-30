@@ -30,8 +30,9 @@
             </MenuFlyout>
         </Button.Flyout>
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="165">
-            <controls:ProgressRing Margin="0,-35,0,0"></controls:ProgressRing>
+            <controls:ProgressRing Name="UserProgressRing" Margin="0,-35,0,0"></controls:ProgressRing>
             <Border Margin="5" Name="SkinHandImage" CornerRadius="6" Width="110" Height="110" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Border>
+            <fluentIcons:FluentIcon Width="80" Height="80" Name="UserIcon" Icon="Person20Filled" HorizontalAlignment="Stretch" VerticalAlignment="Top" IsVisible="False"/>
             <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,23" Name="NameLabel">Name</Label>
             <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,3" Name="LoginLabel" FontSize="11">LoginType</Label>
         </Grid>
