@@ -7,8 +7,8 @@
              mc:Ignorable="d"
              MinHeight="165"
              MinWidth="300"
-             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch.LaunchJavaEdtion">
-    <UserControl.Styles>
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks.LaunchGame">
+   <UserControl.Styles>
         <Style Selector="Button">
             <Setter Property="Transitions">
                 <Transitions>
@@ -19,7 +19,7 @@
             </Setter>
         </Style>
     </UserControl.Styles>
-    <Border CornerRadius="6" BorderBrush="Black" BorderThickness="0" Margin="10,5" Background="rgb(19,19,19)">
+    <Border CornerRadius="6" BorderBrush="Black" BorderThickness="0"  Background="rgb(19,19,19)">
         <Grid Name="MainGrid">
             <Label Margin="8,5" HorizontalAlignment="Left" VerticalAlignment="Top" Name="TitleLabel">启动 Minecraft {Version}</Label>
             <Label Margin="8,27,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Name="JDLabel">当前进度：检查资源文件</Label>
