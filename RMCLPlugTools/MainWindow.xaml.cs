@@ -36,6 +36,7 @@ public partial class MainWindow : MetroWindow
         string[] args = Environment.GetCommandLineArgs();
 
         // 注意：第一个参数(args[0])是程序本身的路径
+        var isnowindow = args.Contains("-w");
         for (int i = 1; i < args.Length; i++)
         {
             switch (args[i])
@@ -51,7 +52,7 @@ public partial class MainWindow : MetroWindow
                     var outpath = args[i+1];
                     Classes.Packing.GoPacking(Config);
                     File.Copy("RMCL.Packing\\Plug.rplk", outpath, true);
-                    MessageBox.Show("文件打包成功！","调试插件",MessageBoxButton.OK,MessageBoxImage.Information);
+                    if(!isnowindow) MessageBox.Show("文件打包成功！","调试插件",MessageBoxButton.OK,MessageBoxImage.Information);
                     Close();
                     break;
             }
