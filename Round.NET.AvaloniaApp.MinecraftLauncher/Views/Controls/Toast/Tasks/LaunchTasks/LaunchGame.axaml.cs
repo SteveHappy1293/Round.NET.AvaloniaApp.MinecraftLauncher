@@ -25,9 +25,9 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Windows;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
 
-public partial class LaunchJavaEdtion : UserControl
+public partial class LaunchGame : UserControl
 {
     private string _version;
 
@@ -43,7 +43,7 @@ public partial class LaunchJavaEdtion : UserControl
     public string Tuid { get; set; } = string.Empty;
     public string Server { get; set; } = string.Empty;
     public string Dir { get; set; } = Config.MainConfig.GameFolders[Config.MainConfig.SelectedGameFolder].Path;
-    public LaunchJavaEdtion()
+    public LaunchGame()
     {
         InitializeComponent();
     }
@@ -130,10 +130,10 @@ public partial class LaunchJavaEdtion : UserControl
                                                 try
                                                 {
                                                     var label = GetLogLabel(args.Data.LogLevel, args.Data.Log);
-                                                    label.Margin = new Thickness(50, 0);
+                                                    //label.Margin = new Thickness(50, 0);
                                                     LogPanel.Children.Add(label);
                                                     label.Opacity = 1;
-                                                    label.Margin = new Thickness(0, 0);
+                                                    //label.Margin = new Thickness(0, 0);
                                                 }
                                                 catch (Exception ex)
                                                 {
