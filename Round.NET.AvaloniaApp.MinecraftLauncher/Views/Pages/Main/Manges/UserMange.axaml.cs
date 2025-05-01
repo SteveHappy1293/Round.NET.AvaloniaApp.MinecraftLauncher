@@ -25,7 +25,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.User.Player;
 using User = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User.User;
 

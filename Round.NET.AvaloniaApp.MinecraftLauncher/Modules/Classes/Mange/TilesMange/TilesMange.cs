@@ -20,14 +20,11 @@ public class TilesMange
         {
             Big,
             Small,
+            Normal,
             Long
         }
-        public enum TiteEventType
-        {
-            Example,
-            Nav,
-            LinkButton
-        }
+        
+        public string Tag { get; set; } = string.Empty;
         
         public TiteStyleType TiteStyle { get; set; } = TiteStyleType.Small;
         public Action TiteEvent { get; set; }
@@ -37,6 +34,7 @@ public class TilesMange
             Foreground = Brushes.White,
             Icon = FluentIconSymbol.Home20Regular
         };
+        public IBrush BackGroundBrush { get; set; } = new SolidColorBrush(Colors.Black,0.3);
     }
     public static StackPanel RegisterTileGroup()
     {
@@ -48,17 +46,20 @@ public class TilesMange
     {
         var tile = new Button()
         {
-            Margin = new Thickness(4)
+            Margin = new Thickness(2),
+            Background = tileItem.BackGroundBrush,
+            BorderThickness = new Thickness(0),
+            Padding = new Thickness(0),
         };
         tile.Click += (_, __) => tileItem.TiteEvent();
         if (tileItem.TiteStyle != TileItem.TiteStyleType.Small)
         {
+            tile.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+            tile.VerticalContentAlignment = VerticalAlignment.Stretch;
             tile.Content = new Grid()
             {
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Stretch,
-                Width = 128,
-                Height = 128,
                 Margin = new Thickness(0),
                 Children =
                 {
@@ -73,27 +74,42 @@ public class TilesMange
                 }
             };
         }
+        else
+        {
+            tile.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+            tile.VerticalContentAlignment = VerticalAlignment.Stretch;
+            tile.Content = new Viewbox()
+            {
+                Height = 20,
+                Width = 20,
+                Child = tileItem.Content
+            };
+        }
+
         switch (tileItem.TiteStyle)
         {
             case TileItem.TiteStyleType.Small:
-                tile.Width = 60;
-                tile.Height = 60;
-                tile.Content = tileItem.Content;
+                tile.Width = 40;
+                tile.Height = 40;
+                break;
+            case TileItem.TiteStyleType.Normal:
+                tile.Width = 80;
+                tile.Height = 80;
                 break;
             case TileItem.TiteStyleType.Big:
-                tile.Width = 128;
-                tile.Height = 128;
+                tile.Width = 160;
+                tile.Height = 160;
                 break;
             case TileItem.TiteStyleType.Long:
-                tile.Width = 128;
-                tile.Height = 60;
-                ((Grid)(tile.Content)).Height = 60;
+                tile.Width = 160;
+                tile.Height = 80;
                 break;
         }
-
+/*
         if (Config.Config.MainConfig.HomeBody == 1)
         {
             tileGroup.Children.Add(tile);
         }
+        */
     }
 }

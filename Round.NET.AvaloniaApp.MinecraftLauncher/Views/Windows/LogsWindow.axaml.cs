@@ -7,14 +7,15 @@ using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Windowing;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Windows;
 
 public partial class LogsWindow : AppWindow
 {
     public StackPanel LogsStackPanel { get; set; } = new();
-    public LaunchJavaEdtion LaunchJavaEdtions { get; set; }
+    public LaunchGame LaunchJavaEdtions { get; set; }
     public bool IsOpen { get; set; } = false;
     public CountConfig Count { get; set; } = new();
     public LogsWindow()

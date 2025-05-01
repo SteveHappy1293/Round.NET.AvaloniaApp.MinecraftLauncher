@@ -6,9 +6,16 @@
              xmlns:controls2="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
              xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              xmlns:tips="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Tips"
+             xmlns:customControls="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Launcher">
     <Grid>
+        <ScrollViewer>
+            <StackPanel Margin="32">
+                <Label Foreground="White" FontSize="48">启动屏幕</Label>
+                <customControls:AnimatedStackPanel AnimationDirection="Top" Name="MainScreen"/>
+            </StackPanel>
+        </ScrollViewer>
         <!--<controls:SettingsExpander Header="欢迎使用全新 RMCL3.0"
                                    Description="全新一代 RMCL，不太一样，大不一样。"
                                    Name="MessageBox"
@@ -19,26 +26,22 @@
                                    Click="MessageBox_OnClick"
                                    Margin="10,53">
         </controls:SettingsExpander>-->
-        <Label Foreground="White" HorizontalAlignment="Left" IsVisible="False" VerticalAlignment="Top" FontSize="50" Margin="80,40" Name="TimeBox" FontWeight="Light">Time</Label>
-        <Label HorizontalAlignment="Left" VerticalAlignment="Top" IsVisible="False"  Margin="80,100">欢迎使用RMCL 3.0！</Label>
-        <Border IsVisible="False" Name="LaunchBored" Height="70" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" CornerRadius="0" Background="rgba(26,26,26,0.6)" Margin="0,-80">
-            <Grid>
-                <DockPanel HorizontalAlignment="Left" VerticalAlignment="Stretch" Name="DebugBox">
-                    <Button Height="40" Width="40" Background="Transparent" BorderBrush="Transparent" CornerRadius="20" Margin="10" Click="GotoAccount">
-                        <DockPanel>
-                            <fluentIcons:FluentIcon Icon="People20Regular"/>
-                        </DockPanel>
-                    </Button>                 
-                    <Button Height="40" Width="40" Background="Transparent" BorderBrush="Transparent" CornerRadius="20" Margin="10" Click="ErrorButton">
-                        <DockPanel>
-                            <fluentIcons:FluentIcon Icon="ErrorCircle20Regular"/>
-                        </DockPanel>
-                    </Button>
-                    <tips:IssuesTipBox IssuesType="Bug" IssuesText="Bug"/>
-                </DockPanel>
-            </Grid>
-        </Border>
-        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="80,140,10,90">
+        <Grid HorizontalAlignment="Right" IsVisible="False" VerticalAlignment="Top">
+            <DockPanel HorizontalAlignment="Left" VerticalAlignment="Stretch" Name="DebugBox">
+                <Button Height="40" Width="40" Background="Transparent" BorderBrush="Transparent" CornerRadius="20" Margin="2" Click="GotoAccount">
+                    <DockPanel>
+                        <fluentIcons:FluentIcon Icon="People20Regular"/>
+                    </DockPanel>
+                </Button>                 
+                <Button Height="40" Width="40" Background="Transparent" BorderBrush="Transparent" CornerRadius="20" Margin="2" Click="ErrorButton">
+                    <DockPanel>
+                        <fluentIcons:FluentIcon Icon="ErrorCircle20Regular"/>
+                    </DockPanel>
+                </Button>
+                <tips:IssuesTipBox IssuesType="Bug" IssuesText="Bug"/>
+            </DockPanel>
+        </Grid>
+        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="32" IsVisible="False">
             <WrapPanel Name="WrapPanel">
                 
             </WrapPanel>

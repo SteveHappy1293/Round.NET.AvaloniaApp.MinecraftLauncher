@@ -11,7 +11,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Initialize;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
@@ -189,7 +189,7 @@ public partial class MainView : UserControl
     public void laun()
     {
         var Sel = Config.MainConfig.SelectedGameFolder;
-        var dow = new LaunchJavaEdtion();
+        var dow = new LaunchGame();
         dow.Version = Path.GetFileName(Path.GetFileName(Directory.GetDirectories($"{Config.MainConfig.GameFolders[Sel].Path}/versions")[Config.MainConfig.GameFolders[Sel].SelectedGameIndex]));
         dow.Tuid = SystemMessageTaskMange.AddTask(dow);
         dow.Launch();

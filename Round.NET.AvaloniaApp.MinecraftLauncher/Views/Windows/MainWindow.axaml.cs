@@ -234,11 +234,7 @@ public partial class MainWindow : Window
                     "M233.301333 128A105.301333 105.301333 0 0 0 128 233.301333v557.397334A105.301333 105.301333 0 0 0 233.301333 896h557.397334A105.301333 105.301333 0 0 0 896 790.698667V233.301333A105.301333 105.301333 0 0 0 790.698667 128H233.301333z m-18.602666 105.301333c0-10.24 8.32-18.602667 18.602666-18.602666h557.397334c10.24 0 18.602667 8.32 18.602666 18.602666v557.397334c0 10.24-8.32 18.602667-18.602666 18.602666H233.301333a18.56 18.56 0 0 1-18.602666-18.602666V233.301333z")
             };
     }
-
-    private void Button_OnClick(object? sender, RoutedEventArgs e)
-    {
-        Core.BottomBar.NavigationTo("Launch");
-    }
+    
 
     private void Control_OnLoaded(object? sender, RoutedEventArgs e)
     {
@@ -248,6 +244,11 @@ public partial class MainWindow : Window
     private void TaskViewButton_OnClick(object? sender, RoutedEventArgs e)
     {
         Core.SystemTask.Show();
+    }
+
+    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    {
+        Core.BottomBar.NavigationTo("Launch");
     }
 }
 

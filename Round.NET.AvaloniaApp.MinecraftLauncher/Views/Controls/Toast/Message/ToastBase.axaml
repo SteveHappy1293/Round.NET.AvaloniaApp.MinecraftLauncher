@@ -1,0 +1,36 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="70"
+             xmlns:controls="using:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             xmlns:controls1="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:launchTasks="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.ToastBase" Width="450">
+    <Border CornerRadius="5" 
+            Background="#442726" 
+            Margin="0,0,0,4">
+        <Grid Margin="12">
+            <Button Width="32" 
+                    Height="32" 
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top" 
+                    BorderThickness="0" 
+                    Background="{x:Null}"
+                    Margin="2,0">
+                <controls1:SymbolIcon Symbol="Cancel" 
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch"/>
+            </Button>
+                <StackPanel >
+                    <Label FontSize="22" 
+                            FontWeight="Bold" 
+                            Content="Toast Title"/>
+                        <Label FontSize="14" 
+                       Content="Toast "/>
+                    <launchTasks:LaunchGame></launchTasks:LaunchGame>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

@@ -10,7 +10,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry.Stars;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Enum;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.GameManges;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.StarManges;
@@ -67,7 +67,7 @@ public partial class StarGroupPage : UserControl
                 };
                 launc.Click += (_, __) =>
                 {
-                    var dow = new LaunchJavaEdtion();
+                    var dow = new LaunchGame();
                     dow.Version = enrty.SourceData.Split('|')[1];
                     dow.Tuid = SystemMessageTaskMange.AddTask(dow);
                     dow.Dir = enrty.SourceData.Split('|')[0];

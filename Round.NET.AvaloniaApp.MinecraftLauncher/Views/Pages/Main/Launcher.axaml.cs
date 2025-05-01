@@ -10,14 +10,17 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Styling;
 using Avalonia.Threading;
+using FluentAvalonia.UI.Controls;
+using Newtonsoft.Json.Converters;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Mange.TilesMange;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Initialize;
 
@@ -27,16 +30,82 @@ public partial class Launcher : UserControl,IParentPage
 {
     public void Open()
     {
+        new Window{Content = new ToastBase{VerticalAlignment = VerticalAlignment.Center,HorizontalAlignment = HorizontalAlignment.Center}}.Show();
         Core.MainWindow.ChangeMenuItems(new List<MenuItem>());
     }
 
+    public void AddNewCard(string Title, Control Content, string Tag)
+    {
+        var border = new Border { CornerRadius = new CornerRadius(5) ,Background = new SolidColorBrush(Colors.Black, .4),Margin = new Thickness(0,0,0,4)};
+        var grid = new Grid { Margin = new Thickness(12)};
+        grid.Children.Add(new Button
+        {
+            Content = new SymbolIcon
+            {
+                Symbol = Symbol.Cancel, VerticalAlignment = VerticalAlignment.Stretch,
+                HorizontalAlignment = HorizontalAlignment.Stretch
+            },
+            Width = 32, Height = 32, HorizontalAlignment = HorizontalAlignment.Right,
+            VerticalAlignment = VerticalAlignment.Top, BorderThickness = new Thickness(0), Background = null,
+            Margin = new Thickness(2, 0)
+        });
+        var stackPanel = new StackPanel();
+        stackPanel.Children.Add(new Label
+            { FontSize = 24, FontWeight = FontWeight.Bold, Margin = new Thickness(0, 0, 0, 4), Content = Title });
+        stackPanel.Children.Add(Content);
+        stackPanel.Tag = Tag;
+        grid.Children.Add(stackPanel);
+        border.Child = grid;
+        MainScreen.Children.Add(border);
+    }
+
+    public void RemoveCard(string Tag)
+    {
+        foreach (var c in MainScreen.Children)
+        {
+            if (c.Tag == Tag)
+                MainScreen.Children.Remove(c);
+        }
+    }
+    public void InitHomePage()
+    {
+        if (Config.MainConfig.HomeBody == MainHomeType.Card)
+        {
+            AddNewCard("Minecraft 新闻", new FlipView { Height = 350 }, "NewsCard");
+            /*
+            var group1 = TilesMange.RegisterTileGroup();
+            foreach (GameFolderConfig game in Config.Config.MainConfig.GameFolders)
+            {
+                foreach (var VARIABLE in Directory.GetDirectories($"{game.Path}/versions"))
+                {
+                    TilesMange.RegisterTile(group1, new TilesMange.TileItem()
+                    {
+                        Text = Path.GetFileName(VARIABLE),
+                        TiteEvent = ()=>{
+
+                        },
+                        TiteStyle = TilesMange.TileItem.TiteStyleType.Normal,
+                        Content = new FluentIcon()
+                        {
+                            Foreground = Brushes.White,
+                            Icon = FluentIconSymbol.Folder20Regular,
+                            Width = 16,
+                            Height = 16
+                        }
+                    });
+                }
+            }
+            */
+        }
+    }
     public Launcher()
     {
         InitializeComponent();
+        /*
 #if DEBUG
-        DebugBox.IsVisible = true;
+        //DebugBox.IsVisible = true;
 #else
-        DebugBox.IsVisible = false;
+        //DebugBox.IsVisible = false;
 #endif
         TilesMange.TilesPanel = this.WrapPanel;
         /*Task.Run(() =>
@@ -58,22 +127,22 @@ public partial class Launcher : UserControl,IParentPage
                 });
                 Thread.Sleep(5000);
             }
-        });*/
+        });
         Task.Run(() =>
         {
-            Thread.Sleep(800);
-            Dispatcher.UIThread.Invoke(() =>
-                LaunchBored.Margin = new Thickness(0));
-            Dispatcher.UIThread.Invoke(() =>
-                LaunchBored.Opacity = 1);
+            //Thread.Sleep(800);
+            //Dispatcher.UIThread.Invoke(() =>
+              //  LaunchBored.Margin = new Thickness(0));
+           // Dispatcher.UIThread.Invoke(() =>
+             //   LaunchBored.Opacity = 1);
         });
         IsEdit = true;
         Task.Run(() =>
         {
             while (true)
             {
-                var time = DateTime.Now.ToString("HH:mm:ss");
-                Dispatcher.UIThread.Invoke(()=>TimeBox.Content = time);
+                //var time = DateTime.Now.ToString("HH:mm:ss");
+               // Dispatcher.UIThread.Invoke(()=>TimeBox.Content = time);
                 Thread.Sleep(100);
             }
         });
@@ -81,29 +150,8 @@ public partial class Launcher : UserControl,IParentPage
         {
             Thread.Sleep(1000);
             Dispatcher.UIThread.Invoke(HomeBodyMange.Load);
-        });
+        });*/
     }
-
-    private bool IsEdit = false;
-    private void MessageBox_OnClick(object? sender, RoutedEventArgs e)
-    {
-        Core.SystemTask.Show();
-    }
-    
-    private void UserButton_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
-    {
-        if (IsEdit)
-        {
-            // Config.MainConfig.SelectedUser = UserButton.SelectedIndex;
-            Config.SaveConfig();
-        }
-    }
-
-    /*private void Button_OnClick(object? sender, RoutedEventArgs e)
-    {
-        Core.MainWindow.MainView.SystemNavigationBar.Show();
-    }*/
-
     private void GotoAccount(object? sender, RoutedEventArgs e)
     {
         Core.MainWindow.MainView.ContentFrame.Content = new Account.Account();

@@ -40,7 +40,7 @@ public partial class StyleSetting : UserControl,IPage
         }
 
         BackgroundTypeComboBox.SelectedIndex = Config.MainConfig.BackModlue;
-        ChoseMainPageBody.SelectedIndex = Config.MainConfig.HomeBody;
+        ChoseMainPageBody.SelectedIndex = (int)Config.MainConfig.HomeBody;
         
         IsEdit = true;
     }
@@ -190,9 +190,9 @@ public partial class StyleSetting : UserControl,IPage
     {
         if (IsEdit)
         {
-            Config.MainConfig.HomeBody = ChoseMainPageBody.SelectedIndex;
+            Config.MainConfig.HomeBody = (MainHomeType)ChoseMainPageBody.SelectedIndex;
             Config.SaveConfig();
-            HomeBodyMange.Load();
+            Core.MainHome.InitHomePage();
         }
     }
 }

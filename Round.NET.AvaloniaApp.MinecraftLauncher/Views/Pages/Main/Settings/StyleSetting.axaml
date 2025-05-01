@@ -1,4 +1,4 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
+﻿ <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -87,7 +87,7 @@
                     <controls:SettingsExpanderItem.Footer>
                         <ComboBox SelectionChanged="ChoseMainPageBody_OnSelectionChanged" Name="ChoseMainPageBody" Width="400" HorizontalAlignment="Stretch">
                             <ComboBoxItem>无</ComboBoxItem>
-                            <ComboBoxItem>磁贴</ComboBoxItem>
+                            <ComboBoxItem>卡片</ComboBoxItem>
                             <ComboBoxItem IsEnabled="False">自定义主页（兼容 PCL2 自定义主页）</ComboBoxItem>
                         </ComboBox>
                     </controls:SettingsExpanderItem.Footer>

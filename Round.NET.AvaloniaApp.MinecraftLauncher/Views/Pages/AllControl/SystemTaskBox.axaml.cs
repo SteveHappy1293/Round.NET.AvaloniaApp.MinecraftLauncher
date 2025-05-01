@@ -12,6 +12,7 @@ using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
 
@@ -61,10 +62,15 @@ public partial class SystemTaskBox : UserControl
                         MessageListBox.Children.Add(messagebox);
                     });
                 }
+
+                foreach (var task in SystemMessageTaskMange.Tasks)
+                {
+                    MessageListBox.Children.Add(task.Body);
+                }
             }
             catch
             {
-                Dispatcher.UIThread.Invoke(UpdateMessage);
+                 
             }
         });
     }
@@ -92,7 +98,7 @@ public partial class SystemTaskBox : UserControl
             {
                 MainPanel.Margin = new Thickness(8);
                 MainPanel.Opacity = 1;
-                BackGrid.Opacity = 0.6;
+                BackGrid.Opacity = 0.8;
                 this.IsVisible = true;
                 //TimeBox.Margin = new Thickness(50);
                 //Trip1Box.Margin = new Thickness(50,160);

@@ -1,0 +1,18 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="70"
+             xmlns:controls="using:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.FlipView">
+    <Grid> 
+        <ContentPresenter Name="Main"/>
+        <Button VerticalAlignment="Center" HorizontalAlignment="Left" Height="48" Name="Back" Width="48" Margin="4" Click="Back_OnClick" Background="Transparent" BorderThickness="0">
+            <fluentIcons:FluentIcon Icon="ArrowLeft20Regular"/>
+        </Button>
+        <Button VerticalAlignment="Center" HorizontalAlignment="Right" Height="48" Name="Forward" Width="48" Margin="4" Click="Forward_OnClick" Background="Transparent" BorderThickness="0">
+            <fluentIcons:FluentIcon Icon="ArrowRight20Regular" />
+        </Button>
+    </Grid>
+</UserControl>

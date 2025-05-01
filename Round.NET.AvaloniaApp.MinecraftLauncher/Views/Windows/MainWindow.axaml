@@ -51,7 +51,19 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" >
                     <Button Height="32"
                         FontWeight="Bold" Background="Transparent" FontSize="16" 
-                        BorderBrush="Transparent" BorderThickness="0" Margin="8" Click="Button_OnClick">Round Minecraft Launcher</Button>
+                        BorderBrush="Transparent" BorderThickness="0" Margin="8" Click="Button_OnClick" Content="Round Minecraft Launcher">
+                        <Button.ContextMenu>
+                            <ContextMenu Name="cm">
+                                <MenuItem Header="File"/>
+                                <MenuItem Header="Save"/>
+                                <MenuItem Header="SaveAs"/>
+                                <MenuItem Header="Recent Files">
+                                    <MenuItem Header="ReadMe.txt"/>
+                                    <MenuItem Header="Schedule.xls"/>
+                                </MenuItem>
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                    </Button>
                     <Menu Name="Menu" VerticalAlignment="Center" Opacity="1" Margin="0,0,0,0">
                         <Menu.Styles>
                             <Styles>

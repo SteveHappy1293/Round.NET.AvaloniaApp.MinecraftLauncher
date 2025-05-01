@@ -31,7 +31,7 @@ public class ConfigRoot
     public int WindowHeight { get; set; } = 450;
     public bool IsUsePlug { get; set; } = true;
     public int MessageLiveTimeMs { get; set; } = 5000;
-    public int HomeBody { get; set; } = 0;
+    public MainHomeType HomeBody { get; set; } = 0;
     public bool SetTheLanguageOnStartup { get; set; } = true;
     public bool SetTheGammaOnStartup { get; set; } = true;
     public int JavaUseMemory { get; set; } = 4096;
@@ -56,6 +56,12 @@ public class GameFolderConfig
     public int SelectedGameIndex { get; set; } = 0;
 }
 
+public enum MainHomeType
+{
+    None = 0,
+    Card = 1,
+    Custom = 2
+}
 public class Config
 {
 #if DEBUG
