@@ -18,14 +18,20 @@
             <Label IsVisible="False" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="100" Margin="50" Name="TimeBox" FontWeight="Bold">Time</Label>
             <Label Name="Trip1Box" Margin="50,160" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold" IsVisible="False">累了就早点休息吧 :D</Label>
         </Grid>
+        <Button Height="32" Width="60">
+            <DockPanel>
+                <fluentIcons:FluentIcon Icon="ArrowLeft20Regular" Height="16"></fluentIcons:FluentIcon>
+                <Label VerticalAlignment="Center">返回</Label>
+            </DockPanel>
+        </Button>
         
-        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="40,45,0,0" Name="MessageScrollViewer" Width="320" Padding="10">
+        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,45,0,0" Name="MessageScrollViewer" Width="320" Padding="10">
             <ScrollViewer.Transitions>
                 <Transitions>
                     <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
                 </Transitions>
             </ScrollViewer.Transitions>
-            <customControls:AnimatedStackPanel Name="MessageListBox" Width="300" AnimationDirection="Left">
+            <customControls:AnimatedStackPanel Name="MessageListBox" Width="280" AnimationDirection="Top">
                     
             </customControls:AnimatedStackPanel>
         </ScrollViewer>

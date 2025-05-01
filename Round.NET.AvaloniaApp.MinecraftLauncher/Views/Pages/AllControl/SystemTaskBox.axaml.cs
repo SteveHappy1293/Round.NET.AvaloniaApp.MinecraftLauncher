@@ -47,7 +47,10 @@ public partial class SystemTaskBox : UserControl
                     // 处理 message
                     Dispatcher.UIThread.Invoke(() =>
                     {
-                        var messagebox = new MessageInfoBox(e.Message, e.Title);
+                        var messagebox = new MessageInfoBox(e.Message, e.Title)
+                        {
+                            Margin = new Thickness(0,5,0,5)
+                        };
 
                         MessageListBox.Children.Add(messagebox);
                     });
@@ -67,7 +70,7 @@ public partial class SystemTaskBox : UserControl
             BackGrid.Opacity = 0;
             TimeBox.Margin = new Thickness(-50,50);
             Trip1Box.Margin = new Thickness(-50,160);
-            MessageScrollViewer.Margin = new Thickness(-40 - 290, 45, 290, 0);
+            MessageScrollViewer.Margin = new Thickness(-5 - 290, 45, 290, 0);
             Task.Run(() =>
             {
                 Thread.Sleep(800);
@@ -81,7 +84,7 @@ public partial class SystemTaskBox : UserControl
             this.IsVisible = true;
             TimeBox.Margin = new Thickness(50);
             Trip1Box.Margin = new Thickness(50,160);
-            MessageScrollViewer.Margin = new Thickness(45,45,0,0);
+            MessageScrollViewer.Margin = new Thickness(-5,45,0,0);
             UpdateMessage();
         }
     }
