@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              xmlns:button="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Button"
+             xmlns:contentPanel="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.ContentPanel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings.AboutRMCL">
     <ScrollViewer HorizontalScrollBarVisibility="Disabled">

@@ -1,0 +1,20 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             mc:Ignorable="d" d:DesignWidth="200"
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Info.MessageInfoBox">
+    <Border Background="#101010" CornerRadius="8">
+        <Grid>
+            <StackPanel Margin="10">
+                <TextBlock x:Name="TitleBox" FontSize="18" Margin="0,0,25,0" FontWeight="Bold" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Text="Title"/>
+                <TextBlock x:Name="InfoBox" FontSize="13" Margin="0,5,0,0" FontWeight="Normal" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Text="Message"/>
+            </StackPanel>
+            <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Width="22" Height="22" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
+                <Path Width="8" Height="8" Stretch="Uniform" Fill="White" Margin="0,2,0,0"
+                      Data="M1484.481422 509.178311l192.420978-192.420978a45.078756 45.078756 0 1 0-63.715556-63.715555l-192.420977 192.420978-192.466489-192.466489a45.078756 45.078756 0 1 0-63.715556 63.715555l192.420978 192.420978-192.466489 192.489244a45.078756 45.078756 0 1 0 63.715556 63.715556l192.420977-192.420978 192.420978 192.420978a45.078756 45.078756 0 1 0 63.715556-63.715556z"/>
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>

@@ -19,7 +19,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls
 
         public static readonly StyledProperty<TimeSpan> ItemDelayProperty =
             AvaloniaProperty.Register<AnimatedStackPanel, TimeSpan>(
-                nameof(ItemDelay), TimeSpan.FromMilliseconds(100));
+                nameof(ItemDelay), TimeSpan.FromMilliseconds(10));
 
         public static readonly StyledProperty<bool> IsAnimationEnabledProperty =
             AvaloniaProperty.Register<AnimatedStackPanel, bool>(

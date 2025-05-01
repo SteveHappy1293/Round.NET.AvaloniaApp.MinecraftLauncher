@@ -32,7 +32,6 @@ public partial class SystemTaskBox : UserControl
                 Thread.Sleep(100);
             }
         });
-        Core.SystemTask = this;
     }
 
     public void UpdateMessage()
@@ -48,15 +47,9 @@ public partial class SystemTaskBox : UserControl
                     // 处理 message
                     Dispatcher.UIThread.Invoke(() =>
                     {
-                        var messagebox = new InfoBar()
+                        var messagebox = new MessageInfoBox(e.Message, e.Title)
                         {
-                            Title = e.Title,
-                            Message = e.Message,
-                            IsOpen = true,
-                            Severity = e.Type,
-                            Opacity = 0,
-                            Margin = new Thickness(2),
-                            IsClosable = false
+                            Margin = new Thickness(0,5,0,5)
                         };
 
                         MessageListBox.Children.Add(messagebox);
@@ -74,7 +67,6 @@ public partial class SystemTaskBox : UserControl
             }
         });
     }
-    bool IsPlayingAnimation = false;
     public void Show()
     {
         if (!IsPlayingAnimation)
@@ -98,7 +90,7 @@ public partial class SystemTaskBox : UserControl
             {
                 MainPanel.Margin = new Thickness(8);
                 MainPanel.Opacity = 1;
-                BackGrid.Opacity = 0.8;
+                BackGrid.Opacity = 0.6;
                 this.IsVisible = true;
                 //TimeBox.Margin = new Thickness(50);
                 //Trip1Box.Margin = new Thickness(50,160);
