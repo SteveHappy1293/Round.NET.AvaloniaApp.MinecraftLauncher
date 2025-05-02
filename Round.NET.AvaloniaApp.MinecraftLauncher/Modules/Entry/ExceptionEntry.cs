@@ -14,7 +14,6 @@ public class ExceptionEntry
     public List<JavaEntry> JavaRoot = Java.FindJava.JavasList;
     public List<User.UserConfig> UserConfig { get; set; } = User.Users;
     public ExceptionEnum ExceptionType { get; set; }
-    public List<ServerEntry> Servers { get; set; } = Server.ServerMange.Servers;
     public DateTime RecordTime { get; set; } = DateTime.Now;
     public string Exception { get; set; } = string.Empty;
     public string StackTrace { get; set; } = string.Empty;

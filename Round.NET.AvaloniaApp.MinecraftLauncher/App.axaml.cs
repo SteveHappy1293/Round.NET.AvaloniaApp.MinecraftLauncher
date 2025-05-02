@@ -84,7 +84,7 @@ public partial class App : Application
                 
                 //if (Config.MainConfig.ShowErrorWindow)
                 //{
-                   //  error.ShowDialog(Core.MainWindow);
+                     error.ShowDialog(Core.MainWindow);
                // }
             });
         }

@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Round.NET.VersionServerMange.Library.Entry;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.ServerManges;
+namespace LevelManager.Views.Pages.Server;
 
 public partial class ServerSetting : UserControl
 {

@@ -42,6 +42,10 @@
         <DependentUpon>Slot.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Views\Pages\Server\ServerManageUI.axaml.cs">
+        <DependentUpon>ServerMange.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -2594,5 +2598,11 @@
       <AvaloniaResource Include="items\written_book.png" />
       <None Remove="items\yellow_candle.png" />
       <AvaloniaResource Include="items\yellow_candle.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Pages\Server\ServerManageDialog\AddServer.axaml" />
+      <AdditionalFiles Include="Views\Pages\Server\ServerManageDialog\LaunchServer.axaml" />
+      <AdditionalFiles Include="Views\Pages\Server\ServerManageDialog\ServerSetting.axaml" />
     </ItemGroup>
 </Project>

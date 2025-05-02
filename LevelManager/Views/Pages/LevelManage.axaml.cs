@@ -10,10 +10,12 @@ using FluentAvalonia.UI.Controls;
 using fNbt;
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.FileIO;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
 namespace LevelManager.Views.Pages;
@@ -22,7 +24,11 @@ public partial class LevelManage : UserControl,IPage
 {
     public void Open()
     {
-        
+        Core.MainWindow.ChangeMenuItems(new List<MenuItem>
+        {
+           // ControlHelper.CreateMenuItem("刷新", ),
+           // ControlHelper.CreateMenuItem("添加服务器", () => AddServerBtn_OnClick(null, null))
+        });
     }
 
     public LevelManage()
@@ -40,7 +46,7 @@ public partial class LevelManage : UserControl,IPage
                         Box.Items.Add(new ComboBoxItem
                         {
                             Content = $"{new FileInfo(VARIABLE).Name}（{item.Name}）",
-                            Tag = new string[] { $"{VARIABLE}\\saves" }
+                            Tag = new[] { $"{VARIABLE}\\saves" }
                         });
                         all.Add($"{VARIABLE}\\saves");
                     }
@@ -99,7 +105,7 @@ public partial class LevelManage : UserControl,IPage
                                 };
                                 launch.Click += (_, __) =>
                                 {
-                                    var dow = new LaunchJavaEdtion();
+                                    var dow = new LaunchGame();
                                     dow.Dir = Path.Combine(path, "..", "..", "..");
                                     dow.Version = new DirectoryInfo(Path.Combine(path, "..")).Name;
                                     dow.Tuid = SystemMessageTaskMange.AddTask(dow);

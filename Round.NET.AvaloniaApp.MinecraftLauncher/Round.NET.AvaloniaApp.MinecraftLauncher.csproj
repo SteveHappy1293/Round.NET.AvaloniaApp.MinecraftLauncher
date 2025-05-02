@@ -72,6 +72,9 @@
     <Compile Update="Views\Controls\Toast\Tasks\LaunchTasks\LaunchGame.axaml.cs">
       <DependentUpon>LaunchGame.axaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Controls\Info\MessageInfoBox.axaml.cs">
+      <DependentUpon>MessageInfoBox.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

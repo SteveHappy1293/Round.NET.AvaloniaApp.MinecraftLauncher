@@ -34,7 +34,6 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Initialize;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
 using FileDialog = Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog.FileDialog;
-using ServerMange = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Server.ServerMange;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views;
 
@@ -47,7 +46,6 @@ public partial class MainWindow : Window
         MinecraftLauncher.Modules.Java.FindJava.JavasList.Clear();
         Config.LoadConfig();
         StarGroup.LoadStars();
-        ServerMange.Load();
 
         // if (Config.MainConfig.IsUseOrganizationConfig) OrganizationCore.LoadOrganizationConfig();
         DownloadMirrorManager.MaxThread = Config.MainConfig.DownloadThreads;

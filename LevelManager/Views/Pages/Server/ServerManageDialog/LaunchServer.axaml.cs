@@ -6,7 +6,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.ServerManges;
+namespace LevelManager.Views.Pages.Server;
 
 public partial class LaunchServer : UserControl
 {

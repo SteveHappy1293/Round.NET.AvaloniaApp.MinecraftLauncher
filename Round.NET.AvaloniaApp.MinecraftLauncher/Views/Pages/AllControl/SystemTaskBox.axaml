@@ -16,8 +16,33 @@
                 </Transitions>
             </Grid.Transitions>
         </Grid>
-        
-        <Grid HorizontalAlignment="Right" VerticalAlignment="Stretch" Name="MainPanel" Width="480" Margin="8">
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="32">
+            <Label Foreground="White" FontSize="48" FontWeight="Bold" Name="TimeBox">Time</Label>
+            <Label Name="Trip1Box" FontSize="14" HorizontalAlignment="Right">累了就早点休息吧 :D</Label>
+        </StackPanel>
+        <StackPanel Margin="48">
+            <Label Foreground="White" FontSize="42">进程与通知中心</Label>
+            <Label FontSize="14" >你的所有后台操作和通知都会显示在此处。</Label>
+            <StackPanel  Margin="0,8,0,0">
+                <Button Margin="0,0,16,0" Padding="0" Background="Transparent" BorderThickness="0">
+                    <StackPanel VerticalAlignment="Bottom"  Height="32">
+                        <Label FontSize="18" Content="所有任务"></Label>
+                    </StackPanel>
+                </Button>
+                <customControls:AnimatedStackPanel Name="TaskListBox" HorizontalAlignment="Left" Width="400" AnimationDirection="Left">
+                    
+                </customControls:AnimatedStackPanel>
+                <Button Margin="0,0,16,0" Padding="0" Background="Transparent" BorderThickness="0">
+                    <StackPanel VerticalAlignment="Bottom" Height="32">
+                        <Label FontSize="18" Content="所有通知" ></Label>
+                    </StackPanel>
+                </Button>
+                <customControls:AnimatedStackPanel Name="MessageListBox" HorizontalAlignment="Left" Width="400" AnimationDirection="Left">
+                    
+                </customControls:AnimatedStackPanel>
+            </StackPanel>
+        </StackPanel>
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Stretch" Name="MainPanel" Width="480" Margin="8" IsVisible="False">
             <Grid.Transitions>
                 <Transitions>
                     <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
@@ -43,9 +68,7 @@
                 </Border>
             </StackPanel>
             <ScrollViewer Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="8" Name="MessageScrollViewer" Width="400" >
-                <customControls:AnimatedStackPanel Name="MessageListBox" Width="400" AnimationDirection="Right">
-                    
-                </customControls:AnimatedStackPanel>
+
             </ScrollViewer>
         </Grid>
     </Grid>

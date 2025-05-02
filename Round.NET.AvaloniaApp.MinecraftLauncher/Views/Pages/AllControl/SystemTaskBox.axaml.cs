@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -13,11 +14,14 @@ using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Info;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
 
 public partial class SystemTaskBox : UserControl
 {
+    public List<SystemMessageTaskMange.TaskConfig> Tasks = new ();
+
     public SystemTaskBox()
     {
         InitializeComponent();
@@ -55,11 +59,6 @@ public partial class SystemTaskBox : UserControl
                         MessageListBox.Children.Add(messagebox);
                     });
                 }
-
-                foreach (var task in SystemMessageTaskMange.Tasks)
-                {
-                    MessageListBox.Children.Add(task.Body);
-                }
             }
             catch
             {
@@ -67,6 +66,7 @@ public partial class SystemTaskBox : UserControl
             }
         });
     }
+    bool IsPlayingAnimation = false;
     public void Show()
     {
         if (!IsPlayingAnimation)

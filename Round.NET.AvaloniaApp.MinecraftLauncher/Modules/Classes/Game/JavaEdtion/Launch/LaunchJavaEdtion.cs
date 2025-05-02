@@ -12,7 +12,6 @@ using MinecraftLaunch.Components.Parser;
 using MinecraftLaunch.Launch;
 using MinecraftLaunch.Utilities;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Server;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 using Round.NET.VersionServerMange.Library.Modules;
 
@@ -91,6 +90,7 @@ public class LaunchJavaEdtion
     }
     public static void UpdateServers(string VersionID)
     {
+        /*
         try
         {
             var path = Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path +
@@ -106,5 +106,6 @@ public class LaunchJavaEdtion
         {
             Message.Message.Show("启动游戏","同步全局服务器配置出错",InfoBarSeverity.Error);
         }
+        */
     }
 }

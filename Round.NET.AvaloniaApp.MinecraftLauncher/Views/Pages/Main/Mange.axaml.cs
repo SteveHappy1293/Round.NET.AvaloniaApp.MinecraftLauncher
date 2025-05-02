@@ -50,13 +50,6 @@ public partial class Mange : UserControl,IParentPage
         });     
         ContentPagesPanel.RegisterRoute(new Core.API.NavigationRouteConfig()
         {
-            Page = ServerMange,
-            Title = "服务器管理",
-            Route = "ServerMange",
-            Icon = FluentIconSymbol.Server20Filled
-        });   
-        ContentPagesPanel.RegisterRoute(new Core.API.NavigationRouteConfig()
-        {
             Page = StarMange,
             Title = "收藏夹管理",
             Route = "StarMange",
@@ -75,5 +68,4 @@ public partial class Mange : UserControl,IParentPage
     private JavaMange JavaMange { get; set; } = new();
     private PlugMange PlugMange { get; set; } = new();
     private StarMange StarMange { get; set; } = new();
-    private ServerMange ServerMange { get; set; } = new();
 }

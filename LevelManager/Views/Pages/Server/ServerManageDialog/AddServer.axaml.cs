@@ -2,7 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.ServerManges;
+namespace LevelManager.Views.Pages.Server;
 
 public partial class AddServer : UserControl
 {
@@ -16,6 +16,6 @@ public partial class AddServer : UserControl
         var name = NameBox.Text;
         var ip = IPBox.Text;
         
-        Modules.Server.ServerMange.AddServer(name, ip);
+       ServerManage.AddServer(name, ip);
     }
 }

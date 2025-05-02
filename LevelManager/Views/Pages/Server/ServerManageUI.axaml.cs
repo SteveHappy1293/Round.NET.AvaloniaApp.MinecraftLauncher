@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -21,12 +23,14 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.ServerManges;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
+using LevelManager.Views.Pages.Server;
+using Round.NET.VersionServerMange.Library.Entry;
 using Round.NET.VersionServerMange.Library.Modules;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
+namespace LevelManager.Views.Pages.Server;
 
-public partial class ServerMange : UserControl,IPage
+public partial class ServerManageUI : UserControl,IPage
 {
     public void Open()
     {
@@ -36,10 +40,10 @@ public partial class ServerMange : UserControl,IPage
             ControlHelper.CreateMenuItem("添加服务器", () => AddServerBtn_OnClick(null, null))
         });
     }
-    public ServerMange()
+    public ServerManageUI()
     {
         InitializeComponent();
-
+        UpdateLanServers();
         this.Loaded += (sender, args) => RefreshUI();
         Task.Run(() =>
         {
@@ -56,7 +60,7 @@ public partial class ServerMange : UserControl,IPage
                             var version =
                                 $"{Path.GetFileName(Directory.GetDirectories($"{Config.MainConfig.GameFolders[Sel].Path}/versions")[Config.MainConfig.GameFolders[Sel].SelectedGameIndex])}";
                             var path = $"{Config.MainConfig.GameFolders[Sel].Path}/versions/{version}";
-                            var res = Modules.Server.ServerMange.ScannedVersion(path);
+                            var res = ServerManage.ScannedVersion(path);
                             if (res != 0)
                             {
                                 Message.Show("服务器管理",$"已从 {version} 中添加 {res} 项服务器!",InfoBarSeverity.Success);
@@ -91,11 +95,38 @@ public partial class ServerMange : UserControl,IPage
         }
         return null;
     }
+
+    public void UpdateNetwork()
+    {
+        NetworkBox.Items.Clear();
+        foreach (var n in NetworkInterface.GetAllNetworkInterfaces())
+        {
+
+            var ipProperties = n.GetIPProperties();
+            var ipv4Properties = ipProperties.UnicastAddresses.FirstOrDefault(ua => ua.Address.AddressFamily == AddressFamily.InterNetwork);
+            if (ipv4Properties!= null)
+            {
+                NetworkBox.Items.Add(new ComboBoxItem
+                    { Content = $"{n.Name}（{n.OperationalStatus}）（IP：{ipv4Properties.Address}）" ,Tag = ipv4Properties.Address});
+            }
+        }
+
+    }
+    public void UpdateLanServers()
+    {
+        UpdateNetwork();
+    }
+
     public async void RefreshUI()
     {
-        ServerBox.Children.Clear();
+        RefreshUI(ServerManage.Servers,ServerBox);
+       
+    }
+    public async void RefreshUI(IEnumerable<ServerEntry> servers,StackPanel stackPanel)
+    {
+        stackPanel.Children.Clear();
 
-        foreach (var ser in Modules.Server.ServerMange.Servers)
+        foreach (var ser in servers)
         {
             // 解析服务器地址和端口
             var serverAddress = ser.IP.Split(':')[0];
@@ -135,7 +166,7 @@ public partial class ServerMange : UserControl,IPage
                     Width = 15,
                     Height = 15
                 },
-                IsEnabled = (Modules.Server.ServerMange.Servers.FindIndex(x=>x.SUID == ser.SUID)!=0),
+                IsEnabled = (ServerManage.Servers.FindIndex(x=>x.SUID == ser.SUID)!=0),
                 Margin = new Thickness(5),
                 Height = 32,
                 Width = 32
@@ -149,7 +180,7 @@ public partial class ServerMange : UserControl,IPage
                     Height = 15
                 },
                 Margin = new Thickness(5),
-                IsEnabled = (Modules.Server.ServerMange.Servers.FindIndex(x=>x.SUID == ser.SUID)!=Modules.Server.ServerMange.Servers.Count-1),
+                IsEnabled = (ServerManage.Servers.FindIndex(x=>x.SUID == ser.SUID)!=ServerManage.Servers.Count-1),
                 Height = 32,
                 Width = 32
             };
@@ -189,12 +220,12 @@ public partial class ServerMange : UserControl,IPage
             };
             upbtn.Click += (sender, args) =>
             {
-                Modules.Server.ServerMange.UpServer(ser.SUID);
+                ServerManage.UpServer(ser.SUID);
                 RefreshUI();
             };
             downbtn.Click += (sender, args) => 
             {
-                Modules.Server.ServerMange.DownServer(ser.SUID);
+                ServerManage.DownServer(ser.SUID);
                 RefreshUI();
             };
             
@@ -261,12 +292,12 @@ public partial class ServerMange : UserControl,IPage
                         try
                         {
                             iconimage.Source = serverInfo.Icon;
-                            Modules.Server.ServerMange.SetServerIcon(ser.SUID, serverInfo.IconBase64);
+                            ServerManage.SetServerIcon(ser.SUID, serverInfo.IconBase64);
                         }
                         catch
                         {
                             iconimage.Source = DisplayBase64Image(ser.Icon);
-                            Modules.Server.ServerMange.SetServerIcon(ser.SUID, ser.Icon);
+                            ServerManage.SetServerIcon(ser.SUID, ser.Icon);
                         }
                     });
                     Dispatcher.UIThread.Invoke(() =>
@@ -283,7 +314,7 @@ public partial class ServerMange : UserControl,IPage
                     Dispatcher.UIThread.Invoke(() => ring.IsVisible = false);
                 }catch{ }
             }); // 添加服务器信息到 UI
-            ServerBox.Children.Add(new ListBoxItem()
+            stackPanel.Children.Add(new ListBoxItem()
             {
                 Content = new Grid()
                 {
@@ -347,6 +378,7 @@ public partial class ServerMange : UserControl,IPage
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
         RefreshUI();
+        UpdateLanServers();
     }
 
     private void AddServerBtn_OnClick(object? sender, RoutedEventArgs e)
@@ -366,5 +398,20 @@ public partial class ServerMange : UserControl,IPage
             RefreshUI();
         };
         con.ShowAsync();
+    }
+
+    private void NetworkBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        try
+        {
+            RefreshUI(
+                Server.MinecraftServerDiscoverer.DiscoverMinecraftServers(
+                    (IPAddress)((ComboBoxItem)NetworkBox.SelectedItem).Tag), LANServerBox);
+        }
+        catch (Exception ex)
+        {
+            new Window { Content = ex.ToString() };}
+
+        
     }
 }
