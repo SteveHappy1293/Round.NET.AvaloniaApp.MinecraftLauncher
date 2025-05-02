@@ -31,15 +31,14 @@
                 </Style>
             </Grid.Styles>
         </Grid>
-
+        
+        <allControl:SystemMessageBox Name="SystemMessageBox" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="4,48,4,80"/>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <!-- 可拖拽的标题栏区域 -->
-            
-            <allControl:DebugView HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10"></allControl:DebugView>
             <Grid HorizontalAlignment="Stretch"  
                   Background="#A6292929">  <!-- 透明背景，但可点击 -->
                 <Grid.ColumnDefinitions>
@@ -95,7 +94,8 @@
             </Grid>
             <views:MainView Margin="0" Name="MainView" Grid.Row="1"/>
         </Grid>
-        <allControl:SystemMessageBox HorizontalAlignment="Right" VerticalAlignment="Top" Margin="4,48,4,80"/>
+        <allControl:DebugView HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10"></allControl:DebugView>
+        
         <allControl:SystemTaskBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsVisible="False"/>
         <Grid Name="dialog"></Grid>
     </Grid>
