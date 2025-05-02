@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: ClassIsland 文档反馈
+  - name: RMCL 文档反馈
     url: https://github.com/Round-Studio/round-studio.github.io/issues/new
-    about: 反馈 ClassIsland 文档相关问题
+    about: 反馈 RMCL 文档相关问题
   - name: 讨论区
     url: https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/discussions/
     about: 使用中若遇到问题或有新点子新需求，请先在这里求助和征求意见。
