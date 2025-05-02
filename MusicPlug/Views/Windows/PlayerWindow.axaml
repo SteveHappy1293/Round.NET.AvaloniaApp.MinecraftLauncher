@@ -1,0 +1,79 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+        mc:Ignorable="d" d:DesignWidth="460" d:DesignHeight="570"
+        x:Class="MusicPlug.Views.Windows.PlayerWindow"
+        Width="460" Height="570"
+        MinWidth="460" MinHeight="570"
+        Title="RMCL Music 插件 - 播放窗口">
+    
+    <Window.Styles>
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.3"></DoubleTransition>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid>
+        <!-- 主内容 -->
+        <Grid Margin="20">
+            <!-- 标题栏 -->
+            <TextBlock Text="正在播放" HorizontalAlignment="Left" Name="PlayerBox" FontSize="18" FontWeight="Bold" VerticalAlignment="Top"/>
+
+            <!-- 专辑封面和歌词区域 -->
+            <Grid Margin="0,60,0,100">
+                <!-- 歌词显示 -->
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Name="lcScrollViewer"
+                              HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Name="LyricsPanel"/>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- 播放控制 -->
+            <Grid>
+                <!-- 进度条 -->
+                <StackPanel Margin="0,0,0,15" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                    <Slider Name="ProgressSlider" Minimum="0" 
+                            Margin="0,0,0,20" ValueChanged="ProgressSlider_OnValueChanged"/>
+                    <Grid>
+                        <TextBlock x:Name="CurrentTimeText" FontSize="12" FontWeight="Thin" Text="00:00" HorizontalAlignment="Left"/>
+                        <TextBlock x:Name="DurationText" FontSize="12" FontWeight="Thin" Text="00:00" HorizontalAlignment="Right"/>
+                    </Grid>
+                </StackPanel>
+
+                <!-- 播放控制按钮 -->
+                <DockPanel HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Bottom">
+                    <Button x:Name="PreviousButton" Width="40" Height="40">
+                        <fluentIcons:FluentIcon Icon="ArrowCircleLeft20Regular"/>
+                    </Button>
+                    
+                    <Button x:Name="PlayPauseButton"
+                            Width="50" Height="50" CornerRadius="25">
+                        <fluentIcons:FluentIcon Icon="Play24Filled" Width="20" Height="20"/>
+                    </Button>
+                    
+                    <Button x:Name="NextButton" Width="40" Height="40">
+                        <fluentIcons:FluentIcon Icon="ArrowCircleRight20Regular"/>
+                    </Button>
+                </DockPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

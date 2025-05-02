@@ -28,7 +28,40 @@ jobs:
       - name: EchoTime
         run: |
           echo "The current time is: ${{ steps.date.outputs.time }}"
-  win:
+  
+  win-x86:
+    runs-on: windows-latest
+    needs: time
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Dependency-InnoSetup
+        uses: ConorMacBride/install-package@v1
+        with:
+          choco: innosetup
+      - name: Chinesize-InnoSetup
+        run: |
+          Copy-Item "./Round.NET.AvaloniaApp.MinecraftLauncher/Public/Default.isl" "C:/Program Files (x86)/Inno Setup 6/Default.isl" -Force
+      - name: Dependency-Pupnet
+        run: |
+          dotnet tool install -g KuiperZone.PupNet
+      - name: Time
+        id: date
+        run: |
+          echo "${{ needs.time.outputs.v }}" > ./Round.NET.AvaloniaApp.MinecraftLauncher/Public/DateTime.txt
+          echo "Version is ${{ needs.time.outputs.v }}"
+        shell: bash
+      - name: Build
+        run: |
+          cd ./Round.NET.AvaloniaApp.MinecraftLauncher.Desktop
+          pupnet -r win-x86 -k setup -y -o Round.NET.AvaloniaApp.MinecraftLauncher.Desktop.win.x86.installer.exe --app-version ${{ needs.time.outputs.y }}.${{ needs.time.outputs.md }}.${{ needs.time.outputs.hm }}
+      - name: UploadArtifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: win-artifacts-x86
+          path: |
+            ./Round.NET.AvaloniaApp.MinecraftLauncher.Desktop/Deploy/OUT/*
+  win-x64:
     runs-on: windows-latest
     needs: time
     steps:
@@ -54,12 +87,42 @@ jobs:
         run: |
           cd ./Round.NET.AvaloniaApp.MinecraftLauncher.Desktop
           pupnet -r win-x64 -k setup -y -o Round.NET.AvaloniaApp.MinecraftLauncher.Desktop.win.x64.installer.exe --app-version ${{ needs.time.outputs.y }}.${{ needs.time.outputs.md }}.${{ needs.time.outputs.hm }}
-          pupnet -r win-x86 -k setup -y -o Round.NET.AvaloniaApp.MinecraftLauncher.Desktop.win.x86.installer.exe --app-version ${{ needs.time.outputs.y }}.${{ needs.time.outputs.md }}.${{ needs.time.outputs.hm }}
+      - name: UploadArtifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: win-artifacts-x64
+          path: |
+            ./Round.NET.AvaloniaApp.MinecraftLauncher.Desktop/Deploy/OUT/*
+  win-arm64:
+    runs-on: windows-latest
+    needs: time
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Dependency-InnoSetup
+        uses: ConorMacBride/install-package@v1
+        with:
+          choco: innosetup
+      - name: Chinesize-InnoSetup
+        run: |
+          Copy-Item "./Round.NET.AvaloniaApp.MinecraftLauncher/Public/Default.isl" "C:/Program Files (x86)/Inno Setup 6/Default.isl" -Force
+      - name: Dependency-Pupnet
+        run: |
+          dotnet tool install -g KuiperZone.PupNet
+      - name: Time
+        id: date
+        run: |
+          echo "${{ needs.time.outputs.v }}" > ./Round.NET.AvaloniaApp.MinecraftLauncher/Public/DateTime.txt
+          echo "Version is ${{ needs.time.outputs.v }}"
+        shell: bash
+      - name: Build
+        run: |
+          cd ./Round.NET.AvaloniaApp.MinecraftLauncher.Desktop
           pupnet -r win-arm64 -k setup -y -o Round.NET.AvaloniaApp.MinecraftLauncher.Desktop.win.arm64.installer.exe --app-version ${{ needs.time.outputs.y }}.${{ needs.time.outputs.md }}.${{ needs.time.outputs.hm }}
       - name: UploadArtifacts
         uses: actions/upload-artifact@v4
         with:
-          name: win-artifacts
+          name: win-artifacts-arm64
           path: |
             ./Round.NET.AvaloniaApp.MinecraftLauncher.Desktop/Deploy/OUT/*
 
@@ -126,74 +189,74 @@ jobs:
         name: RMCLPlugTools
         path: ./published/
 
-  # buildbedrockplug:
-  #   needs: [plugtools]
-  #   runs-on: windows-latest
-  #   steps:
-  #   - name: Checkout repository
-  #     uses: actions/checkout@v3
+  buildbedrockplug:
+    needs: [plugtools]
+    runs-on: windows-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-  #   - name: Setup .NET SDK
-  #     uses: actions/setup-dotnet@v3
-  #     with:
-  #       dotnet-version: '8.0.x'
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
 
-  #   - name: PublishBedrockPlug
-  #     run: |
-  #       dotnet build ./BedrockPlug/ -c Release -o ./BedrockPlugTemp/
+    - name: PublishBedrockPlug
+      run: |
+        dotnet build ./BedrockPlug/ -c Release -o ./BedrockPlugTemp/
 
-  #   - name: Download-RMCLPlugToolsArtifacts
-  #     uses: actions/download-artifact@v4
-  #     with:
-  #       name: RMCLPlugTools
-  #       path: ./Tools/
+    - name: Download-RMCLPlugToolsArtifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: RMCLPlugTools
+        path: ./Tools/
 
-  #   - name: BuildPlugPack
-  #     run: |
-  #       md ./Publish/
-  #       ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/BedrockPlug.json -o ./Publish/BedrockPlug.rplk
+    - name: BuildPlugPack
+      run: |
+        md ./Publish/
+        ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/BedrockPlug.json -o ./Publish/BedrockPlug.rplk -w
 
-  #   - name: Upload artifact
-  #     uses: actions/upload-artifact@v4
-  #     with:
-  #       name: BedrockPlug
-  #       path: ./Publish/
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: BedrockPlug
+        path: ./Publish/
 
-  # buildlevelmanagerplug:
-  #   needs: [plugtools]
-  #   runs-on: windows-latest
-  #   steps:
-  #   - name: Checkout repository
-  #     uses: actions/checkout@v3
+  buildlevelmanagerplug:
+    needs: [plugtools]
+    runs-on: windows-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-  #   - name: Setup .NET SDK
-  #     uses: actions/setup-dotnet@v3
-  #     with:
-  #       dotnet-version: '8.0.x'
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
 
-  #   - name: PublishLevelManagerPlug
-  #     run: |
-  #       dotnet build ./LevelManager/ -c Release -o ./LevelManagerTemp/
+    - name: PublishLevelManagerPlug
+      run: |
+        dotnet build ./LevelManager/ -c Release -o ./LevelManagerTemp/
 
-  #   - name: Download-RMCLPlugToolsArtifacts
-  #     uses: actions/download-artifact@v4
-  #     with:
-  #       name: RMCLPlugTools
-  #       path: ./Tools/
+    - name: Download-RMCLPlugToolsArtifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: RMCLPlugTools
+        path: ./Tools/
 
-  #   - name: BuildPlugPack
-  #     run: |
-  #       md ./Publish/
-  #       ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/LevelManager.json -o ./Publish/LevelManager.rplk
+    - name: BuildPlugPack
+      run: |
+        md ./Publish/
+        ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/LevelManager.json -o ./Publish/LevelManager.rplk -w
 
-  #   - name: Upload artifact
-  #     uses: actions/upload-artifact@v4
-  #     with:
-  #       name: LevelManagerPlug
-  #       path: ./Publish/
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: LevelManagerPlug
+        path: ./Publish/
 
   publish:
-    needs: [win, onlineinstall, configserver, plugtools , time]
+    needs: [win-x86, win-x64, win-arm64, buildbedrockplug, buildlevelmanagerplug, onlineinstall, configserver, plugtools , time]
     runs-on: ubuntu-latest
     steps:
       - name: Time
@@ -202,10 +265,22 @@ jobs:
           echo "date=$(date +'%Y-%m-%d.%H-%M-%S')" >> $GITHUB_OUTPUT
           echo "title=$(date +'%Y.%m.%d.%H.%M')" >> $GITHUB_OUTPUT
 
-      - name: Download-WindowsArtifacts
+      - name: Download-WindowsArtifacts-x86
         uses: actions/download-artifact@v4
         with:
-          name: win-artifacts
+          name: win-artifacts-x86
+          path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
+
+      - name: Download-WindowsArtifacts-x64
+        uses: actions/download-artifact@v4
+        with:
+          name: win-artifacts-x64
+          path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
+
+      - name: Download-WindowsArtifacts-arm64
+        uses: actions/download-artifact@v4
+        with:
+          name: win-artifacts-arm64
           path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
 
       - name: Download-OnlineInstallArtifacts
@@ -226,17 +301,17 @@ jobs:
           name: RMCLConfigServer
           path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
 
-      # - name: Download-BedrockPlugPlugArtifacts
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: BedrockPlug
-      #     path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
+      - name: Download-BedrockPlugPlugArtifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: BedrockPlug
+          path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
 
-      # - name: Download-LevelManagerPlugPlugArtifacts
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: LevelManagerPlug
-      #     path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
+      - name: Download-LevelManagerPlugPlugArtifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: LevelManagerPlug
+          path: ./Round.NET.AvaloniaApp.MinecraftLauncher/Release/
 
       - name: List Files
         run: |

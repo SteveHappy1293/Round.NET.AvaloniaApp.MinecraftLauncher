@@ -1,0 +1,17 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customControls="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.CustomControls;assembly=Round.NET.AvaloniaApp.MinecraftLauncher"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MusicPlug.Views.Pages.SubPages.SearchMusic">
+    <Grid>
+        <Grid Height="32" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <TextBox Name="SearchKey" Watermark="键入关键词..." Grid.Row="1" Margin="10,0,100,0"></TextBox>
+            <Button Name="SearchButton" Click="SearchButton_OnClick" Classes="accent" HorizontalAlignment="Right" Margin="10,0,10,0" Height="32" Width="80">搜索</Button>
+        </Grid>
+        <ScrollViewer Margin="0,42,0,0">
+            <customControls:AnimatedStackPanel AnimationDirection="Top" Name="MusicBox"></customControls:AnimatedStackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

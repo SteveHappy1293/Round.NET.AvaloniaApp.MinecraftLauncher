@@ -8,8 +8,12 @@ using Avalonia.Interactivity;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Classes.Mange.StarMange;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Plugs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Initialize;
@@ -22,6 +26,11 @@ public partial class MainView : UserControl
 {
     public MainView()
     {
+        User.LoadUser();
+        StarGroup.LoadStars();
+        Modules.Server.ServerMange.Load();
+        MinecraftLauncher.Modules.Java.FindJava.JavasList.Clear();
+        
         InitializeComponent();
         
         //this.SystemNavigationBar.NavTo("Launcher");
@@ -174,6 +183,11 @@ public partial class MainView : UserControl
                 Thread.Sleep(100);
             }
         });
+        
+        
+        PlugLoaderNeo.LoadPlugs();
+        if (PlugLoaderNeo.Plugs.Count > 0)
+            Message.Show("插件加载", $"当前已加载 {PlugLoaderNeo.Plugs.Count} 个插件！", InfoBarSeverity.Success);
     }
 
     private void Button_OnClick(object? sender, RoutedEventArgs e)

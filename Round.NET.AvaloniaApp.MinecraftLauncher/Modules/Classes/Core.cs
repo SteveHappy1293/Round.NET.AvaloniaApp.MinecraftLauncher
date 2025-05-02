@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Avalonia.Controls;
 using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Windowing;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
@@ -32,6 +33,7 @@ public class Core
             public string Route { get; set; }
             public string Title { get; set; }
             public IPage Page { get; set; }
+            public IParentPage ParentPage { get; set; }
             public FluentIconSymbol Icon { get; set; }
             public bool IsFoot { get; set; } = false;
         }
@@ -52,7 +54,12 @@ public class Core
         }
         public static void RegisterNavigationRoute(NavigationRouteConfig config)
         {
-            // NavigationBar.RegisterRoute(config);
+            BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
+            {
+                Title = new Label(){Content = config.Title},
+                Page = config.ParentPage,
+                Tag = config.Route
+            });
         } // 注册边栏
         public static void RegisterDownloadPage(NavigationRouteConfig config)
         {
