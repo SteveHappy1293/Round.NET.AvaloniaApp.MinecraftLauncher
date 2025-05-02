@@ -214,7 +214,7 @@ jobs:
     - name: BuildPlugPack
       run: |
         md ./Publish/
-        ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/BedrockPlug.json -o ./Publish/BedrockPlug.rplk
+        ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/BedrockPlug.json -o ./Publish/BedrockPlug.rplk -w
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
@@ -247,7 +247,7 @@ jobs:
     - name: BuildPlugPack
       run: |
         md ./Publish/
-        ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/LevelManager.json -o ./Publish/LevelManager.rplk
+        ./Tools/RMCLPlugTools.exe -c ./PlugBuildRules/LevelManager.json -o ./Publish/LevelManager.rplk -w
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4

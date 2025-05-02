@@ -52,6 +52,7 @@ public partial class MainWindow : MetroWindow
                     var outpath = args[i+1];
                     Classes.Packing.GoPacking(Config);
                     File.Copy("RMCL.Packing\\Plug.rplk", outpath, true);
+                    Console.WriteLine("打包完成");
                     if(!isnowindow) MessageBox.Show("文件打包成功！","调试插件",MessageBoxButton.OK,MessageBoxImage.Information);
                     Close();
                     break;
