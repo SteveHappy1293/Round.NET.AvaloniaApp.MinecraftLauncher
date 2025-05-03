@@ -43,7 +43,7 @@ public partial class PlayerBox : UserControl
     public async Task Show(Modules.Game.User.User.UserConfig User)
     {
         UserConfig = User;
-        NameLabel.Content = User.Config.Username;
+        NameLabel.Content = User.Config.UserName;
         switch (User.Type)
         {
             case "Offline":
@@ -82,7 +82,7 @@ public partial class PlayerBox : UserControl
                         {
                             Console.WriteLine(s);
                         };
-                        await skin.GetPlayerAttribute(User.Config.Username);
+                        await skin.GetPlayerAttribute(User.Config.UserName);
 
                         Dispatcher.UIThread.Invoke(() =>
                         {

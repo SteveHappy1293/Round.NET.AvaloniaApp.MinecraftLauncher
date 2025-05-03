@@ -54,11 +54,10 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         Core.MainWindow = this;
-        Config.LoadConfig();
 
         // if (Config.MainConfig.IsUseOrganizationConfig) OrganizationCore.LoadOrganizationConfig();
-        DownloadMirrorManager.MaxThread = Config.MainConfig.DownloadThreads;
-        DownloadMirrorManager.IsEnableMirror = false;
+        /*DownloadMirrorManager.MaxThread = Config.MainConfig.DownloadThreads;
+        DownloadMirrorManager.IsEnableMirror = false;*/
 
         InitializeComponent();
         Loaded += MainWindow_Loaded;

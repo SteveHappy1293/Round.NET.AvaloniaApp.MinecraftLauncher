@@ -44,6 +44,10 @@ public partial class GameMange : UserControl,IPage
             int count = 0;
             while (true)
             {
+                if (GameDirBox.SelectedIndex == -1)
+                {
+                    continue;
+                }
                 try
                 {
                     // Dispatcher.UIThread.Invoke(() => Modules.Message.Message.Show("Hello World!", "Title", InfoBarSeverity.Success));

@@ -59,7 +59,7 @@ public partial class DownloadAssetsPage : UserControl,IPage
         var key = KeyBox.Text;
         bool Clear = false;
 
-        Task.Run(async () =>
+        /*Task.Run(async () =>
         {
             foreach (var re in await FindAssets.GetFindAssets(key))
             {
@@ -71,9 +71,10 @@ public partial class DownloadAssetsPage : UserControl,IPage
                         Clear = true;
                         AssetsBox.Children.Clear();
                     }
-                    var image =new Image()
-                    { 
-                        Margin = new Thickness(-10,5),  
+
+                    var image = new Image()
+                    {
+                        Margin = new Thickness(-10, 5),
                         HorizontalAlignment = HorizontalAlignment.Left
                     };
                     var ring = new ProgressRing()
@@ -148,6 +149,6 @@ public partial class DownloadAssetsPage : UserControl,IPage
                     });
                 });
             }
-        });
+        });*/
     }
 }

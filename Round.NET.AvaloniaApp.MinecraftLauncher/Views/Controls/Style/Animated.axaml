@@ -41,13 +41,13 @@
                 </Transitions>
             </Setter>
         </Style>
-        <Style Selector="ProgressBar">
+        <!--<Style Selector="ProgressBar">
             <Setter Property="Transitions">
                 <Transitions>
                     <DoubleTransition Property="Value" Easing="ExponentialEaseOut" Duration="0:0:0.3"/>
                 </Transitions>
             </Setter>
-        </Style>
+        </Style>-->
         <Style Selector="Expander">
             <Setter Property="Transitions">
                 <Transitions>

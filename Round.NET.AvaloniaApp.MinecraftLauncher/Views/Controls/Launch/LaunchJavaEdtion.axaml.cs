@@ -16,8 +16,6 @@ using FluentAvalonia.UI.Controls;
 using HeroIconsAvalonia.Controls;
 using HeroIconsAvalonia.Enums;
 using Microsoft.VisualBasic.CompilerServices;
-using MinecraftLaunch.Base.Enums;
-using MinecraftLaunch.Launch;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Install;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
@@ -78,7 +76,6 @@ public partial class LaunchJavaEdtion : UserControl
                 Dispatcher.UIThread.Invoke(() => JCAssetsJDBar.Value = 100);
                 if (!assets)
                 {
-
                     Dispatcher.UIThread.Invoke(() =>
                     {
                         JCAssetsJDBar.Value = 100;
@@ -105,22 +102,11 @@ public partial class LaunchJavaEdtion : UserControl
                     {
                          Modules.Game.JavaEdtion.Launch.LaunchJavaEdtion.LaunchGame(Dir,
                             Version,
-                            (sender) =>
+                            ((args) =>
                             {
                                 try
                                 {
-                                    GameProcess = sender;
-                                }
-                                catch (Exception ex)
-                                {
-                                    Dispatcher.UIThread.Invoke(() => ShowError(ex));
-                                }
-                            },
-                            ((o, args) =>
-                            {
-                                try
-                                {
-                                    LogOutput.Append($"[{args.Data.LogLevel}]{args.Data.Log}");
+                                    LogOutput.Append($"{args}");
                                     Task.Run(() =>
                                     {
                                         try
@@ -129,7 +115,11 @@ public partial class LaunchJavaEdtion : UserControl
                                             {
                                                 try
                                                 {
-                                                    var label = GetLogLabel(args.Data.LogLevel, args.Data.Log);
+                                                    var label = new TextBlock()
+                                                    {
+                                                        Text = args,
+                                                        TextWrapping = TextWrapping.Wrap
+                                                    };
                                                     label.Margin = new Thickness(50, 0);
                                                     LogPanel.Children.Add(label);
                                                     label.Opacity = 1;
@@ -147,7 +137,7 @@ public partial class LaunchJavaEdtion : UserControl
                                         }
                                     });
 
-                                    if (!Launched && args.Data.LogLevel == MinecraftLogLevel.Info)
+                                    /*if (!Launched)
                                     {
                                         Launched = true;
                                         Message.Show("启动游戏", $"游戏 {Version} 已启动！", InfoBarSeverity.Success);
@@ -155,7 +145,7 @@ public partial class LaunchJavaEdtion : UserControl
                                         {
                                             Dispatcher.UIThread.Invoke(()=>LogButton_OnClick());
                                         }
-                                        GameProcess = ((MinecraftProcess)o).Process;
+                                        GameProcess = .Process;
                                         Dispatcher.UIThread.Invoke(() => LaunJDBar.Value = 100);
                                         Thread.Sleep(300);
                                         Dispatcher.UIThread.Invoke(() =>
@@ -234,7 +224,7 @@ public partial class LaunchJavaEdtion : UserControl
                                                 ShowError(ex);
                                             }
                                         });
-                                    }
+                                    }*/
                                 }
                                 catch (Exception ex)
                                 {
@@ -303,7 +293,7 @@ public partial class LaunchJavaEdtion : UserControl
             window.TheCallBackIsInvalid();
         }
     }
-    private TextBlock GetLogLabel(MinecraftLogLevel logtype, string log)
+    /*private TextBlock GetLogLabel(MinecraftLogLevel logtype, string log)
     {
         var label = new TextBlock()
         {
@@ -349,7 +339,7 @@ public partial class LaunchJavaEdtion : UserControl
             Fatal = Fatal
         });
         return label;
-    }
+    }*/
     private void LogButton_OnClick(object? sender = null, RoutedEventArgs e= null)
     {
         if (window.IsOpen)
