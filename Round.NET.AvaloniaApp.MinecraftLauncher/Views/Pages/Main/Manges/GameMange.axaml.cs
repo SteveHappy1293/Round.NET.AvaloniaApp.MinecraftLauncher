@@ -38,50 +38,66 @@ public partial class GameMange : UserControl,IPage
     public GameMange()
     {
         InitializeComponent();
-        foreach (var dir in Config.MainConfig.GameFolders)
-        {
-            GameDirBox.Items.Add($"[{dir.Name}] {dir.Path}");
-        }
-        GameDirBox.SelectedIndex = Config.MainConfig.SelectedGameFolder;
 
         Task.Run(() =>
         {
             int count = 0;
             while (true)
             {
-                // Dispatcher.UIThread.Invoke(() => Modules.Message.Message.Show("Hello World!", "Title", InfoBarSeverity.Success));
-                var path = $"{Config.MainConfig.GameFolders[GameDirBox.SelectedIndex].Path}/versions";
+                if (GameDirBox.SelectedIndex == -1)
+                {
+                    continue;
+                }
                 try
                 {
-                    if (Directory.GetDirectories(path).Length != count)
+                    // Dispatcher.UIThread.Invoke(() => Modules.Message.Message.Show("Hello World!", "Title", InfoBarSeverity.Success));
+                    var path = $"{Config.MainConfig.GameFolders[GameDirBox.SelectedIndex].Path}/versions";
+                    try
                     {
+                        if (Directory.GetDirectories(path).Length != count)
+                        {
+                            Dispatcher.UIThread.Invoke(() =>
+                            {
+                                UpdateVersionList();
+                            
+                                VersionBox.SelectedIndex = Config.MainConfig.GameFolders[GameDirBox.SelectedIndex]
+                                    .SelectedGameIndex;
+                            });
+                            count = Directory.GetDirectories(path).Length;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Directory.CreateDirectory(path);
                         Dispatcher.UIThread.Invoke(() =>
                         {
+                            IsEdit = false;
+                            GameDirBox.SelectedIndex = 0;
+                            Config.MainConfig.SelectedGameFolder = 0;
+                            count = 0;
+                            VersionBox.Items.Clear();
                             UpdateVersionList();
-                            
-                            VersionBox.SelectedIndex = Config.MainConfig.GameFolders[GameDirBox.SelectedIndex]
-                                .SelectedGameIndex;
-                        });
-                        count = Directory.GetDirectories(path).Length;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Directory.CreateDirectory(path);
-                    Dispatcher.UIThread.Invoke(() =>
-                    {
-                        IsEdit = false;
-                        GameDirBox.SelectedIndex = 0;
-                        Config.MainConfig.SelectedGameFolder = 0;
-                        count = 0;
-                        VersionBox.Items.Clear();
-                        UpdateVersionList();
                         
-                        IsEdit = true;
-                    });
-                }
+                            IsEdit = true;
+                        });
+                    }
+                }catch{ }
                 Thread.Sleep(100);
             }
+        });
+
+        Task.Run(() =>
+        {
+            Thread.Sleep(300);
+            Dispatcher.UIThread.Invoke(() =>
+            {
+                foreach (var dir in Config.MainConfig.GameFolders)
+                {
+                    GameDirBox.Items.Add($"[{dir.Name}] {dir.Path}");
+                }
+
+                GameDirBox.SelectedIndex = Config.MainConfig.SelectedGameFolder;
+            });
         });
         
         IsEdit = true;
@@ -110,194 +126,197 @@ public partial class GameMange : UserControl,IPage
             IsEdit = true;
         }
     }
-    private void UpdateVersionList()
-{
-    Dispatcher.UIThread.Invoke(() =>
-    {
-        var selectedFolder = Config.MainConfig.GameFolders[Config.MainConfig.SelectedGameFolder];
-        var versionsPath = Path.Combine(selectedFolder.Path, "versions");
 
-        if (Directory.Exists(versionsPath))
+    private void UpdateVersionList()
+    {
+        Dispatcher.UIThread.Invoke(() =>
         {
-            IsEdit = false;
-            VersionBox.Items.Clear(); // 清空当前版本列表
-            
-            // Load star data
-            StarGroup.LoadStars();
-            
-            foreach (var ver in Directory.GetDirectories(versionsPath))
+            var selectedFolder = Config.MainConfig.GameFolders[Config.MainConfig.SelectedGameFolder];
+            var versionsPath = Path.Combine(selectedFolder.Path, "versions");
+
+            if (Directory.Exists(versionsPath))
             {
-                var versionName = Path.GetFileName(ver);
-                
-                // Check if this version is already starred
-                bool isStarred = StarGroup.StarGroups
-                    .Any(group => group.Stars.Any(star => star.Title == versionName));
-                
-                var loy = new MenuFlyout();
-                foreach (var starGroupEnrty in StarGroup.StarGroups)
+                IsEdit = false;
+                VersionBox.Items.Clear(); // 清空当前版本列表
+
+                // Load star data
+                StarGroup.LoadStars();
+
+                foreach (var ver in Directory.GetDirectories(versionsPath))
                 {
-                    var it = new MenuItem()
+                    var versionName = Path.GetFileName(ver);
+
+                    // Check if this version is already starred
+                    bool isStarred = StarGroup.StarGroups
+                        .Any(group => group.Stars.Any(star => star.Title == versionName));
+
+                    var loy = new MenuFlyout();
+                    foreach (var starGroupEnrty in StarGroup.StarGroups)
                     {
-                        Header = starGroupEnrty.GroupName,
-                        Tag = starGroupEnrty.GUID
-                    };
-                    it.Click += (_, __) =>
-                    {
-                        if (isStarred)
+                        var it = new MenuItem()
                         {
-                            // Remove from all star groups
-                            foreach (var group in StarGroup.StarGroups)
+                            Header = starGroupEnrty.GroupName,
+                            Tag = starGroupEnrty.GUID
+                        };
+                        it.Click += (_, __) =>
+                        {
+                            if (isStarred)
                             {
-                                group.Stars.RemoveAll(star => star.Title == versionName);
+                                // Remove from all star groups
+                                foreach (var group in StarGroup.StarGroups)
+                                {
+                                    group.Stars.RemoveAll(star => star.Title == versionName);
+                                }
+
+                                StarGroup.SaveStars();
+                            }
+                            else
+                            {
+                                // Add to default star group
+                                StarGroup.AddStar(starGroupEnrty.GUID, new StarItemEnrty()
+                                {
+                                    Title = versionName,
+                                    Type = StarItemTypeEnum.GameVersion,
+                                    SourceData = $"{selectedFolder.Path}|{versionName}"
+                                });
                             }
 
-                            StarGroup.SaveStars();
-                        }
-                        else
-                        {
-                            // Add to default star group
-                            StarGroup.AddStar(starGroupEnrty.GUID, new StarItemEnrty()
-                            {
-                                Title = versionName,
-                                Type = StarItemTypeEnum.GameVersion,
-                                SourceData = $"{selectedFolder.Path}|{versionName}"
-                            });
-                        }
-                        UpdateVersionList();
-                    };
-                    loy.Items.Add(it);
-                }
-                
-                var starButton = new Button()
-                {
-                    Content = new FluentIcon()
-                    {
-                        Icon = isStarred ? FluentIconSymbol.Star20Filled : FluentIconSymbol.Star20Regular,
-                        Margin = new Thickness(-10),
-                    },
-                    Margin = new Thickness(5),
-                    Height = 32,
-                    Width = 32,
-                    Foreground = isStarred ? Brushes.Gold : Brushes.White,
-                    Flyout = loy
-                };
-                
-                // starButton.Click += (_, __) => 
-                // {
-                //     if (isStarred)
-                //     {
-                //         // Remove from all star groups
-                //         foreach (var group in StarGroup.StarGroups)
-                //         {
-                //             group.Stars.RemoveAll(star => star.Title == versionName);
-                //         }
-                //         StarGroup.SaveStars();
-                //     }
-                //     else
-                //     {
-                //         // Add to default star group
-                //         var defaultGroup = StarGroup.StarGroups.First();
-                //         StarGroup.AddStar(defaultGroup.GUID, new StarItemEnrty()
-                //         {
-                //             Title = versionName,
-                //             Type = StarItemTypeEnum.GameVersion,
-                //             SourceData = $"{selectedFolder.Path}|{versionName}"
-                //         });
-                //     }
-                //     
-                //     // Refresh the list to update star status
-                //     UpdateVersionList();
-                // };
+                            UpdateVersionList();
+                        };
+                        loy.Items.Add(it);
+                    }
 
-                var launc = new Button()
-                {
-                    Content = new FluentIcon()
+                    var starButton = new Button()
                     {
-                        Icon = FluentIconSymbol.Airplane20Regular,
-                        Margin = new Thickness(-10),
-                    },
-                    Margin = new Thickness(5),
-                    Height = 32,
-                    Width = 32
-                };
-                launc.Click += (_, __) =>
-                {
-                    var dow = new LaunchJavaEdtion();
-                    dow.Version = versionName;
-                    dow.Tuid = SystemMessageTaskMange.AddTask(dow);
-                    dow.Launch();
-                };
-
-                var sett = new Button()
-                {
-                    Content = new FluentIcon()
-                    {
-                        Icon = FluentIconSymbol.Settings20Regular,
-                        Margin = new Thickness(-10),
-                    },
-                    Margin = new Thickness(5),
-                    Height = 32,
-                    Width = 32
-                };
-                sett.Click += (_, __) =>
-                {
-                    var gmset = new GameVersionSetting();
-                    gmset.version = versionName;
-                    var con = new ContentPageDialog()
-                    {
-                        Page = gmset,
-                        Title = $"版本设置 - {versionName}",
-                    };
-                    con.Show();
-                };
-                
-                VersionBox.Items.Add(new ListBoxItem()
-                {
-                    Content = new Grid()
-                    {
-                        Height = 65,
-                        Children =
+                        Content = new FluentIcon()
                         {
-                            new Label()
+                            Icon = isStarred ? FluentIconSymbol.Star20Filled : FluentIconSymbol.Star20Regular,
+                            Margin = new Thickness(-10),
+                        },
+                        Margin = new Thickness(5),
+                        Height = 32,
+                        Width = 32,
+                        Foreground = isStarred ? Brushes.Gold : Brushes.White,
+                        Flyout = loy
+                    };
+
+                    // starButton.Click += (_, __) => 
+                    // {
+                    //     if (isStarred)
+                    //     {
+                    //         // Remove from all star groups
+                    //         foreach (var group in StarGroup.StarGroups)
+                    //         {
+                    //             group.Stars.RemoveAll(star => star.Title == versionName);
+                    //         }
+                    //         StarGroup.SaveStars();
+                    //     }
+                    //     else
+                    //     {
+                    //         // Add to default star group
+                    //         var defaultGroup = StarGroup.StarGroups.First();
+                    //         StarGroup.AddStar(defaultGroup.GUID, new StarItemEnrty()
+                    //         {
+                    //             Title = versionName,
+                    //             Type = StarItemTypeEnum.GameVersion,
+                    //             SourceData = $"{selectedFolder.Path}|{versionName}"
+                    //         });
+                    //     }
+                    //     
+                    //     // Refresh the list to update star status
+                    //     UpdateVersionList();
+                    // };
+
+                    var launc = new Button()
+                    {
+                        Content = new FluentIcon()
+                        {
+                            Icon = FluentIconSymbol.Airplane20Regular,
+                            Margin = new Thickness(-10),
+                        },
+                        Margin = new Thickness(5),
+                        Height = 32,
+                        Width = 32
+                    };
+                    launc.Click += (_, __) =>
+                    {
+                        var dow = new LaunchJavaEdtion();
+                        dow.Version = versionName;
+                        dow.Tuid = SystemMessageTaskMange.AddTask(dow);
+                        dow.Launch();
+                    };
+
+                    var sett = new Button()
+                    {
+                        Content = new FluentIcon()
+                        {
+                            Icon = FluentIconSymbol.Settings20Regular,
+                            Margin = new Thickness(-10),
+                        },
+                        Margin = new Thickness(5),
+                        Height = 32,
+                        Width = 32
+                    };
+                    sett.Click += (_, __) =>
+                    {
+                        var gmset = new GameVersionSetting();
+                        gmset.version = versionName;
+                        var con = new ContentPageDialog()
+                        {
+                            Page = gmset,
+                            Title = $"版本设置 - {versionName}",
+                        };
+                        con.Show();
+                    };
+
+                    VersionBox.Items.Add(new ListBoxItem()
+                    {
+                        Content = new Grid()
+                        {
+                            Height = 65,
+                            Children =
                             {
-                                Content = versionName,
-                                HorizontalContentAlignment = HorizontalAlignment.Left,
-                                VerticalContentAlignment = VerticalAlignment.Top,
-                                Margin = new Thickness(5),
-                                FontSize = 22
-                            },
-                            new Label()
-                            {
-                                Content = "无描述文件...",
-                                HorizontalContentAlignment = HorizontalAlignment.Left,
-                                VerticalContentAlignment = VerticalAlignment.Bottom,
-                                Margin = new Thickness(5),
-                                FontSize = 15,
-                                FontStyle = FontStyle.Italic,
-                                Foreground = Brushes.DimGray,
-                            },
-                            new DockPanel()
-                            {
-                                HorizontalAlignment = HorizontalAlignment.Right,
-                                VerticalAlignment = VerticalAlignment.Center,
-                                Children =
+                                new Label()
                                 {
-                                    starButton,
-                                    sett,
-                                    launc
+                                    Content = versionName,
+                                    HorizontalContentAlignment = HorizontalAlignment.Left,
+                                    VerticalContentAlignment = VerticalAlignment.Top,
+                                    Margin = new Thickness(5),
+                                    FontSize = 22
+                                },
+                                new Label()
+                                {
+                                    Content = "无描述文件...",
+                                    HorizontalContentAlignment = HorizontalAlignment.Left,
+                                    VerticalContentAlignment = VerticalAlignment.Bottom,
+                                    Margin = new Thickness(5),
+                                    FontSize = 15,
+                                    FontStyle = FontStyle.Italic,
+                                    Foreground = Brushes.DimGray,
+                                },
+                                new DockPanel()
+                                {
+                                    HorizontalAlignment = HorizontalAlignment.Right,
+                                    VerticalAlignment = VerticalAlignment.Center,
+                                    Children =
+                                    {
+                                        starButton,
+                                        sett,
+                                        launc
+                                    }
                                 }
                             }
-                        }
-                    },
-                });
-            }
+                        },
+                    });
+                }
 
-            // 设置默认选中项
-            VersionBox.SelectedIndex = selectedFolder.SelectedGameIndex;
-            IsEdit = true;
-        }
-    });
-}
+                // 设置默认选中项
+                VersionBox.SelectedIndex = selectedFolder.SelectedGameIndex;
+                IsEdit = true;
+            }
+        });
+    }
+
     private void VersionBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (IsEdit)

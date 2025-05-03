@@ -31,6 +31,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Initialize;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges;
 using FileDialog = Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog.FileDialog;
@@ -40,20 +41,26 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views;
 
 public partial class MainWindow : Window
 {
+    private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+        // 先加载 SystemMessageBox
+        var systemMessageBox = this.FindControl<SystemMessageBox>("SystemMessageBox");
+        systemMessageBox.IsVisible = true;
+
+        // 稍后加载 MainView
+        var mainView = this.FindControl<MainView>("MainView");
+        mainView.IsVisible = true;
+    }
     public MainWindow()
     {
         Core.MainWindow = this;
-        User.LoadUser();
-        MinecraftLauncher.Modules.Java.FindJava.JavasList.Clear();
-        Config.LoadConfig();
-        StarGroup.LoadStars();
-        ServerMange.Load();
 
         // if (Config.MainConfig.IsUseOrganizationConfig) OrganizationCore.LoadOrganizationConfig();
-        DownloadMirrorManager.MaxThread = Config.MainConfig.DownloadThreads;
-        DownloadMirrorManager.IsEnableMirror = false;
+        /*DownloadMirrorManager.MaxThread = Config.MainConfig.DownloadThreads;
+        DownloadMirrorManager.IsEnableMirror = false;*/
 
         InitializeComponent();
+        Loaded += MainWindow_Loaded;
         // RendererDiagnostics.DebugOverlays ^= RendererDebugOverlays.Fps;
         // PlugsLoader.LoadingPlug();
 
@@ -78,9 +85,6 @@ public partial class MainWindow : Window
         {
             Message.Show("主题加载", $"主题加载错误！\n{ex}", InfoBarSeverity.Error);
         }
-        PlugLoaderNeo.LoadPlugs();
-        if (PlugLoaderNeo.Plugs.Count > 0)
-            Message.Show("插件加载", $"当前已加载 {PlugLoaderNeo.Plugs.Count} 个插件！", InfoBarSeverity.Success);
         if (Config.MainConfig.IsAutoUpdate)
         {
             Task.Run(() =>
@@ -206,10 +210,7 @@ public partial class MainWindow : Window
     // 标题栏拖拽逻辑
     private void TitleBar_PointerPressed(object sender, PointerPressedEventArgs e)
     {
-        if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
-        {
-            BeginMoveDrag(e);
-        }
+        BeginMoveDrag(e);
     }
 
     private void InputElement_OnDoubleTapped(object? sender, TappedEventArgs e)

@@ -1,0 +1,32 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MusicPlug.Views.Controls.MusicItem">
+    <ListBoxItem Padding="10" PointerEntered="InputElement_OnPointerEntered" PointerExited="InputElement_OnPointerExited">
+        <Grid>
+            <StackPanel>
+                <TextBlock Name="MusicNameBox" FontWeight="Bold" FontSize="16"/>
+                <TextBlock Name="MusicWriterBox" FontSize="12" Foreground="Gray"/>
+            </StackPanel>
+            <DockPanel Name="ControlPanel" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="55,0,-55,0">
+                <DockPanel.Styles>
+                    <Style>
+                        <Setter Property="Transitions">
+                            <Transitions>
+                                <ThicknessTransition Property="Margin" Duration="0:0:0.4" Easing="ExponentialEaseOut"></ThicknessTransition>
+                            </Transitions>
+                        </Setter>
+                    </Style>
+                </DockPanel.Styles>
+                <Button Name="PlayButton" Width="32" Height="32" Classes="accent"
+                        Margin="0,0,10,0"
+                        Click="PlayButton_OnClick">
+                    <fluentIcons:FluentIcon Icon="ArrowCircleDown20Regular" Margin="-8"/>
+                </Button>
+            </DockPanel>
+        </Grid>
+    </ListBoxItem>
+</UserControl>

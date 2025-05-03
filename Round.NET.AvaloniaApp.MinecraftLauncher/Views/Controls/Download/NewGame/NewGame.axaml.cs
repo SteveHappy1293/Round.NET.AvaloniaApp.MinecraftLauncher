@@ -7,29 +7,48 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
-using MinecraftLaunch.Base.Models.Network;
-using MinecraftLaunch.Components.Installer;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.AddNewGame;
 
 public partial class NewGame : UserControl
 {
-    private IAsyncEnumerable<ForgeInstallEntry> forgebuild;
+    /*private IAsyncEnumerable<ForgeInstallEntry> forgebuild;
     private IAsyncEnumerable<OptifineInstallEntry> optifinebuild;
     private IAsyncEnumerable<FabricInstallEntry> fabricbuild;
     private IAsyncEnumerable<QuiltInstallEntry> quiltbuild;
-    private List<Object> installedObjects = new List<Object>();
+    private List<Object> installedObjects = new List<Object>();*/
     public NewGame(string version)
     {
         InitializeComponent();
         ChooseVersionBox.Description = version;
         ShowNameBox.Text = version;
         VersionTitle.Content = version;
-        InitializeUIAsync(version);
     }
-
-    public async Task InitializeUIAsync(string version)
+    private void BackExpander_OnClick(object? sender, RoutedEventArgs e)
+    {
+        // var con = (ContentDialog)this.Parent;
+        // con.Hide();
+        
+        
+        ((Frame)(this.Parent)).IsVisible = false;
+        ((Pages.Main.Downloads.DownloadGamePage)((Grid)(((Frame)(this.Parent)).Parent)).Parent).MainGrid.IsVisible = true;
+    }
+    private async void InstallButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        var dow = new DownloadGame.DownloadGame();
+        dow.Version = VersionTitle.Content.ToString();
+        dow.Tuid = SystemMessageTaskMange.AddTask(dow);
+        // dow.Modloaders = installedObjects;
+        dow.StartDownloadAsync();
+        
+        
+        // var con = (ContentDialog)this.Parent;
+        // con.Hide();
+        ((Frame)(this.Parent)).IsVisible = false;
+        ((Pages.Main.Downloads.DownloadGamePage)((Grid)(((Frame)(this.Parent)).Parent)).Parent).MainGrid.IsVisible = true;
+    }
+    /*public async Task InitializeUIAsync(string version)
     {
         forgebuild = (ForgeInstaller.EnumerableForgeAsync(version));
         optifinebuild = (OptifineInstaller.EnumerableOptifineAsync(version));
@@ -167,5 +186,5 @@ public partial class NewGame : UserControl
                 installedObjects.Add(selectedBuild);
             }
         }
-    }
+    }*/
 }

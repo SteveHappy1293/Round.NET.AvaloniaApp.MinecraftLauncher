@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using Avalonia.Controls;
-using MinecraftLaunch.Base.Models.Game;
 using MinecraftLaunch.Utilities;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.FindJava.Library;
@@ -16,7 +15,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 public class FindJava
 {
     public static bool IsFinish = false;
-    public static List<JavaEntry> JavasList { get; set; } = new();
+    public static List<RJavaEntry> JavasList { get; set; } = new();
 
     public static void Find()
     {
@@ -27,7 +26,7 @@ public class FindJava
                 var JavaList = new JavaFetcher().Fetch();
                 foreach (var javalist in JavaList)
                 {
-                    JavasList.Add(RJavaToJava.ToJavaEntry(javalist));
+                    JavasList.Add(javalist);
                 }
             }
             catch
@@ -43,10 +42,10 @@ public class FindJava
                         var is64 = Is64BitJava(path);
                         if (version != null)
                         {
-                            JavasList.Add(new JavaEntry()
+                            JavasList.Add(new RJavaEntry()
                             {
                                 JavaPath = path.Replace("java", "javaw"),
-                                JavaVersion = version
+                                JavaVersion = version.ToString()
                             });
                         }
                     }
@@ -58,7 +57,7 @@ public class FindJava
             var JavaList = new JavaFetcher().Fetch();
             foreach (var javalist in JavaList)
             {
-                JavasList.Add(RJavaToJava.ToJavaEntry(javalist));
+                JavasList.Add(javalist);
             }
         }
 
@@ -85,7 +84,7 @@ public class FindJava
         {
             try
             {
-                JavasList = JsonSerializer.Deserialize<List<JavaEntry>>(javajson);
+                JavasList = JsonSerializer.Deserialize<List<RJavaEntry>>(javajson);
             }
             catch
             {

@@ -12,10 +12,8 @@
         <Button Height="32" Width="32" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5" Name="AddDitButton" Click="AddDitButton_OnClick">
             <fluentIcons:FluentIcon Icon="AddCircle20Regular" Margin="-10"/>
         </Button>
-        <ScrollViewer Margin="0,42,0,0">
-            <ListBox Name="VersionBox" SelectionChanged="VersionBox_OnSelectionChanged">
-                            
-            </ListBox>
-        </ScrollViewer>
+        <ListBox Name="VersionBox" SelectionChanged="VersionBox_OnSelectionChanged" Margin="0,42,0,0">
+            
+        </ListBox>
     </Grid>
 </UserControl>

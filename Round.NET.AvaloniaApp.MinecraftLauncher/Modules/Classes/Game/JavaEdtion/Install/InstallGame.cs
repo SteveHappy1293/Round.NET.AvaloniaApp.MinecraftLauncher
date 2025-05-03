@@ -5,12 +5,6 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Avalonia.Threading;
-using MinecraftLaunch.Base.Enums;
-using MinecraftLaunch.Base.EventArgs;
-using MinecraftLaunch.Base.Interfaces;
-using MinecraftLaunch.Base.Models.Network;
-using MinecraftLaunch.Components.Downloader;
-using MinecraftLaunch.Components.Installer;
 using MinecraftLaunch.Utilities;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 
@@ -18,7 +12,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Instal
 
 public class InstallGame
 {
-    public class InstallItemConfig
+    /*public class InstallItemConfig
     {
         public string Name { get; set; }
         public InstallerBase Entry { get; set; }
@@ -96,5 +90,5 @@ public class InstallGame
         var minecraft5 = installer5.InstallAsync();
         Console.WriteLine(minecraft5.Id);
         return minecraft5 != null;
-    }
+    }*/
 }
