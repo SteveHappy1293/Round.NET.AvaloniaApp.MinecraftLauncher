@@ -19,7 +19,6 @@
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-closed/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr-closed/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
-![GitHub Discussions](https://img.shields.io/github/discussions/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
 
 ![GitHub Forks](https://img.shields.io/github/forks/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
 ![GitHub Repo Stars](https://img.shields.io/github/stars/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
@@ -50,6 +49,11 @@ RMCL 3.0 是由一群热爱 Minecraft 的开发者精心打造的启动器。我
 ## 支持我们
 [![爱发电](https://img.shields.io/badge/爱发电-yjq666-946ce6?style=flat&labelColor=444444&logoSize=auto)](https://afdian.com/yjq666)
 [![哔哩哔哩](https://img.shields.io/badge/BiliBili充电-Minecraft一角钱-00A4DB?style=flat&labelColor=444444&logo=bilibili)](https://space.bilibili.com/1527364468)
+
+## 加入社区
+
+[![GitHub Discussions](https://img.shields.io/github/discussions/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)](https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/discussions)
+[![QQ](https://img.shields.io/badge/QQ群-311568902-00A4DB?style=flat)](https://qm.qq.com/q/ajSj977gsw)
 
 # 致谢
 
