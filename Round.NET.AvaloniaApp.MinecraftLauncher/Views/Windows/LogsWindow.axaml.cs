@@ -76,7 +76,7 @@ public partial class LogsWindow : AppWindow
 
     private void KillGame_OnClick(object? sender, RoutedEventArgs e)
     {
-        LaunchJavaEdtions.KillGame_OnClick(sender, e);
+        //LaunchJavaEdtions.KillGame_OnClick(sender, e);
     }
     public void TheCallBackIsInvalid()
     {

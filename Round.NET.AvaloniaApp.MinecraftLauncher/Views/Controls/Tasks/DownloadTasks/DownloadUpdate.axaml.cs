@@ -12,11 +12,12 @@ using Downloader;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.DownloadGame;
 using Path = System.IO.Path;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download;
 
-public partial class DownloadUpdate : UserControl
+public partial class DownloadUpdate : TaskControl
 {
     public string URL { get; set; } = string.Empty;
     public string Version { get; set; } = string.Empty;
@@ -57,7 +58,7 @@ public partial class DownloadUpdate : UserControl
                 var downloader = new DownloadService(downloadOpt);
                 downloader.DownloadFileCompleted += ((sender, args) =>
                 {
-                    SystemMessageTaskMange.DeleteTask(Tuid);
+                    //SystemMessageTaskMange.DeleteTask(Tuid);
                     Process.Start(Path.GetFullPath($"../RMCL/RMCL.Update/Installer/{Version}.exe"));
                     Thread.Sleep(100);
                     Environment.Exit(0);

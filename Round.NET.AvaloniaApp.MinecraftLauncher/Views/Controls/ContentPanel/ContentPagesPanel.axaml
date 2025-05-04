@@ -25,12 +25,6 @@
             <controls:NavigationView.MenuItems>
             </controls:NavigationView.MenuItems>
         </controls:NavigationView>
-        <Menu HorizontalAlignment="Right" Margin="4">
-            <MenuItem Header="你好"></MenuItem>
-            <MenuItem Header="你好"></MenuItem>
-            <MenuItem Header="你好"></MenuItem>
-            <MenuItem Header="你好"></MenuItem>
-        </Menu>
         <Grid Margin="8,0,8,8" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>

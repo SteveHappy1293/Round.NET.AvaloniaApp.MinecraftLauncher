@@ -65,15 +65,18 @@
       <DependentUpon>DownloadUpdate.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Controls\Toast\Message\ToastBase.axaml.cs">
-      <DependentUpon>ToastBase.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Controls\Toast\Tasks\LaunchTasks\LaunchGame.axaml.cs">
       <DependentUpon>LaunchGame.axaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Controls\Info\MessageInfoBox.axaml.cs">
       <DependentUpon>MessageInfoBox.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Controls\Tasks\LaunchTasks\LaunchGameTask.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Modules\Classes\Mange\TaskMange\TaskControl.axaml.cs">
+      <DependentUpon>DownloadGame.axaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
 
@@ -100,14 +103,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="Views\Controls\Toast\Tasks\DownloadTasks\DownloadGame.axaml" />
-    <AdditionalFiles Include="Views\Controls\Toast\Tasks\DownloadTasks\DownloadUpdate.axaml" />
+    <AdditionalFiles Include="Views\Controls\Tasks\DownloadTasks\DownloadGame.axaml" />
+    <AdditionalFiles Include="Views\Controls\Tasks\DownloadTasks\DownloadUpdate.axaml" />
+    <AdditionalFiles Include="Views\Controls\Tasks\LaunchTasks\LaunchGame.axaml" />
     <AdditionalFiles Include="Views\Pages\Main\Safe\Exceptions\ExceptionPage.axaml" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Views\Controls\Download\DownloadGame\" />
     <Folder Include="Views\Controls\Launch\" />
-    <Folder Include="Views\Controls\Toast\Tasks\" />
+    <Folder Include="Views\Controls\Toast\" />
   </ItemGroup>
 </Project>

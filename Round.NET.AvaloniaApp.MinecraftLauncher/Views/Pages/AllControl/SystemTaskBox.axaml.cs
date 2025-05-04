@@ -20,8 +20,6 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
 
 public partial class SystemTaskBox : UserControl
 {
-    public List<SystemMessageTaskMange.TaskConfig> Tasks = new ();
-
     public SystemTaskBox()
     {
         InitializeComponent();
@@ -66,38 +64,33 @@ public partial class SystemTaskBox : UserControl
             }
         });
     }
-    bool IsPlayingAnimation = false;
+
     public void Show()
     {
-        if (!IsPlayingAnimation)
+        if (IsVisible)
         {
-            IsPlayingAnimation = true;
-            if (IsVisible)
+            //MainPanel.Margin = new Thickness(8, 8, -400, 8);
+            //MainPanel.Opacity = 0;
+            BackGrid.Opacity = 0;
+            //TimeBox.Margin = new Thickness(-50,50);
+            //Trip1Box.Margin = new Thickness(-50,160);
+            //MessageScrollViewer.Margin = new Thickness(-40 - 290, 40, 290, 0);
+            Task.Run(() =>
             {
-                MainPanel.Margin = new Thickness(8, 8, -400, 8);
-                MainPanel.Opacity = 0;
-                BackGrid.Opacity = 0;
-                //TimeBox.Margin = new Thickness(-50,50);
-                //Trip1Box.Margin = new Thickness(-50,160);
-                //MessageScrollViewer.Margin = new Thickness(-40 - 290, 40, 290, 0);
-                Task.Run(() =>
-                {
-                    Thread.Sleep(800);
-                    Dispatcher.UIThread.Invoke(() => this.IsVisible = false);
-                });
-            }
-            else
-            {
-                MainPanel.Margin = new Thickness(8);
-                MainPanel.Opacity = 1;
-                BackGrid.Opacity = 0.6;
-                this.IsVisible = true;
-                //TimeBox.Margin = new Thickness(50);
-                //Trip1Box.Margin = new Thickness(50,160);
-                //MessageScrollViewer.Margin = new Thickness(0,0,8,8);
-                UpdateMessage();
-            }
-            IsPlayingAnimation = false;
+                Thread.Sleep(100);
+                Dispatcher.UIThread.Invoke(() => this.IsVisible = false);
+            });
+        }
+        else
+        {
+            //MainPanel.Margin = new Thickness(8);
+            //MainPanel.Opacity = 1;
+            BackGrid.Opacity = 1;
+            this.IsVisible = true;
+            //TimeBox.Margin = new Thickness(50);
+            //Trip1Box.Margin = new Thickness(50,160);
+            //MessageScrollViewer.Margin = new Thickness(0,0,8,8);
+            UpdateMessage();
         }
     }
 

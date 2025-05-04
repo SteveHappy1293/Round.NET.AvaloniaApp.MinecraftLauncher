@@ -128,11 +128,7 @@ public partial class MainWindow : Window
                             };
                             con.CloseButtonClick += (_, __) =>
                             {
-                                var dow = new DownloadUpdate();
-                                dow.Tuid = SystemMessageTaskMange.AddTask(dow);
-                                dow.URL = s;
-                                dow.Version = v.Replace(".", "").Replace("0", "");
-                                dow.Download();
+                                SystemMessageTaskMange.AddTask(new DownloadUpdate());
                             };
                             con.ShowAsync(this);
                         });

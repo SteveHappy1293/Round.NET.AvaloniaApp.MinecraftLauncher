@@ -23,11 +23,12 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Install;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.DownloadGame;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Windows;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
 
-public partial class LaunchGame : UserControl
+public partial class LaunchGame : TaskControl
 {
     private string _version;
 
@@ -67,7 +68,7 @@ public partial class LaunchGame : UserControl
         void ShowError(Exception ex)
         {
             Message.Show("启动游戏",$"启动出现了错误！",InfoBarSeverity.Error);
-            SystemMessageTaskMange.DeleteTask(Tuid);
+           //SystemMessageTaskMange.DeleteTask(Tuid);
         }
         Message.Show("启动游戏",$"已将游戏 {Version} 添加到启动任务中。",InfoBarSeverity.Success);
         GameThread = new Thread(() =>
@@ -88,7 +89,7 @@ public partial class LaunchGame : UserControl
             }
             catch (Exception ex)
             {
-                Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
+                //Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
                 Message.Show("启动游戏",$"游戏 {Version} 启动失败：{ex.Message}",InfoBarSeverity.Error);
                 return;
             }
@@ -248,8 +249,8 @@ public partial class LaunchGame : UserControl
                                     if (Launched)
                                     {
                                         Message.Show("启动游戏", $"游戏 {Version} 已退出！", InfoBarSeverity.Informational);
-                                        Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
-                                        SystemMessageTaskMange.DeleteTask(Tuid);
+                                       // Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
+                                       // SystemMessageTaskMange.DeleteTask(Tuid);
                                         window.TheCallBackIsInvalid();
                                         if (Config.MainConfig.GameLogOpenModlue == 2)
                                         {
@@ -260,8 +261,8 @@ public partial class LaunchGame : UserControl
                                     {
                                         Message.Show("启动游戏", $"游戏 {Version} 启动失败！日志：\n{LogOutput.ToString()}",
                                             InfoBarSeverity.Error);
-                                        SystemMessageTaskMange.DeleteTask(Tuid);
-                                        Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
+                                       // SystemMessageTaskMange.DeleteTask(Tuid);
+                                        //Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
                                         window.TheCallBackIsInvalid();
                                     }
                                 }
@@ -292,7 +293,7 @@ public partial class LaunchGame : UserControl
             {
                 GameProcess.Kill(true);
             }catch{ }
-            Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
+            //Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
             Message.Show("启动游戏",$"游戏 {Version} 的启动任务已取消！",InfoBarSeverity.Warning);
             
             window.TheCallBackIsInvalid();

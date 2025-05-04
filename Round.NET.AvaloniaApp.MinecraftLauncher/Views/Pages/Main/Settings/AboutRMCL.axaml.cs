@@ -16,6 +16,7 @@ using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.DownloadGame;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Settings;
 
@@ -23,6 +24,7 @@ public partial class AboutRMCL : UserControl,IPage
 {
     public void Open()
     {
+        SystemMessageTaskMange.AddTask(new DownloadGame());
         Core.MainWindow.ChangeMenuItems(new List<MenuItem>{});
     }
     public AboutRMCL()
@@ -128,11 +130,11 @@ public partial class AboutRMCL : UserControl,IPage
                             };
                             con.CloseButtonClick += (_, __) =>
                             {
-                                var dow = new DownloadUpdate();
-                                dow.Tuid = SystemMessageTaskMange.AddTask(dow);
-                                dow.URL = s;
-                                dow.Version = v.Replace(".", "").Replace("0", "");
-                                dow.Download();
+                                var dow = new DownloadUpdate();//v.Replace(".", "").Replace("0", ""));
+                                SystemMessageTaskMange.AddTask(dow);
+                                //dow.URL = s;
+                               // dow.Version = ;
+                                //dow.Download();
                             };
                             con.ShowAsync(Core.MainWindow);
                             Dispatcher.UIThread.InvokeAsync(async () =>

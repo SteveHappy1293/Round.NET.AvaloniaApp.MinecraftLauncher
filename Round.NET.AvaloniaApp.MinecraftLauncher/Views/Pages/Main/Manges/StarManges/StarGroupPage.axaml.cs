@@ -67,11 +67,8 @@ public partial class StarGroupPage : UserControl
                 };
                 launc.Click += (_, __) =>
                 {
-                    var dow = new LaunchGame();
-                    dow.Version = enrty.SourceData.Split('|')[1];
-                    dow.Tuid = SystemMessageTaskMange.AddTask(dow);
-                    dow.Dir = enrty.SourceData.Split('|')[0];
-                    dow.Launch();
+                   // var dow = new LaunchGameTask(enrty.SourceData.Split('|')[1],enrty.SourceData.Split('|')[0]);
+                    //SystemMessageTaskMange.AddTask(dow);
                 };
 
                 res.Content = new Grid()

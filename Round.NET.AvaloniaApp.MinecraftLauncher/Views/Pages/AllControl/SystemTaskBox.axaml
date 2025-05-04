@@ -8,14 +8,15 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              IsVisible="True"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl.SystemTaskBox">
-    <Grid>
-        <Grid Background="Black" Opacity="1" Name="BackGrid" PointerPressed="BackGrid_OnPointerPressed">
+        <Grid Opacity="1" Name="BackGrid" PointerPressed="BackGrid_OnPointerPressed">
             <Grid.Transitions>
                 <Transitions>
                     <DoubleTransition Property="Opacity" Easing="ExponentialEaseOut" Duration="0:0:0.7"></DoubleTransition>
                 </Transitions>
             </Grid.Transitions>
-        </Grid>
+            <Grid.Background>
+                <SolidColorBrush Opacity="0.75" Color="Black"></SolidColorBrush>
+            </Grid.Background>
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="32">
             <Label Foreground="White" FontSize="48" FontWeight="Bold" Name="TimeBox">Time</Label>
             <Label Name="Trip1Box" FontSize="14" HorizontalAlignment="Right">累了就早点休息吧 :D</Label>

@@ -236,10 +236,8 @@ public partial class GameMange : UserControl,IPage
                 };
                 launc.Click += (_, __) =>
                 {
-                    var dow = new LaunchGame();
-                    dow.Version = versionName;
-                    dow.Tuid = SystemMessageTaskMange.AddTask(dow);
-                    dow.Launch();
+                  //  var dow = new LaunchGameTask(versionName,Config.MainConfig.GameFolders[Config.MainConfig.SelectedGameFolder].Path);
+                    //SystemMessageTaskMange.AddTask(dow);
                 };
 
                     var sett = new Button()

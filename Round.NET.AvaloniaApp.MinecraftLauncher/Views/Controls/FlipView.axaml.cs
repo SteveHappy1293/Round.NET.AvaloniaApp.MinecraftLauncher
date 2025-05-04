@@ -50,7 +50,6 @@ public partial class FlipView : UserControl
     }
 
     public static bool ContainsLinkFormat(string text)
-
     {
         string pattern = @".*<a.*</a>.*";
 

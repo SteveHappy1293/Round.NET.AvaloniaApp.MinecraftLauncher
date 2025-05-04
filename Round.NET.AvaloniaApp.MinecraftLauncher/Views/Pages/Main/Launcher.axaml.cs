@@ -30,7 +30,6 @@ public partial class Launcher : UserControl,IParentPage
 {
     public void Open()
     {
-        new Window{Content = new ToastBase{VerticalAlignment = VerticalAlignment.Center,HorizontalAlignment = HorizontalAlignment.Center}}.Show();
         Core.MainWindow.ChangeMenuItems(new List<MenuItem>());
     }
 

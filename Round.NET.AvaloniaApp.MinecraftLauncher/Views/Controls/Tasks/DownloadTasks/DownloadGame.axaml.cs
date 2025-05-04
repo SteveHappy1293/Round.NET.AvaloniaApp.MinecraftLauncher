@@ -17,7 +17,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.DownloadGame;
 
-public partial class DownloadGame : UserControl
+public partial class DownloadGame : TaskControl
 {
     private string _version;
 
@@ -187,7 +187,7 @@ public partial class DownloadGame : UserControl
                 Dispatcher.UIThread.Invoke(()=>JDLabel.Content = $"当前进度：{args.Progress*100:0.00} %");
                 if (args.Progress*100 >= 99)
                 {
-                    SystemMessageTaskMange.DeleteTask(Tuid);
+                    //SystemMessageTaskMange.DeleteTask(Tuid);
                     Message.Show("下载任务", $"游戏 {_version} 已下载完毕。", InfoBarSeverity.Success);
                 }
             });

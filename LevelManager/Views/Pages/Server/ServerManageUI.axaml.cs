@@ -101,17 +101,19 @@ public partial class ServerManageUI : UserControl,IPage
         NetworkBox.Items.Clear();
         foreach (var n in NetworkInterface.GetAllNetworkInterfaces())
         {
-
-            var ipProperties = n.GetIPProperties();
-            var ipv4Properties = ipProperties.UnicastAddresses.FirstOrDefault(ua => ua.Address.AddressFamily == AddressFamily.InterNetwork);
-            if (ipv4Properties!= null)
+            var ipv4Properties = n.GetIPProperties().UnicastAddresses
+                .FirstOrDefault(ua => ua.Address.AddressFamily == AddressFamily.InterNetwork);
+            if (ipv4Properties != null)
             {
                 NetworkBox.Items.Add(new ComboBoxItem
-                    { Content = $"{n.Name}（{n.OperationalStatus}）（IP：{ipv4Properties.Address}）" ,Tag = ipv4Properties.Address});
+                {
+                    Content = $"{n.Name}（{n.OperationalStatus}）（IP：{ipv4Properties.Address}）",
+                    Tag = ipv4Properties.Address
+                });
             }
         }
-
     }
+
     public void UpdateLanServers()
     {
         UpdateNetwork();
@@ -404,9 +406,7 @@ public partial class ServerManageUI : UserControl,IPage
     {
         try
         {
-            RefreshUI(
-                Server.MinecraftServerDiscoverer.DiscoverMinecraftServers(
-                    (IPAddress)((ComboBoxItem)NetworkBox.SelectedItem).Tag), LANServerBox);
+            //TODO:LAN Server
         }
         catch (Exception ex)
         {

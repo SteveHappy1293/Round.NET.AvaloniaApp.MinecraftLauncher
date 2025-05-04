@@ -97,7 +97,7 @@
                 </Transitions>
             </Setter>
         </Style>
-        <Style Selector="downloadGame|DownloadGame">
+        <Style Selector="downloadGame|TaskControl">
             <Setter Property="Transitions">
                 <Transitions>
                     <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
