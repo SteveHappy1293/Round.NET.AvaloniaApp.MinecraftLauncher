@@ -46,14 +46,16 @@ public partial class JavaSetting : UserControl,IPage
         Task.Run(() => {
             // 更新 UI
             Modules.Java.FindJava.LoadJava();
+            Thread.Sleep(300);
             Dispatcher.UIThread.Invoke(() =>
             {
                 LoadJava();
             });
+            
+            IsEdit = true;
         }); // 更新Java设置下拉框
         MerInputBox.Text = Config.MainConfig.JavaUseMemory.ToString();
         JavaCheckBox.IsChecked = Config.MainConfig.IsLaunchJavaMemory;
-        IsEdit = true;
     }
 
     public void RefreshMer()
@@ -141,9 +143,6 @@ public partial class JavaSetting : UserControl,IPage
             Dispatcher.UIThread.Invoke(() =>
             {
                 LoadJava();
-            });
-            Dispatcher.UIThread.Invoke(() =>
-            {
                 RefuseJava.Content = "刷新";
                 RefuseJava.IsEnabled = true;
             });

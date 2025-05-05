@@ -3,6 +3,7 @@
 using Avalonia;
 using Avalonia.ReactiveUI;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Desktop;
 
@@ -14,7 +15,8 @@ class Program
     [STAThread]
     public static void Main(string[] args)
     {
-
+        Config.LoadConfig();
+        
         BuildAvaloniaApp()
             .StartWithClassicDesktopLifetime(args);
     }
