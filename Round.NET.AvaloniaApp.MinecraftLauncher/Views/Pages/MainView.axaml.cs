@@ -28,7 +28,6 @@ public partial class MainView : UserControl
     {
         User.LoadUser();
         StarGroup.LoadStars();
-        Modules.Server.ServerMange.Load();
         
         InitializeComponent();
         
@@ -202,9 +201,9 @@ public partial class MainView : UserControl
     public void laun()
     {
         var Sel = Config.MainConfig.SelectedGameFolder;
-        var dow = new LaunchJavaEdtion();
+        var dow = new LaunchGame();
         dow.Version = Path.GetFileName(Path.GetFileName(Directory.GetDirectories($"{Config.MainConfig.GameFolders[Sel].Path}/versions")[Config.MainConfig.GameFolders[Sel].SelectedGameIndex]));
-        dow.Tuid = SystemMessageTaskMange.AddTask(dow);
+        SystemMessageTaskMange.AddTask(dow);
         dow.Launch();
     }
     private void LaunchButton_OnClick(object? sender, RoutedEventArgs e)
