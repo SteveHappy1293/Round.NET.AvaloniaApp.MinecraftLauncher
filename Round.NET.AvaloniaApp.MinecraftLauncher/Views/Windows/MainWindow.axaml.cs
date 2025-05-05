@@ -190,6 +190,10 @@ public partial class MainWindow : Window
 
     public void ChangeMenuItems(List<MenuItem> menuItems)
     {
+        for (int i = 0; i < menuItems.Count; i++)
+        {
+            menuItems[i].CornerRadius = new CornerRadius(16);
+        }
         Menu.Margin = new Thickness(20, 0, -20, 0);
         Menu.Opacity = 0;
         Task.Run(() =>

@@ -16,6 +16,7 @@ using FluentAvalonia.UI.Controls;
 using HeroIconsAvalonia.Controls;
 using HeroIconsAvalonia.Enums;
 using Microsoft.VisualBasic.CompilerServices;
+using OverrideLauncher.Core.Modules.Classes.Version;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Install;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
@@ -72,7 +73,18 @@ public partial class LaunchJavaEdtion : UserControl
         {
             try
             {
-                bool assets = Modules.Game.JavaEdtion.Launch.LaunchJavaEdtion.ResourceCompletion(Version);
+                bool assets = Modules.Game.JavaEdtion.Launch.LaunchJavaEdtion.ResourceCompletion(new VersionParse(new()
+                {
+                    GameName = Version,
+                    GameCatalog = Dir
+                }), (logs, press) =>
+                {
+                    Dispatcher.UIThread.Invoke(() =>
+                    {
+                        JCAssetsJDBar.Value = (int)press;
+                        JDLabel.Content = logs;
+                    });
+                });
                 Dispatcher.UIThread.Invoke(() => JCAssetsJDBar.Value = 100);
                 if (!assets)
                 {
@@ -104,6 +116,7 @@ public partial class LaunchJavaEdtion : UserControl
                             Version,
                             ((args) =>
                             {
+                                Console.WriteLine(args);
                                 try
                                 {
                                     LogOutput.Append($"{args}");
