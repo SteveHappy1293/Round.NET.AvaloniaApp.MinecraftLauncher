@@ -29,7 +29,6 @@ public partial class MainView : UserControl
         User.LoadUser();
         StarGroup.LoadStars();
         Modules.Server.ServerMange.Load();
-        MinecraftLauncher.Modules.Java.FindJava.JavasList.Clear();
         
         InitializeComponent();
         

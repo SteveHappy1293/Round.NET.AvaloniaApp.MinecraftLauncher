@@ -81,7 +81,6 @@ public class Config
     {
         if (!File.Exists(Path.GetFullPath(ConfigFileName)))
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(ConfigFileName));
             SaveConfig();
             return;
         }

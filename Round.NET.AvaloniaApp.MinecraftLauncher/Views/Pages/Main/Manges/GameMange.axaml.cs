@@ -44,44 +44,47 @@ public partial class GameMange : UserControl,IPage
             int count = 0;
             while (true)
             {
-                if (GameDirBox.SelectedIndex == -1)
+                if (IsEdit)
                 {
-                    continue;
-                }
-                try
-                {
-                    // Dispatcher.UIThread.Invoke(() => Modules.Message.Message.Show("Hello World!", "Title", InfoBarSeverity.Success));
-                    var path = $"{Config.MainConfig.GameFolders[GameDirBox.SelectedIndex].Path}/versions";
+                    if (GameDirBox.SelectedIndex == -1)
+                    {
+                        continue;
+                    }
                     try
                     {
-                        if (Directory.GetDirectories(path).Length != count)
+                        // Dispatcher.UIThread.Invoke(() => Modules.Message.Message.Show("Hello World!", "Title", InfoBarSeverity.Success));
+                        var path = $"{Config.MainConfig.GameFolders[GameDirBox.SelectedIndex].Path}/versions";
+                        try
                         {
+                            if (Directory.GetDirectories(path).Length != count)
+                            {
+                                Dispatcher.UIThread.Invoke(() =>
+                                {
+                                    UpdateVersionList();
+                            
+                                    VersionBox.SelectedIndex = Config.MainConfig.GameFolders[GameDirBox.SelectedIndex]
+                                        .SelectedGameIndex;
+                                });
+                                count = Directory.GetDirectories(path).Length;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Directory.CreateDirectory(path);
                             Dispatcher.UIThread.Invoke(() =>
                             {
+                                IsEdit = false;
+                                GameDirBox.SelectedIndex = 0;
+                                Config.MainConfig.SelectedGameFolder = 0;
+                                count = 0;
+                                VersionBox.Items.Clear();
                                 UpdateVersionList();
-                            
-                                VersionBox.SelectedIndex = Config.MainConfig.GameFolders[GameDirBox.SelectedIndex]
-                                    .SelectedGameIndex;
-                            });
-                            count = Directory.GetDirectories(path).Length;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Directory.CreateDirectory(path);
-                        Dispatcher.UIThread.Invoke(() =>
-                        {
-                            IsEdit = false;
-                            GameDirBox.SelectedIndex = 0;
-                            Config.MainConfig.SelectedGameFolder = 0;
-                            count = 0;
-                            VersionBox.Items.Clear();
-                            UpdateVersionList();
                         
-                            IsEdit = true;
-                        });
-                    }
-                }catch{ }
+                                IsEdit = true;
+                            });
+                        }
+                    }catch{ }
+                }
                 Thread.Sleep(100);
             }
         });
@@ -98,9 +101,9 @@ public partial class GameMange : UserControl,IPage
 
                 GameDirBox.SelectedIndex = Config.MainConfig.SelectedGameFolder;
             });
-        });
         
-        IsEdit = true;
+            IsEdit = true;
+        });
     }
     private void GameDirBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {

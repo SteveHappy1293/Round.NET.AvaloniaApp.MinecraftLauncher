@@ -46,11 +46,8 @@ public static class RJavaUtil {
 
             string[] versionParts = versionInfo.Split(".");
             return new RJavaEntry {
-                Is64Bit = is64,
                 JavaPath = path,
                 JavaVersion = versionInfo,
-                JavaDirectoryPath = Directory.GetParent(path).FullName,
-                JavaSlugVersion = (int.Parse(versionParts[0]) == 1) ? int.Parse(versionParts[1]) : int.Parse(versionParts[0]),
             };
         } catch (Exception ex) {
             Console.WriteLine($"Error getting Java info: {ex.Message}");

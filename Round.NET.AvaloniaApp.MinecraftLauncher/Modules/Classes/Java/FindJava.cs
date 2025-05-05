@@ -14,8 +14,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Java;
 
 public class FindJava
 {
-    public static bool IsFinish = false;
-    public static List<RJavaEntry> JavasList { get; set; } = new();
+    public static List<RJavaEntry> JavasList { get; private set; }
 
     public static void Find()
     {
@@ -60,15 +59,13 @@ public class FindJava
                 JavasList.Add(javalist);
             }
         }
-
-        IsFinish = true;
     }
 
     public const string JavaFileName = "../RMCL/RMCL.Config/Java.json";
 
     public static void LoadJava()
     {
-        if (!File.Exists(JavaFileName))
+        if (!File.Exists(Path.GetFullPath(JavaFileName)))
         {
             Directory.CreateDirectory(Path.GetDirectoryName(JavaFileName));
             Find();
@@ -78,6 +75,7 @@ public class FindJava
         var javajson = File.ReadAllText(Path.GetFullPath(JavaFileName));
         if (string.IsNullOrEmpty(javajson))
         {
+            Find();
             SaveJava();
         }
         else
