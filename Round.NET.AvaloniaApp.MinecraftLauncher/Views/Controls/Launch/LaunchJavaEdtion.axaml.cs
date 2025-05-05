@@ -47,20 +47,13 @@ public partial class LaunchJavaEdtion : UserControl
         InitializeComponent();
     }
 
-    private int Error = 0;
-    private int Warning = 0; 
-    private int StackTrace = 0; 
-    private int Debug = 0; 
-    private int Fatal = 0; 
-    private int Info = 0; 
-
     private Process GameProcess;
     private StringBuilder LogOutput = new();
     private Thread GameThread;
     private bool UserExit = false;
     private StackPanel LogPanel = new();
     
-    LogsWindow window = new LogsWindow();
+    LogsWindow window = new();
     public void Launch()
     {
         void ShowError(Exception ex)
@@ -112,8 +105,9 @@ public partial class LaunchJavaEdtion : UserControl
                 {
                     try
                     {
-                         Modules.Game.JavaEdtion.Launch.LaunchJavaEdtion.LaunchGame(Dir,
-                            Version,
+                         Modules.Game.JavaEdtion.Launch.LaunchJavaEdtion.LaunchGame(
+                            Dir,
+                            Version, out GameProcess,
                             ((args) =>
                             {
                                 Console.WriteLine(args);
@@ -150,7 +144,7 @@ public partial class LaunchJavaEdtion : UserControl
                                         }
                                     });
 
-                                    /*if (!Launched)
+                                    if (!Launched)
                                     {
                                         Launched = true;
                                         Message.Show("启动游戏", $"游戏 {Version} 已启动！", InfoBarSeverity.Success);
@@ -158,7 +152,6 @@ public partial class LaunchJavaEdtion : UserControl
                                         {
                                             Dispatcher.UIThread.Invoke(()=>LogButton_OnClick());
                                         }
-                                        GameProcess = .Process;
                                         Dispatcher.UIThread.Invoke(() => LaunJDBar.Value = 100);
                                         Thread.Sleep(300);
                                         Dispatcher.UIThread.Invoke(() =>
@@ -237,7 +230,7 @@ public partial class LaunchJavaEdtion : UserControl
                                                 ShowError(ex);
                                             }
                                         });
-                                    }*/
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
@@ -256,7 +249,7 @@ public partial class LaunchJavaEdtion : UserControl
                                         window.TheCallBackIsInvalid();
                                         if (Config.MainConfig.GameLogOpenModlue == 2)
                                         {
-                                            Dispatcher.UIThread.Invoke(()=>LogButton_OnClick());
+                                            Dispatcher.UIThread.Invoke(() => LogButton_OnClick());
                                         }
                                     }
                                     else if (!UserExit)
@@ -306,53 +299,6 @@ public partial class LaunchJavaEdtion : UserControl
             window.TheCallBackIsInvalid();
         }
     }
-    /*private TextBlock GetLogLabel(MinecraftLogLevel logtype, string log)
-    {
-        var label = new TextBlock()
-        {
-            Text = $"[{logtype}]{log}",
-            HorizontalAlignment = HorizontalAlignment.Stretch,
-            VerticalAlignment = VerticalAlignment.Top,
-            Opacity = 0
-        };
-        switch (logtype)
-        {
-            case MinecraftLogLevel.Error:
-                label.Foreground = Brushes.Orange;
-                Error++;
-                break;
-            case MinecraftLogLevel.Warning:
-                label.Foreground = Brushes.Yellow;
-                Warning++;
-                break;
-            case MinecraftLogLevel.StackTrace:
-                label.Foreground = Brushes.HotPink;
-                StackTrace++;
-                break;
-            case MinecraftLogLevel.Debug:
-                label.Foreground = Brushes.Green;
-                Debug++;
-                break;
-            case MinecraftLogLevel.Fatal:
-                label.Foreground = Brushes.Red;
-                Fatal++;
-                break;
-            default:
-                label.Foreground = Brushes.White;
-                Info++;
-                break;
-        }
-        window.RefreshCount(new LogsWindow.CountConfig()
-        {
-            Debug = Debug,
-            Error = Error,
-            Info = Info,
-            Warning = Warning,
-            StackTrace = StackTrace,
-            Fatal = Fatal
-        });
-        return label;
-    }*/
     private void LogButton_OnClick(object? sender = null, RoutedEventArgs e= null)
     {
         if (window.IsOpen)
@@ -363,15 +309,6 @@ public partial class LaunchJavaEdtion : UserControl
         window.LogsStackPanel = LogPanel;
         window.LaunchJavaEdtions = this;
         window.Show();
-        window.Start();
-        window.RefreshCount(new LogsWindow.CountConfig()
-        {
-            Debug = Debug,
-            Error = Error,
-            Info = Info,
-            Warning = Warning,
-            StackTrace = StackTrace,
-            Fatal = Fatal
-        });
+        window.Start(LogOutput);
     }
 }

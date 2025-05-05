@@ -21,7 +21,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch
 
 public class LaunchJavaEdtion
 {
-    public static async void LaunchGame(string Dir,string VersionID,Action<string> LaunchingOutput,Action Exit,string Server = null)
+    public static void LaunchGame(string Dir,string VersionID,out Process gameProcess,Action<string> LaunchingOutput,Action Exit,string Server = null)
     {
         //UpdateServers(VersionID);
         
@@ -56,6 +56,8 @@ public class LaunchJavaEdtion
         try
         {
             var process = Runner.GameProcess;
+            process.EnableRaisingEvents = true; // 启用事件
+            gameProcess = process;
             process.Exited += (_, _) => Exit();
         }
         catch (Exception ex)

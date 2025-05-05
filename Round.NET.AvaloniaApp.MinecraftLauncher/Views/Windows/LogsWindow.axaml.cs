@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -16,7 +17,6 @@ public partial class LogsWindow : AppWindow
     public StackPanel LogsStackPanel { get; set; } = new();
     public LaunchJavaEdtion LaunchJavaEdtions { get; set; }
     public bool IsOpen { get; set; } = false;
-    public CountConfig Count { get; set; } = new();
     public LogsWindow()
     {
         InitializeComponent();
@@ -38,11 +38,11 @@ public partial class LogsWindow : AppWindow
         });
     }
 
-    public void Start()
+    public void Start(StringBuilder logs)
     {
         this.MainView.Content = LogsStackPanel;
         IsOpen = true;
-        RefreshCount(Count);
+        RefreshCount(logs);
         
     }
 
@@ -50,27 +50,9 @@ public partial class LogsWindow : AppWindow
     {
         MainView.Content = new Grid();
     }
-    public class CountConfig
+    public void RefreshCount(StringBuilder logs)
     {
-        public int Error = 0;
-        public int Warning = 0; 
-        public int StackTrace = 0; 
-        public int Debug = 0; 
-        public int Fatal = 0; 
-        public int Info = 0; 
-    }
-    public void RefreshCount(CountConfig config)
-    {
-        Dispatcher.UIThread.Invoke(() =>
-        {
-            Fatal.Content = $"致命：{config.Fatal}";
-            Info.Content = $"信息：{config.Info}";
-            Error.Content = $"错误：{config.Error}";
-            Warning.Content = $"警告：{config.Warning}";
-            Debug.Content = $"调试：{config.Debug}";
-            StackTrace.Content = $"堆栈：{config.StackTrace}";
-        });
-        Count = config;
+        
     }
 
     private void KillGame_OnClick(object? sender, RoutedEventArgs e)
