@@ -1,14 +1,15 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
+﻿<controls1:TaskControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             xmlns:controls1="clr-namespace:Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls"
              mc:Ignorable="d"
              MinHeight="165"
              MinWidth="300"
-             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks.LaunchGame">
-   <UserControl.Styles>
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch.LaunchGame">
+   <controls1:TaskControl.Styles>
         <Style Selector="Button">
             <Setter Property="Transitions">
                 <Transitions>
@@ -18,8 +19,8 @@
                 </Transitions>
             </Setter>
         </Style>
-    </UserControl.Styles>
-    <Border CornerRadius="6" BorderBrush="Black" BorderThickness="0"  Background="rgb(19,19,19)">
+    </controls1:TaskControl.Styles>
+    <controls1:TaskControl.TaskContent>
         <Grid Name="MainGrid">
             <Label Margin="8,5" HorizontalAlignment="Left" VerticalAlignment="Top" Name="TitleLabel">启动 Minecraft {Version}</Label>
             <Label Margin="8,27,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Name="JDLabel">当前进度：检查资源文件</Label>
@@ -34,5 +35,6 @@
                 <fluentIcons:FluentIcon Foreground="White" Icon="KeyCommand20Regular"/>
             </Button>
         </Grid>
-    </Border>
-</UserControl>
+    </controls1:TaskControl.TaskContent>
+        
+</controls1:TaskControl>

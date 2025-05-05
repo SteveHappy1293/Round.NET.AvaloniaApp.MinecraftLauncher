@@ -6,6 +6,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Threading;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.DownloadGame;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
@@ -58,11 +59,13 @@ public class SystemMessageTaskMange
         });  
     }
 
-    public static void DeleteTask(Guid tuid,StopReason stopReason = StopReason.None)
+    public static void DeleteTask(TaskControl task)
     {
+        Tasks.Remove(task);
+        Core.SystemTask.TaskListBox.Children.Remove(task);
         //var task = Core.SystemTask.Tasks[tuid];
-      //  task.Stop(stopReason);
-     //   Core.SystemTask.TaskListBox.Children.Remove(task.UIControl);
+        //  task.Stop(stopReason);
+        //   Core.SystemTask.TaskListBox.Children.Remove(task.UIControl);
         /*
         foreach (var con in Core.SystemTask.Tasks)
         {

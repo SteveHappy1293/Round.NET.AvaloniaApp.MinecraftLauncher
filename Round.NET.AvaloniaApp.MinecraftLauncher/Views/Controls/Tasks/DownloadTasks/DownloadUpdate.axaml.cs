@@ -21,7 +21,6 @@ public partial class DownloadUpdate : TaskControl
 {
     public string URL { get; set; } = string.Empty;
     public string Version { get; set; } = string.Empty;
-    public string Tuid { get; set; } = string.Empty;
     public DownloadUpdate()
     {
         InitializeComponent();
@@ -58,7 +57,7 @@ public partial class DownloadUpdate : TaskControl
                 var downloader = new DownloadService(downloadOpt);
                 downloader.DownloadFileCompleted += ((sender, args) =>
                 {
-                    //SystemMessageTaskMange.DeleteTask(Tuid);
+                    Stop();
                     Process.Start(Path.GetFullPath($"../RMCL/RMCL.Update/Installer/{Version}.exe"));
                     Thread.Sleep(100);
                     Environment.Exit(0);

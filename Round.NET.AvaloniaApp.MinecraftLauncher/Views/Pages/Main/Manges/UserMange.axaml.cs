@@ -15,8 +15,8 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
-using FluentAvalonia.UI.Controls; 
-using MinecraftLaunch.Base.Models.Authentication;
+using FluentAvalonia.UI.Controls;
+using OverrideLauncher.Core.Modules.Classes.Account;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Classes.User;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
@@ -25,7 +25,6 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Logs;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.User.Player;
 using User = Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User.User;
 
@@ -228,13 +227,13 @@ public partial class UserMange : UserControl,IPage
                 login.LoggedIn += (mi) =>
                 {
                     logincon.Hide();
-                    Modules.Message.Message.Show("账户管理",$"账户 {mi.Name} 已添加到用户管理中!\n登录模式：正版登录",InfoBarSeverity.Success);
-                    RLogs.WriteLog(mi.Name);
+                    Modules.Message.Message.Show("账户管理",$"账户 {mi.UserName} 已添加到用户管理中!\n登录模式：正版登录",InfoBarSeverity.Success);
+                    RLogs.WriteLog(mi.UserName);
                     User.AddAccount(mi);
                 };
                 try
                 {
-                    await login.Login();
+                    login.Login();
                 }
                 catch (Exception e)
                 {
@@ -274,7 +273,7 @@ public partial class UserMange : UserControl,IPage
                 {
                     if (!string.IsNullOrEmpty(name.Text))
                     {
-                        User.AddAccount(new OfflineAccount(name.Text,Guid.NewGuid(),Guid.NewGuid().ToString()));
+                        User.AddAccount(new OffineAuthenticator(name.Text).Authenticator());
                         Modules.Message.Message.Show("账户管理",$"账户 {name.Text} 已添加到用户管理中!\n登录模式：离线登录",InfoBarSeverity.Success);
 
                     }

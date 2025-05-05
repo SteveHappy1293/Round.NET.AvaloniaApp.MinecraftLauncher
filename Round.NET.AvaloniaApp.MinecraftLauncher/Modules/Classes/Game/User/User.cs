@@ -5,9 +5,9 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using Avalonia.Controls.Shapes;
 using HarfBuzzSharp;
-using MinecraftLaunch.Base.Enums;
-using MinecraftLaunch.Base.Models.Authentication;
-using MinecraftLaunch.Components.Authenticator;
+using OverrideLauncher.Core.Modules.Classes.Account;
+using OverrideLauncher.Core.Modules.Entry.AccountEntry;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Account;
 using Path = System.IO.Path;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.User;
@@ -21,15 +21,7 @@ public class User
         public string Skin  { get; set; } = string.Empty;
         public string Head  { get; set; } = string.Empty;
         public string Body  { get; set; } = string.Empty;
-        public AccountConfig Config { get; set; }
-    }
-    public class AccountConfig
-    {
-        public string RefreshToken { get; set; } = string.Empty;
-        public string AccessToken { get; set; } = string.Empty;
-        public string Username { get; set; } = string.Empty;
-        public string UUID { get; set; }
-        public DateTime RefreshTime { get; set; }
+        public AccountEntry Config { get; set; }
     }
     public static readonly string ConfigPath = Path.GetFullPath("../RMCL/RMCL.Config/User");
     public static List<UserConfig> Users = new();
@@ -53,23 +45,23 @@ public class User
     {
         Directory.CreateDirectory(ConfigPath);
 
-        var offlineAccount = new OfflineAccount("Steve",Guid.NewGuid(),Guid.NewGuid().ToString());
+        var offlineAccount = new OffineAuthenticator("Steve");
 
         var user = new UserConfig()
         {
             Type = "Offline",
-            Config = new AccountConfig()
+            Config = new AccountEntry()
             {
-                Username = offlineAccount.Name,
-                UUID = offlineAccount.Uuid.ToString(),
-                AccessToken = offlineAccount.AccessToken
+                UserName = offlineAccount.Authenticator().UserName,
+                UUID = offlineAccount.Authenticator().UUID.ToString(),
+                Token = offlineAccount.Authenticator().Token
             }
         };
         var json = Regex.Unescape(JsonSerializer.Serialize(user, new JsonSerializerOptions() { WriteIndented = true }).Replace("\\","\\\\"));
         File.WriteAllText(Path.Combine(ConfigPath,$"{user.UUID}.json"), json);
         Users.Add(user);
     }
-    public static Account GetAccount(string uuid)
+    public static AccountEntry GetAccount(string uuid)
     {
         foreach (var us in Users)
         {
@@ -77,33 +69,32 @@ public class User
             {
                 if (us.Type == "Offline")
                 {
-                    var of = new OfflineAccount(us.Config.Username,Guid.Parse(us.Config.UUID),Guid.NewGuid().ToString());
-                    return of;
+                    var of = new OffineAuthenticator(us.Config.UserName);
+                    return of.Authenticator();
                 }
                 else
                 {
-                    var mi = new MicrosoftAccount(us.Config.Username,Guid.Parse(us.Config.UUID),us.Config.AccessToken,us.Config.RefreshToken,us.Config.RefreshTime);
+                    var mi = new AccountEntry()
+                    {
+                        UserName = us.Config.UserName,
+                        UUID = us.Config.UUID,
+                        Token = us.Config.Token,
+                        AccountType = "msa"
+                    };
                     return mi;
                 }
             }
         }
         return null;
     }
-    public static void AddAccount(Account account)
+    public static void AddAccount(AccountEntry account)
     {
-        if (account.Type == AccountType.Microsoft)
+        if (account.AccountType == "msa")
         {
             var ac = new UserConfig()
             {
                 Type = "Microsoft",
-                Config = new AccountConfig()
-                {
-                    AccessToken = account.AccessToken,
-                    RefreshTime = ((MicrosoftAccount)account).LastRefreshTime,
-                    RefreshToken = ((MicrosoftAccount)account).RefreshToken,
-                    Username = ((MicrosoftAccount)account).Name,
-                    UUID = ((MicrosoftAccount)account).Uuid.ToString()
-                }
+                Config = account
             };
             var json = Regex.Unescape(JsonSerializer.Serialize(ac, new JsonSerializerOptions() { WriteIndented = true }));
             File.WriteAllText(Path.Combine(ConfigPath,$"{ac.UUID}.json"),json);
@@ -113,12 +104,7 @@ public class User
             var of = new UserConfig()
             {
                 Type = "Offline",
-                Config = new AccountConfig()
-                {
-                    AccessToken = account.AccessToken,
-                    Username = ((OfflineAccount)account).Name,
-                    UUID = Guid.NewGuid().ToString()
-                }
+                Config = account
             };
             var json = Regex.Unescape(JsonSerializer.Serialize(of, new JsonSerializerOptions() { WriteIndented = true }));
             File.WriteAllText(Path.Combine(ConfigPath,$"{of.UUID}.json"),json);

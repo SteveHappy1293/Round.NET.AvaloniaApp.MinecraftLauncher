@@ -20,7 +20,6 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Mange.TilesMange;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Initialize;
 

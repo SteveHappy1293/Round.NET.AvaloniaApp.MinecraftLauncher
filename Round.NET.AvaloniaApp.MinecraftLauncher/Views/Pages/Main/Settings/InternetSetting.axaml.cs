@@ -43,11 +43,6 @@ public partial class InternetSetting : UserControl,IPage
             DownloadThreadsCountBox.Description = $"下载器的下载线程数量 ({(int)DownloadThreadsCountSlider.Value})：";
             Config.MainConfig.DownloadThreads = (int)DownloadThreadsCountSlider.Value;
             Config.SaveConfig();
-            
-            DownloadMirrorManager.MaxThread = Config.MainConfig.DownloadThreads;
-            DownloadMirrorManager.IsEnableMirror = false;
-            
-            HttpUtil.Initialize();
         }
     }
     public void RefreshInternetStatus()

@@ -10,7 +10,6 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Entry.Stars;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Enum;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.GameManges;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Manges.StarManges;

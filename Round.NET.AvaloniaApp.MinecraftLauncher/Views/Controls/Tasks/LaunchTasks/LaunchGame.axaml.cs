@@ -16,17 +16,14 @@ using FluentAvalonia.UI.Controls;
 using HeroIconsAvalonia.Controls;
 using HeroIconsAvalonia.Enums;
 using Microsoft.VisualBasic.CompilerServices;
-using MinecraftLaunch.Base.Enums;
-using MinecraftLaunch.Launch;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Install;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.DownloadGame;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Windows;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 
 public partial class LaunchGame : TaskControl
 {
@@ -68,7 +65,7 @@ public partial class LaunchGame : TaskControl
         void ShowError(Exception ex)
         {
             Message.Show("启动游戏",$"启动出现了错误！",InfoBarSeverity.Error);
-           //SystemMessageTaskMange.DeleteTask(Tuid);
+            Stop();
         }
         Message.Show("启动游戏",$"已将游戏 {Version} 添加到启动任务中。",InfoBarSeverity.Success);
         GameThread = new Thread(() =>
@@ -79,7 +76,6 @@ public partial class LaunchGame : TaskControl
                 Dispatcher.UIThread.Invoke(() => JCAssetsJDBar.Value = 100);
                 if (!assets)
                 {
-
                     Dispatcher.UIThread.Invoke(() =>
                     {
                         JCAssetsJDBar.Value = 100;
@@ -89,7 +85,7 @@ public partial class LaunchGame : TaskControl
             }
             catch (Exception ex)
             {
-                //Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
+                Stop();
                 Message.Show("启动游戏",$"游戏 {Version} 启动失败：{ex.Message}",InfoBarSeverity.Error);
                 return;
             }
@@ -106,22 +102,11 @@ public partial class LaunchGame : TaskControl
                     {
                          Modules.Game.JavaEdtion.Launch.LaunchJavaEdtion.LaunchGame(Dir,
                             Version,
-                            (sender) =>
+                            ((args) =>
                             {
                                 try
                                 {
-                                    GameProcess = sender;
-                                }
-                                catch (Exception ex)
-                                {
-                                    Dispatcher.UIThread.Invoke(() => ShowError(ex));
-                                }
-                            },
-                            ((o, args) =>
-                            {
-                                try
-                                {
-                                    LogOutput.Append($"[{args.Data.LogLevel}]{args.Data.Log}");
+                                    LogOutput.Append($"{args}");
                                     Task.Run(() =>
                                     {
                                         try
@@ -130,11 +115,15 @@ public partial class LaunchGame : TaskControl
                                             {
                                                 try
                                                 {
-                                                    var label = GetLogLabel(args.Data.LogLevel, args.Data.Log);
-                                                    //label.Margin = new Thickness(50, 0);
+                                                    var label = new TextBlock()
+                                                    {
+                                                        Text = args,
+                                                        TextWrapping = TextWrapping.Wrap
+                                                    };
+                                                    label.Margin = new Thickness(50, 0);
                                                     LogPanel.Children.Add(label);
                                                     label.Opacity = 1;
-                                                    //label.Margin = new Thickness(0, 0);
+                                                    label.Margin = new Thickness(0, 0);
                                                 }
                                                 catch (Exception ex)
                                                 {
@@ -148,7 +137,7 @@ public partial class LaunchGame : TaskControl
                                         }
                                     });
 
-                                    if (!Launched && args.Data.LogLevel == MinecraftLogLevel.Info)
+                                    /*if (!Launched)
                                     {
                                         Launched = true;
                                         Message.Show("启动游戏", $"游戏 {Version} 已启动！", InfoBarSeverity.Success);
@@ -156,7 +145,7 @@ public partial class LaunchGame : TaskControl
                                         {
                                             Dispatcher.UIThread.Invoke(()=>LogButton_OnClick());
                                         }
-                                        GameProcess = ((MinecraftProcess)o).Process;
+                                        GameProcess = .Process;
                                         Dispatcher.UIThread.Invoke(() => LaunJDBar.Value = 100);
                                         Thread.Sleep(300);
                                         Dispatcher.UIThread.Invoke(() =>
@@ -235,7 +224,7 @@ public partial class LaunchGame : TaskControl
                                                 ShowError(ex);
                                             }
                                         });
-                                    }
+                                    }*/
                                 }
                                 catch (Exception ex)
                                 {
@@ -249,8 +238,7 @@ public partial class LaunchGame : TaskControl
                                     if (Launched)
                                     {
                                         Message.Show("启动游戏", $"游戏 {Version} 已退出！", InfoBarSeverity.Informational);
-                                       // Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
-                                       // SystemMessageTaskMange.DeleteTask(Tuid);
+                                        Stop();
                                         window.TheCallBackIsInvalid();
                                         if (Config.MainConfig.GameLogOpenModlue == 2)
                                         {
@@ -261,8 +249,7 @@ public partial class LaunchGame : TaskControl
                                     {
                                         Message.Show("启动游戏", $"游戏 {Version} 启动失败！日志：\n{LogOutput.ToString()}",
                                             InfoBarSeverity.Error);
-                                       // SystemMessageTaskMange.DeleteTask(Tuid);
-                                        //Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
+                                        
                                         window.TheCallBackIsInvalid();
                                     }
                                 }
@@ -293,7 +280,7 @@ public partial class LaunchGame : TaskControl
             {
                 GameProcess.Kill(true);
             }catch{ }
-            //Dispatcher.UIThread.Invoke(() => SystemMessageTaskMange.DeleteTask(Tuid));
+           Stop();
             Message.Show("启动游戏",$"游戏 {Version} 的启动任务已取消！",InfoBarSeverity.Warning);
             
             window.TheCallBackIsInvalid();
@@ -304,7 +291,7 @@ public partial class LaunchGame : TaskControl
             window.TheCallBackIsInvalid();
         }
     }
-    private TextBlock GetLogLabel(MinecraftLogLevel logtype, string log)
+    /*private TextBlock GetLogLabel(MinecraftLogLevel logtype, string log)
     {
         var label = new TextBlock()
         {
@@ -350,7 +337,7 @@ public partial class LaunchGame : TaskControl
             Fatal = Fatal
         });
         return label;
-    }
+    }*/
     private void LogButton_OnClick(object? sender = null, RoutedEventArgs e= null)
     {
         if (window.IsOpen)

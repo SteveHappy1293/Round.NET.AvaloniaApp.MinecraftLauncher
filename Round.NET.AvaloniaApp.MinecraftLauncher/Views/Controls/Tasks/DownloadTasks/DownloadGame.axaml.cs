@@ -7,9 +7,6 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
-using MinecraftLaunch.Base.Interfaces;
-using MinecraftLaunch.Base.Models.Network;
-using MinecraftLaunch.Components.Downloader;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Install;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
@@ -30,10 +27,13 @@ public partial class DownloadGame : TaskControl
             this.TitleLabel.Content = TitleLabel.Content.ToString().Replace("{Version}",_version);
         }
     }
-    public string Tuid { get; set; } = string.Empty;
     public List<Object> Modloaders { get; set; } = new();
     public DownloadGame()
     {
+        Title = "下载游戏任务";
+        SourceName = "DownloadGame";
+        Icon = Symbol.Download;
+        Description = "正在下载新游戏，稍作等待";
         InitializeComponent();
     }
 
@@ -70,7 +70,7 @@ public partial class DownloadGame : TaskControl
 
         Message.Show("下载任务", "下载任务已添加至后台。", InfoBarSeverity.Success);
         
-        Task.Run(async () =>
+        /*Task.Run(async () =>
         {
             #region 以往版本
 
@@ -191,6 +191,26 @@ public partial class DownloadGame : TaskControl
                     Message.Show("下载任务", $"游戏 {_version} 已下载完毕。", InfoBarSeverity.Success);
                 }
             });
+        });*/
+
+        Task.Run(() =>
+        {
+            OverrideLauncher.Core.Modules.Classes.Download.InstallGame ins = new OverrideLauncher.Core.Modules.Classes.Download.InstallGame(OverrideLauncher.Core.Modules.Classes.Download.InstallGame.TryingFindVersion(Version).Result, Version);
+            ins.ProgressCallback = (string logs, double progress) =>
+            {
+                Console.WriteLine(logs+"   "+progress);
+                if (logs == "Game client downloaded successfully.")
+                {
+                    Stop();
+                }
+                Dispatcher.UIThread.Invoke(() =>
+                {
+                    JDBar.Value = progress;
+                    JDLabel.Content = $"当前进度：{logs} - {progress:0.00}";
+                });
+            };
+            ins.DownloadThreadsCount = 512;
+            ins.Install(Config.MainConfig.GameFolders[Config.MainConfig.SelectedGameFolder].Path).Wait();
         });
     }
 }

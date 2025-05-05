@@ -6,17 +6,15 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
+using Downloader;
+using FluentAvalonia.Core;
 using FluentAvalonia.UI.Controls;
-using MinecraftLaunch.Base.Interfaces;
-using MinecraftLaunch.Base.Models.Game;
-using MinecraftLaunch.Base.Models.Network;
-using MinecraftLaunch.Components.Downloader;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Install;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 
-namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.DownloadGame;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 
 public partial class TaskControl : UserControl
 {
@@ -28,10 +26,25 @@ public partial class TaskControl : UserControl
 
     private string _title = "新任务";
     private string _sourceName = string.Empty;
+    private string _description = string.Empty;
     private Importance _importance = Importance.Normal;
     private DateTime _time = DateTime.Now;
     private bool _closable = true;
-    private Control _content;
+    private Symbol _icon = Symbol.Code;
+    private Control? _content = null;
+
+    public Symbol Icon
+    {
+        get
+        {
+            return _icon;
+        }
+        set
+        {
+            SymbolIcon.Symbol = value;
+            _icon = value;
+        }
+    }
     public string Title
     {
         get
@@ -91,6 +104,19 @@ public partial class TaskControl : UserControl
             _closable = value;
         }
     }
+
+    public string Description
+    {
+        get
+        {
+            return _description;
+        }
+        protected set
+        {
+            DescriptionLabel.Content = value;
+            _description = value;
+        }
+    }
     public static readonly StyledProperty<Control> TaskContentProperty =
         AvaloniaProperty.Register<TaskControl, Control>("ContentProperty");
     public Control TaskContent
@@ -105,12 +131,34 @@ public partial class TaskControl : UserControl
             SetValue(TaskContentProperty, value);
         }
     }
-
-    public void UpdateUI()
+    
+    public void Stop(StopReason reason = StopReason.None)
     {
-        ContentPresenter.Content = Content;
+        SystemMessageTaskMange.DeleteTask(this);
     }
-    public void Stop(StopReason reason)
+
+    public void OnMessageCenterOpen()
+    {
+        var time = DateTime.Now - Time;
+        if (time.TotalSeconds <= 60)
+        {
+            TimeLabel.Content = $"{(int)Math.Truncate(time.TotalSeconds)} 秒前，开始于 {Time}";
+        }
+        else if (time.TotalMinutes <= 60)
+        {
+            TimeLabel.Content = $"{(int)Math.Truncate(time.TotalMinutes)} 分钟前，开始于 {Time}";
+        }
+        else if (time.TotalHours <= 12)
+        {
+            TimeLabel.Content = $"{(int)Math.Truncate(time.TotalHours)} 小时前，开始于 {Time}";
+        }
+        else
+        {
+            TimeLabel.Content = $"{time}";
+        }
+    }
+
+    public void OnMessageCenterClose()
     {
         
     }

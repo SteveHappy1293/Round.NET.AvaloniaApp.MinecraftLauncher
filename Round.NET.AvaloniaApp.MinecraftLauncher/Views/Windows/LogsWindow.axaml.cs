@@ -8,7 +8,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Windowing;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Windows;
 

@@ -6,7 +6,7 @@
              xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d"
              MinWidth="300"
-             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.DownloadGame.TaskControl">
+             x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.TaskControl">
     <Grid>
         <Border CornerRadius="5" Margin="2" Background="rgb(19,19,19)">
             <Grid>
@@ -16,14 +16,14 @@
                     </Button>
                 </StackPanel>
                 <StackPanel>
-                    <StackPanel Margin="4" Orientation="Horizontal">
-                        <controls:SymbolIcon Symbol="Code"></controls:SymbolIcon>
+                    <StackPanel Margin="8" Orientation="Horizontal">
+                        <controls:SymbolIcon Symbol="Code" Name="SymbolIcon"></controls:SymbolIcon>
                         <Label Content="TITLE" Margin="4,0,0,0" FontWeight="Bold" Name="TitleLabel"></Label>
                     </StackPanel>
-                    <Label Content="描述" Margin="2,-8,0,0" Foreground="Gray" FontSize="12" Name="DescriptionLabel"></Label>
+                    <Label Content="描述" Margin="8,-12,0,0" Foreground="Gray" FontSize="12" Name="DescriptionLabel"></Label>
                     <ContentPresenter Name="ContentPresenter"></ContentPresenter>
-                    <StackPanel Margin="4" Orientation="Horizontal">
-                        <Label Content="0 分钟前" Foreground="Gray" Name="TimeLabel"></Label>
+                    <StackPanel Margin="8" Orientation="Horizontal">
+                        <Label Content="刚才" Foreground="Gray" Name="TimeLabel"></Label>
                     </StackPanel>
                 </StackPanel>
             </Grid>

@@ -69,6 +69,10 @@ public partial class SystemTaskBox : UserControl
     {
         if (IsVisible)
         {
+            foreach (var VARIABLE in SystemMessageTaskMange.Tasks)
+            {
+                VARIABLE.OnMessageCenterOpen();
+            }
             //MainPanel.Margin = new Thickness(8, 8, -400, 8);
             //MainPanel.Opacity = 0;
             BackGrid.Opacity = 0;
