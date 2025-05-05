@@ -1,20 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using Avalonia.Controls;
-using FluentAvalonia.UI.Controls;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.VersionServerMange.Library.Entry;
 using Round.NET.VersionServerMange.Library.Modules;
 
-namespace LevelManager.Views.Pages.Server;
+namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Server;
 
-public class ServerManage
+public class ServerMange
 {
     public static List<ServerEntry> Servers = new List<ServerEntry>();
     public static readonly string ConfigFile = "../RMCL/RMCL.Config/Server.json";

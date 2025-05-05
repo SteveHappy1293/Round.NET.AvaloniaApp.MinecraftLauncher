@@ -15,7 +15,7 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Config;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 
 namespace LevelManager.Views.Pages;
@@ -105,7 +105,7 @@ public partial class LevelManage : UserControl,IPage
                                 };
                                 launch.Click += (_, __) =>
                                 {
-                                    var dow = new LaunchGame();
+                                    var dow = new LaunchJavaEdtion();
                                     dow.Dir = Path.Combine(path, "..", "..", "..");
                                     dow.Version = new DirectoryInfo(Path.Combine(path, "..")).Name;
                                     dow.Tuid = SystemMessageTaskMange.AddTask(dow);

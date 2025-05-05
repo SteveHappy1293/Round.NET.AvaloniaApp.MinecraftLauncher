@@ -11,8 +11,7 @@
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main.Launcher">
     <Grid>
         <ScrollViewer>
-            <StackPanel Margin="32">
-                <Label Foreground="White" FontSize="48">启动屏幕</Label>
+            <StackPanel Margin="20">
                 <customControls:AnimatedStackPanel AnimationDirection="Top" Name="MainScreen"/>
             </StackPanel>
         </ScrollViewer>

@@ -7,7 +7,6 @@ using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Windowing;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Windows;
@@ -15,7 +14,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Windows;
 public partial class LogsWindow : AppWindow
 {
     public StackPanel LogsStackPanel { get; set; } = new();
-    public LaunchGame LaunchJavaEdtions { get; set; }
+    public LaunchJavaEdtion LaunchJavaEdtions { get; set; }
     public bool IsOpen { get; set; } = false;
     public CountConfig Count { get; set; } = new();
     public LogsWindow()
@@ -76,7 +75,7 @@ public partial class LogsWindow : AppWindow
 
     private void KillGame_OnClick(object? sender, RoutedEventArgs e)
     {
-        //LaunchJavaEdtions.KillGame_OnClick(sender, e);
+        LaunchJavaEdtions.KillGame_OnClick(sender, e);
     }
     public void TheCallBackIsInvalid()
     {

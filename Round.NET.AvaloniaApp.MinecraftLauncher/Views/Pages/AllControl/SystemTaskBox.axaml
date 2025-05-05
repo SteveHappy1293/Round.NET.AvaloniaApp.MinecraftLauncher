@@ -8,57 +8,45 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              IsVisible="True"
              x:Class="Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl.SystemTaskBox">
-        <Grid Opacity="1" Name="BackGrid" PointerPressed="BackGrid_OnPointerPressed">
+    <Grid>
+        <Grid Background="Black" Opacity="1" Name="BackGrid" PointerPressed="BackGrid_OnPointerPressed">
             <Grid.Transitions>
                 <Transitions>
                     <DoubleTransition Property="Opacity" Easing="ExponentialEaseOut" Duration="0:0:0.7"></DoubleTransition>
                 </Transitions>
             </Grid.Transitions>
-            <Grid.Background>
-                <SolidColorBrush Opacity="0.75" Color="Black"></SolidColorBrush>
-            </Grid.Background>
-        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="32">
-            <Label Foreground="White" FontSize="48" FontWeight="Bold" Name="TimeBox">Time</Label>
-            <Label Name="Trip1Box" FontSize="14" HorizontalAlignment="Right">累了就早点休息吧 :D</Label>
-        </StackPanel>
-        <StackPanel Margin="48">
-            <Label Foreground="White" FontSize="42">进程与通知中心</Label>
-            <Label FontSize="14" >你的所有后台操作和通知都会显示在此处。</Label>
-            <StackPanel  Margin="0,8,0,0">
-                <Button Margin="0,0,16,0" Padding="0" Background="Transparent" BorderThickness="0">
-                    <StackPanel VerticalAlignment="Bottom"  Height="32">
-                        <Label FontSize="18" Content="所有任务"></Label>
-                    </StackPanel>
-                </Button>
-                <customControls:AnimatedStackPanel Name="TaskListBox" HorizontalAlignment="Left" Width="400" AnimationDirection="Left">
-                    
-                </customControls:AnimatedStackPanel>
-                <Button Margin="0,0,16,0" Padding="0" Background="Transparent" BorderThickness="0">
-                    <StackPanel VerticalAlignment="Bottom" Height="32">
-                        <Label FontSize="18" Content="所有通知" ></Label>
-                    </StackPanel>
-                </Button>
-                <customControls:AnimatedStackPanel Name="MessageListBox" HorizontalAlignment="Left" Width="400" AnimationDirection="Left">
-                    
-                </customControls:AnimatedStackPanel>
-            </StackPanel>
-        </StackPanel>
-        <Grid HorizontalAlignment="Right" VerticalAlignment="Stretch" Name="MainPanel" Width="480" Margin="8" IsVisible="False">
-            <Grid.Transitions>
+            <Label IsVisible="False" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="100" Margin="50" Name="TimeBox" FontWeight="Bold">Time</Label>
+            <Label Name="Trip1Box" Margin="50,160" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold" IsVisible="False">累了就早点休息吧 :D</Label>
+        </Grid>
+        <Button Height="32" Width="60">
+            <DockPanel>
+                <fluentIcons:FluentIcon Icon="ArrowLeft20Regular" Height="16"></fluentIcons:FluentIcon>
+                <Label VerticalAlignment="Center">返回</Label>
+            </DockPanel>
+        </Button>
+        
+        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,45,0,0" Name="MessageScrollViewer" Width="320" Padding="10">
+            <ScrollViewer.Transitions>
                 <Transitions>
                     <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
                 </Transitions>
-                
-            </Grid.Transitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
+            </ScrollViewer.Transitions>
+            <customControls:AnimatedStackPanel Name="MessageListBox" Width="280" AnimationDirection="Top">
+                    
+            </customControls:AnimatedStackPanel>
+        </ScrollViewer>
+        
+        <ScrollViewer HorizontalAlignment="Right" VerticalAlignment="Stretch" Name="MainPanel" Width="380" Margin="0,45,-380,0">
+            <ScrollViewer.Transitions>
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
+                </Transitions>
+            </ScrollViewer.Transitions>
             <StackPanel Margin="10">
                 <Border HorizontalAlignment="Stretch"
                         VerticalAlignment="Top"
                         Height="80"
-                        Margin="10,4,10,2"
+                        Margin="10,4,10,5"
                         CornerRadius="6"
                         Background="rgb(19,19,19)">
                     <Grid>
@@ -68,9 +56,6 @@
                     </Grid>
                 </Border>
             </StackPanel>
-            <ScrollViewer Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="8" Name="MessageScrollViewer" Width="400" >
-
-            </ScrollViewer>
-        </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>

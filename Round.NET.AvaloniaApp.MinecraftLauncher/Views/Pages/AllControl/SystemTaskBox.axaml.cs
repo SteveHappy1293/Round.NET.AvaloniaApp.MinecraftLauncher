@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -13,7 +12,6 @@ using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Info;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.AllControl;
@@ -60,40 +58,33 @@ public partial class SystemTaskBox : UserControl
             }
             catch
             {
-                 
+                Dispatcher.UIThread.Invoke(UpdateMessage);
             }
         });
     }
-
     public void Show()
     {
         if (IsVisible)
         {
-            foreach (var VARIABLE in SystemMessageTaskMange.Tasks)
-            {
-                VARIABLE.OnMessageCenterOpen();
-            }
-            //MainPanel.Margin = new Thickness(8, 8, -400, 8);
-            //MainPanel.Opacity = 0;
+            MainPanel.Margin = new Thickness(0,45,-380,0);
             BackGrid.Opacity = 0;
-            //TimeBox.Margin = new Thickness(-50,50);
-            //Trip1Box.Margin = new Thickness(-50,160);
-            //MessageScrollViewer.Margin = new Thickness(-40 - 290, 40, 290, 0);
+            TimeBox.Margin = new Thickness(-50,50);
+            Trip1Box.Margin = new Thickness(-50,160);
+            MessageScrollViewer.Margin = new Thickness(-5 - 290, 45, 290, 0);
             Task.Run(() =>
             {
-                Thread.Sleep(100);
+                Thread.Sleep(800);
                 Dispatcher.UIThread.Invoke(() => this.IsVisible = false);
             });
         }
         else
         {
-            //MainPanel.Margin = new Thickness(8);
-            //MainPanel.Opacity = 1;
-            BackGrid.Opacity = 1;
+            MainPanel.Margin = new Thickness(0,45,-10,0);
+            BackGrid.Opacity = 0.6;
             this.IsVisible = true;
-            //TimeBox.Margin = new Thickness(50);
-            //Trip1Box.Margin = new Thickness(50,160);
-            //MessageScrollViewer.Margin = new Thickness(0,0,8,8);
+            TimeBox.Margin = new Thickness(50);
+            Trip1Box.Margin = new Thickness(50,160);
+            MessageScrollViewer.Margin = new Thickness(-5,45,0,0);
             UpdateMessage();
         }
     }

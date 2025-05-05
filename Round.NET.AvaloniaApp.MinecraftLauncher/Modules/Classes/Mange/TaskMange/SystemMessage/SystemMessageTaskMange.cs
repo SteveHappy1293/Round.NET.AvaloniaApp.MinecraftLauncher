@@ -4,10 +4,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Presenters;
 using Avalonia.Threading;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Download.DownloadGame;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 
 namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 
@@ -31,43 +30,51 @@ public class SystemMessageTaskMange
         }
     }
 
-    public static void UpdateTaskUI(Guid tuid,Control control)
+    public enum TaskType
     {
-        foreach (ContentPresenter controlpresenter in Core.SystemTask.TaskListBox.Children)
-        {
-            if (controlpresenter.Tag is Guid g && g == tuid)
-                controlpresenter.Content = control;
-        }
+        Download,
+        Information,
+        Launch,
+        Plug
     }
-    public static List<TaskControl> Tasks = new List<TaskControl>();
-    public static void AddTask(TaskControl task)
+    public class TaskConfig
     {
+        public string TUID { get; set; } = Guid.NewGuid().ToString();
+        public UserControl Body { get; set; }
+        public TaskType Type { get; set; }
+    }
+    public static List<TaskConfig> Tasks = new ();
+
+    public static string AddTask(UserControl content)
+    {
+        var uuid = Guid.NewGuid().ToString();
         Core.SystemTask.Show();
         Task.Run(()=>
         {
             Thread.Sleep(800);
             Dispatcher.UIThread.Invoke(() =>
             {
-                //content.Margin = new Thickness(380, 5, -380, 0);
+                var con = new TaskConfig()
+                {
+                    Body = content,
+                    Type = TaskType.Download,
+                    TUID = uuid
+                };
+                content.Margin = new Thickness(380, 5, -380, 0);
                 // content.Opacity = 0;
-                Tasks.Add(task);
-                Core.SystemTask.TaskListBox.Children.Add(task);
+                Tasks.Add(con);
+                ((StackPanel)Core.SystemTask.MainPanel.Content).Children.Add(con.Body);
                 
-                //content.Margin = new Thickness(0, 5, 0, 0);
+                content.Margin = new Thickness(0, 5, 0, 0);
                 // content.Opacity = 1;
             });
         });  
+        return uuid;
     }
 
-    public static void DeleteTask(TaskControl task)
+    public static void DeleteTask(string tuid)
     {
-        Tasks.Remove(task);
-        Core.SystemTask.TaskListBox.Children.Remove(task);
-        //var task = Core.SystemTask.Tasks[tuid];
-        //  task.Stop(stopReason);
-        //   Core.SystemTask.TaskListBox.Children.Remove(task.UIControl);
-        /*
-        foreach (var con in Core.SystemTask.Tasks)
+        foreach (var con in Tasks)
         {
             if (con.TUID == tuid)
             {
@@ -81,7 +88,7 @@ public class SystemMessageTaskMange
                         {
                             if (Core.SystemTask.IsVisible == true)
                             {
-                                if (Core.SystemTask.Tasks.Count == 1)
+                                if (Tasks.Count == 1)
                                 {
                                     Task.Run(() =>
                                     {
@@ -95,12 +102,12 @@ public class SystemMessageTaskMange
                     Thread.Sleep(800);
                     Dispatcher.UIThread.Invoke(() =>
                     {
-                        Core.SystemTask.TaskListBox.Children.Remove(con.Body);
-                        Core.SystemTask.Tasks.Remove(con);
+                        ((StackPanel)Core.SystemTask.MainPanel.Content).Children.Remove(con.Body);
+                        Tasks.Remove(con);
                     });
                 });
                 break;
             }
-        }*/
+        }
     }
 }

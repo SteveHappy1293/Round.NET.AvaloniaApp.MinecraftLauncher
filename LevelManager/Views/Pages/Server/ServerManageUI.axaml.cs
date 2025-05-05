@@ -22,9 +22,9 @@ using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Message;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.TaskMange.SystemMessage;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Modules.UIControls;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Dialog;
-using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.LaunchTasks;
 using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Pages.Main;
 using LevelManager.Views.Pages.Server;
+using Round.NET.AvaloniaApp.MinecraftLauncher.Views.Controls.Launch;
 using Round.NET.VersionServerMange.Library.Entry;
 using Round.NET.VersionServerMange.Library.Modules;
 
@@ -212,7 +212,7 @@ public partial class ServerManageUI : UserControl,IPage
                 };
                 con.CloseButtonClick += (s, e) =>
                 {
-                    var dow = new LaunchGame();
+                    var dow = new LaunchJavaEdtion();
                     dow.Version = Path.GetFileName(Directory.GetDirectories(Config.MainConfig.GameFolders[Config.MainConfig.SelectedGameFolder].Path+"/versions")[ls.VersionsBox.SelectedIndex]);
                     dow.Tuid = SystemMessageTaskMange.AddTask(dow);
                     dow.Server = ser.IP;
