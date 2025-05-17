@@ -21,7 +21,7 @@ namespace Round.NET.AvaloniaApp.MinecraftLauncher.Modules.Game.JavaEdtion.Launch
 
 public class LaunchJavaEdtion
 {
-    public static async void LaunchGame(string Dir,string VersionID,Action<string> LaunchingOutput,Action Exit,string Server = null)
+    public static void LaunchGame(string Dir,string VersionID,out Process gameProcess,Action<string> LaunchingOutput,Action Exit,string Server = null)
     {
         //UpdateServers(VersionID);
         
@@ -39,7 +39,7 @@ public class LaunchJavaEdtion
             GameInstances = ver,
             JavaInfo = new JavaInfo()
             {
-                JavaPath = Java.FindJava.JavasList[Config.Config.MainConfig.SelectedJava].JavaPath
+                JavaPath = Java.FindJava.JavasList[Config.Config.MainConfig.SelectedJava].JavaPath.Replace("javaw","java")
             },
             Account = new AccountEntry()
             {
@@ -48,7 +48,7 @@ public class LaunchJavaEdtion
                     .UserName,
                 UUID = User.User.GetUser(User.User.Users[Config.Config.MainConfig.SelectedUser].UUID).Config.UUID
             },
-            LauncherInfo = "RMCL",
+            LauncherInfo = $"RMCL [User:{User.User.GetUser(User.User.Users[Config.Config.MainConfig.SelectedUser].UUID).Config.UserName}]",
             LauncherVersion = "114",
             JvmArgs = new List<string>() { Server }
         });
@@ -56,6 +56,8 @@ public class LaunchJavaEdtion
         try
         {
             var process = Runner.GameProcess;
+            process.EnableRaisingEvents = true; // 启用事件
+            gameProcess = process;
             process.Exited += (_, _) => Exit();
         }
         catch (Exception ex)
@@ -89,19 +91,18 @@ public class LaunchJavaEdtion
                 JavaPath = Java.FindJava.JavasList[Config.Config.MainConfig.SelectedJava].JavaPath
             },
             Account = account,
-            LauncherInfo = "RMCL",
+            LauncherInfo = $"RMCL [User:{account.UserName}]",
             LauncherVersion = "114"
         });
         Runner.LogsOutput = (string logs) => {  };
         return $"@echo off\r\n\"{MinecraftLauncher.Modules.Java.FindJava.JavasList[Config.Config.MainConfig.SelectedJava].JavaPath.Replace("javaw.exe","java.exe")}\" {Runner.GameProcess.StartInfo.Arguments}";
     }
-    public static bool ResourceCompletion(string VersionID)
+    public static bool ResourceCompletion(VersionParse Version,Action<string,double> LogAction)
     {
-        // IGameResolver gameResolver = new GameResolver(Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path);
-        // IChecker resourceChecker = new ResourceChecker(gameResolver.GetGameEntity(VersionID));
-        // var result = resourceChecker.CheckAsync().Result;
-
-        // false = 不全，true = 全
+        FileIntegrityChecker fileIntegrityChecker = new FileIntegrityChecker(Version);
+        GameFileCompleter fileCompleter = new GameFileCompleter();
+        fileCompleter.ProgressCallback = (string logs, double progress) => { Console.WriteLine(logs + "  " + progress); };
+        fileCompleter.DownloadMissingFilesAsync(fileIntegrityChecker.GetMissingFiles()).Wait();
         return true;
     }
     /*public static void UpdateServers(string VersionID)

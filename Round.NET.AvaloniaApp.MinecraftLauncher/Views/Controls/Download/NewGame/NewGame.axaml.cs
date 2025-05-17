@@ -38,7 +38,7 @@ public partial class NewGame : UserControl
     {
         var dow = new DownloadGame.DownloadGame();
         dow.Version = VersionTitle.Content.ToString();
-        SystemMessageTaskMange.AddTask(dow);
+        dow.Tuid = SystemMessageTaskMange.AddTask(dow);
         // dow.Modloaders = installedObjects;
         dow.StartDownloadAsync();
         
@@ -133,8 +133,11 @@ public partial class NewGame : UserControl
     {
         GetModLoader();
         
-        //var dow = new DownloadGameTask(VersionTitle.Content.ToString(),installedObjects);
-        //SystemMessageTaskMange.AddTask(dow);
+        var dow = new DownloadGame.DownloadGame();
+        dow.Version = VersionTitle.Content.ToString();
+        dow.Tuid = SystemMessageTaskMange.AddTask(dow);
+        dow.Modloaders = installedObjects;
+        dow.StartDownloadAsync();
         
         
         // var con = (ContentDialog)this.Parent;

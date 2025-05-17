@@ -54,7 +54,8 @@ public class User
             {
                 UserName = offlineAccount.Authenticator().UserName,
                 UUID = offlineAccount.Authenticator().UUID.ToString(),
-                Token = offlineAccount.Authenticator().Token
+                Token = offlineAccount.Authenticator().Token,
+                AccountType = offlineAccount.Authenticator().AccountType,
             }
         };
         var json = Regex.Unescape(JsonSerializer.Serialize(user, new JsonSerializerOptions() { WriteIndented = true }).Replace("\\","\\\\"));

@@ -13,9 +13,9 @@
             <Button Margin="5,5" Classes="accent" Name="GetUserSkin" Click="GetUserSkin_OnClick">获取正版账户皮肤</Button>
         </DockPanel>
         <ScrollViewer Margin="0,42,0,0">
-            <WrapPanel Name="Users">
+            <StackPanel Name="Users">
                 
-            </WrapPanel>
+            </StackPanel>
         </ScrollViewer>
         <DockPanel>
             

@@ -98,28 +98,11 @@
                 </Transitions>
             </Setter>
         </Style>
-        <Style Selector="downloadGame1|TaskControl">
-            <Setter Property="Transitions">
-                <Transitions>
-                    <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
-                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
-                </Transitions>
-            </Setter>
-        </Style>
         <Style Selector="download|DownloadUpdate">
             <Setter Property="Transitions">
                 <Transitions>
                     <ThicknessTransition Property="Margin" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
                     <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
-                </Transitions>
-            </Setter>
-        </Style>
-        <Style Selector="launch1|LaunchGame">
-            <Setter Property="Transitions">
-                <Transitions>
-                    <ThicknessTransition Property="Margin" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
-                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.8"/>
-                    <DoubleTransition Property="MinHeight" Easing="ExponentialEaseOut" Duration="0:0:0.8"/>
                 </Transitions>
             </Setter>
         </Style>

@@ -24,7 +24,6 @@ public partial class AboutRMCL : UserControl,IPage
 {
     public void Open()
     {
-        SystemMessageTaskMange.AddTask(new DownloadGame());
         Core.MainWindow.ChangeMenuItems(new List<MenuItem>{});
     }
     public AboutRMCL()
