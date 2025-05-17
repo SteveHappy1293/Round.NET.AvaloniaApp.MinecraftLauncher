@@ -6,6 +6,7 @@
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <ApplicationIcon>Assets\Icon.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -36,5 +37,6 @@
     <ItemGroup>
       <ProjectReference Include="..\RMCL.Config\RMCL.Config.csproj" />
       <ProjectReference Include="..\RMCL.Controls\RMCL.Controls.csproj" />
+      <ProjectReference Include="..\RMCL.DownloadService\RMCL.DownloadService.csproj" />
     </ItemGroup>
 </Project>

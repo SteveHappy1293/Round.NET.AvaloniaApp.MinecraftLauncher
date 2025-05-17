@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RMCL.Views.Pages.Main.DownloadPages.DownloadGame">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel HorizontalAlignment="Stretch" 
+                   VerticalAlignment="Top" 
+                   LastChildFill="True"
+                   Margin="10"> 
+            
+            <ComboBox DockPanel.Dock="Right" Name="VersionType"
+                      SelectionChanged="VersionType_OnSelectionChanged"
+                      Width="200" SelectedIndex="1">
+                <ComboBoxItem Tag="*">全部</ComboBoxItem>
+                <ComboBoxItem Tag="release">正式版</ComboBoxItem>
+                <ComboBoxItem Tag="snapshot">快照版</ComboBoxItem>
+                <ComboBoxItem Tag="old_beta">Beta 版</ComboBoxItem>
+                <ComboBoxItem Tag="old_alpha">Alpha 版</ComboBoxItem>
+            </ComboBox>
+            
+            <TextBox DockPanel.Dock="Left"
+                     Watermark="键入版本 ID 以搜索游戏本体..."
+                     TextChanged="TextBox_OnTextChanged"
+                     HorizontalAlignment="Stretch"
+                     Margin="0,0,10,0"/> 
+        </DockPanel>
+        <ScrollViewer Grid.Row="1">
+            <ListBox Name="VersionsList">
+                
+            </ListBox>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

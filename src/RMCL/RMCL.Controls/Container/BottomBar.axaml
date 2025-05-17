@@ -4,10 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Controls.Container.BottomBar">
+    <UserControl.Resources>
+        <ResourceDictionary x:Key="Light">
+            <Color x:Key="TextColor">#FF000000</Color>
+        </ResourceDictionary>
+            
+        <ResourceDictionary x:Key="Dark">
+            <Color x:Key="TextColor">#FFFFFFFF</Color>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <UserControl.Styles>
         <Style Selector="Button">
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Height" Value="36"/>
             <Setter Property="CornerRadius" Value="6"/>

@@ -13,6 +13,7 @@ public partial class MainView : UserControl
     public MainView()
     {
         InitializeComponent();
+        Core.BottomBar = BottomBar;
         BottomBar.ContentFrame = MainFrame;
 
         BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
@@ -22,6 +23,12 @@ public partial class MainView : UserControl
             Title = new Label() { Content = "主页" },
             IsNoButton = true,
             Page = new Home()
+        });
+        BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
+        {
+            Tag = "Download",
+            Title = new Label() { Content = "下载" },
+            Page = new Download()
         });
     }
 }

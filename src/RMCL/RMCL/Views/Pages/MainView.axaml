@@ -9,7 +9,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Views.Pages.MainView">
     <Grid>
-        <controls1:Frame Name="MainFrame"/>
-        <container:BottomBar DefaultTag="Home" Name="BottomBar" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+        <controls1:Frame Margin="0,0,0,70" Name="MainFrame"/>
+        <container:BottomBar Background="#96696969" DefaultTag="Home" Name="BottomBar" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>

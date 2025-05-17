@@ -5,6 +5,8 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
+using FluentAvalonia.UI.Media.Animation;
+using FluentAvalonia.UI.Navigation;
 using RMCL.Controls.ControlHelper;
 
 namespace RMCL.Controls.Container;
@@ -36,40 +38,7 @@ public partial class BottomBar : UserControl
 
     private void Nav(BottomBarNavigationEntry entry)
     {
-        if (entry.Tag != DefaultTag)
-        {
-            Task.Run(() =>
-            {
-                Thread.Sleep(200);
-
-                /*Dispatcher.UIThread.Invoke(() =>
-                    Core.MainWindow.BackGrid.VerticalAlignment = VerticalAlignment.Stretch);
-
-                Dispatcher.UIThread.Invoke(() =>
-                    Core.MainWindow.BackGrid.Height = double.NaN);*/
-            });
-        }
-        else
-        {
-            /*Core.MainWindow.BackGrid.Height = 0;
-            Core.MainWindow.BackGrid.VerticalAlignment = VerticalAlignment.Bottom;*/
-        }
-        
-        Task.Run(() =>
-        {
-            Dispatcher.UIThread.Invoke(() =>
-            {
-                ContentFrame.Opacity = 0.1;
-                ContentFrame.Margin = new Thickness(0, 20, 0, 50);
-            });
-            Thread.Sleep(100);
-            Dispatcher.UIThread.Invoke(() =>
-            {
-                ContentFrame.Content = entry.Page;
-                ContentFrame.Opacity = 1;
-                ContentFrame.Margin = new Thickness(0, 0, 0, 70);
-            });
-        });
+        ContentFrame.Navigate(entry.Page.GetType(), this, new EntranceNavigationTransitionInfo());
     }
     public void RegisterNavigationItem(BottomBarNavigationEntry entry)
     {

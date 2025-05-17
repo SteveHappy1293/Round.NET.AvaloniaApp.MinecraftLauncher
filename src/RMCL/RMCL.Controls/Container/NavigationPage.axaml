@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="RMCL.Controls.NavigationPage">
+             x:Class="RMCL.Controls.Container.NavigationPage">
     <Grid>
-        <Grid Margin="16,4,16,0">
+        <Grid Margin="0,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -25,13 +25,8 @@
                 <controls:NavigationView.MenuItems>
                 </controls:NavigationView.MenuItems>
             </controls:NavigationView>
-            <Grid Margin="8,0,8,8" Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Label FontWeight="Bold" Name="PageTitleLabel"  FontSize="18"/>
-                <controls:Frame Grid.Row="1" Name="MangeFrame" Margin="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            <Grid Margin="0" Grid.Row="1">
+                <controls:Frame Grid.Row="1" Name="MangeFrame" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
             </Grid>
         </Grid>
     </Grid>

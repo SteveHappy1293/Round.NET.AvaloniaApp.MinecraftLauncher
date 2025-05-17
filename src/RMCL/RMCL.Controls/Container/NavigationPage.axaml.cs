@@ -6,7 +6,7 @@ using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Controls;
 using RMCL.Controls.ControlHelper;
 
-namespace RMCL.Controls;
+namespace RMCL.Controls.Container;
 
 public partial class NavigationPage : UserControl
 {
@@ -38,39 +38,12 @@ public partial class NavigationPage : UserControl
     {
         var item = ((DockPanel)((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Content);
         var text = ((TextBlock)(item.Children[1])).Text;
-        ControlChange.ChangeLabelText(PageTitleLabel,text);
-        Task.Run(() => // Margin="10,50,10,10"
+        var page = RouteConfigs.Find(config =>
         {
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 0);
-            // Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(220,100,30,-10));
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(4,4,4,-10));
-            Thread.Sleep(180);
-            /*Dispatcher.UIThread.Invoke(() =>
-            {
-                var page = RouteConfigs.Find(config =>
-                {
-                    return config.Route == ((NavigationViewItem)(View!).SelectedItem!).Tag;
-                }).Page;
-                MangeFrame.Content = page;
-                page.Open();
-            });*/
-            // Thread.Sleep(180);
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 1);
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(4,4,4,-4));
-        });
+            return config.Route == ((NavigationViewItem)(View!).SelectedItem!).Tag;
+        }).Page;
+        MangeFrame.Navigate(page.GetType());
     }
-
-    /*public void ChangeSelectItemMenu()
-    {
-        if (View.SelectedItem != null)
-        {
-            var page = RouteConfigs.Find(config =>
-            {
-                return config.Route == ((NavigationViewItem)(View!).SelectedItem!).Tag;
-            }).Page;
-            page?.Open();
-        }
-    }*/
 
     public void RegisterRoute(NavigationRouteConfig config)
     {

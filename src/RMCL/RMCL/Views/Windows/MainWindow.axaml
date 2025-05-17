@@ -34,7 +34,7 @@
                 </Grid.ColumnDefinitions>
                 
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" >
-                    <Button Height="32"  Name="HomeButton" ToolTip.Tip="Home"
+                    <Button Height="32"  Name="HomeButton" ToolTip.Tip="Home" Click="HomeButton_OnClick"
                         FontWeight="Bold" Background="Transparent" FontSize="16" Foreground="{DynamicResource TextColor}"
                         BorderBrush="Transparent" BorderThickness="0" Margin="8,8,3,8">
                         <Button.Content>
