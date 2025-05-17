@@ -9,9 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Models\"/>
         <AvaloniaResource Include="Assets\**"/>
-        <Folder Include="Views\Pages\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -37,5 +35,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\RMCL.Config\RMCL.Config.csproj" />
+      <ProjectReference Include="..\RMCL.Controls\RMCL.Controls.csproj" />
     </ItemGroup>
 </Project>

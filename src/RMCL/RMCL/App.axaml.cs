@@ -4,6 +4,8 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
+using Avalonia.Styling;
+using RMCL.Config;
 using RMCL.Views;
 
 namespace RMCL;
@@ -24,6 +26,14 @@ public partial class App : Application
             DisableAvaloniaDataAnnotationValidation();
             desktop.MainWindow = new MainWindow();
         }
+
+        RequestedThemeVariant = Config.Config.MainConfig.Theme switch
+        {
+            ThemeType.System => ThemeVariant.Default,
+            ThemeType.Dark => ThemeVariant.Dark,
+            ThemeType.Light => ThemeVariant.Light,
+            _ => ThemeVariant.Default,
+        };
 
         base.OnFrameworkInitializationCompleted();
     }

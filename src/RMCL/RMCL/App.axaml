@@ -2,10 +2,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="RMCL.App"
              xmlns:local="using:RMCL"
-             xmlns:styling="clr-namespace:FluentAvalonia.Styling;assembly=FluentAvalonia"
-             RequestedThemeVariant="Light">
+             xmlns:styling="clr-namespace:FluentAvalonia.Styling;assembly=FluentAvalonia">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
     <Application.Styles>
         <styling:FluentAvaloniaTheme CustomAccentColor="DodgerBlue" UseSystemFontOnWindows="True"/>
+        <StyleInclude Source="avares://RMCL.Controls/ControlInclude.axaml"></StyleInclude>
     </Application.Styles>
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <Color x:Key="TextColor">#FF000000</Color> <!-- 黑色 -->
+                </ResourceDictionary>
+            
+                <ResourceDictionary x:Key="Dark">
+                    <Color x:Key="TextColor">#FFFFFFFF</Color> <!-- 白色 -->
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

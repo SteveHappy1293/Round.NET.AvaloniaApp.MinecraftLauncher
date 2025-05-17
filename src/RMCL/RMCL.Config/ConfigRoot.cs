@@ -1,8 +1,11 @@
-﻿namespace RMCL.Config;
+﻿using System.Collections.Generic;
+
+namespace RMCL.Config;
 
 public class ConfigRoot
 {
     public List<GameFolderConfig> GameFolders { get; set; } = new();
+    public bool FirstLauncher { get; set; } = true;
     public bool IsUseOrganizationConfig { get; set; } = false;
     public string OrganizationUrl { get; set; } = string.Empty;
     public int SelectedGameFolder { get; set; } = 0;
@@ -29,10 +32,18 @@ public class ConfigRoot
     public int WindowX { get; set; } = 0;
     public int WindowY { get; set; } = 0;
     public string RSAccount { get; set; } = string.Empty;
+    public ThemeType Theme { get; set; } = ThemeType.System;
 }
 public class GameFolderConfig
 {
     public string Name { get; set; } = string.Empty;
     public string Path { get; set; } = string.Empty;
     public int SelectedGameIndex { get; set; } = 0;
+}
+
+public enum ThemeType
+{
+    System,
+    Dark,
+    Light
 }
