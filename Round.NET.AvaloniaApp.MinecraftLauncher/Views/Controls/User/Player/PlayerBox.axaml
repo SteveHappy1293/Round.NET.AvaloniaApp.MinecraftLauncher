@@ -10,7 +10,8 @@
     <ListBoxItem HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0" Padding="5" CornerRadius="8" Name="MainButton">
         <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid HorizontalAlignment="Left">
-                <controls:ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center"></controls:ProgressRing>
+                <controls:ProgressRing Name="UserProgressRing" Margin="0,-35,0,0"></controls:ProgressRing>
+                <fluentIcons:FluentIcon Width="80" Height="80" Name="UserIcon" Icon="Person20Filled" HorizontalAlignment="Stretch" VerticalAlignment="Top" IsVisible="False"/>
                 <Border Margin="5" Name="SkinHandImage" CornerRadius="6" Width="80" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center"></Border>
             </Grid>
             <Label Margin="0,0" Name="NameLabel">Name</Label>
