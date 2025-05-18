@@ -32,6 +32,12 @@
                             <Label Name="VersionLabel"></Label>
                         </controls:SettingsExpanderItem.Footer>
                     </controls:SettingsExpanderItem>
+					<controls:SettingsExpanderItem Content="预计大小"
+                                             Description="安装到磁盘上的客户端预计的大小">
+						<controls:SettingsExpanderItem.Footer>
+							<Label Name="ClientSizeLabel">未知</Label>
+						</controls:SettingsExpanderItem.Footer>
+					</controls:SettingsExpanderItem>
                     <controls:SettingsExpanderItem Content="实例名称"
                                              Description="安装到磁盘上的客户端实例名称">
                         <controls:SettingsExpanderItem.Footer>
