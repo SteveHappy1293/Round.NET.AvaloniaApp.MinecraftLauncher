@@ -11,8 +11,8 @@
         <DockPanel>
             <controls:ProgressRing Margin="10" Height="40" Width="40"/>
             <StackPanel VerticalAlignment="Center">
-                <TextBlock FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="5">稍安勿躁</TextBlock>
-                <TextBlock FontSize="14" HorizontalAlignment="Left" Margin="5">资源还在加载中...</TextBlock>
+                <TextBlock FontSize="18" Name="BigTitleBox" FontWeight="Bold" HorizontalAlignment="Left" Margin="5">稍安勿躁</TextBlock>
+                <TextBlock FontSize="14" Name="SmallTitleBox" HorizontalAlignment="Left" Margin="5">正在收集宇宙电波...</TextBlock>
             </StackPanel>
         </DockPanel>
     </Border>

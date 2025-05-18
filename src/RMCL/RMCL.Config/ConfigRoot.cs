@@ -4,7 +4,14 @@ namespace RMCL.Config;
 
 public class ConfigRoot
 {
-    public List<GameFolderConfig> GameFolders { get; set; } = new();
+    public List<GameFolderConfig> GameFolders { get; set; } = new()
+    {
+        new GameFolderConfig()
+        {
+            Name = "启动器目录",
+            Path = Path.GetFullPath("../RMCL/RMCL.Minecraft")
+        }
+    };
     public bool FirstLauncher { get; set; } = true;
     public bool IsUseOrganizationConfig { get; set; } = false;
     public string OrganizationUrl { get; set; } = string.Empty;

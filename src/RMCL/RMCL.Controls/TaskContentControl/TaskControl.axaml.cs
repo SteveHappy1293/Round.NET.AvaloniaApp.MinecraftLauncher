@@ -1,0 +1,21 @@
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
+
+namespace RMCL.Controls.TaskContentControl;
+
+public partial class TaskControl : UserControl
+{
+    public string TaskName { get; set; }
+    public Control BoxContent { get; set; }
+    public TaskControl()
+    {
+        InitializeComponent();
+    }
+
+    public void RunTask()
+    {
+        TaskNameBox.Text = TaskName;
+        ContentBox.Content = BoxContent;
+    }
+}

@@ -37,7 +37,7 @@ public class Config
 
     public static void SaveConfig()
     {
-        string jsresult = Regex.Unescape(JsonSerializer.Serialize(MainConfig, new JsonSerializerOptions() { WriteIndented = true }).Replace("\\","\\\\")); //获取结果并转换成正确的格式
+        string jsresult = JsonSerializer.Serialize(MainConfig, new JsonSerializerOptions() { WriteIndented = true }); //获取结果并转换成正确的格式
         File.WriteAllText(Path.GetFullPath(ConfigFileName), jsresult);
     }
 }

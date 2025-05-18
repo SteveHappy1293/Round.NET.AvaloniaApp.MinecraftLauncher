@@ -10,19 +10,19 @@
         WindowStartupLocation="CenterOwner"
         Title="下载版本" Width="660" Height="490" MinWidth="660" MinHeight="490" MaxWidth="660" MaxHeight="490">
     <Grid>
-        <DockPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+        <DockPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Name="ControlDockPanel">
             <Button Width="120" Margin="5" Name="Close" Click="Close_OnClick">取消</Button>
-            <Button Width="120" Classes="accent" Margin="5">安装</Button>
+            <Button Width="120" Classes="accent" Margin="5" Name="InstallBtn" Click="InstallBtn_OnClick">安装</Button>
         </DockPanel>
         
         <ScrollViewer Margin="10,48">
             <StackPanel>
-                <ProgressBar IsIndeterminate="True" Margin="5"></ProgressBar>
+                <ProgressBar IsIndeterminate="True" Margin="5" Name="LoadBox" IsVisible="False"></ProgressBar>
                 
                 <controls:SettingsExpander Header="安装总览" Margin="5"
                                      Description="设置一些安装的基础选项"
                                      IsExpanded="True"
-                                     Name="SettingsExpander3">
+                                     Name="BasicInstallationSettings">
                     <controls:SettingsExpander.IconSource>
                         <controls:SymbolIconSource Symbol="Download"/>
                     </controls:SettingsExpander.IconSource>

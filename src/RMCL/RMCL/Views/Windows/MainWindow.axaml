@@ -8,7 +8,7 @@
         xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="RMCL.Views.MainWindow"
-        TransparencyLevelHint="Mica"
+        TransparencyLevelHint="AcrylicBlur"
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
         Width="1000"

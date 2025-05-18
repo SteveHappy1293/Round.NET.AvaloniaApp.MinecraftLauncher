@@ -1,0 +1,33 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+        xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
+        mc:Ignorable="d" d:DesignWidth="680" d:DesignHeight="440"
+        WindowStartupLocation="CenterOwner"
+        Title="版本根目录管理" Width="680" Height="440" MinWidth="680" MinHeight="440"
+        x:Class="RMCL.Views.Windows.Main.ManageWindows.ManageGameDirectory">
+    <Grid>
+        <StackPanel Margin="10,48,10,10">
+            <DockPanel
+                HorizontalAlignment="Stretch">
+                <button:IconButton DockPanel.Dock="Left" Icon="Pen20Regular" Margin="5">编辑</button:IconButton>
+                <button:IconButton DockPanel.Dock="Left" Icon="Delete20Regular" Margin="5" Name="DeleteFolder" Click="DeleteFolder_OnClick">移除</button:IconButton>
+                <button:IconButton DockPanel.Dock="Left" Icon="Folder20Regular" Margin="5" Name="OpenFolder" Click="OpenFolder_OnClick">打开目录</button:IconButton>
+                <button:IconButton DockPanel.Dock="Right" HorizontalAlignment="Right" Icon="Add20Regular" Margin="5">添加</button:IconButton>
+            </DockPanel>
+            
+            <ListBox Name="DirsBox" Margin="5">
+                
+            </ListBox>
+        </StackPanel>
+        
+        <Grid Height="48" HorizontalAlignment="Stretch" VerticalAlignment="Top" PointerPressed="InputElement_OnPointerPressed">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.00001"></SolidColorBrush>
+            </Grid.Background>
+            <TextBlock VerticalAlignment="Center" Margin="15" FontSize="18" FontWeight="Bold">版本根目录管理</TextBlock>
+        </Grid>
+    </Grid>
+</Window>
