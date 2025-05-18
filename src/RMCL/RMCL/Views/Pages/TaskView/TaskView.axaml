@@ -19,17 +19,11 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <UserControl.Styles>
-        <Style Selector="StackPanel">
-            <Setter Property="Transitions">
-                <Transitions>
-                    <ThicknessTransition Property="Margin" Duration="0:0:0.4" Easing="ExponentialEaseOut"></ThicknessTransition>
-                </Transitions>
-            </Setter>
-        </Style>
         <Style Selector="Grid">
             <Setter Property="Transitions">
                 <Transitions>
                     <DoubleTransition Property="Opacity" Duration="0:0:0.4" Easing="ExponentialEaseOut"></DoubleTransition>
+                    <ThicknessTransition Property="Margin" Duration="0:0:0.4" Easing="ExponentialEaseOut"></ThicknessTransition>
                 </Transitions>
             </Setter>
         </Style>
@@ -37,16 +31,20 @@
     <Grid>
         <Grid Background="Black" PointerPressed="BackGrid_OnPointerPressed" Opacity="0.0" Name="BackGrid"/>
         
-        <StackPanel Name="MainPanel" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="320" Background="{DynamicResource BackColor}">
+        <Grid Name="MainPanel" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="320" Background="{DynamicResource BackColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
             <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5">
                 <button:IconButton Click="Button_OnClick" Icon="CaretLeft20Regular" Content="返回" Margin="5"/>
                 <TextBlock Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16">任务调度中心</TextBlock>
             </DockPanel>
-            <ScrollViewer>
+            <ScrollViewer Grid.Row="1">
                 <StackPanel Name="TasksView">
                     
                 </StackPanel>
             </ScrollViewer>
-        </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

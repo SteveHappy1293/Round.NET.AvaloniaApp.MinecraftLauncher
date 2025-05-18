@@ -5,18 +5,18 @@ using FluentAvalonia.FluentIcons;
 
 namespace RMCL.Controls.Button;
 
-public partial class IconButton : Avalonia.Controls.Button
+public partial class AccentIconButton : Avalonia.Controls.Button
 {
-    public IconButton()
+    public AccentIconButton()
     {
         InitializeComponent();
         CornerRadius = new CornerRadius(4);
     }
     public static readonly StyledProperty<FluentIconSymbol> IconProperty =
-        AvaloniaProperty.Register<IconButton, FluentIconSymbol>(nameof(Icon));
+        AvaloniaProperty.Register<AccentIconButton, FluentIconSymbol>(nameof(Icon));
         
     public static readonly StyledProperty<object> ContentProperty =
-        ContentControl.ContentProperty.AddOwner<IconButton>();
+        ContentControl.ContentProperty.AddOwner<AccentIconButton>();
 
     public FluentIconSymbol Icon
     {

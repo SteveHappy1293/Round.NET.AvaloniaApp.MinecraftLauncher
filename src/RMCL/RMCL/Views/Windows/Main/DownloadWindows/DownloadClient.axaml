@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+        xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="RMCL.Views.Windows.Main.DownloadWindows.DownloadClient"
         ExtendClientAreaToDecorationsHint="True"
@@ -11,8 +12,8 @@
         Title="下载版本" Width="660" Height="490" MinWidth="660" MinHeight="490" MaxWidth="660" MaxHeight="490">
     <Grid>
         <DockPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Name="ControlDockPanel">
-            <Button Width="120" Margin="5" Name="Close" Click="Close_OnClick">取消</Button>
-            <Button Width="120" Classes="accent" Margin="5" Name="InstallBtn" Click="InstallBtn_OnClick">安装</Button>
+            <button:IconButton Icon="Backspace20Regular" Width="120" Margin="5" Name="Close" Click="Close_OnClick">取消</button:IconButton>
+            <button:AccentIconButton Icon="CubeAdd20Regular" Width="120" Margin="5" Name="InstallBtn" Click="InstallBtn_OnClick">安装</button:AccentIconButton>
         </DockPanel>
         
         <ScrollViewer Margin="10,48">
@@ -32,16 +33,16 @@
                             <Label Name="VersionLabel"></Label>
                         </controls:SettingsExpanderItem.Footer>
                     </controls:SettingsExpanderItem>
-					<controls:SettingsExpanderItem Content="预计大小"
-                                             Description="安装到磁盘上的客户端预计的大小">
-						<controls:SettingsExpanderItem.Footer>
-							<Label Name="ClientSizeLabel">未知</Label>
-						</controls:SettingsExpanderItem.Footer>
-					</controls:SettingsExpanderItem>
                     <controls:SettingsExpanderItem Content="实例名称"
                                              Description="安装到磁盘上的客户端实例名称">
                         <controls:SettingsExpanderItem.Footer>
                             <TextBox Width="200" Name="VersionInstallName"></TextBox>
+                        </controls:SettingsExpanderItem.Footer>
+                    </controls:SettingsExpanderItem>
+                    <controls:SettingsExpanderItem Content="预计大小"
+                                                   Description="安装到磁盘上的客户端预计的大小">
+                        <controls:SettingsExpanderItem.Footer>
+                            <Label Name="ClientSizeLabel">未知</Label>
                         </controls:SettingsExpanderItem.Footer>
                     </controls:SettingsExpanderItem>
                 </controls:SettingsExpander>

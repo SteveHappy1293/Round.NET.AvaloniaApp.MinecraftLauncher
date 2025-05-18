@@ -24,6 +24,7 @@ public class TaskManager
         TaskList.Add(it);
         Core.TaskView.AddTask(taskView);
         RefuseUI();
+        
         return it.UUID;
     }
 
@@ -36,6 +37,6 @@ public class TaskManager
 
     public static void RefuseUI()
     {
-        
+        Core.MainWindow.UpdateStatus(TaskList.Count);
     }
 }

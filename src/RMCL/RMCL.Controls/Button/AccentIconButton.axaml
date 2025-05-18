@@ -5,12 +5,12 @@
              xmlns:local="clr-namespace:RMCL.Controls.Button"
              xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="RMCL.Controls.Button.IconButton">
+             x:Class="RMCL.Controls.Button.AccentIconButton">
     <UserControl.Styles>
-        <Style Selector="local|IconButton">
+        <Style Selector="local|AccentIconButton">
             <Setter Property="Template">
                 <ControlTemplate>
-                    <Button Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" CornerRadius="{TemplateBinding CornerRadius}">
+                    <Button Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" CornerRadius="{TemplateBinding CornerRadius}" Classes="accent">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -49,17 +49,17 @@
             </Setter>
         </Style>
         
-        <Style Selector="local|IconButton /template/ ContentControl#PART_Content">
+        <Style Selector="local|AccentIconButton /template/ ContentControl#PART_Content">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="-12,0,12,0"/>
         </Style>
         
-        <Style Selector="local|IconButton:pointerover /template/ ContentControl#PART_Content">
+        <Style Selector="local|AccentIconButton:pointerover /template/ ContentControl#PART_Content">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0"/>
         </Style>
         
-        <Style Selector="local|IconButton:pointerover /template/ ContentControl#PART_Icon">
+        <Style Selector="local|AccentIconButton:pointerover /template/ ContentControl#PART_Icon">
             <Setter Property="Opacity" Value="1"/>
             <Setter Property="Margin" Value="0,0,8,0"/>
         </Style>

@@ -28,6 +28,7 @@
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
         <PackageReference Include="FluentAvaloniaUI" Version="2.4.0-preview1" />
+        <PackageReference Include="OverrideLauncher.Core" Version="25.5.18.1502" />
     </ItemGroup>
 
     <ItemGroup>

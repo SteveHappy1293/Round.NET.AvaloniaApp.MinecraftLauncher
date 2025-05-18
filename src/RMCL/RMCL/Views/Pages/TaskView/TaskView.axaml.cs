@@ -6,6 +6,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
+using RMCL.Models.Classes.Manager.TaskManager;
 
 namespace RMCL.Views.Pages.TaskView;
 
@@ -28,7 +29,7 @@ public partial class TaskView : UserControl
             MainPanel.Margin = new Thickness(320,0,-320,0);
             Task.Run(() =>
             {
-                Thread.Sleep(500);
+                Thread.Sleep(400);
                 Dispatcher.UIThread.Invoke(() =>
                     this.IsVisible = false);
             });
@@ -56,11 +57,11 @@ public partial class TaskView : UserControl
     {
         Dispatcher.UIThread.Invoke(() =>
         {
-            foreach (var item in TasksView.Children)
+            foreach (var item in TaskManager.TaskList)
             {
-                if (ReferenceEquals(item.Tag, uuid))
+                if (ReferenceEquals(item.UUID, uuid))
                 {
-                    TasksView.Children.Remove(item);
+                    TasksView.Children.Remove(item.TaskView);
                 }
             }
         });

@@ -9,7 +9,7 @@
         xmlns:taskView="clr-namespace:RMCL.Views.Pages.TaskView"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="RMCL.Views.MainWindow"
-        TransparencyLevelHint="AcrylicBlur"
+        TransparencyLevelHint="Mica"
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
         Width="1000"
