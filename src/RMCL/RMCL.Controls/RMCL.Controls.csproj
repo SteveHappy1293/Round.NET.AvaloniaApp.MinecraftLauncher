@@ -26,4 +26,15 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Assets\MinecraftIcons\old_alpha.png" />
+      <AvaloniaResource Include="Assets\MinecraftIcons\old_alpha.png" />
+      <None Remove="Assets\MinecraftIcons\old_beta.png" />
+      <AvaloniaResource Include="Assets\MinecraftIcons\old_beta.png" />
+      <None Remove="Assets\MinecraftIcons\release.png" />
+      <AvaloniaResource Include="Assets\MinecraftIcons\release.png" />
+      <None Remove="Assets\MinecraftIcons\snapshot.png" />
+      <AvaloniaResource Include="Assets\MinecraftIcons\snapshot.png" />
+    </ItemGroup>
+
 </Project>

@@ -60,8 +60,8 @@ public partial class MainWindow : Window
         btn.Content = WindowState == WindowState.Maximized
             ? new PathIcon()
             {
-                Width = 16,
-                Height = 16,
+                Width = 12,
+                Height = 12,
                 Margin = new Thickness(0, 3, 0, 0),
                 Foreground = brush,
                 Data = StreamGeometry.Parse(
@@ -71,8 +71,8 @@ public partial class MainWindow : Window
             {
                 Margin = new Thickness(0, 1, 0, 0),
                 Foreground = brush,
-                Width = 16,
-                Height = 16,
+                Width = 12,
+                Height = 12,
                 Data = StreamGeometry.Parse(
                     "M233.301333 128A105.301333 105.301333 0 0 0 128 233.301333v557.397334A105.301333 105.301333 0 0 0 233.301333 896h557.397334A105.301333 105.301333 0 0 0 896 790.698667V233.301333A105.301333 105.301333 0 0 0 790.698667 128H233.301333z m-18.602666 105.301333c0-10.24 8.32-18.602667 18.602666-18.602666h557.397334c10.24 0 18.602667 8.32 18.602666 18.602666v557.397334c0 10.24-8.32 18.602667-18.602666 18.602666H233.301333a18.56 18.56 0 0 1-18.602666-18.602666V233.301333z")
             };
@@ -87,7 +87,7 @@ public partial class MainWindow : Window
     {
         for (int i = 0; i < menuItems.Count; i++)
         {
-            menuItems[i].CornerRadius = new CornerRadius(16);
+            menuItems[i].CornerRadius = new CornerRadius(12);
         }
         Menu.Margin = new Thickness(20, 0, -20, 0);
         Menu.Opacity = 0;
@@ -118,8 +118,8 @@ public partial class MainWindow : Window
         btn.Content = WindowState == WindowState.Maximized
             ? new PathIcon()
             {
-                Width = 16,
-                Height = 16,
+                Width = 12,
+                Height = 12,
                 Margin = new Thickness(0, 3, 0, 0),
                 Foreground = brush,
                 Data = StreamGeometry.Parse(
@@ -129,8 +129,8 @@ public partial class MainWindow : Window
             {
                 Margin = new Thickness(0, 1, 0, 0),
                 Foreground = brush,
-                Width = 16,
-                Height = 16,
+                Width = 12,
+                Height = 12,
                 Data = StreamGeometry.Parse(
                     "M233.301333 128A105.301333 105.301333 0 0 0 128 233.301333v557.397334A105.301333 105.301333 0 0 0 233.301333 896h557.397334A105.301333 105.301333 0 0 0 896 790.698667V233.301333A105.301333 105.301333 0 0 0 790.698667 128H233.301333z m-18.602666 105.301333c0-10.24 8.32-18.602667 18.602666-18.602666h557.397334c10.24 0 18.602667 8.32 18.602666 18.602666v557.397334c0 10.24-8.32 18.602667-18.602666 18.602666H233.301333a18.56 18.56 0 0 1-18.602666-18.602666V233.301333z")
             };
@@ -167,8 +167,8 @@ public partial class MainWindow : Window
         btn.Content = WindowState == WindowState.Maximized
             ? new PathIcon()
             {
-                Width = 16,
-                Height = 16,
+                Width = 12,
+                Height = 12,
                 Margin = new Thickness(0, 3, 0, 0),
                 Foreground = brush,
                 Data = StreamGeometry.Parse(
@@ -178,8 +178,8 @@ public partial class MainWindow : Window
             {
                 Margin = new Thickness(0, 1, 0, 0),
                 Foreground = brush,
-                Width = 16,
-                Height = 16,
+                Width = 12,
+                Height = 12,
                 Data = StreamGeometry.Parse(
                     "M233.301333 128A105.301333 105.301333 0 0 0 128 233.301333v557.397334A105.301333 105.301333 0 0 0 233.301333 896h557.397334A105.301333 105.301333 0 0 0 896 790.698667V233.301333A105.301333 105.301333 0 0 0 790.698667 128H233.301333z m-18.602666 105.301333c0-10.24 8.32-18.602667 18.602666-18.602666h557.397334c10.24 0 18.602667 8.32 18.602666 18.602666v557.397334c0 10.24-8.32 18.602667-18.602666 18.602666H233.301333a18.56 18.56 0 0 1-18.602666-18.602666V233.301333z")
             };

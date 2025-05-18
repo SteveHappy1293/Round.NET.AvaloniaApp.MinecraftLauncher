@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using OverrideLauncher.Core.Modules.Entry.DownloadEntry;
@@ -17,6 +19,7 @@ namespace RMCL.Views.Pages.Main.DownloadPages;
 public partial class DownloadGame : UserControl
 {
     private bool IsEdit = false;
+    private bool IsLoad = false;
     private List<OverrideLauncher.Core.Modules.Entry.DownloadEntry.VersionManifestEntry.Version> Versions = new List<VersionManifestEntry.Version>();
     public DownloadGame()
     {
@@ -26,6 +29,15 @@ public partial class DownloadGame : UserControl
     }
     public void Update()
     {
+        IsEdit = false;
+        Dispatcher.UIThread.Invoke(() =>
+        {
+            VersionType.IsEnabled = false;
+            RefuseButton.IsEnabled = false;
+            SearchBox.IsEnabled = false;
+            LoadingBox.IsVisible = true;
+            VersionsList.Items.Clear();
+        });
         var resu = true;
         while (resu)
         {
@@ -39,33 +51,72 @@ public partial class DownloadGame : UserControl
                 resu = false;
             }
         }
+        Thread.Sleep(200); // 避免闪屏
 
         Dispatcher.UIThread.Invoke(UpdateUI);
+        Dispatcher.UIThread.Invoke(() =>
+        {
+            VersionType.IsEnabled = true;
+            RefuseButton.IsEnabled = true;
+            SearchBox.IsEnabled = true;
+            LoadingBox.IsVisible = false;
+        });
         IsEdit = true;
+        IsLoad = true;
     }
 
     public void UpdateUI()
     {
+        var tag = ((ComboBoxItem)VersionType.SelectedItem)?.Tag.ToString() ?? "*"; // 获取当前选择的版本类型
         VersionsList.Items.Clear();
-        var tag = ((ComboBoxItem)VersionType.SelectedItem).Tag.ToString() ?? "*";
-        Versions.ForEach(x =>
+        string searchText = null;
+        if (IsLoad) searchText = SearchBox.Text ?? null; // 获取搜索框的内容并转为小写
+        if (string.IsNullOrEmpty(searchText))
         {
-            var it = new DownloadGameItem(x);
-            it.OnDownload = ((id) =>
+            Versions.ForEach(x =>
             {
-                new DownloadClient(x).ShowDialog(Core.MainWindow);
+                var it = new DownloadGameItem(x);
+                it.OnDownload = ((id) =>
+                {
+                    new DownloadClient(x).ShowDialog(Core.MainWindow);
+                });
+            
+            
+                if (tag == "*")
+                {
+                    VersionsList.Items.Add(it);
+                }
+                else if(x.Type==tag)
+                { 
+                    VersionsList.Items.Add(it);
+                }
             });
-            
-            
-            if (tag == "*")
+        }
+        else
+        {
+            // 根据版本 ID 和当前选择的版本类型过滤版本列表
+            var filteredVersions = Versions
+                .Where(version =>
+                        version.Id.ToLower().Contains(searchText) && // 匹配版本 ID
+                        (tag == "*" || version.Type == tag) // 匹配版本类型
+                )
+                .ToList();
+
+            // 更新 UI，显示过滤后的版本
+            Dispatcher.UIThread.Invoke(() =>
             {
-                VersionsList.Items.Add(it);
-            }
-            else if(x.Type==tag)
-            { 
-                VersionsList.Items.Add(it);
-            }
-        });
+                VersionsList.Items.Clear();
+                filteredVersions.ForEach(version =>
+                {
+                    var it = new DownloadGameItem(version);
+                    it.OnDownload = ((id) =>
+                    {
+                        new DownloadClient(version).ShowDialog(Core.MainWindow);
+                    });
+                    VersionsList.Items.Add(it);
+                });
+            });
+        }
     }
 
     private void VersionType_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
@@ -75,40 +126,11 @@ public partial class DownloadGame : UserControl
 
     private void TextBox_OnTextChanged(object? sender, TextChangedEventArgs e)
     {
-        var tag = ((ComboBoxItem)VersionType.SelectedItem)?.Tag.ToString() ?? "*"; // 获取当前选择的版本类型
-        if (sender is TextBox textBox)
-        {
-            string searchText = textBox.Text.Trim().ToLower(); // 获取搜索框的内容并转为小写
-            if (string.IsNullOrEmpty(searchText))
-            {
-                // 如果搜索框为空，根据当前选择的版本类型显示所有版本
-                UpdateUI();
-            }
-            else
-            {
-                // 根据版本 ID 和当前选择的版本类型过滤版本列表
-                var filteredVersions = Versions
-                    .Where(version =>
-                            version.Id.ToLower().Contains(searchText) && // 匹配版本 ID
-                            (tag == "*" || version.Type == tag) // 匹配版本类型
-                    )
-                    .ToList();
+        UpdateUI();
+    }
 
-                // 更新 UI，显示过滤后的版本
-                Dispatcher.UIThread.Invoke(() =>
-                {
-                    VersionsList.Items.Clear();
-                    filteredVersions.ForEach(version =>
-                    {
-                        var it = new DownloadGameItem(version);
-                        it.OnDownload = ((id) =>
-                        {
-                            new DownloadClient(version).ShowDialog(Core.MainWindow);
-                        });
-                        VersionsList.Items.Add(it);
-                    });
-                });
-            }
-        }
+    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    {
+        Task.Run(Update);
     }
 }

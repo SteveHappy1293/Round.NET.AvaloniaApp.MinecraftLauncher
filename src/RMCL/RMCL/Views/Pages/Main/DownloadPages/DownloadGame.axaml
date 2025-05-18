@@ -2,6 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
              mc:Ignorable="d" 
              d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Views.Pages.Main.DownloadPages.DownloadGame">
@@ -13,9 +15,13 @@
         <DockPanel HorizontalAlignment="Stretch" 
                    VerticalAlignment="Top" 
                    LastChildFill="True"
-                   Margin="10"> 
+                   Margin="10">
+            <Button DockPanel.Dock="Right" Width="32" Height="32" Click="Button_OnClick" Name="RefuseButton">
+                <fluentIcons:FluentIcon Icon="ArrowClockwise20Regular" Margin="-5"/>
+            </Button>
             
             <ComboBox DockPanel.Dock="Right" Name="VersionType"
+                      Margin="0,0,10,0"
                       SelectionChanged="VersionType_OnSelectionChanged"
                       Width="200" SelectedIndex="1">
                 <ComboBoxItem Tag="*">全部</ComboBoxItem>
@@ -27,12 +33,19 @@
             
             <TextBox DockPanel.Dock="Left"
                      Watermark="键入版本 ID 以搜索游戏本体..."
+                     Name="SearchBox"
                      TextChanged="TextBox_OnTextChanged"
                      HorizontalAlignment="Stretch"
                      Margin="0,0,10,0"/> 
         </DockPanel>
+        <view:Loading Grid.Row="1" Name="LoadingBox"/>
         <ScrollViewer Grid.Row="1">
             <ListBox Name="VersionsList">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
                 
             </ListBox>
         </ScrollViewer>

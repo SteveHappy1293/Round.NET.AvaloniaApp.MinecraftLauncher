@@ -16,7 +16,8 @@
             <button:IconButton Click="Button_OnClick" Margin="5" Icon="ArrowDownload20Regular" Content="下载"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Left">
-            <TextBlock FontSize="18" FontWeight="SemiLight" VerticalAlignment="Center" Name="VersionName">Version</TextBlock>
+            <Image DockPanel.Dock="Left" HorizontalAlignment="Left" Width="24" Height="24" Stretch="Uniform" Margin="5,5,18,5" Name="IconImage"></Image>
+            <TextBlock DockPanel.Dock="Left" FontSize="18" FontWeight="SemiLight" VerticalAlignment="Center" Name="VersionName">Version</TextBlock>
         </DockPanel>
     </DockPanel>
 </UserControl>

@@ -16,7 +16,7 @@ public partial class IconButton : Avalonia.Controls.Button
         
     public static readonly StyledProperty<object> ContentProperty =
         ContentControl.ContentProperty.AddOwner<IconButton>();
-        
+
     public FluentIconSymbol Icon
     {
         get => GetValue(IconProperty);
