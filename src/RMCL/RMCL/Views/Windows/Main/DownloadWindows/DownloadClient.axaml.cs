@@ -11,6 +11,7 @@ using OverrideLauncher.Core.Modules.Entry.DownloadEntry;
 using RMCL.Controls.Download;
 using RMCL.Controls.TaskContentControl;
 using RMCL.Models.Classes;
+using RMCL.Models.Classes.Manager.TaskManager;
 
 namespace RMCL.Views.Windows.Main.DownloadWindows;
 
@@ -61,9 +62,9 @@ public partial class DownloadClient : Window
                 };
                 cont.RunTask();
                 dow.Download(Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path);
-
-                Core.MainWindow.Content = cont;
-
+                var uuid1 = TaskManager.AddTask(cont);
+                dow.DownloadCompleted = (uuid) => TaskManager.DeleteTask(uuid1);
+                
                 Close();
             });
         });

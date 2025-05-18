@@ -6,6 +6,7 @@
         xmlns:pages="clr-namespace:RMCL.Views.Pages"
         xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
         xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
+        xmlns:taskView="clr-namespace:RMCL.Views.Pages.TaskView"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="RMCL.Views.MainWindow"
         TransparencyLevelHint="AcrylicBlur"
@@ -54,7 +55,7 @@
                     </Grid.Background>
                 </Grid>
                 <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">
-                    <button:TaskButton Name="TaskButton" Margin="0,0,5,0"></button:TaskButton>
+                    <button:TaskButton Click="TaskButton_OnClick" Name="TaskButton" Margin="0,0,5,0"></button:TaskButton>
                     <Button ToolTip.Tip="切换显示模式"  Width="32" Height="32" Margin="0,0,5,0" Click="DisplayModeButton_OnClick" Name="DisplayModeButton" BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
                         <Path Width="16" Height="16" Stretch="Uniform" Name="DisplayPath" Fill="{DynamicResource TextColor}" Margin="0,2,0,0"
                               Data="M992 544h-96a32 32 0 0 1 0-64h96a32 32 0 0 1 0 64z m-190.688-276.032a32 32 0 0 1-45.248-45.248L828.8 149.984A32 32 0 0 1 874.048 195.2zM512 749.728A237.728 237.728 0 1 1 749.728 512 237.984 237.984 0 0 1 512 749.728z m0-411.424A173.728 173.728 0 1 0 685.728 512 173.92 173.92 0 0 0 512 338.272zM512 160a32 32 0 0 1-32-32V32a32 32 0 0 1 64 0v96a32 32 0 0 1-32 32zM245.312 277.344a32 32 0 0 1-22.624-9.376L149.984 195.2A32 32 0 1 1 195.2 149.984l72.704 72.768a32 32 0 0 1-22.592 54.592zM160 512a32 32 0 0 1-32 32H32a32 32 0 0 1 0-64h96a32 32 0 0 1 32 32z m62.688 244.064a32 32 0 0 1 45.248 45.248L195.2 874.08A32 32 0 1 1 149.984 828.8zM512 864a32 32 0 0 1 32 32v96a32 32 0 0 1-64 0v-96a32 32 0 0 1 32-32z m289.312-107.936l72.736 72.736a32 32 0 1 1-45.248 45.28l-72.704-72.768a32 32 0 0 1 45.216-45.248z" />
@@ -82,6 +83,6 @@
                                   CloseButtonClick="HomeButtonTips_OnCloseButtonClick"
                                   IconSource="Home" />
         </Grid>
-        <Grid Name="dialog"></Grid>
+        <taskView:TaskView HorizontalAlignment="Stretch" Name="TaskView" VerticalAlignment="Stretch"/>
     </Grid>
 </Window>

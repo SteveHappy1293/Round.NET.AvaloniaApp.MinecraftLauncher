@@ -8,6 +8,7 @@ public partial class TaskControl : UserControl
 {
     public string TaskName { get; set; }
     public Control BoxContent { get; set; }
+    public string UUID { get; set; }
     public TaskControl()
     {
         InitializeComponent();
@@ -17,5 +18,6 @@ public partial class TaskControl : UserControl
     {
         TaskNameBox.Text = TaskName;
         ContentBox.Content = BoxContent;
+        BoxContent.Tag = UUID;
     }
 }

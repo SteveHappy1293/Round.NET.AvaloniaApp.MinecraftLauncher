@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace RMCL.Controls.Button;
 
-public partial class TaskButton : UserControl
+public partial class TaskButton : Avalonia.Controls.Button
 {
     public TaskButton()
     {

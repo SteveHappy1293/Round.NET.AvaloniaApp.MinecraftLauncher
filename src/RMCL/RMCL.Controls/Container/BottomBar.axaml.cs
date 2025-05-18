@@ -17,6 +17,7 @@ public partial class BottomBar : UserControl
     private List<BottomBarNavigationItemEntry> NavigationButtons { get; set; } = new();
     public string DefaultTag { get; set; } = "Launch";
     public Frame ContentFrame { get; set; }
+    public string NowTag { get; set; }
     public BottomBar()
     {
         InitializeComponent();

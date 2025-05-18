@@ -22,6 +22,7 @@ public partial class MainWindow : Window
     {
         Core.MainWindow = this;
         InitializeComponent();
+        Core.TaskView = this.TaskView;
         
         this.Closing += (e,sender) => {
             Config.Config.MainConfig.WindowWidth = (int)this.Bounds.Width;
@@ -188,5 +189,10 @@ public partial class MainWindow : Window
     private void HomeButton_OnClick(object? sender, RoutedEventArgs e)
     {
         Core.BottomBar.NavigationTo("Home");
+    }
+
+    private void TaskButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        Core.TaskView.Show();
     }
 }
