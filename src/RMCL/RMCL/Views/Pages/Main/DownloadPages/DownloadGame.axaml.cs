@@ -30,6 +30,7 @@ public partial class DownloadGame : UserControl
     public void Update()
     {
         IsEdit = false;
+        Versions.Clear();
         Dispatcher.UIThread.Invoke(() =>
         {
             VersionType.IsEnabled = false;
@@ -71,6 +72,7 @@ public partial class DownloadGame : UserControl
         VersionsList.Items.Clear();
         string searchText = null;
         if (IsLoad) searchText = SearchBox.Text ?? null; // 获取搜索框的内容并转为小写
+        NullBox.IsVisible = false;
         if (string.IsNullOrEmpty(searchText))
         {
             Versions.ForEach(x =>
@@ -115,6 +117,11 @@ public partial class DownloadGame : UserControl
                     });
                     VersionsList.Items.Add(it);
                 });
+                
+                if (filteredVersions.Count == 0)
+                {
+                    NullBox.IsVisible = true;
+                }
             });
         }
     }

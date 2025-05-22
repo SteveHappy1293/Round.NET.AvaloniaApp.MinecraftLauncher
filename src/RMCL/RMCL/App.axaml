@@ -3,9 +3,9 @@
              x:Class="RMCL.App"
              xmlns:local="using:RMCL"
              xmlns:styling="clr-namespace:FluentAvalonia.Styling;assembly=FluentAvalonia">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
     <Application.Styles>
-        <styling:FluentAvaloniaTheme CustomAccentColor="DodgerBlue" UseSystemFontOnWindows="True"/>
+        <styling:FluentAvaloniaTheme UseSystemFontOnWindows="True" PreferUserAccentColor="True"/>
         <StyleInclude Source="avares://RMCL.Controls/ControlInclude.axaml"></StyleInclude>
     </Application.Styles>
     <Application.Resources>

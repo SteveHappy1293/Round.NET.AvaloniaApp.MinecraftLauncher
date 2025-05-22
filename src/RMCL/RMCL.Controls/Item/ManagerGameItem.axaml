@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:button="clr-namespace:RMCL.Controls.Button"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="80"
+             x:Class="RMCL.Controls.Item.ManagerGameItem">
+    <DockPanel LastChildFill="True">
+        <DockPanel DockPanel.Dock="Right">
+            <DockPanel IsVisible="False">
+                <Border Padding="3" VerticalAlignment="Center" CornerRadius="5" Background="Orange" Margin="5">
+                    <TextBlock Name="VersionTime" FontSize="11" FontWeight="Light" Foreground="White"></TextBlock>
+                </Border>
+                <Border Padding="3" VerticalAlignment="Center" CornerRadius="5" Background="Gray" Margin="5">
+                    <TextBlock Name="VersionType" FontSize="11" FontWeight="Light" Foreground="White"></TextBlock>
+                </Border>
+            </DockPanel>
+            <Button Margin="5" Width="32" Height="32">
+                <fluentIcons:FluentIcon Icon="Settings20Regular" Margin="-8"/>
+            </Button>
+            <button:IconButton Margin="5" Icon="Play24Regular" Click="Button_OnClick" Content="启动"/>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Left">
+            <Image Source="../Assets/MinecraftIcons/release.png" DockPanel.Dock="Left" HorizontalAlignment="Left" Width="24" Height="24" Stretch="Uniform" Margin="5,5,18,5" Name="IconImage"></Image>
+            <TextBlock DockPanel.Dock="Left" FontSize="18" FontWeight="SemiLight" VerticalAlignment="Center" Name="VersionName">Version</TextBlock>
+        </DockPanel>
+    </DockPanel>
+</UserControl>

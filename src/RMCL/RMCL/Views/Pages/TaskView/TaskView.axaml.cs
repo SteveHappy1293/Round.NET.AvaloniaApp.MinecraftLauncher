@@ -23,6 +23,9 @@ public partial class TaskView : UserControl
 
     public void Show()
     {
+        if (TasksView.Children.Count == 0) NullBox.IsVisible = true;
+        else NullBox.IsVisible = false;
+        
         if (IsOpen)
         {
             BackGrid.Opacity = 0;
@@ -64,10 +67,16 @@ public partial class TaskView : UserControl
                     TasksView.Children.Remove(item.TaskView);
                 }
             }
+            
+            if (TasksView.Children.Count == 0) NullBox.IsVisible = true;
+            else NullBox.IsVisible = false;
         });
     }
     public void AddTask(UserControl view)
     {
         TasksView.Children.Add(view);
+        
+        if (TasksView.Children.Count == 0) NullBox.IsVisible = true;
+        else NullBox.IsVisible = false;
     }
 }

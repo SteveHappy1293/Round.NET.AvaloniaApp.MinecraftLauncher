@@ -31,7 +31,7 @@
                     <MenuFlyout>
                         <MenuItem Header="管理游戏目录" Name="ManageTheGameCatalog" Click="ManageTheGameCatalog_OnClick"></MenuItem>
                         <MenuItem Header="-"></MenuItem>
-                        <MenuItem Header="打开当前游戏根目录"></MenuItem>
+                        <MenuItem Header="打开当前游戏根目录" Name="OpenNowGameRoot" Click="OpenNowGameRoot_OnClick"></MenuItem>
                     </MenuFlyout>
                 </Button.Flyout>
                 <DockPanel>
@@ -49,8 +49,9 @@
                      Margin="0,0,10,0"/> 
         </DockPanel>
         <view:Loading Grid.Row="1" Name="LoadingBox" SmallTitle="正在翻箱倒柜..."/>
+        <view:NullBox Grid.Row="1" Name="NullBox" BigTitle="箱子里没有" SmallTitle="翻箱倒...哦不！"></view:NullBox>
         <ScrollViewer Grid.Row="1">
-            <ListBox Name="VersionsList">
+            <ListBox Name="VersionsList" SelectionChanged="VersionsList_OnSelectionChanged">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel Orientation="Vertical"/>

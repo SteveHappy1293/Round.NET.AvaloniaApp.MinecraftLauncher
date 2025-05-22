@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -10,9 +11,11 @@ using Avalonia.Media;
 using Avalonia.Skia;
 using Avalonia.Styling;
 using Avalonia.Threading;
+using FluentAvalonia.Interop;
 using FluentAvalonia.UI.Controls;
 using RMCL.Config;
 using RMCL.Models.Classes;
+using RMCL.Models.Classes.Manager.TaskManager;
 
 namespace RMCL.Views;
 
@@ -42,6 +45,15 @@ public partial class MainWindow : Window
         }
 
         HomeButtonTips.IsOpen = Config.Config.MainConfig.FirstLauncher;
+
+        if (OSVersionHelper.IsWindows11())
+        {
+            TransparencyLevelHint = new WindowTransparencyLevel[] { WindowTransparencyLevel.Mica };
+        }
+        else
+        {
+            TransparencyLevelHint = new WindowTransparencyLevel[] { WindowTransparencyLevel.AcrylicBlur };
+        }
     }
 
     public void UpdateStatus(int num)
@@ -81,7 +93,11 @@ public partial class MainWindow : Window
 
     private void CloseButton_Click(object sender, RoutedEventArgs e)
     {
-        Close();
+        if (TaskManager.TaskList.Count != 0)
+        {
+            new CloseWindow().ShowDialog(this);
+        }
+        else Close();
     }
 
     public void ChangeMenuItems(List<MenuItem> menuItems)
@@ -149,7 +165,6 @@ public partial class MainWindow : Window
         {
             ThemeType.System => ThemeType.Dark,
             ThemeType.Dark => ThemeType.Light,
-            ThemeType.Light => ThemeType.System,
             _ => ThemeType.System
         };
         Config.Config.SaveConfig();
