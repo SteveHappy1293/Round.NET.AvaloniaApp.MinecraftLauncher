@@ -44,8 +44,15 @@ public partial class DownloadGame : UserControl
         {
             if (Versions.Count <= 0)
             {
-                Versions =
-                    UpdateMinecraftVersions.Load().ToList();
+                try
+                {
+                    Versions =
+                        UpdateMinecraftVersions.Load().ToList();
+                }
+                catch
+                {
+                    break;
+                }
             }
             else
             {

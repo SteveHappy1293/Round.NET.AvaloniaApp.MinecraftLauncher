@@ -8,6 +8,7 @@ sealed class Program
     public static void Main(string[] args)
     {
         Config.Config.LoadConfig();
+        JavaManager.JavaManager.LoadConfig();
         
         BuildAvaloniaApp()
             .StartWithClassicDesktopLifetime(args);

@@ -2,11 +2,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="RMCL.App"
              xmlns:local="using:RMCL"
-             xmlns:styling="clr-namespace:FluentAvalonia.Styling;assembly=FluentAvalonia">
+             xmlns:styling="clr-namespace:FluentAvalonia.Styling;assembly=FluentAvalonia"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
     <Application.Styles>
         <styling:FluentAvaloniaTheme UseSystemFontOnWindows="True" PreferUserAccentColor="True"/>
         <StyleInclude Source="avares://RMCL.Controls/ControlInclude.axaml"></StyleInclude>
+        
+        <Style Selector="controls|SettingsExpander">
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
     </Application.Styles>
     <Application.Resources>
         <ResourceDictionary>

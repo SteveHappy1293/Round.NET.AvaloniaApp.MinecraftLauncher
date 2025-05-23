@@ -46,5 +46,6 @@
       <ProjectReference Include="..\RMCL.Config\RMCL.Config.csproj" />
       <ProjectReference Include="..\RMCL.Controls\RMCL.Controls.csproj" />
       <ProjectReference Include="..\RMCL.DownloadService\RMCL.DownloadService.csproj" />
+      <ProjectReference Include="..\RMCL.JavaManager\RMCL.JavaManager.csproj" />
     </ItemGroup>
 </Project>

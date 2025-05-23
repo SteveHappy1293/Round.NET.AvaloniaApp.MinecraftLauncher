@@ -36,5 +36,11 @@ public partial class MainView : UserControl
             Title = new Label() { Content = "管理" },
             Page = new Manage()
         });
+        BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
+        {
+            Tag = "Setting",
+            Title = new Label() { Content = "设置" },
+            Page = new Setting()
+        });
     }
 }
