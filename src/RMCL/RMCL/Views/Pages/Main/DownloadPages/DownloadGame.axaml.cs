@@ -70,60 +70,72 @@ public partial class DownloadGame : UserControl
     {
         var tag = ((ComboBoxItem)VersionType.SelectedItem)?.Tag.ToString() ?? "*"; // 获取当前选择的版本类型
         VersionsList.Items.Clear();
+        VersionsList.IsVisible = false;
         string searchText = null;
         if (IsLoad) searchText = SearchBox.Text ?? null; // 获取搜索框的内容并转为小写
         NullBox.IsVisible = false;
-        if (string.IsNullOrEmpty(searchText))
+        LoadingBox.IsVisible = true;
+        Task.Run(() =>
         {
-            Versions.ForEach(x =>
+            if (string.IsNullOrEmpty(searchText))
             {
-                var it = new DownloadGameItem(x);
-                it.OnDownload = ((id) =>
+                Versions.ForEach(x =>
                 {
-                    new DownloadClient(x).ShowDialog(Core.MainWindow);
-                });
-            
-            
-                if (tag == "*")
-                {
-                    VersionsList.Items.Add(it);
-                }
-                else if(x.Type==tag)
-                { 
-                    VersionsList.Items.Add(it);
-                }
-            });
-        }
-        else
-        {
-            // 根据版本 ID 和当前选择的版本类型过滤版本列表
-            var filteredVersions = Versions
-                .Where(version =>
-                        version.Id.ToLower().Contains(searchText) && // 匹配版本 ID
-                        (tag == "*" || version.Type == tag) // 匹配版本类型
-                )
-                .ToList();
+                    Dispatcher.UIThread.Invoke(() =>
+                    {
+                        var it = new DownloadGameItem(x);
+                        it.OnDownload = ((id) =>
+                        {
+                            new DownloadClient(x).ShowDialog(Core.MainWindow);
+                        });
 
-            // 更新 UI，显示过滤后的版本
-            Dispatcher.UIThread.Invoke(() =>
+
+                        if (tag == "*")
+                        {
+                            VersionsList.Items.Add(it);
+                        }
+                        else if (x.Type == tag)
+                        {
+                            VersionsList.Items.Add(it);
+                        }
+                    });
+                });
+            }
+            else
             {
-                VersionsList.Items.Clear();
+                // 根据版本 ID 和当前选择的版本类型过滤版本列表
+                var filteredVersions = Versions
+                    .Where(version =>
+                            version.Id.ToLower().Contains(searchText) && // 匹配版本 ID
+                            (tag == "*" || version.Type == tag) // 匹配版本类型
+                    )
+                    .ToList();
+
                 filteredVersions.ForEach(version =>
                 {
-                    var it = new DownloadGameItem(version);
-                    it.OnDownload = ((id) =>
+                    Dispatcher.UIThread.Invoke(() =>
                     {
-                        new DownloadClient(version).ShowDialog(Core.MainWindow);
+                        var it = new DownloadGameItem(version);
+                        it.OnDownload = ((id) =>
+                        {
+                            new DownloadClient(version).ShowDialog(Core.MainWindow);
+                        });
+                        VersionsList.Items.Add(it);
                     });
-                    VersionsList.Items.Add(it);
                 });
-                
-                if (filteredVersions.Count == 0)
+                // 更新 UI，显示过滤后的版本
+                Dispatcher.UIThread.Invoke(() =>
                 {
-                    NullBox.IsVisible = true;
-                }
-            });
-        }
+                    if (filteredVersions.Count == 0)
+                    {
+                        NullBox.IsVisible = true;
+                    }
+                });
+            }
+
+            Dispatcher.UIThread.Invoke(() => LoadingBox.IsVisible = false);
+            Dispatcher.UIThread.Invoke(() => VersionsList.IsVisible = true);
+        });
     }
 
     private void VersionType_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
