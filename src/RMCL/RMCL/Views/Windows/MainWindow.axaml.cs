@@ -15,6 +15,7 @@ using FluentAvalonia.Interop;
 using FluentAvalonia.UI.Controls;
 using RMCL.Config;
 using RMCL.Models.Classes;
+using RMCL.Models.Classes.Manager.StyleManager;
 using RMCL.Models.Classes.Manager.TaskManager;
 
 namespace RMCL.Views;
@@ -46,14 +47,7 @@ public partial class MainWindow : Window
 
         HomeButtonTips.IsOpen = Config.Config.MainConfig.FirstLauncher;
 
-        if (OSVersionHelper.IsWindows11())
-        {
-            TransparencyLevelHint = new WindowTransparencyLevel[] { WindowTransparencyLevel.Mica };
-        }
-        else
-        {
-            TransparencyLevelHint = new WindowTransparencyLevel[] { WindowTransparencyLevel.AcrylicBlur };
-        }
+        StyleManager.UpdateBackground();
     }
 
     public void UpdateStatus(int num)

@@ -16,8 +16,10 @@ using OverrideLauncher.Core.Modules.Entry.GameEntry;
 using OverrideLauncher.Core.Modules.Entry.JavaEntry;
 using OverrideLauncher.Core.Modules.Entry.LaunchEntry;
 using OverrideLauncher.Core.Modules.Enum.Launch;
+using RMCL.Base.Entry;
 using RMCL.Controls.Item;
 using RMCL.Models.Classes;
+using RMCL.Models.Classes.Launch;
 using RMCL.Views.Windows.Main.ManageWindows;
 
 namespace RMCL.Views.Pages.Main.ManagePages;
@@ -68,22 +70,16 @@ public partial class ManageGame : UserControl
                     var item = new ManagerGameItem(ver);
                     item.OnLaunch = parse =>
                     {
-                        ClientRunner Runner = new ClientRunner(new ClientRunnerInfo()
+                        Task.Run(() =>
                         {
-                            GameInstances = parse,
-                            JavaInfo = new JavaInfo()
+                            LaunchService.Launch(new LaunchClientInfo()
                             {
-                                JavaPath = @"D:\MCLDownload\ext\jre-v64-220420\jdk17\bin\java.exe",
-                                Version = "17.0.2",
-                                Is64Bit = true
-                            },
-                            Account = new OffineAuthenticator("RoundStudio").Authenticator(),
-                            LauncherInfo = "RMCL",
-                            LauncherVersion = "114",
-                            WindowInfo = ClientWindowSizeEnum.Fullscreen
+                                GameFolder = ver.ClientInstances.GameCatalog,
+                                GameName = ver.ClientInstances.GameName,
+                                Java = JavaManager.JavaManager.JavaRoot.Javas[
+                                    JavaManager.JavaManager.JavaRoot.SelectIndex]
+                            });
                         });
-                        Runner.LogsOutput = (string logs) => { Console.WriteLine(logs); };
-                        Runner.Start();
                     };
                     VersionsList.Items.Add(item);
                 });

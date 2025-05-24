@@ -18,8 +18,8 @@ public partial class ManagerGameItem : UserControl
     {
         _versionParse = versionInfo;
         InitializeComponent();
-        
-        VersionName.Text = versionInfo.GameJson.Id;
+
+        VersionName.Text = versionInfo.ClientInstances.GameName;
         VersionType.Text = versionInfo.GameJson.Type;
         VersionTime.Text = DateTime.Parse(versionInfo.GameJson.Time).ToString("yyyy/MM/dd HH:mm:ss");
         

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RMCL.Base.Entry.Style;
 
 namespace RMCL.Config;
 
@@ -12,17 +13,14 @@ public class ConfigRoot
             Path = Path.GetFullPath("../RMCL/RMCL.Minecraft")
         }
     };
+    public BackgroundEntry Background { get; set; } = new();
     public bool FirstLauncher { get; set; } = true;
     public bool IsUseOrganizationConfig { get; set; } = false;
     public string OrganizationUrl { get; set; } = string.Empty;
     public int SelectedGameFolder { get; set; } = 0;
     public int SelectedJava { get; set; } = 0;
     public int SelectedUser { get; set; } = 0;
-    public int BackModlue { get; set; } = 0;
     public int UpdateSourse { get; set; } = 0;
-    public string BackImage { get; set; } = string.Empty;
-    public double BackOpacity { get; set; } = 50;
-    public string StyleFile { get; set; } = string.Empty;
     public bool ShowErrorWindow { get; set; } = true;
     public bool IsAutoUpdate { get; set; } = true;
     public bool IsDebug { get; set; } = false;

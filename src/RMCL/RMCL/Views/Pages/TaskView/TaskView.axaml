@@ -6,19 +6,6 @@
              xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" Background="Transparent"
              x:Class="RMCL.Views.Pages.TaskView.TaskView">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Light">
-                    <Color x:Key="BackColor">#CDCDCD</Color> <!-- 黑色 -->
-                </ResourceDictionary>
-            
-                <ResourceDictionary x:Key="Dark">
-                    <Color x:Key="BackColor">#373737</Color> <!-- 白色 -->
-                </ResourceDictionary>
-            </ResourceDictionary.ThemeDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
     <UserControl.Styles>
         <Style Selector="Grid">
             <Setter Property="Transitions">

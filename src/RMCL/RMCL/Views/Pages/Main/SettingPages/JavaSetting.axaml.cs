@@ -1,6 +1,9 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using RMCL.Models.Classes;
+using RMCL.Views.Windows.Main.ManageWindows;
 
 namespace RMCL.Views.Pages.Main.SettingPages;
 
@@ -34,5 +37,10 @@ public partial class JavaSetting : UserControl
             JavaManager.JavaManager.JavaRoot.SelectIndex = ChooseDefaultJava.SelectedIndex;
             JavaManager.JavaManager.SaveConfig();
         }
+    }
+
+    private void SettingsExpanderItem_OnClick(object? sender, RoutedEventArgs e)
+    {
+        new ManagerJava().ShowDialog(Core.MainWindow);
     }
 }

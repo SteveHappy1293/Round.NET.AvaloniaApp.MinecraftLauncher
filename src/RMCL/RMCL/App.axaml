@@ -18,10 +18,12 @@
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light">
                     <Color x:Key="TextColor">#FF000000</Color> <!-- 黑色 -->
+                    <Color x:Key="BackColor">#CDCDCD</Color> <!-- 黑色 -->
                 </ResourceDictionary>
             
                 <ResourceDictionary x:Key="Dark">
                     <Color x:Key="TextColor">#FFFFFFFF</Color> <!-- 白色 -->
+                    <Color x:Key="BackColor">#373737</Color> <!-- 白色 -->
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>

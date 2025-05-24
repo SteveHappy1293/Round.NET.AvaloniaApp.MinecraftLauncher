@@ -22,11 +22,13 @@
                             <ComboBox Name="ChooseDefaultJava" Width="400" SelectionChanged="ChooseDefaultJava_OnSelectionChanged"></ComboBox>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem Content="添加全局 Java"
-                                             Description="手动添加新的全局 Java">
-                        <ui:SettingsExpanderItem.Footer>
-                            <button:IconButton Icon="Add20Regular" Content="添加"/>
-                        </ui:SettingsExpanderItem.Footer>
+                    <ui:SettingsExpanderItem Content="管理全局 Java"
+                                             IsClickEnabled="True"
+                                             Description="添加、删除甚至禁用全局 Java"
+                                             Click="SettingsExpanderItem_OnClick">
+                        <ui:SettingsExpanderItem.ActionIconSource>
+                            <fluentIcons:FluentIconSource Icon="ChevronRight12Regular"></fluentIcons:FluentIconSource>
+                        </ui:SettingsExpanderItem.ActionIconSource>
                     </ui:SettingsExpanderItem>
                 </ui:SettingsExpander>
             </StackPanel>
