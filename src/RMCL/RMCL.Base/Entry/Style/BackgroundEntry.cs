@@ -6,13 +6,14 @@ public class BackgroundEntry
 {
     public BackgroundModelEnum ChooseModel { get; set; } = BackgroundModelEnum.None;
 
-    public object?[] Data { get; set; } = new object?[7]
-        { null, null, null, new ColorGlassEntry(), new ImageEntry(), new ColorEntry(), new PackEntry() };
+    public ColorGlassEntry ColorGlassEntry { get; set; } = new();
+    public ImageEntry ImageEntry { get; set; } = new();
+    public ColorEntry ColorEntry { get; set; } = new();
+    public PackEntry PackEntry { get; set; } = new();
 }
 
 public class ColorGlassEntry
 {
-    public double Opacity { get; set; } = 0.7;
     public string HtmlColor { get; set; } = "#000000";
 }
 

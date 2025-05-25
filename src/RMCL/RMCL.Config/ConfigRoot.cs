@@ -37,7 +37,7 @@ public class ConfigRoot
     public int WindowX { get; set; } = 0;
     public int WindowY { get; set; } = 0;
     public string RSAccount { get; set; } = string.Empty;
-    public ThemeType Theme { get; set; } = ThemeType.System;
+    public ThemeType Theme { get; set; } = ThemeType.Dark;
 }
 public class GameFolderConfig
 {
@@ -48,7 +48,6 @@ public class GameFolderConfig
 
 public enum ThemeType
 {
-    System,
     Dark,
     Light
 }

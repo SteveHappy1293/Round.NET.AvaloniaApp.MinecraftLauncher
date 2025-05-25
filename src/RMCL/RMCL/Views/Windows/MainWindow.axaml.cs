@@ -157,19 +157,16 @@ public partial class MainWindow : Window
     {
         Config.Config.MainConfig.Theme = Config.Config.MainConfig.Theme switch
         {
-            ThemeType.System => ThemeType.Dark,
-            ThemeType.Dark => ThemeType.Light,
-            _ => ThemeType.System
+            ThemeType.Light => ThemeType.Dark,
+            ThemeType.Dark => ThemeType.Light
         };
         Config.Config.SaveConfig();
         
         
         RequestedThemeVariant = Config.Config.MainConfig.Theme switch
         {
-            ThemeType.System => ThemeVariant.Default,
             ThemeType.Dark => ThemeVariant.Dark,
             ThemeType.Light => ThemeVariant.Light,
-            _ => ThemeVariant.Default,
         };
         
         var brush = DisplayPath.Fill;
@@ -193,6 +190,8 @@ public partial class MainWindow : Window
                 Data = StreamGeometry.Parse(
                     "M233.301333 128A105.301333 105.301333 0 0 0 128 233.301333v557.397334A105.301333 105.301333 0 0 0 233.301333 896h557.397334A105.301333 105.301333 0 0 0 896 790.698667V233.301333A105.301333 105.301333 0 0 0 790.698667 128H233.301333z m-18.602666 105.301333c0-10.24 8.32-18.602667 18.602666-18.602666h557.397334c10.24 0 18.602667 8.32 18.602666 18.602666v557.397334c0 10.24-8.32 18.602667-18.602666 18.602666H233.301333a18.56 18.56 0 0 1-18.602666-18.602666V233.301333z")
             };
+        
+        StyleManager.UpdateBackground();
     }
 
     private void HomeButton_OnClick(object? sender, RoutedEventArgs e)

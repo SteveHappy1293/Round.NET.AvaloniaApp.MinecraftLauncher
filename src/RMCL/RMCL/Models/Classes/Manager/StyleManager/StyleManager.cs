@@ -1,8 +1,10 @@
 using System;
+using System.Text.Json;
 using Avalonia.Controls;
 using Avalonia.Media;
 using RMCL.Base.Entry.Style;
 using RMCL.Base.Enum;
+using RMCL.Config;
 
 namespace RMCL.Models.Classes.Manager.StyleManager;
 
@@ -11,12 +13,13 @@ public class StyleManager
     public static void UpdateBackground()
     {
         Core.MainWindow.Background = Brushes.Transparent;
-        var obj = GetBackgroundDate();
+        Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.None };
+        Core.MainWindow.InvalidateVisual();
 
         switch (Config.Config.MainConfig.Background.ChooseModel)
         {
             case BackgroundModelEnum.None:
-                Core.MainWindow.Background = Brush.Parse("#161616");
+                Core.MainWindow.Background = Config.Config.MainConfig.Theme == ThemeType.Dark ? Brush.Parse("#161616") : Brushes.White;
                 break;
             case BackgroundModelEnum.Mica:
                 Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.Mica };
@@ -24,29 +27,19 @@ public class StyleManager
             case BackgroundModelEnum.AcrylicBlur:
                 Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.AcrylicBlur };
                 break;
+            case BackgroundModelEnum.Glass:
+                Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.Blur };
+                Core.MainWindow.Background = new SolidColorBrush()
+                {
+                    Color = Color.Parse(Config.Config.MainConfig.Background.ColorGlassEntry.HtmlColor)
+                };
+
+                break;
         }
-        
-        Config.Config.SaveConfig();
     }
 
     public static Type GetObjectType(object obj)
     {
         return obj.GetType();
-    }
-
-    public static object? GetBackgroundDate()
-    {
-        var mod = Config.Config.MainConfig.Background.ChooseModel;
-        return mod switch
-        {
-            BackgroundModelEnum.None => null,
-            BackgroundModelEnum.Mica => null,
-            BackgroundModelEnum.AcrylicBlur => null,
-            BackgroundModelEnum.Glass => Config.Config.MainConfig.Background.Data[3],
-            BackgroundModelEnum.Image => Config.Config.MainConfig.Background.Data[4],
-            BackgroundModelEnum.Color => Config.Config.MainConfig.Background.Data[5],
-            BackgroundModelEnum.Pack => Config.Config.MainConfig.Background.Data[6],
-            _ => null
-        };
     }
 }

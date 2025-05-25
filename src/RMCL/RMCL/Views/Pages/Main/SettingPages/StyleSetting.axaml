@@ -23,7 +23,7 @@
                                 <ComboBoxItem Tag="None">无</ComboBoxItem>
                                 <ComboBoxItem Tag="Mica">Mica (Win11+)</ComboBoxItem>
                                 <ComboBoxItem Tag="AcrylicBlur">模糊背景 (对亮色模式兼容性差)</ComboBoxItem>
-                                <ComboBoxItem Tag="Glass">彩色玻璃</ComboBoxItem>
+                                <ComboBoxItem Tag="Glass">彩色玻璃 (需要重启)</ComboBoxItem>
                                 <ComboBoxItem Tag="Image">图片</ComboBoxItem>
                                 <ComboBoxItem Tag="Color">纯色</ComboBoxItem>
                                 <ComboBoxItem Tag="Pack">Round Studio 通用背景样式包</ComboBoxItem>
@@ -39,7 +39,9 @@
                     <controls:SettingsExpander.IconSource>
                         <fluentIcons:FluentIconSource Icon="Tag20Regular"/>
                     </controls:SettingsExpander.IconSource>
-                    <controls:Frame Name="BackgroundMaxSetting"/>
+                    <controls:Frame Name="BackgroundMaxSetting" Margin="-10">
+                        <view:NullBox Margin="10" SmallTitle="这里没有设置"></view:NullBox>
+                    </controls:Frame>
                 </controls:SettingsExpander>
             </StackPanel>
         </ScrollViewer>

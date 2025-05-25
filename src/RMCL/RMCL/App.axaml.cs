@@ -29,10 +29,8 @@ public partial class App : Application
 
         RequestedThemeVariant = Config.Config.MainConfig.Theme switch
         {
-            ThemeType.System => ThemeVariant.Default,
             ThemeType.Dark => ThemeVariant.Dark,
             ThemeType.Light => ThemeVariant.Light,
-            _ => ThemeVariant.Default,
         };
 
         base.OnFrameworkInitializationCompleted();
