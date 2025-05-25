@@ -30,7 +30,7 @@ public class LaunchService
             },
             LauncherInfo = "RMCL",
             GameInstances = par,
-            WindowInfo = ClientWindowSizeEnum.Default
+            WindowInfo = ClientWindowSizeEnum.Fullscreen
         });
         run.LogsOutput = s => Console.WriteLine(s);
         run.Start();
