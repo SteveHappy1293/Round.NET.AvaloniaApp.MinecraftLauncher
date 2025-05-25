@@ -33,7 +33,6 @@ public class StyleManager
                 {
                     Color = Color.Parse(Config.Config.MainConfig.Background.ColorGlassEntry.HtmlColor)
                 };
-
                 break;
         }
     }

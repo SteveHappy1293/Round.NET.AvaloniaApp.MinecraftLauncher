@@ -16,7 +16,6 @@ public partial class StyleSetting : UserControl
 
     public Dictionary<BackgroundModelEnum, UserControl> BackgroundSettings { get; set; } = new()
     {
-        { BackgroundModelEnum.Color, new ColorSetting() },
         { BackgroundModelEnum.Glass, new ColorGlassSetting() },
         { BackgroundModelEnum.Pack, new PackSetting() },
         { BackgroundModelEnum.Image, new ImageSetting() },

@@ -7,6 +7,5 @@ public enum BackgroundModelEnum
     AcrylicBlur,
     Glass,
     Image,
-    Color,
     Pack
 }

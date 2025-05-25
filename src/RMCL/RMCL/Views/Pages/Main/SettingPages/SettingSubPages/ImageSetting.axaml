@@ -2,7 +2,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Views.Pages.Main.SettingPages.SettingSubPages.ImageSetting">
-    Welcome to Avalonia!
+    <StackPanel Margin="5">
+        <DockPanel Margin="5">
+            <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left">背景图片</TextBlock>
+            <button:AccentIconButton DockPanel.Dock="Right" Content="选择图片" Icon="Folder20Regular" HorizontalAlignment="Right"/>
+        </DockPanel>
+    </StackPanel>
 </UserControl>

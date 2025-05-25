@@ -24,6 +24,7 @@ public partial class MainWindow : Window
 {
     public MainWindow()
     {
+        Console.WriteLine("Opening MainWindow...");
         Core.MainWindow = this;
         InitializeComponent();
         Core.TaskView = this.TaskView;
@@ -48,6 +49,9 @@ public partial class MainWindow : Window
         HomeButtonTips.IsOpen = Config.Config.MainConfig.FirstLauncher;
 
         StyleManager.UpdateBackground();
+        
+        
+        Console.WriteLine("Opened MainWindow!");
     }
 
     public void UpdateStatus(int num)

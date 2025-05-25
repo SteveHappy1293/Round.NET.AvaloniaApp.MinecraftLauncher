@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.JavaManager", "RMCL.Ja
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.Base", "RMCL.Base\RMCL.Base.csproj", "{AA2612A4-172B-47B2-B1DA-89EF4EB7D930}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.Logger", "RMCL.Logger\RMCL.Logger.csproj", "{83C26A7C-887D-4135-8F0D-0A2E18E6FAEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{AA2612A4-172B-47B2-B1DA-89EF4EB7D930}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA2612A4-172B-47B2-B1DA-89EF4EB7D930}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA2612A4-172B-47B2-B1DA-89EF4EB7D930}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83C26A7C-887D-4135-8F0D-0A2E18E6FAEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83C26A7C-887D-4135-8F0D-0A2E18E6FAEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83C26A7C-887D-4135-8F0D-0A2E18E6FAEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83C26A7C-887D-4135-8F0D-0A2E18E6FAEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

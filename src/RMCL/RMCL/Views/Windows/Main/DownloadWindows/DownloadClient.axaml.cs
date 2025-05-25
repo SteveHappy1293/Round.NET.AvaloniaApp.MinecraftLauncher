@@ -10,6 +10,7 @@ using OverrideLauncher.Core.Modules.Classes.Download;
 using OverrideLauncher.Core.Modules.Entry.DownloadEntry;
 using RMCL.Controls.Download;
 using RMCL.Controls.TaskContentControl;
+using RMCL.Logger;
 using RMCL.Models.Classes;
 using RMCL.Models.Classes.Manager.TaskManager;
 

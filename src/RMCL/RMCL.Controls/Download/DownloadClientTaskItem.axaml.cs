@@ -5,6 +5,7 @@ using Avalonia.Threading;
 using OverrideLauncher.Core.Modules.Classes.Download;
 using OverrideLauncher.Core.Modules.Enum.Download;
 using RMCL.Controls.TaskContentControl;
+using RMCL.Logger;
 
 namespace RMCL.Controls.Download;
 
@@ -35,9 +36,12 @@ public partial class DownloadClientTaskItem : UserControl
     {
         InstallClient.ProgressCallback = (e,s, d) =>
         {
+            ConsoleRedirector.RegisterThread(Thread.CurrentThread, $"Download-{InstallClient.VersionInfo.Version.Id}");
+            var txt = $"{d:0.00}% - {GetState(e)} {s}";
+            Console.WriteLine(txt);
             Dispatcher.UIThread.Invoke(() =>
             {
-                ProgressTextBox.Text = $"{d:0.00}% - {GetState(e)} {s}";
+                ProgressTextBox.Text = txt;
                 DownloadProgress.Value = d;
 
                 if (e==DownloadStateEnum.DownloadSuccess)

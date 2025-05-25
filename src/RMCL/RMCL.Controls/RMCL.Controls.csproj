@@ -37,4 +37,8 @@
       <AvaloniaResource Include="Assets\MinecraftIcons\snapshot.png" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\RMCL.Logger\RMCL.Logger.csproj" />
+    </ItemGroup>
+
 </Project>
