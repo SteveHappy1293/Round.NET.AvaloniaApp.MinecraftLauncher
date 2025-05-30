@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:button="clr-namespace:RMCL.Controls.Button"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RMCL.Controls.Item.StyleItem.ImageItem">
+    <DockPanel LastChildFill="True">
+        <DockPanel DockPanel.Dock="Right">
+            <button:IconButton Name="DeleteBtn" Click="DeleteBtn_OnClick" Icon="Delete20Regular" Content="删除"></button:IconButton>
+        </DockPanel>
+        <Border BorderBrush="Gray" BorderThickness="2" HorizontalAlignment="Left" CornerRadius="6" Name="ImageShowBox" Width="48" Height="48" DockPanel.Dock="Left" Margin="5"></Border>
+    </DockPanel>
+</UserControl>

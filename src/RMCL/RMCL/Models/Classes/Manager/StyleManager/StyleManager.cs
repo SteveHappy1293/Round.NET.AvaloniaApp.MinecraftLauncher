@@ -2,6 +2,7 @@ using System;
 using System.Text.Json;
 using Avalonia.Controls;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using RMCL.Base.Entry.Style;
 using RMCL.Base.Enum;
 using RMCL.Config;
@@ -32,6 +33,15 @@ public class StyleManager
                 Core.MainWindow.Background = new SolidColorBrush()
                 {
                     Color = Color.Parse(Config.Config.MainConfig.Background.ColorGlassEntry.HtmlColor)
+                };
+                break;
+            case BackgroundModelEnum.Image:
+                if (Config.Config.MainConfig.Background.ImageEntry.ChooseIndex == -1) return;
+                Core.MainWindow.Background = new ImageBrush()
+                {
+                    Source = new Bitmap(Config.Config.MainConfig.Background.ImageEntry.ImagePaths[Config.Config.MainConfig.Background.ImageEntry.ChooseIndex]),
+                    Stretch = Stretch.UniformToFill,
+                    Opacity = (double)Config.Config.MainConfig.Background.ImageEntry.Opacity / 100
                 };
                 break;
         }

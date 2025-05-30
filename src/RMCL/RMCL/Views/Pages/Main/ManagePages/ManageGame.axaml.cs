@@ -48,6 +48,7 @@ public partial class ManageGame : UserControl
         {
             var path = Path.GetFullPath(Path.Combine(
                 Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path, "versions"));
+            Directory.CreateDirectory(path);
 
             var vers = Directory.GetDirectories(path);
             vers.ToList().ForEach(x => Versions.Add(new VersionParse(new ClientInstancesInfo()

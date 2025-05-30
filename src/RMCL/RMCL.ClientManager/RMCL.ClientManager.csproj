@@ -6,12 +6,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="OverrideLauncher.Core" Version="25.5.30.1340" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Entry\Game\Client\" />
-    </ItemGroup>
-
 </Project>

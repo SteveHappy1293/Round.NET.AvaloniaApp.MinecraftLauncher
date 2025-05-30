@@ -26,7 +26,8 @@ public partial class ManagerGameItem : UserControl
         string resourcePath = $"avares://RMCL.Controls/Assets/MinecraftIcons/{versionInfo.GameJson.Type}.png";
         var bitmap = _imageCache.GetOrAdd(resourcePath, key =>
         {
-            return new Bitmap(AssetLoader.Open(new Uri(key)));
+            using var stream = AssetLoader.Open(new Uri(key));
+            return Bitmap.DecodeToWidth(stream, 24); // 按需调整目标宽度
         });
 
         IconImage.Source = bitmap;

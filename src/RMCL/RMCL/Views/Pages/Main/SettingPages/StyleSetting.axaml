@@ -24,7 +24,7 @@
                                 <ComboBoxItem Tag="Mica">Mica (Win11+)</ComboBoxItem>
                                 <ComboBoxItem Tag="AcrylicBlur">模糊背景 (对亮色模式兼容性差)</ComboBoxItem>
                                 <ComboBoxItem Tag="Glass">彩色玻璃、纯色</ComboBoxItem>
-                                <ComboBoxItem Tag="Image" IsEnabled="False">图片</ComboBoxItem>
+                                <ComboBoxItem Tag="Image">图片</ComboBoxItem>
                                 <ComboBoxItem Tag="Pack" IsEnabled="False">Round Studio 通用背景样式包</ComboBoxItem>
                             </ComboBox>
                         </controls:SettingsExpanderItem.Footer>

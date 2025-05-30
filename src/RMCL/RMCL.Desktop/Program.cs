@@ -1,9 +1,8 @@
 ﻿using Avalonia;
-using System;
-using System.IO;
+using RMCL;
+using RMCL.Config;
+using RMCL.JavaManager;
 using RMCL.Logger;
-
-namespace RMCL;
 
 sealed class Program
 {
@@ -12,8 +11,8 @@ sealed class Program
         var redirector = new ConsoleRedirector(Path.GetFullPath($"../RMCL/RMCL.Logs/[RMCL.Logger] {DateTime.Now.ToString("yyyy.MM.dd HHmmss.fff")}.log"));
         
         Console.WriteLine("Program Starting!");
-        Config.Config.LoadConfig();
-        JavaManager.JavaManager.LoadConfig();
+        Config.LoadConfig();
+        JavaManager.LoadConfig();
         Console.WriteLine("Program Init...");
         
         BuildAvaloniaApp()

@@ -32,7 +32,7 @@ public partial class DownloadClientTaskItem : UserControl
             _ => "未知进度"
         };
     }
-    public void Download(string gamedir)
+    public void Download(string gamedir,string name)
     {
         InstallClient.ProgressCallback = (e,s, d) =>
         {
@@ -51,6 +51,6 @@ public partial class DownloadClientTaskItem : UserControl
                 }
             });
         };
-        Task.Run(() => InstallClient.Install(Path.GetFullPath(gamedir)));
+        Task.Run(() => InstallClient.Install(Path.GetFullPath(gamedir),name));
     }
 }

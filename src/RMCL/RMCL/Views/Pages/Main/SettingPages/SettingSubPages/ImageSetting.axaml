@@ -7,8 +7,16 @@
              x:Class="RMCL.Views.Pages.Main.SettingPages.SettingSubPages.ImageSetting">
     <StackPanel Margin="5">
         <DockPanel Margin="5">
-            <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left">背景图片</TextBlock>
-            <button:AccentIconButton DockPanel.Dock="Right" Content="选择图片" Icon="Folder20Regular" HorizontalAlignment="Right"/>
+            <TextBlock Name="ShowOpacity" VerticalAlignment="Center" DockPanel.Dock="Left">背景透明度</TextBlock>
+            <Slider  HorizontalAlignment="Right" Name="OpacitySetting" DockPanel.Dock="Right" Width="400" Maximum="100" ValueChanged="RangeBase_OnValueChanged"></Slider>
         </DockPanel>
+        <DockPanel Margin="5">
+            <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left">背景图片</TextBlock>
+            <button:AccentIconButton Name="AddImageBtn" Click="AddImageBtn_OnClick" DockPanel.Dock="Right" Margin="10,0,0,0" Content="添加图片" Icon="Folder20Regular" HorizontalAlignment="Right"/>
+            <button:IconButton Name="UpdateBtn" Click="UpdateBtn_OnClick" DockPanel.Dock="Right" Margin="10,0,0,0" Content="刷新" Icon="ArrowClockwise20Regular" HorizontalAlignment="Right"/>
+        </DockPanel>
+        <ListBox Name="ChooseImageListBox" SelectionChanged="ChooseImageListBox_OnSelectionChanged">
+            
+        </ListBox>
     </StackPanel>
 </UserControl>

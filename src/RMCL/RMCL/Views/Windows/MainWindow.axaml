@@ -12,8 +12,8 @@
         WindowStartupLocation="CenterScreen"
         Width="1000"
         Height="590"
-        MinWidth="1000"
-        MinHeight="590"
+        MinWidth="700"
+        MinHeight="480"
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="NoChrome"
         Title="RMCL">

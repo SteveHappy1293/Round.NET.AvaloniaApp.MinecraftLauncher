@@ -8,6 +8,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using Avalonia.Skia;
 using Avalonia.Styling;
 using Avalonia.Threading;
@@ -25,6 +26,10 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         Console.WriteLine("Opening MainWindow...");
+        RenderOptions.SetTextRenderingMode(this, TextRenderingMode.SubpixelAntialias); // 字体渲染模式
+        RenderOptions.SetBitmapInterpolationMode(this, BitmapInterpolationMode.MediumQuality); // 图片渲染模式
+        RenderOptions.SetEdgeMode(this, EdgeMode.Antialias); // 形状渲染模式
+        
         Core.MainWindow = this;
         InitializeComponent();
         Core.TaskView = this.TaskView;

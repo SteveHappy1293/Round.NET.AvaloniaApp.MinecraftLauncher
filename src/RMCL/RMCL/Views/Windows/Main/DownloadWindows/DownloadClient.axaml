@@ -42,7 +42,7 @@
                     <controls:SettingsExpanderItem Content="预计大小"
                                                    Description="安装到磁盘上的客户端预计的大小">
                         <controls:SettingsExpanderItem.Footer>
-                            <Label Name="ClientSizeLabel">未知</Label>
+                            <Label Name="ClientSizeLabel">获取中</Label>
                         </controls:SettingsExpanderItem.Footer>
                     </controls:SettingsExpanderItem>
                 </controls:SettingsExpander>

@@ -18,8 +18,10 @@ public class ColorGlassEntry
 
 public class ImageEntry
 {
-    public string ImagePath { get; set; } = String.Empty;
+    public int ChooseIndex { get; set; } = -1;
     public ImageFilledModel Model { get; set; } = ImageFilledModel.UniformToFill;
+    public List<string> ImagePaths { get; set; } = new();
+    public int Opacity { get; set; } = 100;
 }
 
 public class PackEntry
