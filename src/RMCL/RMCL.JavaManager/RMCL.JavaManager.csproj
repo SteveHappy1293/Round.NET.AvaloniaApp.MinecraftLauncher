@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\RMCL.Base\RMCL.Base.csproj" />
+      <ProjectReference Include="..\RMCL.PathsDictionary\RMCL.PathsDictionary.csproj" />
     </ItemGroup>
 
 </Project>

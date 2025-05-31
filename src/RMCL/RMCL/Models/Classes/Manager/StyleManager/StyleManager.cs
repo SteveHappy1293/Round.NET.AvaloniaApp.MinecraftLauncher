@@ -16,6 +16,7 @@ public class StyleManager
         Core.MainWindow.Background = Brushes.Transparent;
         Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.None };
         Core.MainWindow.InvalidateVisual();
+        Core.MainWindow.BackOpacity.Opacity = 0;
 
         switch (Config.Config.MainConfig.Background.ChooseModel)
         {
@@ -40,9 +41,10 @@ public class StyleManager
                 Core.MainWindow.Background = new ImageBrush()
                 {
                     Source = new Bitmap(Config.Config.MainConfig.Background.ImageEntry.ImagePaths[Config.Config.MainConfig.Background.ImageEntry.ChooseIndex]),
-                    Stretch = Stretch.UniformToFill,
-                    Opacity = (double)Config.Config.MainConfig.Background.ImageEntry.Opacity / 100
+                    Stretch = Stretch.UniformToFill
                 };
+                Core.MainWindow.BackOpacity.Opacity =
+                    (double)(100 - Config.Config.MainConfig.Background.ImageEntry.Opacity) / 100;
                 break;
         }
     }

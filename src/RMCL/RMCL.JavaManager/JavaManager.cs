@@ -1,11 +1,12 @@
 using System.Text.Json;
 using RMCL.Base.Entry.Java;
+using RMCL.PathsDictionary;
 
 namespace RMCL.JavaManager;
 
 public class JavaManager
 {
-    private const string JsonConfigFileName = "../RMCL/RMCL.Config/Java.json";
+    private const string JsonConfigFileName = PathDictionary.JavaConfigPath;
     public static JavaRootEntry JavaRoot = new();
     
     public static void LoadConfig()

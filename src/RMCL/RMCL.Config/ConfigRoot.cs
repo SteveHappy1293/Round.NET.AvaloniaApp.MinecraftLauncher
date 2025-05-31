@@ -10,7 +10,7 @@ public class ConfigRoot
         new GameFolderConfig()
         {
             Name = "启动器目录",
-            Path = Path.GetFullPath("../RMCL/RMCL.Minecraft")
+            Path = Path.GetFullPath(PathsDictionary.PathDictionary.DefaultGameFolder)
         }
     };
     public BackgroundEntry Background { get; set; } = new();

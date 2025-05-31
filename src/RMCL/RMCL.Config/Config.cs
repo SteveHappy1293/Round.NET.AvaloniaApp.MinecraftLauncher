@@ -1,23 +1,23 @@
 ﻿using System.IO;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using RMCL.PathsDictionary;
 
 namespace RMCL.Config;
 
 public class Config
 {
-    private const string ConfigFileName = "../RMCL/RMCL.Config/Config.json";
     public static ConfigRoot MainConfig = new();
     public static void LoadConfig()
     {
-        if (!File.Exists(Path.GetFullPath(ConfigFileName)))
+        if (!File.Exists(Path.GetFullPath(PathDictionary.ConfigPath)))
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(ConfigFileName));
+            Directory.CreateDirectory(Path.GetDirectoryName(PathDictionary.ConfigPath));
             SaveConfig();
             return;
         }
         
-        var json = File.ReadAllText(Path.GetFullPath(ConfigFileName));
+        var json = File.ReadAllText(Path.GetFullPath(PathDictionary.ConfigPath));
         if (string.IsNullOrEmpty(json))
         {
             SaveConfig();
@@ -38,6 +38,6 @@ public class Config
     public static void SaveConfig()
     {
         string jsresult = JsonSerializer.Serialize(MainConfig, new JsonSerializerOptions() { WriteIndented = true }); //获取结果并转换成正确的格式
-        File.WriteAllText(Path.GetFullPath(ConfigFileName), jsresult);
+        File.WriteAllText(Path.GetFullPath(PathDictionary.ConfigPath), jsresult);
     }
 }

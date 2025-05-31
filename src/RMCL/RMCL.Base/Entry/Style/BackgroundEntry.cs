@@ -21,7 +21,7 @@ public class ImageEntry
     public int ChooseIndex { get; set; } = -1;
     public ImageFilledModel Model { get; set; } = ImageFilledModel.UniformToFill;
     public List<string> ImagePaths { get; set; } = new();
-    public int Opacity { get; set; } = 100;
+    public int Opacity { get; set; } = 50;
 }
 
 public class PackEntry

@@ -18,6 +18,7 @@
         ExtendClientAreaChromeHints="NoChrome"
         Title="RMCL">
     <Grid>
+        <Grid Name="BackOpacity" Background="{DynamicResource BackgroundTransparencyOverride}" Opacity="0"></Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
@@ -73,6 +74,7 @@
                 </StackPanel>
             </Grid>
             <pages:MainView Margin="0" Name="MainView" Grid.Row="1"/>
+            <TextBlock Grid.Row="1" HorizontalAlignment="Right" Margin="5" Foreground="Gray">当前版本为测试版本，仅提供新 UI 预览，请勿分发。</TextBlock>
             
             <controls:TeachingTip Name="HomeButtonTips"
                                   Target="{Binding #HomeButton}"

@@ -6,6 +6,7 @@ using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
+using HotAvalonia;
 using RMCL.Config;
 using RMCL.Views;
 

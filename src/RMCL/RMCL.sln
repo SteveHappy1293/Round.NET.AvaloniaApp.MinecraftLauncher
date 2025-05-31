@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.Desktop", "RMCL.Deskto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.ClientManager", "RMCL.ClientManager\RMCL.ClientManager.csproj", "{9B19B8ED-AC96-45EE-83CD-D77E69A0E0BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.PathsDictionary", "RMCL.PathsDictionary\RMCL.PathsDictionary.csproj", "{7CDF0FDB-D7DD-4913-9A76-8A9FE6E2E5B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{9B19B8ED-AC96-45EE-83CD-D77E69A0E0BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B19B8ED-AC96-45EE-83CD-D77E69A0E0BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B19B8ED-AC96-45EE-83CD-D77E69A0E0BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CDF0FDB-D7DD-4913-9A76-8A9FE6E2E5B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CDF0FDB-D7DD-4913-9A76-8A9FE6E2E5B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CDF0FDB-D7DD-4913-9A76-8A9FE6E2E5B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CDF0FDB-D7DD-4913-9A76-8A9FE6E2E5B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
