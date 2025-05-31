@@ -54,6 +54,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\CompositionScroll\CompositionScroll.csproj" />
       <ProjectReference Include="..\RMCL.Config\RMCL.Config.csproj" />
       <ProjectReference Include="..\RMCL.Controls\RMCL.Controls.csproj" />
       <ProjectReference Include="..\RMCL.DownloadService\RMCL.DownloadService.csproj" />

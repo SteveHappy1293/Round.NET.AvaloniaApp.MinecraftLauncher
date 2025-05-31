@@ -3,7 +3,8 @@
              x:Class="RMCL.App"
              xmlns:local="using:RMCL"
              xmlns:styling="clr-namespace:FluentAvalonia.Styling;assembly=FluentAvalonia"
-             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia">
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:compositionScroll="clr-namespace:CompositionScroll;assembly=CompositionScroll">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
     <Application.Styles>
         <styling:FluentAvaloniaTheme UseSystemFontOnWindows="True" PreferUserAccentColor="True"/>
@@ -29,5 +30,35 @@
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
+        <ControlTheme x:Key="{x:Type ScrollViewer}"
+                      TargetType="ScrollViewer">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="*,Auto">
+                        <compositionScroll:CompositionScrollContentPresenter
+                            Name="PART_ContentPresenter"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.RowSpan="2"
+                            Grid.ColumnSpan="2"
+                            Background="{TemplateBinding Background}"
+                            HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
+                            VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}"
+                            HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
+                            VerticalSnapPointsAlignment="{TemplateBinding VerticalSnapPointsAlignment}"
+                            Padding="{TemplateBinding Padding}"
+                            ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}"
+                            compositionScroll:CompositionScrollContentPresenter.ScrollFeatures="{TemplateBinding (compositionScroll:CompositionScrollContentPresenter.ScrollFeatures)}"/>
+                        <ScrollBar Name="PART_HorizontalScrollBar"
+                                   Orientation="Horizontal"
+                                   Grid.Row="1" />
+                        <ScrollBar Name="PART_VerticalScrollBar"
+                                   Orientation="Vertical"
+                                   Grid.Column="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </ControlTheme>
     </Application.Resources>
 </Application>

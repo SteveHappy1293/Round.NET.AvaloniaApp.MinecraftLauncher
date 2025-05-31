@@ -2,7 +2,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
+             xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Views.Pages.Main.DownloadPages.DownloadCurseForgeAssets">
-    Welcome to Avalonia!
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <view:Loading Grid.Row="2" Name="LoadingBox"/>
+        <view:NullBox Grid.Row="2" Name="NullBox" IsVisible="False" BigTitle="无法接收" SmallTitle="宇宙中并没有这个..."></view:NullBox>
+        <ListBox Name="AssetsList" Grid.Row="2">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        <DockPanel HorizontalAlignment="Stretch" 
+                   VerticalAlignment="Top" 
+                   LastChildFill="True"
+                   Margin="10">
+            <button:AccentIconButton DockPanel.Dock="Right" Icon="Glasses20Regular" Content="搜索" Name="SearchBtn" Click="SearchBtn_OnClick"/>
+            
+            <TextBox DockPanel.Dock="Left"
+                     Watermark="键入资源名以搜索..."
+                     Name="SearchBox"
+                     HorizontalAlignment="Stretch"
+                     Margin="0,0,10,0"/> 
+        </DockPanel>
+        <DockPanel Grid.Row="1"
+                   HorizontalAlignment="Stretch" 
+                   VerticalAlignment="Top" 
+                   LastChildFill="True">
+            <ComboBox DockPanel.Dock="Right" Name="AssetsType"
+                      Margin="10,0,0,0"
+                      Width="200" SelectedIndex="1">
+                <ComboBoxItem Tag="*">全部</ComboBoxItem>
+                <ComboBoxItem Tag="ModPack">Mod</ComboBoxItem>
+                <ComboBoxItem Tag="ResourcePacks">资源包</ComboBoxItem>
+                <ComboBoxItem Tag="MaterialPacks">材质包</ComboBoxItem>
+                <ComboBoxItem Tag="LightAndShadowPacks">光影包</ComboBoxItem>
+            </ComboBox>
+        </DockPanel>
+    </Grid>
 </UserControl>

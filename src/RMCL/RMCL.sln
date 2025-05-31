@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.ClientManager", "RMCL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.PathsDictionary", "RMCL.PathsDictionary\RMCL.PathsDictionary.csproj", "{7CDF0FDB-D7DD-4913-9A76-8A9FE6E2E5B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositionScroll", "CompositionScroll\CompositionScroll.csproj", "{C76FCD04-EB37-44CF-A9A9-AF452FE05D71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,5 +68,9 @@ Global
 		{7CDF0FDB-D7DD-4913-9A76-8A9FE6E2E5B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CDF0FDB-D7DD-4913-9A76-8A9FE6E2E5B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CDF0FDB-D7DD-4913-9A76-8A9FE6E2E5B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C76FCD04-EB37-44CF-A9A9-AF452FE05D71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C76FCD04-EB37-44CF-A9A9-AF452FE05D71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C76FCD04-EB37-44CF-A9A9-AF452FE05D71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C76FCD04-EB37-44CF-A9A9-AF452FE05D71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

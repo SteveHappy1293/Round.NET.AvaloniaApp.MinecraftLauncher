@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
+             xmlns:panel="clr-namespace:RMCL.Controls.Panel;assembly=RMCL.Controls"
              mc:Ignorable="d" 
              d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Views.Pages.Main.DownloadPages.DownloadGame">
@@ -40,15 +41,13 @@
         </DockPanel>
         <view:Loading Grid.Row="1" Name="LoadingBox"/>
         <view:NullBox Grid.Row="1" Name="NullBox" IsVisible="False" BigTitle="无法接收" SmallTitle="宇宙中并没有这个..."></view:NullBox>
-        <ScrollViewer Grid.Row="1">
-            <ListBox Name="VersionsList">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
+        <ListBox Grid.Row="1" Name="VersionsList">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
                 
-            </ListBox>
-        </ScrollViewer>
+        </ListBox>
     </Grid>
 </UserControl>

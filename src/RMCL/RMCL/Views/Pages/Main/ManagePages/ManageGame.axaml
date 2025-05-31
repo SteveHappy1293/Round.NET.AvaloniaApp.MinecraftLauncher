@@ -50,15 +50,13 @@
         </DockPanel>
         <view:Loading Grid.Row="1" Name="LoadingBox" SmallTitle="正在翻箱倒柜..."/>
         <view:NullBox Grid.Row="1" Name="NullBox" BigTitle="箱子里没有" SmallTitle="翻箱倒...哦不！"></view:NullBox>
-        <ScrollViewer Grid.Row="1">
-            <ListBox Name="VersionsList" SelectionChanged="VersionsList_OnSelectionChanged">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
+        <ListBox Grid.Row="1" Name="VersionsList" SelectionChanged="VersionsList_OnSelectionChanged">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
                 
-            </ListBox>
-        </ScrollViewer>
+        </ListBox>
     </Grid>
 </UserControl>
