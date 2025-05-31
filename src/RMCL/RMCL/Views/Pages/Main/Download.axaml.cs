@@ -17,5 +17,11 @@ public partial class Download : UserControl
             Title = "游戏本体",
             Page = new DownloadGame()
         });
+        NavigationPage.RegisterRoute(new NavigationRouteConfig()
+        {
+            Route = "DownloadCurseForgeAssets",
+            Title = "CurseForge 资源",
+            Page = new DownloadCurseForgeAssets()
+        });
     }
 }

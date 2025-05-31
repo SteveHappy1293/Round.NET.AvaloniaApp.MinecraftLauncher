@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,6 +33,7 @@ public partial class MainWindow : Window
         
         Core.MainWindow = this;
         InitializeComponent();
+        VersionBox.Text = VersionBox.Text.Replace("Version", Assembly.GetEntryAssembly()?.GetName().Version.ToString());
         Core.TaskView = this.TaskView;
         
         this.Closing += (e,sender) => {
