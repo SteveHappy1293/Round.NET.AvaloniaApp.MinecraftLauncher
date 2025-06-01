@@ -37,7 +37,7 @@ public partial class DownloadGame : UserControl
             RefuseButton.IsEnabled = false;
             SearchBox.IsEnabled = false;
             LoadingBox.IsVisible = true;
-            VersionsList.Items.Clear();
+            VersionsList.Children.Clear();
         });
         var resu = true;
         while (resu)
@@ -76,7 +76,7 @@ public partial class DownloadGame : UserControl
     public void UpdateUI()
     {
         var tag = ((ComboBoxItem)VersionType.SelectedItem)?.Tag.ToString() ?? "*"; // 获取当前选择的版本类型
-        VersionsList.Items.Clear();
+        VersionsList.Children.Clear();
         VersionsList.IsVisible = false;
         string searchText = null;
         if (IsLoad) searchText = SearchBox.Text ?? null; // 获取搜索框的内容并转为小写
@@ -99,11 +99,11 @@ public partial class DownloadGame : UserControl
 
                         if (tag == "*")
                         {
-                            VersionsList.Items.Add(it);
+                            VersionsList.Children.Add(it);
                         }
                         else if (x.Type == tag)
                         {
-                            VersionsList.Items.Add(it);
+                            VersionsList.Children.Add(it);
                         }
                     });
                 });
@@ -127,7 +127,7 @@ public partial class DownloadGame : UserControl
                         {
                             new DownloadClient(version).ShowDialog(Core.MainWindow);
                         });
-                        VersionsList.Items.Add(it);
+                        VersionsList.Children.Add(it);
                     });
                 });
                 // 更新 UI，显示过滤后的版本

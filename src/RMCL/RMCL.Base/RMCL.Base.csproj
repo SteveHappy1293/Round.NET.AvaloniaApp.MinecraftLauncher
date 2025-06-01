@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="OverrideLauncher.Core" Version="25.5.31.908" />
+      <PackageReference Include="OverrideLauncher.Core" Version="25.6.1.1748" />
     </ItemGroup>
 
     <ItemGroup>
