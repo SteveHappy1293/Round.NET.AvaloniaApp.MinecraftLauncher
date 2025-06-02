@@ -9,4 +9,5 @@ public class Core
     public static MainWindow MainWindow;
     public static BottomBar BottomBar;
     public static TaskView TaskView;
+    public static ChildFrame ChildFrame;
 }

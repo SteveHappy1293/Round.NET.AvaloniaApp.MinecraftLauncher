@@ -1,7 +1,9 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using FluentAvalonia.FluentIcons;
 using RMCL.Controls.ControlHelper;
 using RMCL.Models.Classes;
 using RMCL.Views.Pages.Main;
@@ -14,7 +16,16 @@ public partial class MainView : UserControl
     {
         InitializeComponent();
         Core.BottomBar = BottomBar;
+        Core.ChildFrame = ChildFrame;
         BottomBar.ContentFrame = MainFrame;
+        Core.ChildFrame.ShowedCallBack = () =>
+        {
+            Core.MainWindow.HomeButton.Content = new FluentIcon(){Icon = FluentIconSymbol.ArrowLeft20Regular,Margin = new Thickness(3)};
+        };
+        Core.ChildFrame.ClosedCallBack = () =>
+        {
+            Core.MainWindow.HomeButton.Content = "Round Minecraft Launcher";
+        };
 
         BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
         {

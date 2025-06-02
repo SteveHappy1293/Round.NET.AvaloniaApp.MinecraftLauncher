@@ -5,7 +5,7 @@
     <Style Selector="controls|ItemBox">
         <!-- 设置默认值 -->
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Margin" Value="5"/>
         <Setter Property="Template">
             <ControlTemplate>
                 <Border Name="PART_Border"

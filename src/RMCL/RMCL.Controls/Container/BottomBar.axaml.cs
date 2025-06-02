@@ -39,7 +39,9 @@ public partial class BottomBar : UserControl
 
     private void Nav(BottomBarNavigationEntry entry)
     {
-        ContentFrame.Navigate(entry.Page.GetType(), this, new EntranceNavigationTransitionInfo());
+        if (entry.Tag != DefaultTag)
+            ContentFrame.Navigate(entry.Page.GetType(), this, new EntranceNavigationTransitionInfo());
+        else ContentFrame.Content = entry.Page;
     }
     public void RegisterNavigationItem(BottomBarNavigationEntry entry)
     {

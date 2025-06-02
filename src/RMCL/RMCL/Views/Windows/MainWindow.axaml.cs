@@ -207,7 +207,14 @@ public partial class MainWindow : Window
 
     private void HomeButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        Core.BottomBar.NavigationTo("Home");
+        if (HomeButton.Content.ToString() != "Round Minecraft Launcher")
+        {
+            Core.ChildFrame.Close();
+        }
+        else
+        {
+            Core.BottomBar.NavigationTo("Home");
+        }
     }
 
     private void TaskButton_OnClick(object? sender, RoutedEventArgs e)

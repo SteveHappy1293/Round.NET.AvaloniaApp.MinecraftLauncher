@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
@@ -10,10 +11,12 @@ namespace RMCL.Controls.Item;
 
 public partial class CurseForgeAssetsItem : UserControl
 {
+    private ModInfo _info;
+    public Action<ModInfo> BtnOnClick { get; set; } = info => { }; 
     public CurseForgeAssetsItem(ModInfo Info)
     {
         InitializeComponent();
-
+        _info = Info;
         AssetsName.Text = Info.Name;
         AssetsProfile.Text = Info.Summary;
         AssetsCount.Text = $"下载量: {Info.DownloadCount}";
@@ -54,5 +57,10 @@ public partial class CurseForgeAssetsItem : UserControl
                 }
             });   
         }
+    }
+
+    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    {
+        BtnOnClick.Invoke(_info);
     }
 }

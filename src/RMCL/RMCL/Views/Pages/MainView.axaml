@@ -13,5 +13,7 @@
         <controls1:Frame Margin="0,0,0,70" Name="MainFrame"/>
         <container:BottomBar DefaultTag="Home" Name="BottomBar" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
         <button:AccentIconButton CornerRadius="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15" Height="40" Width="120" Icon="Play24Regular">启动游戏</button:AccentIconButton>
+        
+        <container:ChildFrame Name="ChildFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0"></container:ChildFrame>
     </Grid>
 </UserControl>

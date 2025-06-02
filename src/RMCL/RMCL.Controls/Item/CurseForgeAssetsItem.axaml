@@ -11,8 +11,8 @@
     <item:ItemBox>
         <item:ItemBox.Content>
             <DockPanel LastChildFill="True">
-                <DockPanel DockPanel.Dock="Right" HorizontalAlignment="Right">
-                    <button:AccentIconButton Icon="Link20Regular">详情页</button:AccentIconButton>
+                <DockPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="10">
+                    <button:AccentIconButton Icon="Link20Regular" Click="Button_OnClick">详情页</button:AccentIconButton>
                 </DockPanel>
                 <Border Margin="8" CornerRadius="6" DockPanel.Dock="Left" Width="56" Height="56" HorizontalAlignment="Left" Name="AssetsIcon">
                     <fluentIcons:FluentIcon Icon="Grid20Regular" Width="40" Height="40"/>

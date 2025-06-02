@@ -12,8 +12,8 @@
         WindowStartupLocation="CenterScreen"
         Width="1000"
         Height="590"
-        MinWidth="700"
-        MinHeight="480"
+        MinWidth="1000"
+        MinHeight="590"
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="NoChrome"
         Title="RMCL">
@@ -38,10 +38,8 @@
                         FontWeight="Bold" Background="Transparent" FontSize="16" Foreground="{DynamicResource TextColor}"
                         BorderBrush="Transparent" BorderThickness="0" Margin="8,8,3,8">
                         <Button.Content>
-                            <TextBlock FontSize="16" Foreground="{DynamicResource TextColor}">Round Minecraft Launcher</TextBlock>
+                            Round Minecraft Launcher
                         </Button.Content>
-                        <Button.ContextMenu>
-                        </Button.ContextMenu>
                     </Button>
                     <Menu Name="Menu" VerticalAlignment="Center" Opacity="1" Margin="0,0,0,0">
                         
@@ -75,7 +73,7 @@
             </Grid>
             <pages:MainView Margin="0" Name="MainView" Grid.Row="1"/>
             <StackPanel Grid.Row="1" HorizontalAlignment="Right" Margin="10 5">
-                <TextBlock HorizontalAlignment="Right" Foreground="Gray">当前版本为 UI 评估测试，不代表最终品质</TextBlock>
+                <TextBlock HorizontalAlignment="Right" Foreground="Gray">当前版本为 UI/UX 评估测试，不代表最终品质</TextBlock>
                 <TextBlock HorizontalAlignment="Right" Foreground="Gray" Name="VersionBox">RMCL 内部测试版本 Version</TextBlock>
             </StackPanel>
             

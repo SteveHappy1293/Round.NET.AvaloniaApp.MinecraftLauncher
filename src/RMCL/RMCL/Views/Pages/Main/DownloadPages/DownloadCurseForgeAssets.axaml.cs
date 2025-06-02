@@ -11,6 +11,8 @@ using OverrideLauncher.Core.Modules.Classes.Download.Assets.CurseForge;
 using OverrideLauncher.Core.Modules.Entry.DownloadEntry.DownloadAssetsEntry;
 using RMCL.Controls.Item;
 using RMCL.Controls.View;
+using RMCL.Models.Classes;
+using RMCL.Views.Pages.Main.DownloadPages.DownloadAssets;
 
 namespace RMCL.Views.Pages.Main.DownloadPages;
 
@@ -21,6 +23,13 @@ public partial class DownloadCurseForgeAssets : UserControl
     public int ShowedPagesCount { get; set; }
     public Button LoadMoreBtn { get; set; }
     public TextBlock CountShowBox { get; set; }
+
+    private CurseForgeAssetsItem GetItem(ModInfo info)
+    {
+        var it = new CurseForgeAssetsItem(info);
+        it.BtnOnClick = modInfo => Core.ChildFrame.Show(new DownloadAssetsDetailsPage());
+        return it;
+    }
     public DownloadCurseForgeAssets()
     {
         InitializeComponent();
@@ -38,7 +47,7 @@ public partial class DownloadCurseForgeAssets : UserControl
             {
                 Dispatcher.UIThread.Invoke(() =>
                 {
-                    AssetsList.Children.Add(new CurseForgeAssetsItem(x));
+                    AssetsList.Children.Add(GetItem(x));
                 });
             });
 
@@ -80,7 +89,7 @@ public partial class DownloadCurseForgeAssets : UserControl
             res.Data.ForEach(x =>
             {
                 NowResult.Data.Add(x);
-                Dispatcher.UIThread.Invoke(() => AssetsList.Children.Add(new CurseForgeAssetsItem(x)));
+                Dispatcher.UIThread.Invoke(() => AssetsList.Children.Add(GetItem(x)));
                 ShowedPagesCount++;
                 NowResult.Pagination.ResultCount ++;
             });
@@ -142,7 +151,7 @@ public partial class DownloadCurseForgeAssets : UserControl
 
                 Dispatcher.UIThread.Invoke(() =>
                 {
-                    NowResult.Data.ForEach(x => { AssetsList.Children.Add(new CurseForgeAssetsItem(x)); });
+                    NowResult.Data.ForEach(x => { AssetsList.Children.Add(GetItem(x)); });
                     CountShowBox = new TextBlock()
                     {
                         Text = $"共  {NowResult.Pagination.TotalCount} 条结果，已显示 {NowResult.Pagination.ResultCount} 条结果",
