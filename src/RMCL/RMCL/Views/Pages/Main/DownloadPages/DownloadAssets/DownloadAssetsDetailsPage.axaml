@@ -10,7 +10,8 @@
     <Grid>
         <Image Opacity="0.4" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="BackBox"></Image>
         
-        <Border Background="{DynamicResource BackgroundTransparencyOverride}" Width="300" CornerRadius="11" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="10" Padding="20">
+        <Border Opacity="0.3" Background="{DynamicResource BackgroundTransparencyOverride}" Width="300" CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="10"/>
+        <Border Width="300" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="10" Padding="20">
             <StackPanel VerticalAlignment="Center">
                 <Border Width="100" Height="100" CornerRadius="6" Margin="8" Name="IconBox">
                     <fluentIcons:FluentIcon Icon="Grid20Regular" Margin="10"/>
@@ -29,6 +30,20 @@
             </StackPanel>
         </Border>
         
-        <container:NavigationPage DefaultRoute="DownloadAssetsSubDetailsPage" Name="NavigationPage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="320,0,10,10"/>
+        <ScrollViewer Padding="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="310,0,10,10">
+            <StackPanel Name="ResultBox">
+                <Expander IsExpanded="True" Margin="5" Header="截图">
+                    <ScrollViewer 
+                        HorizontalScrollBarVisibility="Auto" 
+                        VerticalScrollBarVisibility="Disabled">
+                        <StackPanel 
+                            x:Name="ScreenshotPanel" 
+                            Orientation="Horizontal" 
+                            Spacing="10" 
+                            Margin="5"/>
+                    </ScrollViewer>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

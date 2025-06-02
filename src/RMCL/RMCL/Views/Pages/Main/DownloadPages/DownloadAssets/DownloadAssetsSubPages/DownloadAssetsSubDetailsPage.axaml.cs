@@ -1,24 +1,45 @@
 ﻿using System;
-using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Threading;
 using OverrideLauncher.Core.Modules.Entry.DownloadEntry.DownloadAssetsEntry;
-using RMCL.Controls.View;
 
 namespace RMCL.Views.Pages.Main.DownloadPages.DownloadAssets.DownloadAssetsSubPages;
 
 public partial class DownloadAssetsSubDetailsPage : UserControl
 {
+    public ModInfo Info { get; set; }
     public DownloadAssetsSubDetailsPage()
     {
         InitializeComponent();
     }
 
-    public void Update(ModInfo _modInfo)
+    public void Update()
     {
-        _modInfo.Screenshots.ForEach(x =>
+        Dispatcher.UIThread.Invoke(() =>
         {
-            Console.WriteLine(x.Url);
-            ScreenshotPreview.Children.Add(new WebImage() { ImageUrl = x.Url,Width = 200,Height = 200 });
+            // 检查 Info 是否为空
+            if (Info == null)
+            {
+                Console.WriteLine("Info is null!");
+                return;
+            }
+
+            // 检查 Screenshots 是否为空
+            if (Info.Screenshots == null || Info.Screenshots.Count == 0)
+            {
+                Console.WriteLine("No screenshots available.");
+                return;
+            }
+
+            // 测试添加一个固定按钮
+            TestBox.Children.Add(new Button { Content = "Test Button" });
+
+            // 遍历添加
+            foreach (var x in Info.Screenshots)
+            {
+                Console.WriteLine(x.Url); // 确认数据正确
+                TestBox.Children.Add(new Button() { Content = "aa" });
+            }
         });
     }
 }

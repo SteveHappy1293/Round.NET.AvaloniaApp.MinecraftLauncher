@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
@@ -13,6 +14,7 @@ using FluentAvalonia.FluentIcons;
 using OverrideLauncher.Core.Modules.Entry.DownloadEntry.DownloadAssetsEntry;
 using RMCL.Controls.ControlHelper;
 using RMCL.Controls.Item;
+using RMCL.Controls.View;
 using RMCL.Models.Classes;
 using RMCL.Views.Pages.Main.DownloadPages.DownloadAssets.DownloadAssetsSubPages;
 
@@ -25,25 +27,11 @@ public partial class DownloadAssetsDetailsPage : UserControl
     {
         _modInfo = info;
         InitializeComponent();
-
-        var det = new DownloadAssetsSubDetailsPage();
-        NavigationPage.RegisterRoute(new NavigationRouteConfig()
-        {
-            Title = "信息",
-            Page = det,
-            Route = "DownloadAssetsSubDetailsPage",
-            Icon = FluentIconSymbol.Info20Regular,
-        });
         
-        NavigationPage.RegisterRoute(new NavigationRouteConfig()
+        info.Screenshots. ForEach(x =>
         {
-            Title = "版本列表",
-            Page = new DownloadAssetsSubVersionsList(),
-            Route = "DownloadAssetsSubVersionsList",
-            Icon = FluentIconSymbol.List20Regular,
+            ScreenshotPanel.Children.Add(new WebImage() { ImageUrl = x.Url, Height = 200 });
         });
-        
-        det.Update(_modInfo);
         
         var iconUrl = info.Logo.Url;
         ProfileBox.Text = info.Summary;
@@ -54,7 +42,7 @@ public partial class DownloadAssetsDetailsPage : UserControl
         {
             LabelsBox.Children.Add(new LabelBox() { Text = x.Name });
         });
-
+        
         Task.Run(() =>
         {
             try
@@ -107,7 +95,7 @@ public partial class DownloadAssetsDetailsPage : UserControl
 
     private void GetAssets_OnClick(object? sender, RoutedEventArgs e)
     {
-        NavigationPage.NavigateTo("DownloadAssetsSubVersionsList");
+        
     }
 
     private void OpenWebURL_OnClick(object? sender, RoutedEventArgs e)

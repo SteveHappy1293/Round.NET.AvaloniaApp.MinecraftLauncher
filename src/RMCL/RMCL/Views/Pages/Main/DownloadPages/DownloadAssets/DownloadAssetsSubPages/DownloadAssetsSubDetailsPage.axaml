@@ -4,13 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Views.Pages.Main.DownloadPages.DownloadAssets.DownloadAssetsSubPages.DownloadAssetsSubDetailsPage">
-    <ScrollViewer>
-        <StackPanel>
-            <Expander Header="截图">
-                <ScrollViewer>
-                    <DockPanel Name="ScreenshotPreview"></DockPanel>
-                </ScrollViewer>
-            </Expander>
-        </StackPanel>
-    </ScrollViewer>
+    <StackPanel x:Name="TestBox">
+        
+    </StackPanel>
 </UserControl>
