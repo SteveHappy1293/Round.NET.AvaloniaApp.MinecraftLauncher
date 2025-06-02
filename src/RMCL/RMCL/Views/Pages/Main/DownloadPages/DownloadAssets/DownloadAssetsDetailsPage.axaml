@@ -2,11 +2,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
+             xmlns:container="clr-namespace:RMCL.Controls.Container;assembly=RMCL.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Views.Pages.Main.DownloadPages.DownloadAssets.DownloadAssetsDetailsPage">
     <Grid>
-        <Border Background="{DynamicResource BackgroundTransparencyOverride}" Width="630" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" CornerRadius="11">
-            
+        <Image Opacity="0.4" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="BackBox"></Image>
+        
+        <Border Background="{DynamicResource BackgroundTransparencyOverride}" Width="300" CornerRadius="11" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="10" Padding="20">
+            <StackPanel VerticalAlignment="Center">
+                <Border Width="100" Height="100" CornerRadius="6" Margin="8" Name="IconBox">
+                    <fluentIcons:FluentIcon Icon="Grid20Regular" Margin="10"/>
+                </Border>
+                
+                <TextBlock TextWrapping="Wrap" Name="NameBox" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center">Name</TextBlock>
+                <WrapPanel Name="LabelsBox" HorizontalAlignment="Center" Margin="8">
+                    
+                </WrapPanel>
+                <TextBlock TextWrapping="Wrap" Name="ProfileBox" FontSize="13" FontWeight="Thin" HorizontalAlignment="Center">Profile</TextBlock>
+                
+                <StackPanel Margin="0,40,0,0">
+                    <button:AccentIconButton Name="GetAssets" Click="GetAssets_OnClick" Icon="ArrowDownload20Regular" Content="获取" Width="120" Margin="5"/>
+                    <button:IconButton Name="OpenWebURL" Click="OpenWebURL_OnClick" Icon="Link20Regular" Content="打开网页" Width="120" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
         </Border>
+        
+        <container:NavigationPage DefaultRoute="DownloadAssetsSubDetailsPage" Name="NavigationPage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="320,0,10,10"/>
     </Grid>
 </UserControl>

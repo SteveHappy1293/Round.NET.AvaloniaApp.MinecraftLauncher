@@ -14,7 +14,7 @@ public class StyleManager
     public static void UpdateBackground()
     {
         Core.MainWindow.Background = Brushes.Transparent;
-        Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.None };
+        Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.Transparent };
         Core.MainWindow.InvalidateVisual();
         Core.MainWindow.BackOpacity.Opacity = 0;
 
@@ -30,7 +30,7 @@ public class StyleManager
                 Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.AcrylicBlur };
                 break;
             case BackgroundModelEnum.Glass:
-                Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.Blur };
+                //Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.Blur };
                 Core.MainWindow.Background = new SolidColorBrush()
                 {
                     Color = Color.Parse(Config.Config.MainConfig.Background.ColorGlassEntry.HtmlColor)

@@ -33,16 +33,36 @@ public partial class NavigationPage : UserControl
         set => SetValue(DefaultRouteProperty, value);
     }
     
+    public bool IsEdit { get; set; } = true;
+
+    public void NavigateTo(string route)
+    {
+        IsEdit = false;
+        var i = 0;
+        RouteConfigs.ForEach(config =>
+        {
+            if (config.Route == route)
+            {
+                MangeFrame.Navigate(config.Page.GetType());
+                View.SelectedItem = View.MenuItems[i];
+            }
+
+            i++;
+        });
+        IsEdit = true;
+    }
+    
     public List<NavigationRouteConfig> RouteConfigs { get; set; } = new();
     private void NavigationView_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
     {
-        var item = ((DockPanel)((NavigationViewItem)((NavigationView)sender!).SelectedItem!).Content);
-        var text = ((TextBlock)(item.Children[1])).Text;
-        var page = RouteConfigs.Find(config =>
+        if (IsEdit)
         {
-            return config.Route == ((NavigationViewItem)(View!).SelectedItem!).Tag;
-        }).Page;
-        MangeFrame.Navigate(page.GetType());
+            var page = RouteConfigs.Find(config =>
+            {
+                return config.Route == ((NavigationViewItem)(View!).SelectedItem!).Tag;
+            }).Page;
+            MangeFrame.Navigate(page.GetType());   
+        }
     }
 
     public void RegisterRoute(NavigationRouteConfig config)

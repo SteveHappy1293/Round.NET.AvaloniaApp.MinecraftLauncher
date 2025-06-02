@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using FluentAvalonia.FluentIcons;
 using RMCL.Controls.Container;
 using RMCL.Controls.ControlHelper;
 using RMCL.Views.Pages.Main.DownloadPages;
@@ -17,7 +18,8 @@ public partial class Manage : UserControl
         {
             Route = "ManageGame",
             Title = "版本列表",
-            Page = new ManageGame()
+            Page = new ManageGame(),
+            Icon = FluentIconSymbol.List20Regular,
         });
     }
 }

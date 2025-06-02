@@ -23,4 +23,30 @@ public class SystemHelper
             }catch{ }
         }
     }
+    public static void OpenUrl(string url)
+    {
+        try
+        {
+            if (OperatingSystem.IsWindows())
+            {
+                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+            }
+            else if (OperatingSystem.IsLinux())
+            {
+                Process.Start("xdg-open", url);
+            }
+            else if (OperatingSystem.IsMacOS())
+            {
+                Process.Start("open", url);
+            }
+            else
+            {
+                throw new PlatformNotSupportedException();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"无法打开浏览器: {ex.Message}");
+        }
+    }
 }

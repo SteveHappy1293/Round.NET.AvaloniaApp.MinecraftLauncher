@@ -27,7 +27,7 @@ public partial class DownloadCurseForgeAssets : UserControl
     private CurseForgeAssetsItem GetItem(ModInfo info)
     {
         var it = new CurseForgeAssetsItem(info);
-        it.BtnOnClick = modInfo => Core.ChildFrame.Show(new DownloadAssetsDetailsPage());
+        it.BtnOnClick = modInfo => Core.ChildFrame.Show(new DownloadAssetsDetailsPage(info));
         return it;
     }
     public DownloadCurseForgeAssets()
