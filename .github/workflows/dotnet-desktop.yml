@@ -272,20 +272,12 @@ jobs:
           echo "ZIP contents:"
           unzip -l ./artifacts/RMCL.*.zip | head -5
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+      - name: Publish Release
+        uses: marvinpinto/action-automatic-releases@latest
         with:
-          tag_name: "${{ steps.release.outputs.tag }}"
-          name: "${{ steps.release.outputs.title }}"
           repo_token: "${{ secrets.TOKEN }}"
           title: "v${{ needs.time.outputs.v }}"
-          body: |
-            Multi-platform release for version ${{ steps.release.outputs.title }}
-            Build date: ${{ steps.release.outputs.date }}
-            
-            Supported platforms:
-            - Windows (x86/x64/ARM64)
-            - Linux (x64/ARM/ARM64)
-            - macOS (ARM64)
+          automatic_release_tag: "RMCL.Transcend-${{ steps.gdate.outputs.date }}"
+          prerelease: false
           files: |
             ./artifacts/*.zip
