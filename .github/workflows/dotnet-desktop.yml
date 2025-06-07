@@ -50,7 +50,7 @@ jobs:
             /p:IncludeNativeLibrariesForSelfExtract=true `
             /p:SelfContained=true `
             /p:Version=${{ needs.time.outputs.v }} `
-            -o "../../../publish/win-x86"
+            -o "../../../publish/win-x86" -p:DebugType=none -p:DebugSymbols=false
       
       - name: Create ZIP (x86)
         run: |
@@ -78,7 +78,7 @@ jobs:
             /p:IncludeNativeLibrariesForSelfExtract=true `
             /p:SelfContained=true `
             /p:Version=${{ needs.time.outputs.v }} `
-            -o "../../../publish/win-x64"
+            -o "../../../publish/win-x64" -p:DebugType=none -p:DebugSymbols=false
       
       - name: Create ZIP (x64)
         run: |
@@ -106,7 +106,7 @@ jobs:
             /p:IncludeNativeLibrariesForSelfExtract=true `
             /p:SelfContained=true `
             /p:Version=${{ needs.time.outputs.v }} `
-            -o "../../../publish/win-arm64"
+            -o "../../../publish/win-arm64" -p:DebugType=none -p:DebugSymbols=false
       
       - name: Create ZIP (ARM64)
         run: |
@@ -135,7 +135,7 @@ jobs:
             /p:IncludeNativeLibrariesForSelfExtract=true \
             /p:SelfContained=true \
             /p:Version=${{ needs.time.outputs.v }} \
-            -o "../../../publish/linux-x64"
+            -o "../../../publish/linux-x64" -p:DebugType=none -p:DebugSymbols=false
       
       - name: Create ZIP (Linux x64)
         run: |
@@ -165,7 +165,7 @@ jobs:
             /p:IncludeNativeLibrariesForSelfExtract=true \
             /p:SelfContained=true \
             /p:Version=${{ needs.time.outputs.v }} \
-            -o "../../../publish/linux-arm"
+            -o "../../../publish/linux-arm" -p:DebugType=none -p:DebugSymbols=false
       
       - name: Create ZIP (Linux ARM)
         run: |
@@ -195,7 +195,7 @@ jobs:
             /p:IncludeNativeLibrariesForSelfExtract=true \
             /p:SelfContained=true \
             /p:Version=${{ needs.time.outputs.v }} \
-            -o "../../../publish/linux-arm64"
+            -o "../../../publish/linux-arm64" -p:DebugType=none -p:DebugSymbols=false
       
       - name: Create ZIP (Linux ARM64)
         run: |
@@ -226,7 +226,7 @@ jobs:
             /p:IncludeNativeLibrariesForSelfExtract=true \
             /p:SelfContained=true \
             /p:Version=${{ needs.time.outputs.v }} \
-            -o "../../../publish/osx-arm64"
+            -o "../../../publish/osx-arm64" -p:DebugType=none -p:DebugSymbols=false
       
       - name: Create ZIP (macOS ARM64)
         run: |
