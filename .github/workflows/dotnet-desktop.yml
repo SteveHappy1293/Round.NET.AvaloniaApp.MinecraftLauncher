@@ -265,13 +265,6 @@ jobs:
         with:
           path: ./artifacts/
 
-      - name: Verify artifacts
-        run: |
-          echo "Downloaded artifacts:"
-          ls -lh ./artifacts/
-          echo "ZIP contents:"
-          unzip -l ./artifacts/RMCL.*.zip | head -5
-
       - name: Publish Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
