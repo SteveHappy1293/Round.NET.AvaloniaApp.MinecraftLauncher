@@ -21,7 +21,7 @@ jobs:
       - name: Time
         id: date
         run: |
-          echo "::set-output name=time::$(date +'%Y.%m.%d.%H.%M')"
+          echo "::set-output name=time::$(date +'%Y.%m%d.%H.%M')"
           echo "::set-output name=y::$(date +'%Y')"
           echo "::set-output name=md::$(date +'%m%d')"
           echo "::set-output name=hm::$(date +'%H%M')"
