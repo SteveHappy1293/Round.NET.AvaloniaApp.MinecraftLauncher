@@ -44,7 +44,7 @@ jobs:
       - name: Build
         run: |
           cd ./src/RMCL/RMCL.Desktop
-          dotnet publish -c Release -r win-x86 /p:PublishSingleFile=true /p:PublishReadyToRun=true /p:IncludeNativeLibrariesForSelfExtract=true /p:SelfContained=false -o "./publish/x86"
+          dotnet publish -c Release -r win-x86 /p:PublishSingleFile=true /p:PublishReadyToRun=true /p:IncludeNativeLibrariesForSelfExtract=true /p:SelfContained=false -o "../../../publish/x86"
       - name: UploadArtifacts
         uses: actions/upload-artifact@v4
         with:
