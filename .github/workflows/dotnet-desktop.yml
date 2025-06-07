@@ -277,6 +277,8 @@ jobs:
         with:
           tag_name: "${{ steps.release.outputs.tag }}"
           name: "${{ steps.release.outputs.title }}"
+          repo_token: "${{ secrets.TOKEN }}"
+          title: "v${{ needs.time.outputs.v }}"
           body: |
             Multi-platform release for version ${{ steps.release.outputs.title }}
             Build date: ${{ steps.release.outputs.date }}
