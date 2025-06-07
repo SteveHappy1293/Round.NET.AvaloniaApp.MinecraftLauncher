@@ -260,9 +260,42 @@ jobs:
           echo "title=v${{ needs.time.outputs.v }}" >> $GITHUB_OUTPUT
           echo "tag=RMCL-${{ needs.time.outputs.v }}" >> $GITHUB_OUTPUT
 
-      - name: Download all artifacts
+      - name: Download-RMCL.win-x86.zip
         uses: actions/download-artifact@v4
         with:
+          name: RMCL.win-x86.zip
+          path: ./artifacts/
+      - name: Download-RMCL.win-x64.zip
+        uses: actions/download-artifact@v4
+        with:
+          name: RMCL.win-x64.zip
+          path: ./artifacts/
+      - name: Download-RMCL.win-arm64.zip
+        uses: actions/download-artifact@v4
+        with:
+          name: RMCL.win-arm64.zip
+          path: ./artifacts/
+
+      - name: Download-RMCL.linux-x64.zip
+        uses: actions/download-artifact@v4
+        with:
+          name: RMCL.linux-x64.zip
+          path: ./artifacts/
+      - name: Download-RMCL.linux-arm.zip
+        uses: actions/download-artifact@v4
+        with:
+          name: RMCL.linux-arm.zip
+          path: ./artifacts/
+      - name: Download-RMCL.linux-arm64.zip
+        uses: actions/download-artifact@v4
+        with:
+          name: RMCL.linux-arm64.zip
+          path: ./artifacts/
+
+      - name: Download-RMCL.osx-arm64.zip
+        uses: actions/download-artifact@v4
+        with:
+          name: RMCL.osx-arm64.zip
           path: ./artifacts/
 
       - name: Publish Release
