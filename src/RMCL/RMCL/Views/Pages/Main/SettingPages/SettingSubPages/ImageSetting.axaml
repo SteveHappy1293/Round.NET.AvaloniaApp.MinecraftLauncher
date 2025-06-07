@@ -15,7 +15,7 @@
             <button:AccentIconButton Name="AddImageBtn" Click="AddImageBtn_OnClick" DockPanel.Dock="Right" Margin="10,0,0,0" Content="添加图片" Icon="Folder20Regular" HorizontalAlignment="Right"/>
             <button:IconButton Name="UpdateBtn" Click="UpdateBtn_OnClick" DockPanel.Dock="Right" Margin="10,0,0,0" Content="刷新" Icon="ArrowClockwise20Regular" HorizontalAlignment="Right"/>
         </DockPanel>
-        <ListBox Name="ChooseImageListBox" SelectionChanged="ChooseImageListBox_OnSelectionChanged">
+        <ListBox ScrollViewer.VerticalScrollBarVisibility="Disabled" Name="ChooseImageListBox" SelectionChanged="ChooseImageListBox_OnSelectionChanged">
             
         </ListBox>
     </StackPanel>
