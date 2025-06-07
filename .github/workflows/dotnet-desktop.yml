@@ -286,10 +286,4 @@ jobs:
             - Linux (x64/ARM/ARM64)
             - macOS (ARM64)
           files: |
-            ./artifacts/RMCL.win-x86.zip
-            ./artifacts/RMCL.win-x64.zip
-            ./artifacts/RMCL.win-arm64.zip
-            ./artifacts/RMCL.linux-x64.zip
-            ./artifacts/RMCL.linux-arm.zip
-            ./artifacts/RMCL.linux-arm64.zip
-            ./artifacts/RMCL.osx-arm64.zip
+            ./artifacts/*.zip
