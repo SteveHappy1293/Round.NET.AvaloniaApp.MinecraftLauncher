@@ -7,8 +7,10 @@ using System.Linq;
 using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
 using HotAvalonia;
+using NetworkService.SingleInstanceDetector;
 using RMCL.Config;
 using RMCL.Views;
+using RMCL.Views.Windows;
 
 namespace RMCL;
 
@@ -20,14 +22,13 @@ public partial class App : Application
         AvaloniaXamlLoader.Load(this);
     }
 
-    public override void OnFrameworkInitializationCompleted()
+    public override async void OnFrameworkInitializationCompleted()
     {
         Console.WriteLine("On Framework Initialization Completed");
+        DisableAvaloniaDataAnnotationValidation();
+
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
-            // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
-            DisableAvaloniaDataAnnotationValidation();
             desktop.MainWindow = new MainWindow();
         }
 
