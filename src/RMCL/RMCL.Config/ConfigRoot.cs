@@ -20,7 +20,6 @@ public class ConfigRoot
     public int SelectedGameFolder { get; set; } = 0;
     public int SelectedJava { get; set; } = 0;
     public int SelectedUser { get; set; } = 0;
-    public int UpdateSourse { get; set; } = 0;
     public bool ShowErrorWindow { get; set; } = true;
     public bool IsAutoUpdate { get; set; } = true;
     public bool IsDebug { get; set; } = false;
