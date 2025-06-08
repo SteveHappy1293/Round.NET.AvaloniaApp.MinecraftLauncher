@@ -270,35 +270,35 @@ jobs:
           name: RMCL.osx-x86.zip
           path: ./RMCL.osx-x86.zip
 
-    osx-arm64:
-      needs: time
-      runs-on: macos-latest
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v3
+  osx-arm64:
+    needs: time
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+       
+      - name: Build (macOS ARM64)
+        run: |
+          cd ./src/RMCL/RMCL.Desktop
+          dotnet publish -c Release -r osx-arm64 \
+            /p:PublishSingleFile=true \
+            /p:PublishReadyToRun=true \
+            /p:IncludeNativeLibrariesForSelfExtract=true \
+            /p:SelfContained=true \
+            /p:Version=${{ needs.time.outputs.v }} \
+            -o "../../../publish/osx-arm64" -p:DebugType=none -p:DebugSymbols=false
         
-        - name: Build (macOS ARM64)
-          run: |
-            cd ./src/RMCL/RMCL.Desktop
-            dotnet publish -c Release -r osx-arm64 \
-              /p:PublishSingleFile=true \
-              /p:PublishReadyToRun=true \
-              /p:IncludeNativeLibrariesForSelfExtract=true \
-              /p:SelfContained=true \
-              /p:Version=${{ needs.time.outputs.v }} \
-              -o "../../../publish/osx-arm64" -p:DebugType=none -p:DebugSymbols=false
+      - name: Create ZIP (macOS ARM64)
+        run: |
+          cd ./publish/osx-arm64
+          zip -r ../../RMCL.osx-arm64.zip *
+          cd ../..
         
-        - name: Create ZIP (macOS ARM64)
-          run: |
-            cd ./publish/osx-arm64
-            zip -r ../../RMCL.osx-arm64.zip *
-            cd ../..
-        
-        - name: Upload Artifact
-          uses: actions/upload-artifact@v4
-          with:
-            name: RMCL.osx-arm64.zip
-            path: ./RMCL.osx-arm64.zip
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RMCL.osx-arm64.zip
+          path: ./RMCL.osx-arm64.zip
 
   # 发布阶段
   publish:
