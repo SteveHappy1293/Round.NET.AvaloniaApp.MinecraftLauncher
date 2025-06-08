@@ -17,7 +17,7 @@
         
             <TextBlock>
                 <Run>RMCL 在运行时发生了崩溃性错误。</Run>
-                <Run Foreground="DarkRed" FontWeight="Heavy">请不要把此窗口截图提交，这将无任何意义！</Run>
+                <Run Foreground="DarkRed" FontWeight="Bold">请不要把此窗口截图提交，这将无任何意义！</Run>
             </TextBlock>
         </StackPanel>
         
