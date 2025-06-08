@@ -66,6 +66,7 @@ public partial class MainView : UserControl
             var Update =
                 new Update.UpdateDetect(
                     "https://api.github.com/repos/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/releases/latest");
+            
             Update.BranchIndex = Config.Config.MainConfig.UpdateModel.Branch;
             Update.OnUpdate = (s, entry) =>
             {
