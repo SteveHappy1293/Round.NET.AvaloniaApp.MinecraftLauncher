@@ -55,7 +55,7 @@ public partial class DownloadUpdateFileTaskItem : UserControl
         foreach (var f in fils) if(Path.GetFileName(f).StartsWith("RMCL.Desktop")) file = f;
 
         Console.WriteLine(file);
-        Process.Start(file, ["-install", $"\"{file}\"", "-body", Process.GetCurrentProcess().MainModule.FileName]);
+        Process.Start(file, ["-install", $"{file}", "-body", Process.GetCurrentProcess().MainModule.FileName]);
         
         Thread.Sleep(50);
         
