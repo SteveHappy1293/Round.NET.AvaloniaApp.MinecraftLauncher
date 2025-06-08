@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using RMCL.Base.Entry.Java;
@@ -21,7 +22,6 @@ public class JavaManager
         "eclipse",
         "microsoft",
         "jre",
-        "temp",
         "program",
         "mc",
         "game",
@@ -139,7 +139,7 @@ public class JavaManager
         if (OperatingSystem.IsLinux())
         {
         }
-
+        
         return Task.FromResult(javas.ToArray());
     }
 
