@@ -51,11 +51,13 @@ public partial class DownloadUpdateFileTaskItem : UserControl
         ZipFile.ExtractToDirectory(FileName, Path.GetFullPath(InstallName),true);
         
         var fils = Directory.GetFiles(Path.GetFullPath(InstallName));
-        var file = fils[0];
+        var file = "";
+        foreach (var f in fils) if(Path.GetFileName(f).StartsWith("RMCL.Desktop")) file = f;
 
-        Process.Start(file, ["-install", $"\"{file}\"", "-body", Assembly.GetEntryAssembly().Location]);
+        Console.WriteLine(file);
+        Process.Start(file, ["-install", $"\"{file}\"", "-body", Process.GetCurrentProcess().MainModule.FileName]);
         
-        Thread.Sleep(100);
+        Thread.Sleep(50);
         
         Environment.Exit(0);
     }
