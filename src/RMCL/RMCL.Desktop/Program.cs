@@ -25,8 +25,9 @@ sealed class Program
             Thread.Sleep(200);
             File.Delete(bt);
             File.Copy(neobt,bt);
-            
+
             Process.Start(bt);
+            Thread.Sleep(100);
             Environment.Exit(0);
         }
         else
