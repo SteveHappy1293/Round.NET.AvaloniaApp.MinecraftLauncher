@@ -117,7 +117,6 @@ public class JavaManager
                                              {
 
                                                  WindowsSearchJava(drive.RootDirectory, ref path);
-
                                              }
                                              catch
                                              {
@@ -131,16 +130,32 @@ public class JavaManager
             }
         }
 
-        if (OperatingSystem.IsMacOS())
+        if (OperatingSystem.IsMacOS() || OperatingSystem.IsLinux())
         {
+            UnixSearchJava(ref path);
         }
-
-        if (OperatingSystem.IsLinux())
-        {
-        }
+        
         return Task.FromResult(javas.ToArray());
     }
 
+    private static void UnixSearchJava(ref List<string> list_)
+    {
+        List<string> list = new();
+        string? JavaEnv = Environment.GetEnvironmentVariable("JAVA_HOME");
+        if (JavaEnv is null or "")
+        {
+            return;
+        }
+
+        var combine = Path.Combine(JavaEnv,"java");
+        if (File.Exists(combine))
+        {
+            list.Add(combine);
+            var paths = HandleJavaPaths(list);
+            list_.AddRange(list);
+        }
+        
+    }
     /// <summary>
     ///     Windows搜索
     /// </summary>
@@ -174,18 +189,19 @@ public class JavaManager
         Parallel.ForEach(pathsList, (java, num) =>
                                     {
                                         var parent = Directory.GetParent(java);
-                                        var javaw = Path.Combine(parent.FullName, OperatingSystem.IsWindows() ? "javaw.exe" : "javaw");
-                                        var javac = Path.Combine(parent.FullName, OperatingSystem.IsWindows() ? "javac.exe" : "javac");
+                                        var javaw = Path.Combine(parent.FullName,
+                                            OperatingSystem.IsWindows() ? "javaw.exe" : "javaw");
+                                        var javac = Path.Combine(parent.FullName,
+                                            OperatingSystem.IsWindows() ? "javac.exe" : "javac");
 
                                         var readRelease = ReadRelease(parent.FullName + Path.DirectorySeparatorChar);
                                         if (OperatingSystem.IsWindows() && readRelease.VERSION == null)
                                         {
                                             var dataTuple = Utils.RunWindows(java, "-version");
-                                            var version = Regex.Match(dataTuple.errorPut.ToLower(), """version\s+"([\d._]+)""").Groups[1].Value;
-                                            if (version == null || version == string.Empty)
-                                            {
-                                                return;
-                                            }
+                                            var version = Regex.Match(dataTuple.errorPut.ToLower(),
+                                                """version\s+"([\d._]+)""").Groups[1].Value;
+                                           
+
                                             var javaInformation = new JavaInformation
                                             {
                                                 Implementor = "Unknown",
@@ -195,16 +211,19 @@ public class JavaManager
                                             };
                                             javalists.Add(javaInformation);
                                         }
-                                        else
+                                        else 
                                         {
-                                            var information = new JavaInformation
+                                            if (readRelease.VERSION != null)
                                             {
-                                                Implementor = readRelease.IMPLEMENTOR,
-                                                Java = java,
-                                                JavaW = javaw,
-                                                Version = readRelease.VERSION
-                                            };
-                                            javalists.Add(information);
+                                                var information = new JavaInformation
+                                                {
+                                                    Implementor = readRelease.IMPLEMENTOR,
+                                                    Java = java,
+                                                    JavaW = javaw,
+                                                    Version = readRelease.VERSION
+                                                };
+                                                javalists.Add(information);
+                                            }
                                         }
                                     });
         return javalists.ToArray();
