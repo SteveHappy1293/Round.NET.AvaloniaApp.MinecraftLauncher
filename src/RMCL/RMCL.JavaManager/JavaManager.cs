@@ -14,33 +14,38 @@ public class JavaManager
 
     public static List<string> KeyWords = new()
     {
-        "jvm",
-        "roaming",
+        "java",
+        "jdk",
+        "jbr",
         "bin",
+        "jvm",
+        "env",
+        "run",
+        "jre",
+        "bin",
+        "mc",
+        "software",
+        "cache",
+        "temp",
+        "corretto",
+        "roaming",
+        "users",
         "craft",
+        "program",
+        "net",
+        "game",
         "oracle",
+        "file",
+        "data",
+        "server",
+        "client",
+        "mojang",
+        "新建文件夹",
         "eclipse",
         "microsoft",
-        "jre",
-        "program",
-        "mc",
-        "game",
-        "software",
         "hotspot",
-        "jdk",
-        "run",
-        "users",
-        "corretto",
-        "env",
+        "idea",
         "android",
-        "file",
-        "java",
-        "mojang",
-        "bin",
-        "新建文件夹",
-        "jbr",
-        "cache",
-        "idea"
     };
 
     public static void LoadConfig()
@@ -104,20 +109,21 @@ public class JavaManager
                 if (File.Exists(java_path)) path.Add(java_path);
             }
             var drives = DriveInfo.GetDrives();
-            foreach (var drive in drives)
-                if (drive.IsReady)
-                {
-                    var driveRootDirectory = drive.RootDirectory;
-                    try
-                    {
-                        WindowsSearchJava(drive.RootDirectory, ref path);
-                      
-                    }
-                    catch
-                    {
-                    }
-                }
+            Parallel.ForEach(drives, (drive, num) =>
+                                     {
+                                         if (drive.IsReady)
+                                         {
+                                             try
+                                             {
 
+                                                 WindowsSearchJava(drive.RootDirectory, ref path);
+
+                                             }
+                                             catch
+                                             {
+                                             }
+                                         }
+                                     });
             var handleJavaPaths = HandleJavaPaths(path);
             foreach (var javaInformation in handleJavaPaths)
             {
@@ -176,6 +182,10 @@ public class JavaManager
                                         {
                                             var dataTuple = Utils.RunWindows(java, "-version");
                                             var version = Regex.Match(dataTuple.errorPut.ToLower(), """version\s+"([\d._]+)""").Groups[1].Value;
+                                            if (version == null || version == string.Empty)
+                                            {
+                                                return;
+                                            }
                                             var javaInformation = new JavaInformation
                                             {
                                                 Implementor = "Unknown",
