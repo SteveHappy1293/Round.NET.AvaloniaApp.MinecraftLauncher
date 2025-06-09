@@ -210,13 +210,43 @@ jobs:
           path: ./RMCL.linux-arm64.zip
 
   # macOS 平台构建
-  osx-arm64:
+  osx-x64:
     needs: time
     runs-on: macos-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       
+      - name: Build (macOS x64)
+        run: |
+          cd ./src/RMCL/RMCL.Desktop
+          dotnet publish -c Release -r osx-x64 \
+            /p:PublishSingleFile=true \
+            /p:PublishReadyToRun=true \
+            /p:IncludeNativeLibrariesForSelfExtract=true \
+            /p:SelfContained=true \
+            /p:Version=${{ needs.time.outputs.v }} \
+            -o "../../../publish/osx-x64" -p:DebugType=none -p:DebugSymbols=false
+      
+      - name: Create ZIP (macOS x64)
+        run: |
+          cd ./publish/osx-x64
+          zip -r ../../RMCL.osx-x64.zip *
+          cd ../..
+      
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RMCL.osx-x64.zip
+          path: ./RMCL.osx-x64.zip
+
+  osx-arm64:
+    needs: time
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+       
       - name: Build (macOS ARM64)
         run: |
           cd ./src/RMCL/RMCL.Desktop
@@ -227,13 +257,13 @@ jobs:
             /p:SelfContained=true \
             /p:Version=${{ needs.time.outputs.v }} \
             -o "../../../publish/osx-arm64" -p:DebugType=none -p:DebugSymbols=false
-      
+        
       - name: Create ZIP (macOS ARM64)
         run: |
           cd ./publish/osx-arm64
           zip -r ../../RMCL.osx-arm64.zip *
           cd ../..
-      
+        
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -251,6 +281,7 @@ jobs:
       - linux-arm
       - linux-arm64
       - osx-arm64
+      - osx-x64
     runs-on: ubuntu-latest
     steps:
       - name: Prepare release info
@@ -296,6 +327,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: RMCL.osx-arm64.zip
+          path: ./artifacts/
+      - name: Download-RMCL.osx-x64.zip
+        uses: actions/download-artifact@v4
+        with:
+          name: RMCL.osx-x64.zip
           path: ./artifacts/
 
       - name: Publish Release
