@@ -15,6 +15,7 @@ using Avalonia.Styling;
 using Avalonia.Threading;
 using FluentAvalonia.Interop;
 using FluentAvalonia.UI.Controls;
+using RMCL.Base.Entry.Style;
 using RMCL.Base.Enum.Update;
 using RMCL.Config;
 using RMCL.Models.Classes;
@@ -26,6 +27,7 @@ namespace RMCL.Views;
 
 public partial class MainWindow : Window
 {
+    private string HomeButtonText;
     public MainWindow()
     {
         Console.WriteLine("Opening MainWindow...");
@@ -60,6 +62,21 @@ public partial class MainWindow : Window
         StyleManager.UpdateBackground();
         
         Console.WriteLine("Opened MainWindow!");
+        UpdateButtonStyle();
+    }
+
+    public void UpdateButtonStyle()
+    {
+        if (Config.Config.MainConfig.HomeButtonStyle == HomeButtonStyle.Default)
+        {
+            HomeButtonText = "Round Minecraft Launcher";
+        }
+        else
+        {
+            HomeButtonText = "RMCL";
+        }
+        
+        HomeButton.Content = HomeButtonText;
     }
 
     public void UpdateStatus(int num)
@@ -208,7 +225,7 @@ public partial class MainWindow : Window
 
     private void HomeButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        if (HomeButton.Content.ToString() != "Round Minecraft Launcher")
+        if (HomeButton.Content.ToString() != HomeButtonText)
         {
             Core.ChildFrame.Close();
         }

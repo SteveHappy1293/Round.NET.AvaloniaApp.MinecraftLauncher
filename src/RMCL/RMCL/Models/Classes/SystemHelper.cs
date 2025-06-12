@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.InteropServices;
 using FluentAvalonia.UI.Controls;
 
@@ -48,5 +49,12 @@ public class SystemHelper
         {
             Console.WriteLine($"无法打开浏览器: {ex.Message}");
         }
+    }
+
+    public static string GetFolderName(string path)
+    {
+        string folderPath = path;
+        DirectoryInfo dirInfo = new DirectoryInfo(folderPath);
+        return dirInfo.Name;
     }
 }

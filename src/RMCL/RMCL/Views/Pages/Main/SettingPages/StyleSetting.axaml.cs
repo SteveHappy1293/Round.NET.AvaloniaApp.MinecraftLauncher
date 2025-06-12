@@ -3,8 +3,10 @@ using System.Drawing;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using RMCL.Base.Entry.Style;
 using RMCL.Base.Enum;
 using RMCL.Controls.View;
+using RMCL.Models.Classes;
 using RMCL.Models.Classes.Manager.StyleManager;
 using RMCL.Views.Pages.Main.SettingPages.SettingSubPages;
 
@@ -30,6 +32,7 @@ public partial class StyleSetting : UserControl
         var enums = (BackgroundModelEnum)ChooseBackgroundModel.SelectedIndex;
         Config.Config.MainConfig.Background.ChooseModel = enums;
         BackgroundMaxSetting.Content = BackgroundSettings[enums];
+        MainButtonStyle.SelectedIndex = Config.Config.MainConfig.HomeButtonStyle.GetHashCode();
         IsEdit = true;
     }
 
@@ -43,6 +46,17 @@ public partial class StyleSetting : UserControl
             StyleManager.UpdateBackground();
             
             Config.Config.SaveConfig();
+        }
+    }
+
+    private void MainButtonStyle_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.Config.MainConfig.HomeButtonStyle = (HomeButtonStyle)MainButtonStyle.SelectedIndex;
+            
+            Config.Config.SaveConfig();
+            Core.MainWindow.UpdateButtonStyle();
         }
     }
 }

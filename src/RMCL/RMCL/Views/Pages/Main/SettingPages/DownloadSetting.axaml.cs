@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using RMCL.Base.Enum.Update;
 using RMCL.Models.Classes;
@@ -16,6 +17,7 @@ public partial class DownloadSetting : UserControl
         ChooseDownloadSource.SelectedIndex = Config.Config.MainConfig.UpdateModel.Proxy.GetHashCode();
         ChoosePublishSource.SelectedIndex = Config.Config.MainConfig.UpdateModel.Branch.GetHashCode();
         ChooseUpdateAPISource.SelectedIndex = Config.Config.MainConfig.UpdateModel.Route.GetHashCode();
+        AutomaticUpdates.IsChecked = Config.Config.MainConfig.UpdateModel.IsAutoDetectUpdates;
         
         IsEdit = true;
     }
@@ -44,6 +46,15 @@ public partial class DownloadSetting : UserControl
         if (IsEdit)
         {
             Config.Config.MainConfig.UpdateModel.Route = (UpdateRoute)ChooseUpdateAPISource.SelectedIndex;
+            Config.Config.SaveConfig();
+        }
+    }
+
+    private void AutomaticUpdates_OnIsCheckedChanged(object? sender, RoutedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.Config.MainConfig.UpdateModel.IsAutoDetectUpdates = (bool)AutomaticUpdates.IsChecked;
             Config.Config.SaveConfig();
         }
     }

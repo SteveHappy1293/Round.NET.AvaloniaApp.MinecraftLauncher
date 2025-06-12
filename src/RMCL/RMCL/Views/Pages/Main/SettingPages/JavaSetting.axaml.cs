@@ -20,10 +20,14 @@ public partial class JavaSetting : UserControl
     {
         IsEdit = false;
         ChooseDefaultJava.Items.Clear();
-        
+
+        ChooseDefaultJava.Items.Add(new ComboBoxItem() { Content = "[Auto] 让 RMCL 自动选择 Java", Tag = "Auto" });
         JavaManager.JavaManager.JavaRoot.Javas.ForEach(x =>
         {
-            ChooseDefaultJava.Items.Add(new ComboBoxItem() { Content = x.JavaWPath });
+            if (!string.IsNullOrEmpty(x.Version))
+            {
+                ChooseDefaultJava.Items.Add(new ComboBoxItem() { Content = $"[{x.Version}] {x.JavaWPath}", Tag = "" });
+            }
         });
         ChooseDefaultJava.SelectedIndex = JavaManager.JavaManager.JavaRoot.SelectIndex;
 
@@ -34,7 +38,16 @@ public partial class JavaSetting : UserControl
     {
         if (IsEdit)
         {
-            JavaManager.JavaManager.JavaRoot.SelectIndex = ChooseDefaultJava.SelectedIndex;
+            if (((ComboBoxItem)ChooseDefaultJava.SelectedItem).Tag.ToString() == "Auto")
+            {
+                JavaManager.JavaManager.JavaRoot.SelectIndex = 0;
+                JavaManager.JavaManager.JavaRoot.IsAutomaticSelection = true;
+            }
+            else
+            {
+                JavaManager.JavaManager.JavaRoot.SelectIndex = ChooseDefaultJava.SelectedIndex;
+                JavaManager.JavaManager.JavaRoot.IsAutomaticSelection = false;
+            }
             JavaManager.JavaManager.SaveConfig();
         }
     }

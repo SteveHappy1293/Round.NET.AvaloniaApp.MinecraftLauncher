@@ -73,13 +73,17 @@ public partial class ManageGame : UserControl
                     {
                         Task.Run(() =>
                         {
-                            LaunchService.Launch(new LaunchClientInfo()
+                            try
                             {
-                                GameFolder = ver.ClientInstances.GameCatalog,
-                                GameName = ver.ClientInstances.GameName,
-                                Java = JavaManager.JavaManager.JavaRoot.Javas[
-                                    JavaManager.JavaManager.JavaRoot.SelectIndex]
-                            });
+                                LaunchService.Launch(new LaunchClientInfo()
+                                {
+                                    GameFolder = ver.ClientInstances.GameCatalog,
+                                    GameName = ver.ClientInstances.GameName
+                                });
+                            }
+                            catch
+                            {
+                            }
                         });
                     };
                     VersionsList.Items.Add(item);

@@ -10,14 +10,30 @@
     <Grid>
         <ScrollViewer Margin="5">
             <StackPanel>
+                <controls:SettingsExpander Header="主页按钮样式"
+                                           Description="设置启动器的返回主页按钮样式"
+                                           IsExpanded="True">
+                    <controls:SettingsExpander.IconSource>
+                        <fluentIcons:FluentIconSource Icon="Home20Regular"/>
+                    </controls:SettingsExpander.IconSource>
+                    <controls:SettingsExpanderItem Content="按钮样式"
+                                                   Description="选择一个你需要的样式模式">
+                        <controls:SettingsExpanderItem.Footer>
+                            <ComboBox Name="MainButtonStyle" SelectionChanged="MainButtonStyle_OnSelectionChanged" Width="400">
+                                <ComboBoxItem Tag="Default">长按钮 (默认)</ComboBoxItem>
+                                <ComboBoxItem Tag="Short">短按钮</ComboBoxItem>
+                            </ComboBox>
+                        </controls:SettingsExpanderItem.Footer>
+                    </controls:SettingsExpanderItem>
+                </controls:SettingsExpander>
+                
                 <controls:SettingsExpander Header="背景"
-                                     Description="设置启动器的背景样式"
-                                     IsExpanded="True">
+                                           Description="设置启动器的背景样式">
                     <controls:SettingsExpander.IconSource>
                         <fluentIcons:FluentIconSource Icon="StyleGuide20Regular"/>
                     </controls:SettingsExpander.IconSource>
                     <controls:SettingsExpanderItem Content="背景模式"
-                                             Description="选择一个你需要的背景模式">
+                                                   Description="选择一个你需要的背景模式">
                         <controls:SettingsExpanderItem.Footer>
                             <ComboBox Name="ChooseBackgroundModel" SelectionChanged="ChooseBackgroundModel_OnSelectionChanged" Width="400">
                                 <ComboBoxItem Tag="None">无</ComboBoxItem>
@@ -33,7 +49,6 @@
                 
                 <controls:SettingsExpander Header="背景详细设置"
                                            Description="不同背景模式会有不同的设置"
-                                           IsExpanded="True"
                                            Name="BackgroundMaxSettingExpander">
                     <controls:SettingsExpander.IconSource>
                         <fluentIcons:FluentIconSource Icon="Tag20Regular"/>

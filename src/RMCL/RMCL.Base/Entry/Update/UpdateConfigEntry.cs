@@ -7,4 +7,5 @@ public class UpdateConfigEntry
     public UpdateBranch Branch { get; set; } = UpdateBranch.Release;
     public UpdateRoute Route { get; set; } = UpdateRoute.Official;
     public UpdateProxy Proxy { get; set; } = UpdateProxy.Official;
+    public bool IsAutoDetectUpdates  { get; set; } = true;
 }
