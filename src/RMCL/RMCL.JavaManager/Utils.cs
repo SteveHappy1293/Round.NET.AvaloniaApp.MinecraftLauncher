@@ -30,9 +30,32 @@ namespace RMCL.JavaManager
 
             var outPut = proc.StandardOutput.ReadToEnd();
             var errorPut = proc.StandardError.ReadToEnd();
+            var exitCode = proc.ExitCode;
             proc.WaitForExit();
-            
-            return (proc.ExitCode,outPut,errorPut);
+            proc.Dispose();
+            return (exitCode,outPut,errorPut);
         }
+
+        public static (int exitCode, string outPut, string errorPut) RunLinux(string drc, string parms)
+        {
+            Process process = new();
+            process.StartInfo.Arguments = parms;
+            process.StartInfo.FileName = drc;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardError = true;
+            process.StartInfo.UseShellExecute = false;
+            if (!process.Start())
+            {
+                return (-1, string.Empty,string.Empty);
+            }
+
+            string output = process.StandardOutput.ReadToEnd();
+            string errorput = process.StandardError.ReadToEnd();
+            int excitCode = process.ExitCode;
+            process.WaitForExit();
+            return (excitCode, output, errorput);
+        }
+        
     }
 }

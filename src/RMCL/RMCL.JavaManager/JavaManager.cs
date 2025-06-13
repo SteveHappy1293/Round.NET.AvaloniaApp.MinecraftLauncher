@@ -14,33 +14,38 @@ public class JavaManager
 
     public static List<string> KeyWords = new()
     {
-        "jvm",
-        "roaming",
+        "java",
+        "jdk",
+        "jbr",
         "bin",
-        "craft",
+        "jvm",
+        "env",
+        "run",
         "oracle",
+        "file",
+        "data",
+        "server",
+        "client",
+        "mojang",
+        "新建文件夹",
+         "jre",
+        "bin",
+        "mc",
+        "software",
+        "cache",
+        "temp",
+        "corretto",
+        "roaming",
+        "users",
+        "craft",
+        "program",
+        "net",
+        "game",
         "eclipse",
         "microsoft",
-        "jre",
-        "program",
-        "mc",
-        "game",
-        "software",
         "hotspot",
-        "jdk",
-        "run",
-        "users",
-        "corretto",
-        "env",
+        "idea",
         "android",
-        "file",
-        "java",
-        "mojang",
-        "bin",
-        "新建文件夹",
-        "jbr",
-        "cache",
-        "idea"
     };
 
     public static void LoadConfig()
@@ -103,53 +108,60 @@ public class JavaManager
                 //虽然但是，我觉得应该没问题
                 if (File.Exists(java_path)) path.Add(java_path);
             }
-
             var drives = DriveInfo.GetDrives();
-            foreach (var drive in drives)
-                if (drive.IsReady)
-                {
-                    var driveRootDirectory = drive.RootDirectory;
-                    try
-                    {
-                        var windowsSearchJava = WindowsSearchJava(drive.RootDirectory);
-                        path.Any(c =>
-                                 {
-                                     if (windowsSearchJava.Contains(c)) return windowsSearchJava.Remove(c);
-                                     return true;
-                                 });
-                        path.AddRange(windowsSearchJava);
-                    }
-                    catch
-                    {
-                    }
-                }
+            Parallel.ForEach(drives, (drive, num) =>
+                                     {
+                                         if (drive.IsReady)
+                                         {
+                                             try
+                                             {
 
+                                                 WindowsSearchJava(drive.RootDirectory, ref path);
+                                             }
+                                             catch
+                                             {
+                                             }
+                                         }
+                                     });
             var handleJavaPaths = HandleJavaPaths(path);
-            foreach (var javaPath in handleJavaPaths)
+            foreach (var javaInformation in handleJavaPaths)
             {
-                var detils = new JavaDetils(javaPath);
-                javas.Add(detils);
+                javas.Add(new JavaDetils(javaInformation));
             }
         }
 
-        if (OperatingSystem.IsMacOS())
+        if (OperatingSystem.IsMacOS() || OperatingSystem.IsLinux())
         {
-        }
-
-        if (OperatingSystem.IsLinux())
-        {
+            UnixSearchJava(ref path);
         }
         
         return Task.FromResult(javas.ToArray());
     }
 
+    private static void UnixSearchJava(ref List<string> list_)
+    {
+        List<string> list = new();
+        string? JavaEnv = Environment.GetEnvironmentVariable("JAVA_HOME");
+        if (JavaEnv is null or "")
+        {
+            return;
+        }
+
+        var combine = Path.Combine(JavaEnv,"java");
+        if (File.Exists(combine))
+        {
+            list.Add(combine);
+            var paths = HandleJavaPaths(list);
+            list_.AddRange(list);
+        }
+        
+    }
     /// <summary>
     ///     Windows搜索
     /// </summary>
     /// <returns></returns>
-    private static List<string> WindowsSearchJava(DirectoryInfo pathInfo)
+    private static void WindowsSearchJava(DirectoryInfo pathInfo,ref List<string> paths)
     {
-        List<string> paths = new();
         try
         {
             var path = Path.Combine(pathInfo.FullName, "java.exe");
@@ -162,54 +174,58 @@ public class JavaManager
                     var name = directoryInfo.Name.ToLower(); //小写化字母
                     if (KeyWords.Any(name.Contains))
                     {
-                        var list = WindowsSearchJava(directoryInfo);
-                        paths.AddRange(list);
+                        WindowsSearchJava(directoryInfo,ref paths);
                     }
                 }
         }
         catch
         {
         }
-
-        return paths;
     }
 
     private static JavaInformation[] HandleJavaPaths(List<string> pathsList)
     {
         List<JavaInformation> javalists = [];
-        foreach (var java in pathsList)
-        {
-            var parent = Directory.GetParent(java);
-            var javaw = Path.Combine(parent.FullName, OperatingSystem.IsWindows() ? "javaw.exe" : "javaw");
-            var javac = Path.Combine(parent.FullName, OperatingSystem.IsWindows() ? "javac.exe" : "javac");
+        Parallel.ForEach(pathsList, (java, num) =>
+                                    {
+                                        var parent = Directory.GetParent(java);
+                                        var javaw = Path.Combine(parent.FullName,
+                                            OperatingSystem.IsWindows() ? "javaw.exe" : "javaw");
+                                        var javac = Path.Combine(parent.FullName,
+                                            OperatingSystem.IsWindows() ? "javac.exe" : "javac");
 
-            var readRelease = ReadRelease(parent.FullName + Path.DirectorySeparatorChar);
-            if (OperatingSystem.IsWindows() && readRelease.VERSION == null)
-            {
-                var dataTuple = Utils.RunWindows(java, "-version");
-                var version = Regex.Match(dataTuple.errorPut.ToLower(), """version\s+"([\d._]+)""").Groups[1].Value;
-                var javaInformation = new JavaInformation
-                {
-                    Implementor = "Unknown",
-                    Java = java,
-                    JavaW = javaw,
-                    Version = version
-                };
-                javalists.Add(javaInformation);
-            }
-            else
-            {
-                var information = new JavaInformation
-                {
-                    Implementor = readRelease.IMPLEMENTOR,
-                    Java = java,
-                    JavaW = javaw,
-                    Version = readRelease.VERSION
-                };
-                javalists.Add(information);
-            }
-        }
+                                        var readRelease = ReadRelease(parent.FullName + Path.DirectorySeparatorChar);
+                                        if (OperatingSystem.IsWindows() && readRelease.VERSION == null)
+                                        {
+                                            var dataTuple = Utils.RunWindows(java, "-version");
+                                            var version = Regex.Match(dataTuple.errorPut.ToLower(),
+                                                """version\s+"([\d._]+)""").Groups[1].Value;
+                                           
 
+                                            var javaInformation = new JavaInformation
+                                            {
+                                                Implementor = "Unknown",
+                                                Java = java,
+                                                JavaW = javaw,
+                                                Version = version
+                                            };
+                                            javalists.Add(javaInformation);
+                                        }
+                                        else 
+                                        {
+                                            if (readRelease.VERSION != null)
+                                            {
+                                                var information = new JavaInformation
+                                                {
+                                                    Implementor = readRelease.IMPLEMENTOR,
+                                                    Java = java,
+                                                    JavaW = javaw,
+                                                    Version = readRelease.VERSION
+                                                };
+                                                javalists.Add(information);
+                                            }
+                                        }
+                                    });
         return javalists.ToArray();
     }
 
