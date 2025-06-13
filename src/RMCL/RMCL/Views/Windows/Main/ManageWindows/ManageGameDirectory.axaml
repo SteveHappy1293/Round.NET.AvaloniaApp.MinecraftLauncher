@@ -15,7 +15,7 @@
                 <button:IconButton DockPanel.Dock="Left" Icon="Pen20Regular" Margin="5">编辑</button:IconButton>
                 <button:IconButton DockPanel.Dock="Left" Icon="Delete20Regular" Margin="5" Name="DeleteFolder" Click="DeleteFolder_OnClick">移除</button:IconButton>
                 <button:IconButton DockPanel.Dock="Left" Icon="Folder20Regular" Margin="5" Name="OpenFolder" Click="OpenFolder_OnClick">打开目录</button:IconButton>
-                <button:IconButton DockPanel.Dock="Right" HorizontalAlignment="Right" Icon="Add20Regular" Margin="5">添加</button:IconButton>
+                <button:IconButton DockPanel.Dock="Right" HorizontalAlignment="Right" Icon="Add20Regular" Margin="5" Name="AddFolder" Click="AddFolder_OnClick">添加</button:IconButton>
             </DockPanel>
             
             <ListBox Name="DirsBox" Margin="5">

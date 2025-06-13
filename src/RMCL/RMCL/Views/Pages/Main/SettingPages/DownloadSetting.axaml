@@ -43,6 +43,12 @@
                             </ComboBox>
                         </controls:SettingsExpanderItem.Footer>
                     </controls:SettingsExpanderItem>
+                    <controls:SettingsExpanderItem Content="自动更新"
+                                                   Description="在每次启动时检测更新">
+                        <controls:SettingsExpanderItem.Footer>
+                            <ToggleSwitch Name="AutomaticUpdates" OffContent="关闭" OnContent="打开" IsCheckedChanged="AutomaticUpdates_OnIsCheckedChanged"></ToggleSwitch>
+                        </controls:SettingsExpanderItem.Footer>
+                    </controls:SettingsExpanderItem>
                 </controls:SettingsExpander>
             </StackPanel>
         </ScrollViewer>

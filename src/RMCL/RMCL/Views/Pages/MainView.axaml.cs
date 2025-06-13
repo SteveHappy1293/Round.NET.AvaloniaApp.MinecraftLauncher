@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -8,9 +9,11 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.FluentIcons;
 using FluentAvalonia.UI.Controls;
+using RMCL.Base.Entry;
 using RMCL.Base.Enum.Update;
 using RMCL.Controls.ControlHelper;
 using RMCL.Models.Classes;
+using RMCL.Models.Classes.Launch;
 using RMCL.Update;
 using RMCL.Views.Pages.Main;
 using RMCL.Views.Pages.UpdateView;
@@ -27,11 +30,12 @@ public partial class MainView : UserControl
         BottomBar.ContentFrame = MainFrame;
         Core.ChildFrame.ShowedCallBack = () =>
         {
-            Core.MainWindow.HomeButton.Content = new FluentIcon(){Icon = FluentIconSymbol.ArrowLeft20Regular,Margin = new Thickness(3)};
+            Core.MainWindow.HomeButton.Content = new FluentIcon()
+                { Icon = FluentIconSymbol.ArrowLeft20Regular, Margin = new Thickness(3) };
         };
         Core.ChildFrame.ClosedCallBack = () =>
         {
-            Core.MainWindow.HomeButton.Content = "Round Minecraft Launcher";
+            Core.MainWindow.UpdateButtonStyle();
         };
 
         BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
@@ -63,30 +67,54 @@ public partial class MainView : UserControl
 
         this.Loaded += async (sender, args) =>
         {
-            var Update =
-                new Update.UpdateDetect(
-                    "https://gh.llkk.cc/https://api.github.com/repos/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/releases/latest");
-            
-            Update.BranchIndex = Config.Config.MainConfig.UpdateModel.Branch;
-            Update.OnUpdate = (s, entry) =>
+            if (Config.Config.MainConfig.UpdateModel.IsAutoDetectUpdates)
             {
-                Task.Run(() =>
+                var Update =
+                    new Update.UpdateDetect(
+                        "https://gh.llkk.cc/https://api.github.com/repos/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/releases/latest");
+            
+                Update.BranchIndex = Config.Config.MainConfig.UpdateModel.Branch;
+                Update.OnUpdate = (s, entry) =>
                 {
-                    var url = s;
-                    if (Config.Config.MainConfig.UpdateModel.Proxy == UpdateProxy.Faster)
+                    Task.Run(() =>
                     {
-                        var sel = new GitHubProxySelector();
-                        url = sel.GetBestProxyUrl().Replace("{url}", s);
-                    }
+                        var url = s;
+                        if (Config.Config.MainConfig.UpdateModel.Proxy == UpdateProxy.Faster)
+                        {
+                            var sel = new GitHubProxySelector();
+                            url = sel.GetBestProxyUrl().Replace("{url}", s);
+                        }
 
-                    Console.WriteLine(url);
-                    Dispatcher.UIThread.Invoke(() =>
-                    {
-                        Core.ChildFrame.Show(new UpdatePage(url, entry));
+                        Console.WriteLine(url);
+                        Dispatcher.UIThread.Invoke(() =>
+                        {
+                            Core.ChildFrame.Show(new UpdatePage(url, entry));
+                        });
                     });
-                });
-            };
-            Update.Detect();
+                };
+                Update.Detect();
+            }
         };
+    }
+
+    private void LauncherButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        var versionDir = Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder];
+        var version = Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].SelectedGameIndex;
+
+        var vers = Directory.GetDirectories(Path.Combine(versionDir.Path,"versions"));
+        var ver = vers[version];
+
+        Task.Run(() =>
+        {
+            try
+            {
+                LaunchService.Launch(new LaunchClientInfo()
+                {
+                    GameFolder = versionDir.Path,
+                    GameName = Path.GetFileName(ver)
+                });
+            }catch{ }
+        });
     }
 }

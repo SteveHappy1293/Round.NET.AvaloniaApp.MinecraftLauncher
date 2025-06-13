@@ -12,6 +12,36 @@ namespace RMCL.Models.Classes.Launch;
 
 public class LaunchService
 {
+    public static JavaInfo MatchingOptimumJava(VersionParse parse)
+    { 
+        var java = parse.GameJson.JavaVersion;
+        
+        foreach (var x in JavaManager.JavaManager.JavaRoot.Javas)
+        {
+            if (int.Parse(x.Version.Split('.')[0]) == java.MajorVersion)
+            {
+                return new JavaInfo()
+                {
+                    JavaPath = x.JavaPath,
+                    Version = x.Version
+                };
+            }
+        }
+        
+        foreach (var x in JavaManager.JavaManager.JavaRoot.Javas)
+        {
+            if (int.Parse(x.Version.Split('.')[0]) >= java.MajorVersion)
+            {
+                return new JavaInfo()
+                {
+                    JavaPath = x.JavaPath,
+                    Version = x.Version
+                };
+            }
+        }
+
+        return null;
+    }
     public static void Launch(LaunchClientInfo Info)
     {
         var par = new VersionParse(new ClientInstancesInfo()
@@ -20,14 +50,20 @@ public class LaunchService
             GameName = Info.GameName
         });
 
+        var info = JavaManager.JavaManager.JavaRoot.IsAutomaticSelection
+            ? new JavaInfo()
+            {
+                JavaPath = JavaManager.JavaManager.JavaRoot.Javas[
+                    JavaManager.JavaManager.JavaRoot.SelectIndex].JavaPath,
+                Version = JavaManager.JavaManager.JavaRoot.Javas[
+                    JavaManager.JavaManager.JavaRoot.SelectIndex].Version
+            }
+            : MatchingOptimumJava(par);
+        
         ClientRunner run = new ClientRunner(new ClientRunnerInfo()
         {
             Account = new OffineAuthenticator("test").Authenticator(),
-            JavaInfo = new JavaInfo()
-            {
-                JavaPath = Info.Java.JavaWPath,
-                Version = Info.Java.Version
-            },
+            JavaInfo = info,
             LauncherInfo = "RMCL",
             GameInstances = par,
             WindowInfo = ClientWindowSizeEnum.Fullscreen
