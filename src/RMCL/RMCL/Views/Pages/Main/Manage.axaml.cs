@@ -21,5 +21,12 @@ public partial class Manage : UserControl
             Page = new ManageGame(),
             Icon = FluentIconSymbol.List20Regular,
         });
+        NavigationPage.RegisterRoute(new NavigationRouteConfig()
+        {
+            Route = "ManageAccount",
+            Title = "账户管理",
+            Page = new ManageAccount(),
+            Icon = FluentIconSymbol.PersonAccounts20Regular,
+        });
     }
 }

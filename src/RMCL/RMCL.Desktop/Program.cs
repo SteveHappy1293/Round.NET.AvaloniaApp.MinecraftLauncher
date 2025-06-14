@@ -4,6 +4,7 @@ using RMCL;
 using RMCL.Config;
 using RMCL.JavaManager;
 using RMCL.Logger;
+using RMCL.Models.Classes.Manager.UserManager;
 using RMCL.PathsDictionary;
 
 sealed class Program
@@ -61,6 +62,7 @@ sealed class Program
             Console.WriteLine("Program Starting!");
             Config.LoadConfig();
             JavaManager.LoadConfig();
+            PlayerManager.LoadConfig();
             Console.WriteLine("Program Init...");
         
             BuildAvaloniaApp()

@@ -7,6 +7,7 @@ using OverrideLauncher.Core.Modules.Entry.JavaEntry;
 using OverrideLauncher.Core.Modules.Entry.LaunchEntry;
 using OverrideLauncher.Core.Modules.Enum.Launch;
 using RMCL.Base.Entry;
+using RMCL.Models.Classes.Manager.UserManager;
 
 namespace RMCL.Models.Classes.Launch;
 
@@ -62,7 +63,7 @@ public class LaunchService
         
         ClientRunner run = new ClientRunner(new ClientRunnerInfo()
         {
-            Account = new OffineAuthenticator("test").Authenticator(),
+            Account = PlayerManager.Player.Accounts[PlayerManager.Player.SelectIndex].Account,
             JavaInfo = info,
             LauncherInfo = "RMCL",
             GameInstances = par,

@@ -7,6 +7,7 @@
         xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
         xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
         xmlns:taskView="clr-namespace:RMCL.Views.Pages.TaskView"
+        xmlns:messageView1="clr-namespace:RMCL.Views.Pages.Main.MessageView"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="RMCL.Views.MainWindow"
         WindowStartupLocation="CenterScreen"
@@ -84,6 +85,7 @@
                                   CloseButtonClick="HomeButtonTips_OnCloseButtonClick"
                                   IconSource="Home" />
         </Grid>
+        <messageView1:MessageShowBox Name="MessageShowBox" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10" Width="300"/>
         <taskView:TaskView HorizontalAlignment="Stretch" Name="TaskView" VerticalAlignment="Stretch"/>
     </Grid>
 </Window>

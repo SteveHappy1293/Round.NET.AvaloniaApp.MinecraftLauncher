@@ -39,6 +39,7 @@ public partial class MainWindow : Window
         InitializeComponent();
         VersionBox.Text = VersionBox.Text.Replace("Version", Assembly.GetEntryAssembly()?.GetName().Version.ToString());
         Core.TaskView = this.TaskView;
+        Core.MessageShowBox = this.MessageShowBox;
         
         this.Closing += (e,sender) => {
             Config.Config.MainConfig.WindowWidth = (int)this.Bounds.Width;

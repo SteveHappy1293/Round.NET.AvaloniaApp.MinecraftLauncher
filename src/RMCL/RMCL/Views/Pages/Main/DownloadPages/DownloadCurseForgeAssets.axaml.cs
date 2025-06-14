@@ -7,6 +7,7 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
+using FluentAvalonia.UI.Controls;
 using OverrideLauncher.Core.Modules.Classes.Download.Assets.CurseForge;
 using OverrideLauncher.Core.Modules.Entry.DownloadEntry.DownloadAssetsEntry;
 using RMCL.Controls.Item;
@@ -41,23 +42,35 @@ public partial class DownloadCurseForgeAssets : UserControl
         SearchConfigBox.IsEnabled = false;
         Task.Run(() =>
         {
-            var res = CurseForgeSearch.GetFeatured("$2a$10$Awb53b9gSOIJJkdV3Zrgp.CyFP.dI13QKbWn/4UZI4G4ff18WneB6").Result;
-            
-            res.Data.Featured.ForEach(x =>
+            try
+            {
+                var res = CurseForgeSearch.GetFeatured("$2a$10$Awb53b9gSOIJJkdV3Zrgp.CyFP.dI13QKbWn/4UZI4G4ff18WneB6")
+                    .Result;
+
+                res.Data.Featured.ForEach(x =>
+                {
+                    Dispatcher.UIThread.Invoke(() => { AssetsList.Children.Add(GetItem(x)); });
+                });
+
+                Dispatcher.UIThread.Invoke(() =>
+                {
+                    SearchConfigBox.IsEnabled = true;
+                    AssetsList.IsVisible = true;
+                    LoadingBox.IsVisible = false;
+                    NullBox.IsVisible = false;
+                });
+            }
+            catch
             {
                 Dispatcher.UIThread.Invoke(() =>
                 {
-                    AssetsList.Children.Add(GetItem(x));
+                    Core.MessageShowBox.AddInfoBar("无法搜索", "无法搜索 CurseForge 资源，可能您未连接互联网", InfoBarSeverity.Error);
+                    SearchConfigBox.IsEnabled = true;
+                    AssetsList.IsVisible = false;
+                    LoadingBox.IsVisible = false;
+                    NullBox.IsVisible = true;
                 });
-            });
-
-            Dispatcher.UIThread.Invoke(() =>
-            {
-                SearchConfigBox.IsEnabled = true;
-                AssetsList.IsVisible = true;
-                LoadingBox.IsVisible = false;
-                NullBox.IsVisible = false;
-            });
+            }
         });
     }
 

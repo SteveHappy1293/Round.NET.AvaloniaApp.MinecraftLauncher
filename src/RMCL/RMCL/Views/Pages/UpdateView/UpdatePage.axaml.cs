@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using FluentAvalonia.UI.Controls;
 using RMCL.Base.Entry.Update;
 using RMCL.Controls.Download;
 using RMCL.Controls.TaskContentControl;
@@ -29,6 +30,8 @@ public partial class UpdatePage : UserControl
         CurrentVersion.Text = $"当前版本：{Assembly.GetEntryAssembly()?.GetName().Version.ToString()}";
         UpdatedVersion.Text = $"更新版本：{entry.Name.Replace("v", "")}";
         VersionBranch.Text =  $"更新分支：{entry.TagName.Replace("RMCL.", "").Split('-')[0]}";
+        
+        Core.MessageShowBox.AddInfoBar("更新", $"检测到有新的更新 {entry.Name}", InfoBarSeverity.Warning);
     }
 
     private void OpenALinkToAWebPage_OnClick(object? sender, RoutedEventArgs e)

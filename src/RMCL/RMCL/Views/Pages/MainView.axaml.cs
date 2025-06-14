@@ -69,30 +69,34 @@ public partial class MainView : UserControl
         {
             if (Config.Config.MainConfig.UpdateModel.IsAutoDetectUpdates)
             {
-                var Update =
-                    new Update.UpdateDetect(
-                        "https://gh.llkk.cc/https://api.github.com/repos/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/releases/latest");
-            
-                Update.BranchIndex = Config.Config.MainConfig.UpdateModel.Branch;
-                Update.OnUpdate = (s, entry) =>
+                try
                 {
-                    Task.Run(() =>
-                    {
-                        var url = s;
-                        if (Config.Config.MainConfig.UpdateModel.Proxy == UpdateProxy.Faster)
-                        {
-                            var sel = new GitHubProxySelector();
-                            url = sel.GetBestProxyUrl().Replace("{url}", s);
-                        }
+                    var Update =
+                        new Update.UpdateDetect(
+                            "https://gh.llkk.cc/https://api.github.com/repos/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/releases/latest");
 
-                        Console.WriteLine(url);
-                        Dispatcher.UIThread.Invoke(() =>
+                    Update.BranchIndex = Config.Config.MainConfig.UpdateModel.Branch;
+                    Update.OnUpdate = (s, entry) =>
+                    {
+                        Task.Run(() =>
                         {
-                            Core.ChildFrame.Show(new UpdatePage(url, entry));
+                            var url = s;
+                            if (Config.Config.MainConfig.UpdateModel.Proxy == UpdateProxy.Faster)
+                            {
+                                var sel = new GitHubProxySelector();
+                                url = sel.GetBestProxyUrl().Replace("{url}", s);
+                            }
+
+                            Console.WriteLine(url);
+                            Dispatcher.UIThread.Invoke(() => { Core.ChildFrame.Show(new UpdatePage(url, entry)); });
                         });
-                    });
-                };
-                Update.Detect();
+                    };
+                    await Update.Detect();
+                }
+                catch
+                {
+                    Core.MessageShowBox.AddInfoBar("无法更新", "无法获取更新，可能您未连接互联网", InfoBarSeverity.Error);
+                }
             }
         };
     }

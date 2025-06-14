@@ -7,6 +7,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
+using FluentAvalonia.UI.Controls;
 using OverrideLauncher.Core.Modules.Classes.Download;
 using OverrideLauncher.Core.Modules.Entry.DownloadEntry;
 using RMCL.Controls.Download;
@@ -98,6 +99,7 @@ public partial class DownloadClient : Window
                 dow.Download(Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path,name);
                 var uuid1 = TaskManager.AddTask(cont);
                 dow.DownloadCompleted = (uuid) => TaskManager.DeleteTask(uuid1);
+                Core.MessageShowBox.AddInfoBar("安装游戏", $"已将 {ID} 的安装添加至后台", InfoBarSeverity.Success);
                 
                 Close();
             });
