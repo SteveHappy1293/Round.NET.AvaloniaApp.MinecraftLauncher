@@ -93,8 +93,9 @@ public partial class MainView : UserControl
                     };
                     await Update.Detect();
                 }
-                catch
+                catch(Exception ex)
                 {
+                    Console.WriteLine(ex.StackTrace);
                     Core.MessageShowBox.AddInfoBar("无法更新", "无法获取更新，可能您未连接互联网", InfoBarSeverity.Error);
                 }
             }
