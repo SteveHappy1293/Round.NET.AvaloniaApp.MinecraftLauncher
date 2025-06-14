@@ -27,16 +27,8 @@ public class UpdateDetect
 
     public async Task Detect()
     {
-        var copynowver = NowVersion;
-
-        if (NowVersion.Split('.')[1].Length == 3)
-        {
-            var lst = NowVersion.Split('.');
-            lst[1] = $"0{lst[1]}";
-            copynowver = string.Join(".", lst);
-
-            Entry.Name = $"v{copynowver}";
-        }
+        var copynowver = NowVersion.Replace("0","");
+        Entry.Name = $"v{copynowver}";
         
         var json = await _client.GetAsync(ApiUrl).Result.Content.ReadAsStringAsync();
         
@@ -49,7 +41,7 @@ public class UpdateDetect
         var index = BranchIndex.GetHashCode();
         var tagName = Branch[index];
 
-        if (Entry.TagName.Contains(tagName))
+        if (Entry.TagName.Contains(tagName.Replace("0","")))
         {
             if (!Entry.TagName.Contains(copynowver))
             {
