@@ -28,7 +28,7 @@ public partial class ManageAccount : UserControl
     public ManageAccount()
     {
         InitializeComponent();
-        RefreshUI();
+        this.Loaded += (sender, args) => RefreshUI();
     }
 
     public void RefreshUI()

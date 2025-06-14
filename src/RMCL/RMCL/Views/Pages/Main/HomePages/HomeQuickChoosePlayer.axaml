@@ -1,0 +1,55 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="RMCL.Views.Pages.Main.HomePages.HomeQuickChoosePlayer">
+    <UserControl.Styles>
+        <Style Selector="Border#ContentBox">
+            <Setter Property="Opacity" Value="0"/>
+            <Setter Property="IsVisible" Value="False"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.12"/>
+                </Transitions>
+            </Setter>
+        </Style>
+    </UserControl.Styles>
+    
+    <StackPanel>
+        <!-- 添加一个容器包裹按钮和Border，方便处理鼠标事件 -->
+        <Border Name="HoverArea" Background="Transparent" Padding="5">
+            <StackPanel Spacing="0">
+                <Button Name="UserBtn" Background="Transparent" BorderBrush="Transparent" 
+                        BorderThickness="0" CornerRadius="11" HorizontalAlignment="Right">
+                    <DockPanel LastChildFill="False" Margin="5">
+                        <Border Name="BigSkinIcon" CornerRadius="26" Width="52" Height="52" 
+                                BorderBrush="White" BorderThickness="1" VerticalAlignment="Bottom"/>
+                        <Border Name="SmallSkinIcon1" IsVisible="False" CornerRadius="26" Width="32" Height="32" 
+                                BorderBrush="White" BorderThickness="1" VerticalAlignment="Bottom" 
+                                Margin="-15,0,0,3"/>
+                        <Border Name="SmallSkinIcon2" IsVisible="False" CornerRadius="26" Width="32" Height="32" 
+                                BorderBrush="White" BorderThickness="1" VerticalAlignment="Bottom" 
+                                Margin="-8,0,0,3"/>
+                        <Border Name="SmallSkinIcon3" IsVisible="False" CornerRadius="26" Width="32" Height="32" 
+                                BorderBrush="White" BorderThickness="1" VerticalAlignment="Bottom" 
+                                Margin="-8,0,0,3"/>
+                    </DockPanel>
+                </Button>
+                <Border Width="220" Height="280" Name="ContentBox" CornerRadius="11" 
+                        HorizontalAlignment="Right" Margin="0,15,0,0">
+                    <Border.Background>
+                        <SolidColorBrush Color="Gray" Opacity="0.3"/>
+                    </Border.Background>
+                    
+                    <Grid>
+                        <TextBlock Margin="8" FontSize="12">选择账户</TextBlock>
+                        <ListBox Margin="4,30,4,0" Name="PlayerListBox" SelectionChanged="PlayerListBox_OnSelectionChanged">
+                            
+                        </ListBox>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>
