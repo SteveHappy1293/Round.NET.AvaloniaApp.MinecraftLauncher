@@ -35,5 +35,15 @@ public partial class Setting : UserControl
             Page = new JavaSetting(),
             Icon = FluentIconSymbol.Memory16Regular,
         });
+        
+        
+        NavigationPage.RegisterRoute(new NavigationRouteConfig()
+        {
+            Route = "AboutUs",
+            Title = "关于我们",
+            Page = new AboutUs(),
+            Icon = FluentIconSymbol.Info20Regular,
+            IsFoot = true
+        });
     }
 }

@@ -7,12 +7,18 @@
              xmlns:container="clr-namespace:RMCL.Controls.Container;assembly=RMCL.Controls"
              xmlns:controls1="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              xmlns:taskView="clr-namespace:RMCL.Views.Pages.TaskView"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Views.Pages.MainView">
     <Grid>
         <controls1:Frame Margin="0,0,0,70" Name="MainFrame"/>
         <container:BottomBar DefaultTag="Home" Name="BottomBar" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
-        <button:AccentIconButton CornerRadius="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15" Height="40" Width="120" Icon="Play24Regular" Name="LauncherButton" Click="LauncherButton_OnClick">启动游戏</button:AccentIconButton>
+        <DockPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+            <Button ToolTip.Tip="游戏抽屉" CornerRadius="20" Height="40" Width="40" Margin="5">
+                <fluentIcons:FluentIcon Icon="DrawerPlay20Regular"/>
+            </Button>
+            <button:AccentIconButton ToolTip.Tip="启动游戏" CornerRadius="20" Margin="5" Height="40" Width="120" Icon="Play24Regular" Name="LauncherButton" Click="LauncherButton_OnClick">启动游戏</button:AccentIconButton>
+        </DockPanel>
         
         <container:ChildFrame Name="ChildFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0"></container:ChildFrame>
     </Grid>

@@ -8,6 +8,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using System;
 using Avalonia.Threading;
+using RMCL.Base.Enum.ButtonStyle;
 using RMCL.Models.Classes.Manager.UserManager;
 
 namespace RMCL.Views.Pages.Main.HomePages;
@@ -67,61 +68,99 @@ public partial class HomeQuickChoosePlayer : UserControl
     {
         IsEdit = false;
         var lst = PlayerManager.Player.Accounts;
-        BigSkinIcon.Background = new ImageBrush()
-        {
-            Source = SkinHelper.CropAndScaleBitmapOptimized(SkinHelper.Base64ToBitmap(lst[0].Skin),new PixelRect(8,8,8,8),4),
-            Stretch = Stretch.UniformToFill
-        };
+        var selectedIndex = PlayerManager.Player.SelectIndex;
 
-        if (lst.Count > 2)
+        if (Config.Config.MainConfig.ButtonStyle.QuickChoosePlayerButton == OrdinaryButtonStyle.Default)
         {
-            SmallSkinIcon1.Background = new ImageBrush()
+            // 设置大图标（选中的皮肤）
+            if (lst.Count > 0 && selectedIndex >= 0 && selectedIndex < lst.Count)
             {
-                Source = SkinHelper.CropAndScaleBitmapOptimized(SkinHelper.Base64ToBitmap(lst[1].Skin),new PixelRect(8,8,8,8),2),
-                Stretch = Stretch.UniformToFill
-            };
-            SmallSkinIcon1.IsVisible = true;
+                BigSkinIcon.Background = new ImageBrush()
+                {
+                    Source = SkinHelper.CropAndScaleBitmapOptimized(SkinHelper.Base64ToBitmap(lst[selectedIndex].Skin),
+                        new PixelRect(8, 8, 8, 8), 4),
+                    Stretch = Stretch.UniformToFill
+                };
+            }
+
+            // 重置所有小图标
+            SmallSkinIcon1.IsVisible = false;
+            SmallSkinIcon2.IsVisible = false;
+            SmallSkinIcon3.IsVisible = false;
+            SmallSkinIconGroup.IsVisible = true;
+            UserCount.IsVisible = false;
+
+            // 设置小图标（未选中的皮肤）
+            int smallIconIndex = 0;
+            for (var i = 0; i < lst.Count; i++)
+            {
+                if (i == selectedIndex) continue;
+
+                smallIconIndex++;
+                if (smallIconIndex > 3) break; // 最多显示3个小图标
+
+                var skinIcon = smallIconIndex == 1 ? SmallSkinIcon1 :
+                    smallIconIndex == 2 ? SmallSkinIcon2 : SmallSkinIcon3;
+
+                if (smallIconIndex == 3 && lst.Count > 3)
+                {
+                    // 如果有超过3个皮肤，第三个图标显示"+N"
+                    skinIcon.Child = new TextBlock()
+                    {
+                        Text = $"+{lst.Count - 3}",
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Foreground = Brushes.White
+                    };
+                    skinIcon.Background = Brushes.DodgerBlue;
+                }
+                else
+                {
+                    // 正常显示皮肤图标
+                    skinIcon.Background = new ImageBrush()
+                    {
+                        Source = SkinHelper.CropAndScaleBitmapOptimized(SkinHelper.Base64ToBitmap(lst[i].Skin),
+                            new PixelRect(8, 8, 8, 8), 2),
+                        Stretch = Stretch.UniformToFill
+                    };
+                }
+
+                skinIcon.IsVisible = true;
+            }
+        }
+        else
+        {
+            // 重置所有小图标
+            SmallSkinIcon1.IsVisible = false;
+            SmallSkinIcon2.IsVisible = false;
+            SmallSkinIcon3.IsVisible = false;
+            SmallSkinIconGroup.IsVisible = false;
+            
+            // 设置大图标
+            if (lst.Count > 0 && selectedIndex >= 0 && selectedIndex < lst.Count)
+            {
+                BigSkinIcon.Background = new ImageBrush()
+                {
+                    Source = SkinHelper.CropAndScaleBitmapOptimized(SkinHelper.Base64ToBitmap(lst[selectedIndex].Skin),
+                        new PixelRect(8, 8, 8, 8), 4),
+                    Stretch = Stretch.UniformToFill
+                };
+                if (lst.Count > 1)
+                {
+                    UserCount.IsVisible = true;
+                    UserCount.Value = lst.Count - 1;
+                }
+            }
         }
 
-        if (lst.Count > 3)
+        // 更新玩家列表
+        try
         {
-            SmallSkinIcon2.Background = new ImageBrush()
-            {
-                Source = SkinHelper.CropAndScaleBitmapOptimized(SkinHelper.Base64ToBitmap(lst[2].Skin),new PixelRect(8,8,8,8),2),
-                Stretch = Stretch.UniformToFill
-            };
-            SmallSkinIcon2.IsVisible = true;
+            PlayerListBox.Items.Clear();
+            lst.ForEach(x => { PlayerListBox.Items.Add(new ListBoxItem() { Content = x.Account.UserName }); });
+            PlayerListBox.SelectedIndex = selectedIndex;
         }
-
-        if (lst.Count == 3)
-        {
-            SmallSkinIcon3.Background = new ImageBrush()
-            {
-                Source = SkinHelper.CropAndScaleBitmapOptimized(SkinHelper.Base64ToBitmap(lst[2].Skin),new PixelRect(8,8,8,8),2),
-                Stretch = Stretch.UniformToFill
-            };
-            SmallSkinIcon3.IsVisible = true;
-        }
-
-        if (lst.Count >= 4)
-        {
-            SmallSkinIcon3.Child = new TextBlock()
-            {
-                Text = $"+{PlayerManager.Player.Accounts.Count - 3}",
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                Foreground = Brushes.White
-            };
-            SmallSkinIcon3.Background = Brushes.DodgerBlue;
-            SmallSkinIcon3.IsVisible = true;
-        }
-        
-        PlayerListBox.Items.Clear();
-        lst.ForEach(x =>
-        {
-            PlayerListBox.Items.Add(new ComboBoxItem() { Content = x.Account.UserName });
-        });
-        PlayerListBox.SelectedIndex = PlayerManager.Player.SelectIndex;
+        catch { }
 
         IsEdit = true;
     }
@@ -132,6 +171,8 @@ public partial class HomeQuickChoosePlayer : UserControl
         {
             PlayerManager.Player.SelectIndex = PlayerListBox.SelectedIndex;
             PlayerManager.SaveConfig();
+
+            UpdateUI();
         }
     }
 }

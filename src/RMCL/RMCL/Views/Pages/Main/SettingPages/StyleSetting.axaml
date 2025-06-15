@@ -10,16 +10,25 @@
     <Grid>
         <ScrollViewer Margin="5">
             <StackPanel>
-                <controls:SettingsExpander Header="主页按钮样式"
-                                           Description="设置启动器的返回主页按钮样式"
+                <controls:SettingsExpander Header="按钮样式"
+                                           Description="设置启动器的部分按钮样式"
                                            IsExpanded="True">
                     <controls:SettingsExpander.IconSource>
-                        <fluentIcons:FluentIconSource Icon="Home20Regular"/>
+                        <fluentIcons:FluentIconSource Icon="Button20Regular"/>
                     </controls:SettingsExpander.IconSource>
-                    <controls:SettingsExpanderItem Content="按钮样式"
-                                                   Description="选择一个你需要的样式模式">
+                    <controls:SettingsExpanderItem Content="Home 按钮样式"
+                                                   Description="启动器主窗口左上角返回主页按钮样式">
                         <controls:SettingsExpanderItem.Footer>
                             <ComboBox Name="MainButtonStyle" SelectionChanged="MainButtonStyle_OnSelectionChanged" Width="400">
+                                <ComboBoxItem Tag="Default">长按钮 (默认)</ComboBoxItem>
+                                <ComboBoxItem Tag="Short">短按钮</ComboBoxItem>
+                            </ComboBox>
+                        </controls:SettingsExpanderItem.Footer>
+                    </controls:SettingsExpanderItem>
+                    <controls:SettingsExpanderItem Content="快速选择账户按钮样式"
+                                                   Description="启动器主页右上角快速选择账户按钮样式">
+                        <controls:SettingsExpanderItem.Footer>
+                            <ComboBox Name="QuickChoosePlayerButtonStyle" SelectionChanged="QuickChoosePlayerButtonStyle_OnSelectionChanged" Width="400">
                                 <ComboBoxItem Tag="Default">长按钮 (默认)</ComboBoxItem>
                                 <ComboBoxItem Tag="Short">短按钮</ComboBoxItem>
                             </ComboBox>

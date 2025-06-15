@@ -16,6 +16,7 @@ using Avalonia.Threading;
 using FluentAvalonia.Interop;
 using FluentAvalonia.UI.Controls;
 using RMCL.Base.Entry.Style;
+using RMCL.Base.Enum.ButtonStyle;
 using RMCL.Base.Enum.Update;
 using RMCL.Config;
 using RMCL.Models.Classes;
@@ -68,7 +69,7 @@ public partial class MainWindow : Window
 
     public void UpdateButtonStyle()
     {
-        if (Config.Config.MainConfig.HomeButtonStyle == HomeButtonStyle.Default)
+        if (Config.Config.MainConfig.ButtonStyle.HomeButton == OrdinaryButtonStyle.Default)
         {
             HomeButtonText = "Round Minecraft Launcher";
         }

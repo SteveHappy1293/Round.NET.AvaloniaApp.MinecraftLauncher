@@ -15,7 +15,7 @@ public class ConfigRoot
         }
     };
     public BackgroundEntry Background { get; set; } = new();
-    public HomeButtonStyle HomeButtonStyle { get; set; } = HomeButtonStyle.Default;
+    public ButtonStyle ButtonStyle { get; set; } = new();
     public bool FirstLauncher { get; set; } = true;
     public bool IsUseOrganizationConfig { get; set; } = false;
     public string OrganizationUrl { get; set; } = string.Empty;

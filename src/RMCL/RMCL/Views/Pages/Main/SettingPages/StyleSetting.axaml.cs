@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using RMCL.Base.Entry.Style;
 using RMCL.Base.Enum;
+using RMCL.Base.Enum.ButtonStyle;
 using RMCL.Controls.View;
 using RMCL.Models.Classes;
 using RMCL.Models.Classes.Manager.StyleManager;
@@ -21,10 +22,11 @@ public partial class StyleSetting : UserControl
         { BackgroundModelEnum.Glass, new ColorGlassSetting() },
         { BackgroundModelEnum.Pack, new PackSetting() },
         { BackgroundModelEnum.Image, new ImageSetting() },
-        { BackgroundModelEnum.None, new NullBox() { SmallTitle = "这里没有设置",Margin = new Thickness(10)} },
-        { BackgroundModelEnum.Mica, new NullBox() { SmallTitle = "这里没有设置",Margin = new Thickness(10) } },
-        { BackgroundModelEnum.AcrylicBlur, new NullBox() { SmallTitle = "这里没有设置",Margin = new Thickness(10) } }
+        { BackgroundModelEnum.None, new NullBox() { SmallTitle = "这里没有设置", Margin = new Thickness(10) } },
+        { BackgroundModelEnum.Mica, new NullBox() { SmallTitle = "这里没有设置", Margin = new Thickness(10) } },
+        { BackgroundModelEnum.AcrylicBlur, new NullBox() { SmallTitle = "这里没有设置", Margin = new Thickness(10) } }
     };
+
     public StyleSetting()
     {
         InitializeComponent();
@@ -32,7 +34,8 @@ public partial class StyleSetting : UserControl
         var enums = (BackgroundModelEnum)ChooseBackgroundModel.SelectedIndex;
         Config.Config.MainConfig.Background.ChooseModel = enums;
         BackgroundMaxSetting.Content = BackgroundSettings[enums];
-        MainButtonStyle.SelectedIndex = Config.Config.MainConfig.HomeButtonStyle.GetHashCode();
+        MainButtonStyle.SelectedIndex = Config.Config.MainConfig.ButtonStyle.HomeButton.GetHashCode();
+        QuickChoosePlayerButtonStyle.SelectedIndex = Config.Config.MainConfig.ButtonStyle.QuickChoosePlayerButton.GetHashCode();
         IsEdit = true;
     }
 
@@ -44,7 +47,7 @@ public partial class StyleSetting : UserControl
             Config.Config.MainConfig.Background.ChooseModel = enums;
             BackgroundMaxSetting.Content = BackgroundSettings[enums];
             StyleManager.UpdateBackground();
-            
+
             Config.Config.SaveConfig();
         }
     }
@@ -53,8 +56,19 @@ public partial class StyleSetting : UserControl
     {
         if (IsEdit)
         {
-            Config.Config.MainConfig.HomeButtonStyle = (HomeButtonStyle)MainButtonStyle.SelectedIndex;
-            
+            Config.Config.MainConfig.ButtonStyle.HomeButton = (OrdinaryButtonStyle)MainButtonStyle.SelectedIndex;
+
+            Config.Config.SaveConfig();
+            Core.MainWindow.UpdateButtonStyle();
+        }
+    }
+
+    private void QuickChoosePlayerButtonStyle_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.Config.MainConfig.ButtonStyle.QuickChoosePlayerButton = (OrdinaryButtonStyle)QuickChoosePlayerButtonStyle.SelectedIndex;
+
             Config.Config.SaveConfig();
             Core.MainWindow.UpdateButtonStyle();
         }
