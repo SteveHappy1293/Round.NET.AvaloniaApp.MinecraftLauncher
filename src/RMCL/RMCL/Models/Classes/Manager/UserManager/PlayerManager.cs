@@ -8,7 +8,7 @@ namespace RMCL.Models.Classes.Manager.UserManager;
 
 public class PlayerManager
 {
-    public static UserRoot Player { get; set; }
+    public static UserRoot Player { get; set; } = new();
 
     public static void LoadConfig()
     {

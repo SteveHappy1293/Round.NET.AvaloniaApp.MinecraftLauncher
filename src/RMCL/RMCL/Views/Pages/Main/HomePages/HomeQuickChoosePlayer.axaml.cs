@@ -7,9 +7,11 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using System;
+using Avalonia.Controls.Primitives;
 using Avalonia.Threading;
 using RMCL.Base.Enum.ButtonStyle;
 using RMCL.Models.Classes.Manager.UserManager;
+using ColorHelper = RMCL.Models.Classes.Manager.StyleManager.ColorHelper;
 
 namespace RMCL.Views.Pages.Main.HomePages;
 
@@ -42,29 +44,21 @@ public partial class HomeQuickChoosePlayer : UserControl
 
     private void ShowContentBox()
     {
-        ContentBox.IsVisible = true;
-        ContentBox.Opacity = 1;
+        HoverArea.IsVisible = true;
+        HoverArea.Width = 230; // 只改变宽度
+        HoverArea.Height = 280; // 只改变高度
+        BackBorder.Opacity = 1;
         UpdateUI();
     }
 
     private void HideContentBox()
     {
-        ContentBox.Opacity = 0;
-        
-        // 延迟隐藏以完成动画
-        var timer = new System.Threading.Timer(_ =>
-        {
-            Dispatcher.UIThread.Post(() =>
-            {
-                if (ContentBox.Opacity == 0) // 确保在动画完成后才隐藏
-                {
-                    ContentBox.IsVisible = false;
-                }
-            });
-        }, null, 200, System.Threading.Timeout.Infinite);
+        HoverArea.Width = Border1.Bounds.Width + 20; // 只改变宽度
+        HoverArea.Height = 80; // 只改变高度
+        BackBorder.Opacity = 0;
     }
 
-    public void UpdateUI()
+    public void UpdateUI(bool isus = true)
     {
         IsEdit = false;
         var lst = PlayerManager.Player.Accounts;
@@ -153,14 +147,17 @@ public partial class HomeQuickChoosePlayer : UserControl
             }
         }
 
-        // 更新玩家列表
-        try
+        if (isus)
         {
-            PlayerListBox.Items.Clear();
-            lst.ForEach(x => { PlayerListBox.Items.Add(new ListBoxItem() { Content = x.Account.UserName }); });
-            PlayerListBox.SelectedIndex = selectedIndex;
+            // 更新玩家列表
+            try
+            {
+                PlayerListBox.Items.Clear();
+                lst.ForEach(x => { PlayerListBox.Items.Add(new ListBoxItem() { Content = x.Account.UserName }); });
+                PlayerListBox.SelectedIndex = selectedIndex;
+            }
+            catch { }
         }
-        catch { }
 
         IsEdit = true;
     }
@@ -172,7 +169,7 @@ public partial class HomeQuickChoosePlayer : UserControl
             PlayerManager.Player.SelectIndex = PlayerListBox.SelectedIndex;
             PlayerManager.SaveConfig();
 
-            UpdateUI();
+            UpdateUI(false);
         }
     }
 }
