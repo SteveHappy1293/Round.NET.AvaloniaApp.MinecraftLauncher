@@ -22,7 +22,7 @@
                     <TextBlock>RMCL UI/UX：DrMing</TextBlock>
                 </StackPanel>
             </Expander>
-            <Expander IsExpanded="True" Margin="5" Header="鸣谢">
+            <Expander Margin="5" Header="鸣谢">
                 <StackPanel>
                     <TextBlock>RMCL 的正版登录使用了来自 YMCL 提供的接口 ID (已经 YMCL 作者 DaiYu 允许)</TextBlock>
                     <TextBlock>RMCL 更新加速地址使用了来自 (github.akams.cn) 提供的加速地址</TextBlock>

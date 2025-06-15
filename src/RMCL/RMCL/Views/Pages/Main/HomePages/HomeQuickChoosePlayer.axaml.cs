@@ -27,6 +27,11 @@ public partial class HomeQuickChoosePlayer : UserControl
         InitializeComponent();
         UpdateUI();
         SetupHoverEvents();
+
+        this.Loaded += (s, e) =>
+        {
+            HoverArea.Width = Border1.Bounds.Width + 20; // 只改变宽度
+        };
     }
 
     private void SetupHoverEvents()
@@ -40,13 +45,14 @@ public partial class HomeQuickChoosePlayer : UserControl
         _pointerLeaveSubscription = HoverArea.AddDisposableHandler(
             InputElement.PointerExitedEvent,
             (sender, e) => HideContentBox());
+        HideContentBox();
     }
 
     private void ShowContentBox()
     {
         HoverArea.IsVisible = true;
         HoverArea.Width = 230; // 只改变宽度
-        HoverArea.Height = 280; // 只改变高度
+        HoverArea.Height = 260; // 只改变高度
         BackBorder.Opacity = 1;
         UpdateUI();
     }
@@ -54,8 +60,9 @@ public partial class HomeQuickChoosePlayer : UserControl
     private void HideContentBox()
     {
         HoverArea.Width = Border1.Bounds.Width + 20; // 只改变宽度
-        HoverArea.Height = 80; // 只改变高度
+        HoverArea.Height = 68; // 只改变高度
         BackBorder.Opacity = 0;
+        HoverArea.IsVisible = true;
     }
 
     public void UpdateUI(bool isus = true)

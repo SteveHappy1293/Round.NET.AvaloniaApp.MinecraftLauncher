@@ -8,7 +8,6 @@
     <UserControl.Styles>
         <Style Selector="Border">
             <Setter Property="Opacity" Value="1"/>
-            <Setter Property="IsVisible" Value="True"/>
             <Setter Property="Transitions">
                 <Transitions>
                     <DoubleTransition Property="Opacity" Duration="0:0:0.3" Easing="QuinticEaseOut"/>
@@ -22,11 +21,11 @@
     
     <Grid>
         <!-- 添加一个容器包裹按钮和Border，方便处理鼠标事件 -->
-        <Border Name="HoverArea" Padding="5">
+        <Border Name="HoverArea" IsVisible="False" Padding="5" Width="64">
             <Grid>
                 <Border Name="BackBorder" Margin="-5" CornerRadius="6" Background="{DynamicResource BackColor}" Opacity="0"></Border>
                 <StackPanel Spacing="0">
-                    <Border HorizontalAlignment="Right" Name="Border1">
+                    <Border HorizontalAlignment="Left" Name="Border1">
                         <DockPanel LastChildFill="False" Margin="5">
                             <Border Name="BigSkinIcon" CornerRadius="26" Width="52" Height="52" 
                                     BorderBrush="White" BorderThickness="2" VerticalAlignment="Bottom"/>
@@ -44,10 +43,9 @@
                             </DockPanel>
                         </DockPanel>
                     </Border>
-                    <Border HorizontalAlignment="Right" Margin="0,15,0,0" Width="220" Height="180">
+                    <Border HorizontalAlignment="Right" Margin="0,0,0,0" Width="220" Height="180">
                         <Grid>
-                            <TextBlock Margin="8" FontSize="12">选择账户</TextBlock>
-                            <ListBox Margin="4,30,4,0" Name="PlayerListBox" SelectionChanged="PlayerListBox_OnSelectionChanged">
+                            <ListBox Padding="8" Margin="4,4,4,0" Name="PlayerListBox" SelectionChanged="PlayerListBox_OnSelectionChanged">
                                 
                             </ListBox>  
                         </Grid>
