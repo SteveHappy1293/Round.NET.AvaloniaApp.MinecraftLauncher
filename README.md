@@ -1,4 +1,4 @@
-![Icon](Round.NET.AvaloniaApp.MinecraftLauncher/Assets/Icon.png)
+![Icon](src/RMCL/RMCL/Assets/Icon.png)
 # Round Minecraft Launcher
 [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)
 
