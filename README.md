@@ -73,7 +73,7 @@ RMCL 提供支持与帮助：DaiYu - YMCL
 DotNet C#  
 Avalonia  
 FluentAvalonia  
-[OverrideLauncher.Core](https://github.com/Round-Studio/OverrideLauncher.Core)
+[OverrideLauncher.Core](https://github.com/Round-Studio/OverrideLauncher.Core)  
 Downloader  
 
 Newtonsoft.Json  
