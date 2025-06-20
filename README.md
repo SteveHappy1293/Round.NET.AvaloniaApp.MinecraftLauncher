@@ -73,11 +73,30 @@ RMCL 提供支持与帮助：DaiYu - YMCL
 DotNet C#  
 Avalonia  
 FluentAvalonia  
-HeroIcon  
+[OverrideLauncher.Core](https://github.com/Round-Studio/OverrideLauncher.Core)
 Downloader  
-MinecraftLauncher(ML)  
+
 Newtonsoft.Json  
 
 ## Star 历史
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher&type=Date)](https://www.star-history.com/#Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher&Date)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
