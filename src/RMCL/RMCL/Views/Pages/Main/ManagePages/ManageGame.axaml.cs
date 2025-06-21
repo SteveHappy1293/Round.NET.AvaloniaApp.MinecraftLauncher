@@ -20,6 +20,7 @@ using RMCL.Base.Entry;
 using RMCL.Controls.Item;
 using RMCL.Models.Classes;
 using RMCL.Models.Classes.Launch;
+using RMCL.Views.Pages.ChildFramePage.Game;
 using RMCL.Views.Windows.Main.ManageWindows;
 
 namespace RMCL.Views.Pages.Main.ManagePages;
@@ -85,6 +86,10 @@ public partial class ManageGame : UserControl
                             {
                             }
                         });
+                    };
+                    item.OnSetting = parse =>
+                    {
+                        Core.ChildFrame.Show(new GameClientSetting());
                     };
                     VersionsList.Items.Add(item);
                 });

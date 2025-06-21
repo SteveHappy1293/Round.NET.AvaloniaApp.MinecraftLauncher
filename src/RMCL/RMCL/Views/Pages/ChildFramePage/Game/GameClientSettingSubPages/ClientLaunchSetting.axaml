@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RMCL.Views.Pages.ChildFramePage.Game.GameClientSettingSubPages.ClientLaunchSetting">
+    <ScrollViewer Padding="15">
+        <StackPanel>
+            <TextBlock Text="Java 设置" FontWeight="Bold"></TextBlock>
+            <DockPanel Margin="15,5">
+                <TextBlock Text="内存大小" HorizontalAlignment="Left" DockPanel.Dock="Left" VerticalAlignment="Center"></TextBlock>
+                <TextBox Width="400" HorizontalAlignment="Right" DockPanel.Dock="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Margin="15,5">
+                <TextBlock Text="额外参数" HorizontalAlignment="Left" DockPanel.Dock="Left" VerticalAlignment="Center"></TextBlock>
+                <TextBox Width="400" HorizontalAlignment="Right" DockPanel.Dock="Right"></TextBox>
+            </DockPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

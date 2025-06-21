@@ -19,13 +19,13 @@
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light"> <!-- 白色 -->
                     <Color x:Key="TextColor">#FF000000</Color>
-                    <Color x:Key="BackColor">#CDCDCD</Color>
+                    <Color x:Key="BackColor">#DEDEDE</Color>
                     <Color x:Key="BackgroundTransparencyOverride">#E1E1E1</Color>
                 </ResourceDictionary>
             
                 <ResourceDictionary x:Key="Dark"> <!-- 黑色 -->
                     <Color x:Key="TextColor">#FFFFFFFF</Color>
-                    <Color x:Key="BackColor">#373737</Color>
+                    <Color x:Key="BackColor">#161616</Color>
                     <Color x:Key="BackgroundTransparencyOverride">#161616</Color>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>

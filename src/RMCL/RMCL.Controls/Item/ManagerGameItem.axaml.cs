@@ -12,6 +12,7 @@ namespace RMCL.Controls.Item;
 public partial class ManagerGameItem : UserControl
 {
     public Action<VersionParse> OnLaunch = s => { };
+    public Action<VersionParse> OnSetting = s => { };
     private VersionParse _versionParse;
     private static readonly ConcurrentDictionary<string, Bitmap> _imageCache = new ConcurrentDictionary<string, Bitmap>();
     public ManagerGameItem(VersionParse versionInfo)
@@ -36,5 +37,10 @@ public partial class ManagerGameItem : UserControl
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
         OnLaunch(_versionParse);
+    }
+
+    private void SettingButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        OnSetting(_versionParse);
     }
 }
