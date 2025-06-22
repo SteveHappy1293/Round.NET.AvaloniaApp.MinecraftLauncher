@@ -1,4 +1,5 @@
-﻿using System.IO.Compression;
+﻿using System.Buffers.Text;
+using System.IO.Compression;
 using RMCL.Base.Entry.Game.Client;
 using RMCL.PathsDictionary;
 
@@ -8,19 +9,21 @@ public class LoadJarMod
 {
     public static ModInfo LoadJarModInfo(string filename)
     {
-        Task.Run(() =>
+        if (!Directory.Exists(PathDictionary.ClientModCacheFolder))
+            Directory.CreateDirectory(PathDictionary.ClientModCacheFolder);
+        // 指定Minecraft模组文件路径
+        string modFilePath = filename;
+        // 指定要提取的图标文件名
+        string iconName = "icon.png";
+        // 指定提取目标路径
+        string extractIconPath =
+            Path.GetFullPath(Path.Combine(PathDictionary.ClientModCacheFolder,
+                Path.GetFileName(filename) + "logo.png"));
+        
+        
+        try
         {
-            // 指定Minecraft模组文件路径
-            string modFilePath = filename;
-            // 指定要提取的图标文件名
-            string iconName = "icon.png";
-            // 指定提取目标路径
-            string extractIconPath =
-                Path.GetFullPath(Path.Combine(PathDictionary.ClientModCacheFolder,
-                    Path.GetFileName(filename) + "logo.png"));
-            if(File.Exists(extractIconPath)) return;
-
-            try
+            if (!File.Exists(extractIconPath))
             {
                 // 打开模组文件
                 using (ZipArchive archive = ZipFile.OpenRead(modFilePath))
@@ -39,13 +42,18 @@ public class LoadJarMod
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                // 捕获并处理异常
-                Console.WriteLine($"操作失败：{ex.Message}");
-            }
-
-        });
-        return new ModInfo();
+        }
+        catch (Exception ex)
+        {
+            // 捕获并处理异常
+            Console.WriteLine($"操作失败：{ex.Message}");
+        }
+        return new ModInfo()
+        {
+            Enabled = filename.EndsWith(PathDictionary.ClientModEnablePostfix),
+            FileName = Path.GetFileName(filename),
+            Name = filename,
+            IconPath = extractIconPath
+        };
     }
 }
