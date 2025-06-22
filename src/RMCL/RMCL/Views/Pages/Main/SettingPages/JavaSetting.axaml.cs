@@ -2,14 +2,14 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using RMCL.Base.Interface;
 using RMCL.Models.Classes;
 using RMCL.Views.Windows.Main.ManageWindows;
 
 namespace RMCL.Views.Pages.Main.SettingPages;
 
-public partial class JavaSetting : UserControl
+public partial class JavaSetting : ISetting
 {
-    public bool IsEdit { get; set; } = false;
     public JavaSetting()
     {
         InitializeComponent();

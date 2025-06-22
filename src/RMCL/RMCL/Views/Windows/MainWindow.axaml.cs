@@ -22,6 +22,8 @@ using RMCL.Config;
 using RMCL.Models.Classes;
 using RMCL.Models.Classes.Manager.StyleManager;
 using RMCL.Models.Classes.Manager.TaskManager;
+using RMCL.PathsDictionary;
+using RMCL.Plug;
 using RMCL.Update;
 
 namespace RMCL.Views;
@@ -65,6 +67,11 @@ public partial class MainWindow : Window
         
         Console.WriteLine("Opened MainWindow!");
         UpdateButtonStyle();
+
+        this.Loaded += (s, e) =>
+        {
+            LoadPlugs.LoadPlugins(PathDictionary.PluginFileFolder);
+        };
     }
 
     public void UpdateButtonStyle()

@@ -29,7 +29,8 @@
                                                    Description="启动器主页右上角快速选择账户按钮样式">
                         <controls:SettingsExpanderItem.Footer>
                             <ComboBox Name="QuickChoosePlayerButtonStyle" SelectionChanged="QuickChoosePlayerButtonStyle_OnSelectionChanged" Width="400">
-                                <ComboBoxItem Tag="Default">长按钮 (默认)</ComboBoxItem>
+                                <ComboBoxItem Tag="None">不显示</ComboBoxItem>
+                                <ComboBoxItem Tag="Default">长按钮</ComboBoxItem>
                                 <ComboBoxItem Tag="Short">短按钮</ComboBoxItem>
                             </ComboBox>
                         </controls:SettingsExpanderItem.Footer>

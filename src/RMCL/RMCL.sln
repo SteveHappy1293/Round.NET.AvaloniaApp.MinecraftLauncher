@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.NetworkService", "RMCL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.Update", "RMCL.Update\RMCL.Update.csproj", "{AE57B78A-06EE-4AD6-A4BC-DF70699A608B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.Plug", "RMCL.Plug\RMCL.Plug.csproj", "{DC54B9F7-BBBD-4FBA-ACE7-40A87336067E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,5 +86,9 @@ Global
 		{AE57B78A-06EE-4AD6-A4BC-DF70699A608B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE57B78A-06EE-4AD6-A4BC-DF70699A608B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE57B78A-06EE-4AD6-A4BC-DF70699A608B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC54B9F7-BBBD-4FBA-ACE7-40A87336067E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC54B9F7-BBBD-4FBA-ACE7-40A87336067E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC54B9F7-BBBD-4FBA-ACE7-40A87336067E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC54B9F7-BBBD-4FBA-ACE7-40A87336067E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

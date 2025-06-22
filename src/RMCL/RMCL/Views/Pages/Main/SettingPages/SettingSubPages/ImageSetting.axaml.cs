@@ -8,14 +8,14 @@ using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
+using RMCL.Base.Interface;
 using RMCL.Controls.Item.StyleItem;
 using RMCL.Models.Classes.Manager.StyleManager;
 
 namespace RMCL.Views.Pages.Main.SettingPages.SettingSubPages;
 
-public partial class ImageSetting : UserControl
+public partial class ImageSetting : ISetting
 {
-    public bool IsEdit { get; set; } = false;
     public ImageSetting()
     {
         InitializeComponent();

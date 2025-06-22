@@ -9,4 +9,5 @@ public class PathDictionary
     public const string LogsPath = "RMCL/RMCL.Logs";
     public const string UpdateZipFileFolder = "RMCL/RMCL.Update/FileZips";
     public const string UpdateFileFolder = "RMCL/RMCL.Update/Files";
+    public const string PluginFileFolder = "RMCL/RMCL.Plugin/Files";
 }

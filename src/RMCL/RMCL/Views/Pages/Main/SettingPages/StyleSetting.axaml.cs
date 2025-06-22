@@ -6,6 +6,7 @@ using Avalonia.Markup.Xaml;
 using RMCL.Base.Entry.Style;
 using RMCL.Base.Enum;
 using RMCL.Base.Enum.ButtonStyle;
+using RMCL.Base.Interface;
 using RMCL.Controls.View;
 using RMCL.Models.Classes;
 using RMCL.Models.Classes.Manager.StyleManager;
@@ -13,10 +14,8 @@ using RMCL.Views.Pages.Main.SettingPages.SettingSubPages;
 
 namespace RMCL.Views.Pages.Main.SettingPages;
 
-public partial class StyleSetting : UserControl
+public partial class StyleSetting : ISetting
 {
-    public bool IsEdit { get; set; } = false;
-
     public Dictionary<BackgroundModelEnum, UserControl> BackgroundSettings { get; set; } = new()
     {
         { BackgroundModelEnum.Glass, new ColorGlassSetting() },

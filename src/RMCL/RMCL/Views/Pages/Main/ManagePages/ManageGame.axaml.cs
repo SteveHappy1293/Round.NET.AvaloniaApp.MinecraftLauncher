@@ -17,6 +17,7 @@ using OverrideLauncher.Core.Modules.Entry.JavaEntry;
 using OverrideLauncher.Core.Modules.Entry.LaunchEntry;
 using OverrideLauncher.Core.Modules.Enum.Launch;
 using RMCL.Base.Entry;
+using RMCL.Base.Interface;
 using RMCL.Controls.Item;
 using RMCL.Models.Classes;
 using RMCL.Models.Classes.Launch;
@@ -25,9 +26,8 @@ using RMCL.Views.Windows.Main.ManageWindows;
 
 namespace RMCL.Views.Pages.Main.ManagePages;
 
-public partial class ManageGame : UserControl
+public partial class ManageGame : ISetting
 {
-    public bool IsEdit { get; set; } = false;
     public List<VersionParse> Versions = new();
     public ManageGame()
     {

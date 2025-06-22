@@ -3,13 +3,13 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using RMCL.Base.Enum.Update;
+using RMCL.Base.Interface;
 using RMCL.Models.Classes;
 
 namespace RMCL.Views.Pages.Main.SettingPages;
 
-public partial class DownloadSetting : UserControl
+public partial class DownloadSetting : ISetting
 {
-    public bool IsEdit { get; set; } = false;
     public DownloadSetting()
     {
         InitializeComponent();
@@ -18,7 +18,7 @@ public partial class DownloadSetting : UserControl
         ChoosePublishSource.SelectedIndex = Config.Config.MainConfig.UpdateModel.Branch.GetHashCode();
         ChooseUpdateAPISource.SelectedIndex = Config.Config.MainConfig.UpdateModel.Route.GetHashCode();
         AutomaticUpdates.IsChecked = Config.Config.MainConfig.UpdateModel.IsAutoDetectUpdates;
-        
+
         IsEdit = true;
     }
 
@@ -42,7 +42,7 @@ public partial class DownloadSetting : UserControl
 
     private void ChooseUpdateAPISource_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        
+
         if (IsEdit)
         {
             Config.Config.MainConfig.UpdateModel.Route = (UpdateRoute)ChooseUpdateAPISource.SelectedIndex;

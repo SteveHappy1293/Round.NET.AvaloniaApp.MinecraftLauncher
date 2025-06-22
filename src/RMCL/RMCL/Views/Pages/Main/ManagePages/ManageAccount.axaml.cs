@@ -15,6 +15,7 @@ using FluentAvalonia.UI.Controls;
 using OverrideLauncher.Core.Modules.Classes.Account;
 using RMCL.Base.Entry.User;
 using RMCL.Base.Enum.User;
+using RMCL.Base.Interface;
 using RMCL.Controls.Item.User;
 using RMCL.Models.Classes;
 using RMCL.Models.Classes.Manager.UserManager;
@@ -22,9 +23,8 @@ using RMCL.Views.Pages.DialogPage.User;
 
 namespace RMCL.Views.Pages.Main.ManagePages;
 
-public partial class ManageAccount : UserControl
+public partial class ManageAccount : ISetting
 {
-    public bool IsEdit { get; set; } = false;
     public ManageAccount()
     {
         InitializeComponent();
@@ -38,10 +38,12 @@ public partial class ManageAccount : UserControl
         if (PlayerManager.Player.Accounts.Count <= 0)
         {
             NullBox.IsVisible = true;
+            SaveSkin.IsEnabled = false;
         }
         else
         {
             NullBox.IsVisible = false;
+            SaveSkin.IsEnabled = true;
         }
 
         PlayerManager.Player.Accounts.ForEach(x =>

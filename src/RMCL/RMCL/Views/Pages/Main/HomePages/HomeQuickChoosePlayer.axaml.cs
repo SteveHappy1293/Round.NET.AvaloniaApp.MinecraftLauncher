@@ -10,17 +10,16 @@ using System;
 using Avalonia.Controls.Primitives;
 using Avalonia.Threading;
 using RMCL.Base.Enum.ButtonStyle;
+using RMCL.Base.Interface;
 using RMCL.Models.Classes.Manager.UserManager;
 using ColorHelper = RMCL.Models.Classes.Manager.StyleManager.ColorHelper;
 
 namespace RMCL.Views.Pages.Main.HomePages;
 
-public partial class HomeQuickChoosePlayer : UserControl
+public partial class HomeQuickChoosePlayer : ISetting
 {
     private IDisposable? _pointerEnterSubscription;
     private IDisposable? _pointerLeaveSubscription;
-
-    public bool IsEdit { get; set; } = false;
 
     public HomeQuickChoosePlayer()
     {
@@ -30,7 +29,7 @@ public partial class HomeQuickChoosePlayer : UserControl
 
         this.Loaded += (s, e) =>
         {
-            HoverArea.Width = Border1.Bounds.Width + 20; // 只改变宽度
+            HoverArea.Width = Border1.Bounds.Width + 64; // 只改变宽度
         };
     }
 
@@ -74,8 +73,21 @@ public partial class HomeQuickChoosePlayer : UserControl
         if (Config.Config.MainConfig.ButtonStyle.QuickChoosePlayerButton == OrdinaryButtonStyle.Default)
         {
             // 设置大图标（选中的皮肤）
-            if (lst.Count > 0 && selectedIndex >= 0 && selectedIndex < lst.Count)
+            if (lst.Count <= 0)
             {
+                NullBox.IsVisible = true;
+                BigSkinIcon.IsVisible = false;
+            }
+            else if (lst.Count > 0 && selectedIndex >= 0 && selectedIndex < lst.Count)
+            {
+                NullBox.IsVisible = false;
+                BigSkinIcon.IsVisible = true;
+                // 重置所有小图标
+                SmallSkinIcon1.IsVisible = false;
+                SmallSkinIcon2.IsVisible = false;
+                SmallSkinIcon3.IsVisible = false;
+                SmallSkinIconGroup.IsVisible = true;
+                UserCount.IsVisible = false;
                 BigSkinIcon.Background = new ImageBrush()
                 {
                     Source = SkinHelper.CropAndScaleBitmapOptimized(SkinHelper.Base64ToBitmap(lst[selectedIndex].Skin),
@@ -83,13 +95,6 @@ public partial class HomeQuickChoosePlayer : UserControl
                     Stretch = Stretch.UniformToFill
                 };
             }
-
-            // 重置所有小图标
-            SmallSkinIcon1.IsVisible = false;
-            SmallSkinIcon2.IsVisible = false;
-            SmallSkinIcon3.IsVisible = false;
-            SmallSkinIconGroup.IsVisible = true;
-            UserCount.IsVisible = false;
 
             // 设置小图标（未选中的皮肤）
             int smallIconIndex = 0;
@@ -136,9 +141,15 @@ public partial class HomeQuickChoosePlayer : UserControl
             SmallSkinIcon2.IsVisible = false;
             SmallSkinIcon3.IsVisible = false;
             SmallSkinIconGroup.IsVisible = false;
+            NullBox.IsVisible = false;
+            BigSkinIcon.IsVisible = true;
             
             // 设置大图标
-            if (lst.Count > 0 && selectedIndex >= 0 && selectedIndex < lst.Count)
+            if (lst.Count <= 0)
+            {
+                NullBox.IsVisible = true;
+                BigSkinIcon.IsVisible = false;
+            }else if (lst.Count > 0 && selectedIndex >= 0 && selectedIndex < lst.Count)
             {
                 BigSkinIcon.Background = new ImageBrush()
                 {
