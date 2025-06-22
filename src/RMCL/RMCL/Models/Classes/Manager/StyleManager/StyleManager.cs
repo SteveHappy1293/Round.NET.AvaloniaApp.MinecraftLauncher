@@ -21,7 +21,7 @@ public class StyleManager
         switch (Config.Config.MainConfig.Background.ChooseModel)
         {
             case BackgroundModelEnum.None:
-                Core.MainWindow.Background = Config.Config.MainConfig.Theme == ThemeType.Dark ? Brush.Parse("#161616") : Brushes.White;
+                Core.MainWindow.Background = Config.Config.MainConfig.Theme == ThemeType.Dark ? Brush.Parse("#161616") : Brushes.AliceBlue;
                 break;
             case BackgroundModelEnum.Mica:
                 Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.Mica };

@@ -12,10 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Entry\Game\Client\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Reference Include="Avalonia.Controls">
         <HintPath>..\RMCL.Desktop\bin\Debug\net8.0\Avalonia.Controls.dll</HintPath>
       </Reference>

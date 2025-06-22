@@ -40,6 +40,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\RMCL.Base\RMCL.Base.csproj" />
+      <ProjectReference Include="..\RMCL.LoadModInfo\RMCL.LoadModInfo.csproj" />
       <ProjectReference Include="..\RMCL.Logger\RMCL.Logger.csproj" />
     </ItemGroup>
 

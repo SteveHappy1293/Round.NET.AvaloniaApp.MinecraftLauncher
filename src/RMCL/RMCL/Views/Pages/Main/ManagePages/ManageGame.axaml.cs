@@ -89,7 +89,7 @@ public partial class ManageGame : ISetting
                     };
                     item.OnSetting = parse =>
                     {
-                        Core.ChildFrame.Show(new GameClientSetting());
+                        Core.ChildFrame.Show(new GameClientSetting(ver));
                     };
                     VersionsList.Items.Add(item);
                 });

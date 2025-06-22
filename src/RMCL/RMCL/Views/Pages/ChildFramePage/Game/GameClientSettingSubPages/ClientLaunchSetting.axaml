@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Views.Pages.ChildFramePage.Game.GameClientSettingSubPages.ClientLaunchSetting">
-    <ScrollViewer Padding="15">
+    <ScrollViewer Padding="25,10,10,10">
         <StackPanel>
             <TextBlock Text="Java 设置" FontWeight="Bold"></TextBlock>
             <DockPanel Margin="15,5">

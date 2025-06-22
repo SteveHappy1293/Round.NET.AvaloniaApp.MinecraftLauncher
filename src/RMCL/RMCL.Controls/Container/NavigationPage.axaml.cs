@@ -43,13 +43,26 @@ public partial class NavigationPage : UserControl
         {
             if (config.Route == route)
             {
-                MangeFrame.Navigate(config.Page.GetType());
+                Navigate(config.Page);
                 View.SelectedItem = View.MenuItems[i];
             }
 
             i++;
         });
         IsEdit = true;
+    }
+
+    private void Navigate(UserControl page)
+    {
+        Task.Run(() =>
+        {
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(0,200,0,-200));
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 0);
+            Task.Delay(450);
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 1);
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(0,0,0,0));
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Content = page);
+        });
     }
     
     public List<NavigationRouteConfig> RouteConfigs { get; set; } = new();
@@ -61,7 +74,7 @@ public partial class NavigationPage : UserControl
             {
                 return config.Route == ((NavigationViewItem)(View!).SelectedItem!).Tag;
             }).Page;
-            MangeFrame.Navigate(page.GetType());   
+            Navigate(page);
         }
     }
 

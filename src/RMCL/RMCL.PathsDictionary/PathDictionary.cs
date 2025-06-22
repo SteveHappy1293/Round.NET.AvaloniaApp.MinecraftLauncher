@@ -10,4 +10,9 @@ public class PathDictionary
     public const string UpdateZipFileFolder = "RMCL/RMCL.Update/FileZips";
     public const string UpdateFileFolder = "RMCL/RMCL.Update/Files";
     public const string PluginFileFolder = "RMCL/RMCL.Plugin/Files";
+    
+    public const string ClientModsFolderName = "mods";
+    public const string ClientModCacheFolder = "RMCL/RMCL.ModCache";
+    public const string ClientModDisablePostfix = ".disabled";
+    public const string ClientModEnablePostfix = ".jar";
 }
