@@ -55,6 +55,13 @@ RMCL 3.0 是由一群热爱 Minecraft 的开发者精心打造的启动器。我
 [![GitHub Discussions](https://img.shields.io/github/discussions/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher)](https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/discussions)
 [![QQ](https://img.shields.io/badge/QQ群-311568902-00A4DB?style=flat)](https://qm.qq.com/q/ajSj977gsw)
 
+## 开发
+
+| 分支 | 开发状态 |
+| --- | --- |
+| [`master`](https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/tree/master) | ⚠暂停此分支上维护版本。
+| [`neo`](https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/tree/neo) | 正在此分支上早期开发版本
+
 # 致谢
 
 ### 开发者：
