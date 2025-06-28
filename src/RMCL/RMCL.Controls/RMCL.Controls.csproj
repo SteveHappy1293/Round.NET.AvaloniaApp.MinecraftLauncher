@@ -46,8 +46,4 @@
       <ProjectReference Include="..\RMCL.Logger\RMCL.Logger.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Panel\" />
-    </ItemGroup>
-
 </Project>

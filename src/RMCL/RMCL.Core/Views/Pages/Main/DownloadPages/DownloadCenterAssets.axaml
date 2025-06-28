@@ -33,8 +33,8 @@
                 <ComboBox DockPanel.Dock="Right" Name="AssetsType"
                           Margin="10,0,0,0"
                           Width="200" SelectedIndex="0">
-                    <ComboBoxItem Tag="Plugin">插件</ComboBoxItem>
                     <ComboBoxItem Tag="Skin">主题</ComboBoxItem>
+                    <ComboBoxItem Tag="Plugin">插件</ComboBoxItem>
                     <ComboBoxItem Tag="Code">脚本</ComboBoxItem>
                 </ComboBox>
             </DockPanel>

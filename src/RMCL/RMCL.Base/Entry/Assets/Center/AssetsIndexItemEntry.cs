@@ -9,4 +9,7 @@ public class AssetsIndexItemEntry
     
     [JsonPropertyName("versions")]
     public List<string> Versions { get; set; }
+    
+    [JsonPropertyName("description")]
+    public string Description { get; set; }
 }
