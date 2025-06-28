@@ -106,7 +106,10 @@ public class ConsoleRedirector : IDisposable
                 Write(c);
             }
             Console.SetOut(_orgwriter);
-            Console.WriteLine(value);
+            int threadId = Thread.CurrentThread.ManagedThreadId;
+            string threadName = GetThreadName(threadId);
+            var timestamp = DateTime.Now.ToString(_timestampFormat);
+            Console.WriteLine($"[{timestamp}][TID {threadId}][{threadName}] {_lineBuffer}{value}");
             Console.SetOut(this);
         }
 

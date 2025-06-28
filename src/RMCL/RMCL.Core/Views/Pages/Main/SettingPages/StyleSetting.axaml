@@ -1,0 +1,73 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RMCL.Core.Views.Pages.Main.SettingPages.StyleSetting">
+    <Grid>
+        <ScrollViewer Margin="5">
+            <StackPanel>
+                <controls:SettingsExpander Header="按钮样式"
+                                           Description="设置启动器的部分按钮样式"
+                                           IsExpanded="True">
+                    <controls:SettingsExpander.IconSource>
+                        <fluentIcons:FluentIconSource Icon="Button20Regular"/>
+                    </controls:SettingsExpander.IconSource>
+                    <controls:SettingsExpanderItem Content="Home 按钮样式"
+                                                   Description="启动器主窗口左上角返回主页按钮样式">
+                        <controls:SettingsExpanderItem.Footer>
+                            <ComboBox Name="MainButtonStyle" SelectionChanged="MainButtonStyle_OnSelectionChanged" Width="400">
+                                <ComboBoxItem Tag="Default">长按钮 (默认)</ComboBoxItem>
+                                <ComboBoxItem Tag="Short">短按钮</ComboBoxItem>
+                            </ComboBox>
+                        </controls:SettingsExpanderItem.Footer>
+                    </controls:SettingsExpanderItem>
+                    <controls:SettingsExpanderItem Content="快速选择账户按钮样式"
+                                                   Description="启动器主页右上角快速选择账户按钮样式">
+                        <controls:SettingsExpanderItem.Footer>
+                            <ComboBox Name="QuickChoosePlayerButtonStyle" SelectionChanged="QuickChoosePlayerButtonStyle_OnSelectionChanged" Width="400">
+                                <ComboBoxItem Tag="None">不显示</ComboBoxItem>
+                                <ComboBoxItem Tag="Default">长按钮</ComboBoxItem>
+                                <ComboBoxItem Tag="Short">短按钮</ComboBoxItem>
+                            </ComboBox>
+                        </controls:SettingsExpanderItem.Footer>
+                    </controls:SettingsExpanderItem>
+                </controls:SettingsExpander>
+                
+                <controls:SettingsExpander Header="背景"
+                                           Description="设置启动器的背景样式">
+                    <controls:SettingsExpander.IconSource>
+                        <fluentIcons:FluentIconSource Icon="StyleGuide20Regular"/>
+                    </controls:SettingsExpander.IconSource>
+                    <controls:SettingsExpanderItem Content="背景模式"
+                                                   Description="选择一个你需要的背景模式">
+                        <controls:SettingsExpanderItem.Footer>
+                            <ComboBox Name="ChooseBackgroundModel" SelectionChanged="ChooseBackgroundModel_OnSelectionChanged" Width="400">
+                                <ComboBoxItem Tag="None">无</ComboBoxItem>
+                                <ComboBoxItem Tag="Mica">Mica (Win11+)</ComboBoxItem>
+                                <ComboBoxItem Tag="AcrylicBlur">模糊背景 (对亮色模式兼容性差)</ComboBoxItem>
+                                <ComboBoxItem Tag="Glass">彩色玻璃、纯色</ComboBoxItem>
+                                <ComboBoxItem Tag="Image">图片</ComboBoxItem>
+                                <ComboBoxItem Tag="Pack" IsEnabled="False">Round Studio 通用背景样式包</ComboBoxItem>
+                            </ComboBox>
+                        </controls:SettingsExpanderItem.Footer>
+                    </controls:SettingsExpanderItem>
+                </controls:SettingsExpander>
+                
+                <controls:SettingsExpander Header="背景详细设置"
+                                           Description="不同背景模式会有不同的设置"
+                                           Name="BackgroundMaxSettingExpander">
+                    <controls:SettingsExpander.IconSource>
+                        <fluentIcons:FluentIconSource Icon="Tag20Regular"/>
+                    </controls:SettingsExpander.IconSource>
+                    <controls:Frame Name="BackgroundMaxSetting" Margin="-10">
+                        <view:NullBox Margin="10" SmallTitle="这里没有设置"></view:NullBox>
+                    </controls:Frame>
+                </controls:SettingsExpander>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

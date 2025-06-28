@@ -23,9 +23,18 @@ public partial class ManagerGameItem : UserControl
         VersionName.Text = versionInfo.ClientInstances.GameName;
         VersionType.Text = versionInfo.GameJson.Type;
         VersionTime.Text = DateTime.Parse(versionInfo.GameJson.Time).ToString("yyyy/MM/dd HH:mm:ss");
+
+        var type = !string.IsNullOrEmpty(versionInfo.GameJson.Type)
+            ? versionInfo.GameJson.Type
+            : $"error";
+
+        if (type == "error")
+        {
+            ErrorVersion.IsVisible = true;
+            RightBtnBox.IsVisible = false;
+        }
         
-        string resourcePath = $"avares://RMCL.Controls/Assets/MinecraftIcons/{versionInfo.GameJson.Type}.png";
-        var bitmap = _imageCache.GetOrAdd(resourcePath, key =>
+        var bitmap = _imageCache.GetOrAdd($"avares://RMCL.Controls/Assets/MinecraftIcons/{type}.png", key =>
         {
             using var stream = AssetLoader.Open(new Uri(key));
             return Bitmap.DecodeToWidth(stream, 24); // 按需调整目标宽度

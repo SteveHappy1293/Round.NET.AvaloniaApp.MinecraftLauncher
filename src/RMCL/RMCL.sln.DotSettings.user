@@ -22,6 +22,7 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AImage_002Ecs_002Fl_003AC_0021_003FUsers_003Fahadd_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F2510b1d129ce4d3ab1f4baa981882b49104800_003F86_003F2c00c9c4_003FImage_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AInstallClient_002Ecs_002Fl_003AC_0021_003FUsers_003Fahadd_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F1baaba41e3ef45f88e776ac64b08bc4d20600_003Fbe_003Fd26d7aee_003FInstallClient_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AInstallClient_002Ecs_002Fl_003AC_0021_003FUsers_003Fahadd_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003Fa9a3bf0cf2ab454fa6ea0d538503b32524e00_003Fe3_003Fc2afdcf7_003FInstallClient_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AJsonSerializerInternalReader_002Ecs_002Fl_003AC_0021_003FUsers_003Fahadd_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F7ca8898b690a4181a32a9cf767cedb1ea9c28_003F6e_003Fb4cfbcd3_003FJsonSerializerInternalReader_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ALocatorExtensions_002Ecs_002Fl_003AC_0021_003FUsers_003Fahadd_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F44ed29a18c0a48baa83262122e1d7f211f8e00_003F68_003F808b318f_003FLocatorExtensions_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AMethodBaseInvoker_002Ecs_002Fl_003AC_0021_003FUsers_003Fahadd_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F211e6f3b24fa438a92f1815153647ce2c8f908_003F18_003F4342aeff_003FMethodBaseInvoker_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AMethodBaseInvoker_002Ecs_002Fl_003AC_0021_003FUsers_003Fahadd_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F8a03fcac5714437e83949a44ecf2e771c90920_003F05_003F4a2c0aba_003FMethodBaseInvoker_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
@@ -66,6 +67,38 @@
   &lt;Assembly Path="C:\Users\ahadd\.nuget\packages\fluentavaloniaui\2.4.0-preview1\lib\net6.0\FluentAvalonia.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\ahadd\.nuget\packages\overridelauncher.core\25.6.1.1807\lib\net8.0\OverrideLauncher.Core.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

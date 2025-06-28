@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
+             mc:Ignorable="d" Width="400"
+             x:Class="RMCL.Core.Views.Pages.DialogPage.User.LoginMicrosoftAccountDialog">
+    <StackPanel>
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <view:Loading BigTitle="拼命加载中..." SmallTitle="正在获取 Microsoft 登录 Token..." Name="LoadingBox" IsVisible="False"/>
+            
+            <StackPanel Name="ContentBox" HorizontalAlignment="Center" IsVisible="True">
+                <DockPanel Margin="5">
+                    <TextBlock Text="登录地址：" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                    <TextBox Name="LoginLink" Width="300" HorizontalAlignment="Right" IsReadOnly="True"></TextBox>
+                </DockPanel>
+                <DockPanel Margin="5">
+                    <TextBlock Text="登录码：" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                    <TextBox Name="LoginCode" Width="300" HorizontalAlignment="Right" IsReadOnly="True"></TextBox>
+                </DockPanel>
+                
+                <TextBlock TextWrapping="Wrap" Margin="5" Text="请手动复制登录地址到浏览器中登录。打开网页后，请将登录码复制到网页的输入框中。"/>
+                <TextBlock TextWrapping="Wrap" Margin="5" Text="请不要直接关闭此页面。当您在浏览器登录成功后，启动器会开始进行登录。当登录成功后，启动器会自动关闭此页面。"/>
+            </StackPanel>
+        </StackPanel>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3" FontSize="11" Foreground="Gray" TextWrapping="Wrap">RMCL 正版登录 Token 使用的是 YMCL 的 Token。其 Token 已经 YMCL 作者 DaiYu 同意。</TextBlock>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,62 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
+             xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RMCL.Core.Views.Pages.Main.ManagePages.ManageGame">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel HorizontalAlignment="Stretch" 
+                   VerticalAlignment="Top" 
+                   LastChildFill="True"
+                   Margin="10">
+            <Button DockPanel.Dock="Right" Width="32" Height="32" Click="RefuseButton_OnClick" Name="RefuseButton">
+                <fluentIcons:FluentIcon Icon="ArrowClockwise20Regular" Margin="-5"/>
+            </Button>
+            
+            <ComboBox DockPanel.Dock="Right" Name="VersionChoseBox"
+                      Margin="0,0,10,0" SelectionChanged="VersionChoseBox_OnSelectionChanged" 
+                      Width="200">
+            </ComboBox>
+            
+            <Button 
+                Margin="0,0,10,0" Height="32">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuItem Header="管理游戏目录" Name="ManageTheGameCatalog" Click="ManageTheGameCatalog_OnClick"></MenuItem>
+                        <MenuItem Header="-"></MenuItem>
+                        <MenuItem Header="打开当前游戏根目录" Name="OpenNowGameRoot" Click="OpenNowGameRoot_OnClick"></MenuItem>
+                    </MenuFlyout>
+                </Button.Flyout>
+                <DockPanel>
+                    <fluentIcons:FluentIcon 
+                        Icon="Apps20Regular" Width="16" Height="16" Margin="5,0"/>
+                    <TextBlock Margin="5,0">更多</TextBlock>
+                </DockPanel>
+            </Button>
+            
+            <TextBox DockPanel.Dock="Left"
+                     Watermark="键入版本 ID 以搜索游戏本体..."
+                     Name="SearchBox"
+                     TextChanged="SearchBox_OnTextChanged"
+                     HorizontalAlignment="Stretch"
+                     Margin="0,0,10,0"/> 
+        </DockPanel>
+        <view:Loading Grid.Row="1" Name="LoadingBox" SmallTitle="正在翻箱倒柜..."/>
+        <view:NullBox Grid.Row="1" Name="NullBox" BigTitle="箱子里没有" SmallTitle="翻箱倒...哦不！"></view:NullBox>
+        <ListBox Grid.Row="1" Name="VersionsList" SelectionChanged="VersionsList_OnSelectionChanged">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+                
+        </ListBox>
+    </Grid>
+</UserControl>

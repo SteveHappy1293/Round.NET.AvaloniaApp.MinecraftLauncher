@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
+             xmlns:container="clr-namespace:RMCL.Controls.Container;assembly=RMCL.Controls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RMCL.Core.Views.Pages.ChildFramePage.Game.GameClientSetting">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <TextBlock Name="Version" Text="Version" FontSize="28" FontWeight="Bold" DockPanel.Dock="Left" HorizontalAlignment="Left"></TextBlock>
+            <button:IconButton Content="统计信息" Margin="5" IsEnabled="False" Icon="TextNumberListLtr20Regular" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <button:IconButton Content="测试启动" Margin="5" Icon="Rocket20Regular" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        </DockPanel>
+        
+        <container:NavigationPage DefaultRoute="GameClientSetting" Grid.Row="1" Name="NavigationPage"/>
+    </Grid>
+</UserControl>

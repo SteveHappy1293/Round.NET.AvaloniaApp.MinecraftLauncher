@@ -1,0 +1,59 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
+             mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="800"
+             x:Class="RMCL.Core.Views.Pages.Main.HomePages.HomeQuickChoosePlayer">
+    <UserControl.Styles>
+        <Style Selector="Border">
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.3" Easing="QuinticEaseOut"/>
+                    <DoubleTransition Property="Height" Duration="0:0:0.3" Easing="QuinticEaseOut"/>
+                    <DoubleTransition Property="Width" Duration="0:0:0.3" Easing="QuinticEaseOut"/>
+                    <BrushTransition Property="Background" Duration="0:0:0.26" Easing="QuinticEaseOut"/>
+                </Transitions>
+            </Setter>
+        </Style>
+    </UserControl.Styles>
+    
+    <Grid>
+        <!-- 添加一个容器包裹按钮和Border，方便处理鼠标事件 -->
+        <Border Name="HoverArea" IsVisible="False" Padding="5" Width="120">
+            <Grid>
+                <Border Name="BackBorder" Margin="-5" CornerRadius="6" Background="{DynamicResource BackColor}" Opacity="0"></Border>
+                <StackPanel Spacing="0">
+                    <Border HorizontalAlignment="Left" Name="Border1">
+                        <DockPanel LastChildFill="False" Margin="5">
+                            <Border Name="BigSkinIcon" CornerRadius="26" Width="52" Height="52" 
+                                    BorderBrush="White" BorderThickness="2" VerticalAlignment="Bottom"/>
+                            <controls:InfoBadge Name="UserCount" Margin="-18,0,0,0" Classes="Attention" Value="0" IsVisible="False" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                            <DockPanel LastChildFill="False" Name="SmallSkinIconGroup">
+                                <Border Name="SmallSkinIcon1" IsVisible="False" CornerRadius="26" Width="32" Height="32" 
+                                        BorderBrush="White" BorderThickness="2" VerticalAlignment="Bottom" 
+                                        Margin="-15,0,0,3"/>
+                                <Border Name="SmallSkinIcon2" IsVisible="False" CornerRadius="26" Width="32" Height="32" 
+                                        BorderBrush="White" BorderThickness="2" VerticalAlignment="Bottom" 
+                                        Margin="-8,0,0,3"/>
+                                <Border Name="SmallSkinIcon3" IsVisible="False" CornerRadius="26" Width="32" Height="32" 
+                                        BorderBrush="White" BorderThickness="2" VerticalAlignment="Bottom" 
+                                        Margin="-8,0,0,3"/>
+                            </DockPanel>
+                        </DockPanel>
+                    </Border>
+                    <Border HorizontalAlignment="Right" Margin="0,0,0,0" Width="220" Height="180">
+                        <Grid>
+                            <view:NullBox BigTitle="无" SmallTitle="请添加账户" Name="NullBox" IsVisible="False"/>
+                            <ListBox Padding="8" Margin="4,4,4,0" Name="PlayerListBox" SelectionChanged="PlayerListBox_OnSelectionChanged">
+                                
+                            </ListBox>  
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
