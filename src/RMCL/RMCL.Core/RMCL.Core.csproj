@@ -28,7 +28,7 @@
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
         <PackageReference Include="FluentAvaloniaUI" Version="2.4.0-preview1" />
-        <PackageReference Include="OverrideLauncher.Core" Version="25.6.1.1807" />
+        <PackageReference Include="OverrideLauncher.Core" Version="25.6.28.229" />
     </ItemGroup>
     <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
       <!-- If you're a .vbproj user, replace ';' with ',' -->
@@ -57,6 +57,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\CompositionScroll\CompositionScroll.csproj" />
+      <ProjectReference Include="..\RMCL.AssetsCenter\RMCL.AssetsCenter.csproj" />
       <ProjectReference Include="..\RMCL.Config\RMCL.Config.csproj" />
       <ProjectReference Include="..\RMCL.Controls\RMCL.Controls.csproj" />
       <ProjectReference Include="..\RMCL.DownloadService\RMCL.DownloadService.csproj" />

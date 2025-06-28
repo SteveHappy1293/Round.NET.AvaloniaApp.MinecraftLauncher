@@ -1,7 +1,6 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text.Json;
-using Newtonsoft.Json;
 using RMCL.Base.Entry.Update;
 using RMCL.Base.Enum.Update;
 using JsonSerializer = System.Text.Json.JsonSerializer;

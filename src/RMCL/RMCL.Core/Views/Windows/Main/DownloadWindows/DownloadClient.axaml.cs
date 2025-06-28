@@ -51,8 +51,7 @@ public partial class DownloadClient : Window
             Install = new InstallClient(DownloadVersionHelper.TryingFindVersion(versioninfo.Id).Result);
             Dispatcher.UIThread.Invoke(() =>
                 BasicInstallationSettings.IsEnabled = true);
-            // var size = Install.GetThePreInstalledSize().Result;
-            ulong size = 0;
+            var size = Install.GetThePreInstalledSize().Result;
 
             var sizetxt = FormatFileSize(size);
             Dispatcher.UIThread.Invoke(() =>

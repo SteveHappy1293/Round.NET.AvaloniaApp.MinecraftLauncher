@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.Plug", "RMCL.Plug\RMCL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.LoadModInfo", "RMCL.LoadModInfo\RMCL.LoadModInfo.csproj", "{5B7F039B-2998-40F1-9237-E58F9AC98FA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.AssetsCenter", "RMCL.AssetsCenter\RMCL.AssetsCenter.csproj", "{048F403F-44BF-4DC5-BAEB-1BA633A3EAC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,5 +98,9 @@ Global
 		{5B7F039B-2998-40F1-9237-E58F9AC98FA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B7F039B-2998-40F1-9237-E58F9AC98FA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B7F039B-2998-40F1-9237-E58F9AC98FA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048F403F-44BF-4DC5-BAEB-1BA633A3EAC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048F403F-44BF-4DC5-BAEB-1BA633A3EAC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048F403F-44BF-4DC5-BAEB-1BA633A3EAC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048F403F-44BF-4DC5-BAEB-1BA633A3EAC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
