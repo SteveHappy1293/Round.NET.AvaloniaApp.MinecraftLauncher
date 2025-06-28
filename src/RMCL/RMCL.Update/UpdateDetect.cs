@@ -4,6 +4,7 @@ using System.Text.Json;
 using Newtonsoft.Json;
 using RMCL.Base.Entry.Update;
 using RMCL.Base.Enum.Update;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace RMCL.Update;
 
@@ -34,7 +35,7 @@ public class UpdateDetect
         
         Console.WriteLine($"Update Json: {json}");
 
-        Entry = JsonConvert.DeserializeObject<UpdateEntry.GitHubRelease>(json);
+        Entry = JsonSerializer.Deserialize<UpdateEntry.GitHubRelease>(json);
         Console.WriteLine($"Update Tag: {Entry.TagName}");
         Console.WriteLine($"Now Version: {copynowver}");
 

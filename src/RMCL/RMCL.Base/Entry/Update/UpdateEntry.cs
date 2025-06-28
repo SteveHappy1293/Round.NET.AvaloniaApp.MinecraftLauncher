@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace RMCL.Base.Entry.Update;
 
@@ -7,112 +8,112 @@ public class UpdateEntry
 
     public class GitHubRelease
     {
-        [JsonProperty("url")] public string Url { get; set; }
+        [JsonPropertyName("url")] public string Url { get; set; }
 
-        [JsonProperty("assets_url")] public string AssetsUrl { get; set; }
+        [JsonPropertyName("assets_url")] public string AssetsUrl { get; set; }
 
-        [JsonProperty("upload_url")] public string UploadUrl { get; set; }
+        [JsonPropertyName("upload_url")] public string UploadUrl { get; set; }
 
-        [JsonProperty("html_url")] public string HtmlUrl { get; set; }
+        [JsonPropertyName("html_url")] public string HtmlUrl { get; set; }
 
-        [JsonProperty("id")] public long Id { get; set; }
+        [JsonPropertyName("id")] public long Id { get; set; }
 
-        [JsonProperty("author")] public GitHubUser Author { get; set; }
+        [JsonPropertyName("author")] public GitHubUser Author { get; set; }
 
-        [JsonProperty("node_id")] public string NodeId { get; set; }
+        [JsonPropertyName("node_id")] public string NodeId { get; set; }
 
-        [JsonProperty("tag_name")] public string TagName { get; set; }
+        [JsonPropertyName("tag_name")] public string TagName { get; set; }
 
-        [JsonProperty("target_commitish")] public string TargetCommitish { get; set; }
+        [JsonPropertyName("target_commitish")] public string TargetCommitish { get; set; }
 
-        [JsonProperty("name")] public string Name { get; set; }
+        [JsonPropertyName("name")] public string Name { get; set; }
 
-        [JsonProperty("draft")] public bool Draft { get; set; }
+        [JsonPropertyName("draft")] public bool Draft { get; set; }
 
-        [JsonProperty("prerelease")] public bool Prerelease { get; set; }
+        [JsonPropertyName("prerelease")] public bool Prerelease { get; set; }
 
-        [JsonProperty("created_at")] public DateTime CreatedAt { get; set; }
+        [JsonPropertyName("created_at")] public DateTime CreatedAt { get; set; }
 
-        [JsonProperty("published_at")] public DateTime PublishedAt { get; set; }
+        [JsonPropertyName("published_at")] public DateTime PublishedAt { get; set; }
 
-        [JsonProperty("assets")] public List<ReleaseAsset> Assets { get; set; }
+        [JsonPropertyName("assets")] public List<ReleaseAsset> Assets { get; set; }
 
-        [JsonProperty("tarball_url")] public string TarballUrl { get; set; }
+        [JsonPropertyName("tarball_url")] public string TarballUrl { get; set; }
 
-        [JsonProperty("zipball_url")] public string ZipballUrl { get; set; }
+        [JsonPropertyName("zipball_url")] public string ZipballUrl { get; set; }
 
-        [JsonProperty("body")] public string Body { get; set; }
+        [JsonPropertyName("body")] public string Body { get; set; }
     }
 
     public class GitHubUser
     {
-        [JsonProperty("login")] public string Login { get; set; }
+        [JsonPropertyName("login")] public string Login { get; set; }
 
-        [JsonProperty("id")] public long Id { get; set; }
+        [JsonPropertyName("id")] public long Id { get; set; }
 
-        [JsonProperty("node_id")] public string NodeId { get; set; }
+        [JsonPropertyName("node_id")] public string NodeId { get; set; }
 
-        [JsonProperty("avatar_url")] public string AvatarUrl { get; set; }
+        [JsonPropertyName("avatar_url")] public string AvatarUrl { get; set; }
 
-        [JsonProperty("gravatar_id")] public string GravatarId { get; set; }
+        [JsonPropertyName("gravatar_id")] public string GravatarId { get; set; }
 
-        [JsonProperty("url")] public string Url { get; set; }
+        [JsonPropertyName("url")] public string Url { get; set; }
 
-        [JsonProperty("html_url")] public string HtmlUrl { get; set; }
+        [JsonPropertyName("html_url")] public string HtmlUrl { get; set; }
 
-        [JsonProperty("followers_url")] public string FollowersUrl { get; set; }
+        [JsonPropertyName("followers_url")] public string FollowersUrl { get; set; }
 
-        [JsonProperty("following_url")] public string FollowingUrl { get; set; }
+        [JsonPropertyName("following_url")] public string FollowingUrl { get; set; }
 
-        [JsonProperty("gists_url")] public string GistsUrl { get; set; }
+        [JsonPropertyName("gists_url")] public string GistsUrl { get; set; }
 
-        [JsonProperty("starred_url")] public string StarredUrl { get; set; }
+        [JsonPropertyName("starred_url")] public string StarredUrl { get; set; }
 
-        [JsonProperty("subscriptions_url")] public string SubscriptionsUrl { get; set; }
+        [JsonPropertyName("subscriptions_url")] public string SubscriptionsUrl { get; set; }
 
-        [JsonProperty("organizations_url")] public string OrganizationsUrl { get; set; }
+        [JsonPropertyName("organizations_url")] public string OrganizationsUrl { get; set; }
 
-        [JsonProperty("repos_url")] public string ReposUrl { get; set; }
+        [JsonPropertyName("repos_url")] public string ReposUrl { get; set; }
 
-        [JsonProperty("events_url")] public string EventsUrl { get; set; }
+        [JsonPropertyName("events_url")] public string EventsUrl { get; set; }
 
-        [JsonProperty("received_events_url")] public string ReceivedEventsUrl { get; set; }
+        [JsonPropertyName("received_events_url")] public string ReceivedEventsUrl { get; set; }
 
-        [JsonProperty("type")] public string Type { get; set; }
+        [JsonPropertyName("type")] public string Type { get; set; }
 
-        [JsonProperty("user_view_type")] public string UserViewType { get; set; }
+        [JsonPropertyName("user_view_type")] public string UserViewType { get; set; }
 
-        [JsonProperty("site_admin")] public bool SiteAdmin { get; set; }
+        [JsonPropertyName("site_admin")] public bool SiteAdmin { get; set; }
     }
 
     public class ReleaseAsset
     {
-        [JsonProperty("url")] public string Url { get; set; }
+        [JsonPropertyName("url")] public string Url { get; set; }
 
-        [JsonProperty("id")] public long Id { get; set; }
+        [JsonPropertyName("id")] public long Id { get; set; }
 
-        [JsonProperty("node_id")] public string NodeId { get; set; }
+        [JsonPropertyName("node_id")] public string NodeId { get; set; }
 
-        [JsonProperty("name")] public string Name { get; set; }
+        [JsonPropertyName("name")] public string Name { get; set; }
 
-        [JsonProperty("label")] public string Label { get; set; }
+        [JsonPropertyName("label")] public string Label { get; set; }
 
-        [JsonProperty("uploader")] public GitHubUser Uploader { get; set; }
+        [JsonPropertyName("uploader")] public GitHubUser Uploader { get; set; }
 
-        [JsonProperty("content_type")] public string ContentType { get; set; }
+        [JsonPropertyName("content_type")] public string ContentType { get; set; }
 
-        [JsonProperty("state")] public string State { get; set; }
+        [JsonPropertyName("state")] public string State { get; set; }
 
-        [JsonProperty("size")] public long Size { get; set; }
+        [JsonPropertyName("size")] public long Size { get; set; }
 
-        [JsonProperty("digest")] public string Digest { get; set; }
+        [JsonPropertyName("digest")] public string Digest { get; set; }
 
-        [JsonProperty("download_count")] public int DownloadCount { get; set; }
+        [JsonPropertyName("download_count")] public int DownloadCount { get; set; }
 
-        [JsonProperty("created_at")] public DateTime CreatedAt { get; set; }
+        [JsonPropertyName("created_at")] public DateTime CreatedAt { get; set; }
 
-        [JsonProperty("updated_at")] public DateTime UpdatedAt { get; set; }
+        [JsonPropertyName("updated_at")] public DateTime UpdatedAt { get; set; }
 
-        [JsonProperty("browser_download_url")] public string BrowserDownloadUrl { get; set; }
+        [JsonPropertyName("browser_download_url")] public string BrowserDownloadUrl { get; set; }
     }
 }

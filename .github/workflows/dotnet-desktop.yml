@@ -39,11 +39,11 @@ jobs:
       
       - name: Set version info
         run: |
-          echo "${{ needs.time.outputs.v }}" > ./src/RMCL/RMCL.Desktop/DateTime.txt
+          echo "${{ needs.time.outputs.v }}" > ./src/RMCL/RMCL.Core/DateTime.txt
       
       - name: Build (x86)
         run: |
-          cd ./src/RMCL/RMCL.Desktop
+          cd ./src/RMCL/RMCL
           dotnet publish -c Release -r win-x86 `
             /p:PublishSingleFile=true `
             /p:PublishReadyToRun=true `
@@ -71,7 +71,7 @@ jobs:
       
       - name: Build (x64)
         run: |
-          cd ./src/RMCL/RMCL.Desktop
+          cd ./src/RMCL/RMCL
           dotnet publish -c Release -r win-x64 `
             /p:PublishSingleFile=true `
             /p:PublishReadyToRun=true `
@@ -99,7 +99,7 @@ jobs:
       
       - name: Build (ARM64)
         run: |
-          cd ./src/RMCL/RMCL.Desktop
+          cd ./src/RMCL/RMCL
           dotnet publish -c Release -r win-arm64 `
             /p:PublishSingleFile=true `
             /p:PublishReadyToRun=true `
@@ -128,7 +128,7 @@ jobs:
       
       - name: Build (Linux x64)
         run: |
-          cd ./src/RMCL/RMCL.Desktop
+          cd ./src/RMCL/RMCL
           dotnet publish -c Release -r linux-x64 \
             /p:PublishSingleFile=true \
             /p:PublishReadyToRun=true \
@@ -158,7 +158,7 @@ jobs:
       
       - name: Build (Linux ARM)
         run: |
-          cd ./src/RMCL/RMCL.Desktop
+          cd ./src/RMCL/RMCL
           dotnet publish -c Release -r linux-arm \
             /p:PublishSingleFile=true \
             /p:PublishReadyToRun=true \
@@ -188,7 +188,7 @@ jobs:
       
       - name: Build (Linux ARM64)
         run: |
-          cd ./src/RMCL/RMCL.Desktop
+          cd ./src/RMCL/RMCL
           dotnet publish -c Release -r linux-arm64 \
             /p:PublishSingleFile=true \
             /p:PublishReadyToRun=true \
@@ -219,7 +219,7 @@ jobs:
       
       - name: Build (macOS x64)
         run: |
-          cd ./src/RMCL/RMCL.Desktop
+          cd ./src/RMCL/RMCL
           dotnet publish -c Release -r osx-x64 \
             /p:PublishSingleFile=true \
             /p:PublishReadyToRun=true \
@@ -249,7 +249,7 @@ jobs:
        
       - name: Build (macOS ARM64)
         run: |
-          cd ./src/RMCL/RMCL.Desktop
+          cd ./src/RMCL/RMCL
           dotnet publish -c Release -r osx-arm64 \
             /p:PublishSingleFile=true \
             /p:PublishReadyToRun=true \
