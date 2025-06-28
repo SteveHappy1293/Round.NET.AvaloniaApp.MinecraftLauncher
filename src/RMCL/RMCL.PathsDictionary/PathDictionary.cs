@@ -15,4 +15,8 @@ public class PathDictionary
     public const string ClientModCacheFolder = "RMCL/RMCL.ModCache";
     public const string ClientModDisablePostfix = ".disabled";
     public const string ClientModEnablePostfix = ".jar";
+
+    public const string SkinRootFolder = "RMCL/RMCL.Style";
+    public const string SkinFolder = "RMCL/RMCL.Style/Files";
+    public const string SkinFolderExtract = "RMCL/RMCL.Style/Extract";
 }

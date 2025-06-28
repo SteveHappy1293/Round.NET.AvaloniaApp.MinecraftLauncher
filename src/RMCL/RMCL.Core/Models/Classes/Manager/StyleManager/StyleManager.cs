@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Text.Json;
 using Avalonia.Controls;
 using Avalonia.Media;
@@ -45,6 +46,11 @@ public class StyleManager
                 };
                 Core.MainWindow.BackOpacity.Opacity =
                     (double)(100 - Config.Config.MainConfig.Background.ImageEntry.Opacity) / 100;
+                break;
+            case BackgroundModelEnum.Pack:
+                if (Config.Config.MainConfig.Background.PackEntry.SelectedIndex == -1) return;
+                LoadSkin.ImportStyleConfigFile(
+                    Directory.GetFiles(PathsDictionary.PathDictionary.SkinFolder)[Config.Config.MainConfig.Background.PackEntry.SelectedIndex]);
                 break;
         }
     }

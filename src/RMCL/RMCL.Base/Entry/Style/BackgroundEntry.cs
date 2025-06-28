@@ -27,4 +27,5 @@ public class ImageEntry
 public class PackEntry
 {
     public string StylePackPath { get; set; } = String.Empty;
+    public int SelectedIndex { get; set; } = -1;
 }

@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using RMCL.Base.Enum;
 
 namespace RMCL.Base.Entry.Assets.Center;
 
@@ -12,4 +13,6 @@ public class AssetsIndexItemEntry
     
     [JsonPropertyName("description")]
     public string Description { get; set; }
+    
+    public AssetsTypeEnum Type { get; set; }
 }

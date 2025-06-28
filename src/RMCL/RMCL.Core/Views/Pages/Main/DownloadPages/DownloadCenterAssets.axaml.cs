@@ -10,6 +10,7 @@ using RMCL.AssetsCenter;
 using RMCL.Base.Entry.Assets.Center;
 using RMCL.Base.Enum;
 using RMCL.Controls.Item.AssetsItem;
+using RMCL.Core.Views.Pages.ChildFramePage.Download.AssetsCenter;
 
 namespace RMCL.Core.Views.Pages.Main.DownloadPages;
 
@@ -58,6 +59,7 @@ public partial class DownloadCenterAssets : UserControl
             var matchingItems = !string.IsNullOrEmpty(key)
                 ? AssetsIndex.Where(x => x.Name.Contains(key) || x.Description.Contains(key)).ToList()
                 : AssetsIndex;
+            matchingItems.ForEach(x => { x.Type = type; });
             UpdateUI(matchingItems);
         });
     }
@@ -81,6 +83,12 @@ public partial class DownloadCenterAssets : UserControl
             {
                 var item = new AssetsCenterItem();
                 AssetsList.Children.Add(item);
+                item.DownloadButtonClicked = entry =>
+                {
+                    var page = new DownloadCenterAssetsPage();
+                    Core.Models.Classes.Core.ChildFrame.Show(page);
+                    page.LoadAssets(entry);
+                };
                 item.LoadShow(x);
             });
             AssetsList.IsVisible = true;

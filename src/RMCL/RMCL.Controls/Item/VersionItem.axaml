@@ -1,0 +1,12 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:button="clr-namespace:RMCL.Controls.Button"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RMCL.Controls.Item.VersionItem">
+    <DockPanel LastChildFill="True" Margin="5">
+        <button:IconButton Click="Button_OnClick" Icon="ArrowDownload20Regular" Content="下载" HorizontalAlignment="Right" DockPanel.Dock="Right" VerticalAlignment="Center"/> 
+        <TextBlock Name="TitleBox" Text="Version" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" DockPanel.Dock="Left" VerticalAlignment="Center"></TextBlock>
+    </DockPanel>
+</UserControl>

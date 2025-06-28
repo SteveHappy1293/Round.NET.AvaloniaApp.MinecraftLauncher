@@ -8,6 +8,8 @@ namespace RMCL.Controls.Item.AssetsItem;
 
 public partial class AssetsCenterItem : UserControl
 {
+    private AssetsIndexItemEntry _assetsIndexItem;
+    public Action<AssetsIndexItemEntry> DownloadButtonClicked { get; set; }
     public AssetsCenterItem()
     {
         InitializeComponent();
@@ -15,11 +17,12 @@ public partial class AssetsCenterItem : UserControl
 
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        DownloadButtonClicked.Invoke(_assetsIndexItem);
     }
 
     public void LoadShow(AssetsIndexItemEntry item)
     {
+        _assetsIndexItem = item;
         AssetsName.Text = item.Name;
         AssetsProfile.Text = item.Description;
     }
