@@ -52,7 +52,7 @@ public partial class DownloadUpdateFileTaskItem : UserControl
         
         var fils = Directory.GetFiles(Path.GetFullPath(InstallName));
         var file = "";
-        foreach (var f in fils) if(Path.GetFileName(f).StartsWith("RMCL.Desktop")) file = f;
+        foreach (var f in fils) if(Path.GetFileName(f).StartsWith("RMCL")) file = f;
 
         Console.WriteLine(file);
         Process.Start(file, ["-install", $"{file}", "-body", Process.GetCurrentProcess().MainModule.FileName]);

@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics;
 using Avalonia;
-using RMCL;
+using RMCL.Core;
 using RMCL.Config;
 using RMCL.JavaManager;
 using RMCL.Logger;
-using RMCL.Models.Classes.Manager.UserManager;
+using RMCL.Core.Models.Classes.Manager.UserManager;
 using RMCL.PathsDictionary;
 
 sealed class Program

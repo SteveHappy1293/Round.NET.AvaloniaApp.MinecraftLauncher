@@ -23,17 +23,19 @@ public partial class DownloadClient : Window
     public static string FormatFileSize(ulong bytes)
     {
         string[] suffixes = { "B", "KB", "MB", "GB", "TB", "PB", "EB" }; // 如有需要可以继续扩展
-    
+
         if (bytes == 0)
             return "0" + suffixes[0];
-    
+
         long absBytes = Math.Abs((long)bytes);
         int place = Convert.ToInt32(Math.Floor(Math.Log(absBytes, 1024)));
         double num = Math.Round(absBytes / Math.Pow(1024, place), 1);
-    
+
         return (Math.Sign((long)bytes) * num).ToString() + suffixes[place];
     }
+
     public InstallClient Install;
+
     public DownloadClient(VersionManifestEntry.Version versioninfo)
     {
         InitializeComponent();
@@ -49,7 +51,8 @@ public partial class DownloadClient : Window
             Install = new InstallClient(DownloadVersionHelper.TryingFindVersion(versioninfo.Id).Result);
             Dispatcher.UIThread.Invoke(() =>
                 BasicInstallationSettings.IsEnabled = true);
-            var size = Install.GetThePreInstalledSize().Result;
+            // var size = Install.GetThePreInstalledSize().Result;
+            ulong size = 0;
 
             var sizetxt = FormatFileSize(size);
             Dispatcher.UIThread.Invoke(() =>
@@ -82,10 +85,12 @@ public partial class DownloadClient : Window
         ControlDockPanel.IsEnabled = false;
         Task.Run(() =>
         {
-            while (Install==null) { }
+            while (Install == null)
+            {
+            }
+
             Install.DownloadThreadsCount = Config.Config.MainConfig.DownloadThreads;
-            
-            Thread.Sleep(1200);
+
             Dispatcher.UIThread.Invoke(() =>
             {
 
@@ -96,11 +101,12 @@ public partial class DownloadClient : Window
                     TaskName = $"安装游戏 - {ID}"
                 };
                 cont.RunTask();
-                dow.Download(Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path,name);
+                dow.Download(Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path,
+                    name);
                 var uuid1 = TaskManager.AddTask(cont);
                 dow.DownloadCompleted = (uuid) => TaskManager.DeleteTask(uuid1);
                 Models.Classes.Core.MessageShowBox.AddInfoBar("安装游戏", $"已将 {ID} 的安装添加至后台", InfoBarSeverity.Success);
-                
+
                 Close();
             });
         });

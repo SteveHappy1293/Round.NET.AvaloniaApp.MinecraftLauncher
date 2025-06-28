@@ -7,7 +7,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="80"
              x:Class="RMCL.Controls.Item.ManagerGameItem">
     <DockPanel LastChildFill="True">
-        <DockPanel DockPanel.Dock="Right">
+        <DockPanel DockPanel.Dock="Right" Height="42">
             <DockPanel IsVisible="False">
                 <Border Padding="3" VerticalAlignment="Center" CornerRadius="5" Background="Orange" Margin="5">
                     <TextBlock Name="VersionTime" FontSize="11" FontWeight="Light" Foreground="White"></TextBlock>
@@ -16,10 +16,15 @@
                     <TextBlock Name="VersionType" FontSize="11" FontWeight="Light" Foreground="White"></TextBlock>
                 </Border>
             </DockPanel>
-            <Button Margin="5" CornerRadius="16" Width="32" Height="32" Background="Transparent" BorderThickness="0" Click="SettingButton_OnClick" Name="SettingButton">
-                <fluentIcons:FluentIcon Icon="Settings20Regular" Margin="-8,-6,-8,-8"/>
-            </Button>
-            <button:IconButton Margin="5" Icon="Play24Regular" Click="Button_OnClick" Content="启动"/>
+            <Border Name="ErrorVersion" IsVisible="False" Padding="3" VerticalAlignment="Center" CornerRadius="5" Background="DarkRed" Margin="5,5,25,5">
+                <TextBlock FontSize="11" FontWeight="Light" Foreground="White">错误的版本</TextBlock>
+            </Border>
+            <DockPanel Name="RightBtnBox">
+                <Button Margin="5" CornerRadius="16" Width="32" Height="32" Background="Transparent" BorderThickness="0" Click="SettingButton_OnClick" Name="SettingButton">
+                    <fluentIcons:FluentIcon Icon="Settings20Regular" Margin="-8,-6,-8,-8"/>
+                </Button>
+                <button:IconButton Margin="5" Icon="Play24Regular" Click="Button_OnClick" Content="启动"/>
+            </DockPanel>
         </DockPanel>
         <DockPanel DockPanel.Dock="Left">
             <Image Source="../Assets/MinecraftIcons/release.png" DockPanel.Dock="Left" HorizontalAlignment="Left" Width="24" Height="24" Stretch="Uniform" Margin="5,5,18,5" Name="IconImage"></Image>

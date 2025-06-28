@@ -4,8 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Controls.TaskContentControl.TaskControl">
-    <StackPanel>
-        <TextBlock Name="TaskNameBox" HorizontalAlignment="Left" Margin="5"/>
-        <ContentControl Margin="10" Name="ContentBox"></ContentControl>
-    </StackPanel>
+    <Grid>
+        <Border Margin="10" CornerRadius="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Black" Opacity="0.06"></Border>
+        <Border Margin="10">
+            <StackPanel>
+                <TextBlock Name="TaskNameBox" HorizontalAlignment="Left" Margin="5"/>
+                <ContentControl Margin="10" Name="ContentBox"></ContentControl>
+            </StackPanel>
+        </Border>
+    </Grid>
 </UserControl>

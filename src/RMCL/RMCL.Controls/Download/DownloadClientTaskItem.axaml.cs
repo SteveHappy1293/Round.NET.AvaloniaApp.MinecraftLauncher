@@ -13,6 +13,7 @@ public partial class DownloadClientTaskItem : UserControl
 {
     private InstallClient InstallClient;
     public Action<string> DownloadCompleted;
+
     public DownloadClientTaskItem(InstallClient install)
     {
         InitializeComponent();
@@ -32,9 +33,10 @@ public partial class DownloadClientTaskItem : UserControl
             _ => "未知进度"
         };
     }
-    public void Download(string gamedir,string name)
+
+    public void Download(string gamedir, string name)
     {
-        InstallClient.ProgressCallback = (e,s, d) =>
+        InstallClient.ProgressCallback = (e, s, d) =>
         {
             ConsoleRedirector.RegisterThread(Thread.CurrentThread, $"Download-{InstallClient.VersionInfo.Version.Id}");
             var txt = $"{d:0.00}% - {GetState(e)} {s}";
@@ -44,13 +46,13 @@ public partial class DownloadClientTaskItem : UserControl
                 ProgressTextBox.Text = txt;
                 DownloadProgress.Value = d;
 
-                if (e==DownloadStateEnum.DownloadSuccess)
+                if (e == DownloadStateEnum.DownloadSuccess)
                 {
                     var cont = this.Tag as string;
                     DownloadCompleted(cont);
                 }
             });
         };
-        Task.Run(() => InstallClient.Install(Path.GetFullPath(gamedir),name));
+        Task.Run(() => InstallClient.Install(Path.GetFullPath(gamedir), name));
     }
 }
