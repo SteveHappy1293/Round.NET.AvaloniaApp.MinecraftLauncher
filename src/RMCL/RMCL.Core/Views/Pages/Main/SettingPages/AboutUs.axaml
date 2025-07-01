@@ -5,8 +5,8 @@
              xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.Main.SettingPages.AboutUs">
-    <ScrollViewer Margin="5">
-        <StackPanel>
+    <ScrollViewer>
+        <StackPanel Margin="5" MaxWidth="1200">
             <DockPanel HorizontalAlignment="Stretch" Margin="5">
                 <Image Margin="5" DockPanel.Dock="Left" Source="../../../../Assets/Icon.png" Width="80" Height="80" HorizontalAlignment="Left"></Image>
                 <StackPanel Margin="10,0,0,0">

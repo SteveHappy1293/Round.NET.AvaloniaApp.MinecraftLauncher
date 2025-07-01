@@ -9,8 +9,8 @@
         <Style Selector="controls|Frame#MangeFrame">
             <Setter Property="Transitions">
                 <Transitions>
-                    <ThicknessTransition Property="Margin" Duration="0:0:0.5" Easing="QuinticEaseOut"></ThicknessTransition>
-                    <DoubleTransition Property="Opacity" Duration="0:0:0.3"></DoubleTransition>
+                    <ThicknessTransition Property="Margin" Easing="QuinticEaseOut" Duration="0:0:0.48"/>
+                    <DoubleTransition Property="Opacity" Easing="QuarticEaseInOut" Duration="0:0:0.15"/>
                 </Transitions>
             </Setter>
         </Style>
@@ -35,7 +35,7 @@
                 <controls:NavigationView.MenuItems>
                 </controls:NavigationView.MenuItems>
             </controls:NavigationView>
-            <Grid Margin="0" Grid.Row="1">
+            <Grid Margin="10" Grid.Row="1">
                 <controls:Frame Grid.Row="1" Name="MangeFrame" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
             </Grid>
         </Grid>

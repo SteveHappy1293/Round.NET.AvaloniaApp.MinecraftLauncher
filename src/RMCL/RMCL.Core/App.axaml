@@ -7,7 +7,9 @@
              xmlns:compositionScroll="clr-namespace:CompositionScroll;assembly=CompositionScroll">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
     <Application.Styles>
+        <!--
         <styling:FluentAvaloniaTheme UseSystemFontOnWindows="True" PreferUserAccentColor="True"/>
+        -->
         <StyleInclude Source="avares://RMCL.Controls/ControlInclude.axaml"></StyleInclude>
         
         <Style Selector="controls|SettingsExpander">

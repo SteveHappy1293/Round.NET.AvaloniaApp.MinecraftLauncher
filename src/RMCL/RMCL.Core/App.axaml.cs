@@ -6,6 +6,7 @@ using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
+using FluentAvalonia.Styling;
 using HotAvalonia;
 using NetworkService.SingleInstanceDetector;
 using RMCL.Config;
@@ -26,6 +27,7 @@ public partial class App : Application
     {
         Console.WriteLine("On Framework Initialization Completed");
         DisableAvaloniaDataAnnotationValidation();
+        this.Styles.Add(Core.Models.Classes.Core.FluentAvaloniaTheme);
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {

@@ -54,14 +54,19 @@ public partial class NavigationPage : UserControl
 
     private void Navigate(UserControl page)
     {
-        Task.Run(() =>
+        Task.Run(() => // Margin="10,50,10,10"
         {
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(0,200,0,-200));
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 0);
-            Task.Delay(450);
+            // Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(220,100,30,-10));
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(4,4,4,-10));
+            Thread.Sleep(180);
+            Dispatcher.UIThread.Invoke(() =>
+            {
+                MangeFrame.Content = page;
+            });
+            Thread.Sleep(180);
             Dispatcher.UIThread.Invoke(() => MangeFrame.Opacity = 1);
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(0,0,0,0));
-            Dispatcher.UIThread.Invoke(() => MangeFrame.Content = page);
+            Dispatcher.UIThread.Invoke(() => MangeFrame.Margin = new Thickness(4,4,4,-4));
         });
     }
     

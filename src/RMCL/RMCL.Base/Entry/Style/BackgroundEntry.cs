@@ -5,7 +5,6 @@ namespace RMCL.Base.Entry.Style;
 public class BackgroundEntry
 {
     public BackgroundModelEnum ChooseModel { get; set; } = BackgroundModelEnum.None;
-
     public ColorGlassEntry ColorGlassEntry { get; set; } = new();
     public ImageEntry ImageEntry { get; set; } = new();
     public PackEntry PackEntry { get; set; } = new();

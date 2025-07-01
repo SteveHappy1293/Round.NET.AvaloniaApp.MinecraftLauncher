@@ -11,6 +11,7 @@ using RMCL.Controls.View;
 using RMCL.Core.Models.Classes.Manager.StyleManager;
 using RMCL.Core.Views.Pages.Main.SettingPages.SettingSubPages;
 using RMCL.Core.Models.Classes;
+using Color = Avalonia.Media.Color;
 
 namespace RMCL.Core.Views.Pages.Main.SettingPages;
 
@@ -35,6 +36,7 @@ public partial class StyleSetting : ISetting
         BackgroundMaxSetting.Content = BackgroundSettings[enums];
         MainButtonStyle.SelectedIndex = Config.Config.MainConfig.ButtonStyle.HomeButton.GetHashCode()-1;
         QuickChoosePlayerButtonStyle.SelectedIndex = Config.Config.MainConfig.ButtonStyle.QuickChoosePlayerButton.GetHashCode();
+        ColorPicker.Color = Color.Parse(Config.Config.MainConfig.ThemeColors);
         IsEdit = true;
     }
 
@@ -70,6 +72,14 @@ public partial class StyleSetting : ISetting
 
             Config.Config.SaveConfig();
             Models.Classes.Core.MainWindow.UpdateButtonStyle();
+        }
+    }
+
+    private void ColorView_OnColorChanged(object? sender, ColorChangedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            StyleManager.UpdateSystemColor(ColorPicker.Color.ToString());
         }
     }
 }

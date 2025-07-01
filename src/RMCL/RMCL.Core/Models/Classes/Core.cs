@@ -1,3 +1,4 @@
+using FluentAvalonia.Styling;
 using RMCL.Controls.Container;
 using RMCL.Core.Views;
 using RMCL.Core.Views.Pages.Main.MessageView;
@@ -12,4 +13,9 @@ public class Core
     public static TaskView TaskView;
     public static ChildFrame ChildFrame;
     public static MessageShowBox MessageShowBox;
+
+    public static FluentAvaloniaTheme FluentAvaloniaTheme = new()
+    {
+        UseSystemFontOnWindows = true
+    };
 }

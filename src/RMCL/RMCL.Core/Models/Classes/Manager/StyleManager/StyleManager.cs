@@ -12,22 +12,38 @@ namespace RMCL.Core.Models.Classes.Manager.StyleManager;
 
 public class StyleManager
 {
+    public static void UpdateSystemColor(string htmlColor = null)
+    {
+        if (!string.IsNullOrEmpty(htmlColor))
+        {
+            Config.Config.MainConfig.ThemeColors = htmlColor;
+            Config.Config.SaveConfig();
+        }
+        else
+        {
+            htmlColor = Config.Config.MainConfig.ThemeColors;
+        }
+        Core.FluentAvaloniaTheme.CustomAccentColor = Color.Parse(htmlColor);
+    }
     public static void UpdateBackground()
     {
-        Core.MainWindow.Background = Brushes.Transparent;
+        Core.MainWindow.Background = Config.Config.MainConfig.Theme == ThemeType.Dark ? Brush.Parse("#161616") : Brushes.AliceBlue;
         Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.Transparent };
         Core.MainWindow.InvalidateVisual();
         Core.MainWindow.BackOpacity.Opacity = 0;
 
+        UpdateSystemColor();
+
         switch (Config.Config.MainConfig.Background.ChooseModel)
         {
             case BackgroundModelEnum.None:
-                Core.MainWindow.Background = Config.Config.MainConfig.Theme == ThemeType.Dark ? Brush.Parse("#161616") : Brushes.AliceBlue;
                 break;
             case BackgroundModelEnum.Mica:
+                Core.MainWindow.Background = Brushes.Transparent;
                 Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.Mica };
                 break;
             case BackgroundModelEnum.AcrylicBlur:
+                Core.MainWindow.Background = Brushes.Transparent;
                 Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.AcrylicBlur };
                 break;
             case BackgroundModelEnum.Glass:
