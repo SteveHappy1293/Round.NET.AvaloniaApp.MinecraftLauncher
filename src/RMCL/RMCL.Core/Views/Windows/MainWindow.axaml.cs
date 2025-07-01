@@ -16,12 +16,14 @@ using Avalonia.Threading;
 using FluentAvalonia.Interop;
 using FluentAvalonia.UI.Controls;
 using RMCL.Base.Entry.Style;
+using RMCL.Base.Enum.BackCall;
 using RMCL.Base.Enum.ButtonStyle;
 using RMCL.Base.Enum.Update;
 using RMCL.Config;
 using RMCL.Core.Models.Classes.Manager.StyleManager;
 using RMCL.Core.Models.Classes.Manager.TaskManager;
 using RMCL.Core.Models.Classes;
+using RMCL.Core.Models.Classes.Manager.BackCallManager;
 using RMCL.PathsDictionary;
 using RMCL.Plug;
 using RMCL.Update;
@@ -68,9 +70,19 @@ public partial class MainWindow : Window
         Console.WriteLine("Opened MainWindow!");
         UpdateButtonStyle();
 
-        this.Loaded += (s, e) =>
+        BackCallManager.RegisteredBackCall(() =>
         {
             LoadPlugs.LoadPlugins(PathDictionary.PluginFileFolder);
+        }, BackCallType.LaunchedApp);
+
+        BackCallManager.RegisteredBackCall(() =>
+        {
+            Console.WriteLine("启动游戏...");
+        }, BackCallType.LaunchedGame);
+
+        this.Loaded += (s, e) =>
+        {
+            BackCallManager.Call(BackCallType.LaunchedApp);
         };
     }
 

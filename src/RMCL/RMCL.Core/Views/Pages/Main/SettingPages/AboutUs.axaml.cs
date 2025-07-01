@@ -9,5 +9,7 @@ public partial class AboutUs : UserControl
     public AboutUs()
     {
         InitializeComponent();
+        
+        VersionBox.Text = $"{App.Current.GetType().Assembly.GetName().Version}";
     }
 }

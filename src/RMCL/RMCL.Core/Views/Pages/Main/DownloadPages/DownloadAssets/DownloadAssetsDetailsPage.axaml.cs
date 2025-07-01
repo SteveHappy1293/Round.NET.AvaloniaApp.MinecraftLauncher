@@ -100,6 +100,6 @@ public partial class DownloadAssetsDetailsPage : UserControl
 
     private void OpenWebURL_OnClick(object? sender, RoutedEventArgs e)
     {
-        SystemHelper.OpenUrl(_modInfo.Links.WebsiteUrl);
+        SystemHelper.SystemHelper.OpenUrl(_modInfo.Links.WebsiteUrl);
     }
 }

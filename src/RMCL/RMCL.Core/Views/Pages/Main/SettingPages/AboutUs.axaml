@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.Main.SettingPages.AboutUs">
     <ScrollViewer Margin="5">
@@ -10,12 +11,12 @@
                 <Image Margin="5" DockPanel.Dock="Left" Source="../../../../Assets/Icon.png" Width="80" Height="80" HorizontalAlignment="Left"></Image>
                 <StackPanel Margin="10,0,0,0">
                     <TextBlock FontSize="28" FontWeight="Bold">Round Minecraft Launcher</TextBlock>
-                    <TextBlock FontSize="11" Foreground="Gray">Version</TextBlock>
+                    <TextBlock FontSize="11" Foreground="Gray" Name="VersionBox">Version</TextBlock>
                     <TextBlock FontSize="11" Foreground="Gray">GNU General Public License v3.0</TextBlock>
                     <TextBlock FontSize="11" Foreground="Gray">https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher</TextBlock>
                 </StackPanel>
             </DockPanel>
-            <Expander IsExpanded="True" Margin="5" Header="开源贡献者">
+            <Expander Margin="5" Header="开源贡献者">
                 <StackPanel>
                     <TextBlock>RMCL 本体：Minecraft一角钱、MikuniDOMI、LKBaka</TextBlock>
                     <TextBlock>RMCL 启动核心：Minecraft一角钱</TextBlock>
@@ -26,6 +27,24 @@
                 <StackPanel>
                     <TextBlock>RMCL 的正版登录使用了来自 YMCL 提供的接口 ID (已经 YMCL 作者 DaiYu 允许)</TextBlock>
                     <TextBlock>RMCL 更新加速地址使用了来自 (github.akams.cn) 提供的加速地址</TextBlock>
+                </StackPanel>
+            </Expander>
+            <Expander Margin="5" Header="联系我们">
+                <WrapPanel>
+                    <HyperlinkButton Margin="5" NavigateUri="https://qm.qq.com/q/txVU47vy14">QQ Group</HyperlinkButton>
+                    <HyperlinkButton Margin="5" NavigateUri="https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/issues">Github Issues</HyperlinkButton>
+                    <HyperlinkButton Margin="5" NavigateUri="https://afdian.com/a/yjq666">赞助我们</HyperlinkButton>
+                    <HyperlinkButton Margin="5" NavigateUri="https://github.com/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/blob/neo/LICENSE">开源协议</HyperlinkButton>
+                </WrapPanel>
+            </Expander>
+            <Expander Margin="5" Header="开源组件">
+                <StackPanel>
+                    <button:ProjectItemButton Icon="../../../../Assets/avalonia-logo.ico" Title="Avalonia" URL="https://github.com/AvaloniaUI/Avalonia" Margin="5"/>
+                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/FAIcon.png" Title="FluentAvalonia" URL="https://github.com/amwx/FluentAvalonia" Margin="5"/>
+                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Nuget.png" Title="FluentAvalonia.FluentIcons" URL="https://github.com/jmkinzer/FluentAvalonia.FluentIcons" Margin="5"/>
+                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Downloader.png" Title="Downloader" URL="https://github.com/bezzad/Downloader" Margin="5"/>
+                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/ROL.png" Title="OverrideLauncher.Core" URL="https://github.com/Round-Studio/OverrideLauncher.Core" Margin="5"/>
+                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/LuaSharp.png" Title="LuaCSharp" URL="https://github.com/AnnulusGames/Lua-CSharp" Margin="5"/>
                 </StackPanel>
             </Expander>
         </StackPanel>

@@ -1,10 +1,6 @@
-﻿using System;
 using System.Diagnostics;
-using System.IO;
-using System.Runtime.InteropServices;
-using FluentAvalonia.UI.Controls;
 
-namespace RMCL.Core.Models.Classes;
+namespace RMCL.SystemHelper;
 
 public class SystemHelper
 {

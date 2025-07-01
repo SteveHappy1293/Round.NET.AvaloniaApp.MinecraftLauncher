@@ -28,6 +28,7 @@
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
         <PackageReference Include="FluentAvaloniaUI" Version="2.4.0-preview1" />
+        <PackageReference Include="LuaCSharp" Version="0.4.2" />
         <PackageReference Include="OverrideLauncher.Core" Version="25.6.28.229" />
     </ItemGroup>
     <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
@@ -65,6 +66,7 @@
       <ProjectReference Include="..\RMCL.Logger\RMCL.Logger.csproj" />
       <ProjectReference Include="..\RMCL.NetworkService\RMCL.NetworkService.csproj" />
       <ProjectReference Include="..\RMCL.Plug\RMCL.Plug.csproj" />
+      <ProjectReference Include="..\RMCL.SystemHelper\RMCL.SystemHelper.csproj" />
       <ProjectReference Include="..\RMCL.Update\RMCL.Update.csproj" />
     </ItemGroup>
 </Project>

@@ -158,7 +158,7 @@ public partial class ManageGame : ISetting
 
     private void OpenNowGameRoot_OnClick(object? sender, RoutedEventArgs e)
     {
-        SystemHelper.FileExplorer.OpenFolder(Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path);
+        SystemHelper.SystemHelper.FileExplorer.OpenFolder(Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].Path);
     }
 
     private void VersionsList_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)

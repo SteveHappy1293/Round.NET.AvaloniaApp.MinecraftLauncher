@@ -33,7 +33,7 @@ public partial class StyleSetting : ISetting
         var enums = (BackgroundModelEnum)ChooseBackgroundModel.SelectedIndex;
         Config.Config.MainConfig.Background.ChooseModel = enums;
         BackgroundMaxSetting.Content = BackgroundSettings[enums];
-        MainButtonStyle.SelectedIndex = Config.Config.MainConfig.ButtonStyle.HomeButton.GetHashCode();
+        MainButtonStyle.SelectedIndex = Config.Config.MainConfig.ButtonStyle.HomeButton.GetHashCode()-1;
         QuickChoosePlayerButtonStyle.SelectedIndex = Config.Config.MainConfig.ButtonStyle.QuickChoosePlayerButton.GetHashCode();
         IsEdit = true;
     }
@@ -55,7 +55,7 @@ public partial class StyleSetting : ISetting
     {
         if (IsEdit)
         {
-            Config.Config.MainConfig.ButtonStyle.HomeButton = (OrdinaryButtonStyle)MainButtonStyle.SelectedIndex;
+            Config.Config.MainConfig.ButtonStyle.HomeButton = (OrdinaryButtonStyle)MainButtonStyle.SelectedIndex+1;
 
             Config.Config.SaveConfig();
             Models.Classes.Core.MainWindow.UpdateButtonStyle();

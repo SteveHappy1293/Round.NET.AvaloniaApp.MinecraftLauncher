@@ -75,7 +75,7 @@ public partial class ManageGameDirectory : Window
     private void OpenFolder_OnClick(object? sender, RoutedEventArgs e)
     {
         var path = Config.Config.MainConfig.GameFolders[DirsBox.SelectedIndex].Path;
-        SystemHelper.FileExplorer.OpenFolder(Path.GetFullPath(path));
+        SystemHelper.SystemHelper.FileExplorer.OpenFolder(Path.GetFullPath(path));
     }
 
     private async void AddFolder_OnClick(object? sender, RoutedEventArgs e)
@@ -100,7 +100,7 @@ public partial class ManageGameDirectory : Window
                 new TextBox()
                 {
                     Width = 120,
-                    Text = SystemHelper.GetFolderName(folder)
+                    Text = SystemHelper.SystemHelper.GetFolderName(folder)
                 };
             var con = new ContentDialog()
             {
@@ -127,7 +127,7 @@ public partial class ManageGameDirectory : Window
                 Config.Config.MainConfig.GameFolders.Add(new GameFolderConfig()
                 {
                     Path = folder,
-                    Name = namebox.Text == "" ? SystemHelper.GetFolderName(folder) : namebox.Text
+                    Name = namebox.Text == "" ? SystemHelper.SystemHelper.GetFolderName(folder) : namebox.Text
                 });
                 
                 Refuse();

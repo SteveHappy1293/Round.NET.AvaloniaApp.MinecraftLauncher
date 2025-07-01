@@ -7,6 +7,8 @@ using OverrideLauncher.Core.Modules.Entry.JavaEntry;
 using OverrideLauncher.Core.Modules.Entry.LaunchEntry;
 using OverrideLauncher.Core.Modules.Enum.Launch;
 using RMCL.Base.Entry;
+using RMCL.Base.Enum.BackCall;
+using RMCL.Core.Models.Classes.Manager.BackCallManager;
 using RMCL.Core.Models.Classes.Manager.UserManager;
 
 namespace RMCL.Core.Models.Classes.Launch;
@@ -45,6 +47,8 @@ public class LaunchService
     }
     public static void Launch(LaunchClientInfo Info)
     {
+        BackCallManager.Call(BackCallType.LaunchedGame);
+        
         var par = new VersionParse(new ClientInstancesInfo()
         {
             GameCatalog = Info.GameFolder,

@@ -36,7 +36,7 @@ public partial class LoginMicrosoftAccountDialog : UserControl
                 LoginCode.Text = entry.Code;
             });
 
-            SystemHelper.OpenUrl(entry.URL);
+            SystemHelper.SystemHelper.OpenUrl(entry.URL);
         };
 
         var login = await msaLogin.Authenticator();

@@ -36,7 +36,7 @@ public partial class UpdatePage : UserControl
 
     private void OpenALinkToAWebPage_OnClick(object? sender, RoutedEventArgs e)
     {
-        SystemHelper.OpenUrl(_updateRelease.HtmlUrl);
+        SystemHelper.SystemHelper.OpenUrl(_updateRelease.HtmlUrl);
     }
 
     private void OnUpdateBtn_OnClick(object? sender, RoutedEventArgs e)
