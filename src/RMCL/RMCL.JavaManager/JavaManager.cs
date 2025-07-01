@@ -8,7 +8,7 @@ namespace RMCL.JavaManager;
 
 public class JavaManager
 {
-    private const string           JsonConfigFileName = PathDictionary.JavaConfigPath;
+    private static readonly string           JsonConfigFileName = PathDictionary.JavaConfigPath;
     public static List<JavaDetils> Javas              = new();
     public static JavaRootEntry    JavaRoot           = new();
 

@@ -53,4 +53,15 @@ public class SystemHelper
         DirectoryInfo dirInfo = new DirectoryInfo(folderPath);
         return dirInfo.Name;
     }
+    
+    public static string GetAppConfigDirectory()
+    {
+        // 选择适合的 SpecialFolder
+        var folder = Environment.GetFolderPath(
+            Environment.SpecialFolder.ApplicationData,
+            Environment.SpecialFolderOption.Create); // 确保目录存在
+        
+        // 组合应用专属路径
+        return Path.Combine(folder, "RMCL");
+    }
 }
