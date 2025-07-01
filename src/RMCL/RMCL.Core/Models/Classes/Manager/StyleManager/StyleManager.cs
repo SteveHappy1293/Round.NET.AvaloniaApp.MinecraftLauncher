@@ -6,6 +6,7 @@ using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using RMCL.Base.Entry.Style;
 using RMCL.Base.Enum;
+using RMCL.Base.Enum.BackCall;
 using RMCL.Config;
 
 namespace RMCL.Core.Models.Classes.Manager.StyleManager;
@@ -78,6 +79,8 @@ public class StyleManager
                     Directory.GetFiles(PathsDictionary.PathDictionary.SkinFolder)[Config.Config.MainConfig.Background.PackEntry.SelectedIndex]);
                 break;
         }
+        
+        BackCallManager.BackCallManager.Call(BackCallType.UpdateBackground);
     }
 
     public static Type GetObjectType(object obj)

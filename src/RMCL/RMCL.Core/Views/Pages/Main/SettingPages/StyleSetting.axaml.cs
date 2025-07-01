@@ -4,10 +4,12 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using FluentAvalonia.Interop;
 using RMCL.Base.Entry.Style;
 using RMCL.Base.Enum;
 using RMCL.Base.Enum.ButtonStyle;
 using RMCL.Base.Interface;
+using RMCL.Config;
 using RMCL.Controls.View;
 using RMCL.Core.Models.Classes.Manager.StyleManager;
 using RMCL.Core.Views.Pages.Main.SettingPages.SettingSubPages;
@@ -41,6 +43,7 @@ public partial class StyleSetting : ISetting
         ColorPicker.Color = Color.Parse(Config.Config.MainConfig.ThemeColors.ThemeColors);
 
         ColorThemeModel.SelectedIndex = Config.Config.MainConfig.ThemeColors.ColorType.GetHashCode();
+        LightTheme.SelectedIndex = Config.Config.MainConfig.Theme.GetHashCode();
         if (Config.Config.MainConfig.ThemeColors.ColorType == ColorType.System)
         {
             UserColorBox.IsVisible = false;
@@ -50,6 +53,9 @@ public partial class StyleSetting : ISetting
             UserColorBox.IsVisible = true;
         }
         IsEdit = true;
+
+        if (!OSVersionHelper.IsWindows11()) ItemMica.IsEnabled = false;
+        if (!OSVersionHelper.IsWindows()) ItemAcrylicBlur.IsEnabled = false;
     }
 
     private void ChooseBackgroundModel_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
@@ -118,5 +124,16 @@ public partial class StyleSetting : ISetting
     private void AccentIconButton_OnClick(object? sender, RoutedEventArgs e)
     {
         new ExportUserThemeWindow().ShowDialog(Models.Classes.Core.MainWindow);
+    }
+
+    private void LightTheme_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.Config.MainConfig.Theme = (ThemeType)LightTheme.SelectedIndex;
+            Config.Config.SaveConfig();
+            
+            StyleManager.UpdateBackground();
+        }
     }
 }

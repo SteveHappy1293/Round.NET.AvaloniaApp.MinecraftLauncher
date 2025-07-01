@@ -47,8 +47,8 @@
                         <controls:SettingsExpanderItem.Footer>
                             <ComboBox Name="ChooseBackgroundModel" SelectionChanged="ChooseBackgroundModel_OnSelectionChanged" Width="400">
                                 <ComboBoxItem Tag="None">无</ComboBoxItem>
-                                <ComboBoxItem Tag="Mica">Mica (Win11+)</ComboBoxItem>
-                                <ComboBoxItem Tag="AcrylicBlur">模糊背景 (对亮色模式兼容性差)</ComboBoxItem>
+                                <ComboBoxItem Tag="Mica" Name="ItemMica">Mica (Win11+)</ComboBoxItem>
+                                <ComboBoxItem Tag="AcrylicBlur" Name="ItemAcrylicBlur">模糊背景 (对亮色模式兼容性差)</ComboBoxItem>
                                 <ComboBoxItem Tag="Glass">彩色玻璃、纯色</ComboBoxItem>
                                 <ComboBoxItem Tag="Image">图片</ComboBoxItem>
                                 <ComboBoxItem Tag="Pack">Round Studio 通用背景样式包</ComboBoxItem>
@@ -68,6 +68,16 @@
                         <fluentIcons:FluentIconSource Icon="Color20Regular"/>
                     </controls:SettingsExpander.IconSource>
                     
+                    <controls:SettingsExpanderItem Content="界面深浅偏好规则"
+                                                   Description="选择深浅偏好规则">
+                        <controls:SettingsExpanderItem.Footer>
+                            <ComboBox SelectedIndex="0" Width="400" Name="LightTheme" SelectionChanged="LightTheme_OnSelectionChanged">
+                                <ComboBoxItem Tag="Dark">暗</ComboBoxItem>
+                                <ComboBoxItem Tag="Light">亮</ComboBoxItem>
+                            </ComboBox>
+                        </controls:SettingsExpanderItem.Footer>
+                        
+                    </controls:SettingsExpanderItem>
                     <controls:SettingsExpanderItem Content="颜色偏好规则"
                                                    Description="选择颜色偏好规则">
                         <controls:SettingsExpanderItem.Footer>
@@ -78,6 +88,7 @@
                         </controls:SettingsExpanderItem.Footer>
                         
                     </controls:SettingsExpanderItem>
+                    
                     <controls:SettingsExpanderItem Content="主题颜色"
                                                    Description="自定义主题颜色"
                                                    Name="UserColorBox">
@@ -94,7 +105,7 @@
                     </controls:SettingsExpander.IconSource>
                     
                     <controls:SettingsExpander.Footer>
-                        <button:AccentIconButton Name="AccentIconButton" Click="AccentIconButton_OnClick" Icon="Open20Regular" Content="打开导出向导" Width="120"/>
+                        <button:AccentIconButton Name="AccentIconButton" Click="AccentIconButton_OnClick" Icon="Open20Regular" Content="打开导出向导"/>
                     </controls:SettingsExpander.Footer>
                 </controls:SettingsExpander>
             </StackPanel>
