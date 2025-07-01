@@ -16,14 +16,23 @@ public class StyleManager
     {
         if (!string.IsNullOrEmpty(htmlColor))
         {
-            Config.Config.MainConfig.ThemeColors = htmlColor;
+            Config.Config.MainConfig.ThemeColors.ThemeColors = htmlColor;
             Config.Config.SaveConfig();
         }
         else
         {
-            htmlColor = Config.Config.MainConfig.ThemeColors;
+            htmlColor = Config.Config.MainConfig.ThemeColors.ThemeColors;
         }
-        Core.FluentAvaloniaTheme.CustomAccentColor = Color.Parse(htmlColor);
+
+        if (Config.Config.MainConfig.ThemeColors.ColorType == ColorType.System)
+        {
+            Core.FluentAvaloniaTheme.PreferUserAccentColor = true;
+        }
+        else
+        {
+            Core.FluentAvaloniaTheme.PreferUserAccentColor = false;
+            Core.FluentAvaloniaTheme.CustomAccentColor = Color.Parse(htmlColor);
+        }
     }
     public static void UpdateBackground()
     {

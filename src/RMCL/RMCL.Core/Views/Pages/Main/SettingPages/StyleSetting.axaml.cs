@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using RMCL.Base.Entry.Style;
 using RMCL.Base.Enum;
@@ -11,6 +12,7 @@ using RMCL.Controls.View;
 using RMCL.Core.Models.Classes.Manager.StyleManager;
 using RMCL.Core.Views.Pages.Main.SettingPages.SettingSubPages;
 using RMCL.Core.Models.Classes;
+using RMCL.Core.Views.Windows.Main;
 using Color = Avalonia.Media.Color;
 
 namespace RMCL.Core.Views.Pages.Main.SettingPages;
@@ -34,9 +36,19 @@ public partial class StyleSetting : ISetting
         var enums = (BackgroundModelEnum)ChooseBackgroundModel.SelectedIndex;
         Config.Config.MainConfig.Background.ChooseModel = enums;
         BackgroundMaxSetting.Content = BackgroundSettings[enums];
-        MainButtonStyle.SelectedIndex = Config.Config.MainConfig.ButtonStyle.HomeButton.GetHashCode()-1;
+        MainButtonStyle.SelectedIndex = Config.Config.MainConfig.ButtonStyle.HomeButton.GetHashCode() - 1;
         QuickChoosePlayerButtonStyle.SelectedIndex = Config.Config.MainConfig.ButtonStyle.QuickChoosePlayerButton.GetHashCode();
-        ColorPicker.Color = Color.Parse(Config.Config.MainConfig.ThemeColors);
+        ColorPicker.Color = Color.Parse(Config.Config.MainConfig.ThemeColors.ThemeColors);
+
+        ColorThemeModel.SelectedIndex = Config.Config.MainConfig.ThemeColors.ColorType.GetHashCode();
+        if (Config.Config.MainConfig.ThemeColors.ColorType == ColorType.System)
+        {
+            UserColorBox.IsVisible = false;
+        }
+        else
+        {
+            UserColorBox.IsVisible = true;
+        }
         IsEdit = true;
     }
 
@@ -81,5 +93,30 @@ public partial class StyleSetting : ISetting
         {
             StyleManager.UpdateSystemColor(ColorPicker.Color.ToString());
         }
+    }
+
+    private void ColorThemeModel_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.Config.MainConfig.ThemeColors.ColorType = (ColorType)ColorThemeModel.SelectedIndex;
+            Config.Config.SaveConfig();
+            
+            StyleManager.UpdateSystemColor();
+
+            if (Config.Config.MainConfig.ThemeColors.ColorType == ColorType.System)
+            {
+                UserColorBox.IsVisible = false;
+            }
+            else
+            {
+                UserColorBox.IsVisible = true;
+            }
+        }
+    }
+
+    private void AccentIconButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        new ExportUserThemeWindow().ShowDialog(Models.Classes.Core.MainWindow);
     }
 }

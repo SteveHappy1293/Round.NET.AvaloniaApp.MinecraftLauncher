@@ -5,6 +5,7 @@
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
+             xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.Main.SettingPages.StyleSetting">
     <Grid>
@@ -36,16 +37,6 @@
                     </controls:SettingsExpanderItem>
                 </controls:SettingsExpander>
                 
-                <controls:SettingsExpander Header="颜色偏好"
-                                           Description="设置启动器的主题颜色">
-                    <controls:SettingsExpander.IconSource>
-                        <fluentIcons:FluentIconSource Icon="Color20Regular"/>
-                    </controls:SettingsExpander.IconSource>
-                    <controls:SettingsExpander.Footer>
-                        <ColorPicker Name="ColorPicker" ColorChanged="ColorView_OnColorChanged" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="400"></ColorPicker>
-                    </controls:SettingsExpander.Footer>
-                </controls:SettingsExpander>
-                
                 <controls:SettingsExpander Header="背景"
                                            Description="设置启动器的背景样式">
                     <controls:SettingsExpander.IconSource>
@@ -69,6 +60,42 @@
                             <view:NullBox Margin="10" SmallTitle="这里没有设置"></view:NullBox>
                         </controls:Frame>
                     </controls:SettingsExpanderItem>
+                </controls:SettingsExpander>
+                
+                <controls:SettingsExpander Header="颜色偏好"
+                                           Description="设置启动器的主题颜色">
+                    <controls:SettingsExpander.IconSource>
+                        <fluentIcons:FluentIconSource Icon="Color20Regular"/>
+                    </controls:SettingsExpander.IconSource>
+                    
+                    <controls:SettingsExpanderItem Content="颜色偏好规则"
+                                                   Description="选择颜色偏好规则">
+                        <controls:SettingsExpanderItem.Footer>
+                            <ComboBox SelectedIndex="0" Width="400" Name="ColorThemeModel" SelectionChanged="ColorThemeModel_OnSelectionChanged">
+                                <ComboBoxItem Tag="System">跟随系统 (需要重启)</ComboBoxItem>
+                                <ComboBoxItem Tag="User">自定义</ComboBoxItem>
+                            </ComboBox>
+                        </controls:SettingsExpanderItem.Footer>
+                        
+                    </controls:SettingsExpanderItem>
+                    <controls:SettingsExpanderItem Content="主题颜色"
+                                                   Description="自定义主题颜色"
+                                                   Name="UserColorBox">
+                        <controls:SettingsExpanderItem.Footer>
+                            <ColorPicker Name="ColorPicker" ColorChanged="ColorView_OnColorChanged" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="400"></ColorPicker>
+                        </controls:SettingsExpanderItem.Footer>
+                    </controls:SettingsExpanderItem>
+                </controls:SettingsExpander>
+                
+                <controls:SettingsExpander Header="导出主题包"
+                                           Description="导出 Round Studio 通用主题包">
+                    <controls:SettingsExpander.IconSource>
+                        <fluentIcons:FluentIconSource Icon="Save20Regular"></fluentIcons:FluentIconSource>
+                    </controls:SettingsExpander.IconSource>
+                    
+                    <controls:SettingsExpander.Footer>
+                        <button:AccentIconButton Name="AccentIconButton" Click="AccentIconButton_OnClick" Icon="Open20Regular" Content="打开导出向导" Width="120"/>
+                    </controls:SettingsExpander.Footer>
                 </controls:SettingsExpander>
             </StackPanel>
         </ScrollViewer>

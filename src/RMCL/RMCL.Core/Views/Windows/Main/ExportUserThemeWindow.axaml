@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
+        mc:Ignorable="d"
+        x:Class="RMCL.Core.Views.Windows.Main.ExportUserThemeWindow"
+        Title="导出用户主题向导" WindowStartupLocation="CenterOwner"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        Width="480" Height="580"
+        MinWidth="480" MinHeight="580">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top"  PointerPressed="TitleBar_PointerPressed" Background="#00000001">
+            <TextBlock DockPanel.Dock="Left" FontSize="18" Margin="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Orange">导出用户主题向导</TextBlock>
+            <Button DockPanel.Dock="Right" Margin="15" HorizontalAlignment="Right" VerticalAlignment="Center" ToolTip.Tip="关闭"  Width="32" Height="32" Click="CloseButton_Click" BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
+                <Path Width="12" Height="12" Stretch="Uniform" Fill="{DynamicResource TextColor}" Margin="0,2,0,0"
+                      Data="M1484.481422 509.178311l192.420978-192.420978a45.078756 45.078756 0 1 0-63.715556-63.715555l-192.420977 192.420978-192.466489-192.466489a45.078756 45.078756 0 1 0-63.715556 63.715555l192.420978 192.420978-192.466489 192.489244a45.078756 45.078756 0 1 0 63.715556 63.715556l192.420977-192.420978 192.420978 192.420978a45.078756 45.078756 0 1 0 63.715556-63.715556z"/>
+            </Button>
+        </DockPanel>
+        
+        <StackPanel Grid.Row="1" Margin="40,0">
+            <TextBlock FontSize="16">包含</TextBlock>
+            <StackPanel Margin="20,10">
+                <CheckBox>壁纸</CheckBox>
+                <CheckBox>主题色</CheckBox>
+                <CheckBox>按钮配置</CheckBox>
+            </StackPanel>
+            
+            <TextBlock FontSize="16">主题包信息</TextBlock>
+            <StackPanel Margin="15,5">
+                <TextBox Margin="5" Watermark="作者信息"></TextBox>
+                <TextBox Margin="5" Watermark="主题包信息"></TextBox>
+                <TextBox Margin="5" Watermark="主题包图标"></TextBox>
+            </StackPanel>
+        </StackPanel>
+        
+        <button:AccentIconButton Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20" Content="导出" Icon="Save20Regular"/>
+    </Grid>
+</Window>

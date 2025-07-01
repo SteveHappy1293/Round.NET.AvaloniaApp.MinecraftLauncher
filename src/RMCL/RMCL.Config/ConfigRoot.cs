@@ -15,7 +15,7 @@ public class ConfigRoot
         }
     };
     public BackgroundEntry Background { get; set; } = new();
-    public string ThemeColors { get; set; } = "#2D7D9AFF";
+    public ColorEntry ThemeColors { get; set; } = new();
     public ButtonStyle ButtonStyle { get; set; } = new();
     public bool FirstLauncher { get; set; } = true;
     public int SelectedGameFolder { get; set; } = 0;
