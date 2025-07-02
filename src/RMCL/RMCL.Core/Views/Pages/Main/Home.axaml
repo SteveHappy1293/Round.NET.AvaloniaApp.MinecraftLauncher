@@ -7,5 +7,7 @@
              x:Class="RMCL.Core.Views.Pages.Main.Home">
     <Grid>
         <homePages:HomeQuickChoosePlayer Name="ChoosePlayer" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10"/>
+        
+        <Button Click="Button_OnClick">Test Log Window</Button>
     </Grid>
 </UserControl>
