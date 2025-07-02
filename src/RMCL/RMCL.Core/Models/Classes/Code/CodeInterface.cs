@@ -6,7 +6,7 @@ public class CodeInterface
 {
     public static void LaunchGame(string GameFolder, string GameID)
     {
-        Launch.LaunchService.Launch(new LaunchClientInfo()
+        Launch.LaunchService.LaunchTask(new LaunchClientInfo()
         {
             GameFolder = GameFolder,
             GameName = GameID

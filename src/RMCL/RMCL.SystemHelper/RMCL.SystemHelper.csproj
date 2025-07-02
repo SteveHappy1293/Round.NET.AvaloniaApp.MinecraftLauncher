@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="OverrideLauncher.Core" Version="25.7.2.347" />
+    </ItemGroup>
+
 </Project>

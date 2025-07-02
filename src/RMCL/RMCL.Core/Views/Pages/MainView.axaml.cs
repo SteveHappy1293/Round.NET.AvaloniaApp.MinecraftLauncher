@@ -12,10 +12,10 @@ using FluentAvalonia.UI.Controls;
 using RMCL.Base.Entry;
 using RMCL.Base.Enum.Update;
 using RMCL.Controls.ControlHelper;
-using RMCL.Core.Models.Classes.Launch;
 using RMCL.Core.Views.Pages.Main;
 using RMCL.Core.Views.Pages.UpdateView;
 using RMCL.Core.Models.Classes;
+using RMCL.Core.Models.Classes.Launch;
 using RMCL.Update;
 
 namespace RMCL.Core.Views.Pages;
@@ -112,7 +112,7 @@ public partial class MainView : UserControl
 
         Task.Run(() =>
         {
-            LaunchService.Launch(new LaunchClientInfo()
+            LaunchService.LaunchTask(new LaunchClientInfo()
             {
                 GameFolder = versionDir.Path,
                 GameName = Path.GetFileName(ver)

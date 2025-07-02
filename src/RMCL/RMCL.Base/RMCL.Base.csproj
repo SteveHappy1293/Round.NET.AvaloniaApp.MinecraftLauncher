@@ -8,7 +8,7 @@
 
     <ItemGroup>
       <PackageReference Include="Avalonia" Version="11.3.1" />
-      <PackageReference Include="OverrideLauncher.Core" Version="25.6.28.229" />
+      <PackageReference Include="OverrideLauncher.Core" Version="25.7.2.347" />
     </ItemGroup>
 
     <ItemGroup>

@@ -191,8 +191,6 @@ public class JavaManager
                                         var parent = Directory.GetParent(java);
                                         var javaw = Path.Combine(parent.FullName,
                                             OperatingSystem.IsWindows() ? "javaw.exe" : "javaw");
-                                        var javac = Path.Combine(parent.FullName,
-                                            OperatingSystem.IsWindows() ? "javac.exe" : "javac");
 
                                         var readRelease = ReadRelease(parent.FullName + Path.DirectorySeparatorChar);
                                         if (OperatingSystem.IsWindows() && readRelease.VERSION == null)

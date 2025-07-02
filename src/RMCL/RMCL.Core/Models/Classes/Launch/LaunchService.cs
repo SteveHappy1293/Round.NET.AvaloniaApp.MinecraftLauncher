@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Linq;
+using Avalonia.Threading;
 using OverrideLauncher.Core.Modules.Classes.Account;
 using OverrideLauncher.Core.Modules.Classes.Launch.Client;
 using OverrideLauncher.Core.Modules.Classes.Version;
@@ -10,7 +11,10 @@ using OverrideLauncher.Core.Modules.Enum.Launch;
 using RMCL.Base.Entry;
 using RMCL.Base.Entry.Java;
 using RMCL.Base.Enum.BackCall;
+using RMCL.Controls.Launch;
+using RMCL.Controls.TaskContentControl;
 using RMCL.Core.Models.Classes.Manager.BackCallManager;
+using RMCL.Core.Models.Classes.Manager.TaskManager;
 using RMCL.Core.Models.Classes.Manager.UserManager;
 
 namespace RMCL.Core.Models.Classes.Launch;
@@ -108,7 +112,7 @@ public class LaunchService
         };
     }
 
-    public static void Launch(LaunchClientInfo Info)
+    public static ClientRunner Launch(LaunchClientInfo Info,Action<string> LogOutput = null)
     {
         BackCallManager.Call(BackCallType.LaunchedGame);
 
@@ -136,7 +140,33 @@ public class LaunchService
             GameInstances = par,
             WindowInfo = ClientWindowSizeEnum.Default
         });
-        run.LogsOutput = s => Console.WriteLine(s);
-        run.Start();
+        run.LogsOutput = s => LogOutput.Invoke(s);
+        
+        return run;
+    }
+
+    public static void LaunchTask(LaunchClientInfo Info)
+    {
+        Dispatcher.UIThread.Invoke(() =>
+        {
+            var dow = new LaunchClientTaskItem();
+            var cont = new TaskControl()
+            {
+                BoxContent = dow,
+                TaskName = $"启动游戏 - {Info.GameName}"
+            };
+            cont.RunTask();
+            var uuid1 = TaskManager.AddTask(cont);
+            dow.ExitCompleted = (uuid) => TaskManager.DeleteTask(uuid1);
+            dow.Launching = (entry) =>
+            {
+                dow.Runner = Launch(entry, (s) =>
+                {
+                    Console.WriteLine(s);
+                });
+                dow.RunningGame();
+            };
+            dow.Launch(Info);
+        });
     }
 }

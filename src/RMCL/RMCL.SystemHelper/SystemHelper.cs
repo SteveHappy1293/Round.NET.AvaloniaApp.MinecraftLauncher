@@ -62,6 +62,6 @@ public class SystemHelper
             Environment.SpecialFolderOption.Create); // 确保目录存在
         
         // 组合应用专属路径
-        return Path.Combine(folder, "RMCL");
+        return Path.Combine(folder, "RoundStudio");
     }
 }

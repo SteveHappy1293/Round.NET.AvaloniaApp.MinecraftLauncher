@@ -77,7 +77,7 @@ public partial class ManageGame : ISetting
                         {
                             try
                             {
-                                LaunchService.Launch(new LaunchClientInfo()
+                                LaunchService.LaunchTask(new LaunchClientInfo()
                                 {
                                     GameFolder = ver.ClientInstances.GameCatalog,
                                     GameName = ver.ClientInstances.GameName
