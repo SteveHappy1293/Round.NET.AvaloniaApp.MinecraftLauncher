@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using Avalonia;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using RMCL.Base.Entry.Style;
 using RMCL.Config;
 
 namespace RMCL.Core.Models.Classes.Manager.StyleManager;
@@ -13,7 +14,7 @@ public class ColorHelper
 {
     public static IBrush GetBackColor()
     {
-        if (Config.Config.MainConfig.Theme == ThemeType.Dark)
+        if (Config.Config.MainConfig.ThemeColors.Theme == ThemeType.Dark)
         {
             return Brush.Parse("#373737");
         }

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.IO.Compression;
 
 namespace RMCL.SystemHelper;
 
@@ -63,5 +64,40 @@ public class SystemHelper
         
         // 组合应用专属路径
         return Path.Combine(folder, "RoundStudio");
+    }
+    
+    public static void CreateZipFromFolder(string sourceFolderPath, string zipFilePath)
+    {
+        // 确保源文件夹存在
+        if (!Directory.Exists(sourceFolderPath))
+        {
+            throw new DirectoryNotFoundException($"源文件夹不存在: {sourceFolderPath}");
+        }
+
+        // 创建ZIP文件
+        using (FileStream zipToOpen = new FileStream(zipFilePath, FileMode.Create))
+        using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Create))
+        {
+            // 获取文件夹中所有文件
+            string[] files = Directory.GetFiles(sourceFolderPath, "*", SearchOption.AllDirectories);
+        
+            foreach (string file in files)
+            {
+                // 获取相对路径
+                string relativePath = file.Substring(sourceFolderPath.Length).TrimStart(Path.DirectorySeparatorChar);
+            
+                // 在ZIP中创建条目
+                ZipArchiveEntry entry = archive.CreateEntry(relativePath, CompressionLevel.Optimal);
+            
+                // 写入文件内容
+                using (FileStream fileStream = new FileStream(file, FileMode.Open, FileAccess.Read))
+                using (Stream entryStream = entry.Open())
+                {
+                    fileStream.CopyTo(entryStream);
+                }
+            }
+        }
+    
+        Console.WriteLine($"已成功创建ZIP文件: {zipFilePath}");
     }
 }

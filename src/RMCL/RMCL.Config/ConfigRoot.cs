@@ -24,7 +24,6 @@ public class ConfigRoot
     public int DownloadThreads { get; set; } = 256;
     public int WindowX { get; set; } = 0;
     public int WindowY { get; set; } = 0;
-    public ThemeType Theme { get; set; } = ThemeType.Dark;
     public UpdateConfigEntry UpdateModel { get; set; } = new();
 }
 public class GameFolderConfig
@@ -32,10 +31,4 @@ public class GameFolderConfig
     public string Name { get; set; } = string.Empty;
     public string Path { get; set; } = string.Empty;
     public int SelectedGameIndex { get; set; } = 0;
-}
-
-public enum ThemeType
-{
-    Dark,
-    Light
 }

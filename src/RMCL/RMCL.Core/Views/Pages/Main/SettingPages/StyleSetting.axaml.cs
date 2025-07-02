@@ -51,7 +51,7 @@ public partial class StyleSetting : ISetting
         ColorPicker.Color = Color.Parse(Config.Config.MainConfig.ThemeColors.ThemeColors);
 
         ColorThemeModel.SelectedIndex = Config.Config.MainConfig.ThemeColors.ColorType.GetHashCode();
-        LightTheme.SelectedIndex = Config.Config.MainConfig.Theme.GetHashCode();
+        LightTheme.SelectedIndex = Config.Config.MainConfig.ThemeColors.Theme.GetHashCode();
         if (Config.Config.MainConfig.ThemeColors.ColorType == ColorType.System)
         {
             UserColorBox.IsVisible = false;
@@ -61,7 +61,18 @@ public partial class StyleSetting : ISetting
             UserColorBox.IsVisible = true;
         }
         IsEdit = true;
-
+        
+        if (Config.Config.MainConfig.Background.ChooseModel == BackgroundModelEnum.Pack)
+        {
+            ExportSkinPackBox.IsEnabled = false;
+            SetButton.IsEnabled = false;
+            SetColor.IsEnabled = false;
+        }else{
+            ExportSkinPackBox.IsEnabled = true;
+            SetButton.IsEnabled = true;
+            SetColor.IsEnabled = true;
+        }
+        
         if (!OSVersionHelper.IsWindows11()) ItemMica.IsEnabled = false;
         if (!OSVersionHelper.IsWindows()) ItemAcrylicBlur.IsEnabled = false;
     }
@@ -76,6 +87,17 @@ public partial class StyleSetting : ISetting
             StyleManager.UpdateBackground();
 
             Config.Config.SaveConfig();
+
+            if (Config.Config.MainConfig.Background.ChooseModel == BackgroundModelEnum.Pack)
+            {
+                ExportSkinPackBox.IsEnabled = false;
+                SetButton.IsEnabled = false;
+                SetColor.IsEnabled = false;
+            }else{
+                ExportSkinPackBox.IsEnabled = true;
+                SetButton.IsEnabled = true;
+                SetColor.IsEnabled = true;
+            }
         }
     }
 
@@ -138,7 +160,7 @@ public partial class StyleSetting : ISetting
     {
         if (IsEdit)
         {
-            Config.Config.MainConfig.Theme = (ThemeType)LightTheme.SelectedIndex;
+            Config.Config.MainConfig.ThemeColors.Theme = (ThemeType)LightTheme.SelectedIndex;
             Config.Config.SaveConfig();
             
             StyleManager.UpdateBackground();

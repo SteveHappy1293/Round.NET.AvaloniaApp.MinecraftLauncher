@@ -11,32 +11,6 @@
     <Grid>
         <ScrollViewer>
             <StackPanel Margin="5" MaxWidth="1200">
-                <controls:SettingsExpander Header="按钮样式"
-                                           Description="设置启动器的部分按钮样式">
-                    <controls:SettingsExpander.IconSource>
-                        <fluentIcons:FluentIconSource Icon="Button20Regular"/>
-                    </controls:SettingsExpander.IconSource>
-                    <controls:SettingsExpanderItem Content="Home 按钮样式"
-                                                   Description="启动器主窗口左上角返回主页按钮样式">
-                        <controls:SettingsExpanderItem.Footer>
-                            <ComboBox Name="MainButtonStyle" SelectionChanged="MainButtonStyle_OnSelectionChanged" Width="400">
-                                <ComboBoxItem Tag="Default">长按钮 (默认)</ComboBoxItem>
-                                <ComboBoxItem Tag="Short">短按钮</ComboBoxItem>
-                            </ComboBox>
-                        </controls:SettingsExpanderItem.Footer>
-                    </controls:SettingsExpanderItem>
-                    <controls:SettingsExpanderItem Content="快速选择账户按钮样式"
-                                                   Description="启动器主页右上角快速选择账户按钮样式">
-                        <controls:SettingsExpanderItem.Footer>
-                            <ComboBox Name="QuickChoosePlayerButtonStyle" SelectionChanged="QuickChoosePlayerButtonStyle_OnSelectionChanged" Width="400">
-                                <ComboBoxItem Tag="None">不显示</ComboBoxItem>
-                                <ComboBoxItem Tag="Default">长按钮</ComboBoxItem>
-                                <ComboBoxItem Tag="Short">短按钮</ComboBoxItem>
-                            </ComboBox>
-                        </controls:SettingsExpanderItem.Footer>
-                    </controls:SettingsExpanderItem>
-                </controls:SettingsExpander>
-                
                 <controls:SettingsExpander Header="背景"
                                            Description="设置启动器的背景样式">
                     <controls:SettingsExpander.IconSource>
@@ -62,8 +36,36 @@
                     </controls:SettingsExpanderItem>
                 </controls:SettingsExpander>
                 
+                <controls:SettingsExpander Header="按钮样式"
+                                           Description="设置启动器的部分按钮样式"
+                                           Name="SetButton">
+                    <controls:SettingsExpander.IconSource>
+                        <fluentIcons:FluentIconSource Icon="Button20Regular"/>
+                    </controls:SettingsExpander.IconSource>
+                    <controls:SettingsExpanderItem Content="Home 按钮样式"
+                                                   Description="启动器主窗口左上角返回主页按钮样式">
+                        <controls:SettingsExpanderItem.Footer>
+                            <ComboBox Name="MainButtonStyle" SelectionChanged="MainButtonStyle_OnSelectionChanged" Width="400">
+                                <ComboBoxItem Tag="Default">长按钮 (默认)</ComboBoxItem>
+                                <ComboBoxItem Tag="Short">短按钮</ComboBoxItem>
+                            </ComboBox>
+                        </controls:SettingsExpanderItem.Footer>
+                    </controls:SettingsExpanderItem>
+                    <controls:SettingsExpanderItem Content="快速选择账户按钮样式"
+                                                   Description="启动器主页右上角快速选择账户按钮样式">
+                        <controls:SettingsExpanderItem.Footer>
+                            <ComboBox Name="QuickChoosePlayerButtonStyle" SelectionChanged="QuickChoosePlayerButtonStyle_OnSelectionChanged" Width="400">
+                                <ComboBoxItem Tag="None">不显示</ComboBoxItem>
+                                <ComboBoxItem Tag="Default">长按钮</ComboBoxItem>
+                                <ComboBoxItem Tag="Short">短按钮</ComboBoxItem>
+                            </ComboBox>
+                        </controls:SettingsExpanderItem.Footer>
+                    </controls:SettingsExpanderItem>
+                </controls:SettingsExpander>
+                
                 <controls:SettingsExpander Header="颜色偏好"
-                                           Description="设置启动器的主题颜色">
+                                           Description="设置启动器的主题颜色"
+                                           Name="SetColor">
                     <controls:SettingsExpander.IconSource>
                         <fluentIcons:FluentIconSource Icon="Color20Regular"/>
                     </controls:SettingsExpander.IconSource>
@@ -94,7 +96,7 @@
                                                    Name="UserColorBox">
                         <controls:SettingsExpanderItem.Footer>
                             <DockPanel LastChildFill="True" Width="400">
-                                <Button Height="32" Width="32" ToolTip.Tip="获取背景图片颜色" Name="GetImageColor" Click="GetImageColor_OnClick">
+                                <Button Height="32" Width="32" ToolTip.Tip="获取背景图片主题颜色" Name="GetImageColor" Click="GetImageColor_OnClick">
                                     <fluentIcons:FluentIcon Icon="Target20Regular" Width="20"></fluentIcons:FluentIcon>
                                 </Button>
                                 <ColorPicker Name="ColorPicker" ColorChanged="ColorView_OnColorChanged" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="360"></ColorPicker>
@@ -104,7 +106,8 @@
                 </controls:SettingsExpander>
                 
                 <controls:SettingsExpander Header="导出主题包"
-                                           Description="导出 Round Studio 通用主题包">
+                                           Description="导出 Round Studio 通用主题包"
+                                           Name="ExportSkinPackBox">
                     <controls:SettingsExpander.IconSource>
                         <fluentIcons:FluentIconSource Icon="Save20Regular"></fluentIcons:FluentIconSource>
                     </controls:SettingsExpander.IconSource>

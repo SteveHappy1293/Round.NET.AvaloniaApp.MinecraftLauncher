@@ -87,7 +87,7 @@ public partial class MainWindow : Window
 
         BackCallManager.RegisteredBackCall(() =>
         {
-            RequestedThemeVariant = Config.Config.MainConfig.Theme switch
+            RequestedThemeVariant = Config.Config.MainConfig.ThemeColors.Theme switch
             {
                 ThemeType.Dark => ThemeVariant.Dark,
                 ThemeType.Light => ThemeVariant.Light

@@ -27,19 +27,18 @@
         <StackPanel Grid.Row="1" Margin="40,0">
             <TextBlock FontSize="16">包含</TextBlock>
             <StackPanel Margin="20,10">
-                <CheckBox>壁纸</CheckBox>
-                <CheckBox>主题色</CheckBox>
-                <CheckBox>按钮配置</CheckBox>
+                <CheckBox Name="ModelBackground" IsChecked="True">壁纸</CheckBox>
+                <CheckBox Name="ModelColor" IsChecked="True">主题色</CheckBox>
+                <CheckBox Name="ModelButton" IsChecked="True">按钮配置</CheckBox>
             </StackPanel>
             
             <TextBlock FontSize="16">主题包信息</TextBlock>
             <StackPanel Margin="15,5">
-                <TextBox Margin="5" Watermark="作者信息"></TextBox>
-                <TextBox Margin="5" Watermark="主题包信息"></TextBox>
-                <TextBox Margin="5" Watermark="主题包图标"></TextBox>
+                <TextBox Margin="5" Watermark="作者信息">RMCL Skin Pack Build Tools</TextBox>
+                <TextBox Margin="5" Watermark="主题包信息">RMCL Skin Pack</TextBox>
             </StackPanel>
         </StackPanel>
         
-        <button:AccentIconButton Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20" Content="导出" Icon="Save20Regular"/>
+        <button:AccentIconButton Name="Export" Click="Export_OnClick" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20" Content="导出" Icon="Save20Regular"/>
     </Grid>
 </Window>

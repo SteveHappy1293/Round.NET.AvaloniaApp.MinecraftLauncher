@@ -9,6 +9,7 @@ using Avalonia.Styling;
 using FluentAvalonia.Styling;
 using HotAvalonia;
 using NetworkService.SingleInstanceDetector;
+using RMCL.Base.Entry.Style;
 using RMCL.Config;
 using RMCL.Core.Views;
 using RMCL.Core.Views.Windows;
@@ -34,7 +35,7 @@ public partial class App : Application
             desktop.MainWindow = new MainWindow();
         }
 
-        RequestedThemeVariant = Config.Config.MainConfig.Theme switch
+        RequestedThemeVariant = Config.Config.MainConfig.ThemeColors.Theme switch
         {
             ThemeType.Dark => ThemeVariant.Dark,
             ThemeType.Light => ThemeVariant.Light

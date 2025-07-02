@@ -37,7 +37,7 @@ public class StyleManager
     }
     public static void UpdateBackground()
     {
-        Core.MainWindow.Background = Config.Config.MainConfig.Theme == ThemeType.Dark ? Brush.Parse("#161616") : Brushes.AliceBlue;
+        Core.MainWindow.Background = Config.Config.MainConfig.ThemeColors.Theme == ThemeType.Dark ? Brush.Parse("#161616") : Brushes.AliceBlue;
         Core.MainWindow.TransparencyLevelHint = new[] { WindowTransparencyLevel.Transparent };
         Core.MainWindow.InvalidateVisual();
         Core.MainWindow.BackOpacity.Opacity = 0;

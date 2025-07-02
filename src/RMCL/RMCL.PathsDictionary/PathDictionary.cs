@@ -18,5 +18,6 @@ public class PathDictionary
 
     public static readonly string SkinRootFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Style";
     public static readonly string SkinFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Style/Files";
+    public static readonly string SkinTempFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Style/Temp";
     public static readonly string SkinFolderExtract = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Style/Extract";
 }
