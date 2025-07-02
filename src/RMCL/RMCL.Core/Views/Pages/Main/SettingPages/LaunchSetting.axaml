@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RMCL.Core.Views.Pages.Main.SettingPages.LaunchSetting">
+    <ScrollViewer Margin="5" MaxWidth="1200">
+        <StackPanel>
+            <controls:SettingsExpander Header="启动器可见性"
+                                       Description="启动器启动游戏后是否可见">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="Fire20Regular"></fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                <controls:SettingsExpander.Footer>
+                    <ComboBox Width="400" SelectedIndex="0">
+                        <ComboBoxItem>保持可见</ComboBoxItem>
+                        <ComboBoxItem>最小化</ComboBoxItem>
+                        <ComboBoxItem>退出启动器</ComboBoxItem>
+                    </ComboBox>
+                </controls:SettingsExpander.Footer>
+            </controls:SettingsExpander>
+            
+            <controls:SettingsExpander Header="日志可见性"
+                                       Description="启动器启动游戏后是否可见">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="WindowConsole20Regular"></fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                <controls:SettingsExpander.Footer>
+                    <ComboBox Width="400" SelectedIndex="0">
+                        <ComboBoxItem>自动打开</ComboBoxItem>
+                        <ComboBoxItem>手动打开</ComboBoxItem>
+                    </ComboBox>
+                </controls:SettingsExpander.Footer>
+            </controls:SettingsExpander>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

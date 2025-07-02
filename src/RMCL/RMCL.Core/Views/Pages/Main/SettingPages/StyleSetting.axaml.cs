@@ -1,10 +1,16 @@
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media.Imaging;
+using Avalonia.Threading;
+using FluentAvalonia.FluentIcons;
 using FluentAvalonia.Interop;
+using FluentAvalonia.UI.Controls;
 using RMCL.Base.Entry.Style;
 using RMCL.Base.Enum;
 using RMCL.Base.Enum.ButtonStyle;
@@ -15,7 +21,9 @@ using RMCL.Core.Models.Classes.Manager.StyleManager;
 using RMCL.Core.Views.Pages.Main.SettingPages.SettingSubPages;
 using RMCL.Core.Models.Classes;
 using RMCL.Core.Views.Windows.Main;
+using SkiaSharp;
 using Color = Avalonia.Media.Color;
+using ColorChangedEventArgs = Avalonia.Controls.ColorChangedEventArgs;
 
 namespace RMCL.Core.Views.Pages.Main.SettingPages;
 
@@ -135,5 +143,46 @@ public partial class StyleSetting : ISetting
             
             StyleManager.UpdateBackground();
         }
+    }
+
+    private void GetImageColor_OnClick(object? sender, RoutedEventArgs e)
+    {
+        GetImageColor.IsEnabled = false;
+        GetImageColor.Content = new ProgressRing()
+        {
+            Width = 20,
+            Height = 20
+        };
+        Task.Run(() =>
+        {
+            if (Config.Config.MainConfig.Background.ImageEntry.ChooseIndex != -1
+                && Config.Config.MainConfig.Background.ImageEntry.ImagePaths.Count != 0
+                && Config.Config.MainConfig.Background.ImageEntry.ChooseIndex <
+                Config.Config.MainConfig.Background.ImageEntry.ImagePaths.Count
+                && File.Exists(
+                    Config.Config.MainConfig.Background.ImageEntry.ImagePaths[
+                        Config.Config.MainConfig.Background.ImageEntry.ChooseIndex]))
+            {
+                using var bitmap = SKBitmap.Decode(Config.Config.MainConfig.Background.ImageEntry.ImagePaths[
+                    Config.Config.MainConfig.Background.ImageEntry.ChooseIndex]);
+                var dominantColor = DominantColorExtractor.GetDominantColor(bitmap);
+                var avaloniaColor = Color.FromRgb(dominantColor.Red, dominantColor.Green, dominantColor.Blue);
+
+                Dispatcher.UIThread.Invoke(() =>
+                {
+                    ColorPicker.Color = avaloniaColor;
+                });
+            }
+            
+            Dispatcher.UIThread.Invoke(() =>
+            {
+                GetImageColor.IsEnabled = true;
+                GetImageColor.Content = new FluentIcon()
+                {
+                    Width = 20,
+                    Icon = FluentIconSymbol.Target20Regular
+                };
+            });
+        });
     }
 }

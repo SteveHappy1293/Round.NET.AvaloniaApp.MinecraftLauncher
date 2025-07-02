@@ -93,7 +93,12 @@
                                                    Description="自定义主题颜色"
                                                    Name="UserColorBox">
                         <controls:SettingsExpanderItem.Footer>
-                            <ColorPicker Name="ColorPicker" ColorChanged="ColorView_OnColorChanged" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="400"></ColorPicker>
+                            <DockPanel LastChildFill="True" Width="400">
+                                <Button Height="32" Width="32" ToolTip.Tip="获取背景图片颜色" Name="GetImageColor" Click="GetImageColor_OnClick">
+                                    <fluentIcons:FluentIcon Icon="Target20Regular" Width="20"></fluentIcons:FluentIcon>
+                                </Button>
+                                <ColorPicker Name="ColorPicker" ColorChanged="ColorView_OnColorChanged" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="360"></ColorPicker>
+                            </DockPanel>
                         </controls:SettingsExpanderItem.Footer>
                     </controls:SettingsExpanderItem>
                 </controls:SettingsExpander>

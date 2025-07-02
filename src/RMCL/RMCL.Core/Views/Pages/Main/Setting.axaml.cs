@@ -16,22 +16,29 @@ public partial class Setting : UserControl
         InitializeComponent();
         NavigationPage.RegisterRoute(new NavigationRouteConfig()
         {
+            Route = "LaunchSetting",
+            Title = "全局游戏设置",
+            Page = new LaunchSetting(),
+            Icon = FluentIconSymbol.Rocket20Regular,
+        });
+        NavigationPage.RegisterRoute(new NavigationRouteConfig()
+        {
             Route = "StyleSetting",
-            Title = "个性化设置",
+            Title = "个性化",
             Page = new StyleSetting(),
             Icon = FluentIconSymbol.StyleGuide20Regular,
         });
         NavigationPage.RegisterRoute(new NavigationRouteConfig()
         {
             Route = "DownloadSetting",
-            Title = "下载设置",
+            Title = "下载",
             Page = new DownloadSetting(),
             Icon = FluentIconSymbol.ArrowDownload20Regular,
         });
         NavigationPage.RegisterRoute(new NavigationRouteConfig()
         {
             Route = "JavaSetting",
-            Title = "Java 和内存设置",
+            Title = "Java 虚拟机和内存",
             Page = new JavaSetting(),
             Icon = FluentIconSymbol.Memory16Regular,
         });
