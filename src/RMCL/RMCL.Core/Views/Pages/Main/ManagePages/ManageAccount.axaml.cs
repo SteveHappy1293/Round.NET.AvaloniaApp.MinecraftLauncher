@@ -115,7 +115,7 @@ public partial class ManageAccount : ISetting
             string base64str = "";
             if (string.IsNullOrEmpty(logincon.GetSkinPath()) || !File.Exists(logincon.GetSkinPath()))
             {
-                string resourcePath = $"avares://RMCL/Assets/Skin/Steve.png";
+                string resourcePath = $"avares://RMCL.Core/Assets/Skin/Steve.png";
                 var bitmap = _imageCache.GetOrAdd(resourcePath, key =>
                 {
                     using var stream = AssetLoader.Open(new Uri(key));
