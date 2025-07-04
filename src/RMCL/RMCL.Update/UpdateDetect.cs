@@ -27,6 +27,7 @@ public class UpdateDetect
 
     public async Task Detect()
     {
+        Entry = new();
         var copynowver = NowVersion.Replace("0","");
         Entry.Name = $"v{copynowver}";
         
