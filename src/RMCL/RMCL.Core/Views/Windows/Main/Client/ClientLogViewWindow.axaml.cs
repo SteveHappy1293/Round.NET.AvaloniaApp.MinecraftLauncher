@@ -6,6 +6,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,9 @@ namespace RMCL.Core.Views.Windows.Main.Client
     {
         private bool _autoScroll = true;
         private bool _alwaysOnTop;
-        
+
+
+        public Process GameProcess;
         public ClientLogViewWindow()
         {
             InitializeComponent();
@@ -139,6 +142,11 @@ namespace RMCL.Core.Views.Windows.Main.Client
         {
             StatusLabel.Text = "游戏实例已退出";
             StatusLabel.BoxBackground = Brushes.DarkRed;
+        }
+
+        private void ExitGameBtn_OnClick(object? sender, RoutedEventArgs e)
+        {
+            GameProcess.Kill(true);
         }
     }
 }

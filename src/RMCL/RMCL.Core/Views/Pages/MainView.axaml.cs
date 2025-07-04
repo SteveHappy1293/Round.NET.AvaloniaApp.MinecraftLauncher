@@ -71,27 +71,33 @@ public partial class MainView : UserControl
             {
                 try
                 {
-                    var Update =
-                        new Update.UpdateDetect(
-                            "https://gh.llkk.cc/https://api.github.com/repos/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/releases/latest");
-
-                    Update.BranchIndex = Config.Config.MainConfig.UpdateModel.Branch;
-                    Update.OnUpdate = (s, entry) =>
+                    Task.Run(() =>
                     {
-                        Task.Run(() =>
-                        {
-                            var url = s;
-                            if (Config.Config.MainConfig.UpdateModel.Proxy == UpdateProxy.Faster)
-                            {
-                                var sel = new GitHubProxySelector();
-                                url = sel.GetBestProxyUrl().Replace("{url}", s);
-                            }
+                        var Update =
+                            new Update.UpdateDetect(
+                                "https://api.github.com/repos/Round-Studio/Round.NET.AvaloniaApp.MinecraftLauncher/releases/latest");
 
-                            Console.WriteLine(url);
-                            Dispatcher.UIThread.Invoke(() => { Models.Classes.Core.ChildFrame.Show(new UpdatePage(url, entry)); });
-                        });
-                    };
-                    Update.Detect().Wait();
+                        Update.BranchIndex = Config.Config.MainConfig.UpdateModel.Branch;
+                        Update.OnUpdate = (s, entry) =>
+                        {
+                            Task.Run(() =>
+                            {
+                                var url = s;
+                                if (Config.Config.MainConfig.UpdateModel.Proxy == UpdateProxy.Faster)
+                                {
+                                    var sel = new GitHubProxySelector();
+                                    url = sel.GetBestProxyUrl().Replace("{url}", s);
+                                }
+
+                                Console.WriteLine(url);
+                                Dispatcher.UIThread.InvokeAsync(() =>
+                                {
+                                    Models.Classes.Core.ChildFrame.Show(new UpdatePage(url, entry));
+                                });
+                            });
+                        };
+                        Update.Detect();
+                    });
                 }
                 catch(Exception ex)
                 {

@@ -173,6 +173,7 @@ public class LaunchService
                     Dispatcher.UIThread.Invoke(() => logWindow.AddLog(s));
                 });
                 dow.RunningGame();
+                logWindow.GameProcess = dow.Runner.GameProcess;
                 Dispatcher.UIThread.Invoke(() => logWindow.Show());
             };
             dow.Launch(Info);

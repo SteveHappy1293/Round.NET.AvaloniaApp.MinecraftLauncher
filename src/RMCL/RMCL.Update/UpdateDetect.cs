@@ -32,8 +32,6 @@ public class UpdateDetect
         Entry.Name = $"v{copynowver}";
         
         var json = await _client.GetAsync(ApiUrl).Result.Content.ReadAsStringAsync();
-        
-        Console.WriteLine($"Update Json: {json}");
 
         Entry = JsonSerializer.Deserialize<UpdateEntry.GitHubRelease>(json);
         Console.WriteLine($"Update Tag: {Entry.TagName}");
