@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RMCL.Base.Entry.Game.Client;
 using RMCL.Base.Entry.Style;
 using RMCL.Base.Entry.Update;
 
@@ -14,6 +15,8 @@ public class ConfigRoot
             Path = Path.GetFullPath(PathsDictionary.PathDictionary.DefaultGameFolder)
         }
     };
+
+    public ClientConfig PublicClietConfig { get; set; } = new();
     public BackgroundEntry Background { get; set; } = new();
     public ColorEntry ThemeColors { get; set; } = new();
     public ButtonStyle ButtonStyle { get; set; } = new();
@@ -26,6 +29,7 @@ public class ConfigRoot
     public int WindowY { get; set; } = 0;
     public UpdateConfigEntry UpdateModel { get; set; } = new();
 }
+
 public class GameFolderConfig
 {
     public string Name { get; set; } = string.Empty;

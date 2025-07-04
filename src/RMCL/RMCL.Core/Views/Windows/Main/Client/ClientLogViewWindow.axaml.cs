@@ -53,6 +53,8 @@ namespace RMCL.Core.Views.Windows.Main.Client
             // 导出按钮点击事件
             var exportButton = this.FindControl<Button>("Export");
             exportButton.Click += ExportButton_Click;
+
+            ExitGameBtn.IsEnabled = true;
         }
         
         // 添加日志方法
@@ -142,6 +144,7 @@ namespace RMCL.Core.Views.Windows.Main.Client
         {
             StatusLabel.Text = "游戏实例已退出";
             StatusLabel.BoxBackground = Brushes.DarkRed;
+            ExitGameBtn.IsEnabled = false;
         }
 
         private void ExitGameBtn_OnClick(object? sender, RoutedEventArgs e)

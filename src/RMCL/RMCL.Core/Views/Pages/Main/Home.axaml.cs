@@ -26,9 +26,4 @@ public partial class Home : UserControl
             }
         };
     }
-
-    private void Button_OnClick(object? sender, RoutedEventArgs e)
-    {
-        new ClientLogViewWindow().Show();
-    }
 }

@@ -14,10 +14,9 @@
                     <fluentIcons:FluentIconSource Icon="Fire20Regular"></fluentIcons:FluentIconSource>
                 </controls:SettingsExpander.IconSource>
                 <controls:SettingsExpander.Footer>
-                    <ComboBox Width="400" SelectedIndex="0">
+                    <ComboBox Width="400" SelectedIndex="0" Name="WindowVisibilityChoseBox" SelectionChanged="WindowVisibilityChoseBox_OnSelectionChanged">
                         <ComboBoxItem>保持可见</ComboBoxItem>
                         <ComboBoxItem>最小化</ComboBoxItem>
-                        <ComboBoxItem>退出启动器</ComboBoxItem>
                     </ComboBox>
                 </controls:SettingsExpander.Footer>
             </controls:SettingsExpander>
@@ -28,9 +27,9 @@
                     <fluentIcons:FluentIconSource Icon="WindowConsole20Regular"></fluentIcons:FluentIconSource>
                 </controls:SettingsExpander.IconSource>
                 <controls:SettingsExpander.Footer>
-                    <ComboBox Width="400" SelectedIndex="0">
+                    <ComboBox Width="400" SelectedIndex="0" Name="LogViewChoseBox" SelectionChanged="LogViewChoseBox_OnSelectionChanged">
                         <ComboBoxItem>自动打开</ComboBoxItem>
-                        <ComboBoxItem>手动打开</ComboBoxItem>
+                        <ComboBoxItem>不打开</ComboBoxItem>
                     </ComboBox>
                 </controls:SettingsExpander.Footer>
             </controls:SettingsExpander>

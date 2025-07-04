@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Avalonia.Controls;
 using Avalonia.Threading;
 using OverrideLauncher.Core.Modules.Classes.Account;
 using OverrideLauncher.Core.Modules.Classes.Launch.Client;
@@ -11,6 +12,7 @@ using OverrideLauncher.Core.Modules.Enum.Launch;
 using RMCL.Base.Entry;
 using RMCL.Base.Entry.Java;
 using RMCL.Base.Enum.BackCall;
+using RMCL.Base.Enum.Client;
 using RMCL.Controls.Launch;
 using RMCL.Controls.TaskContentControl;
 using RMCL.Core.Models.Classes.Manager.BackCallManager;
@@ -148,6 +150,8 @@ public class LaunchService
 
     public static void LaunchTask(LaunchClientInfo Info)
     {
+        var config = ClientManager.ClientSelfConfig.GetClientConfig(Info);
+        
         Dispatcher.UIThread.Invoke(() =>
         {
             var dow = new LaunchClientTaskItem();
@@ -174,7 +178,12 @@ public class LaunchService
                 });
                 dow.RunningGame();
                 logWindow.GameProcess = dow.Runner.GameProcess;
-                Dispatcher.UIThread.Invoke(() => logWindow.Show());
+                
+                if (config.LogViewShow == LogViewShowEnum.Auto) 
+                    Dispatcher.UIThread.Invoke(() => logWindow.Show());
+
+                if (config.LauncherVisibility == LauncherVisibilityEnum.Minimize)
+                    Dispatcher.UIThread.Invoke(() => Core.MainWindow.WindowState = WindowState.Minimized);
             };
             dow.Launch(Info);
         });
