@@ -53,6 +53,8 @@ public partial class StyleSetting : ISetting
         ColorThemeModel.SelectedIndex = Config.Config.MainConfig.ThemeColors.ColorType.GetHashCode();
         LightTheme.SelectedIndex = Config.Config.MainConfig.ThemeColors.Theme.GetHashCode();
         SystemHelper.GetSystemFonts.GetSystemFontFamilies().ForEach(x => ChoseLogViewFontBox.Items.Add(x));
+        ChoseLogViewFontBox.SelectedIndex = SystemHelper.GetSystemFonts.GetSystemFontFamilies()
+            .FindIndex(x => x == Config.Config.MainConfig.FontsConfig.ChoseFontName);
         if (Config.Config.MainConfig.ThemeColors.ColorType == ColorType.System)
         {
             UserColorBox.IsVisible = false;
