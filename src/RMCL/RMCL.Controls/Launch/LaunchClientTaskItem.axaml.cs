@@ -22,21 +22,23 @@ public partial class LaunchClientTaskItem : UserControl
     public async Task Launch(LaunchClientInfo Info)
     {
         ProgressTextBox.Text = "补全文件中...";
-        
-        FileIntegrityChecker fileIntegrityChecker = new FileIntegrityChecker(new VersionParse(new ClientInstancesInfo()
-        {
-            GameCatalog = Info.GameFolder,
-            GameName = Info.GameName
-        })); // ver 参数是先前读取的游戏
-        
-        GameFileCompleter fileCompleter = new GameFileCompleter();
-        fileCompleter.ProgressCallback = (@enum, s, arg3) => Dispatcher.UIThread.Invoke(() =>
-        {
-            ProgressTextBox.Text = $"{SystemHelper.GetDownloadStateText.GetText(@enum)} {s} {arg3:0.00} %";
-            CompleteTheResourceFile.Value = arg3;
-        });
         Task.Run(() =>
         {
+            FileIntegrityChecker fileIntegrityChecker = new FileIntegrityChecker(new VersionParse(new ClientInstancesInfo()
+            {
+                GameCatalog = Info.GameFolder,
+                GameName = Info.GameName
+            })); // ver 参数是先前读取的游戏
+        
+            GameFileCompleter fileCompleter = new GameFileCompleter();
+            fileCompleter.ProgressCallback = (@enum, s, arg3) => Dispatcher.UIThread.Invoke(() =>
+            {
+                Dispatcher.UIThread.Invoke(() =>
+                {
+                    ProgressTextBox.Text = $"{SystemHelper.GetDownloadStateText.GetText(@enum)} {s} {arg3:0.00} %";
+                    CompleteTheResourceFile.Value = arg3;
+                });
+            });
             fileCompleter.DownloadMissingFilesAsync(fileIntegrityChecker.GetMissingFiles()).Wait();
             Dispatcher.UIThread.Invoke(() =>
             {

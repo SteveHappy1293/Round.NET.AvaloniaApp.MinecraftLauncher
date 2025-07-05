@@ -7,6 +7,22 @@
              xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.Main.ManagePages.ManageGame">
+    <UserControl.Styles>
+        <Style Selector="DockPanel">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Duration="0:0:0.3" Easing="QuinticEaseOut"></ThicknessTransition>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Grid">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Duration="0:0:0.3" Easing="QuinticEaseOut"></ThicknessTransition>
+                </Transitions>
+            </Setter>
+        </Style>
+    </UserControl.Styles>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -15,6 +31,7 @@
         <DockPanel HorizontalAlignment="Stretch" 
                    VerticalAlignment="Top" 
                    LastChildFill="True"
+                   Name="SearchDocBox"
                    Margin="10">
             <Button DockPanel.Dock="Right" Width="32" Height="32" Click="RefuseButton_OnClick" Name="RefuseButton">
                 <fluentIcons:FluentIcon Icon="ArrowClockwise20Regular" Margin="-5"/>
@@ -48,15 +65,17 @@
                      HorizontalAlignment="Stretch"
                      Margin="0,0,10,0"/> 
         </DockPanel>
-        <view:Loading Grid.Row="1" Name="LoadingBox" SmallTitle="正在翻箱倒柜..."/>
-        <view:NullBox Grid.Row="1" Name="NullBox" BigTitle="箱子里没有" SmallTitle="翻箱倒...哦不！"></view:NullBox>
-        <ListBox Grid.Row="1" Name="VersionsList" SelectionChanged="VersionsList_OnSelectionChanged">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
+        <Grid Grid.Row="1" Name="BodyBox">
+            <view:Loading Name="LoadingBox" SmallTitle="正在翻箱倒柜..."/>
+            <view:NullBox Name="NullBox" BigTitle="箱子里没有" SmallTitle="翻箱倒...哦不！"></view:NullBox>
+            <ListBox Name="VersionsList" SelectionChanged="VersionsList_OnSelectionChanged">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
                 
-        </ListBox>
+            </ListBox>
+        </Grid>
     </Grid>
 </UserControl>

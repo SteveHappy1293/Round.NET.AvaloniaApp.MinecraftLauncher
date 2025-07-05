@@ -135,6 +135,17 @@ public partial class ManageGame : ISetting
         {
             // 获取搜索框的内容
             var searchText = SearchBox.Text;
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                SearchDocBox.Margin = new Thickness(10, 50, 10, -40);
+                BodyBox.Margin = new Thickness(0, 50, 0,0);
+            }
+            else
+            {
+                SearchDocBox.Margin = new Thickness(10);
+                BodyBox.Margin = new Thickness(0);
+                
+            }
             UpdateUI(searchText);
         }
     }
