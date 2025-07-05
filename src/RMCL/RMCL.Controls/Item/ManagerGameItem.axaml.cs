@@ -22,7 +22,10 @@ public partial class ManagerGameItem : UserControl
 
         VersionName.Text = versionInfo.ClientInstances.GameName;
         VersionType.Text = versionInfo.GameJson.Type;
-        VersionTime.Text = DateTime.Parse(versionInfo.GameJson.Time).ToString("yyyy/MM/dd HH:mm:ss");
+        try
+        {
+            VersionTime.Text = DateTime.Parse(versionInfo.GameJson.Time).ToString("yyyy/MM/dd HH:mm:ss");
+        }catch{ }
 
         var type = !string.IsNullOrEmpty(versionInfo.GameJson.Type)
             ? versionInfo.GameJson.Type
