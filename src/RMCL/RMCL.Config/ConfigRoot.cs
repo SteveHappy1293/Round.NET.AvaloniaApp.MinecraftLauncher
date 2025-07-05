@@ -20,6 +20,7 @@ public class ConfigRoot
     public BackgroundEntry Background { get; set; } = new();
     public ColorEntry ThemeColors { get; set; } = new();
     public ButtonStyle ButtonStyle { get; set; } = new();
+    public FontsConfigEntry FontsConfig { get; set; } = new();
     public bool FirstLauncher { get; set; } = true;
     public int SelectedGameFolder { get; set; } = 0;
     public int WindowWidth { get; set; } = 850;

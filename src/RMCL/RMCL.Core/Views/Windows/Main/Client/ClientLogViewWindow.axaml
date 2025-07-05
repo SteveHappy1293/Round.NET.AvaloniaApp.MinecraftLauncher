@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
         xmlns:item="clr-namespace:RMCL.Controls.Item;assembly=RMCL.Controls"
+        xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="RMCL.Core.Views.Windows.Main.Client.ClientLogViewWindow"
         Title="游戏实时日志"
@@ -35,11 +36,31 @@
             </Button>
         </DockPanel>
         
-        <ScrollViewer x:Name="LogScrollViewer" Grid.Row="1" Margin="20,0">
-            <StackPanel x:Name="LogPanel" Margin="5">
-                <!-- 日志内容将在这里动态添加 -->
-            </StackPanel>
-        </ScrollViewer>
+        <TabControl Grid.Row="1" Margin="5,0">
+            <TabItem>
+                <TabItem.Header>
+                    <DockPanel Height="24">
+                        <fluentIcons:FluentIcon Margin="10,0,5,0" Icon="WindowConsole20Regular" Width="18"/>
+                        <TextBlock FontSize="18" Margin="5,0,10,0">实时日志</TextBlock>
+                    </DockPanel>
+                </TabItem.Header>
+                <ScrollViewer x:Name="LogScrollViewer" Margin="0,10">
+                    <StackPanel x:Name="LogPanel" Margin="5">
+                        <!-- 日志内容将在这里动态添加 -->
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            
+            <TabItem>
+                <TabItem.Header>
+                    <DockPanel Height="24">
+                        <fluentIcons:FluentIcon Margin="10,0,5,0" Icon="Games20Regular" Width="20"/>
+                        <TextBlock FontSize="18" Margin="5,0,10,0">游戏信息</TextBlock>
+                    </DockPanel>
+                </TabItem.Header>
+                
+            </TabItem>
+        </TabControl>
             
         <DockPanel Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10">
             <CheckBox x:Name="AutoScrollCheckBox" Margin="5" Content="自动滚动" IsChecked="True"/>

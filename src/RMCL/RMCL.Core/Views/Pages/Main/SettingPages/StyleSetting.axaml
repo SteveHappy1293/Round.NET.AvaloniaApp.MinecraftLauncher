@@ -116,6 +116,22 @@
                         <button:AccentIconButton Name="AccentIconButton" Click="AccentIconButton_OnClick" Icon="Open20Regular" Content="打开导出向导"/>
                     </controls:SettingsExpander.Footer>
                 </controls:SettingsExpander>
+                
+                <controls:SettingsExpander Header="字体"
+                                           Description="调整启动器各部分字体">
+                    <controls:SettingsExpander.IconSource>
+                        <fluentIcons:FluentIconSource Icon="LocalLanguage20Regular"></fluentIcons:FluentIconSource>
+                    </controls:SettingsExpander.IconSource>
+                    
+                    <controls:SettingsExpanderItem Content="日志字体"
+                                                   Description="调整游戏实时日志字体">
+                        <controls:SettingsExpanderItem.Footer>
+                            <ComboBox Width="400" Name="ChoseLogViewFontBox" SelectionChanged="ChoseLogViewFontBox_OnSelectionChanged">
+                                
+                            </ComboBox>
+                        </controls:SettingsExpanderItem.Footer> 
+                    </controls:SettingsExpanderItem>
+                </controls:SettingsExpander>
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -52,6 +52,7 @@ public partial class StyleSetting : ISetting
 
         ColorThemeModel.SelectedIndex = Config.Config.MainConfig.ThemeColors.ColorType.GetHashCode();
         LightTheme.SelectedIndex = Config.Config.MainConfig.ThemeColors.Theme.GetHashCode();
+        SystemHelper.GetSystemFonts.GetSystemFontFamilies().ForEach(x => ChoseLogViewFontBox.Items.Add(x));
         if (Config.Config.MainConfig.ThemeColors.ColorType == ColorType.System)
         {
             UserColorBox.IsVisible = false;
@@ -64,13 +65,13 @@ public partial class StyleSetting : ISetting
         
         if (Config.Config.MainConfig.Background.ChooseModel == BackgroundModelEnum.Pack)
         {
-            ExportSkinPackBox.IsEnabled = false;
-            SetButton.IsEnabled = false;
-            SetColor.IsEnabled = false;
+            ExportSkinPackBox.IsVisible = false;
+            SetButton.IsVisible = false;
+            SetColor.IsVisible = false;
         }else{
-            ExportSkinPackBox.IsEnabled = true;
-            SetButton.IsEnabled = true;
-            SetColor.IsEnabled = true;
+            ExportSkinPackBox.IsVisible = true;
+            SetButton.IsVisible = true;
+            SetColor.IsVisible = true;
         }
         
         if (!OSVersionHelper.IsWindows11()) ItemMica.IsEnabled = false;
@@ -90,13 +91,13 @@ public partial class StyleSetting : ISetting
 
             if (Config.Config.MainConfig.Background.ChooseModel == BackgroundModelEnum.Pack)
             {
-                ExportSkinPackBox.IsEnabled = false;
-                SetButton.IsEnabled = false;
-                SetColor.IsEnabled = false;
+                ExportSkinPackBox.IsVisible = false;
+                SetButton.IsVisible = false;
+                SetColor.IsVisible = false;
             }else{
-                ExportSkinPackBox.IsEnabled = true;
-                SetButton.IsEnabled = true;
-                SetColor.IsEnabled = true;
+                ExportSkinPackBox.IsVisible = true;
+                SetButton.IsVisible = true;
+                SetColor.IsVisible = true;
             }
         }
     }
@@ -206,5 +207,16 @@ public partial class StyleSetting : ISetting
                 };
             });
         });
+    }
+
+    private void ChoseLogViewFontBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.Config.MainConfig.FontsConfig.ChoseFontName =
+                SystemHelper.GetSystemFonts.GetSystemFontFamilies()[ChoseLogViewFontBox.SelectedIndex];
+            
+            Config.Config.SaveConfig();
+        }
     }
 }

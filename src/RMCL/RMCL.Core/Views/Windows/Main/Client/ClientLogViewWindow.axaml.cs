@@ -13,6 +13,7 @@ using System.Text;
 using Avalonia.Controls.Notifications;
 using Avalonia.Controls.Primitives;
 using Avalonia.Media;
+using Avalonia.Media.Fonts;
 using Avalonia.Threading;
 
 namespace RMCL.Core.Views.Windows.Main.Client
@@ -58,33 +59,66 @@ namespace RMCL.Core.Views.Windows.Main.Client
         }
         
         // 添加日志方法
+        private (IBrush Foreground, FontWeight FontWeight, FontFamily FontFamily) GetLogStyle(string message)
+        {
+            // 定义等宽字体（优先使用 Consolas，其次是 Courier New，最后是系统默认的等宽字体）
+            var monospaceFont = FontFamily.Parse("Consolas");
+            if(!string.IsNullOrEmpty(Config.Config.MainConfig.FontsConfig.ChoseFontName)) monospaceFont = FontFamily.Parse(Config.Config.MainConfig.FontsConfig.ChoseFontName);
+    
+            if (message.Contains("ERROR", StringComparison.OrdinalIgnoreCase))
+                return (Brushes.Red, FontWeight.Bold, monospaceFont);
+        
+            if (message.Contains("WARN", StringComparison.OrdinalIgnoreCase))
+                return (Brushes.Yellow, FontWeight.SemiBold, monospaceFont);
+        
+            if (message.Contains("DEBUG", StringComparison.OrdinalIgnoreCase))
+                return (Brushes.Gray, FontWeight.Normal, monospaceFont);
+        
+            if (message.Contains("SUCCESS", StringComparison.OrdinalIgnoreCase))
+                return (Brushes.LightGreen, FontWeight.SemiBold, monospaceFont);
+        
+            return (Brushes.White, FontWeight.Normal, monospaceFont);
+        }
+
+// 修改后的 AddLog 方法
         public void AddLog(string message)
         {
-            if(string.IsNullOrEmpty(message)) return;
-            
+            if (string.IsNullOrWhiteSpace(message)) return;
+
+            // 获取日志样式（现在包含字体信息）
+            var (foreground, fontWeight, fontFamily) = GetLogStyle(message);
+    
             var logItem = new TextBlock
             {
-                Text = $"{message}",
-                TextWrapping = Avalonia.Media.TextWrapping.Wrap,
-                Margin = new Thickness(0, 0, 0, 5)
+                Text = message,
+                TextWrapping = TextWrapping.Wrap,
+                Margin = new Thickness(0, 0, 0, 5),
+                Foreground = foreground,
+                FontWeight = fontWeight,
+                FontFamily = fontFamily  // 设置等宽字体
             };
-            
-            logItem.Foreground = Avalonia.Media.Brushes.White;
-            if(message.Contains("ERROR")) logItem.Foreground = Avalonia.Media.Brushes.Red;
-            if(message.Contains("WARN")) logItem.Foreground = Avalonia.Media.Brushes.Yellow;
-            if(message.Contains("DEBUG")) logItem.Foreground = Avalonia.Media.Brushes.Gray;
-            
+
             Dispatcher.UIThread.Post(() =>
             {
-                LogPanel.Children.Add(logItem);
-                
-                // 如果启用了自动滚动，滚动到底部
-                if (_autoScroll)
+                try 
                 {
-                    var scrollViewer = this.FindControl<ScrollViewer>("LogScrollViewer");
-                    scrollViewer.ScrollToEnd();
+                    LogPanel.Children.Add(logItem);
+            
+                    if (_autoScroll && LogPanel.Parent is ScrollViewer scrollViewer)
+                    {
+                        scrollViewer.ScrollToEnd();
+                    }
+                    else if (_autoScroll)
+                    {
+                        var scrollViewer1 = this.FindControl<ScrollViewer>("LogScrollViewer");
+                        scrollViewer1?.ScrollToEnd();
+                    }
                 }
-            });
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"日志添加失败: {ex.Message}");
+                }
+            }, DispatcherPriority.Background);
         }
         
         // 导出日志
