@@ -10,6 +10,7 @@ using OverrideLauncher.Core.Modules.Entry.JavaEntry;
 using OverrideLauncher.Core.Modules.Entry.LaunchEntry;
 using OverrideLauncher.Core.Modules.Enum.Launch;
 using RMCL.Base.Entry;
+using RMCL.Base.Entry.Game.Client;
 using RMCL.Base.Entry.Java;
 using RMCL.Base.Enum.BackCall;
 using RMCL.Base.Enum.Client;
@@ -115,7 +116,7 @@ public class LaunchService
         };
     }
 
-    public static ClientRunner Launch(LaunchClientInfo Info,Action<string> LogOutput = null)
+    public static ClientRunner Launch(LaunchClientInfo Info,ClientConfig config,Action<string> LogOutput = null)
     {
         BackCallManager.Call(BackCallType.LaunchedGame);
 
@@ -141,7 +142,7 @@ public class LaunchService
             JavaInfo = info,
             LauncherInfo = "RMCL (By OverrideLauncher.Core)",
             GameInstances = par,
-            WindowInfo = ClientWindowSizeEnum.Default,
+            WindowInfo = config.GameWindowInfo,
         });
         run.LogsOutput = s => LogOutput.Invoke(s);
         
@@ -170,7 +171,7 @@ public class LaunchService
             };
             dow.Launching = (entry) =>
             {
-                dow.Runner = Launch(entry, (s) =>
+                dow.Runner = Launch(entry, config,(s) =>
                 {
                     Console.WriteLine(s);
                     

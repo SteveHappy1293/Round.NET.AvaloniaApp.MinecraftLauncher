@@ -16,6 +16,7 @@ using RMCL.Core.Views.Pages.Main;
 using RMCL.Core.Views.Pages.UpdateView;
 using RMCL.Core.Models.Classes;
 using RMCL.Core.Models.Classes.Launch;
+using RMCL.Core.Views.Pages.ChildFramePage;
 using RMCL.Update;
 
 namespace RMCL.Core.Views.Pages;
@@ -124,5 +125,10 @@ public partial class MainView : UserControl
                 GameName = Path.GetFileName(ver)
             });
         });
+    }
+
+    private void GameDrawer_OnClick(object? sender, RoutedEventArgs e)
+    {
+        Models.Classes.Core.ChildFrame.Show(new GameDrawer());
     }
 }

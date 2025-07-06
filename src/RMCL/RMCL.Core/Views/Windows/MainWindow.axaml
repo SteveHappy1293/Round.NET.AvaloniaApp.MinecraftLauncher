@@ -68,11 +68,11 @@
                     </Button>
                 </StackPanel>
             </Grid>
-            <pages:MainView Margin="0" Name="MainView" Grid.Row="1"/>
             <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
                 <TextBlock HorizontalAlignment="Center" Foreground="Gray">当前版本为 UI/UX 评估测试，不代表最终品质</TextBlock>
                 <TextBlock HorizontalAlignment="Center" Foreground="Gray" Name="VersionBox">RMCL 内部测试版本 Version</TextBlock>
             </StackPanel>
+            <pages:MainView Margin="0" Name="MainView" Grid.Row="1"/>
             
             <controls:TeachingTip Name="HomeButtonTips"
                                   Target="{Binding #HomeButton}"

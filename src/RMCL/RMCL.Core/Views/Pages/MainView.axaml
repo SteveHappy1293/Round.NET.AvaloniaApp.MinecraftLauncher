@@ -14,7 +14,7 @@
         <controls1:Frame Margin="0,0,0,70" Name="MainFrame"/>
         <container:BottomBar DefaultTag="Home" Name="BottomBar" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
         <DockPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
-            <Button Background="Transparent" BorderBrush="Transparent" ToolTip.Tip="游戏抽屉" CornerRadius="20" Height="40" Width="40" Margin="5">
+            <Button Name="GameDrawer" Click="GameDrawer_OnClick" Background="Transparent" BorderBrush="Transparent" ToolTip.Tip="游戏抽屉" CornerRadius="20" Height="40" Width="40" Margin="5">
                 <fluentIcons:FluentIcon Icon="DrawerPlay20Regular"/>
             </Button>
             <button:AccentIconButton ToolTip.Tip="启动游戏" CornerRadius="20" Margin="5" Height="40" Width="120" Icon="Play24Regular" Name="LauncherButton" Click="LauncherButton_OnClick">启动游戏</button:AccentIconButton>

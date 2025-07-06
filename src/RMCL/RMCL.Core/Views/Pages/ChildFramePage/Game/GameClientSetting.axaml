@@ -14,7 +14,7 @@
         <DockPanel Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <TextBlock Name="Version" Text="Version" FontSize="28" FontWeight="Bold" DockPanel.Dock="Left" HorizontalAlignment="Left"></TextBlock>
             <button:IconButton Content="统计信息" Margin="5" IsEnabled="False" Icon="TextNumberListLtr20Regular" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <button:IconButton Content="测试启动" Margin="5" Icon="Rocket20Regular" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <button:IconButton Name="TestLaunch" Click="TestLaunch_OnClick" Content="测试启动" Margin="5" Icon="Rocket20Regular" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         </DockPanel>
         
         <container:NavigationPage DefaultRoute="GameClientSetting" Grid.Row="1" Name="NavigationPage"/>

@@ -1,10 +1,13 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using FluentAvalonia.FluentIcons;
 using OverrideLauncher.Core.Modules.Classes.Version;
+using RMCL.Base.Entry;
 using RMCL.Controls.ControlHelper;
+using RMCL.Core.Models.Classes.Launch;
 using RMCL.Core.Views.Pages.ChildFramePage.Game.GameClientSettingSubPages;
 using RMCL.PathsDictionary;
 using Path = System.IO.Path;
@@ -18,8 +21,11 @@ public partial class GameClientSetting : UserControl
     private ClientScreenshotSetting ClientScreenshotSetting = new ClientScreenshotSetting();
     private ClientModSetting ClientModSetting = new ClientModSetting();
     private ClientResourcePackSetting ClientResourcePackSetting = new ClientResourcePackSetting();
+    
+    public VersionParse _versionParse;
     public GameClientSetting(VersionParse version)
     {
+        _versionParse = version;
         InitializeComponent();
         this.Version.Text = version.ClientInstances.GameName;
         var path = Path.Combine(version.ClientInstances.GameCatalog, "versions", version.ClientInstances.GameName);
@@ -69,5 +75,14 @@ public partial class GameClientSetting : UserControl
         ClientArchiveSetting.UpdateUI();
         ClientScreenshotSetting.UpdateUI();
         ClientResourcePackSetting.UpdateUI();
+    }
+
+    private void TestLaunch_OnClick(object? sender, RoutedEventArgs e)
+    {
+        LaunchService.LaunchTask(new LaunchClientInfo()
+        {
+            GameFolder = _versionParse.ClientInstances.GameCatalog,
+            GameName = _versionParse.ClientInstances.GameName
+        });
     }
 }

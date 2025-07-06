@@ -52,6 +52,13 @@ public partial class Setting : UserControl
             Page = new JavaSetting(),
             Icon = FluentIconSymbol.Memory16Regular,
         });
+        NavigationPage.RegisterRoute(new NavigationRouteConfig()
+        {
+            Route = "AssistSetting",
+            Title = "辅助功能",
+            Page = new AssistSetting(),
+            Icon = FluentIconSymbol.PersonRunning20Regular,
+        });
         
         
         NavigationPage.RegisterRoute(new NavigationRouteConfig()

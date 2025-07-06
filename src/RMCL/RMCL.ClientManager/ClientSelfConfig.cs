@@ -16,4 +16,12 @@ public class ClientSelfConfig
         if (!File.Exists(configFile)) return Config.Config.MainConfig.PublicClietConfig;
         else return JsonSerializer.Deserialize<ClientConfig>(File.ReadAllText(configFile));
     }
+
+    public static void SaveClientConfig(LaunchClientInfo info,ClientConfig config)
+    {
+        var configFile = Path.Combine(info.GameFolder, "versions", info.GameName, "RMCL", "Client.json");
+        if(!File.Exists(configFile)) Directory.CreateDirectory(Path.GetDirectoryName(configFile));
+        
+        File.WriteAllText(configFile, JsonSerializer.Serialize(config));
+    }
 }

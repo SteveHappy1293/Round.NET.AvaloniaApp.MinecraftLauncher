@@ -1,0 +1,50 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RMCL.Core.Views.Pages.ChildFramePage.GameDrawer">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Margin="20" 
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Left" 
+                   FontSize="18" 
+                   FontWeight="Bold" 
+                   Foreground="Orange">游戏抽屉</TextBlock>
+        
+        <DockPanel Margin="10" Height="32" LastChildFill="True" HorizontalAlignment="Right">
+            <Button HorizontalAlignment="Right" 
+                    Margin="5" 
+                    Width="32" Height="32" 
+                    CornerRadius="16"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Name="AddGameBtn"
+                    Click="AddGameBtn_OnClick"
+                    ToolTip.Tip="添加游戏">
+                <fluentIcons:FluentIcon Icon="Add20Regular" Width="16"/>
+            </Button>
+            <TextBox HorizontalAlignment="Right" Margin="5" Width="200" Watermark="搜索..."></TextBox>
+        </DockPanel>
+        
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled">
+            <WrapPanel Margin="15,0">
+                <Button Width="64" Height="80" Margin="5">
+                    <StackPanel HorizontalAlignment="Right">
+                        <Border Width="36" Height="36" CornerRadius="6">
+                            <Border.Background>
+                                <ImageBrush Source="../../../Assets/Item/GameDrawerItem.png"></ImageBrush>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="0,5,0,0">1.17.1</TextBlock>
+                    </StackPanel>
+                </Button>
+            </WrapPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

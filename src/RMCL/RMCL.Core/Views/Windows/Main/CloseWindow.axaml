@@ -8,7 +8,7 @@
         Width="380" Height="120"
         MinWidth="380" MinHeight="120"
         WindowStartupLocation="CenterOwner"
-        Title="CloseWindow">
+        Title="退出启动器">
       <Grid>
           <TextBlock Margin="15" TextTrimming="CharacterEllipsis">您当前有任务正在运行，请问是否关闭启动器？</TextBlock>
           <DockPanel Margin="15" HorizontalAlignment="Right" VerticalAlignment="Bottom">
