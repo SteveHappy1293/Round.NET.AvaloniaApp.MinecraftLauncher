@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
@@ -55,6 +56,7 @@ public partial class StyleSetting : ISetting
         SystemHelper.GetSystemFonts.GetSystemFontFamilies().ForEach(x => ChoseLogViewFontBox.Items.Add(x));
         ChoseLogViewFontBox.SelectedIndex = SystemHelper.GetSystemFonts.GetSystemFontFamilies()
             .FindIndex(x => x == Config.Config.MainConfig.FontsConfig.ChoseFontName);
+        FontSizeSetting.Value = Config.Config.MainConfig.FontsConfig.FontSize;
         if (Config.Config.MainConfig.ThemeColors.ColorType == ColorType.System)
         {
             UserColorBox.IsVisible = false;
@@ -63,6 +65,8 @@ public partial class StyleSetting : ISetting
         {
             UserColorBox.IsVisible = true;
         }
+
+        UpdateFontPreview();
         IsEdit = true;
         
         if (Config.Config.MainConfig.Background.ChooseModel == BackgroundModelEnum.Pack)
@@ -219,6 +223,28 @@ public partial class StyleSetting : ISetting
                 SystemHelper.GetSystemFonts.GetSystemFontFamilies()[ChoseLogViewFontBox.SelectedIndex];
             
             Config.Config.SaveConfig();
+            UpdateFontPreview();
+        }
+    }
+
+    public void UpdateFontPreview()
+    {
+        var fontname = Config.Config.MainConfig.FontsConfig.ChoseFontName;
+        var fontsize = Config.Config.MainConfig.FontsConfig.FontSize;
+        
+        FontPreview.FontSize = fontsize;
+        FontPreview.FontFamily = Avalonia.Media.FontFamily.Parse(fontname);
+        FontSizeSettingBox.Content = $"日志字体大小 ({FontSizeSetting.Value}pt)";
+    }
+
+    private void FontSizeSetting_OnValueChanged(object? sender, RangeBaseValueChangedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.Config.MainConfig.FontsConfig.FontSize = FontSizeSetting.Value;
+            
+            Config.Config.SaveConfig();
+            UpdateFontPreview();
         }
     }
 }

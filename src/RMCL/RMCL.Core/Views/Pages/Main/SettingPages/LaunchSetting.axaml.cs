@@ -1,6 +1,8 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using RMCL.Base.Entry.Game.Client;
 using RMCL.Base.Enum.Client;
 using RMCL.Base.Interface;
 
@@ -8,22 +10,26 @@ namespace RMCL.Core.Views.Pages.Main.SettingPages;
 
 public partial class LaunchSetting : ISetting
 {
+    public ClientConfig Config { get; set; }
+    public Action<ClientConfig> OnSave { get; set; }
     public LaunchSetting()
     {
         InitializeComponent();
+    }
 
-        LogViewChoseBox.SelectedIndex = Config.Config.MainConfig.PublicClietConfig.LogViewShow.GetHashCode();
-        WindowVisibilityChoseBox.SelectedIndex = Config.Config.MainConfig.PublicClietConfig.LauncherVisibility.GetHashCode();
+    public void OnLoaded()
+    {
+        LogViewChoseBox.SelectedIndex = Config.LogViewShow.GetHashCode();
+        WindowVisibilityChoseBox.SelectedIndex = Config.LauncherVisibility.GetHashCode();
         
         IsEdit = true;
     }
-
     private void LogViewChoseBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (IsEdit)
         {
-            Config.Config.MainConfig.PublicClietConfig.LogViewShow = (LogViewShowEnum)LogViewChoseBox.SelectedIndex;
-            Config.Config.SaveConfig();
+            Config.LogViewShow = (LogViewShowEnum)LogViewChoseBox.SelectedIndex;
+            OnSave.Invoke(Config);
         }
     }
 
@@ -31,8 +37,8 @@ public partial class LaunchSetting : ISetting
     {
         if (IsEdit)
         {
-            Config.Config.MainConfig.PublicClietConfig.LauncherVisibility = (LauncherVisibilityEnum)WindowVisibilityChoseBox.SelectedIndex;
-            Config.Config.SaveConfig();
+            Config.LauncherVisibility = (LauncherVisibilityEnum)WindowVisibilityChoseBox.SelectedIndex;
+            OnSave.Invoke(Config);
         }
     }
 }

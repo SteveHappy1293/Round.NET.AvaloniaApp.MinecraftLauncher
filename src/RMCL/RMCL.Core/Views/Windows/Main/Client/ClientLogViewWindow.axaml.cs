@@ -64,10 +64,10 @@ namespace RMCL.Core.Views.Windows.Main.Client
             // 定义等宽字体（优先使用 Consolas，其次是 Courier New，最后是系统默认的等宽字体）
             var monospaceFont = FontFamily.Parse("Consolas");
             if(!string.IsNullOrEmpty(Config.Config.MainConfig.FontsConfig.ChoseFontName)) monospaceFont = FontFamily.Parse(Config.Config.MainConfig.FontsConfig.ChoseFontName);
-    
-            if (message.Contains("ERROR", StringComparison.OrdinalIgnoreCase))
-                return (Brushes.Red, FontWeight.Bold, monospaceFont);
         
+            if (message.Contains("INFO", StringComparison.OrdinalIgnoreCase))
+                return (Brushes.White, FontWeight.SemiBold, monospaceFont);
+            
             if (message.Contains("WARN", StringComparison.OrdinalIgnoreCase))
                 return (Brushes.Yellow, FontWeight.SemiBold, monospaceFont);
         
@@ -76,7 +76,10 @@ namespace RMCL.Core.Views.Windows.Main.Client
         
             if (message.Contains("SUCCESS", StringComparison.OrdinalIgnoreCase))
                 return (Brushes.LightGreen, FontWeight.SemiBold, monospaceFont);
-        
+            
+            if (message.Contains("ERROR", StringComparison.OrdinalIgnoreCase) || message.Contains("at ", StringComparison.OrdinalIgnoreCase))
+                return (Brushes.Red, FontWeight.Bold, monospaceFont);
+            
             return (Brushes.White, FontWeight.Normal, monospaceFont);
         }
 
@@ -92,10 +95,11 @@ namespace RMCL.Core.Views.Windows.Main.Client
             {
                 Text = message,
                 TextWrapping = TextWrapping.Wrap,
-                Margin = new Thickness(0, 0, 0, 5),
+                Margin = new Thickness(0, 0, 0, 0),
                 Foreground = foreground,
                 FontWeight = fontWeight,
-                FontFamily = fontFamily  // 设置等宽字体
+                FontFamily = fontFamily,  // 设置等宽字体
+                FontSize = Config.Config.MainConfig.FontsConfig.FontSize,
             };
 
             Dispatcher.UIThread.Post(() =>

@@ -62,7 +62,11 @@ public partial class ManageGame : ISetting
             // 如果有搜索文本，则进行过滤
             if (!string.IsNullOrEmpty(searchText))
             {
-                Versions = Versions.Where(version => version.GameJson.Id.ToLower().Contains(searchText.ToLower())).ToList();
+                Versions = Versions.Where(version =>
+                {
+                    if (version.GameJson.Id != null) return version.GameJson.Id.ToLower().Contains(searchText.ToLower());
+                    else return false;
+                }).ToList();
             }
 
             foreach (var ver in Versions)
@@ -135,7 +139,7 @@ public partial class ManageGame : ISetting
         {
             // 获取搜索框的内容
             var searchText = SearchBox.Text;
-            if (!string.IsNullOrEmpty(searchText))
+            /*if (!string.IsNullOrEmpty(searchText))
             {
                 SearchDocBox.Margin = new Thickness(10, 50, 10, -40);
                 BodyBox.Margin = new Thickness(0, 50, 0,0);
@@ -145,7 +149,7 @@ public partial class ManageGame : ISetting
                 SearchDocBox.Margin = new Thickness(10);
                 BodyBox.Margin = new Thickness(0);
                 
-            }
+            }*/
             UpdateUI(searchText);
         }
     }

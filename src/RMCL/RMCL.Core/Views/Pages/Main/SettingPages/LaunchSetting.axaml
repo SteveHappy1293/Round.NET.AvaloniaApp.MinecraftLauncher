@@ -33,6 +33,24 @@
                     </ComboBox>
                 </controls:SettingsExpander.Footer>
             </controls:SettingsExpander>
+            
+            <controls:SettingsExpander Header="游戏本体"
+                                       Description="游戏本体的基础设置">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="Games20Regular"></fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                
+                <controls:SettingsExpanderItem Content="游戏窗口大小"
+                                               Description="设置游戏启动窗口大小">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ComboBox Width="400" SelectedIndex="0">
+                            <ComboBoxItem Tag="Default">默认</ComboBoxItem>
+                            <ComboBoxItem Tag="Max">最大化</ComboBoxItem>
+                            <ComboBoxItem Tag="User">自定义</ComboBoxItem>
+                        </ComboBox>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

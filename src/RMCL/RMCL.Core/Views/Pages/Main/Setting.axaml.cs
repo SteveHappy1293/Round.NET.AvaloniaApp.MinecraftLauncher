@@ -14,11 +14,21 @@ public partial class Setting : UserControl
     public Setting()
     {
         InitializeComponent();
+        
+        var PublicClientSetting = new LaunchSetting();
+        PublicClientSetting.Config = Config.Config.MainConfig.PublicClietConfig;
+        PublicClientSetting.OnSave = config =>
+        {
+            Config.Config.MainConfig.PublicClietConfig = config;
+            Config.Config.SaveConfig();
+        };
+        PublicClientSetting.OnLoaded();
+        
         NavigationPage.RegisterRoute(new NavigationRouteConfig()
         {
             Route = "LaunchSetting",
             Title = "全局游戏设置",
-            Page = new LaunchSetting(),
+            Page = PublicClientSetting,
             Icon = FluentIconSymbol.Rocket20Regular,
         });
         NavigationPage.RegisterRoute(new NavigationRouteConfig()

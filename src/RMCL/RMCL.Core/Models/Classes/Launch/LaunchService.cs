@@ -141,7 +141,7 @@ public class LaunchService
             JavaInfo = info,
             LauncherInfo = "RMCL (By OverrideLauncher.Core)",
             GameInstances = par,
-            WindowInfo = ClientWindowSizeEnum.Default
+            WindowInfo = ClientWindowSizeEnum.Default,
         });
         run.LogsOutput = s => LogOutput.Invoke(s);
         

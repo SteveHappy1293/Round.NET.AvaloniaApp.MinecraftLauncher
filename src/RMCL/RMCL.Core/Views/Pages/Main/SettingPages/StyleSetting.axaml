@@ -126,9 +126,20 @@
                     <controls:SettingsExpanderItem Content="日志字体"
                                                    Description="调整游戏实时日志字体">
                         <controls:SettingsExpanderItem.Footer>
-                            <ComboBox Width="400" Name="ChoseLogViewFontBox" SelectionChanged="ChoseLogViewFontBox_OnSelectionChanged">
-                                
-                            </ComboBox>
+                            <ComboBox Width="400" Name="ChoseLogViewFontBox" SelectionChanged="ChoseLogViewFontBox_OnSelectionChanged"></ComboBox>
+                        </controls:SettingsExpanderItem.Footer> 
+                    </controls:SettingsExpanderItem>
+                    <controls:SettingsExpanderItem Content="日志字体大小"
+                                                   Description="游戏实时日志字体大小"
+                                                   Name="FontSizeSettingBox">
+                        <controls:SettingsExpanderItem.Footer>
+                            <Slider Name="FontSizeSetting" ValueChanged="FontSizeSetting_OnValueChanged" Width="400" Minimum="9" Maximum="80"></Slider>
+                        </controls:SettingsExpanderItem.Footer> 
+                    </controls:SettingsExpanderItem>
+                    <controls:SettingsExpanderItem Content="日志字体预览"
+                                                   Description="戏实时日志字体预览">
+                        <controls:SettingsExpanderItem.Footer>
+                            <TextBlock Name="FontPreview">你好 RMCL 123</TextBlock>
                         </controls:SettingsExpanderItem.Footer> 
                     </controls:SettingsExpanderItem>
                 </controls:SettingsExpander>
