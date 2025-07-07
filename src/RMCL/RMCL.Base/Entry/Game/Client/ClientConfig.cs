@@ -10,4 +10,5 @@ public class ClientConfig
     public LogViewShowEnum LogViewShow { get; set; } = LogViewShowEnum.Auto;
     public LauncherVisibilityEnum LauncherVisibility { get; set; } = LauncherVisibilityEnum.Visibility;
     public GameWindowInfo GameWindowInfo { get; set; } = ClientWindowSizeHelper.Default;
+    public string LauncherWatermark { get; set; } = String.Empty;
 }

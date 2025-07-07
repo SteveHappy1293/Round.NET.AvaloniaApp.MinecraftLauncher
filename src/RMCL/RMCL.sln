@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.SystemHelper", "RMCL.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.LogAnalyzer", "RMCL.LogAnalyzer\RMCL.LogAnalyzer.csproj", "{FCBBF833-D1DC-40F1-9B37-4C97C4B3250D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.MCSkinReader", "RMCL.MCSkinReader\RMCL.MCSkinReader.csproj", "{68577EDA-CA06-4276-9859-6E45D4B04F4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,5 +116,9 @@ Global
 		{FCBBF833-D1DC-40F1-9B37-4C97C4B3250D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCBBF833-D1DC-40F1-9B37-4C97C4B3250D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCBBF833-D1DC-40F1-9B37-4C97C4B3250D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68577EDA-CA06-4276-9859-6E45D4B04F4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68577EDA-CA06-4276-9859-6E45D4B04F4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68577EDA-CA06-4276-9859-6E45D4B04F4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68577EDA-CA06-4276-9859-6E45D4B04F4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

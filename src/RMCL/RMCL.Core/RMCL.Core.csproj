@@ -65,6 +65,7 @@
       <ProjectReference Include="..\RMCL.DownloadService\RMCL.DownloadService.csproj" />
       <ProjectReference Include="..\RMCL.JavaManager\RMCL.JavaManager.csproj" />
       <ProjectReference Include="..\RMCL.Logger\RMCL.Logger.csproj" />
+      <ProjectReference Include="..\RMCL.MCSkinReader\RMCL.MCSkinReader.csproj" />
       <ProjectReference Include="..\RMCL.NetworkService\RMCL.NetworkService.csproj" />
       <ProjectReference Include="..\RMCL.Plug\RMCL.Plug.csproj" />
       <ProjectReference Include="..\RMCL.SystemHelper\RMCL.SystemHelper.csproj" />

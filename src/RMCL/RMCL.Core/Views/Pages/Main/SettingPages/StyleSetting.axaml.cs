@@ -236,7 +236,7 @@ public partial class StyleSetting : ISetting
         
             FontPreview.FontSize = fontsize;
             FontPreview.FontFamily = Avalonia.Media.FontFamily.Parse(fontname);
-            FontSizeSettingBox.Content = $"日志字体大小 ({FontSizeSetting.Value}pt)";
+            FontSizeSettingBox.Content = $"日志字体大小 ({fontsize}pt)";
         }catch{ }
     }
 
@@ -244,7 +244,7 @@ public partial class StyleSetting : ISetting
     {
         if (IsEdit)
         {
-            Config.Config.MainConfig.FontsConfig.FontSize = FontSizeSetting.Value;
+            Config.Config.MainConfig.FontsConfig.FontSize = (int)FontSizeSetting.Value;
             
             Config.Config.SaveConfig();
             UpdateFontPreview();

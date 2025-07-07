@@ -3,5 +3,5 @@
 public class FontsConfigEntry
 {
     public string ChoseFontName { get; set; } = "";
-    public double FontSize { get; set; } = 11;
+    public int FontSize { get; set; } = 14;
 }

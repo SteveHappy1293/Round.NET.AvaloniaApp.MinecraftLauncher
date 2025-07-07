@@ -1,6 +1,7 @@
 using System;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using RMCL.Base.Entry.Game.Client;
 using RMCL.Base.Enum.Client;
@@ -21,6 +22,7 @@ public partial class LaunchSetting : ISetting
     {
         LogViewChoseBox.SelectedIndex = Config.LogViewShow.GetHashCode();
         WindowVisibilityChoseBox.SelectedIndex = Config.LauncherVisibility.GetHashCode();
+        LauncherWatermarkBox.Text = Config.LauncherWatermark;
         
         IsEdit = true;
     }
@@ -38,6 +40,16 @@ public partial class LaunchSetting : ISetting
         if (IsEdit)
         {
             Config.LauncherVisibility = (LauncherVisibilityEnum)WindowVisibilityChoseBox.SelectedIndex;
+            OnSave.Invoke(Config);
+        }
+    }
+
+    private void LauncherWatermarkBox_OnTextChanging(object? sender, TextChangingEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.LauncherWatermark =
+                string.IsNullOrEmpty(LauncherWatermarkBox.Text) ? String.Empty : LauncherWatermarkBox.Text;
             OnSave.Invoke(Config);
         }
     }

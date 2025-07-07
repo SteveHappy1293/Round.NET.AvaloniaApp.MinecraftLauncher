@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using FluentAvalonia.FluentIcons;
+using RMCL.Base.Interface;
 using RMCL.Controls.Container;
 using RMCL.Controls.ControlHelper;
 using RMCL.Core.Views.Pages.Main.SettingPages;
@@ -9,7 +10,7 @@ using RMCL.Core.Views.Pages.Main.ManagePages;
 
 namespace RMCL.Core.Views.Pages.Main;
 
-public partial class Setting : UserControl
+public partial class Setting : ISetting
 {
     public Setting()
     {
@@ -19,8 +20,11 @@ public partial class Setting : UserControl
         PublicClientSetting.Config = Config.Config.MainConfig.PublicClietConfig;
         PublicClientSetting.OnSave = config =>
         {
-            Config.Config.MainConfig.PublicClietConfig = config;
-            Config.Config.SaveConfig();
+            if (IsEdit)
+            {
+                Config.Config.MainConfig.PublicClietConfig = config;
+                Config.Config.SaveConfig();
+            }
         };
         PublicClientSetting.OnLoaded();
         
@@ -69,5 +73,7 @@ public partial class Setting : UserControl
             Icon = FluentIconSymbol.Info20Regular,
             IsFoot = true
         });
+        
+        IsEdit = true;
     }
 }

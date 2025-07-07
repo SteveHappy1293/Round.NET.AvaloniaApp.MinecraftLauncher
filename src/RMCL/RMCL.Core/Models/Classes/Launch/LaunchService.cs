@@ -141,7 +141,10 @@ public class LaunchService
         {
             Account = PlayerManager.Player.Accounts[PlayerManager.Player.SelectIndex].Account,
             JavaInfo = info,
-            LauncherInfo = "RMCL (By OverrideLauncher.Core)",
+            LauncherInfo = 
+                string.IsNullOrEmpty(config.LauncherWatermark) ? 
+                "RMCL (By OverrideLauncher.Core)" :
+                config.LauncherWatermark,
             GameInstances = par,
             WindowInfo = config.GameWindowInfo,
         });

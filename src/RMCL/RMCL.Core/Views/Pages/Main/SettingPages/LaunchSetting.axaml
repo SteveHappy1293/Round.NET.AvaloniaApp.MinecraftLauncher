@@ -50,6 +50,12 @@
                         </ComboBox>
                     </controls:SettingsExpanderItem.Footer>
                 </controls:SettingsExpanderItem>
+                <controls:SettingsExpanderItem Content="游戏水印"
+                                               Description="游戏主页面和 F3 时显示的启动器水印">
+                    <controls:SettingsExpanderItem.Footer>
+                        <TextBox Name="LauncherWatermarkBox" TextChanging="LauncherWatermarkBox_OnTextChanging" Width="400" Watermark="RMCL (By OverrideLauncher.Core)"></TextBox>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
             </controls:SettingsExpander>
         </StackPanel>
     </ScrollViewer>
