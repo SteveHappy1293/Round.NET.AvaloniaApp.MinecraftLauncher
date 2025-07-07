@@ -20,13 +20,16 @@
                 <StackPanel>
                     <TextBlock>RMCL 本体：Minecraft一角钱、MikuniDOMI、LKBaka</TextBlock>
                     <TextBlock>RMCL 启动核心：Minecraft一角钱</TextBlock>
-                    <TextBlock>RMCL UI/UX：DrMing</TextBlock>
+                    <TextBlock>RMCL UI/UX：DrMing、Minecraft一角钱</TextBlock>
+                    <TextBlock>RMCL 仓库维护：AWDNDWindowsXP</TextBlock>
                 </StackPanel>
             </Expander>
             <Expander Margin="5" Header="鸣谢">
                 <StackPanel>
-                    <TextBlock>RMCL 的正版登录使用了来自 YMCL 提供的接口 ID (已经 YMCL 作者 DaiYu 允许)</TextBlock>
+                    <TextBlock>RMCL 的正版登录使用了来自 YMCL 提供的接口 ID (已经 YMCL 作者 (Yeppioo)DaiYu 允许)</TextBlock>
                     <TextBlock>RMCL 更新加速地址使用了来自 (github.akams.cn) 提供的加速地址</TextBlock>
+                    <TextBlock>感谢 Yeppioo 提供技术支持</TextBlock>
+                    <TextBlock>感谢 lhx077 提供 Java 错误分析方面的技术支持</TextBlock>
                 </StackPanel>
             </Expander>
             <Expander Margin="5" Header="联系我们">
@@ -40,11 +43,13 @@
             <Expander Margin="5" Header="开源组件">
                 <StackPanel>
                     <button:ProjectItemButton Icon="../../../../Assets/avalonia-logo.ico" Title="Avalonia" URL="https://github.com/AvaloniaUI/Avalonia" Margin="5"/>
+                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Downloader.png" Title="Downloader" URL="https://github.com/bezzad/Downloader" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/FAIcon.png" Title="FluentAvalonia" URL="https://github.com/amwx/FluentAvalonia" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Nuget.png" Title="FluentAvalonia.FluentIcons" URL="https://github.com/jmkinzer/FluentAvalonia.FluentIcons" Margin="5"/>
-                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Downloader.png" Title="Downloader" URL="https://github.com/bezzad/Downloader" Margin="5"/>
-                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/ROL.png" Title="OverrideLauncher.Core" URL="https://github.com/Round-Studio/OverrideLauncher.Core" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/LuaSharp.png" Title="LuaCSharp" URL="https://github.com/AnnulusGames/Lua-CSharp" Margin="5"/>
+                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Nuget.png" Title="MinecraftSkinRender" URL="https://github.com/Coloryr/MinecraftSkinRender" Margin="5"/>
+                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/ROL.png" Title="OverrideLauncher.Core" URL="https://github.com/Round-Studio/OverrideLauncher.Core" Margin="5"/>
+                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Silk.NET.OpenGL.png" Title="Silk.NET.OpenGL" URL="https://www.nuget.org/packages/Silk.NET.OpenGL" Margin="5"/>
                 </StackPanel>
             </Expander>
         </StackPanel>

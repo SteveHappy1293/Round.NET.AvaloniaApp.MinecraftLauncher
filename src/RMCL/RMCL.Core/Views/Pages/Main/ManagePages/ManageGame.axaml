@@ -7,22 +7,6 @@
              xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.Main.ManagePages.ManageGame">
-    <UserControl.Styles>
-        <Style Selector="DockPanel">
-            <Setter Property="Transitions">
-                <Transitions>
-                    <ThicknessTransition Property="Margin" Duration="0:0:0.3" Easing="QuinticEaseOut"></ThicknessTransition>
-                </Transitions>
-            </Setter>
-        </Style>
-        <Style Selector="Grid">
-            <Setter Property="Transitions">
-                <Transitions>
-                    <ThicknessTransition Property="Margin" Duration="0:0:0.3" Easing="QuinticEaseOut"></ThicknessTransition>
-                </Transitions>
-            </Setter>
-        </Style>
-    </UserControl.Styles>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>

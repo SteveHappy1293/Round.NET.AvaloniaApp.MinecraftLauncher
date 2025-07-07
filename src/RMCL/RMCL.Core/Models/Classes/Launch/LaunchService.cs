@@ -143,7 +143,7 @@ public class LaunchService
             JavaInfo = info,
             LauncherInfo = 
                 string.IsNullOrEmpty(config.LauncherWatermark) ? 
-                "RMCL (By OverrideLauncher.Core)" :
+                "§bRMCL §d(§cBy §6OverrideLauncher.Core§d)" :
                 config.LauncherWatermark,
             GameInstances = par,
             WindowInfo = config.GameWindowInfo,

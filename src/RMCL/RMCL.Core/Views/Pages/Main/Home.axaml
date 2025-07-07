@@ -9,6 +9,8 @@
     <Grid Name="MainFGrdd">
         <homePages:HomeQuickChoosePlayer Name="ChoosePlayer" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10"/>
         
+        <!--
         <global:Renderer Width="400" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        -->
     </Grid>
 </UserControl>

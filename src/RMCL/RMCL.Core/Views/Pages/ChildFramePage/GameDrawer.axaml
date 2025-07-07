@@ -5,32 +5,65 @@
              xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.ChildFramePage.GameDrawer">
+    <UserControl.Styles>
+        <Style Selector="TextBox">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Duration="0:0:0.28" Easing="QuinticEaseOut"></ThicknessTransition>
+                    <DoubleTransition Property="Width" Duration="0:0:0.28" Easing="QuinticEaseOut"></DoubleTransition>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="TextBlock">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <ThicknessTransition Property="Margin" Duration="0:0:0.18" Easing="QuinticEaseOut"></ThicknessTransition>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.18" Easing="QuinticEaseOut"></DoubleTransition>
+                </Transitions>
+            </Setter>
+        </Style>
+    </UserControl.Styles>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Margin="20" 
-                   VerticalAlignment="Top" 
+                   VerticalAlignment="Top"
                    HorizontalAlignment="Left" 
                    FontSize="18" 
                    FontWeight="Bold" 
                    Foreground="Orange">游戏抽屉</TextBlock>
         
-        <DockPanel Margin="10" Height="32" LastChildFill="True" HorizontalAlignment="Right">
-            <Button HorizontalAlignment="Right" 
-                    Margin="5" 
-                    Width="32" Height="32" 
-                    CornerRadius="16"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    Name="AddGameBtn"
-                    Click="AddGameBtn_OnClick"
-                    ToolTip.Tip="添加游戏">
-                <fluentIcons:FluentIcon Icon="Add20Regular" Width="16"/>
-            </Button>
-            <TextBox HorizontalAlignment="Right" Margin="5" Width="200" Watermark="搜索..."></TextBox>
-        </DockPanel>
+        
+        <Button HorizontalAlignment="Right" 
+                Margin="20,20" 
+                Width="32" Height="32" 
+                CornerRadius="16"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                Name="AddGameGroupBtn"
+                HorizontalContentAlignment="Right" VerticalAlignment="Top"
+                Click="AddGameGroupBtn_OnClick"
+                ToolTip.Tip="添加游戏">
+            <fluentIcons:FluentIcon Icon="Add20Regular" Width="16"/>
+        </Button>
+        <TextBox TextChanging="TextBox_OnTextChanging"
+                 Name="SearchBox"
+                 HorizontalAlignment="Right"
+                 Margin="65,20"
+                 Height="32"
+                 Width="200"
+                 Watermark="搜索..."></TextBox>
+        
+        <TextBlock 
+            Margin="20,20,10,10"
+            FontSize="24" 
+            FontWeight="Bold"
+            Name="SearchTextBlock"
+            HorizontalAlignment="Left"
+            TextTrimming="CharacterEllipsis"
+            Opacity="0">SearchText</TextBlock>
         
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled">
             <WrapPanel Margin="15,0">

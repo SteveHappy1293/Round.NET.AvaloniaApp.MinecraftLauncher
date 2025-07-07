@@ -2,5 +2,45 @@
 
 public class MinecraftLogAnalyzer
 {
+    public void Analyzer(string logContent)
+    {
+        try
+        {
+            // 解析异常
+            var exceptions = JavaExceptionParser.ParseExceptions(logContent);
+            Console.WriteLine($"解析到 {exceptions.Count} 个异常");
+            
+            // 分析异常
+            var analysis = JavaExceptionAnalyzer.AnalyzeExceptions(exceptions);
+            
+            // 生成报告
+            var report = ExceptionReportGenerator.GenerateReport(analysis);
+            Console.WriteLine(report);
+            
+            // 可选：保存报告到文件
+            File.WriteAllText("exception_report.txt", report);
+            Console.WriteLine("报告已保存到 exception_report.txt");
+            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"分析过程中发生错误: {ex.Message}");
+        }
+    }
     
+    public static void AnalyzeLogFile(string filePath)
+    {
+        if (!File.Exists(filePath))
+        {
+            Console.WriteLine($"文件不存在: {filePath}");
+            return;
+        }
+        
+        string content = File.ReadAllText(filePath);
+        var exceptions = JavaExceptionParser.ParseExceptions(content);
+        var analysis = JavaExceptionAnalyzer.AnalyzeExceptions(exceptions);
+        var report = ExceptionReportGenerator.GenerateReport(analysis);
+        
+        Console.WriteLine(report);
+    }
 }
