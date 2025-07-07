@@ -5,6 +5,8 @@ namespace RMCL.Logger;
 
 public class ConsoleRedirector : IDisposable
 {
+    public static string FileName { get; private set; }
+    
     private StreamWriter _writer;
     private TextWriter _originalOutput;
     private readonly string _timestampFormat;
@@ -17,6 +19,7 @@ public class ConsoleRedirector : IDisposable
     /// <param name="timestampFormat">时间戳格式(默认: HH:mm:ss.fff)</param>
     public ConsoleRedirector(string filePath, string timestampFormat = "HH:mm:ss.fff")
     {
+        FileName = filePath;
         if (!Directory.Exists(Path.GetDirectoryName(filePath)))
             Directory.CreateDirectory(Path.GetDirectoryName(filePath));
         

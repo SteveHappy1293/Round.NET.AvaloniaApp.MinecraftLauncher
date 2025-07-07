@@ -24,6 +24,7 @@ using RMCL.Core.Models.Classes.Manager.StyleManager;
 using RMCL.Core.Models.Classes.Manager.TaskManager;
 using RMCL.Core.Models.Classes;
 using RMCL.Core.Models.Classes.Manager.BackCallManager;
+using RMCL.Core.Views.Windows.Initialize;
 using RMCL.PathsDictionary;
 using RMCL.Plug;
 using RMCL.Update;

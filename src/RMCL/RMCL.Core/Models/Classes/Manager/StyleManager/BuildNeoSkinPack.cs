@@ -41,7 +41,7 @@ public class BuildNeoSkinPack
             ResultPath = zipFile;
             Console.WriteLine($"创建ZIP文件成功");
         }
-        catch (Exception ex)
+        catch (System.Exception ex)
         {
             Console.WriteLine($"创建ZIP文件时出错: {ex.Message}");
         }

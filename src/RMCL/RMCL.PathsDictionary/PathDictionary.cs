@@ -10,6 +10,7 @@ public class PathDictionary
     public static readonly string UpdateZipFileFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Update/FileZips";
     public static readonly string UpdateFileFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Update/Files";
     public static readonly string PluginFileFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Plugin/Files";
+    public static readonly string ExceptionFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Exception";
     
     public static readonly string ClientModsFolderName = "mods";
     public static readonly string ClientModCacheFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.ModCache";

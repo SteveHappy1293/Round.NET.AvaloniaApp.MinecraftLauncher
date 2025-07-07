@@ -8,6 +8,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="RMCL.Core.Views.Windows.Main.Client.ClientLogViewWindow"
         Title="游戏实时日志"
+        WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="NoChrome"
         Width="750" Height="530"
@@ -36,7 +37,7 @@
             </Button>
         </DockPanel>
         
-        <TabControl Grid.Row="1" Margin="5,0">
+        <TabControl Grid.Row="1" Margin="5,0" SelectedIndex="0">
             <TabItem>
                 <TabItem.Header>
                     <DockPanel Height="24">
@@ -59,6 +60,27 @@
                     </DockPanel>
                 </TabItem.Header>
                 
+                <ScrollViewer Margin="10">
+                    <StackPanel Margin="5">
+                        <Expander Header="用户信息" Margin="5">
+                            <StackPanel>
+                                <TextBlock Name="UserName">UserName</TextBlock>
+                                <TextBlock Name="UserType">UserType</TextBlock>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Header="游戏信息" Margin="5">
+                            <StackPanel>
+                                <TextBlock Name="GameName">GameName</TextBlock>
+                                <TextBlock Name="GameFolder">GameFolder</TextBlock>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Header="JVM 信息" Margin="5">
+                            <StackPanel>
+                                <TextBlock Name="JvmName">JvmName</TextBlock>
+                            </StackPanel>
+                        </Expander>
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
             

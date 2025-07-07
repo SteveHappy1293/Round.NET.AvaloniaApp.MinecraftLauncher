@@ -15,6 +15,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Media;
 using Avalonia.Media.Fonts;
 using Avalonia.Threading;
+using OverrideLauncher.Core.Modules.Entry.LaunchEntry;
 using RMCL.LogAnalyzer.Minecraft;
 
 namespace RMCL.Core.Views.Windows.Main.Client
@@ -24,7 +25,7 @@ namespace RMCL.Core.Views.Windows.Main.Client
         private bool _autoScroll = true;
         private bool _alwaysOnTop;
 
-
+        
         public Process GameProcess;
         public ClientLogViewWindow()
         {
@@ -191,13 +192,23 @@ namespace RMCL.Core.Views.Windows.Main.Client
             {
                 sb.AppendLine(child.Text);
             }
-            
-            MinecraftLogAnalyzer.Analyzer(sb.ToString());
         }
 
         private void ExitGameBtn_OnClick(object? sender, RoutedEventArgs e)
         {
             GameProcess.Kill(true);
+        }
+
+        public void UpdateInfo(ClientRunnerInfo info)
+        {
+            Dispatcher.UIThread.Invoke(() =>
+            {
+                GameFolder.Text = $"游戏目录：{info.GameInstances.ClientInstances.GameCatalog}";
+                GameName.Text = $"游戏名称：{info.GameInstances.ClientInstances.GameName}";
+                UserName.Text = $"账户名称：{info.Account.UserName}";
+                UserType.Text = $"账户类型：{info.Account.AccountType}";
+                JvmName.Text = $"Java 路径：{info.JavaInfo.JavaPath}";
+            });
         }
     }
 }

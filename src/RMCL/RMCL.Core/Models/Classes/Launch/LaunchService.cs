@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 using Avalonia.Controls;
 using Avalonia.Threading;
 using OverrideLauncher.Core.Modules.Classes.Account;
@@ -21,6 +22,7 @@ using RMCL.Core.Models.Classes.Manager.BackCallManager;
 using RMCL.Core.Models.Classes.Manager.TaskManager;
 using RMCL.Core.Models.Classes.Manager.UserManager;
 using RMCL.Core.Views.Windows.Main.Client;
+using RMCL.LogAnalyzer.Minecraft;
 
 namespace RMCL.Core.Models.Classes.Launch;
 
@@ -117,7 +119,7 @@ public class LaunchService
         };
     }
 
-    public static ClientRunner Launch(LaunchClientInfo Info,ClientConfig config,Action<string> LogOutput = null)
+    public static (ClientRunner,ClientRunnerInfo) Launch(LaunchClientInfo Info,ClientConfig config,Action<string> LogOutput = null)
     {
         BackCallManager.Call(BackCallType.LaunchedGame);
 
@@ -154,8 +156,8 @@ public class LaunchService
         #if DEBUG
         File.WriteAllText("test.bat", run.GameProcess.StartInfo.Arguments);
         #endif
-        
-        return run;
+
+        return (run, iiiiinfo);
     }
 
     public static void LaunchTask(LaunchClientInfo Info)
@@ -173,19 +175,29 @@ public class LaunchService
             cont.RunTask();
             var uuid1 = TaskManager.AddTask(cont);
             var logWindow = new ClientLogViewWindow();
+            StringBuilder sb = new StringBuilder();
             dow.ExitCompleted = (uuid) =>
             {
                 TaskManager.DeleteTask(uuid1);
                 Dispatcher.UIThread.Invoke(() => logWindow.GameExit());
+
+                var ext = MinecraftLogAnalyzer.Analyzer(sb.ToString());
+                if (ext != null && ext.TotalExceptions != 0)
+                {
+                    Dispatcher.UIThread.Invoke(() => new ClientLogReportWindow().Show());
+                }
             };
             dow.Launching = (entry) =>
             {
-                dow.Runner = Launch(entry, config,(s) =>
+                var ent = Launch(entry, config, (s) =>
                 {
                     Console.WriteLine(s);
-                    
+                    sb.Append(s);
+
                     Dispatcher.UIThread.Invoke(() => logWindow.AddLog(s));
                 });
+                dow.Runner = ent.Item1;
+                logWindow.UpdateInfo(ent.Item2);
                 dow.Runner.GameExit = () => { };
                 dow.RunningGame();
                 logWindow.GameProcess = dow.Runner.GameProcess;

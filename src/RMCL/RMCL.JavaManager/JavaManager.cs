@@ -9,7 +9,6 @@ namespace RMCL.JavaManager;
 public class JavaManager
 {
     private static readonly string           JsonConfigFileName = PathDictionary.JavaConfigPath;
-    public static List<JavaDetils> Javas              = new();
     public static JavaRootEntry    JavaRoot           = new();
 
     public static List<string> KeyWords = new()
@@ -54,8 +53,7 @@ public class JavaManager
         {
             Directory.CreateDirectory(Path.GetDirectoryName(JsonConfigFileName));
             var searchJavaAsync = SearchJavaAsync().Result;
-            Javas.AddRange(searchJavaAsync);
-            JavaRoot.Javas = Javas;
+            JavaRoot.Javas.AddRange(searchJavaAsync);
             SaveConfig();
             return;
         }
@@ -64,8 +62,7 @@ public class JavaManager
         if (string.IsNullOrEmpty(json))
         {
             var searchJavaAsync = SearchJavaAsync().Result;
-            Javas.AddRange(searchJavaAsync);
-            JavaRoot.Javas = Javas;
+            JavaRoot.Javas.AddRange(searchJavaAsync);
             SaveConfig();
         }
         else
@@ -76,15 +73,13 @@ public class JavaManager
                 if (detilsArray.Javas.Count == 0)
                 {
                     var searchJavaAsync = SearchJavaAsync().Result;
-                    Javas.AddRange(searchJavaAsync);
-                    JavaRoot.Javas = Javas;
+                    JavaRoot.Javas.AddRange(searchJavaAsync);
                     SaveConfig();
                     return;
                 }
 
-                Javas.AddRange(detilsArray.Javas);
+                JavaRoot.Javas.AddRange(detilsArray.Javas);
                 JavaRoot.SelectIndex = detilsArray.SelectIndex;
-                JavaRoot.Javas = Javas;
             }
             catch
             {
