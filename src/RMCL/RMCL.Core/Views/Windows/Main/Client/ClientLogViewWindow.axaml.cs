@@ -15,6 +15,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Media;
 using Avalonia.Media.Fonts;
 using Avalonia.Threading;
+using RMCL.LogAnalyzer.Minecraft;
 
 namespace RMCL.Core.Views.Windows.Main.Client
 {
@@ -183,6 +184,15 @@ namespace RMCL.Core.Views.Windows.Main.Client
             StatusLabel.Text = "游戏实例已退出";
             StatusLabel.BoxBackground = Brushes.DarkRed;
             ExitGameBtn.IsEnabled = false;
+            
+            
+            var sb = new StringBuilder();
+            foreach (var child in LogPanel.Children.OfType<TextBlock>())
+            {
+                sb.AppendLine(child.Text);
+            }
+            
+            MinecraftLogAnalyzer.Analyzer(sb.ToString());
         }
 
         private void ExitGameBtn_OnClick(object? sender, RoutedEventArgs e)

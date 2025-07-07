@@ -137,17 +137,18 @@ public class LaunchService
             }
             : MatchingOptimumJava(par);
 
-        ClientRunner run = new ClientRunner(new ClientRunnerInfo()
+        var iiiiinfo = new ClientRunnerInfo()
         {
             Account = PlayerManager.Player.Accounts[PlayerManager.Player.SelectIndex].Account,
             JavaInfo = info,
-            LauncherInfo = 
-                string.IsNullOrEmpty(config.LauncherWatermark) ? 
-                "§bRMCL §d(§cBy §6OverrideLauncher.Core§d)" :
-                config.LauncherWatermark,
+            LauncherInfo =
+                string.IsNullOrEmpty(config.LauncherWatermark)
+                    ? "§bRMCL §d(§cBy §6OverrideLauncher.Core§d)"
+                    : config.LauncherWatermark,
             GameInstances = par,
             WindowInfo = config.GameWindowInfo,
-        });
+        };
+        ClientRunner run = new ClientRunner(iiiiinfo);
         run.LogsOutput = s => LogOutput.Invoke(s);
         
         #if DEBUG
@@ -185,6 +186,7 @@ public class LaunchService
                     
                     Dispatcher.UIThread.Invoke(() => logWindow.AddLog(s));
                 });
+                dow.Runner.GameExit = () => { };
                 dow.RunningGame();
                 logWindow.GameProcess = dow.Runner.GameProcess;
                 

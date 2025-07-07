@@ -2,7 +2,7 @@
 
 public class MinecraftLogAnalyzer
 {
-    public void Analyzer(string logContent)
+    public static void Analyzer(string logContent)
     {
         try
         {
