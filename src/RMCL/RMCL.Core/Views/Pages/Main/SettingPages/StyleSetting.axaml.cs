@@ -229,12 +229,15 @@ public partial class StyleSetting : ISetting
 
     public void UpdateFontPreview()
     {
-        var fontname = Config.Config.MainConfig.FontsConfig.ChoseFontName;
-        var fontsize = Config.Config.MainConfig.FontsConfig.FontSize;
+        try
+        {
+            var fontname = Config.Config.MainConfig.FontsConfig.ChoseFontName;
+            var fontsize = Config.Config.MainConfig.FontsConfig.FontSize;
         
-        FontPreview.FontSize = fontsize;
-        FontPreview.FontFamily = Avalonia.Media.FontFamily.Parse(fontname);
-        FontSizeSettingBox.Content = $"日志字体大小 ({FontSizeSetting.Value}pt)";
+            FontPreview.FontSize = fontsize;
+            FontPreview.FontFamily = Avalonia.Media.FontFamily.Parse(fontname);
+            FontSizeSettingBox.Content = $"日志字体大小 ({FontSizeSetting.Value}pt)";
+        }catch{ }
     }
 
     private void FontSizeSetting_OnValueChanged(object? sender, RangeBaseValueChangedEventArgs e)

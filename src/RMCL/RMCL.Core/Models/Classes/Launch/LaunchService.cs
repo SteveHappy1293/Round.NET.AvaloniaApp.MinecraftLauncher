@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Threading;
@@ -145,6 +146,10 @@ public class LaunchService
             WindowInfo = config.GameWindowInfo,
         });
         run.LogsOutput = s => LogOutput.Invoke(s);
+        
+        #if DEBUG
+        File.WriteAllText("test.bat", run.GameProcess.StartInfo.Arguments);
+        #endif
         
         return run;
     }

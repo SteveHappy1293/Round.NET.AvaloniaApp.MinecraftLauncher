@@ -2,6 +2,6 @@
 
 public class FontsConfigEntry
 {
-    public string ChoseFontName { get; set; } = String.Empty;
+    public string ChoseFontName { get; set; } = "";
     public double FontSize { get; set; } = 11;
 }
