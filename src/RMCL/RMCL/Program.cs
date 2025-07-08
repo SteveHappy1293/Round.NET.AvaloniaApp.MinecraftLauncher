@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
 using Avalonia;
+using RMCL.Base.Entry.Game.GameDrawer;
 using RMCL.Core;
 using RMCL.Config;
+using RMCL.Core.Models.Classes.Manager.GameDrawerManager;
 using RMCL.JavaManager;
 using RMCL.Logger;
 using RMCL.Core.Models.Classes.Manager.UserManager;
@@ -60,9 +62,15 @@ sealed class Program
             var redirector = new ConsoleRedirector(Path.GetFullPath(Path.Combine(PathDictionary.LogsPath,$"[RMCL.Logger] {DateTime.Now.ToString("yyyy.MM.dd HHmmss.fff")}.log")));
         
             Console.WriteLine("Program Starting!");
+            Console.WriteLine("Program Load Config...");
             Config.LoadConfig();
+            Console.WriteLine("Program Load JavaConfig...");
             JavaManager.LoadConfig();
+            Console.WriteLine("Program Load PlayerConfig...");
             PlayerManager.LoadConfig();
+            Console.WriteLine("Program Load GameDrawerConfig...");
+            GameDrawerManager.LoadConfig();
+            
             Console.WriteLine("Program Init...");
         
             BuildAvaloniaApp()

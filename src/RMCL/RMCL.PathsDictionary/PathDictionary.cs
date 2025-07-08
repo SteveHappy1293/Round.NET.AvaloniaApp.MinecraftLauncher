@@ -3,6 +3,7 @@ namespace RMCL.PathsDictionary;
 public class PathDictionary
 {
     public static readonly string ConfigPath = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Config/Config.json";
+    public static readonly string GameDrawerConfigPath = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Config/GameDrawer.json";
     public static readonly string PlayerConfigPath = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Config/Player.json";
     public static readonly string JavaConfigPath = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Config/Java.json";
     public static readonly string DefaultGameFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Minecraft";
