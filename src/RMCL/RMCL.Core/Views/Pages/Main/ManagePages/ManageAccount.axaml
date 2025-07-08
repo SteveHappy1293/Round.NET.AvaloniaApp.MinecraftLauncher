@@ -4,26 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
              xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
+             xmlns:controls="clr-namespace:LiteSkinViewer3D.Avalonia.Controls;assembly=LiteSkinViewer3D"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.Main.ManagePages.ManageAccount">
     <Grid>
         <DockPanel LastChildFill="True" Margin="15">
             <Grid DockPanel.Dock="Left" Width="214">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <DockPanel HorizontalAlignment="Center">
-                        <Border Background="Transparent" Name="Header" Width="64" Height="64" CornerRadius="6,6,0,0"></Border>
-                    </DockPanel>
-                    <DockPanel HorizontalAlignment="Center">
-                        <Border Background="Transparent" Name="LeftArm" Width="32" Height="96" CornerRadius="6,0,0,6"></Border>
-                        <Border Background="Transparent" Name="Body" Width="64" Height="96"></Border>
-                        <Border Background="Transparent" Name="RightArm" Width="32" Height="96" CornerRadius="0,6,6,0"></Border>
-                    </DockPanel>
-                    <DockPanel HorizontalAlignment="Center">
-                        <Border Background="Transparent" Name="LeftFoot" Width="32" Height="96" CornerRadius="0,0,0,6"></Border>
-                        <Border Background="Transparent" Name="RightFoot" Width="32" Height="96" CornerRadius="0,0,6,0"></Border>
-                    </DockPanel>
+                    <view:MCSkinViewer2D Name="McSkinViewer2D"/>
+                    <controls:SkinRender3D HorizontalAlignment="Center" IsVisible="False" Name="McSkinViewer3D" Focusable="True" EnableAnimation="True" Height="256" Width="200"/>
                     
-                    <button:IconButton Icon="Save20Regular" Content="保存此皮肤" Name="SaveSkin" Click="SaveSkin_OnClick" Margin="0,40,0,0"></button:IconButton>
+                    <button:IconButton HorizontalAlignment="Center" Icon="Save20Regular" Content="保存此皮肤" Name="SaveSkin" Click="SaveSkin_OnClick" Margin="0,40,0,0"></button:IconButton>
+                    <ToggleSwitch OnContent="3D显示" HorizontalAlignment="Center" OffContent="2D显示" Name="SkinShowType" IsCheckedChanged="SkinShowType_OnIsCheckedChanged"></ToggleSwitch>
                 </StackPanel>
             </Grid>
             <Grid DockPanel.Dock="Right">

@@ -1,10 +1,9 @@
-﻿namespace MinecraftSkinRender.OpenGL;
+﻿namespace LiteSkinViewer3D.OpenGL;
 
 /// <summary>
 /// OpenGL调用
 /// </summary>
-public abstract class OpenGLApi
-{
+public abstract class OpenGLApi {
     public readonly int GL_FALSE = 0;
     public readonly int GL_ZERO = 0;
     public readonly int GL_ONE = 1;

@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
@@ -20,6 +21,7 @@ using RMCL.Controls.Item.User;
 using RMCL.Core.Models.Classes.Manager.UserManager;
 using RMCL.Core.Views.Pages.DialogPage.User;
 using RMCL.Core.Models.Classes;
+using PointerType = LiteSkinViewer3D.Shared.Enums.PointerType;
 
 namespace RMCL.Core.Views.Pages.Main.ManagePages;
 
@@ -35,6 +37,7 @@ public partial class ManageAccount : ISetting
     {
         IsEdit = false;
         UserListBox.Items.Clear();
+        SkinShowType.IsChecked= Config.Config.MainConfig.SkinRenderEntry.IsUse3D;
         if (PlayerManager.Player.Accounts.Count <= 0)
         {
             NullBox.IsVisible = true;
@@ -51,7 +54,7 @@ public partial class ManageAccount : ISetting
             UserListBox.Items.Add(new ListBoxItem() { Content = new UserItem(x) });
         });
         UserListBox.SelectedIndex = PlayerManager.Player.SelectIndex;
-        ShowSkin();
+        UpdateSkinUI();
         
         IsEdit = true;
     }
@@ -148,37 +151,9 @@ public partial class ManageAccount : ISetting
             PlayerManager.Player.SelectIndex = UserListBox.SelectedIndex;
             PlayerManager.SaveConfig();
 
-            ShowSkin();
+            McSkinViewer2D.ShowSkin(PlayerManager.Player.Accounts[PlayerManager.Player.SelectIndex].Skin);
+            UpdateSkinUI();
         }
-    }
-
-    public void ShowSkin()
-    {
-        try
-        {
-            var skin = SkinHelper.Base64ToBitmap(PlayerManager.Player.Accounts[UserListBox.SelectedIndex].Skin);
-            Bitmap leftarm = null;
-            Bitmap rightarm = null;
-            Bitmap leftfoot = null;
-            Bitmap rightfoot = null;
-            Bitmap body = null;
-            Bitmap header = null;
-
-            try { leftarm = SkinHelper.CropAndScaleBitmapOptimized(skin, new PixelRect(44, 20, 4, 12), 8); } catch { }
-            try { rightarm = SkinHelper.CropAndScaleBitmapOptimized(skin, new PixelRect(36, 52, 4, 12), 8); } catch { }
-            try { leftfoot = SkinHelper.CropAndScaleBitmapOptimized(skin, new PixelRect(4, 20, 4, 12), 8); } catch { }
-            try { rightfoot = SkinHelper.CropAndScaleBitmapOptimized(skin, new PixelRect(20, 52, 4, 12), 8); } catch { }
-            try { body = SkinHelper.CropAndScaleBitmapOptimized(skin, new PixelRect(20, 20, 8, 12), 8); } catch { }
-            try { header = SkinHelper.CropAndScaleBitmapOptimized(skin, new PixelRect(8, 8, 8, 8), 8); } catch { }
-
-            try { LeftArm.Background = new ImageBrush() { Source = leftarm }; } catch { }
-            try { LeftFoot.Background = new ImageBrush() { Source = leftfoot }; } catch { }
-            try { RightArm.Background = new ImageBrush() { Source = rightarm }; } catch { }
-            try { RightFoot.Background = new ImageBrush() { Source = rightfoot }; } catch { }
-            try { Body.Background = new ImageBrush() { Source = body }; } catch { }
-            try { Header.Background = new ImageBrush() { Source = header }; } catch { }
-        }
-        catch { }
     }
 
     private async void SaveSkin_OnClick(object? sender, RoutedEventArgs e)
@@ -220,5 +195,83 @@ public partial class ManageAccount : ISetting
     private void RefreshBtn_OnClick(object? sender, RoutedEventArgs e)
     {
         RefreshUI();
+    }
+
+    private void SkinShowType_OnIsCheckedChanged(object? sender, RoutedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.Config.MainConfig.SkinRenderEntry.IsUse3D = (bool)SkinShowType.IsChecked;
+            Config.Config.SaveConfig();
+            
+            UpdateSkinUI();
+        }
+    }
+
+    public void UpdateSkinUI()
+    {
+        McSkinViewer3D.PointerMoved -= SkinViewer_PointerMoved;
+        McSkinViewer3D.PointerPressed -= SkinViewer_PointerPressed;
+        McSkinViewer3D.PointerReleased -= SkinViewer_PointerReleased;
+        if (Config.Config.MainConfig.SkinRenderEntry.IsUse3D)
+        {
+            McSkinViewer2D.IsVisible = false;
+            McSkinViewer3D.IsVisible = true;
+
+            McSkinViewer3D.SkinBase64 = PlayerManager.Player.Accounts[UserListBox.SelectedIndex].Skin;
+            McSkinViewer3D.ChangeSkin();
+            
+            McSkinViewer3D.PointerMoved += SkinViewer_PointerMoved;
+            McSkinViewer3D.PointerPressed += SkinViewer_PointerPressed;
+            McSkinViewer3D.PointerReleased += SkinViewer_PointerReleased;
+        }
+        else
+        {
+            McSkinViewer2D.IsVisible = true;
+            McSkinViewer3D.IsVisible = false;
+        }
+    }
+    
+    private void SkinViewer_PointerReleased(object? sender, PointerReleasedEventArgs e) {
+        var po = e.GetCurrentPoint(this);
+        var pos = e.GetPosition(this);
+
+        PointerType type = PointerType.None;
+        if (po.Properties.IsLeftButtonPressed) {
+            type = PointerType.PointerLeft;
+        } else if (po.Properties.IsRightButtonPressed) {
+            type = PointerType.PointerRight;
+        }
+
+        McSkinViewer3D.UpdatePointerReleased(type, new((float)pos.X * 2, (float)pos.Y * 2));
+
+    }
+
+    private void SkinViewer_PointerPressed(object? sender, PointerPressedEventArgs e) {
+        var po = e.GetCurrentPoint(this);
+        var pos = e.GetPosition(this);
+
+        PointerType type = PointerType.None;
+        if (po.Properties.IsLeftButtonPressed) {
+            type = PointerType.PointerLeft;
+        } else if (po.Properties.IsRightButtonPressed) {
+            type = PointerType.PointerRight;
+        }
+
+        McSkinViewer3D.UpdatePointerPressed(type, new((float)pos.X * 2, (float)pos.Y * 2));
+    }
+
+    private void SkinViewer_PointerMoved(object? sender, PointerEventArgs e) {
+        var po = e.GetCurrentPoint(this);
+        var pos = e.GetPosition(this);
+
+        PointerType type = PointerType.None;
+        if (po.Properties.IsLeftButtonPressed) {
+            type = PointerType.PointerLeft;
+        } else if (po.Properties.IsRightButtonPressed) {
+            type = PointerType.PointerRight;
+        }
+
+        McSkinViewer3D.UpdatePointerMoved(type, new((float)pos.X * 2, (float)pos.Y * 2));
     }
 }

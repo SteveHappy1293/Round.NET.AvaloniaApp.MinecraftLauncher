@@ -58,6 +58,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\CompositionScroll\CompositionScroll.csproj" />
+      <ProjectReference Include="..\LiteSkinViewer3D\LiteSkinViewer3D.csproj" />
       <ProjectReference Include="..\RMCL.AssetsCenter\RMCL.AssetsCenter.csproj" />
       <ProjectReference Include="..\RMCL.ClientManager\RMCL.ClientManager.csproj" />
       <ProjectReference Include="..\RMCL.Config\RMCL.Config.csproj" />
@@ -66,7 +67,6 @@
       <ProjectReference Include="..\RMCL.JavaManager\RMCL.JavaManager.csproj" />
       <ProjectReference Include="..\RMCL.LogAnalyzer\RMCL.LogAnalyzer.csproj" />
       <ProjectReference Include="..\RMCL.Logger\RMCL.Logger.csproj" />
-      <ProjectReference Include="..\RMCL.MCSkinReader\RMCL.MCSkinReader.csproj" />
       <ProjectReference Include="..\RMCL.NetworkService\RMCL.NetworkService.csproj" />
       <ProjectReference Include="..\RMCL.Plug\RMCL.Plug.csproj" />
       <ProjectReference Include="..\RMCL.SystemHelper\RMCL.SystemHelper.csproj" />

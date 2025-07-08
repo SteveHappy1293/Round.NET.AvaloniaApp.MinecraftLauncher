@@ -26,9 +26,10 @@
             </Expander>
             <Expander Margin="5" Header="鸣谢">
                 <StackPanel>
-                    <TextBlock>RMCL 的正版登录使用了来自 YMCL 提供的接口 ID (已经 YMCL 作者 (Yeppioo)DaiYu 允许)</TextBlock>
+                    <TextBlock>RMCL 的正版登录使用了来自 YMCL 提供的接口 ID (已经 YMCL 作者 DaiYu (Yeppioo) 允许)</TextBlock>
                     <TextBlock>RMCL 更新加速地址使用了来自 (github.akams.cn) 提供的加速地址</TextBlock>
-                    <TextBlock>感谢 Yeppioo 提供技术支持</TextBlock>
+                    <TextBlock>感谢 YangSpring429 (西路Baka) 提供 3D 皮肤渲染技术支持</TextBlock>
+                    <TextBlock>感谢 DaiYu (Yeppioo) 提供技术支持</TextBlock>
                     <TextBlock>感谢 lhx077 提供 Java 错误分析方面的技术支持</TextBlock>
                 </StackPanel>
             </Expander>
@@ -46,6 +47,7 @@
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Downloader.png" Title="Downloader" URL="https://github.com/bezzad/Downloader" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/FAIcon.png" Title="FluentAvalonia" URL="https://github.com/amwx/FluentAvalonia" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Nuget.png" Title="FluentAvalonia.FluentIcons" URL="https://github.com/jmkinzer/FluentAvalonia.FluentIcons" Margin="5"/>
+                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Nuget.png" Title="LiteSkinViewer3D" URL="https://github.com/YangSpring429/LiteSkinViewer3D" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/LuaSharp.png" Title="LuaCSharp" URL="https://github.com/AnnulusGames/Lua-CSharp" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Nuget.png" Title="MinecraftSkinRender" URL="https://github.com/Coloryr/MinecraftSkinRender" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/ROL.png" Title="OverrideLauncher.Core" URL="https://github.com/Round-Studio/OverrideLauncher.Core" Margin="5"/>
