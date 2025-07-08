@@ -2,7 +2,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.WizardPages.WizardGameFolder">
-    Welcome to Avalonia!
+    <DockPanel>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,20,-40,20" Width="300">
+            <TextBlock FontSize="40"
+                       FontWeight="Bold">游戏目录。</TextBlock>
+            <TextBlock>添加一个您用来保存游戏文件的目录。</TextBlock>
+            <TextBlock>通过自定义此目录，您可以更方便的</TextBlock>
+            <TextBlock>管理 Minecraft 文件。</TextBlock>
+            <TextBlock>单击右侧 新增目录 选项，开始添加。</TextBlock>
+        </StackPanel>
+        
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <controls:SettingsExpander Header="新增目录"
+                                           Description="添加游戏目录"
+                                           Name="AddFolder"
+                                           Click="AddFolder_OnClick">
+                    <controls:SettingsExpander.IconSource>
+                        <fluentIcons:FluentIconSource Icon="FolderAdd20Regular"></fluentIcons:FluentIconSource>
+                    </controls:SettingsExpander.IconSource>
+                </controls:SettingsExpander>
+            </StackPanel>
+            
+            <ScrollViewer Grid.Row="1" Margin="0,10,0,0">
+                <StackPanel Name="GameFolderBox"></StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
 </UserControl>

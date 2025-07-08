@@ -2,7 +2,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.WizardPages.WizardPlayer">
-    Welcome to Avalonia!
+    <DockPanel>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,20,-40,20" Width="300">
+            <TextBlock FontSize="40"
+                       FontWeight="Bold">创建账户。</TextBlock>
+            <TextBlock>当前启动器内没有账户，</TextBlock>
+            <TextBlock>需要您创建属于您自己的账户。</TextBlock>
+            <TextBlock>单击右侧按钮，开始创建账户。</TextBlock>
+        </StackPanel>
+        
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                
+                <controls:SettingsExpander Header="正版登录"
+                                           Description="通过微软账户登录正版游戏"
+                                           Name="MsaLogin" Click="MsaLogin_OnClick">
+                    <controls:SettingsExpander.IconSource>
+                        <fluentIcons:FluentIconSource Icon="Grid20Regular"></fluentIcons:FluentIconSource>
+                    </controls:SettingsExpander.IconSource>
+                </controls:SettingsExpander>
+            
+                <controls:SettingsExpander Grid.Row="1" Header="离线登录"
+                                           Description="创建本地离线账户"
+                                           Name="OffLogin" Click="OffLogin_OnClick">
+                    <controls:SettingsExpander.IconSource>
+                        <fluentIcons:FluentIconSource Icon="Person20Regular"></fluentIcons:FluentIconSource>
+                    </controls:SettingsExpander.IconSource>
+                </controls:SettingsExpander>
+            </StackPanel>
+            
+            <ScrollViewer Grid.Row="1" Margin="0,10,0,0">
+                <StackPanel Name="UsersBox"></StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
 </UserControl>

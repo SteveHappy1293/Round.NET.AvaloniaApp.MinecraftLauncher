@@ -11,8 +11,8 @@
         Title="初始化 RMCL 向导" WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="NoChrome"
-        Width="900" Height="500"
-        MinWidth="900" MinHeight="500">
+        Width="1000" Height="600"
+        MinWidth="1000" MinHeight="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -21,7 +21,9 @@
         
         <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top"  PointerPressed="TitleBar_PointerPressed" Background="#00000001">
             <TextBlock DockPanel.Dock="Left" FontSize="18" Margin="20,20,5,20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Orange">初次使用 RMCL 向导</TextBlock>
+            <!--
             <item:LabelBox VerticalAlignment="Center" Text="感谢您对 RMCL 的支持" BoxBackground="DarkGreen"/>
+            -->
             <Button DockPanel.Dock="Right" Margin="5,15,15,15" HorizontalAlignment="Right" VerticalAlignment="Center" ToolTip.Tip="关闭"  Width="32" Height="32" Click="CloseButton_Click" BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
                 <Path Width="12" Height="12" Stretch="Uniform" Fill="{DynamicResource TextColor}" Margin="0,2,0,0"
                       Data="M1484.481422 509.178311l192.420978-192.420978a45.078756 45.078756 0 1 0-63.715556-63.715555l-192.420977 192.420978-192.466489-192.466489a45.078756 45.078756 0 1 0-63.715556 63.715555l192.420978 192.420978-192.466489 192.489244a45.078756 45.078756 0 1 0 63.715556 63.715556l192.420977-192.420978 192.420978 192.420978a45.078756 45.078756 0 1 0 63.715556-63.715556z"/>
@@ -32,24 +34,20 @@
             </Button>
         </DockPanel>
         
-        <Border Grid.Row="1"
-                Background="{DynamicResource BackColor}"
-                Margin="10,10,10,84"
-                CornerRadius="6">
-            <container:WizardFrame Name="MainWizardFrame"/>
-        </Border>
+        
+        <container:WizardFrame Grid.Row="1" Name="MainWizardFrame" Margin="0,0,0,84"/>
         
         <Border Grid.Row="1"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                Margin="10" Padding="10"
-                CornerRadius="6"
-                Background="{DynamicResource BackColor}">
+                Margin="5" Padding="10"
+                CornerRadius="6">
+                <!--Background="{DynamicResource BackColor}"-->
             <DockPanel Height="42">
                 <Image Source="../../../Assets/Icon.png" Margin="5"></Image>
                 <StackPanel VerticalAlignment="Center" Margin="10,-4,10,0">
                     <TextBlock FontWeight="Heavy" FontSize="16">RMCL 启动器</TextBlock>
-                    <TextBlock FontSize="10" Margin="0,3,0,0">下一代 Minecraft 启动器</TextBlock>
+                    <TextBlock FontSize="10" Margin="0,3,0,0">新一代 Minecraft 启动器</TextBlock>
                 </StackPanel>
             </DockPanel>
         </Border>
@@ -57,12 +55,12 @@
         <Border Grid.Row="1"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
-                Margin="10" Padding="10"
-                CornerRadius="6" 
-                Background="{DynamicResource BackColor}">
+                Margin="5" Padding="10"
+                CornerRadius="6">
+                <!--Background="{DynamicResource BackColor}"-->
             <DockPanel Height="42">
-                <button:AccentIconButton Margin="5" Content="上一步" Icon="ArrowLeft20Regular"/>
-                <button:AccentIconButton Margin="5" Content="下一步" Icon="ArrowRight20Regular"/>
+                <button:IconButton       Name="LastBtn" Click="LastBtn_OnClick" Margin="5" Content="上一步" Icon="ArrowLeft20Regular" IsEnabled="False"/>
+                <button:AccentIconButton Name="NextBtn" Click="NextBtn_OnClick" Margin="5" Content="下一步" Icon="ArrowRight20Regular"/>
             </DockPanel>
         </Border>
     </Grid>

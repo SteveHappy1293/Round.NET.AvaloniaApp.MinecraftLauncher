@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
@@ -18,6 +19,7 @@ using RMCL.Core.Views;
 using RMCL.Core.Views.Windows;
 using RMCL.Core.Views.Windows.Initialize;
 using Tmds.DBus.Protocol;
+using Color = Avalonia.Media.Color;
 
 namespace RMCL.Core;
 
@@ -112,7 +114,7 @@ public partial class App : Application
                 
                 //if (Config.MainConfig.ShowErrorWindow)
                 //{
-                error.ShowDialog(Core.Models.Classes.Core.MainWindow);
+                error.Show();
                 // }
             });
         }

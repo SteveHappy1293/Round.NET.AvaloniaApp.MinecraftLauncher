@@ -2,7 +2,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.WizardPages.WizardWelcome">
-    
+    <DockPanel>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,20,-40,20" Width="300">
+            <TextBlock FontSize="40"
+                       FontWeight="Bold">欢迎！</TextBlock>
+            <TextBlock>欢迎使用 RMCL！</TextBlock>
+            <TextBlock>接下来，我们需要做一些基础的设置，</TextBlock>
+            <TextBlock>这将有助于您上手 RMCL。</TextBlock>
+        </StackPanel>
+        
+        <Image Source="../../../Assets/Background/Welcome.png" Width="400"></Image>
+    </DockPanel>
 </UserControl>

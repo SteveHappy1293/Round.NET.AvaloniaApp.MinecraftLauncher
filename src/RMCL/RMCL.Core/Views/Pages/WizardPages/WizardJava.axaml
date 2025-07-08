@@ -2,7 +2,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
+             xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
+             mc:Ignorable="d" d:DesignWidth="900"
              x:Class="RMCL.Core.Views.Pages.WizardPages.WizardJava">
-    Welcome to Avalonia!
+    <DockPanel>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,20,-40,20" Width="300">
+            <TextBlock FontSize="40"
+                       FontWeight="Bold">全局 Java</TextBlock>
+            <TextBlock>扫描，添加全局 Java。</TextBlock>
+            <TextBlock>甚至你可以把启动器当成</TextBlock>
+            <TextBlock>Java 管理工具？</TextBlock>
+        </StackPanel>
+        
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <controls:SettingsExpander Header="Java 偏好设置"
+                                       Description="全局 Java 列表"
+                                       Name="JavaList">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="FolderAdd20Regular"></fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                <controls:SettingsExpander.Footer>
+                    <DockPanel Name="ControlPanel" Height="32">
+                        <button:IconButton Content="手动添加 Java" Icon="Add20Regular" Margin="0,0,5,0"/>
+                        <button:IconButton Name="SearchJavaBtn" Click="SearchJavaBtn_OnClick" Content="搜索 Java" Icon="Search20Regular" Margin="5,0,5,0"/>
+                    </DockPanel>
+                </controls:SettingsExpander.Footer>
+            </controls:SettingsExpander>
+                    
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Name="JavasBox">
+                    <ProgressBar IsIndeterminate="True" IsVisible="False" Name="ProgressBar"></ProgressBar>
+                    <view:NullBox SmallTitle="无可用 Java" Name="NullBox" Margin="10"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
 </UserControl>

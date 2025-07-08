@@ -52,8 +52,6 @@ public class JavaManager
         if (!File.Exists(Path.GetFullPath(JsonConfigFileName)))
         {
             Directory.CreateDirectory(Path.GetDirectoryName(JsonConfigFileName));
-            var searchJavaAsync = SearchJavaAsync().Result;
-            JavaRoot.Javas.AddRange(searchJavaAsync);
             SaveConfig();
             return;
         }
@@ -61,8 +59,6 @@ public class JavaManager
         var json = File.ReadAllText(Path.GetFullPath(JsonConfigFileName));
         if (string.IsNullOrEmpty(json))
         {
-            var searchJavaAsync = SearchJavaAsync().Result;
-            JavaRoot.Javas.AddRange(searchJavaAsync);
             SaveConfig();
         }
         else
@@ -72,8 +68,6 @@ public class JavaManager
                 var detilsArray = JsonSerializer.Deserialize<JavaRootEntry>(json);
                 if (detilsArray.Javas.Count == 0)
                 {
-                    var searchJavaAsync = SearchJavaAsync().Result;
-                    JavaRoot.Javas.AddRange(searchJavaAsync);
                     SaveConfig();
                     return;
                 }

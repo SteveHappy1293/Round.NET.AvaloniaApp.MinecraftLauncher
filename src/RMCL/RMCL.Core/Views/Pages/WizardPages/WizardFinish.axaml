@@ -1,0 +1,26 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RMCL.Core.Views.Pages.WizardPages.WizardFinish">
+    <DockPanel>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,20,-40,20" Width="300">
+            <TextBlock FontSize="40"
+                       FontWeight="Bold">完成向导。</TextBlock>
+            <TextBlock>完成辣！</TextBlock>
+            <TextBlock>现在，您可以直接点击 完成 按钮</TextBlock>
+            <TextBlock>进入 RMCL！</TextBlock>
+        </StackPanel>
+        
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image Source="../../../Assets/Background/Finish.png" Width="180"></Image>
+        </Grid>
+    </DockPanel>
+</UserControl>
