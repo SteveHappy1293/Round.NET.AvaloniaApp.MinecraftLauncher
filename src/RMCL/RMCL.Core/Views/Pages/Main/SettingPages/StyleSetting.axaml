@@ -113,7 +113,8 @@
                 </controls:SettingsExpander>
                 
                 <controls:SettingsExpander Header="背景音乐"
-                                           Description="启动器背景音乐">
+                                           Description="启动器背景音乐"
+                                           Name="UserMusicPathBox">
                     <controls:SettingsExpander.IconSource>
                         <fluentIcons:FluentIconSource Icon="MusicNote220Regular"/>
                     </controls:SettingsExpander.IconSource>

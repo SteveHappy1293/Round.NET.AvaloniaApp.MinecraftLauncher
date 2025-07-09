@@ -30,7 +30,8 @@ public partial class ExportUserThemeWindow : Window
     private async void Export_OnClick(object? sender, RoutedEventArgs e)
     {
         var build = new BuildNeoSkinPack();
-        build.CollectConfig((bool)ModelBackground.IsChecked, (bool)ModelColor.IsChecked, (bool)ModelButton.IsChecked);
+        build.CollectConfig((bool)ModelBackground.IsChecked, (bool)ModelColor.IsChecked, (bool)ModelButton.IsChecked,
+            (bool)ModelMusic.IsChecked);
         
         var saveFileDialog = new SaveFileDialog
         {

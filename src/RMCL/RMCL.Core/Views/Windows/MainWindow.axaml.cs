@@ -16,6 +16,7 @@ using Avalonia.Threading;
 using FluentAvalonia.Interop;
 using FluentAvalonia.UI.Controls;
 using RMCL.Base.Entry.Style;
+using RMCL.Base.Enum;
 using RMCL.Base.Enum.BackCall;
 using RMCL.Base.Enum.ButtonStyle;
 using RMCL.Base.Enum.Update;
@@ -129,7 +130,8 @@ public partial class MainWindow : Window
         Models.Classes.Core.Music.Volume = (float)Math.Clamp(Config.Config.MainConfig.BackMusicEntry.Volume, 0.0, 1.0);
         if (Config.Config.MainConfig.BackMusicEntry.Enabled)
         {
-            if (!String.IsNullOrWhiteSpace(Config.Config.MainConfig.BackMusicEntry.Path))
+            if (!String.IsNullOrWhiteSpace(Config.Config.MainConfig.BackMusicEntry.Path) &&
+                Config.Config.MainConfig.Background.ChooseModel != BackgroundModelEnum.Pack) 
             {
                 Models.Classes.Core.Music.Enabled = true;
                 Models.Classes.Core.Music.Play(Config.Config.MainConfig.BackMusicEntry.Path);

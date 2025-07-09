@@ -30,6 +30,7 @@
                 <CheckBox Name="ModelBackground" IsChecked="True">壁纸</CheckBox>
                 <CheckBox Name="ModelColor" IsChecked="True">主题色</CheckBox>
                 <CheckBox Name="ModelButton" IsChecked="True">按钮配置</CheckBox>
+                <CheckBox Name="ModelMusic" IsChecked="True">背景音乐</CheckBox>
             </StackPanel>
             
             <TextBlock FontSize="16">主题包信息</TextBlock>

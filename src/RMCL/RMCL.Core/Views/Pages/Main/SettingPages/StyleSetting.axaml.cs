@@ -79,10 +79,12 @@ public partial class StyleSetting : ISetting
             ExportSkinPackBox.IsVisible = false;
             SetButton.IsVisible = false;
             SetColor.IsVisible = false;
+            UserMusicPathBox.IsVisible = false;
         }else{
             ExportSkinPackBox.IsVisible = true;
             SetButton.IsVisible = true;
             SetColor.IsVisible = true;
+            UserMusicPathBox.IsVisible = true;
         }
         
         if (!OSVersionHelper.IsWindows11()) ItemMica.IsEnabled = false;
@@ -105,11 +107,14 @@ public partial class StyleSetting : ISetting
                 ExportSkinPackBox.IsVisible = false;
                 SetButton.IsVisible = false;
                 SetColor.IsVisible = false;
+                UserMusicPathBox.IsVisible = false;
             }else{
                 ExportSkinPackBox.IsVisible = true;
                 SetButton.IsVisible = true;
                 SetColor.IsVisible = true;
+                UserMusicPathBox.IsVisible = true;
             }
+            UpdateMusic();
         }
     }
 

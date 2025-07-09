@@ -100,6 +100,16 @@ public class LoadSkin
 
             Config.Config.MainConfig.ThemeColors.Theme = styleConfig.ThemeColors.Theme;
         }
+
+        if (styleConfig.IsMusic)
+        {
+            var musicpath = Path.Combine(path, styleConfig.BackMusicEntry.Path);
+            if (File.Exists(musicpath))
+            {
+                Core.Music.Enabled = true;
+                Core.Music.Play(musicpath);
+            }
+        }
         Config.Config.SaveConfig();
     }
 

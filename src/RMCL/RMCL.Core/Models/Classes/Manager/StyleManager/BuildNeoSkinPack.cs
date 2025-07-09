@@ -31,6 +31,17 @@ public class BuildNeoSkinPack
             Config.Opacity = Config.BackgroundModel.ImageEntry.Opacity;
         }
 
+        if (Config.BackMusicEntry != null &&
+            Config.IsMusic)
+        {
+            Directory.CreateDirectory(Path.Combine(path, "Music"));
+            var mus = Config.BackMusicEntry.Path;
+            File.Copy(mus,
+                Path.Combine(path, "Music", Path.GetFileName(mus)));
+
+            Config.BackMusicEntry.Path = Path.Combine("Music", Path.GetFileName(mus));
+        }
+
         File.WriteAllText(Path.Combine(path, "Style.json"), JsonSerializer.Serialize(Config));
 
         try
@@ -47,17 +58,19 @@ public class BuildNeoSkinPack
         }
     }
 
-    public void CollectConfig(bool background, bool color, bool button)
+    public void CollectConfig(bool background, bool color, bool button,bool music)
     {
         Config = new();
         Config.PackVersion = 2;
         Config.BackgroundModel = background ? RMCL.Config.Config.MainConfig.Background : null;
         Config.ThemeColors = color ? RMCL.Config.Config.MainConfig.ThemeColors : null;
         Config.ButtonStyle = button ? RMCL.Config.Config.MainConfig.ButtonStyle : null;
+        Config.BackMusicEntry = music ? RMCL.Config.Config.MainConfig.BackMusicEntry : null;
 
         Config.IsBackground = background;
         Config.IsButton = button;
         Config.IsColor = color;
+        Config.IsMusic = music;
 
         BuildPack();
     }
