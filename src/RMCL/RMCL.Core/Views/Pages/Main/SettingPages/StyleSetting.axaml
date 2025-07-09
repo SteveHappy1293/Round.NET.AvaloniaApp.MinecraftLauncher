@@ -11,6 +11,13 @@
     <Grid>
         <ScrollViewer>
             <StackPanel Margin="5" MaxWidth="1200">
+                <controls:InfoBar IsOpen="True"
+                                  Margin="5"
+                                  IsClosable="False"
+                                  Title="提示"
+                                  Message="音量大小可通过 Ctrl+鼠标滚轮 来进行音量调整"
+                                  Severity="Success"></controls:InfoBar>
+                
                 <controls:SettingsExpander Header="背景"
                                            Description="设置启动器的背景样式">
                     <controls:SettingsExpander.IconSource>

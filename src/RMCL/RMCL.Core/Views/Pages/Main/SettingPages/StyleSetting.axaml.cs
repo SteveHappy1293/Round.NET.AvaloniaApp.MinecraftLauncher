@@ -263,14 +263,13 @@ public partial class StyleSetting : ISetting
         // 创建文件选择器选项
         var fileOptions = new FilePickerOpenOptions
         {
-            Title = "选择 MP3 文件",
+            Title = "选择音频文件",
             AllowMultiple = false,
             FileTypeFilter = new[]
             {
-                new FilePickerFileType("MP3 音频文件")
+                new FilePickerFileType("音频文件")
                 {
-                    Patterns = new[] { "*.mp3" },
-                    MimeTypes = new[] { "audio/mpeg" }
+                    Patterns = new[] { "*.mp3","*.flac","*.wav" },
                 }
             }
         };

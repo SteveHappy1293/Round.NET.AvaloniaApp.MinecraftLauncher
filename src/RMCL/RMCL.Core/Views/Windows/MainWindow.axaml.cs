@@ -127,7 +127,6 @@ public partial class MainWindow : Window
         Core.Models.Classes.Core.MainWindow.Topmost = Config.Config.MainConfig.LauncherWindowTopMost;
         
         Models.Classes.Core.Music.Volume = (float)Math.Clamp(Config.Config.MainConfig.BackMusicEntry.Volume, 0.0, 1.0);
-        MusicCapsule.SetVolume(Config.Config.MainConfig.BackMusicEntry.Volume * 100);
         if (Config.Config.MainConfig.BackMusicEntry.Enabled)
         {
             if (!String.IsNullOrWhiteSpace(Config.Config.MainConfig.BackMusicEntry.Path))
@@ -137,6 +136,7 @@ public partial class MainWindow : Window
             }
         }
         
+        MusicCapsule.SetVolume(Config.Config.MainConfig.BackMusicEntry.Volume * 100);
     }
     private bool _ctrlPressed = false;
     private void OnKeyDown(object sender, KeyEventArgs e)
@@ -161,7 +161,7 @@ public partial class MainWindow : Window
         {
             // 根据滚轮方向调整音量
             double delta = e.Delta.Y; // 上滚为正，下滚为负
-            double step = 0.02; // 每次滚动的音量变化步长
+            double step = 0.01; // 每次滚动的音量变化步长
             
             // 计算新音量
             double newVolume =  Models.Classes.Core.Music.Volume + (delta > 0 ? step : -step);
