@@ -16,17 +16,17 @@
     </UserControl.Styles>
     <Grid>
         <Grid  Margin="0,100,0,0" Name="Border">
-            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="180" Height="40" Background="{DynamicResource BackColor}" CornerRadius="24">
+            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="180" Height="30" Background="{DynamicResource BackColor}" CornerRadius="24">
                 <DockPanel HorizontalAlignment="Stretch" LastChildFill="True">
-                    <fluentIcons:FluentIcon Margin="10" Width="24" Icon="MusicNote216Filled" Height="16" DockPanel.Dock="Left" HorizontalAlignment="Left"/> 
+                    <fluentIcons:FluentIcon Margin="5" Width="20" Icon="MusicNote216Filled" Height="16" DockPanel.Dock="Left" HorizontalAlignment="Left"/> 
             
-                    <Grid DockPanel.Dock="Right" HorizontalAlignment="Stretch" Margin="0,5,30,0">
+                    <Grid DockPanel.Dock="Right" HorizontalAlignment="Stretch" Margin="0,3,30,0">
                         <TextBlock Name="TextBlock" FontSize="12" FontWeight="Medium" HorizontalAlignment="Center">音量</TextBlock>
-                        <ProgressBar Name="ProgressBar" MinWidth="20" Margin="0,10,0,-2"></ProgressBar>
+                        <ProgressBar Name="ProgressBar" MinWidth="50" Margin="0,12,0,-2"></ProgressBar>
                     </Grid>
                 </DockPanel>
             </Border>
-            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="180" Height="40" Background="White" Opacity="0.08" CornerRadius="24"></Border>
+            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="180" Height="30" Background="White" Opacity="0.08" CornerRadius="24"></Border>
         </Grid>
     </Grid>
 </UserControl>
