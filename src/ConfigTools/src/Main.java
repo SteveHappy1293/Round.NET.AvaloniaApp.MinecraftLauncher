@@ -6,7 +6,7 @@ public class Main {
         String userHome = GetConfigPath.getConfigDir("RoundStudio\\RMCL").toString();
         System.out.println("Get Config Path: " + userHome);
 
-        var window = new MainWindow();
+        MainWindow window = new MainWindow();
         window.setShow();
     }
 }

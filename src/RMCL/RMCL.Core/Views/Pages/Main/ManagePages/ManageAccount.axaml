@@ -12,7 +12,7 @@
             <Grid DockPanel.Dock="Left" Width="214">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <view:MCSkinViewer2D Name="McSkinViewer2D"/>
-                    <controls:SkinRender3D HorizontalAlignment="Center" IsVisible="False" Name="McSkinViewer3D" Focusable="True" EnableAnimation="True" Height="256" Width="200"/>
+                    <controls:SkinRender3D HorizontalAlignment="Center" IsVisible="False" Name="McSkinViewer3D" Focusable="True" EnableAnimation="True" Margin="-32" Height="320" Width="250"/>
                     
                     <button:IconButton HorizontalAlignment="Center" Icon="Save20Regular" Content="保存此皮肤" Name="SaveSkin" Click="SaveSkin_OnClick" Margin="0,40,0,0"></button:IconButton>
                     <ToggleSwitch OnContent="3D显示" HorizontalAlignment="Center" OffContent="2D显示" Name="SkinShowType" IsCheckedChanged="SkinShowType_OnIsCheckedChanged"></ToggleSwitch>

@@ -37,6 +37,8 @@ public partial class ManageAccount : ISetting
     {
         IsEdit = false;
         UserListBox.Items.Clear();
+        McSkinViewer3D.EnableAnimation =
+            Config.Config.MainConfig.SkinRenderEntry.Skin3DRenderConfigEntry.EnableAnimations;
         SkinShowType.IsChecked= Config.Config.MainConfig.SkinRenderEntry.IsUse3D;
         if (PlayerManager.Player.Accounts.Count <= 0)
         {
@@ -239,11 +241,13 @@ public partial class ManageAccount : ISetting
         PointerType type = PointerType.None;
         if (po.Properties.IsLeftButtonPressed) {
             type = PointerType.PointerLeft;
-        } else if (po.Properties.IsRightButtonPressed) {
+        } /*else if (po.Properties.IsRightButtonPressed) {
             type = PointerType.PointerRight;
-        }
+        }*/
 
-        McSkinViewer3D.UpdatePointerReleased(type, new((float)pos.X * 2, (float)pos.Y * 2));
+        McSkinViewer3D.UpdatePointerReleased(type,
+            new((float)pos.X * Config.Config.MainConfig.SkinRenderEntry.Skin3DRenderConfigEntry.MovementRate,
+                (float)pos.Y * Config.Config.MainConfig.SkinRenderEntry.Skin3DRenderConfigEntry.MovementRate));
 
     }
 
@@ -254,11 +258,13 @@ public partial class ManageAccount : ISetting
         PointerType type = PointerType.None;
         if (po.Properties.IsLeftButtonPressed) {
             type = PointerType.PointerLeft;
-        } else if (po.Properties.IsRightButtonPressed) {
+        } /*else if (po.Properties.IsRightButtonPressed) {
             type = PointerType.PointerRight;
-        }
+        }*/
 
-        McSkinViewer3D.UpdatePointerPressed(type, new((float)pos.X * 2, (float)pos.Y * 2));
+        McSkinViewer3D.UpdatePointerPressed(type,
+            new((float)pos.X * Config.Config.MainConfig.SkinRenderEntry.Skin3DRenderConfigEntry.MovementRate,
+                (float)pos.Y * Config.Config.MainConfig.SkinRenderEntry.Skin3DRenderConfigEntry.MovementRate));
     }
 
     private void SkinViewer_PointerMoved(object? sender, PointerEventArgs e) {
@@ -268,10 +274,12 @@ public partial class ManageAccount : ISetting
         PointerType type = PointerType.None;
         if (po.Properties.IsLeftButtonPressed) {
             type = PointerType.PointerLeft;
-        } else if (po.Properties.IsRightButtonPressed) {
+        } /*else if (po.Properties.IsRightButtonPressed) {
             type = PointerType.PointerRight;
-        }
+        }*/
 
-        McSkinViewer3D.UpdatePointerMoved(type, new((float)pos.X * 2, (float)pos.Y * 2));
+        McSkinViewer3D.UpdatePointerMoved(type,
+            new((float)pos.X * Config.Config.MainConfig.SkinRenderEntry.Skin3DRenderConfigEntry.MovementRate,
+                (float)pos.Y * Config.Config.MainConfig.SkinRenderEntry.Skin3DRenderConfigEntry.MovementRate));
     }
 }

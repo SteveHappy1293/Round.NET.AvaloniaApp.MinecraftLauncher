@@ -3,15 +3,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.Main.SettingPages.AssistSetting">
     <ScrollViewer>
         <StackPanel Margin="5" MaxWidth="1200">
             <controls:SettingsExpander Header="启动器窗口置顶 (一般调试时常用)"
                                        Description="设置启动器窗口是否置顶">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="AlignTop20Regular"></fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
                 <controls:SettingsExpander.Footer>
-                    <ToggleSwitch IsCheckedChanged="TopMostSwitch_OnIsCheckedChanged" Name="TopMostSwitch" OnContent="置顶开" OffContent="置顶关"></ToggleSwitch>
+                    <ToggleSwitch IsCheckedChanged="TopMostSwitch_OnIsCheckedChanged" Name="TopMostSwitch" OnContent="开" OffContent="关"></ToggleSwitch>
                 </controls:SettingsExpander.Footer>
+            </controls:SettingsExpander>
+            
+            <controls:SettingsExpander Header="3D 皮肤预览偏好"
+                                       Description="调整 管理>账户管理 下的 3D 皮肤预览参数">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="Box20Regular"></fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                
+                <controls:SettingsExpanderItem Content="启用动画"
+                                               Description="决定预览时是否启用动画">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ToggleSwitch OnContent="开" OffContent="关" Name="EnablePreviewAnimations" IsCheckedChanged="EnablePreviewAnimations_OnIsCheckedChanged"></ToggleSwitch>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                <controls:SettingsExpanderItem Content="预览移动速率"
+                                               Description="对 3D 皮肤预览的移动速率"
+                                               Name="SkinPreviewRate">
+                    <controls:SettingsExpanderItem.Footer>
+                        <Slider Name="SkinPreviewRateSlider" ValueChanged="RangeBase_OnValueChanged" Width="400" Minimum="1" Maximum="10"></Slider>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
             </controls:SettingsExpander>
         </StackPanel>
     </ScrollViewer>
