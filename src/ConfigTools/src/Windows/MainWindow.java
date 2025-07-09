@@ -1,6 +1,7 @@
 package Windows;
 
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 
 public class MainWindow {
@@ -29,7 +30,10 @@ public class MainWindow {
     }
 
     private void setView(){
-
+        JLabel titleLabel = new JLabel("RMCL 配置工具");
+        titleLabel.setLocation(0,0);
+        titleLabel.setSize(500,30);
+        mainframe.add(titleLabel);
     }
 
     public void setShow() {

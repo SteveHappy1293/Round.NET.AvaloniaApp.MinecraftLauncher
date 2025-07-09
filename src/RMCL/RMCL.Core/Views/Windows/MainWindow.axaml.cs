@@ -43,6 +43,13 @@ public partial class MainWindow : Window
         
         Models.Classes.Core.MainWindow = this;
         InitializeComponent();
+        
+        this.AddHandler(KeyDownEvent, OnKeyDown, RoutingStrategies.Tunnel);
+        this.AddHandler(KeyUpEvent, OnKeyUp, RoutingStrategies.Tunnel);
+        
+        // 订阅鼠标滚轮事件
+        this.AddHandler(PointerWheelChangedEvent, OnPointerWheelChanged, RoutingStrategies.Tunnel);
+        
         VersionBox.Text = VersionBox.Text.Replace("Version", Assembly.GetEntryAssembly()?.GetName().Version.ToString());
         Models.Classes.Core.TaskView = this.TaskView;
         Models.Classes.Core.MessageShowBox = this.MessageShowBox;
@@ -118,8 +125,69 @@ public partial class MainWindow : Window
         }, BackCallType.UpdateBackground);
         
         Core.Models.Classes.Core.MainWindow.Topmost = Config.Config.MainConfig.LauncherWindowTopMost;
+        
+        Models.Classes.Core.Music.Volume = (float)Math.Clamp(Config.Config.MainConfig.BackMusicEntry.Volume, 0.0, 1.0);
+        MusicCapsule.SetVolume(Config.Config.MainConfig.BackMusicEntry.Volume * 100);
+        if (Config.Config.MainConfig.BackMusicEntry.Enabled)
+        {
+            if (!String.IsNullOrWhiteSpace(Config.Config.MainConfig.BackMusicEntry.Path))
+            {
+                Models.Classes.Core.Music.Enabled = true;
+                Models.Classes.Core.Music.Play(Config.Config.MainConfig.BackMusicEntry.Path);
+            }
+        }
+        
+    }
+    private bool _ctrlPressed = false;
+    private void OnKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
+        {
+            _ctrlPressed = true;
+        }
     }
 
+    private void OnKeyUp(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
+        {
+            _ctrlPressed = false;
+        }
+    }
+
+    private void OnPointerWheelChanged(object sender, PointerWheelEventArgs e)
+    {
+        if (_ctrlPressed)
+        {
+            // 根据滚轮方向调整音量
+            double delta = e.Delta.Y; // 上滚为正，下滚为负
+            double step = 0.02; // 每次滚动的音量变化步长
+            
+            // 计算新音量
+            double newVolume =  Models.Classes.Core.Music.Volume + (delta > 0 ? step : -step);
+            if (newVolume * 100 < 0)
+            {
+                newVolume = 0;  
+            }else if (newVolume * 100 > 100)
+            {
+                newVolume = 1;
+            }
+            MusicCapsule.SetVolume(newVolume * 100);
+            
+            Console.WriteLine($"当前音量：{(int)(newVolume * 100)}%");
+            
+            // 应用新音量
+            if (Models.Classes.Core.Music.Enabled)
+                Models.Classes.Core.Music.Volume = (float)Math.Clamp(newVolume, 0.0, 1.0);
+            
+            Config.Config.MainConfig.BackMusicEntry.Volume = newVolume;
+            Config.Config.SaveConfig();
+            
+            // 阻止事件继续冒泡
+            e.Handled = true;
+        }
+    }
+    
     public void UpdateButtonStyle()
     {
         if (Config.Config.MainConfig.ButtonStyle.HomeButton == OrdinaryButtonStyle.Default)

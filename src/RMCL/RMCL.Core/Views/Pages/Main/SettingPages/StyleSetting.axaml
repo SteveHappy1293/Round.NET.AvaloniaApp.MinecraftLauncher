@@ -105,6 +105,26 @@
                     </controls:SettingsExpanderItem>
                 </controls:SettingsExpander>
                 
+                <controls:SettingsExpander Header="背景音乐"
+                                           Description="启动器背景音乐">
+                    <controls:SettingsExpander.IconSource>
+                        <fluentIcons:FluentIconSource Icon="MusicNote220Regular"/>
+                    </controls:SettingsExpander.IconSource>
+                    <controls:SettingsExpander.Footer>
+                        <ToggleSwitch Name="TurnOnMusic" IsCheckedChanged="TurnOnMusic_OnIsCheckedChanged" OnContent="开" OffContent="关" Margin="0,-20,0,-20"></ToggleSwitch>
+                    </controls:SettingsExpander.Footer>
+                    
+                    <controls:SettingsExpanderItem Content="音乐路径"
+                                                   Description="主题音乐的路径">
+                        <controls:SettingsExpanderItem.Footer>
+                            <DockPanel Width="400" Height="32">
+                                <Button Click="ChooseMusicBtn_OnClick" Name="ChooseMusicBtn" DockPanel.Dock="Right" Margin="5,0,0,0">...</Button>
+                                <TextBox TextInput="MusicPathBox_OnTextInput" Name="MusicPathBox" Margin="0,0,5,0"></TextBox>
+                            </DockPanel>
+                        </controls:SettingsExpanderItem.Footer>
+                    </controls:SettingsExpanderItem>
+                </controls:SettingsExpander>
+                
                 <controls:SettingsExpander Header="导出主题包"
                                            Description="导出 Round Studio 通用主题包"
                                            Name="ExportSkinPackBox">

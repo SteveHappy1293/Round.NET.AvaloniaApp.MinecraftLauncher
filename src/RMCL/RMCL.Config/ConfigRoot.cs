@@ -21,6 +21,7 @@ public class ConfigRoot
     public BackgroundEntry Background { get; set; } = new();
     public ColorEntry ThemeColors { get; set; } = new();
     public ButtonStyle ButtonStyle { get; set; } = new();
+    public BackMusicEntry BackMusicEntry { get; set; } = new();
     public FontsConfigEntry FontsConfig { get; set; } = new();
     public SkinRenderEntry SkinRenderEntry { get; set; } = new();
     public bool FirstLauncher { get; set; } = true;

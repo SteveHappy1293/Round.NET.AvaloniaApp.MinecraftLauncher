@@ -24,10 +24,14 @@ public partial class ChildFrame : UserControl
         // 当布局更新时，可以在这里获取最新尺寸
         // var currentHeight = this.Bounds.Height;
     }
-
     public void Show(UserControl Page)
     {
         ShowedCallBack.Invoke();
+        // 在设置新内容前释放旧内容
+        if (MainFrame.Content is IDisposable disposableContent)
+        {
+            disposableContent.Dispose();
+        }
         MainFrame.Content = Page;
         this.IsVisible = true;
         
@@ -55,6 +59,10 @@ public partial class ChildFrame : UserControl
     public void Close()
     {
         ClosedCallBack.Invoke();
+        if (MainFrame.Content is IDisposable disposableContent)
+        {
+            disposableContent.Dispose();
+        }
         // 确保在UI线程上获取高度
         Dispatcher.UIThread.Post(() => 
         {

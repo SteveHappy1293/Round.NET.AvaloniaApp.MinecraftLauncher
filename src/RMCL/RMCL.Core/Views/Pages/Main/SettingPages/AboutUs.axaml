@@ -50,8 +50,8 @@
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Nuget.png" Title="LiteSkinViewer3D" URL="https://github.com/YangSpring429/LiteSkinViewer3D" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/LuaSharp.png" Title="LuaCSharp" URL="https://github.com/AnnulusGames/Lua-CSharp" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Nuget.png" Title="MinecraftSkinRender" URL="https://github.com/Coloryr/MinecraftSkinRender" Margin="5"/>
+                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/NAudio.png" Title="NAudio" URL="https://github.com/naudio/NAudio" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/ROL.png" Title="OverrideLauncher.Core" URL="https://github.com/Round-Studio/OverrideLauncher.Core" Margin="5"/>
-                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Silk.NET.OpenGL.png" Title="Silk.NET.OpenGL" URL="https://www.nuget.org/packages/Silk.NET.OpenGL" Margin="5"/>
                 </StackPanel>
             </Expander>
         </StackPanel>

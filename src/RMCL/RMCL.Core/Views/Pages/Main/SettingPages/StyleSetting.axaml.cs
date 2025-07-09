@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -5,9 +6,11 @@ using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
+using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using FluentAvalonia.FluentIcons;
 using FluentAvalonia.Interop;
@@ -50,7 +53,9 @@ public partial class StyleSetting : ISetting
         MainButtonStyle.SelectedIndex = Config.Config.MainConfig.ButtonStyle.HomeButton.GetHashCode() - 1;
         QuickChoosePlayerButtonStyle.SelectedIndex = Config.Config.MainConfig.ButtonStyle.QuickChoosePlayerButton.GetHashCode();
         ColorPicker.Color = Color.Parse(Config.Config.MainConfig.ThemeColors.ThemeColors);
-
+        TurnOnMusic.IsChecked = Config.Config.MainConfig.BackMusicEntry.Enabled;
+        MusicPathBox.Text = Config.Config.MainConfig.BackMusicEntry.Path;
+        
         ColorThemeModel.SelectedIndex = Config.Config.MainConfig.ThemeColors.ColorType.GetHashCode();
         LightTheme.SelectedIndex = Config.Config.MainConfig.ThemeColors.Theme.GetHashCode();
         SystemHelper.GetSystemFonts.GetSystemFontFamilies().ForEach(x => ChoseLogViewFontBox.Items.Add(x));
@@ -249,5 +254,73 @@ public partial class StyleSetting : ISetting
             Config.Config.SaveConfig();
             UpdateFontPreview();
         }
+    }
+    public async Task<string?> SelectSingleMp3File()
+    {
+        // 获取顶级窗口
+        var topLevel = TopLevel.GetTopLevel(Models.Classes.Core.MainWindow);
+    
+        // 创建文件选择器选项
+        var fileOptions = new FilePickerOpenOptions
+        {
+            Title = "选择 MP3 文件",
+            AllowMultiple = false,
+            FileTypeFilter = new[]
+            {
+                new FilePickerFileType("MP3 音频文件")
+                {
+                    Patterns = new[] { "*.mp3" },
+                    MimeTypes = new[] { "audio/mpeg" }
+                }
+            }
+        };
+    
+        // 打开文件选择对话框
+        var files = await topLevel.StorageProvider.OpenFilePickerAsync(fileOptions);
+    
+        // 返回选择的文件路径
+        return files.Count == 1 ? files[0].Path.LocalPath : null;
+    }
+    private void TurnOnMusic_OnIsCheckedChanged(object? sender, RoutedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.Config.MainConfig.BackMusicEntry.Enabled = (bool)TurnOnMusic.IsChecked;
+            Config.Config.SaveConfig();
+            UpdateMusic();
+        }
+    }
+
+    private async void ChooseMusicBtn_OnClick(object? sender, RoutedEventArgs e)
+    {
+        var path = await SelectSingleMp3File();
+        MusicPathBox.Text = Path.GetFullPath(path);
+        
+        Config.Config.MainConfig.BackMusicEntry.Path = Path.GetFullPath(path);
+        Config.Config.SaveConfig();
+        UpdateMusic();
+    }
+
+    private void MusicPathBox_OnTextInput(object? sender, TextInputEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.Config.MainConfig.BackMusicEntry.Path = Path.GetFullPath(MusicPathBox.Text);
+            Config.Config.SaveConfig();
+
+            UpdateMusic();
+        }
+    }
+
+    public void UpdateMusic()
+    {
+        if (Config.Config.MainConfig.BackMusicEntry.Enabled)
+        {
+            if (!String.IsNullOrWhiteSpace(Config.Config.MainConfig.BackMusicEntry.Path))
+            {
+                Models.Classes.Core.Music.Enabled = true;
+                Models.Classes.Core.Music.Play(Config.Config.MainConfig.BackMusicEntry.Path);
+            }
+        }else Models.Classes.Core.Music.Stop();
     }
 }
