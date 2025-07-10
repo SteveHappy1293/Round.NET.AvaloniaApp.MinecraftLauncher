@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Runtime;
 using Avalonia;
 using RMCL.Base.Entry.Game.GameDrawer;
 using RMCL.Core;
@@ -13,6 +14,9 @@ sealed class Program
 {
     public static void Main(string[] args)
     {
+// 设置 GC 延迟模式（默认是 Interactive，可改为 LowLatency/Batch）
+        System.Runtime.GCSettings.LatencyMode = GCLatencyMode.Batch;
+        
         if (args.Length >= 4)
         {
             string bt = "";

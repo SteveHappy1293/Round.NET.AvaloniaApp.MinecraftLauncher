@@ -42,7 +42,9 @@ public partial class ChildFrame : UserControl
             var hei = this.Bounds.Height;
             
             MainFrame.Margin = new Thickness(0, hei, 0, -hei);
+            Back111.Margin = new Thickness(0, hei, 0, -hei);
             MainFrame.Opacity = 0; // 初始透明
+            Back111.Opacity = 0;
             
             Task.Run(() =>
             {
@@ -50,7 +52,9 @@ public partial class ChildFrame : UserControl
                 Dispatcher.UIThread.Invoke(() => 
                 {
                     MainFrame.Opacity = 1;
+                    Back111.Opacity = 1;
                     MainFrame.Margin = new Thickness(0, 0, 0, 0);
+                    Back111.Margin = new Thickness(0);
                 });
             });
         });
@@ -69,7 +73,9 @@ public partial class ChildFrame : UserControl
             var hei = this.Bounds.Height;
             
             MainFrame.Margin = new Thickness(0, hei, 0, -hei);
+            Back111.Margin = new Thickness(0, hei, 0, -hei);
             MainFrame.Opacity = 0;
+            Back111.Opacity = 0;
             
             Task.Run(() =>
             {

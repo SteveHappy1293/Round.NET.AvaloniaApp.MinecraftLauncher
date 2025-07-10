@@ -15,8 +15,20 @@
                 </Transitions>
             </Setter>
         </Style>
+        <Style Selector="Grid#Back111">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.25" Easing="ExponentialEaseOut"></DoubleTransition>
+                    <ThicknessTransition Property="Margin" Duration="0:0:0.4" Easing="ExponentialEaseOut"></ThicknessTransition>
+                </Transitions>
+            </Setter>
+        </Style>
     </UserControl.Styles>
     <Grid>
-        <controls:Frame Name="MainFrame" Opacity="0" Margin="0" Background="{DynamicResource BackColor}"/>
+        <Grid Name="Back111">
+            <Grid Background="{DynamicResource BackColor}"></Grid>
+            <Grid Background="{DynamicResource TextColor}" Opacity="0.1"></Grid>
+        </Grid>
+        <controls:Frame Name="MainFrame" Opacity="0" Margin="0"/>
     </Grid>
 </UserControl>

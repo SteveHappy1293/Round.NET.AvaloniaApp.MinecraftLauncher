@@ -5,8 +5,8 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.ChildFramePage.Game.GameClientSettingSubPages.ClientScreenshotSetting">
     <ScrollViewer>
-        <StackPanel>
+        <WrapPanel Name="StackPanel" HorizontalAlignment="Center" MaxWidth="1200" Margin="0,5,0,0">
             
-        </StackPanel>
+        </WrapPanel>
     </ScrollViewer>
 </UserControl>
