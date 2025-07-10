@@ -20,13 +20,18 @@ public partial class GameDrawer : UserControl
 
     private void AddGameGroupBtn_OnClick(object? sender, RoutedEventArgs e)
     {
+        var add = new AddGameGroup();
         var con = new ContentDialog()
         {
-            Content = new AddGameGroup(),
+            Content = add,
             Title = "新增游戏分类",
             CloseButtonText = "新增",
             PrimaryButtonText = "取消",
             DefaultButton = ContentDialogButton.Close
+        };
+        con.CloseButtonClick += async (_, __) =>
+        {
+            
         };
         con.ShowAsync(Core.Models.Classes.Core.MainWindow);
     }

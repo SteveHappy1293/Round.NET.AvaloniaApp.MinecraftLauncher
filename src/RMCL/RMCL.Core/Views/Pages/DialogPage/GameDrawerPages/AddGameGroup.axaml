@@ -7,11 +7,11 @@
     <StackPanel>
         <DockPanel>
             <TextBlock Margin="5" VerticalAlignment="Center">分类名称</TextBlock>
-            <TextBox Watermark="New Group" Height="32" Width="200" Margin="5"></TextBox>
+            <TextBox Watermark="New Group" TextChanged="TextBox_OnTextChanged" Height="32" Width="200" Margin="5"></TextBox>
         </DockPanel>
         <DockPanel>
             <TextBlock Margin="5" VerticalAlignment="Center">颜色偏好</TextBlock>
-            <ColorPicker Height="32" Width="200" Margin="5" Color="Orange"></ColorPicker>
+            <ColorPicker Name="ColorPicker" ColorChanged="ColorPicker_OnColorChanged" Height="32" Width="200" Margin="5" Color="Orange"></ColorPicker>
         </DockPanel>
     </StackPanel>
 </UserControl>

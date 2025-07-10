@@ -13,15 +13,16 @@ public sealed class FXAAPostProcessor : IDisposable {
     private int _shader;
     private int _uniformTexelStep;
 
-    private readonly float[] quadVertices = [
+    // x, y, u, v （UV 范围为 [0, 1]）
+    private readonly float[] quadVertices = {
         -1f,  1f, 0f, 1f,
         -1f, -1f, 0f, 0f,
-         1f,  1f, 1f, 1f,
-         1f, -1f, 1f, 0f
-    ];
+        1f,  1f, 1f, 1f,
+        1f, -1f, 1f, 0f
+    };
 
     public int ColorTexture => _texture;
-    public int SourceFramebuffer => _frameBuffer;
+    public int Framebuffer => _frameBuffer;
 
     public FXAAPostProcessor(OpenGLApi gl, bool isGLES) {
         this.gl = gl;
@@ -45,7 +46,9 @@ public sealed class FXAAPostProcessor : IDisposable {
         DeleteFramebuffer();
         this.width = width;
         this.height = height;
+        DeleteFramebuffer();
         CreateFramebuffer();
+        Initialize(width, height);
     }
 
     public void Render(int destinationFramebuffer) {
@@ -58,6 +61,7 @@ public sealed class FXAAPostProcessor : IDisposable {
 
         gl.UseProgram(_shader);
         gl.Uniform2f(_uniformTexelStep, 1f / width, 1f / height);
+        gl.Uniform1i(gl.GetUniformLocation(_shader, "u_colorTexture"), 0);
 
         gl.ActiveTexture(gl.GL_TEXTURE0);
         gl.BindTexture(gl.GL_TEXTURE_2D, _texture);
@@ -66,7 +70,6 @@ public sealed class FXAAPostProcessor : IDisposable {
         gl.DrawArrays(gl.GL_TRIANGLE_STRIP, 0, 4);
 
         gl.BindVertexArray(0);
-        gl.BindTexture(gl.GL_TEXTURE_2D, _texture);
         gl.UseProgram(0);
 
         gl.Disable(gl.GL_BLEND);
@@ -139,17 +142,16 @@ public sealed class FXAAPostProcessor : IDisposable {
         gl.BindVertexArray(_vao);
         gl.BindBuffer(gl.GL_ARRAY_BUFFER, _vbo);
         fixed (float* ptr = quadVertices) {
+            Debug.WriteLine(new nint(ptr));
+            Debug.WriteLine(quadVertices.Length * sizeof(float));
             gl.BufferData(gl.GL_ARRAY_BUFFER, quadVertices.Length * sizeof(float), new(ptr), gl.GL_STATIC_DRAW);
         }
 
-        int pos = gl.GetAttribLocation(_shader, "a_position");
-        int uv = gl.GetAttribLocation(_shader, "a_texCoord");
-
-        gl.EnableVertexAttribArray(pos);
-        gl.VertexAttribPointer(pos, 2, gl.GL_FLOAT, false, 4 * sizeof(float), 0);
-
-        gl.EnableVertexAttribArray(uv);
-        gl.VertexAttribPointer(uv, 2, gl.GL_FLOAT, false, 4 * sizeof(float), 2 * sizeof(float));
+        gl.EnableVertexAttribArray(0); // layout(location = 0)
+        gl.VertexAttribPointer(0, 2, gl.GL_FLOAT, false, 4 * sizeof(float), 0);
+        
+        gl.EnableVertexAttribArray(1); // layout(location = 1)
+        gl.VertexAttribPointer(1, 2, gl.GL_FLOAT, false, 4 * sizeof(float), 2 * sizeof(float));
 
         gl.BindVertexArray(0);
     }
