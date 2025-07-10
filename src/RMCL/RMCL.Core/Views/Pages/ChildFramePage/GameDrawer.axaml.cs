@@ -7,6 +7,8 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
+using RMCL.Base.Entry.Game.GameDrawer;
+using RMCL.Core.Models.Classes.Manager.GameDrawerManager;
 using RMCL.Core.Views.Pages.DialogPage.GameDrawerPages;
 
 namespace RMCL.Core.Views.Pages.ChildFramePage;
@@ -31,7 +33,12 @@ public partial class GameDrawer : UserControl
         };
         con.CloseButtonClick += async (_, __) =>
         {
-            
+            GameDrawerManager.RegisterGroup(new GameDrawerGroupEntry()
+            {
+                ColorHtmlCode = add.GroupColor,
+                Name = add.GroupName,
+            });
+            GameDrawerManager.SaveConfig();
         };
         con.ShowAsync(Core.Models.Classes.Core.MainWindow);
     }

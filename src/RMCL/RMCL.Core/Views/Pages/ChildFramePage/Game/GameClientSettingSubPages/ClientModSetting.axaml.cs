@@ -16,6 +16,7 @@ namespace RMCL.Core.Views.Pages.ChildFramePage.Game.GameClientSettingSubPages
     {
         public void UpdateUI()
         {
+            SearchBox.Watermark = $"在 0 个已安装模组中搜索...";
             IsEdit = false;
             ModsList.IsVisible = false;
             NullBox.IsVisible = false;

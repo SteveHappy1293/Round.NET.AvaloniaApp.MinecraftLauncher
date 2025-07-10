@@ -4,6 +4,7 @@ using System.Text.Json;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using FluentAvalonia.UI.Controls;
 using RMCL.Base.Entry.Style;
 using RMCL.Base.Enum;
 using RMCL.Base.Enum.BackCall;
@@ -75,8 +76,16 @@ public class StyleManager
                 break;
             case BackgroundModelEnum.Pack:
                 if (Config.Config.MainConfig.Background.PackEntry.SelectedIndex == -1) return;
-                LoadSkin.ImportStyleConfigFile(
-                    Directory.GetFiles(PathsDictionary.PathDictionary.SkinFolder)[Config.Config.MainConfig.Background.PackEntry.SelectedIndex]);
+                try
+                {
+                    LoadSkin.ImportStyleConfigFile(
+                        Directory.GetFiles(PathsDictionary.PathDictionary.SkinFolder)[
+                            Config.Config.MainConfig.Background.PackEntry.SelectedIndex]);
+                }
+                catch
+                {
+                    Models.Classes.Core.MessageShowBox.AddInfoBar("加载错误", $"当前选择的主题文件无效", InfoBarSeverity.Error);
+                }
                 break;
         }
         

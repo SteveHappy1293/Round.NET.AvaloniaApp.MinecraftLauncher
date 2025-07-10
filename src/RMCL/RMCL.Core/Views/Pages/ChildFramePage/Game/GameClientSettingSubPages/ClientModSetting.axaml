@@ -6,7 +6,7 @@
              xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.ChildFramePage.Game.GameClientSettingSubPages.ClientModSetting">
-    <Grid Margin="15,0">
+    <Grid Margin="0,0" MaxWidth="1200">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>

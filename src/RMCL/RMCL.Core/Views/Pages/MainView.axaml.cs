@@ -115,16 +115,28 @@ public partial class MainView : UserControl
         var version = Config.Config.MainConfig.GameFolders[Config.Config.MainConfig.SelectedGameFolder].SelectedGameIndex;
 
         var vers = Directory.GetDirectories(Path.Combine(versionDir.Path,"versions"));
-        var ver = vers[version];
-
-        Task.Run(() =>
+        if(vers.Length!=0)
         {
-            LaunchService.LaunchTask(new LaunchClientInfo()
+            var ver = vers[version];
+
+            Task.Run(() =>
             {
-                GameFolder = versionDir.Path,
-                GameName = Path.GetFileName(ver)
+                LaunchService.LaunchTask(new LaunchClientInfo()
+                {
+                    GameFolder = versionDir.Path,
+                    GameName = Path.GetFileName(ver)
+                });
             });
-        });
+        }
+        else
+        {
+            new ContentDialog()
+            {
+                Content = "当前游戏文件夹内无游戏或用户未选中",
+                Title = "启动错误",
+                CloseButtonText = "确定",
+            }.ShowAsync();
+        }
     }
 
     private void GameDrawer_OnClick(object? sender, RoutedEventArgs e)

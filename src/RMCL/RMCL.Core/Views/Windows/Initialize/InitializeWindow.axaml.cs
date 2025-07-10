@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -19,6 +20,8 @@ public partial class InitializeWindow : Window
     public InitializeWindow()
     {
         InitializeComponent();
+        
+        
         RenderOptions.SetTextRenderingMode(this, TextRenderingMode.SubpixelAntialias); // 字体渲染模式
         RenderOptions.SetBitmapInterpolationMode(this, BitmapInterpolationMode.MediumQuality); // 图片渲染模式
         RenderOptions.SetEdgeMode(this, EdgeMode.Antialias); // 形状渲染模式

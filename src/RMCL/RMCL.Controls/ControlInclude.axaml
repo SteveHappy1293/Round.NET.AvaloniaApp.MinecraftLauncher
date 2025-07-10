@@ -6,6 +6,6 @@
         </Border>
     </Design.PreviewWith>
 
-    <StyleInclude Source="Item/ItemBox.axaml"></StyleInclude>
+    <StyleInclude Source="./Item/ItemBox.axaml"></StyleInclude>
     <!-- Add Styles Here -->
 </Styles>

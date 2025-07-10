@@ -21,6 +21,7 @@ public partial class GameClientSetting : UserControl
     private ClientScreenshotSetting ClientScreenshotSetting = new ClientScreenshotSetting();
     private ClientModSetting ClientModSetting = new ClientModSetting();
     private ClientResourcePackSetting ClientResourcePackSetting = new ClientResourcePackSetting();
+    private ClientSeniorSetting ClientSeniorSetting = new ClientSeniorSetting();
     
     public VersionParse _versionParse;
     public GameClientSetting(VersionParse version)
@@ -63,6 +64,13 @@ public partial class GameClientSetting : UserControl
             Title = "资源包",
             Route = "ClientResourcePackSetting",
             Page = ClientResourcePackSetting
+        });
+        this.NavigationPage.RegisterRoute(new NavigationRouteConfig()
+        {
+            Icon = FluentIconSymbol.PuzzlePiece20Regular,
+            Title = "高级",
+            Route = "ClientSeniorSetting",
+            Page = ClientSeniorSetting
         });
         
         ClientLaunchSetting.Version = version;

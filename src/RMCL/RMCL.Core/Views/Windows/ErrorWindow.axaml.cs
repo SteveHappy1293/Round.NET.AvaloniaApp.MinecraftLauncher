@@ -54,6 +54,21 @@ public partial class ErrorWindow : Window
         ErrorMessage.Text = ex.Message;
         ConfigMessage.Text = constr.GetResult();
         SystemMessage.Text = sysstr.GetResult();
+    
+        var st = new StackTrace(ex, true);
+        var frame = st.GetFrame(0); // 获取最顶层的堆栈帧
+        
+        string fileName = frame?.GetFileName() ?? "未知文件";
+        int lineNumber = frame?.GetFileLineNumber() ?? 0;
+        string methodName = frame?.GetMethod()?.Name ?? "未知方法";
+        
+        string errorDetails = $"未处理异常: {ex.GetType().Name}\n" +
+                              $"消息: {ex.Message}\n" +
+                              $"位置: {fileName} 第 {lineNumber} 行\n" +
+                              $"方法: {methodName}\n" +
+                              $"完整堆栈:\n{ex.StackTrace}";
+        
+        Console.WriteLine(errorDetails);
     }
 
     private void ResetButton_OnClick(object? sender, RoutedEventArgs e)

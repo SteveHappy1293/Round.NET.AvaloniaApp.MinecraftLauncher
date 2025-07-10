@@ -14,6 +14,7 @@ public class PathDictionary
     public static readonly string ExceptionFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Exception";
     
     public static readonly string ClientModsFolderName = "mods";
+    public static readonly string ClientScreenshotsFolderName = "screenshots";
     public static readonly string ClientModCacheFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.ModCache";
     public static readonly string ClientModDisablePostfix = ".disabled";
     public static readonly string ClientModEnablePostfix = ".jar";
@@ -22,4 +23,6 @@ public class PathDictionary
     public static readonly string SkinFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Style/Files";
     public static readonly string SkinTempFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Style/Temp";
     public static readonly string SkinFolderExtract = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Style/Extract";
+    
+    public static readonly string MostFileFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Most";
 }
