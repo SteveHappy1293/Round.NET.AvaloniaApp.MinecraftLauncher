@@ -21,6 +21,24 @@ public class SystemHelper
             }catch{ }
         }
     }
+
+    public static void OpenFile(string imagePath)
+    {
+        try
+        {
+            // 在Windows、Linux和macOS上，Process.Start通常能正确处理默认程序
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = imagePath,
+                UseShellExecute = true  // 必须设置为true才能使用默认程序打开
+            });
+        }
+        catch (Exception ex)
+        {
+            // 处理异常，例如没有默认程序关联该文件类型
+            Console.WriteLine($"Error opening image: {ex.Message}");
+        }
+    }
     public static void OpenUrl(string url)
     {
         try

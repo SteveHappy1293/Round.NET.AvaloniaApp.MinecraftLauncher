@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Media;
 
 namespace RMCL.Controls.View;
@@ -9,6 +10,9 @@ public partial class ImageReader : UserControl, IDisposable
     private IImage _image;
     private double _maxWidth = double.PositiveInfinity;
     private double _maxHeight = double.PositiveInfinity;
+    
+    public EventHandler OnSaveAs { get; set; } = (((sender, args) => { }));
+    public EventHandler OnOpen { get; set; } = (((sender, args) => { }));
 
     public IImage ImageSource
     {
@@ -99,5 +103,15 @@ public partial class ImageReader : UserControl, IDisposable
     ~ImageReader()
     {
         Dispose(false);
+    }
+
+    private void SaveAs_OnClick(object? sender, RoutedEventArgs e)
+    {
+        OnSaveAs.Invoke(this, e);
+    }
+
+    private void Open_OnClick(object? sender, RoutedEventArgs e)
+    {
+        OnOpen.Invoke(this, e);
     }
 }
