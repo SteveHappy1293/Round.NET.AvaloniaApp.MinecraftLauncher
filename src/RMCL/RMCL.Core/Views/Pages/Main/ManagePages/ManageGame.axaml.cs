@@ -92,7 +92,10 @@ public partial class ManageGame : ISetting
                     };
                     item.OnSetting = parse =>
                     {
-                        Models.Classes.Core.ChildFrame.Show(new GameClientSetting(ver));
+                        Models.Classes.Core.ChildFrame.Show(new GameClientSetting(ver), () =>
+                        {
+                            Models.Classes.Core.ImageResourcePool.Cleanup();
+                        });
                     };
                     VersionsList.Items.Add(item);
                 });

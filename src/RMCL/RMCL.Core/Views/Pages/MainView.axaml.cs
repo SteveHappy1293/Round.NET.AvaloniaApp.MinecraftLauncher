@@ -141,6 +141,9 @@ public partial class MainView : UserControl
 
     private void GameDrawer_OnClick(object? sender, RoutedEventArgs e)
     {
-        Models.Classes.Core.ChildFrame.Show(new GameDrawer());
+        Models.Classes.Core.ChildFrame.Show(new GameDrawer(), () =>
+        {
+            Models.Classes.Core.ImageResourcePool.Cleanup();
+        });
     }
 }

@@ -7,6 +7,7 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
 using Avalonia.Threading;
+using RMCL.AssetsPool;
 using RMCL.Base.Interface;
 using RMCL.Controls.View;
 
@@ -28,8 +29,7 @@ public partial class ClientScreenshotSetting : ISetting ,IUISetting
             {
                 try
                 {
-                    using var fileStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous);
-                    var bitmap = await Task.Run(() => Bitmap.DecodeToWidth(fileStream, 210));
+                    var bitmap = await Task.Run(() => Models.Classes.Core.ImageResourcePool.GetImage(file,210));
                 
                     await Dispatcher.UIThread.InvokeAsync(() =>
                     {

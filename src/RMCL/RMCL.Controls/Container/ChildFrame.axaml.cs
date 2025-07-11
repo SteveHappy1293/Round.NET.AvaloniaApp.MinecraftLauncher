@@ -11,6 +11,7 @@ public partial class ChildFrame : UserControl
 {
     public Action ShowedCallBack { get; set; } = () => { };
     public Action ClosedCallBack { get; set; } = () => { };
+    public Action OnExit { get; set; } = () => { };
     public ChildFrame()
     {
         InitializeComponent();
@@ -18,14 +19,16 @@ public partial class ChildFrame : UserControl
         // 订阅布局更新事件
         this.LayoutUpdated += OnLayoutUpdated;
     }
-
+    
     private void OnLayoutUpdated(object sender, System.EventArgs e)
     {
         // 当布局更新时，可以在这里获取最新尺寸
         // var currentHeight = this.Bounds.Height;
     }
-    public void Show(UserControl Page)
+    public void Show(UserControl Page,Action OnExit = null)
     {
+        if (OnExit == null) this.OnExit = () => { };
+        else this.OnExit = OnExit;
         ShowedCallBack.Invoke();
         // 在设置新内容前释放旧内容
         if (MainFrame.Content is IDisposable disposableContent)
@@ -62,11 +65,13 @@ public partial class ChildFrame : UserControl
 
     public void Close()
     {
+        this.OnExit.Invoke();
         ClosedCallBack.Invoke();
         if (MainFrame.Content is IDisposable disposableContent)
         {
             disposableContent.Dispose();
         }
+        MainFrame.Content = null;
         // 确保在UI线程上获取高度
         Dispatcher.UIThread.Post(() => 
         {

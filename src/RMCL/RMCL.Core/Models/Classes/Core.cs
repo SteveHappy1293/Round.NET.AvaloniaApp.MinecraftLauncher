@@ -1,4 +1,6 @@
+using System;
 using FluentAvalonia.Styling;
+using RMCL.AssetsPool;
 using RMCL.Controls.Container;
 using RMCL.Core.Views;
 using RMCL.Core.Views.Pages.Main.MessageView;
@@ -18,6 +20,9 @@ public class Core
     {
         Loop = true
     };
+    public static ImageResourcePool ImageResourcePool = new ImageResourcePool(
+        inactiveTimeout: TimeSpan.FromSeconds(5),
+        cleanupInterval: TimeSpan.FromSeconds(10));
 
     public static FluentAvaloniaTheme FluentAvaloniaTheme = new()
     {
