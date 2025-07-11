@@ -38,6 +38,26 @@
                     </controls:SettingsExpanderItem.Footer>
                 </controls:SettingsExpanderItem>
             </controls:SettingsExpander>
+            
+            <controls:SettingsExpander Header="高级设置"
+                                       Description="启动器高级偏好设置 (普通用户不建议修改)">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="PuzzlePiece20Regular"></fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                
+                <controls:SettingsExpanderItem Content="GC 回收时间 (毫秒)"
+                                               Description="启动器 GC 回收的时间间隔 (越快越卡)">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ComboBox Width="400" SelectedIndex="2" Name="GCTimeChose" SelectionChanged="GCTimeChose_OnSelectionChanged">
+                            <ComboBoxItem Tag="3000">3000ms</ComboBoxItem>
+                            <ComboBoxItem Tag="2500">2500ms</ComboBoxItem>
+                            <ComboBoxItem Tag="2000">2000ms</ComboBoxItem>
+                            <ComboBoxItem Tag="1500">1500ms</ComboBoxItem>
+                            <ComboBoxItem Tag="1000">1000ms</ComboBoxItem>
+                        </ComboBox>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

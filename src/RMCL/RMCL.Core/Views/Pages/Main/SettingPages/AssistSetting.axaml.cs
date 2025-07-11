@@ -18,8 +18,19 @@ public partial class AssistSetting : ISetting
         EnablePreviewAnimations.IsChecked =
             Config.Config.MainConfig.SkinRenderEntry.Skin3DRenderConfigEntry.EnableAnimations;
 
+        GCTimeChose.SelectedIndex = GetIndex(Config.Config.MainConfig.GCTime);
+
         IsEdit = true;
     }
+
+    public int GetIndex(int GCTime) => GCTime switch
+    {
+        3000 => 0,
+        2500 => 1,
+        2000 => 2,
+        1500 => 3,
+        1000 => 4
+    };
 
     private void TopMostSwitch_OnIsCheckedChanged(object? sender, RoutedEventArgs e)
     {
@@ -55,6 +66,15 @@ public partial class AssistSetting : ISetting
             Config.Config.MainConfig.SkinRenderEntry.Skin3DRenderConfigEntry.EnableAnimations =
                 (bool)EnablePreviewAnimations.IsChecked;
             
+            Config.Config.SaveConfig();
+        }
+    }
+
+    private void GCTimeChose_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.Config.MainConfig.GCTime = int.Parse(((ComboBoxItem)GCTimeChose.SelectedItem).Tag.ToString());
             Config.Config.SaveConfig();
         }
     }

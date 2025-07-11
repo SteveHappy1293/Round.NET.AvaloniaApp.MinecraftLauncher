@@ -33,7 +33,7 @@ public partial class App : Application
         {
             while (true)
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(Config.Config.MainConfig.GCTime);
                 GC.Collect(2, GCCollectionMode.Aggressive, true);
             }
         });
