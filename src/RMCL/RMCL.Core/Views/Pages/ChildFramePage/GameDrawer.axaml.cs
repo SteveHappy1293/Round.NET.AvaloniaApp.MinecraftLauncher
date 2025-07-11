@@ -8,7 +8,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
 using RMCL.Base.Entry.Game.GameDrawer;
-using RMCL.Core.Models.Classes.Manager.GameDrawerManager;
+using RMCL.Controls.Item.GameDrawer;
 using RMCL.Core.Views.Pages.DialogPage.GameDrawerPages;
 
 namespace RMCL.Core.Views.Pages.ChildFramePage;
@@ -18,8 +18,36 @@ public partial class GameDrawer : UserControl
     public GameDrawer()
     {
         InitializeComponent();
+        UpdateUI();
     }
 
+    public void UpdateUI()
+    {
+        GameDrawerPanel.Children.Clear();
+        if (GameDrawerManager.GameDrawerManager.GameDrawer.Groups.Count == 0) NullBox.IsVisible = true;
+        else NullBox.IsVisible = false;
+        
+        GameDrawerManager.GameDrawerManager.GameDrawer.Groups.ForEach(x =>
+        {
+            var it = new GameDrawerGroupItem();
+            it.GroupUUID = x.Uuid;
+            it.OnEdit = (s) =>
+            {
+                var edit = new EditGameGroup();
+                var con = new ContentDialog()
+                {
+                    Content = edit,
+                    Title = "编辑游戏分类",
+                    CloseButtonText = "保存",
+                    PrimaryButtonText = "取消",
+                    DefaultButton = ContentDialogButton.Close
+                };
+                con.CloseButtonClick += async (_, __) => { };
+                con.ShowAsync();
+            };
+            GameDrawerPanel.Children.Add(it);
+        });
+    }
     private void AddGameGroupBtn_OnClick(object? sender, RoutedEventArgs e)
     {
         var add = new AddGameGroup();
@@ -33,12 +61,13 @@ public partial class GameDrawer : UserControl
         };
         con.CloseButtonClick += async (_, __) =>
         {
-            GameDrawerManager.RegisterGroup(new GameDrawerGroupEntry()
+            GameDrawerManager.GameDrawerManager.RegisterGroup(new GameDrawerGroupEntry()
             {
                 ColorHtmlCode = add.GroupColor,
                 Name = add.GroupName,
             });
-            GameDrawerManager.SaveConfig();
+            GameDrawerManager.GameDrawerManager.SaveConfig();
+            UpdateUI();
         };
         con.ShowAsync(Core.Models.Classes.Core.MainWindow);
     }

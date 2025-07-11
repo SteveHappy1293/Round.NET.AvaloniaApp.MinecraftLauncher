@@ -4,10 +4,10 @@ using Avalonia;
 using RMCL.Base.Entry.Game.GameDrawer;
 using RMCL.Core;
 using RMCL.Config;
-using RMCL.Core.Models.Classes.Manager.GameDrawerManager;
 using RMCL.JavaManager;
 using RMCL.Logger;
 using RMCL.Core.Models.Classes.Manager.UserManager;
+using RMCL.GameDrawerManager;
 using RMCL.PathsDictionary;
 
 sealed class Program

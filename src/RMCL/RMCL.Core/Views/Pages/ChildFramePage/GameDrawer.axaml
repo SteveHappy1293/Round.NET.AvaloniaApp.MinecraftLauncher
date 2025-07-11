@@ -3,6 +3,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             xmlns:gameDrawer="clr-namespace:RMCL.Controls.Item.GameDrawer;assembly=RMCL.Controls"
+             xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.ChildFramePage.GameDrawer">
     <UserControl.Styles>
@@ -65,19 +67,11 @@
             TextTrimming="CharacterEllipsis"
             Opacity="0">SearchText</TextBlock>
         
+        <view:NullBox Grid.Row="1" BigTitle="空空如也" SmallTitle="请添加游戏分类" Name="NullBox"/>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled">
-            <WrapPanel Margin="15,0">
-                <Button Width="64" Height="80" Margin="5">
-                    <StackPanel HorizontalAlignment="Right">
-                        <Border Width="36" Height="36" CornerRadius="6">
-                            <Border.Background>
-                                <ImageBrush Source="../../../Assets/Item/GameDrawerItem.png"></ImageBrush>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="0,5,0,0">1.17.1</TextBlock>
-                    </StackPanel>
-                </Button>
-            </WrapPanel>
+            <StackPanel Margin="15,0" Name="GameDrawerPanel">
+                
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </UserControl>

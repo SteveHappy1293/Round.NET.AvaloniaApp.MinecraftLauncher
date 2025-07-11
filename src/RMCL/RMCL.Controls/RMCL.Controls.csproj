@@ -29,6 +29,7 @@
 
     <ItemGroup>
       <None Remove="Assets\MinecraftIcons\old_alpha.png" />
+      <AvaloniaResource Include="Assets\GameDrawerItem.png" />
       <AvaloniaResource Include="Assets\MinecraftIcons\old_alpha.png" />
       <None Remove="Assets\MinecraftIcons\old_beta.png" />
       <AvaloniaResource Include="Assets\MinecraftIcons\old_beta.png" />
@@ -43,6 +44,7 @@
     <ItemGroup>
       <ProjectReference Include="..\RMCL.AssetsCenter\RMCL.AssetsCenter.csproj" />
       <ProjectReference Include="..\RMCL.Base\RMCL.Base.csproj" />
+      <ProjectReference Include="..\RMCL.GameDrawerManager\RMCL.GameDrawerManager.csproj" />
       <ProjectReference Include="..\RMCL.LoadModInfo\RMCL.LoadModInfo.csproj" />
       <ProjectReference Include="..\RMCL.Logger\RMCL.Logger.csproj" />
       <ProjectReference Include="..\RMCL.SystemHelper\RMCL.SystemHelper.csproj" />

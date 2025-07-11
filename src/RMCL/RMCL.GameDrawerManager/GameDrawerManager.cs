@@ -3,7 +3,7 @@ using System.Text.Json;
 using RMCL.Base.Entry.Game.GameDrawer;
 using RMCL.PathsDictionary;
 
-namespace RMCL.Core.Models.Classes.Manager.GameDrawerManager;
+namespace RMCL.GameDrawerManager;
 
 public class GameDrawerManager
 {
@@ -44,17 +44,21 @@ public class GameDrawerManager
         string jsresult = JsonSerializer.Serialize(GameDrawer, new JsonSerializerOptions() { WriteIndented = true }); //获取结果并转换成正确的格式
         File.WriteAllText(Path.GetFullPath(PathDictionary.GameDrawerConfigPath), jsresult);
     }
-
     public static void RegisterGroup(GameDrawerGroupEntry info)
     {
+        if (string.IsNullOrEmpty(info.Name)) info.Name = "New Group";
         GameDrawer.Groups.Add(info);
         SaveConfig();
     }
-
     public static void RegisterItem(string parentuuid, GameDrawerItem info)
     {
         var index = GameDrawer.Groups.FindIndex(x => x.Uuid == info.Uuid);
         GameDrawer.Groups[index].Children.Add(info);
         SaveConfig();
+    }
+
+    public static GameDrawerGroupEntry FindGroup(string uuid)
+    {
+        return GameDrawer.Groups.Find(x=>x.Uuid == uuid);
     }
 }

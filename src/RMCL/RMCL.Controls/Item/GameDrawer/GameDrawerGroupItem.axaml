@@ -1,0 +1,17 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:item="clr-namespace:RMCL.Controls.Item"
+             xmlns:button="clr-namespace:RMCL.Controls.Button"
+             mc:Ignorable="d"
+             x:Class="RMCL.Controls.Item.GameDrawer.GameDrawerGroupItem">
+    <Grid>
+        <DockPanel HorizontalAlignment="Stretch">
+            <item:LabelBox Height="42" HorizontalAlignment="Left" Name="GroupName" BoxFontSize="18" Text="Test" Margin="5"/>
+            <button:IconButton Click="Button_OnClick" HorizontalAlignment="Right" Height="32" Content="编辑" Icon="Pen20Regular" Margin="0,0,5,0" DockPanel.Dock="Right"/>
+            <button:IconButton Click="AddNewGame_OnClick" Name="AddNewGame" HorizontalAlignment="Right" Height="32" Content="添加新游戏" Icon="Add20Regular" Margin="0,0,10,0" DockPanel.Dock="Right"/>
+        </DockPanel>
+        <WrapPanel Name="GroupPanel" Margin="5"></WrapPanel>
+    </Grid>
+</UserControl>

@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiteSkinViewer3D.Shared", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.MusicPlayer", "RMCL.MusicPlayer\RMCL.MusicPlayer.csproj", "{D9676440-C7B8-4E0B-988C-08B01D629727}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMCL.GameDrawerManager", "RMCL.GameDrawerManager\RMCL.GameDrawerManager.csproj", "{4BBC011E-2E0B-4870-8CF5-984021E99313}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -134,6 +136,10 @@ Global
 		{D9676440-C7B8-4E0B-988C-08B01D629727}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9676440-C7B8-4E0B-988C-08B01D629727}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9676440-C7B8-4E0B-988C-08B01D629727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BBC011E-2E0B-4870-8CF5-984021E99313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BBC011E-2E0B-4870-8CF5-984021E99313}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BBC011E-2E0B-4870-8CF5-984021E99313}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BBC011E-2E0B-4870-8CF5-984021E99313}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{33F6E3FE-39D6-4056-B77D-C11866A507DC} = {302902F0-6F70-44EC-B0C1-69780E6963E2}

@@ -1,0 +1,17 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RMCL.Controls.Item.GameDrawer.GameDrawerClientItem">
+    <Button Click="Button_OnClick" Width="64" Height="80" Margin="5">
+        <StackPanel HorizontalAlignment="Right">
+            <Border Width="36" Height="36" CornerRadius="6">
+                <Border.Background>
+                    <ImageBrush Source="../../Assets/GameDrawerItem.png"></ImageBrush>
+                </Border.Background>
+            </Border>
+            <TextBlock HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="0,5,0,0">Name</TextBlock>
+        </StackPanel>
+    </Button>
+</UserControl>
