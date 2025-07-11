@@ -40,7 +40,7 @@ public partial class ClientScreenshotSetting : ISetting ,IUISetting
                 }
                 catch (Exception ex)
                 {
-                    // 记录错误或忽略
+                    // 记录错误或忽略。
                 }
             }
         }
