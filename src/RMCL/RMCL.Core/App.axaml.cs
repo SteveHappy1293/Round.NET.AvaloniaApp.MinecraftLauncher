@@ -5,6 +5,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
@@ -28,6 +29,14 @@ public partial class App : Application
     public override void Initialize()
     {
         Console.WriteLine("App Init...");
+        Task.Run(() =>
+        {
+            while (true)
+            {
+                Thread.Sleep(2000);
+                GC.Collect(2, GCCollectionMode.Aggressive, true);
+            }
+        });
         AvaloniaXamlLoader.Load(this);
         
         // 订阅所有全局异常处理器

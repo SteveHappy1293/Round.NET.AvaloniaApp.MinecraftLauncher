@@ -63,6 +63,14 @@ sealed class Program
         }
         else
         {
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    Thread.Sleep(2000);
+                    GC.Collect(2, GCCollectionMode.Aggressive, true);
+                }
+            });
             var redirector = new ConsoleRedirector(Path.GetFullPath(Path.Combine(PathDictionary.LogsPath,$"[RMCL.Logger] {DateTime.Now.ToString("yyyy.MM.dd HHmmss.fff")}.log")));
         
             Console.WriteLine("Program Starting!");
