@@ -15,6 +15,7 @@ public class PathDictionary
     
     public static readonly string ClientModsFolderName = "mods";
     public static readonly string ClientScreenshotsFolderName = "screenshots";
+    public static readonly string ClientResourcePackFolderName = "resourcepacks";
     public static readonly string ClientModCacheFolder = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.ModCache";
     public static readonly string ClientModDisablePostfix = ".disabled";
     public static readonly string ClientModEnablePostfix = ".jar";
