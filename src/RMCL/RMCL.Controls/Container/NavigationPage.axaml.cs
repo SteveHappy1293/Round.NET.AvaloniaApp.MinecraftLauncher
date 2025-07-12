@@ -14,6 +14,7 @@ public partial class NavigationPage : UserControl
     {
         InitializeComponent();
     }
+    public EventHandler OnChanged { get; set; } = ((sender, args) => { });
     public static readonly StyledProperty<string> TitleProperty =
         AvaloniaProperty.Register<NavigationPage, string>(
             nameof(Title),"");
@@ -79,6 +80,7 @@ public partial class NavigationPage : UserControl
             {
                 return config.Route == ((NavigationViewItem)(View!).SelectedItem!).Tag;
             }).Page;
+            OnChanged.Invoke(page, null);
             Navigate(page);
         }
     }

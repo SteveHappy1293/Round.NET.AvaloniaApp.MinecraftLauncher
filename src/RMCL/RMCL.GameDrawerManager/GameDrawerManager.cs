@@ -52,7 +52,8 @@ public class GameDrawerManager
     }
     public static void RegisterItem(string parentuuid, GameDrawerItem info)
     {
-        var index = GameDrawer.Groups.FindIndex(x => x.Uuid == info.Uuid);
+        var index = GameDrawer.Groups.FindIndex(x => x.Uuid == parentuuid);
+        info.Uuid = Guid.NewGuid().ToString();
         GameDrawer.Groups[index].Children.Add(info);
         SaveConfig();
     }

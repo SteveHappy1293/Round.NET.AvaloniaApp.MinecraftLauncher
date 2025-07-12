@@ -7,8 +7,10 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
+using RMCL.Base.Entry;
 using RMCL.Base.Entry.Game.GameDrawer;
 using RMCL.Controls.Item.GameDrawer;
+using RMCL.Core.Models.Classes.Launch;
 using RMCL.Core.Views.Pages.DialogPage.GameDrawerPages;
 
 namespace RMCL.Core.Views.Pages.ChildFramePage;
@@ -33,17 +35,64 @@ public partial class GameDrawer : UserControl
             it.GroupUUID = x.Uuid;
             it.OnEdit = (s) =>
             {
-                var edit = new EditGameGroup();
+                var edit = new EditGameGroup(x.Uuid);
                 var con = new ContentDialog()
                 {
                     Content = edit,
                     Title = "编辑游戏分类",
                     CloseButtonText = "保存",
                     PrimaryButtonText = "取消",
+                    SecondaryButtonText = "删除",
                     DefaultButton = ContentDialogButton.Close
                 };
-                con.CloseButtonClick += async (_, __) => { };
+                con.CloseButtonClick += async (_, __) =>
+                {
+                    GameDrawerManager.GameDrawerManager.FindGroup(s).Name = edit.TextBox.Text;
+                    GameDrawerManager.GameDrawerManager.FindGroup(s).ColorHtmlCode = edit.ColorPicker.Color.ToString();
+                    
+                    GameDrawerManager.GameDrawerManager.SaveConfig();
+                    UpdateUI();
+                };
+                con.SecondaryButtonClick += (sender, args) =>
+                {
+                    GameDrawerManager.GameDrawerManager.GameDrawer.Groups.RemoveAll(x => x.Uuid == s);
+                    GameDrawerManager.GameDrawerManager.SaveConfig();
+                    UpdateUI();
+                };
                 con.ShowAsync();
+            };
+            it.OnAdd = (s) =>
+            {
+                var add = new AddGameItem();
+                var con = new ContentDialog()
+                {
+                    Content = add,
+                    Title = "添加游戏",
+                    CloseButtonText = "添加",
+                    PrimaryButtonText = "取消",
+                    DefaultButton = ContentDialogButton.Close
+                };
+                con.CloseButtonClick += async (_, __) =>
+                {
+                    GameDrawerManager.GameDrawerManager.RegisterItem(s,new GameDrawerItem()
+                    {
+                        ClientInfo = new()
+                        {
+                            GameFolder = add.GameFolder,
+                            GameName = add.GameName
+                        }
+                    });
+                    GameDrawerManager.GameDrawerManager.SaveConfig();
+                    
+                    UpdateUI();
+                };
+                con.ShowAsync();
+            };
+            it.OnLaunch = (s, s1) =>
+            {
+                var entry = GameDrawerManager.GameDrawerManager.FindGroup(s).Children
+                    .Find(x => x.Uuid == s1).ClientInfo;
+                LaunchService.LaunchTask(entry);
             };
             GameDrawerPanel.Children.Add(it);
         });

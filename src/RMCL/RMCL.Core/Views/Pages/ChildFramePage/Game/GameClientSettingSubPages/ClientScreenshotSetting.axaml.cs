@@ -19,6 +19,7 @@ public partial class ClientScreenshotSetting : ISetting ,IUISetting
     {
         try
         {
+            StackPanel.Children.Clear();
             var path = System.IO.Path.Combine(Path, PathsDictionary.PathDictionary.ClientScreenshotsFolderName);
             if (!Directory.Exists(path)) return;
 

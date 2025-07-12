@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
@@ -81,7 +82,6 @@ public partial class GameClientSetting : UserControl
         
         ClientLaunchSetting.UpdateUI();
         ClientArchiveSetting.UpdateUI();
-        ClientScreenshotSetting.UpdateUI();
         ClientResourcePackSetting.UpdateUI();
     }
 
@@ -92,5 +92,13 @@ public partial class GameClientSetting : UserControl
             GameFolder = _versionParse.ClientInstances.GameCatalog,
             GameName = _versionParse.ClientInstances.GameName
         });
+    }
+    
+    public void LayoutManagedLayoutUpdated(object sender, EventArgs e)
+    {
+        if(sender is ClientScreenshotSetting sc)
+        {
+            sc.UpdateUI();
+        }
     }
 }

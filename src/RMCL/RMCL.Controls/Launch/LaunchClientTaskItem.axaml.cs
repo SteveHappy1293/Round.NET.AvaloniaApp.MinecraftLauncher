@@ -52,8 +52,9 @@ public partial class LaunchClientTaskItem : UserControl
             
                 Launching.Invoke(Info);
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 ExitCompleted.Invoke("<UNK>");
                 Dispatcher.UIThread.Invoke(()=> new ContentDialog()
                 {

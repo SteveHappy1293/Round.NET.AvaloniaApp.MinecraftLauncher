@@ -4,5 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.DialogPage.GameDrawerPages.AddGameItem">
-    Welcome to Avalonia!
+    <StackPanel>
+        <DockPanel>
+            <TextBlock Margin="5" VerticalAlignment="Center">游戏文件夹</TextBlock>
+            <ComboBox Height="32" Width="200" Margin="5" Name="ChosePathBox" SelectionChanged="ChosePathBox_OnSelectionChanged"></ComboBox>
+        </DockPanel>
+        <DockPanel>
+            <TextBlock Margin="5" VerticalAlignment="Center">客户端选择</TextBlock>
+            <ComboBox Height="32" Width="200" Margin="5" Name="ChoseClientBox" SelectionChanged="ChoseClientBox_OnSelectionChanged"></ComboBox>        
+        </DockPanel>
+    </StackPanel>
 </UserControl>

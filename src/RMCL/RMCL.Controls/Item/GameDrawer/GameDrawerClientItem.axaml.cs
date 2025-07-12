@@ -15,6 +15,12 @@ public partial class GameDrawerClientItem : UserControl
         InitializeComponent();
     }
 
+    public void UpdateUI()
+    {
+        ClientName.Text = GameDrawerManager.GameDrawerManager.FindGroup(ParentGroupUUID).Children
+            .Find(x => x.Uuid == ItemUUID).ClientInfo.GameName;
+    }
+    
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
         if(!string.IsNullOrEmpty(ParentGroupUUID) && !string.IsNullOrEmpty(ItemUUID))

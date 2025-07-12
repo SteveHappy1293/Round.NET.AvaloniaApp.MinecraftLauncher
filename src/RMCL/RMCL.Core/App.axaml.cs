@@ -136,7 +136,7 @@ public partial class App : Application
 
     private void LogException(Exception ex, string source)
     {
-        Console.WriteLine($"[{DateTime.Now}] [{source}] 异常: {ex?.ToString() ?? "未知异常"}");
+        Console.WriteLine($"{source} 异常: {ex?.ToString() ?? "未知异常"}");
         // 这里可以添加文件日志记录
     }
 

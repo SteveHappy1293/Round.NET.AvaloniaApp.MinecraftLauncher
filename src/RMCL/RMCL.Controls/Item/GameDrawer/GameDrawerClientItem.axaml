@@ -11,7 +11,7 @@
                     <ImageBrush Source="../../Assets/GameDrawerItem.png"></ImageBrush>
                 </Border.Background>
             </Border>
-            <TextBlock HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="0,5,0,0">Name</TextBlock>
+            <TextBlock Name="ClientName" HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="0,5,0,0">Name</TextBlock>
         </StackPanel>
     </Button>
 </UserControl>

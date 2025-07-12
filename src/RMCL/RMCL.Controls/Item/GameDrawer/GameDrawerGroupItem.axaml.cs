@@ -45,6 +45,7 @@ public partial class GameDrawerGroupItem : UserControl
                 ParentGroupUUID = group.Uuid,
                 ItemUUID = x.Uuid
             };
+            it.UpdateUI();
             it.OnLaunch = (s, s1) => OnLaunch.Invoke(s,s1);
             GroupPanel.Children.Add(it);
         });

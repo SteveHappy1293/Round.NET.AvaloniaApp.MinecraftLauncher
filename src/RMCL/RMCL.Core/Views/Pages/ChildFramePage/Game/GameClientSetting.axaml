@@ -17,6 +17,6 @@
             <button:IconButton Name="TestLaunch" Click="TestLaunch_OnClick" Content="测试启动" Margin="5" Icon="Rocket20Regular" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         </DockPanel>
         
-        <container:NavigationPage DefaultRoute="GameClientSetting" Grid.Row="1" Name="NavigationPage"/>
+        <container:NavigationPage DefaultRoute="GameClientSetting" Grid.Row="1" Name="NavigationPage" OnChanged="LayoutManagedLayoutUpdated"/>
     </Grid>
 </UserControl>
