@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 
@@ -8,8 +9,6 @@ public partial class ImageReader : UserControl, IDisposable
 {
     private bool _disposed;
     private IImage _image;
-    private double _maxWidth = double.PositiveInfinity;
-    private double _maxHeight = double.PositiveInfinity;
     
     public EventHandler OnSaveAs { get; set; } = (((sender, args) => { }));
     public EventHandler OnOpen { get; set; } = (((sender, args) => { }));
@@ -23,28 +22,7 @@ public partial class ImageReader : UserControl, IDisposable
             {
                 (_image as IDisposable)?.Dispose();
                 _image = value;
-                Update();
             }
-        }
-    }
-
-    public double MaxWidth
-    {
-        get => _maxWidth;
-        set
-        {
-            _maxWidth = value;
-            UpdateSizeConstraints();
-        }
-    }
-
-    public double MaxHeight
-    {
-        get => _maxHeight;
-        set
-        {
-            _maxHeight = value;
-            UpdateSizeConstraints();
         }
     }
 
@@ -69,15 +47,6 @@ public partial class ImageReader : UserControl, IDisposable
                 Source = _image as IImageBrushSource,
                 Stretch = Stretch.UniformToFill
             };
-        }
-    }
-
-    private void UpdateSizeConstraints()
-    {
-        if (MainImage != null)
-        {
-            MainImage.MaxWidth = _maxWidth;
-            MainImage.MaxHeight = _maxHeight;
         }
     }
 
@@ -113,5 +82,15 @@ public partial class ImageReader : UserControl, IDisposable
     private void Open_OnClick(object? sender, RoutedEventArgs e)
     {
         OnOpen.Invoke(this, e);
+    }
+
+    private void MainImage_OnAttachedToVisualTree(object? sender, VisualTreeAttachmentEventArgs e)
+    {
+        Update();
+    }
+
+    private void MainImage_OnDetachedFromVisualTree(object? sender, VisualTreeAttachmentEventArgs e)
+    {
+        Dispose(false);
     }
 }

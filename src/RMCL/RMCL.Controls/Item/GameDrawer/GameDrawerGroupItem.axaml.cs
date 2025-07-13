@@ -36,8 +36,8 @@ public partial class GameDrawerGroupItem : UserControl
     public void UpdateUI()
     {
         var group = GameDrawerManager.GameDrawerManager.FindGroup(_groupUUID);
-        GroupName.Text = group.Name;
-        GroupName.BoxBackground = Brush.Parse(group.ColorHtmlCode);
+        BoxTitle.Text = group.Name;
+        BoxColor.Background = Brush.Parse(group.ColorHtmlCode);
         group.Children.ForEach(x =>
         {
             var it = new GameDrawerClientItem()

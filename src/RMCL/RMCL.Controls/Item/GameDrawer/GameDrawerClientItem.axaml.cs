@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 
@@ -27,5 +28,19 @@ public partial class GameDrawerClientItem : UserControl
         {
             OnLaunch(ParentGroupUUID, ItemUUID);
         }
+    }
+
+    private void InputElement_OnPointerMoved(object? sender, PointerEventArgs e)
+    {
+        MDockPanel.Classes.Remove("ReBlur");
+        MDockPanel.Classes.Add("Blur");
+        ControlBorder.IsVisible = true;
+    }
+
+    private void InputElement_OnPointerExited(object? sender, PointerEventArgs e)
+    {
+        MDockPanel.Classes.Remove("Blur");
+        MDockPanel.Classes.Add("ReBlur");
+        ControlBorder.IsVisible = false;
     }
 }

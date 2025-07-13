@@ -19,7 +19,6 @@
             </Button>
             <button:AccentIconButton ToolTip.Tip="启动游戏" CornerRadius="20" Margin="5" Height="40" Width="120" Icon="Play24Regular" Name="LauncherButton" Click="LauncherButton_OnClick">启动游戏</button:AccentIconButton>
         </DockPanel>
-        
         <container:ChildFrame Name="ChildFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0"></container:ChildFrame>
     </Grid>
 </UserControl>

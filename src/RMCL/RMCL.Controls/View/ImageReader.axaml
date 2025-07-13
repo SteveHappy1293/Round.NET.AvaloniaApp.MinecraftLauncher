@@ -14,7 +14,7 @@
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Border Name="MainImage" Height="125" Margin="5" CornerRadius="3"></Border>
+                <Border AttachedToVisualTree="MainImage_OnAttachedToVisualTree" DetachedFromVisualTree="MainImage_OnDetachedFromVisualTree" Name="MainImage" Height="125" Margin="5" CornerRadius="3"></Border>
                 <DockPanel Grid.Row="1" Margin="5,0,5,5">
                     <Button Name="SaveAs" Click="SaveAs_OnClick" Background="Transparent" BorderThickness="0" Margin="0,0,5,0" Width="97.5">
                         <DockPanel>

@@ -4,11 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:item="clr-namespace:RMCL.Controls.Item"
              xmlns:button="clr-namespace:RMCL.Controls.Button"
-             mc:Ignorable="d"
+             mc:Ignorable="d" d:DesignWidth="800"
              x:Class="RMCL.Controls.Item.GameDrawer.GameDrawerGroupItem">
     <StackPanel>
-        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <item:LabelBox Height="42" HorizontalAlignment="Left" Name="GroupName" BoxFontSize="18" Text="Test" Margin="5"/>
+        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0,0,0">
+            <!--<item:LabelBox HorizontalAlignment="Left" Name="GroupName" BoxFontSize="15" Text="Test" Margin="5"/>-->
+            <Border Width="16" Name="BoxColor" Height="16" Background="Black" CornerRadius="5" Margin="0,-0,0,0"></Border>
+            <TextBlock Name="BoxTitle" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Padding="5,-1,0,0">Name</TextBlock>
             <button:IconButton Click="Button_OnClick" HorizontalAlignment="Right" Height="32" Content="编辑" Icon="Pen20Regular" Margin="0,0,5,0" DockPanel.Dock="Right"/>
             <button:IconButton Click="AddNewGame_OnClick" Name="AddNewGame" HorizontalAlignment="Right" Height="32" Content="添加新游戏" Icon="Add20Regular" Margin="0,0,10,0" DockPanel.Dock="Right"/>
         </DockPanel>
