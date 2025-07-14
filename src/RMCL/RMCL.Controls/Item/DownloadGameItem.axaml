@@ -13,7 +13,7 @@
                     <Border Padding="3" VerticalAlignment="Center" CornerRadius="5" Background="Orange" Margin="5">
                         <TextBlock Name="VersionTime" FontSize="11" FontWeight="Light" Foreground="White"></TextBlock>
                     </Border>
-                    <Border Padding="3" VerticalAlignment="Center" CornerRadius="5" Background="Gray" Margin="5">
+                    <Border Name="VersionTypeBackground" Padding="3" VerticalAlignment="Center" CornerRadius="5" Background="Gray" Margin="5">
                         <TextBlock Name="VersionType" FontSize="11" FontWeight="Light" Foreground="White"></TextBlock>
                     </Border>
                     <button:IconButton Click="Button_OnClick" Margin="5" Icon="ArrowDownload20Regular" Content="下载"/>
