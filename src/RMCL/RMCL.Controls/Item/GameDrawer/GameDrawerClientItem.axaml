@@ -39,7 +39,7 @@
                 </DockPanel.Effect>
                 <Border Width="40" Height="40" DockPanel.Dock="Left" HorizontalAlignment="Left" CornerRadius="6" Margin="10">
                     <Border.Background>
-                        <ImageBrush Source="../../Assets/GameDrawerItem.png"></ImageBrush>
+                        <ImageBrush Source="../../Assets/MinecraftIcons/release.png"></ImageBrush>
                     </Border.Background>
                 </Border>
                 <StackPanel HorizontalAlignment="Left" Margin="0,8,10,0">
