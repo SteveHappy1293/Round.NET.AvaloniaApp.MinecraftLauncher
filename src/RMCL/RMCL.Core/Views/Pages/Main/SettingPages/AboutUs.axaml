@@ -18,10 +18,10 @@
             </DockPanel>
             <Expander Margin="5" Header="开源贡献者">
                 <StackPanel>
-                    <TextBlock>RMCL 本体：Minecraft一角钱、MikuniDOMI、LKBaka</TextBlock>
+                    <TextBlock>RMCL 本体：Minecraft一角钱、MikuniDOMI、LKBaka、爱玩电脑的WindowsXP</TextBlock>
                     <TextBlock>RMCL 启动核心：Minecraft一角钱</TextBlock>
                     <TextBlock>RMCL UI/UX：DrMing、Minecraft一角钱</TextBlock>
-                    <TextBlock>RMCL 仓库维护：AWDNDWindowsXP</TextBlock>
+                    <TextBlock>RMCL 仓库维护：爱玩电脑的WindowsXP</TextBlock>
                 </StackPanel>
             </Expander>
             <Expander Margin="5" Header="鸣谢">
