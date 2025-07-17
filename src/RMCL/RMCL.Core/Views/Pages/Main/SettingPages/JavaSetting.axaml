@@ -8,8 +8,12 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.Main.SettingPages.JavaSetting">
     <Grid>
-        <ScrollViewer Margin="5" MaxWidth="1200">
-            <StackPanel>
+        <ScrollViewer>
+            <StackPanel Margin="5" MaxWidth="1200">
+                <DockPanel Margin="5">
+                    <fluentIcons:FluentIcon HorizontalAlignment="Left" Icon="Memory16Regular" Height="40"  Width="40" Margin="20,20"/>
+                    <TextBlock FontSize="22" VerticalAlignment="Center" FontWeight="Bold" TextAlignment="Left">Java 与 内存</TextBlock>
+                </DockPanel>
                 <ui:SettingsExpander Header="全局 Java 设置"
                                      Description="设置全局 Java 的默认设置。"
                                      IsExpanded="True">

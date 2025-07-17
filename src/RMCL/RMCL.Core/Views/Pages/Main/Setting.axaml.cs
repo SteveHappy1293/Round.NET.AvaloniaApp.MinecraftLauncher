@@ -63,6 +63,13 @@ public partial class Setting : ISetting
             Page = new AssistSetting(),
             Icon = FluentIconSymbol.PersonRunning20Regular,
         });
+        NavigationPage.RegisterRoute(new NavigationRouteConfig()
+        {
+            Route = "SafeSetting",
+            Title = "安全",
+            Page = new SafeSetting(),
+            Icon = FluentIconSymbol.Warning16Regular,
+        });
         
         
         NavigationPage.RegisterRoute(new NavigationRouteConfig()

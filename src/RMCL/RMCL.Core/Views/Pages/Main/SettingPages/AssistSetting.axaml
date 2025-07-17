@@ -8,6 +8,10 @@
              x:Class="RMCL.Core.Views.Pages.Main.SettingPages.AssistSetting">
     <ScrollViewer>
         <StackPanel Margin="5" MaxWidth="1200">
+            <DockPanel Margin="5">
+                <fluentIcons:FluentIcon HorizontalAlignment="Left" Icon="PersonRunning20Regular" Height="40" Width="40" Margin="20,20"/>
+                <TextBlock FontSize="22" VerticalAlignment="Center" FontWeight="Bold" TextAlignment="Left">辅助</TextBlock>
+            </DockPanel>
             <controls:SettingsExpander Header="启动器窗口置顶 (一般调试时常用)"
                                        Description="设置启动器窗口是否置顶">
                 <controls:SettingsExpander.IconSource>

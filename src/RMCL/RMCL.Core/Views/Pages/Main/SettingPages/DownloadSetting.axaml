@@ -10,6 +10,10 @@
     <Grid>
         <ScrollViewer Margin="5" MaxWidth="1200">
             <StackPanel>
+                <DockPanel Margin="5">
+                    <fluentIcons:FluentIcon HorizontalAlignment="Left" Icon="ArrowDownload20Regular" Height="40"  Width="40" Margin="20,20"/>
+                    <TextBlock FontSize="22" VerticalAlignment="Center" FontWeight="Bold" TextAlignment="Left">下载</TextBlock>
+                </DockPanel>
                 <controls:SettingsExpander Header="更新"
                                      Description="设置启动器的更新配置"
                                      IsExpanded="True">
