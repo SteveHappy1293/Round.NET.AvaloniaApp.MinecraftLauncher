@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
              xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
-             xmlns:controls="clr-namespace:LiteSkinViewer3D.Avalonia.Controls;assembly=LiteSkinViewer3D"
+             xmlns:controls="clr-namespace:LiteSkinViewer3D.Avalonia.Controls;assembly=LiteSkinViewer.3D"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RMCL.Core.Views.Pages.Main.ManagePages.ManageAccount">
     <Grid>

@@ -75,7 +75,7 @@ public class OpenGLSkinViewerBase : SkinViewerBase {
             _msaaProcessor.Resize(_width, _height);
         }
 
-        int renderTarget = _renderType switch {
+        int renderTarget = _renderMode switch {
             SkinRenderMode.MSAA => _msaaProcessor.Framebuffer,
             SkinRenderMode.FXAA => _fxaaProcessor.Framebuffer,
             _ => fb
@@ -84,7 +84,7 @@ public class OpenGLSkinViewerBase : SkinViewerBase {
         _gl.BindFramebuffer(_gl.GL_FRAMEBUFFER, renderTarget);
         _gl.Viewport(0, 0, _width, _height);
         _gl.ClearColor(_backColor.X, _backColor.Y, _backColor.Z, _backColor.W);
-        
+
         _gl.ClearDepth(1.0f);
         _gl.Clear(_gl.GL_COLOR_BUFFER_BIT | _gl.GL_DEPTH_BUFFER_BIT);
 
@@ -113,9 +113,9 @@ public class OpenGLSkinViewerBase : SkinViewerBase {
             _gl.Disable(_gl.GL_BLEND);
         }
 
-        if (_renderType == SkinRenderMode.MSAA)
+        if (_renderMode == SkinRenderMode.MSAA)
             _msaaProcessor?.ResolveTo(fb, _width, _height);
-        else if (_renderType == SkinRenderMode.FXAA)
+        else if (_renderMode == SkinRenderMode.FXAA)
             _fxaaProcessor?.Render(fb);
 
         CheckError();
@@ -123,7 +123,7 @@ public class OpenGLSkinViewerBase : SkinViewerBase {
 
     public unsafe void OpenGlDeinit() {
         // 关闭贴图资源或纹理流
-        _skina.Close();
+        _skinAnimationController.Close();
 
         // 解绑所有 GL 状态，避免悬挂引用
         _gl.BindBuffer(_gl.GL_ARRAY_BUFFER, 0);
@@ -160,12 +160,12 @@ public class OpenGLSkinViewerBase : SkinViewerBase {
 
         int modelLoc = _gl.GetUniformLocation(_programId, "self");
         var modelParts = new (ModelComponent partType, MeshBinding vao)[] {
-            (ModelComponent.Body, _modelProcessor.NormalVAO.Body),
-            (ModelComponent.Head, _modelProcessor.NormalVAO.Head),
-            (ModelComponent.ArmLeft, _modelProcessor.NormalVAO.LeftArm),
-            (ModelComponent.ArmRight, _modelProcessor.NormalVAO.RightArm),
-            (ModelComponent.LegLeft, _modelProcessor.NormalVAO.LeftLeg),
-            (ModelComponent.LegRight, _modelProcessor.NormalVAO.RightLeg),
+            (ModelComponent.Body, _modelProcessor.BaseVAO.Body),
+            (ModelComponent.Head, _modelProcessor.BaseVAO.Head),
+            (ModelComponent.ArmLeft, _modelProcessor.BaseVAO.LeftArm),
+            (ModelComponent.ArmRight, _modelProcessor.BaseVAO.RightArm),
+            (ModelComponent.LegLeft, _modelProcessor.BaseVAO.LeftLeg),
+            (ModelComponent.LegRight, _modelProcessor.BaseVAO.RightLeg),
         };
 
         foreach (var (partType, vao) in modelParts) {
@@ -183,12 +183,12 @@ public class OpenGLSkinViewerBase : SkinViewerBase {
 
         int modelLoc = _gl.GetUniformLocation(_programId, "self");
         var parts = new (ModelComponent partType, MeshBinding vao)[] {
-            (ModelComponent.Body, _modelProcessor.TopVAO.Body),
-            (ModelComponent.Head, _modelProcessor.TopVAO.Head),
-            (ModelComponent.ArmLeft, _modelProcessor.TopVAO.LeftArm),
-            (ModelComponent.ArmRight, _modelProcessor.TopVAO.RightArm),
-            (ModelComponent.LegLeft, _modelProcessor.TopVAO.LeftLeg),
-            (ModelComponent.LegRight, _modelProcessor.TopVAO.RightLeg),
+            (ModelComponent.Body, _modelProcessor.OverlayVAO.Body),
+            (ModelComponent.Head, _modelProcessor.OverlayVAO.Head),
+            (ModelComponent.ArmLeft, _modelProcessor.OverlayVAO.LeftArm),
+            (ModelComponent.ArmRight, _modelProcessor.OverlayVAO.RightArm),
+            (ModelComponent.LegLeft, _modelProcessor.OverlayVAO.LeftLeg),
+            (ModelComponent.LegRight, _modelProcessor.OverlayVAO.RightLeg),
         };
 
         foreach (var (type, vao) in parts) {
@@ -211,7 +211,7 @@ public class OpenGLSkinViewerBase : SkinViewerBase {
         var mat = GetMatrix4(ModelComponent.Cape);
 
         _gl.UniformMatrix4fv(modelLoc, 1, false, (float*)&mat);
-        _gl.BindVertexArray(_modelProcessor.NormalVAO.Cape.VertexArrayObject);
+        _gl.BindVertexArray(_modelProcessor.BaseVAO.Cape.VertexArrayObject);
         _gl.DrawElements(_gl.GL_TRIANGLES, _drawIndexCount, _gl.GL_UNSIGNED_SHORT, 0);
 
         _gl.BindTexture(_gl.GL_TEXTURE_2D, 0);

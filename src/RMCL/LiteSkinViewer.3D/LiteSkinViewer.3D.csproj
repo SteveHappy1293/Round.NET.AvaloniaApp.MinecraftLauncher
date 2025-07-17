@@ -4,10 +4,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Avalonia" Version="11.3.1" />
-		<PackageReference Include="SkiaSharp" Version="2.88.9" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LiteSkinViewer.Shared\LiteSkinViewer.Shared.csproj" />
+  </ItemGroup>
 </Project>

@@ -14,12 +14,12 @@ public sealed class FXAAPostProcessor : IDisposable {
     private int _uniformTexelStep;
 
     // x, y, u, v （UV 范围为 [0, 1]）
-    private readonly float[] quadVertices = {
+    private readonly float[] quadVertices = [
         -1f,  1f, 0f, 1f,
         -1f, -1f, 0f, 0f,
-        1f,  1f, 1f, 1f,
-        1f, -1f, 1f, 0f
-    };
+         1f,  1f, 1f, 1f,
+         1f, -1f, 1f, 0f
+    ];
 
     public int ColorTexture => _texture;
     public int Framebuffer => _frameBuffer;
@@ -42,12 +42,12 @@ public sealed class FXAAPostProcessor : IDisposable {
     public void Resize(int width, int height) {
         if (this.width == width && this.height == height)
             return;
-
-        DeleteFramebuffer();
         this.width = width;
         this.height = height;
+
         DeleteFramebuffer();
         CreateFramebuffer();
+
         Initialize(width, height);
     }
 
@@ -103,7 +103,6 @@ public sealed class FXAAPostProcessor : IDisposable {
 
     private void CompileShader() {
         string header = isGLES ? GLSLSource.GlesHeader : GLSLSource.GlHeader;
-
         int vs = Compile(gl.GL_VERTEX_SHADER, header + GLSLSource.VertexShaderFXAASource, "Vertex");
         int fs = Compile(gl.GL_FRAGMENT_SHADER, header + GLSLSource.FragmentShaderFXAASource, "Fragment");
 
@@ -111,6 +110,7 @@ public sealed class FXAAPostProcessor : IDisposable {
         gl.AttachShader(_shader, vs);
         gl.AttachShader(_shader, fs);
         gl.LinkProgram(_shader);
+
         gl.GetProgramiv(_shader, gl.GL_LINK_STATUS, out int linked);
         if (linked == 0) {
             gl.GetProgramInfoLog(_shader, out var log);
@@ -142,14 +142,12 @@ public sealed class FXAAPostProcessor : IDisposable {
         gl.BindVertexArray(_vao);
         gl.BindBuffer(gl.GL_ARRAY_BUFFER, _vbo);
         fixed (float* ptr = quadVertices) {
-            Debug.WriteLine(new nint(ptr));
-            Debug.WriteLine(quadVertices.Length * sizeof(float));
             gl.BufferData(gl.GL_ARRAY_BUFFER, quadVertices.Length * sizeof(float), new(ptr), gl.GL_STATIC_DRAW);
         }
 
         gl.EnableVertexAttribArray(0); // layout(location = 0)
         gl.VertexAttribPointer(0, 2, gl.GL_FLOAT, false, 4 * sizeof(float), 0);
-        
+
         gl.EnableVertexAttribArray(1); // layout(location = 1)
         gl.VertexAttribPointer(1, 2, gl.GL_FLOAT, false, 4 * sizeof(float), 2 * sizeof(float));
 

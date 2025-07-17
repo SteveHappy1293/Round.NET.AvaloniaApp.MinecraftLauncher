@@ -238,7 +238,6 @@ public sealed class SkinRender3D : OpenGlControlBase, ICustomHitTest
             EnableCape = CapeVisibility,
             EnableTop = UpperLayerVisibility,
             Animation = EnableAnimation,
-            RenderType = SkinRenderMode.FXAA,
         };
         _skin.Error += delegate (object? _, ErrorType type) {
             Debug.WriteLine(type.ToString());
