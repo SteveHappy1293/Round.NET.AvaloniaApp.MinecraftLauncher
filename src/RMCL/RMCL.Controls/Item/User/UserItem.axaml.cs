@@ -2,6 +2,8 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using LiteSkinViewer2D;
+using LiteSkinViewer2D.Extensions;
 using OverrideLauncher.Core.Modules.Entry.AccountEntry;
 using RMCL.Base.Entry.User;
 
@@ -19,11 +21,8 @@ public partial class UserItem : UserControl
             "msa" => "微软正版",
             "off" => "离线账户"
         };
-        
-        var originalImage = SkinHelper.Base64ToBitmap(entry.Skin);
-        var cropRect = new PixelRect(8, 8, 8, 8);
 
-        var croppedImage = SkinHelper.CropAndScaleBitmapOptimized(originalImage, cropRect,4);
+        var croppedImage = HeadCapturer.Default.Capture(SkinHelper.Base64ToSKBitmap(entry.Skin)).ToBitmap();
         SkinHeader.Background = new ImageBrush()
         {
             Source = croppedImage,

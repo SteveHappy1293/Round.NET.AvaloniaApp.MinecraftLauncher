@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RMCL.Base.Entry;
 using RMCL.Base.Entry.Game.Client;
 using RMCL.Base.Entry.Skin;
 using RMCL.Base.Entry.Style;
@@ -24,6 +25,7 @@ public class ConfigRoot
     public BackMusicEntry BackMusicEntry { get; set; } = new();
     public FontsConfigEntry FontsConfig { get; set; } = new();
     public SkinRenderEntry SkinRenderEntry { get; set; } = new();
+    public RenderModel RenderModel { get; set; } = new();
     public bool FirstLauncher { get; set; } = true;
     public int SelectedGameFolder { get; set; } = 0;
     public int WindowWidth { get; set; } = 850;

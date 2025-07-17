@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media.Imaging;
 using RMCL.Base.Interface;
 
 namespace RMCL.Core.Views.Pages.Main.SettingPages;
@@ -20,6 +21,10 @@ public partial class AssistSetting : ISetting
 
         GCTimeChose.SelectedIndex = GetIndex(Config.Config.MainConfig.GCTime);
 
+        TextRenderingMode.SelectedIndex = Config.Config.MainConfig.RenderModel.TextRenderingMode.GetHashCode();
+        BitmapInterpolationMode.SelectedIndex = Config.Config.MainConfig.RenderModel.BitmapInterpolationMode.GetHashCode();
+        EdgeMode.SelectedIndex = Config.Config.MainConfig.RenderModel.EdgeMode.GetHashCode();
+        
         IsEdit = true;
     }
 
@@ -76,6 +81,23 @@ public partial class AssistSetting : ISetting
         {
             Config.Config.MainConfig.GCTime = int.Parse(((ComboBoxItem)GCTimeChose.SelectedItem).Tag.ToString());
             Config.Config.SaveConfig();
+        }
+    }
+
+    private void Mode_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (IsEdit)
+        {
+            Config.Config.MainConfig.RenderModel.TextRenderingMode =
+                (Avalonia.Media.TextRenderingMode)TextRenderingMode.SelectedIndex;
+            Config.Config.MainConfig.RenderModel.BitmapInterpolationMode =
+                (BitmapInterpolationMode)BitmapInterpolationMode.SelectedIndex;
+            Config.Config.MainConfig.RenderModel.EdgeMode =
+                (Avalonia.Media.EdgeMode)EdgeMode.SelectedIndex;
+            
+            Config.Config.SaveConfig();
+            
+            Models.Classes.Core.MainWindow.UpdateRending();
         }
     }
 }

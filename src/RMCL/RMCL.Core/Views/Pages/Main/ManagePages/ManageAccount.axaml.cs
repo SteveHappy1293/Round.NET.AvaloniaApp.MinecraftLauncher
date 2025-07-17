@@ -13,6 +13,8 @@ using Avalonia.Platform;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using FluentAvalonia.UI.Controls;
+using LiteSkinViewer2D;
+using LiteSkinViewer2D.Extensions;
 using OverrideLauncher.Core.Modules.Classes.Account;
 using RMCL.Base.Entry.User;
 using RMCL.Base.Enum.User;
@@ -21,6 +23,7 @@ using RMCL.Controls.Item.User;
 using RMCL.Core.Models.Classes.Manager.UserManager;
 using RMCL.Core.Views.Pages.DialogPage.User;
 using RMCL.Core.Models.Classes;
+using SkiaSharp;
 using PointerType = LiteSkinViewer3D.Shared.Enums.PointerType;
 
 namespace RMCL.Core.Views.Pages.Main.ManagePages;
@@ -145,7 +148,21 @@ public partial class ManageAccount : ISetting
         };
         await login.ShowAsync(Models.Classes.Core.MainWindow);
     }
+    private SKBitmap Base64ToSKBitmap(string base64)
+    {
+        var base64Data = base64.Split(',')[0];
+        if (base64Data.Length == base64.Length)
+        {
+            base64Data = base64;
+        }
+        else
+        {
+            base64Data = base64.Substring(base64Data.Length + 1);
+        }
 
+        byte[] imageBytes = Convert.FromBase64String(base64Data);
+        return SKBitmap.Decode(imageBytes);
+    }
     private void UserListBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (IsEdit)
@@ -153,7 +170,7 @@ public partial class ManageAccount : ISetting
             PlayerManager.Player.SelectIndex = UserListBox.SelectedIndex;
             PlayerManager.SaveConfig();
 
-            McSkinViewer2D.ShowSkin(PlayerManager.Player.Accounts[PlayerManager.Player.SelectIndex].Skin);
+            // McSkinViewer2D.ShowSkin(PlayerManager.Player.Accounts[PlayerManager.Player.SelectIndex].Skin);
             UpdateSkinUI();
         }
     }
@@ -231,6 +248,11 @@ public partial class ManageAccount : ISetting
         {
             McSkinViewer2D.IsVisible = true;
             McSkinViewer3D.IsVisible = false;
+            
+            McSkinViewer2D.Source =
+                FullBodyCapturer.Default
+                    .Capture(Base64ToSKBitmap(PlayerManager.Player.Accounts[UserListBox.SelectedIndex].Skin), 8)
+                    .ToBitmap();
         }
     }
     

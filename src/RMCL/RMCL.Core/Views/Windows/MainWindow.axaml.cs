@@ -38,10 +38,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         Console.WriteLine("Opening MainWindow...");
-        RenderOptions.SetTextRenderingMode(this, TextRenderingMode.SubpixelAntialias); // 字体渲染模式
-        RenderOptions.SetBitmapInterpolationMode(this, BitmapInterpolationMode.MediumQuality); // 图片渲染模式
-        RenderOptions.SetEdgeMode(this, EdgeMode.Antialias); // 形状渲染模式
-        
+        UpdateRending();
         Models.Classes.Core.MainWindow = this;
         InitializeComponent();
         
@@ -322,5 +319,12 @@ public partial class MainWindow : Window
     private void TaskButton_OnClick(object? sender, RoutedEventArgs e)
     {
         Models.Classes.Core.TaskView.Show();
+    }
+
+    public void UpdateRending()
+    {
+        RenderOptions.SetTextRenderingMode(this, Config.Config.MainConfig.RenderModel.TextRenderingMode); // 字体渲染模式
+        RenderOptions.SetBitmapInterpolationMode(this, Config.Config.MainConfig.RenderModel.BitmapInterpolationMode); // 图片渲染模式
+        RenderOptions.SetEdgeMode(this, Config.Config.MainConfig.RenderModel.EdgeMode); // 形状渲染模式
     }
 }

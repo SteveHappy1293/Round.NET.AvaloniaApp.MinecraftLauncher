@@ -18,6 +18,23 @@ public static class SkinHelper
             return new Bitmap(ms);
         }
     }
+    
+    
+    public static SKBitmap Base64ToSKBitmap(string base64)
+    {
+        var base64Data = base64.Split(',')[0];
+        if (base64Data.Length == base64.Length)
+        {
+            base64Data = base64;
+        }
+        else
+        {
+            base64Data = base64.Substring(base64Data.Length + 1);
+        }
+
+        byte[] imageBytes = Convert.FromBase64String(base64Data);
+        return SKBitmap.Decode(imageBytes);
+    }
 
     public static Bitmap CropAndScaleBitmapOptimized(Bitmap source, PixelRect cropArea, int scaleFactor = 1)
     {

@@ -62,6 +62,49 @@
                     </controls:SettingsExpanderItem.Footer>
                 </controls:SettingsExpanderItem>
             </controls:SettingsExpander>
+            
+            <controls:SettingsExpander Header="渲染偏好"
+                                       Description="启动器本体的渲染模式">
+                <controls:SettingsExpander.IconSource>
+                    <fluentIcons:FluentIconSource Icon="LightbulbFilament20Regular"></fluentIcons:FluentIconSource>
+                </controls:SettingsExpander.IconSource>
+                
+                <controls:SettingsExpanderItem Content="字体渲染"
+                                               Description="本体字体渲染模式">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ComboBox Width="400" SelectedIndex="1" Name="TextRenderingMode" SelectionChanged="Mode_OnSelectionChanged">
+                            <ComboBoxItem Tag="Unspecified">Unspecified</ComboBoxItem>
+                            <ComboBoxItem Tag="SubpixelAntialias">SubpixelAntialias</ComboBoxItem>
+                            <ComboBoxItem Tag="Antialias">Antialias</ComboBoxItem>
+                            <ComboBoxItem Tag="Alias">Alias</ComboBoxItem>
+                        </ComboBox>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                
+                <controls:SettingsExpanderItem Content="图像渲染"
+                                               Description="本体图像渲染模式">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ComboBox Width="400" SelectedIndex="3" Name="BitmapInterpolationMode" SelectionChanged="Mode_OnSelectionChanged">
+                            <ComboBoxItem Tag="Unspecified">Unspecified</ComboBoxItem>
+                            <ComboBoxItem Tag="None">None</ComboBoxItem>
+                            <ComboBoxItem Tag="LowQuality">LowQuality</ComboBoxItem>
+                            <ComboBoxItem Tag="MediumQuality">MediumQuality</ComboBoxItem>
+                            <ComboBoxItem Tag="HighQuality">HighQuality</ComboBoxItem>
+                        </ComboBox>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                
+                <controls:SettingsExpanderItem Content="图形渲染"
+                                               Description="本体图形渲染模式">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ComboBox Width="400" SelectedIndex="1" Name="EdgeMode" SelectionChanged="Mode_OnSelectionChanged">
+                            <ComboBoxItem Tag="Unspecified">Unspecified</ComboBoxItem>
+                            <ComboBoxItem Tag="Antialias">Antialias</ComboBoxItem>
+                            <ComboBoxItem Tag="Aliased">Aliased</ComboBoxItem>
+                        </ComboBox>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+            </controls:SettingsExpander>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

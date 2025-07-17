@@ -53,7 +53,7 @@
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Downloader.png" Title="Downloader" URL="https://github.com/bezzad/Downloader" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/FAIcon.png" Title="FluentAvalonia" URL="https://github.com/amwx/FluentAvalonia" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Nuget.png" Title="FluentAvalonia.FluentIcons" URL="https://github.com/jmkinzer/FluentAvalonia.FluentIcons" Margin="5"/>
-                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Nuget.png" Title="LiteSkinViewer3D" URL="https://github.com/YangSpring429/LiteSkinViewer3D" Margin="5"/>
+                    <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/Nuget.png" Title="LiteSkinViewer" URL="https://github.com/YangSpring429/LiteSkinViewer" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/LuaSharp.png" Title="LuaCSharp" URL="https://github.com/AnnulusGames/Lua-CSharp" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/NAudio.png" Title="NAudio" URL="https://github.com/naudio/NAudio" Margin="5"/>
                     <button:ProjectItemButton Icon="../../../../Assets/ProjectItem/ROL.png" Title="OverrideLauncher.Core" URL="https://github.com/Round-Studio/OverrideLauncher.Core" Margin="5"/>

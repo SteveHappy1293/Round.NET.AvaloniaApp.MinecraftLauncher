@@ -43,6 +43,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\LiteSkinViewer.2D\LiteSkinViewer.2D.csproj" />
       <ProjectReference Include="..\RMCL.AssetsCenter\RMCL.AssetsCenter.csproj" />
       <ProjectReference Include="..\RMCL.AssetsPool\RMCL.AssetsPool.csproj" />
       <ProjectReference Include="..\RMCL.Base\RMCL.Base.csproj" />
