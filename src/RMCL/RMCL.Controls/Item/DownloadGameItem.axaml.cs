@@ -31,9 +31,11 @@ namespace RMCL.Controls.Item
                     break;
                 case "old_beta":
                     VersionType.Text = "Beta版";
+                    VersionTypeBackground.Background = new SolidColorBrush(Colors.BlueViolet);
                     break;
                 case "old_alpha":
                     VersionType.Text = "Alpha版";
+                    VersionTypeBackground.Background = new SolidColorBrush(Colors.Sienna);
                     break;
             }
             VersionTime.Text = DateTime.Parse(version.Time).ToString("yyyy/MM/dd HH:mm:ss");
