@@ -53,14 +53,14 @@ public partial class ManageAccount : ISetting
         {
             NullBox.IsVisible = false;
             SaveSkin.IsEnabled = true;
-        }
 
-        PlayerManager.Player.Accounts.ForEach(x =>
-        {
-            UserListBox.Items.Add(new ListBoxItem() { Content = new UserItem(x) });
-        });
-        UserListBox.SelectedIndex = PlayerManager.Player.SelectIndex;
-        UpdateSkinUI();
+            PlayerManager.Player.Accounts.ForEach(x =>
+            {
+                UserListBox.Items.Add(new ListBoxItem() { Content = new UserItem(x) });
+            });
+            UserListBox.SelectedIndex = PlayerManager.Player.SelectIndex;
+            UpdateSkinUI();
+        }
         
         IsEdit = true;
     }
@@ -230,30 +230,33 @@ public partial class ManageAccount : ISetting
 
     public void UpdateSkinUI()
     {
-        McSkinViewer3D.PointerMoved -= SkinViewer_PointerMoved;
-        McSkinViewer3D.PointerPressed -= SkinViewer_PointerPressed;
-        McSkinViewer3D.PointerReleased -= SkinViewer_PointerReleased;
-        if (Config.Config.MainConfig.SkinRenderEntry.IsUse3D)
+        if (PlayerManager.Player.Accounts.Count >= 1)
         {
-            McSkinViewer2D.IsVisible = false;
-            McSkinViewer3D.IsVisible = true;
+            McSkinViewer3D.PointerMoved -= SkinViewer_PointerMoved;
+            McSkinViewer3D.PointerPressed -= SkinViewer_PointerPressed;
+            McSkinViewer3D.PointerReleased -= SkinViewer_PointerReleased;
+            if (Config.Config.MainConfig.SkinRenderEntry.IsUse3D)
+            {
+                McSkinViewer2D.IsVisible = false;
+                McSkinViewer3D.IsVisible = true;
 
-            McSkinViewer3D.SkinBase64 = PlayerManager.Player.Accounts[UserListBox.SelectedIndex].Skin;
-            McSkinViewer3D.ChangeSkin();
+                McSkinViewer3D.SkinBase64 = PlayerManager.Player.Accounts[PlayerManager.Player.SelectIndex].Skin;
+                McSkinViewer3D.ChangeSkin();
             
-            McSkinViewer3D.PointerMoved += SkinViewer_PointerMoved;
-            McSkinViewer3D.PointerPressed += SkinViewer_PointerPressed;
-            McSkinViewer3D.PointerReleased += SkinViewer_PointerReleased;
-        }
-        else
-        {
-            McSkinViewer2D.IsVisible = true;
-            McSkinViewer3D.IsVisible = false;
+                McSkinViewer3D.PointerMoved += SkinViewer_PointerMoved;
+                McSkinViewer3D.PointerPressed += SkinViewer_PointerPressed;
+                McSkinViewer3D.PointerReleased += SkinViewer_PointerReleased;
+            }
+            else
+            {
+                McSkinViewer2D.IsVisible = true;
+                McSkinViewer3D.IsVisible = false;
             
-            McSkinViewer2D.Source =
-                FullBodyCapturer.Default
-                    .Capture(Base64ToSKBitmap(PlayerManager.Player.Accounts[UserListBox.SelectedIndex].Skin), 8)
-                    .ToBitmap();
+                McSkinViewer2D.Source =
+                    FullBodyCapturer.Default
+                        .Capture(Base64ToSKBitmap(PlayerManager.Player.Accounts[PlayerManager.Player.SelectIndex].Skin), 8)
+                        .ToBitmap();
+            }   
         }
     }
     
