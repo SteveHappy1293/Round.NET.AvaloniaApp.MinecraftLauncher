@@ -21,7 +21,8 @@
                 <controls:SettingsExpander.Footer>
                     <button:IconButton Icon="Open20Regular"
                                        Content="打开日志管理器"
-                                       Name="OpenLogManagerBtn"></button:IconButton>
+                                       Name="OpenLogManagerBtn"
+                                       Click="OpenLogManagerBtn_OnClick"></button:IconButton>
                 </controls:SettingsExpander.Footer>
             </controls:SettingsExpander>
             

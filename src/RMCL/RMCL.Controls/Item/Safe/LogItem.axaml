@@ -1,0 +1,43 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:item="clr-namespace:RMCL.Controls.Item"
+             xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+             mc:Ignorable="d" d:DesignWidth="800"
+             x:Class="RMCL.Controls.Item.Safe.LogItem">
+    <item:ItemBox>
+        <item:ItemBox.Content>
+            <DockPanel Margin="8">
+                <TextBlock FontSize="18"
+                           FontWeight="Thin"
+                           Name="DataBox" Width="140"
+                           VerticalAlignment="Center">Data</TextBlock>
+                <item:LabelBox HorizontalAlignment="Left" Name="LabelBox"
+                               VerticalAlignment="Center" Margin="5,0,0,0" Text="当前日志" BoxBackground="DarkRed"></item:LabelBox>
+                
+                <Button Width="32" Height="32"
+                        Margin="8,0,0,0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        DockPanel.Dock="Right"
+                        ToolTip.Tip="保存日志"
+                        Name="SaveLogBtn"
+                        Click="SaveLogBtn_OnClick">
+                    <fluentIcons:FluentIcon Icon="Save20Regular" Margin="-8"/>
+                </Button>
+                
+                <Button Width="32" Height="32"
+                        Margin="8,0,0,0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        DockPanel.Dock="Right"
+                        ToolTip.Tip="打开日志"
+                        Name="OpenLogBtn"
+                        Click="OpenLogBtn_OnClick">
+                    <fluentIcons:FluentIcon Icon="Open20Regular" Margin="-8"/>
+                </Button>
+            </DockPanel>
+        </item:ItemBox.Content>
+    </item:ItemBox>
+</UserControl>
