@@ -45,6 +45,8 @@ public partial class MainWindow : Window
         this.AddHandler(KeyDownEvent, OnKeyDown, RoutingStrategies.Tunnel);
         this.AddHandler(KeyUpEvent, OnKeyUp, RoutingStrategies.Tunnel);
         
+        Deactivated += OnWindowDeactivated;
+        
         // 订阅鼠标滚轮事件
         this.AddHandler(PointerWheelChangedEvent, OnPointerWheelChanged, RoutingStrategies.Tunnel);
         
@@ -153,6 +155,12 @@ public partial class MainWindow : Window
             _ctrlPressed = false;
         }
     }
+    
+    private void OnWindowDeactivated(object sender, EventArgs e)
+    {
+        // 窗口失去焦点时重置 Ctrl 键状态
+        _ctrlPressed = false;
+    }
 
     private void OnPointerWheelChanged(object sender, PointerWheelEventArgs e)
     {
@@ -176,8 +184,7 @@ public partial class MainWindow : Window
             Console.WriteLine($"当前音量：{(int)(newVolume * 100)}%");
             
             // 应用新音量
-            if (Models.Classes.Core.Music.Enabled)
-                Models.Classes.Core.Music.Volume = (float)Math.Clamp(newVolume, 0.0, 1.0);
+            Models.Classes.Core.Music.Volume = (float)Math.Clamp(newVolume, 0.0, 1.0);
             
             Config.Config.MainConfig.BackMusicEntry.Volume = newVolume;
             Config.Config.SaveConfig();

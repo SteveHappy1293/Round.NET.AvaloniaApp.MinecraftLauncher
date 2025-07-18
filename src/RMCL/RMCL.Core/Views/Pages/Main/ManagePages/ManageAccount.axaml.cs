@@ -33,7 +33,8 @@ public partial class ManageAccount : ISetting
     public ManageAccount()
     {
         InitializeComponent();
-        this.Loaded += (sender, args) => RefreshUI();
+        // this.Loaded += (sender, args) => RefreshUI();
+        RefreshUI();
     }
 
     public void RefreshUI()

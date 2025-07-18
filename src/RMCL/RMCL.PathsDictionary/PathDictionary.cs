@@ -2,6 +2,8 @@ namespace RMCL.PathsDictionary;
 
 public class PathDictionary
 {
+    public static readonly string RootPath = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL";
+    
     public static readonly string ConfigPath = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Config/Config.json";
     public static readonly string GameDrawerConfigPath = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Config/GameDrawer.json";
     public static readonly string PlayerConfigPath = $"{SystemHelper.SystemHelper.GetAppConfigDirectory()}/RMCL/RMCL.Config/Player.json";

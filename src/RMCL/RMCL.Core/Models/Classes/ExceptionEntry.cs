@@ -10,9 +10,6 @@ namespace RMCL.Modules.Entry;
 
 public class ExceptionEntry
 {
-    public ConfigRoot MainConfig { get; set; } = Config.Config.MainConfig;
-    public List<JavaDetils> JavaRoot = JavaManager.JavaManager.JavaRoot.Javas;
-    public List<UserEntry> UserConfig { get; set; } = PlayerManager.Player.Accounts;
     public ExceptionEnum ExceptionType { get; set; }
     public DateTime RecordTime { get; set; } = DateTime.Now;
     public string Exception { get; set; } = string.Empty;
