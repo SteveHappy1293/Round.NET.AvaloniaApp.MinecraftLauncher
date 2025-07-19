@@ -34,7 +34,8 @@
                 <controls:SettingsExpander.Footer>
                     <button:IconButton Icon="Open20Regular"
                                        Content="打开异常管理器"
-                                       Name="OpenMistakManagerBtn"></button:IconButton>
+                                       Name="OpenMistakManagerBtn"
+                                       Click="OpenMistakManagerBtn_OnClick"></button:IconButton>
                 </controls:SettingsExpander.Footer>
             </controls:SettingsExpander>
         </StackPanel>

@@ -31,8 +31,11 @@ public class ExceptionMessage
             LogException(exceptionEntry);
             return;
         }
+
         File.WriteAllText(Path.GetFullPath(fileName), jsresult);
-        PackingConfigPack(pakefileName,fileName);
+        var logpath = Path.Combine(dirpath, "Log.log");
+        File.Copy(Logger.ConsoleRedirector.FileName, logpath);
+        PackingConfigPack(pakefileName,fileName,logpath);
     }
 
     public static void CleanException()
@@ -89,14 +92,15 @@ public class ExceptionMessage
         };
     }
 
-    public static void PackingConfigPack(string packname,string expfilename)
+    public static void PackingConfigPack(string packname,string expfilename,string logpath)
     {
         ZipHelper.ZipFolders(new[]
         {
             Path.Combine(PathDictionary.RootPath,"RMCL.Config"),
             Path.Combine(PathDictionary.RootPath,"RMCL.Plugin"),
             Path.Combine(PathDictionary.RootPath,"RMCL.Style"),
-            expfilename
+            expfilename,
+            logpath
         }, packname);
     }
 }

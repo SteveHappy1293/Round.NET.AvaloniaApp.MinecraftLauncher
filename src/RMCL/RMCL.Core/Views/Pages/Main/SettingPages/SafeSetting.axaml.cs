@@ -17,4 +17,9 @@ public partial class SafeSetting : UserControl
     {
         Core.Models.Classes.Core.ChildFrame.Show(new ManageLogsChildPage());
     }
+
+    private void OpenMistakManagerBtn_OnClick(object? sender, RoutedEventArgs e)
+    {
+        Core.Models.Classes.Core.ChildFrame.Show(new ManageExceptionChildPage());
+    }
 }

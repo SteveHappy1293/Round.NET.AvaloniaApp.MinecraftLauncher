@@ -61,7 +61,6 @@
       <ProjectReference Include="..\CompositionScroll\CompositionScroll.csproj" />
       <ProjectReference Include="..\LiteSkinViewer.2D\LiteSkinViewer.2D.csproj" />
       <ProjectReference Include="..\LiteSkinViewer.3D\LiteSkinViewer.3D.csproj" />
-      <ProjectReference Include="..\LiteSkinViewer3D\LiteSkinViewer3D.csproj" />
       <ProjectReference Include="..\RMCL.AssetsCenter\RMCL.AssetsCenter.csproj" />
       <ProjectReference Include="..\RMCL.AssetsPool\RMCL.AssetsPool.csproj" />
       <ProjectReference Include="..\RMCL.ClientManager\RMCL.ClientManager.csproj" />

@@ -47,6 +47,7 @@ public partial class ErrorWindow : Window
         ExceptionEntry.SystemVersion = Environment.OSVersion.ToString();
         ExceptionEntry.SystemTimeZone = localTimeZone.DisplayName;
         ExceptionEntry.ExceptionType = ExceptionMessage.GetExceptionSeverity(ex);
+        ExceptionEntry.ExceptionName = ex.GetType().Name;
 
         ExceptionMessage.LogException(ExceptionEntry);
         ErrorTypeLabel.Content = ex.GetType().Name;

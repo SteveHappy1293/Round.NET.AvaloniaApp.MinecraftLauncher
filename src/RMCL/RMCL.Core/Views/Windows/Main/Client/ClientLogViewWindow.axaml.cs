@@ -120,7 +120,7 @@ namespace RMCL.Core.Views.Windows.Main.Client
                         scrollViewer1?.ScrollToEnd();
                     }
                 }
-                catch (Exception ex)
+                catch (System.Exception ex)
                 {
                     Debug.WriteLine($"日志添加失败: {ex.Message}");
                 }
@@ -155,7 +155,7 @@ namespace RMCL.Core.Views.Windows.Main.Client
                     
                     await File.WriteAllTextAsync(result, sb.ToString());
                 }
-                catch (Exception ex)
+                catch (System.Exception ex)
                 {
                     
                 }

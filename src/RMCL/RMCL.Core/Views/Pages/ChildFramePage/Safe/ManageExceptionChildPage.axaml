@@ -1,0 +1,27 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:view="clr-namespace:RMCL.Controls.View;assembly=RMCL.Controls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RMCL.Core.Views.Pages.ChildFramePage.Safe.ManageExceptionChildPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel>
+            <TextBlock Margin="20"
+                       Foreground="Orange"
+                       FontSize="20"
+                       FontWeight="Heavy">异常管理</TextBlock>
+        </DockPanel>
+        <view:NullBox Grid.Row="1" SmallTitle="您的使用异常正常" BigTitle="暂无崩溃记录" Name="NullBox" IsVisible="False"/>
+        <view:Loading Grid.Row="1" SmallTitle="正在翻箱倒柜..." Name="Loading"/>
+        <ScrollViewer Grid.Row="1" Margin="5,0">
+            <StackPanel Name="ExceptionsView" Margin="10,0">
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

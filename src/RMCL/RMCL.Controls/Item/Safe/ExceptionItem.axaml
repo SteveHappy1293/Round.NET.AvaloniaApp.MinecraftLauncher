@@ -3,12 +3,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:item="clr-namespace:RMCL.Controls.Item"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:button="clr-namespace:RMCL.Controls.Button"
+             mc:Ignorable="d" d:DesignWidth="800"
              x:Class="RMCL.Controls.Item.Safe.ExceptionItem">
     <item:ItemBox>
         <item:ItemBox.Content>
             <DockPanel>
+                <StackPanel>
+                    <TextBlock Name="ExceptionName"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Margin="10,5,5,-4">Name</TextBlock>
+                    
+                    <DockPanel>
+                        <item:LabelBox Margin="5,5,0,5"
+                                       Text="异常等级：4"
+                                       Name="ExceptionLevel"
+                                       BoxBackground="DarkRed"/>
+                        
+                        <item:LabelBox HorizontalAlignment="Left"
+                                       Margin="0,5,0,5"
+                                       Name="ExceptionType"
+                                       FontSize="11"
+                                       FontWeight="Light"
+                                       Text="异常类型"/>
+                    </DockPanel>
+                </StackPanel>
                 
+                <DockPanel HorizontalAlignment="Right" Margin="10">
+                    <button:IconButton Icon="Info20Regular" Content="详细信息" Click="Button_OnClick" Margin="5"/>
+                </DockPanel>
             </DockPanel>
         </item:ItemBox.Content>
     </item:ItemBox>

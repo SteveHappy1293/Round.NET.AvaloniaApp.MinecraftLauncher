@@ -1,0 +1,41 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+        xmlns:item="clr-namespace:RMCL.Controls.Item;assembly=RMCL.Controls"
+        mc:Ignorable="d"
+        x:Class="RMCL.Core.Views.Windows.Main.Exception.ExceptionReportWindow"
+        Title="[RMCL3] 异常报告详细信息窗口 Loading..."
+        WindowStartupLocation="CenterScreen"
+        Width="1360" Height="760"
+        MinWidth="1360" MinHeight="760">
+    <DockPanel>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
+                    Margin="30">
+            <DockPanel>
+                <fluentIcons:FluentIcon Icon="Book24Regular"
+                                        Width="72" Height="72"/>
+            
+                <StackPanel>
+                    <TextBlock Margin="10,-10,0,0"
+                               VerticalAlignment="Top"
+                               FontSize="48" FontWeight="Thin">崩溃报告</TextBlock>
+                
+                    <item:LabelBox Margin="5,-6,0,0"
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                                   Text="发生于 {DATA_TIME} 的崩溃"/>
+                </StackPanel>
+            </DockPanel>
+            
+            <StackPanel Margin="5,20,5,5">
+                <TextBlock FontSize="18"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource AccentButtonBackground}">查看遇到的错误</TextBlock>
+                
+                
+            </StackPanel>
+        </StackPanel>
+        
+    </DockPanel>
+</Window>
