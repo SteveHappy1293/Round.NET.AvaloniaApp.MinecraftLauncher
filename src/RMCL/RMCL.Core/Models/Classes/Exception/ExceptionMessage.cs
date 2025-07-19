@@ -75,8 +75,11 @@ public class ExceptionMessage
             OutOfMemoryException => ExceptionEnum.Critical,
             StackOverflowException => ExceptionEnum.Critical,
             TimeoutException => ExceptionEnum.Error,
-            _ => ex.Message.Contains("致命") || ex.Message.Contains("严重") 
-                ? ExceptionEnum.Critical 
+            NotImplementedException => ExceptionEnum.Warning, // 未实现异常通常是开发阶段的问题
+            InvalidOperationException => ExceptionEnum.Error,
+            DirectoryNotFoundException => ExceptionEnum.Warning,
+            _ => ex.Message.Contains("致命") || ex.Message.Contains("严重")
+                ? ExceptionEnum.Critical
                 : ExceptionEnum.Error
         };
     }

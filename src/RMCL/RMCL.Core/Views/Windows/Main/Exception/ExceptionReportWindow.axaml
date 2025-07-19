@@ -3,39 +3,382 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fluentIcons="clr-namespace:FluentAvalonia.FluentIcons;assembly=FluentAvalonia.FluentIcons"
+        xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
         xmlns:item="clr-namespace:RMCL.Controls.Item;assembly=RMCL.Controls"
+        xmlns:button="clr-namespace:RMCL.Controls.Button;assembly=RMCL.Controls"
         mc:Ignorable="d"
         x:Class="RMCL.Core.Views.Windows.Main.Exception.ExceptionReportWindow"
-        Title="[RMCL3] 异常报告详细信息窗口 Loading..."
+        Title="[RMCL3] 异常报告详细信息"
         WindowStartupLocation="CenterScreen"
-        Width="1360" Height="760"
-        MinWidth="1360" MinHeight="760">
-    <DockPanel>
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
-                    Margin="30">
-            <DockPanel>
-                <fluentIcons:FluentIcon Icon="Book24Regular"
-                                        Width="72" Height="72"/>
-            
-                <StackPanel>
-                    <TextBlock Margin="10,-10,0,0"
-                               VerticalAlignment="Top"
-                               FontSize="48" FontWeight="Thin">崩溃报告</TextBlock>
-                
-                    <item:LabelBox Margin="5,-6,0,0"
-                                   VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                                   Text="发生于 {DATA_TIME} 的崩溃"/>
+        Width="1200" Height="800"
+        MinWidth="900" MinHeight="600">
+
+    <Window.Styles>
+        <Style Selector="Border.exception-card">
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="Margin" Value="0,0"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefaultBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style Selector="TextBlock.section-header">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,16,0,8"/>
+        </Style>
+
+        <Style Selector="Border.exception-level">
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+
+        <Style Selector="Border.exception-level TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!-- 明暗主题适配的异常级别样式 -->
+        <Style Selector="Border.exception-level.critical">
+            <Setter Property="Background" Value="{DynamicResource SystemFillColorCriticalBackgroundBrush}"/>
+        </Style>
+
+        <Style Selector="Border.exception-level.critical TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCriticalBrush}"/>
+        </Style>
+
+        <Style Selector="Border.exception-level.error">
+            <Setter Property="Background" Value="{DynamicResource SystemFillColorCautionBackgroundBrush}"/>
+        </Style>
+
+        <Style Selector="Border.exception-level.error TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCautionBrush}"/>
+        </Style>
+
+        <Style Selector="Border.exception-level.warning">
+            <Setter Property="Background" Value="{DynamicResource SystemFillColorAttentionBackgroundBrush}"/>
+        </Style>
+
+        <Style Selector="Border.exception-level.warning TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorAttentionBrush}"/>
+        </Style>
+
+        <Style Selector="Border.exception-level.information">
+            <Setter Property="Background" Value="{DynamicResource SystemFillColorNeutralBackgroundBrush}"/>
+        </Style>
+
+        <Style Selector="Border.exception-level.information TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorNeutralBrush}"/>
+        </Style>
+
+        <!-- 建议项样式 -->
+        <Style Selector="Border.suggestion-item">
+            <Setter Property="Background" Value="{DynamicResource SystemFillColorSuccessBackgroundBrush}"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="Margin" Value="0,4"/>
+        </Style>
+
+        <Style Selector="Border.suggestion-item TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorSuccessBrush}"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header Section -->
+        <Border Grid.Row="0" Background="{DynamicResource AcrylicBackgroundFillColorDefaultBrush}"
+                Padding="24,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Exception Icon and Title -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Background="#FFE6E6" CornerRadius="20" Width="40" Height="40"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <fluentIcons:FluentIcon Icon="ErrorCircle24Regular"
+                                                Width="24" Height="24"
+                                                Foreground="#D32F2F"/>
+                    </Border>
+
+                    <StackPanel Margin="16,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Name="ExceptionTitleText"
+                                   Text="应用程序异常"
+                                   FontSize="24"
+                                   FontWeight="Bold"/>
+                        <TextBlock Name="ExceptionTimeText"
+                                   Text="发生时间：加载中..."
+                                   FontSize="14"
+                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
                 </StackPanel>
-            </DockPanel>
-            
-            <StackPanel Margin="5,20,5,5">
-                <TextBlock FontSize="18"
-                           FontWeight="Bold"
-                           Foreground="{StaticResource AccentButtonBackground}">查看遇到的错误</TextBlock>
-                
-                
+
+                <!-- Exception Level Badge -->
+                <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                    <Border Name="ExceptionLevelBadge"
+                            Classes="exception-level critical"
+                            HorizontalAlignment="Right">
+                        <TextBlock Text="严重错误"/>
+                    </Border>
+                    <TextBlock Name="ExceptionTypeText"
+                               Text="NullReferenceException"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                               HorizontalAlignment="Right"
+                               Margin="0,4,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content Area -->
+        <ScrollViewer Grid.Row="1" Padding="24,16,24,0">
+            <StackPanel Spacing="16">
+
+                <!-- Exception Message Card -->
+                <Border Classes="exception-card">
+                    <StackPanel>
+                        <DockPanel>
+                            <fluentIcons:FluentIcon Icon="Warning24Regular"
+                                                    Width="20" Height="20"
+                                                    Foreground="{DynamicResource SystemFillColorCriticalBrush}"
+                                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="异常消息"
+                                       Classes="section-header"
+                                       Margin="18,5,8,8"
+                                       VerticalAlignment="Center"/>
+                            <Button DockPanel.Dock="Right"
+                                    Name="CopyMessageButton"
+                                    Click="CopyMessageButton_Click"
+                                    ToolTip.Tip="复制异常消息"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Padding="8">
+                                <fluentIcons:FluentIcon Icon="Copy24Regular" Width="16" Height="16"/>
+                            </Button>
+                        </DockPanel>
+
+                        <Border Background="{DynamicResource ControlFillColorDefaultBrush}"
+                                CornerRadius="4"
+                                Padding="12">
+                            <TextBlock Name="ExceptionMessageText"
+                                       Text="异常消息将在这里显示..."
+                                       TextWrapping="Wrap"
+                                       FontFamily="Consolas,Monaco,monospace"
+                                       FontSize="13"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- Stack Trace Card -->
+                <Border Classes="exception-card">
+                    <StackPanel>
+                        <DockPanel>
+                            <fluentIcons:FluentIcon Icon="Code24Regular"
+                                                    Width="20" Height="20"
+                                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="堆栈跟踪"
+                                       Classes="section-header"
+                                       Margin="18,5,8,8"
+                                       VerticalAlignment="Center"/>
+                            <Button DockPanel.Dock="Right"
+                                    Name="CopyStackTraceButton"
+                                    Click="CopyStackTraceButton_Click"
+                                    ToolTip.Tip="复制堆栈跟踪"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Padding="8">
+                                <fluentIcons:FluentIcon Icon="Copy24Regular" Width="16" Height="16"/>
+                            </Button>
+                        </DockPanel>
+
+                        <Border Background="{DynamicResource ControlFillColorDefaultBrush}"
+                                CornerRadius="4"
+                                Padding="12"
+                                MaxHeight="300">
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                          VerticalScrollBarVisibility="Auto">
+                                <TextBlock Name="StackTraceText"
+                                           Text="堆栈跟踪信息将在这里显示..."
+                                           FontFamily="Consolas,Monaco,monospace"
+                                           FontSize="12"
+                                           TextWrapping="NoWrap"/>
+                            </ScrollViewer>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- System Information Card -->
+                <Border Classes="exception-card">
+                    <StackPanel>
+                        <DockPanel>
+                            <fluentIcons:FluentIcon Icon="Desktop24Regular"
+                                                    Width="20" Height="20"
+                                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="系统信息"
+                                       Classes="section-header"
+                                       Margin="18,5,8,8"
+                                       VerticalAlignment="Center"/>
+                            <Button DockPanel.Dock="Right"
+                                    Name="CopySystemInfoButton"
+                                    Click="CopySystemInfoButton_Click"
+                                    ToolTip.Tip="复制系统信息"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Padding="8">
+                                <fluentIcons:FluentIcon Icon="Copy24Regular" Width="16" Height="16"/>
+                            </Button>
+                        </DockPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" Spacing="8">
+                                <DockPanel>
+                                    <TextBlock Text="操作系统：" FontWeight="SemiBold" Width="100"/>
+                                    <TextBlock Name="SystemVersionText" Text="Windows 11"/>
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock Text="系统语言：" FontWeight="SemiBold" Width="100"/>
+                                    <TextBlock Name="SystemLanguageText" Text="zh-CN"/>
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock Text="时区：" FontWeight="SemiBold" Width="100"/>
+                                    <TextBlock Name="SystemTimeZoneText" Text="UTC+8"/>
+                                </DockPanel>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Spacing="8">
+                                <DockPanel>
+                                    <TextBlock Text="RMCL版本：" FontWeight="SemiBold" Width="100"/>
+                                    <TextBlock Name="RMCLVersionText" Text="3.0.0"/>
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock Text="运行时：" FontWeight="SemiBold" Width="100"/>
+                                    <TextBlock Name="RuntimeVersionText" Text=".NET 8.0"/>
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock Text="异常源：" FontWeight="SemiBold" Width="100"/>
+                                    <TextBlock Name="ExceptionSourceText" Text="未知"/>
+                                </DockPanel>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Suggested Solutions Card -->
+                <Border Classes="exception-card" Name="SuggestionsCard">
+                    <StackPanel>
+                        <DockPanel>
+                            <fluentIcons:FluentIcon Icon="Lightbulb24Regular"
+                                                    Width="20" Height="20"
+                                                    Foreground="{DynamicResource SystemFillColorSuccessBrush}"
+                                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="建议解决方案"
+                                       Classes="section-header"
+                                       Margin="18,5,8,8"
+                                       VerticalAlignment="Center"/>
+                        </DockPanel>
+
+                        <StackPanel Name="SuggestionsPanel" Spacing="8">
+                            <!-- Suggestions will be added dynamically -->
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Configuration Information Card -->
+                <Border Classes="exception-card">
+                    <StackPanel>
+                        <DockPanel>
+                            <fluentIcons:FluentIcon Icon="Settings24Regular"
+                                                    Width="20" Height="20"
+                                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="配置信息"
+                                       Classes="section-header"
+                                       Margin="18,5,8,8"
+                                       VerticalAlignment="Center"/>
+                            <Button DockPanel.Dock="Right"
+                                    Name="CopyConfigButton"
+                                    Click="CopyConfigButton_Click"
+                                    ToolTip.Tip="复制配置信息"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Padding="8">
+                                <fluentIcons:FluentIcon Icon="Copy24Regular" Width="16" Height="16"/>
+                            </Button>
+                        </DockPanel>
+
+                        <Border Background="{DynamicResource ControlFillColorDefaultBrush}"
+                                CornerRadius="4"
+                                Padding="12"
+                                MaxHeight="200">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <TextBlock Name="ConfigurationText"
+                                           Text="配置信息将在这里显示..."
+                                           FontFamily="Consolas,Monaco,monospace"
+                                           FontSize="12"
+                                           TextWrapping="Wrap"/>
+                            </ScrollViewer>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
             </StackPanel>
-        </StackPanel>
-        
-    </DockPanel>
+        </ScrollViewer>
+
+        <!-- Bottom Action Bar -->
+        <Border Grid.Row="2"
+                Background="{DynamicResource AcrylicBackgroundFillColorDefaultBrush}"
+                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                BorderThickness="0,1,0,0"
+                Padding="24,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left side buttons -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="12">
+                    <button:AccentIconButton Name="ExportReportButton"
+                                             Content="导出完整报告"
+                                             Click="ExportReportButton_Click"
+                                             ToolTip.Tip="导出包含所有信息的详细报告"/>
+
+                    <button:IconButton Name="CopyAllButton"
+                                       Icon="Copy24Regular"
+                                       Content="复制全部信息"
+                                       Click="CopyAllButton_Click"
+                                       ToolTip.Tip="复制所有异常信息到剪贴板"/>
+
+                    <button:IconButton Name="OpenGitHubButton"
+                                       Icon="Globe24Regular"
+                                       Content="报告问题"
+                                       Click="OpenGitHubButton_Click"
+                                       ToolTip.Tip="在GitHub上报告此问题"/>
+                </StackPanel>
+
+                <!-- Right side buttons -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12">
+                    <Button Name="CloseButton"
+                            Content="关闭"
+                            Click="CloseButton_Click"
+                            Classes="accent"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+    </Grid>
 </Window>
