@@ -39,32 +39,31 @@ public partial class MainView : UserControl
             Models.Classes.Core.MainWindow.UpdateButtonStyle();
         };
 
-        // 使用懒加载工厂模式注册页面
         BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
         {
             IsDefault = true,
             Tag = "Home",
             Title = new Label() { Content = "主页" },
             IsNoButton = true,
-            PageFactory = () => new Home()
+            Page = new Home()
         });
         BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
         {
             Tag = "Download",
             Title = new Label() { Content = "下载" },
-            PageFactory = () => new Download()
+            Page = new Download()
         });
         BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
         {
             Tag = "Manage",
             Title = new Label() { Content = "管理" },
-            PageFactory = () => new Manage()
+            Page = new Manage()
         });
         BottomBar.RegisterNavigationItem(new BottomBarNavigationEntry()
         {
             Tag = "Setting",
             Title = new Label() { Content = "设置" },
-            PageFactory = () => new Setting()
+            Page = new Setting()
         });
 
         this.Loaded += async (sender, args) =>

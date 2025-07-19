@@ -29,30 +29,16 @@ public partial class App : Application
     public override void Initialize()
     {
         Console.WriteLine("App Init...");
-
-        // 优化GC策略：使用更智能的内存管理
-        if (Config.Config.MainConfig.GCTime > 0)
+        Task.Run(() =>
         {
-            Task.Run(async () =>
+            while (true)
             {
-                while (true)
-                {
-                    // 使用更长的间隔和更温和的GC策略
-                    await Task.Delay(Math.Max(Config.Config.MainConfig.GCTime * 5, 10000)); // 至少10秒间隔
-
-                    // 只在内存使用较高时才执行GC
-                    var memoryBefore = GC.GetTotalMemory(false);
-                    if (memoryBefore > 100 * 1024 * 1024) // 超过100MB时才考虑GC
-                    {
-                        GC.Collect(0, GCCollectionMode.Optimized, false); // 使用优化模式，非阻塞
-                        GC.WaitForPendingFinalizers();
-                    }
-                }
-            });
-        }
-
+                Thread.Sleep(Config.Config.MainConfig.GCTime);
+                GC.Collect(2, GCCollectionMode.Aggressive, true);
+            }
+        });
         AvaloniaXamlLoader.Load(this);
-
+        
         // 订阅所有全局异常处理器
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
         TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
