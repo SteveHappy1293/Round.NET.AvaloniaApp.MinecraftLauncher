@@ -11,7 +11,7 @@
             <DockPanel Margin="8">
                 <TextBlock FontSize="18"
                            FontWeight="Thin"
-                           Name="DataBox" Width="140"
+                           Name="DataBox" Width="160"
                            VerticalAlignment="Center">Data</TextBlock>
                 <item:LabelBox HorizontalAlignment="Left" Name="LabelBox"
                                VerticalAlignment="Center" Margin="5,0,0,0" Text="当前日志" BoxBackground="DarkRed"></item:LabelBox>
