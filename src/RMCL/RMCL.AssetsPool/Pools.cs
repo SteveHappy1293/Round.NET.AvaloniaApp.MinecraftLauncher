@@ -3,10 +3,10 @@
 public class Pools
 {
     public static AvaloniaResourcesPool AvaloniaResourcesPool = new(
-        inactiveTimeout: TimeSpan.FromSeconds(5),
-        cleanupInterval: TimeSpan.FromSeconds(10));
-    
+        inactiveTimeout: TimeSpan.FromMinutes(5), // 增加到5分钟
+        cleanupInterval: TimeSpan.FromMinutes(2)); // 增加到2分钟
+
     public static ImageResourcePool ImageResourcePool = new ImageResourcePool(
-        inactiveTimeout: TimeSpan.FromSeconds(5),
-        cleanupInterval: TimeSpan.FromSeconds(10));
+        inactiveTimeout: TimeSpan.FromMinutes(5), // 增加到5分钟
+        cleanupInterval: TimeSpan.FromMinutes(2)); // 增加到2分钟
 }

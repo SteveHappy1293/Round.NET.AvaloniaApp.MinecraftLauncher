@@ -10,6 +10,9 @@ namespace RMCL.Controls.Container;
 
 public partial class NavigationPage : UserControl
 {
+    // 懒加载页面缓存
+    private readonly Dictionary<string, UserControl> _pageCache = new();
+
     public NavigationPage()
     {
         InitializeComponent();
@@ -18,7 +21,7 @@ public partial class NavigationPage : UserControl
     public static readonly StyledProperty<string> TitleProperty =
         AvaloniaProperty.Register<NavigationPage, string>(
             nameof(Title),"");
-    
+
     public static readonly StyledProperty<string> DefaultRouteProperty =
         AvaloniaProperty.Register<NavigationPage, string>(
             nameof(DefaultRoute),"");
@@ -33,7 +36,7 @@ public partial class NavigationPage : UserControl
         get => GetValue(DefaultRouteProperty);
         set => SetValue(DefaultRouteProperty, value);
     }
-    
+
     public bool IsEdit { get; set; } = true;
 
     public void NavigateTo(string route)
@@ -44,13 +47,41 @@ public partial class NavigationPage : UserControl
         {
             if (config.Route == route)
             {
-                Navigate(config.Page);
+                var page = GetOrCreatePage(config);
+                Navigate(page);
                 View.SelectedItem = View.MenuItems[i];
             }
 
             i++;
         });
         IsEdit = true;
+    }
+
+    private UserControl GetOrCreatePage(NavigationRouteConfig config)
+    {
+        // 懒加载：检查缓存中是否已有页面实例
+        if (_pageCache.TryGetValue(config.Route, out var cachedPage))
+        {
+            return cachedPage;
+        }
+
+        // 首次访问，创建页面实例并缓存
+        UserControl pageInstance;
+        if (config.PageFactory != null)
+        {
+            pageInstance = config.PageFactory();
+        }
+        else
+        {
+            pageInstance = config.Page;
+        }
+
+        if (pageInstance != null)
+        {
+            _pageCache[config.Route] = pageInstance;
+        }
+
+        return pageInstance;
     }
 
     private void Navigate(UserControl page)
@@ -76,12 +107,17 @@ public partial class NavigationPage : UserControl
     {
         if (IsEdit)
         {
-            var page = RouteConfigs.Find(config =>
+            var config = RouteConfigs.Find(config =>
             {
                 return config.Route == ((NavigationViewItem)(View!).SelectedItem!).Tag;
-            }).Page;
-            OnChanged.Invoke(page, null);
-            Navigate(page);
+            });
+
+            if (config != null)
+            {
+                var page = GetOrCreatePage(config);
+                OnChanged.Invoke(page, null);
+                Navigate(page);
+            }
         }
     }
 

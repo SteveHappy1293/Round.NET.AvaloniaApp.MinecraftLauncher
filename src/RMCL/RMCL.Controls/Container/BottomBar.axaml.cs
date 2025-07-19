@@ -18,6 +18,10 @@ public partial class BottomBar : UserControl
     public string DefaultTag { get; set; } = "Launch";
     public Frame ContentFrame { get; set; }
     public string NowTag { get; set; }
+
+    // 懒加载页面缓存
+    private readonly Dictionary<string, UserControl> _pageCache = new();
+
     public BottomBar()
     {
         InitializeComponent();
@@ -33,15 +37,47 @@ public partial class BottomBar : UserControl
         }
 
         var entry = NavigationItems.Find(x => x.Tag == Tag);
-        
+
         Nav(entry);
     }
 
     private void Nav(BottomBarNavigationEntry entry)
     {
-        if (entry.Tag != DefaultTag)
-            ContentFrame.Navigate(entry.Page.GetType(), this, new EntranceNavigationTransitionInfo());
-        else ContentFrame.Content = entry.Page;
+        UserControl pageInstance;
+
+        // 懒加载：检查缓存中是否已有页面实例
+        if (_pageCache.TryGetValue(entry.Tag, out pageInstance))
+        {
+            // 使用缓存的页面实例
+            if (entry.Tag != DefaultTag)
+                ContentFrame.Navigate(pageInstance.GetType(), this, new EntranceNavigationTransitionInfo());
+            else
+                ContentFrame.Content = pageInstance;
+        }
+        else
+        {
+            // 首次访问，创建页面实例并缓存
+            if (entry.PageFactory != null)
+            {
+                pageInstance = entry.PageFactory();
+                _pageCache[entry.Tag] = pageInstance;
+            }
+            else
+            {
+                // 兼容旧的直接页面实例方式
+                pageInstance = entry.Page;
+                if (pageInstance != null)
+                    _pageCache[entry.Tag] = pageInstance;
+            }
+
+            if (pageInstance != null)
+            {
+                if (entry.Tag != DefaultTag)
+                    ContentFrame.Navigate(pageInstance.GetType(), this, new EntranceNavigationTransitionInfo());
+                else
+                    ContentFrame.Content = pageInstance;
+            }
+        }
     }
     public void RegisterNavigationItem(BottomBarNavigationEntry entry)
     {
@@ -53,7 +89,20 @@ public partial class BottomBar : UserControl
         if (entry.IsDefault)
         {
             btn.Classes.Add("accent");
-            ContentFrame.Content = entry.Page;
+            // 对于默认页面，立即创建实例
+            UserControl defaultPage;
+            if (entry.PageFactory != null)
+            {
+                defaultPage = entry.PageFactory();
+                _pageCache[entry.Tag] = defaultPage;
+            }
+            else
+            {
+                defaultPage = entry.Page;
+                if (defaultPage != null)
+                    _pageCache[entry.Tag] = defaultPage;
+            }
+            ContentFrame.Content = defaultPage;
         }
 
         btn.Click += NavigateTo;
@@ -62,6 +111,7 @@ public partial class BottomBar : UserControl
         {
             Title = entry.Title,
             Page = entry.Page,
+            PageFactory = entry.PageFactory,
             NavItem = btn,
             IsDefault = entry.IsDefault,
         });

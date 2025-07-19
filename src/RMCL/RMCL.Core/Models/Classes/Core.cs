@@ -21,8 +21,8 @@ public class Core
         Loop = true
     };
     public static ImageResourcePool ImageResourcePool = new ImageResourcePool(
-        inactiveTimeout: TimeSpan.FromSeconds(5),
-        cleanupInterval: TimeSpan.FromSeconds(10));
+        inactiveTimeout: TimeSpan.FromMinutes(5), // 增加到5分钟
+        cleanupInterval: TimeSpan.FromMinutes(2)); // 增加到2分钟
 
     public static FluentAvaloniaTheme FluentAvaloniaTheme = new()
     {

@@ -14,8 +14,14 @@ sealed class Program
 {
     public static void Main(string[] args)
     {
-// 设置 GC 延迟模式（默认是 Interactive，可改为 LowLatency/Batch）
-        System.Runtime.GCSettings.LatencyMode = GCLatencyMode.Batch;
+        // 优化GC设置以提升性能
+        System.Runtime.GCSettings.LatencyMode = GCLatencyMode.Interactive; // 改为Interactive模式，更适合UI应用
+
+        // 设置服务器GC模式（如果可用）
+        if (System.Runtime.GCSettings.IsServerGC)
+        {
+            Console.WriteLine("Using Server GC mode for better performance");
+        }
         
         if (args.Length >= 4)
         {
@@ -66,19 +72,27 @@ sealed class Program
             var redirector = new ConsoleRedirector(Path.GetFullPath(Path.Combine(PathDictionary.LogsPath,$"[RMCL.Logger] {DateTime.Now.ToString("yyyy.MM.dd HHmmss.fff")}.log")));
         
             Console.WriteLine("Program Starting!");
+
+            // 优化启动流程：先加载关键配置，其他配置异步加载
             Console.WriteLine("Program Load Config...");
             Config.LoadConfig();
-            Console.WriteLine("Program Load JavaConfig...");
-            JavaManager.LoadConfig();
-            Console.WriteLine("Program Load PlayerConfig...");
-            PlayerManager.LoadConfig();
-            Console.WriteLine("Program Load GameDrawerConfig...");
-            GameDrawerManager.LoadConfig();
-            
+
+            // 异步加载非关键配置
+            Task.Run(() =>
+            {
+                Console.WriteLine("Program Load JavaConfig...");
+                JavaManager.LoadConfig();
+                Console.WriteLine("Program Load PlayerConfig...");
+                PlayerManager.LoadConfig();
+                Console.WriteLine("Program Load GameDrawerConfig...");
+                GameDrawerManager.LoadConfig();
+                Console.WriteLine("Background initialization completed!");
+            });
+
             Console.WriteLine("Program Init...");
-        
+
             BuildAvaloniaApp()
-                .StartWithClassicDesktopLifetime(args);   
+                .StartWithClassicDesktopLifetime(args);
         }
     }
 

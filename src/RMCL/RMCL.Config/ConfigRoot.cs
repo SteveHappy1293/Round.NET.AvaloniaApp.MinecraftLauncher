@@ -35,7 +35,7 @@ public class ConfigRoot
     public int WindowY { get; set; } = 0;
     public UpdateConfigEntry UpdateModel { get; set; } = new();
     public bool LauncherWindowTopMost { get; set; } = false;
-    public int GCTime { get; set; } = 2000;
+    public int GCTime { get; set; } = 30000; // 增加到30秒，减少GC频率
 }
 
 public class GameFolderConfig
