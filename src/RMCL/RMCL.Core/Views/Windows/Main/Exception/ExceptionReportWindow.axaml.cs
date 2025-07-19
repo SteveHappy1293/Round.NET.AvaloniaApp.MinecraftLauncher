@@ -93,7 +93,7 @@ public partial class ExceptionReportWindow : Window
     private void PopulateExceptionData(ExceptionEntry ex)
     {
         // 更新异常标题和时间
-        ExceptionTitleText.Text = $"{ex.ExceptionName} 异常";
+        ExceptionTitleText.Text = $"{ex.ExceptionName}异常";
         ExceptionTimeText.Text = $"发生时间：{ex.RecordTime:yyyy年MM月dd日 HH:mm:ss}";
 
         // 更新异常级别徽章
