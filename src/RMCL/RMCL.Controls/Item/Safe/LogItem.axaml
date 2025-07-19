@@ -14,7 +14,7 @@
                            Name="DataBox" Width="160"
                            VerticalAlignment="Center">Data</TextBlock>
                 <item:LabelBox HorizontalAlignment="Left" Name="LabelBox"
-                               VerticalAlignment="Center" Margin="5,0,0,0" Text="当前日志" BoxBackground="DarkRed"></item:LabelBox>
+                               VerticalAlignment="Center" Margin="5,0,0,0" Text="当前日志" BoxBackground="Green"></item:LabelBox>
                 
                 <Button Width="32" Height="32"
                         Margin="8,0,0,0"
