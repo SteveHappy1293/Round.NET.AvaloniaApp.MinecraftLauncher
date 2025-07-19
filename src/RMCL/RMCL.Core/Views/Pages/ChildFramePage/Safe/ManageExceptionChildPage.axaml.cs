@@ -39,16 +39,20 @@ public partial class ManageExceptionChildPage : UserControl
                 {
                     var entry = JsonSerializer.Deserialize<ExceptionEntry>(
                         File.ReadAllText(Path.Combine(x, "Exception.json")));
-                    var it = new ExceptionItem();
-                    it.OnOpen += (sender, s) =>
+
+                    if (!string.IsNullOrEmpty(entry.ExceptionName))
                     {
-                        var win = new ExceptionReportWindow();
-                        win.PackFile = Path.Combine(x, "Pack.rexp");
-                        win.ShowException(entry);
-                        win.Show();
-                    };
-                    ExceptionsView.Children.Add(it);
-                    it.ShowLoad(entry);
+                        var it = new ExceptionItem();
+                        it.OnOpen += (sender, s) =>
+                        {
+                            var win = new ExceptionReportWindow();
+                            win.PackFile = Path.Combine(x, "Pack.rexp");
+                            win.ShowException(entry);
+                            win.Show();
+                        };
+                        ExceptionsView.Children.Add(it);
+                        it.ShowLoad(entry);
+                    }
                 });
             }
 

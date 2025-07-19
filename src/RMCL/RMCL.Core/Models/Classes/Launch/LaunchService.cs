@@ -121,6 +121,12 @@ public class LaunchService
 
     public static (ClientRunner,ClientRunnerInfo) Launch(LaunchClientInfo Info,ClientConfig config,Action<string> LogOutput = null)
     {
+        if (PlayerManager.Player.Accounts.Count == 0 || PlayerManager.Player.SelectIndex == -1 ||
+            PlayerManager.Player.SelectIndex > PlayerManager.Player.Accounts.Count - 1)
+        {
+            throw new IndexOutOfRangeException("未选择账户");
+        }
+
         BackCallManager.Call(BackCallType.LaunchedGame);
 
         var par = new VersionParse(new ClientInstancesInfo()

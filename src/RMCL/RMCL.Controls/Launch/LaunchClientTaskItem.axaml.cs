@@ -33,7 +33,7 @@ public partial class LaunchClientTaskItem : UserControl
                         GameCatalog = Info.GameFolder,
                         GameName = Info.GameName
                     })); // ver 参数是先前读取的游戏
-                
+
                 GameFileCompleter fileCompleter = new GameFileCompleter();
                 fileCompleter.ProgressCallback = (@enum, s, arg3) => Dispatcher.UIThread.Invoke(() =>
                 {
@@ -49,8 +49,21 @@ public partial class LaunchClientTaskItem : UserControl
                     ProgressTextBox.Text = $"资源补全完毕";
                     CompleteTheResourceFile.Value = 100;
                 });
-            
+
                 Launching.Invoke(Info);
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+                ExitCompleted.Invoke("<UNK>");
+                Dispatcher.UIThread.Invoke(()=> new ContentDialog()
+                {
+                    Content = "并未选择账户或没有账户，请前往 管理>账户管理 设置账户",
+                    Title = "启动失败",
+                    CloseButtonText = "确定"
+                }.ShowAsync());
+                
+                return;
             }
             catch (Exception ex)
             {

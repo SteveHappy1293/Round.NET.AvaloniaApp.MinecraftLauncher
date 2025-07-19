@@ -15,6 +15,7 @@ public class ExceptionMessage
     public static readonly string ExceptionsPath = Path.GetFullPath(PathsDictionary.PathDictionary.ExceptionFolder);
     public static void LogException(ExceptionEntry exceptionEntry)
     {
+        if(string.IsNullOrEmpty(exceptionEntry.ExceptionName)) return;
         string dirpath = Path.Combine(ExceptionsPath,
             $"{DateTime.Now:yyyy.MM.dd HHmmss} No.{new Random().Next(1000, 9999)}");
         string fileName = Path.Combine(dirpath, "Exception.json");
