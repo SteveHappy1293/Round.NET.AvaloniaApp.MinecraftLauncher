@@ -203,16 +203,12 @@
 
                         <Border Background="{DynamicResource ControlFillColorDefaultBrush}"
                                 CornerRadius="4"
-                                Padding="12"
-                                MaxHeight="300">
-                            <ScrollViewer HorizontalScrollBarVisibility="Auto"
-                                          VerticalScrollBarVisibility="Auto">
-                                <TextBlock Name="StackTraceText"
-                                           Text="堆栈跟踪信息将在这里显示..."
-                                           FontFamily="Consolas,Monaco,monospace"
-                                           FontSize="12"
-                                           TextWrapping="NoWrap"/>
-                            </ScrollViewer>
+                                Padding="12">
+                            <TextBlock Name="StackTraceText"
+                                       Text="堆栈跟踪信息将在这里显示..."
+                                       FontFamily="Consolas,Monaco,monospace"
+                                       FontSize="12"
+                                       TextWrapping="Wrap"/>
                         </Border>
                     </StackPanel>
                 </Border>
@@ -322,15 +318,12 @@
 
                         <Border Background="{DynamicResource ControlFillColorDefaultBrush}"
                                 CornerRadius="4"
-                                Padding="12"
-                                MaxHeight="200">
-                            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                <TextBlock Name="ConfigurationText"
-                                           Text="配置信息将在这里显示..."
-                                           FontFamily="Consolas,Monaco,monospace"
-                                           FontSize="12"
-                                           TextWrapping="Wrap"/>
-                            </ScrollViewer>
+                                Padding="12">
+                            <TextBlock Name="ConfigurationText"
+                                       Text="配置信息将在这里显示..."
+                                       FontFamily="Consolas,Monaco,monospace"
+                                       FontSize="12"
+                                       TextWrapping="Wrap"/>
                         </Border>
                     </StackPanel>
                 </Border>
@@ -353,7 +346,8 @@
                 <!-- Left side buttons -->
                 <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="12">
                     <button:AccentIconButton Name="ExportReportButton"
-                                             Content="导出完整报告"
+                                             Content="导出完整报告包"
+                                             Icon="Save20Regular"
                                              Click="ExportReportButton_Click"
                                              ToolTip.Tip="导出包含所有信息的详细报告"/>
 

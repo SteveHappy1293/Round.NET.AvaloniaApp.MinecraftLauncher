@@ -23,6 +23,7 @@ public partial class ExceptionReportWindow : Window
 {
     private ExceptionEntry _currentException;
     private string _fullExceptionText;
+    public string PackFile { get; set; }
 
     public ExceptionReportWindow()
     {
@@ -429,29 +430,23 @@ public partial class ExceptionReportWindow : Window
 
             var fileTypeChoices = new[]
             {
-                new FilePickerFileType("文本文件")
+                new FilePickerFileType("Round Studio 通用异常报告包")
                 {
-                    Patterns = new[] { "*.txt" }
-                },
-                new FilePickerFileType("所有文件")
-                {
-                    Patterns = new[] { "*.*" }
+                    Patterns = new[] { "*.rexp" }
                 }
             };
 
             var result = await storageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
             {
-                Title = "导出异常报告",
-                DefaultExtension = "txt",
+                Title = "导出异常报告包",
+                DefaultExtension = "rexp",
                 FileTypeChoices = fileTypeChoices,
-                SuggestedFileName = $"RMCL_Exception_Report_{DateTime.Now:yyyyMMdd_HHmmss}.txt"
+                SuggestedFileName = $"RMCL_Exception_Report_{DateTime.Now:yyyyMMdd_HHmmss}.rexp"
             });
 
             if (result != null)
             {
-                await using var stream = await result.OpenWriteAsync();
-                await using var writer = new StreamWriter(stream, Encoding.UTF8);
-                await writer.WriteAsync(_fullExceptionText);
+                File.Copy(PackFile, result.Path.LocalPath);
                 ShowCopyNotification($"报告已导出到: {result.Name}");
             }
         }

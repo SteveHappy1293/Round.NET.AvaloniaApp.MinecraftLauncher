@@ -43,6 +43,7 @@ public partial class ManageExceptionChildPage : UserControl
                     it.OnOpen += (sender, s) =>
                     {
                         var win = new ExceptionReportWindow();
+                        win.PackFile = Path.Combine(x, "Pack.rexp");
                         win.ShowException(entry);
                         win.Show();
                     };
