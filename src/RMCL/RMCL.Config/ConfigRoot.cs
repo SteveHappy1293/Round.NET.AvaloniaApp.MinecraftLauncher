@@ -35,7 +35,7 @@ public class ConfigRoot
     public int WindowY { get; set; } = 0;
     public UpdateConfigEntry UpdateModel { get; set; } = new();
     public bool LauncherWindowTopMost { get; set; } = false;
-    public int GCTime { get; set; } = 2000;
+    public Int64 GCTime { get; set; } = 2000;
 }
 
 public class GameFolderConfig

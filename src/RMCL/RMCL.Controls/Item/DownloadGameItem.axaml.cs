@@ -42,7 +42,7 @@ namespace RMCL.Controls.Item
 
             string resourcePath = $"avares://RMCL.Controls/Assets/MinecraftIcons/{version.Type}.png";
             
-            var bitmap = Pools.AvaloniaResourcesPool.GetImage(resourcePath,24);
+            var bitmap = Bitmap.DecodeToWidth(AssetLoader.Open(new Uri(resourcePath)), 24);
 
             IconImage.Source = bitmap;
         }

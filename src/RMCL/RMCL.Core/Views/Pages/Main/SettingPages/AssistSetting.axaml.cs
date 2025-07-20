@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
@@ -28,13 +29,14 @@ public partial class AssistSetting : ISetting
         IsEdit = true;
     }
 
-    public int GetIndex(int GCTime) => GCTime switch
+    public int GetIndex(Int64 GCTime) => GCTime switch
     {
-        3000 => 0,
-        2500 => 1,
-        2000 => 2,
-        1500 => 3,
-        1000 => 4
+        3000 => 1,
+        2500 => 2,
+        2000 => 3,
+        1500 => 4,
+        1000 => 5,
+        999999999999999999 => 0
     };
 
     private void TopMostSwitch_OnIsCheckedChanged(object? sender, RoutedEventArgs e)
@@ -79,7 +81,7 @@ public partial class AssistSetting : ISetting
     {
         if (IsEdit)
         {
-            Config.Config.MainConfig.GCTime = int.Parse(((ComboBoxItem)GCTimeChose.SelectedItem).Tag.ToString());
+            Config.Config.MainConfig.GCTime = Int64.Parse(((ComboBoxItem)GCTimeChose.SelectedItem).Tag.ToString());
             Config.Config.SaveConfig();
         }
     }

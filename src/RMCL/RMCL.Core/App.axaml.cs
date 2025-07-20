@@ -33,8 +33,11 @@ public partial class App : Application
         {
             while (true)
             {
-                Thread.Sleep(Config.Config.MainConfig.GCTime);
-                GC.Collect(2, GCCollectionMode.Aggressive, true);
+                if (Config.Config.MainConfig.GCTime != 999999999999999999)
+                {
+                    Thread.Sleep((int)Config.Config.MainConfig.GCTime);
+                    GC.Collect(2, GCCollectionMode.Aggressive, true);
+                }
             }
         });
         AvaloniaXamlLoader.Load(this);
@@ -101,7 +104,8 @@ public partial class App : Application
         }
         
         // 致命错误需要特殊处理
-        HandleFatalError(exception);
+        // HandleFatalError(exception);
+        return;
     }
 
     private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)

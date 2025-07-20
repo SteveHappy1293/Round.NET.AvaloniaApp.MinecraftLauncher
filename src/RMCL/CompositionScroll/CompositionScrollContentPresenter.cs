@@ -448,7 +448,10 @@ namespace CompositionScroll
                 CanHorizontallyScroll ? double.PositiveInfinity : availableWithPadding.Width,
                 CanVerticallyScroll ? double.PositiveInfinity : availableWithPadding.Height);
 
-            Child.Measure(constraint);
+            try
+            {
+                Child.Measure(constraint);
+            }catch { }
 
             if (!_isSnapPointsUpdated)
             {
