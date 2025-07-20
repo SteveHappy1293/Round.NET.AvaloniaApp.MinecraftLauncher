@@ -64,14 +64,14 @@ sealed class Program
         
             Console.WriteLine("Program Starting!");
 
-            // 优化启动流程：先加载关键配置，其他配置异步加载
-            Console.WriteLine("Program Load Config...");
+            // 优化启动流程：先加载关键配置，其他配置异步加载 
+            Console.WriteLine("Program Loading Config...");
             Config.LoadConfig();
             Console.WriteLine("Program Load JavaConfig...");
             JavaManager.LoadConfig();
-            Console.WriteLine("Program Load PlayerConfig...");
+            Console.WriteLine("Program Loading PlayerConfig...");
             PlayerManager.LoadConfig();
-            Console.WriteLine("Program Load GameDrawerConfig...");
+            Console.WriteLine("Program Loading GameDrawerConfig...");
             GameDrawerManager.LoadConfig();
             Console.WriteLine("Background initialization completed!");
 
