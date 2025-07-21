@@ -47,7 +47,7 @@ RMCL 3.0 是新一代的 Minecraft 启动器，采用全新的跨平台框架 Ro
 RMCL 3.0 是由一群热爱 Minecraft 的开发者精心打造的启动器。我们致力于为玩家提供最佳的游戏体验，不断优化启动器的功能和性能。如果你在使用过程中遇到任何问题，或者有任何建议，欢迎随时在 GitHub 提交 issue 或者与我们联系。我们期待你的反馈，让我们共同打造一个更完美的 Minecraft 启动器。
 
 # 支持我们
-[![爱发电](https://img.shields.io/badge/爱发电-yjq666-946ce6?style=flat&labelColor=444444&logoSize=auto)](https://afdian.com/yjq666)
+[![爱发电](https://img.shields.io/badge/爱发电-yjq666-946ce6?style=flat&labelColor=444444&logoSize=auto)](https://afdian.com/a/yjq666)
 [![哔哩哔哩](https://img.shields.io/badge/BiliBili充电-Minecraft一角钱-00A4DB?style=flat&labelColor=444444&logo=bilibili)](https://space.bilibili.com/1527364468)
 
 # 加入社区
