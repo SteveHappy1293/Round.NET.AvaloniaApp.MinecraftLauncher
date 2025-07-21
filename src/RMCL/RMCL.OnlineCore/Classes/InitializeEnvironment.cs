@@ -7,8 +7,9 @@ public class InitializeEnvironment
     public static string CorePath { get; private set; } = String.Empty;
     public static string OpenP2PCoreFile { get; private set; } = String.Empty;
     
-    public static string ClientID { get; set; } = String.Empty;
+    public static string User { get; set; } = String.Empty;
     public static string UUID { get; set; } = String.Empty;
+    public static ulong Token { get; set; } = 0;
     
     public static bool IsInitialized { get; private set; } = false;
 
@@ -20,10 +21,8 @@ public class InitializeEnvironment
         CorePath = corePath;
 
         OpenP2PCoreFile = Path.Combine(CorePath, "OpenP2P.exe");
-        if(File.Exists(OpenP2PCoreFile)) IsInitialized = true;
-
+        if(File.Exists(Path.GetFullPath(OpenP2PCoreFile))) IsInitialized = true;
         Directory.CreateDirectory(CorePath);
-        IsInitialized = false;
 
         return IsInitialized;
     }
