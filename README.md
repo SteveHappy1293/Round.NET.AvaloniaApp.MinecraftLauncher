@@ -79,11 +79,19 @@ RMCL 3.0 是由一群热爱 Minecraft 的开发者精心打造的启动器。我
 
 
 ## 使用开源项目：
-DotNet C#  
-Avalonia  
-FluentAvalonia  
+dotnet C#  
+[Avalonia](https://github.com/avaloniaui/avalonia)  
+[FluentAvalonia](https://github.com/amwx/FluentAvalonia)  
+[FluentAvalonia.FluentIcons](https://github.com/jmkinzer/FluentAvalonia.FluentIcons)  
+[LiteSkinViewer](https://github.com/YangSpring429/LiteSkinViewer)  
+[Lua-CSharp](https://github.com/nuskey8/Lua-CSharp)  
 [OverrideLauncher.Core](https://github.com/Round-Studio/OverrideLauncher.Core)  
-Downloader  
+[Downloader](https://github.com/bezzad/Downloader)  
+[NAudio](https://github.com/naudio/NAudio)  
+
+## 灵感来源
+
+部分 UI/UX 灵感来源于 [LauncherX](https://corona.studio/lx) 与 [BakaXL](https://www.bakaxl.com)
 
 ## Star 历史
 
