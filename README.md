@@ -79,7 +79,6 @@ RMCL 3.0 是由一群热爱 Minecraft 的开发者精心打造的启动器。我
 
 
 ## 使用开源项目：
-dotnet C#  
 [Avalonia](https://github.com/avaloniaui/avalonia)  
 [FluentAvalonia](https://github.com/amwx/FluentAvalonia)  
 [FluentAvalonia.FluentIcons](https://github.com/jmkinzer/FluentAvalonia.FluentIcons)  
