@@ -23,7 +23,7 @@
 [RMCL 产品下载](https://docs.roundstudio.top/docs/%E4%B8%8B%E8%BD%BD/RMCL)
 
 # 简介
-RMCL 3.0 是新一代的 Minecraft 启动器，采用全新的跨平台框架 Round.NET.AvaloniaApp，彻底打破 Windows 系统的限制，让玩家可以在多种操作系统上畅玩 Minecraft 游戏，为玩家带来前所未有的自由体验。无论你是 Windows 用户、Mac 用户还是 Linux 用户，RMCL 3.0 都能完美适配，让你随时随地开启冒险之旅。
+RMCL 3.0 是新一代的 Minecraft 启动器，采用全新的跨平台框架 Avalonia，彻底打破 Windows 系统的限制，让玩家可以在多种操作系统上畅玩 Minecraft 游戏，为玩家带来前所未有的自由体验。无论你是 Windows 用户、Mac 用户还是 Linux 用户，RMCL 3.0 都能完美适配，让你随时随地开启冒险之旅。
 # 如何使用
 下载：点击右侧的 Releases（下载链接），找到与你的电脑架构相匹配的最新版本。
 
