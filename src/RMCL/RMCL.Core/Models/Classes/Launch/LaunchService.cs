@@ -16,6 +16,7 @@ using RMCL.Controls.TaskContentControl;
 using RMCL.Core.Models.Classes.Manager.BackCallManager;
 using RMCL.Core.Models.Classes.Manager.TaskManager;
 using RMCL.Core.Models.Classes.Manager.UserManager;
+using RMCL.Core.Views.Windows.Main.Client;
 
 namespace RMCL.Core.Models.Classes.Launch;
 
@@ -157,14 +158,22 @@ public class LaunchService
             };
             cont.RunTask();
             var uuid1 = TaskManager.AddTask(cont);
-            dow.ExitCompleted = (uuid) => TaskManager.DeleteTask(uuid1);
+            var logWindow = new ClientLogViewWindow();
+            dow.ExitCompleted = (uuid) =>
+            {
+                TaskManager.DeleteTask(uuid1);
+                Dispatcher.UIThread.Invoke(() => logWindow.GameExit());
+            };
             dow.Launching = (entry) =>
             {
                 dow.Runner = Launch(entry, (s) =>
                 {
                     Console.WriteLine(s);
+                    
+                    Dispatcher.UIThread.Invoke(() => logWindow.AddLog(s));
                 });
                 dow.RunningGame();
+                Dispatcher.UIThread.Invoke(() => logWindow.Show());
             };
             dow.Launch(Info);
         });
